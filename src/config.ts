@@ -5,6 +5,8 @@ import { DEFAULT_BOARD_NAME, type IssuesConfig } from "./issues/types.ts";
 import { DEFAULT_GITHUB_ORG, type GithubConfig, type GreptileConfig, type SupabaseConfig } from "./mcp/types.ts";
 import { MAX_NODES, MIN_NODES, type ThinkConfig } from "./think/types.ts";
 import { DEFAULT_LSP_CONFIG, type LspConfig } from "./lsp/types.ts";
+import { DEFAULT_POD_CONFIG, type PodConfig } from "./pod/types.ts";
+
 
 export interface AioConfig {
 	uplift: { enabled: boolean; skipTrivial: boolean; maxChars: number; echo: boolean };
@@ -14,6 +16,7 @@ export interface AioConfig {
 	greptile: GreptileConfig;
 	supabase: SupabaseConfig;
 	lsp: LspConfig;
+	pod: PodConfig;
 }
 
 export function defaultConfig(): AioConfig {
@@ -48,6 +51,7 @@ export function defaultConfig(): AioConfig {
 			enabled: true,
 		},
 		lsp: { ...DEFAULT_LSP_CONFIG },
+		pod: { ...DEFAULT_POD_CONFIG },
 	};
 }
 
@@ -149,6 +153,21 @@ function mergeLsp(lsp: Record<string, unknown> | undefined, defaults: LspConfig)
 	};
 }
 
+function mergePod(pod: Record<string, unknown> | undefined, defaults: PodConfig): PodConfig {
+	if (!pod) return defaults;
+	const extraDirs = Array.isArray(pod.extraDirs)
+		? pod.extraDirs.filter((dir): dir is string => typeof dir === "string" && dir.length > 0)
+		: defaults.extraDirs;
+	return {
+		enabled: typeof pod.enabled === "boolean" ? pod.enabled : defaults.enabled,
+		bin: typeof pod.bin === "string" && pod.bin.trim() ? pod.bin.trim() : defaults.bin,
+		workspaceId: typeof pod.workspaceId === "string" ? pod.workspaceId : defaults.workspaceId,
+		extraDirs,
+		nexusUrl:
+			typeof pod.nexusUrl === "string" && pod.nexusUrl.trim() ? pod.nexusUrl.trim() : defaults.nexusUrl,
+	};
+}
+
 export function loadConfig(): AioConfig {
 	const defaults = defaultConfig();
 	const dir = process.env.PI_CODING_AGENT_DIR?.trim() || join(homedir(), ".omp", "agent");
@@ -162,5 +181,6 @@ export function loadConfig(): AioConfig {
 		greptile: mergeGreptile(asRecord(file.greptile), defaults.greptile),
 		supabase: mergeSupabase(asRecord(file.supabase), defaults.supabase),
 		lsp: mergeLsp(asRecord(file.lsp), defaults.lsp),
+		pod: mergePod(asRecord(file.pod), defaults.pod),
 	};
 }

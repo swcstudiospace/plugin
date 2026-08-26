@@ -63,10 +63,11 @@ Skipped automatically: slash commands, trivial acknowledgements (`ok`, `lgtm`, �
 | `/aio merge …` | Same as `/merge` |
 | `/aio think …` | Same as `/think` |
 | `/supabase` | `status` / `projects` / `tables` / `users` |
+| `/pod` | `status` / `up` / `connect` / `doctor` |
 
 Prefixes: `uplift:` force · `raw:` skip.
 
-Flags: `--aio-uplift-off` starts the session with uplift disabled. `--aio-issues-off` starts with issue tracking disabled. `--aio-think-off` starts with Graph of Thought disabled. `--aio-lsp-off` starts with Live LSP disabled.
+Flags: `--aio-uplift-off` starts the session with uplift disabled. `--aio-issues-off` starts with issue tracking disabled. `--aio-think-off` starts with Graph of Thought disabled. `--aio-lsp-off` starts with Live LSP disabled. `--aio-pod-off` starts with pod boot disabled.
 
 ## Graph of Thought
 
@@ -158,6 +159,20 @@ Tools (text results, no tokens):
 
 `aio_status` also includes `supabase: { management, data }` booleans.
 
+## Pod boot (codespace)
+
+When `pod.enabled` is true (default **false**), **omp open** (`session_start`) boots an isolated DevPod codespace, then attaches:
+
+1. Create `pod.extraDirs` on load (relative paths resolve against session cwd).
+2. DevPod `up` (`devpod up <cwd> --id <workspaceId> --open-ide=false`).
+3. Anda Engine probe (`ANDA_NEXUS_URL` / `pod.nexusUrl`) — **not** dTEE (not shipped; status is always `dtee: false`).
+
+File tools (`read`, `write`, `edit`, `grep` path, rooted `glob`) are jailed to the workspace plus those extra dirs. When the pod is connected, bash is rewritten to `devpod ssh <id> --command`. Missing binary is fail-open: notify, still jail to cwd + extraDirs, no fake ssh.
+
+Child Ultrathink / swarm sessions (`PI_AIO_CHILD` / `PI_ULTRATHINK_CHILD`) do not boot a nested pod.
+
+Bin: `AIMEE_POD_BIN` || `pod.bin` || `devpod`. Nexus: `ANDA_NEXUS_URL` || `pod.nexusUrl` || `http://127.0.0.1:8091`. Flag: `--aio-pod-off`. Commands: `/pod` `status` | `up` | `connect` | `doctor`.
+
 ## Config
 
 `~/.omp/agent/all-in-one.json` (or `$PI_CODING_AGENT_DIR/all-in-one.json`). All keys optional.
@@ -195,13 +210,20 @@ Tools (text results, no tokens):
   },
   "lsp": {
     "enabled": true
+  },
+  "pod": {
+    "enabled": false,
+    "bin": "devpod",
+    "workspaceId": "",
+    "extraDirs": [],
+    "nexusUrl": "http://127.0.0.1:8091"
   }
 }
 ```
 
 Prompts longer than `maxChars` skip the LLM and use fallback wrap. Set `echo` to `false` to hide the per-turn XML transcript (the agent still receives the rewrite; `/uplift last` still shows it). `raw:` and skip still skip the whole pre-pass, including Graph of Thought.
 
-`supabase.enabled` defaults to true. Unset env vars make tools return `missing_credentials`. `lsp.enabled` defaults to true. Missing language-server binaries stay disabled; nothing is auto-installed.
+`supabase.enabled` defaults to true. Unset env vars make tools return `missing_credentials`. `lsp.enabled` defaults to true. Missing language-server binaries stay disabled; nothing is auto-installed. `pod.enabled` defaults to false — only configured sessions pay `devpod up`. Missing DevPod is fail-open (notify, jail to cwd + extraDirs, no fake ssh). dTEE is not shipped.
 
 ## Verify
 
