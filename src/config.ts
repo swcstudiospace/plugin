@@ -7,7 +7,6 @@ import { MAX_NODES, MIN_NODES, type ThinkConfig } from "./think/types.ts";
 import { DEFAULT_LSP_CONFIG, type LspConfig } from "./lsp/types.ts";
 import { DEFAULT_POD_CONFIG, type PodConfig } from "./pod/types.ts";
 
-
 export interface AioConfig {
 	uplift: { enabled: boolean; skipTrivial: boolean; maxChars: number; echo: boolean };
 	issues: IssuesConfig;

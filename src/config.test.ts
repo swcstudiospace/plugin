@@ -7,7 +7,6 @@ import { DEFAULT_BOARD_NAME } from "./issues/types.ts";
 import { DEFAULT_LSP_CONFIG } from "./lsp/types.ts";
 import { DEFAULT_POD_CONFIG } from "./pod/types.ts";
 
-
 const ISSUES = {
 	enabled: true,
 	boardName: DEFAULT_BOARD_NAME,
