@@ -12,6 +12,8 @@ const ISSUES = {
 	echo: true,
 };
 const THINK = { enabled: true, minNodes: 3, maxNodes: 8 };
+const GITHUB = { org: "swcstudiospace", autoPr: true };
+const GREPTILE = { requiredForMerge: true, bin: "greptile", minConfidence: 5 };
 
 const prevDir = process.env.PI_CODING_AGENT_DIR;
 const tempDirs: string[] = [];
@@ -40,6 +42,8 @@ describe("loadConfig", () => {
 			uplift: { enabled: true, skipTrivial: true, maxChars: 20000, echo: true },
 			issues: ISSUES,
 			think: THINK,
+			github: GITHUB,
+			greptile: GREPTILE,
 		});
 	});
 
@@ -58,6 +62,8 @@ describe("loadConfig", () => {
 			uplift: { enabled: false, skipTrivial: true, maxChars: 20000, echo: true },
 			issues: ISSUES,
 			think: THINK,
+			github: GITHUB,
+			greptile: GREPTILE,
 		});
 
 		withAgentDir(JSON.stringify({ uplift: { maxChars: 50 } }));
@@ -65,6 +71,8 @@ describe("loadConfig", () => {
 			uplift: { enabled: true, skipTrivial: true, maxChars: 50, echo: true },
 			issues: ISSUES,
 			think: THINK,
+			github: GITHUB,
+			greptile: GREPTILE,
 		});
 
 		withAgentDir(JSON.stringify({ uplift: { skipTrivial: false, extra: true }, ignored: 1 }));
@@ -72,6 +80,8 @@ describe("loadConfig", () => {
 			uplift: { enabled: true, skipTrivial: false, maxChars: 20000, echo: true },
 			issues: ISSUES,
 			think: THINK,
+			github: GITHUB,
+			greptile: GREPTILE,
 		});
 	});
 
@@ -86,6 +96,8 @@ describe("loadConfig", () => {
 			uplift: { enabled: true, skipTrivial: true, maxChars: 20000, echo: false },
 			issues: ISSUES,
 			think: THINK,
+			github: GITHUB,
+			greptile: GREPTILE,
 		});
 	});
 
@@ -95,6 +107,8 @@ describe("loadConfig", () => {
 			uplift: { enabled: true, skipTrivial: true, maxChars: 20000, echo: true },
 			issues: { ...ISSUES, enabled: false },
 			think: THINK,
+			github: GITHUB,
+			greptile: GREPTILE,
 		});
 
 		withAgentDir(JSON.stringify({ issues: { boardName: "  Other Board  ", ktuiBin: "/bin/ktui" } }));
