@@ -59,6 +59,12 @@ export interface SyncResult {
 	reason?: string;
 }
 
+export interface GraphSyncResult {
+	workUnitId: string;
+	parent: SyncResult;
+	children: SyncResult[];
+}
+
 export interface IssueTrackState {
 	enabled: boolean;
 	last?: SyncResult;
