@@ -16,12 +16,6 @@ export const DEFAULT_POD_CONFIG: PodConfig = {
 	nexusUrl: "http://127.0.0.1:8091",
 };
 
-export interface CliInvoke {
-	stdout: string;
-	stderr: string;
-	code: number;
-}
-
 export interface UpWorkspaceOpts {
 	run: CliRunner;
 	bin: string;
