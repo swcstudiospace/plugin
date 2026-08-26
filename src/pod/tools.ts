@@ -32,7 +32,7 @@ export function registerPodTools(
 					session.localFolder,
 					`${session.extraDirs.length} extra dirs`,
 					`Anda ${session.engineActive ? "active" : "inactive"}`,
-					"dTEE no",
+					`dTEE ${session.dtee ? "yes" : "no"}`,
 				];
 				return { content: [{ type: "text", text: lines.join("\n") }] };
 			} catch {
