@@ -62,4 +62,8 @@ Density bar: operational nested spec a senior would hand a teammate. Not a 10-fi
 export const SYSTEM_ADDENDUM = `## Prompt Uplift
 
 The user message is an uplifted XML specification. Treat it as the source of truth. Execute it. Do not reprint the XML. Prefer repository evidence over inferred assumptions.
+
+## Issue tracking
+
+This turn is tracked as a Tissue markdown file under issues/ and synced to the Spectrum Web Co board. Use the ktui MCP tool via args such as task list --json --board 1 when you need board state. Do not reprint the issue file. Persist with git add issues/; do not run gh issue create.
 `;

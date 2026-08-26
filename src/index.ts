@@ -2,6 +2,24 @@ import type { ExtensionAPI, ExtensionContext } from "@oh-my-pi/pi-coding-agent";
 import { completePrompt, recentConversation } from "./complete.ts";
 import { applyCommand, formatStatus, formatUpliftEcho, parseAioArgs } from "./commands.ts";
 import { loadConfig } from "./config.ts";
+import { createBoardComponent } from "./issues/board-ui.ts";
+import {
+	ISSUE_COMPLETIONS,
+	KANBAN_COMPLETIONS,
+	applyIssueToggle,
+	parseIssueArgs,
+} from "./issues/commands.ts";
+import {
+	formatBoardHud,
+	formatBoardList,
+	formatIssueEcho,
+	formatIssueList,
+} from "./issues/format.ts";
+import { resolveGithub } from "./issues/github.ts";
+import { defaultKtuiRunner } from "./issues/kanban.ts";
+import { ensureRepo, listIssues } from "./issues/tissue.ts";
+import { refreshSnapshot, syncAllIssues, trackUpliftedPrompt } from "./issues/track.ts";
+import type { IssueTrackState, SyncResult } from "./issues/types.ts";
 import type { UpliftResult, UpliftState } from "./types.ts";
 import { decideUplift } from "./uplift/detect.ts";
 import { SYSTEM_ADDENDUM } from "./uplift/prompt.ts";
@@ -15,12 +33,26 @@ const COMPLETIONS = [
 	{ value: "last", label: "last — show the last uplifted XML" },
 ];
 
+const ISSUE_ADDENDUM = `## Issue tracking
+
+This turn is tracked as a Tissue markdown file under issues/ and synced to the Spectrum Web Co board. Use the ktui MCP tool via args such as task list --json --board 1 when you need board state. Do not reprint the issue file. Persist with git add issues/; do not run gh issue create.
+`;
+
 function filterCompletions(
 	prefix: string,
 	extra: { value: string; label: string }[] = [],
 ): { value: string; label: string }[] | null {
 	const needle = prefix.trim().toLowerCase();
 	const filtered = [...extra, ...COMPLETIONS].filter((item) => item.value.startsWith(needle));
+	return filtered.length > 0 ? filtered : null;
+}
+
+function filterNamed(
+	prefix: string,
+	items: { value: string; label: string }[],
+): { value: string; label: string }[] | null {
+	const needle = prefix.trim().toLowerCase();
+	const filtered = items.filter((item) => item.value.startsWith(needle));
 	return filtered.length > 0 ? filtered : null;
 }
 
@@ -45,29 +77,190 @@ export default function allInOne(pi: ExtensionAPI): void {
 		skipOnce: false,
 		skipTrivial: config.uplift.skipTrivial,
 	};
+	const issueState: IssueTrackState = { enabled: config.issues.enabled };
+	const run = defaultKtuiRunner(config.issues.ktuiBin);
 	let lastResult: UpliftResult | undefined;
 	let injectAddendum = false;
+	let injectIssueAddendum = false;
 
 	pi.registerFlag("aio-uplift-off", {
 		description: "Disable Prompt Uplift",
 		type: "boolean",
 		default: false,
 	});
+	pi.registerFlag("aio-issues-off", {
+		description: "Disable issue tracking",
+		type: "boolean",
+		default: false,
+	});
 
 	function persist(): void {
-		pi.appendEntry("aio-state", { enabled: state.enabled });
+		pi.appendEntry("aio-state", { enabled: state.enabled, issuesEnabled: issueState.enabled });
 	}
 
 	function applyFlag(): void {
 		if (pi.getFlag("aio-uplift-off") === true) state.enabled = false;
+		if (pi.getFlag("aio-issues-off") === true) issueState.enabled = false;
 	}
 
 	function notify(ctx: ExtensionContext, message: string, level: "info" | "warning" | "error" = "info"): void {
 		if (ctx.hasUI) ctx.ui.notify(message, level);
 	}
 
+	async function refreshHud(ctx: ExtensionContext): Promise<void> {
+		if (!ctx.hasUI) return;
+		if (!issueState.enabled) {
+			ctx.ui.setWidget("aio-kanban", undefined);
+			return;
+		}
+		try {
+			const snap = await refreshSnapshot(run, config.issues.boardName);
+			ctx.ui.setWidget("aio-kanban", formatBoardHud(snap, issueState.last), { placement: "aboveEditor" });
+		} catch {
+			ctx.ui.setWidget("aio-kanban", formatBoardHud(undefined, issueState.last), { placement: "aboveEditor" });
+		}
+	}
+
+	function recordIssue(ctx: ExtensionContext, result: SyncResult): void {
+		issueState.last = result;
+		injectIssueAddendum = true;
+		try {
+			pi.appendEntry("aio-issue-last", result);
+		} catch {
+			// fail-open
+		}
+		if (config.issues.echo) {
+			try {
+				pi.sendMessage(
+					{
+						customType: "aio-issue",
+						content: formatIssueEcho(result),
+						display: true,
+					},
+					{ triggerTurn: false },
+				);
+			} catch {
+				// fail-open: never block the rewritten prompt
+			}
+			notify(ctx, formatIssueEcho(result));
+		}
+		void refreshHud(ctx);
+	}
+
+	async function runSync(ctx: ExtensionContext): Promise<void> {
+		try {
+			const results = await syncAllIssues(
+				ctx.cwd,
+				run,
+				config.issues.boardName,
+				resolveGithub(ctx.cwd),
+			);
+			notify(ctx, `Synced ${results.length} issue${results.length === 1 ? "" : "s"}`);
+			await refreshHud(ctx);
+		} catch (error) {
+			const message = error instanceof Error ? error.message : String(error);
+			notify(ctx, `Issue sync failed (${message})`, "error");
+		}
+	}
+
+	function openBoard(ctx: ExtensionContext): void {
+		void (async () => {
+			const snap = await refreshSnapshot(run, config.issues.boardName);
+			if (!ctx.hasUI) {
+				notify(ctx, snap ? formatBoardList(snap) : formatBoardHud(undefined).join("\n"), snap ? "info" : "warning");
+				return;
+			}
+			if (!snap) notify(ctx, "board offline — ktui MCP not ready", "warning");
+			try {
+				void ctx.ui
+					.custom(
+						(_tui, _theme, _kb, done) =>
+							createBoardComponent(
+								snap ?? {
+									boardId: 0,
+									boardName: config.issues.boardName,
+									columns: [],
+									tasks: [],
+									categoryId: null,
+								},
+								done,
+							),
+						{ overlay: true },
+					)
+					.catch(() => {
+						notify(ctx, "run ktui in another terminal for the real TUI", "warning");
+					});
+			} catch {
+				notify(ctx, "run ktui in another terminal for the real TUI", "warning");
+			}
+		})();
+	}
+
+	async function handleIssueKind(kind: "issues" | "kanban", args: string, ctx: ExtensionContext): Promise<void> {
+		const { cmd } = parseIssueArgs(kind, args);
+		if (kind === "issues") {
+			switch (cmd) {
+				case "list":
+					notify(ctx, formatIssueList(listIssues(ctx.cwd)));
+					return;
+				case "status": {
+					const lines = [
+						`Issue tracking ${issueState.enabled ? "on" : "off"}`,
+						`Board: ${config.issues.boardName}`,
+					];
+					if (issueState.last) lines.splice(1, 0, formatIssueEcho(issueState.last));
+					notify(ctx, lines.join("\n"));
+					return;
+				}
+				case "last":
+					if (!issueState.last) {
+						notify(ctx, "No last issue in this session yet", "warning");
+						return;
+					}
+					notify(ctx, formatIssueEcho(issueState.last));
+					return;
+				case "sync":
+					await runSync(ctx);
+					return;
+				case "on":
+				case "off":
+				case "toggle": {
+					const toggled = applyIssueToggle(issueState, cmd);
+					persist();
+					notify(ctx, toggled.message);
+					await refreshHud(ctx);
+					return;
+				}
+				default:
+					notify(ctx, "Usage: /issues [list|status|sync|last|on|off]");
+					return;
+			}
+		}
+
+		switch (cmd) {
+			case "board":
+			case "open":
+				openBoard(ctx);
+				return;
+			case "sync":
+				await runSync(ctx);
+				return;
+			case "status": {
+				const snap = await refreshSnapshot(run, config.issues.boardName);
+				notify(ctx, formatBoardHud(snap, issueState.last).join("\n"));
+				return;
+			}
+			default:
+				notify(ctx, "Usage: /kanban [board|open|sync|status]");
+		}
+	}
+
 	async function handleCommand(args: string, ctx: ExtensionContext): Promise<void> {
-		const { cmd } = parseAioArgs(args);
+		const { cmd, rest } = parseAioArgs(args);
+		if (cmd === "issues" || cmd === "kanban") {
+			await handleIssueKind(cmd, rest, ctx);
+			return;
+		}
 		const result = applyCommand(state, cmd);
 		if (cmd === "on" || cmd === "off" || cmd === "toggle") persist();
 		if (result.showLast) {
@@ -94,12 +287,32 @@ export default function allInOne(pi: ExtensionAPI): void {
 		handler: handleCommand,
 	});
 
+	pi.registerCommand("issues", {
+		description: "Tissue issue tracking",
+		getArgumentCompletions: (prefix) => filterNamed(prefix, ISSUE_COMPLETIONS),
+		handler: (args, ctx) => handleIssueKind("issues", args, ctx),
+	});
+
+	pi.registerCommand("kanban", {
+		description: "Spectrum Web Co board",
+		getArgumentCompletions: (prefix) => filterNamed(prefix, KANBAN_COMPLETIONS),
+		handler: (args, ctx) => handleIssueKind("kanban", args, ctx),
+	});
+
 	pi.registerCommand("aio", {
 		description: "All-in-one plugin commands",
 		getArgumentCompletions: (prefix) => {
+			const issues = prefix.trimStart().match(/^issues(?:\s+|$)(.*)$/i);
+			if (issues) return filterNamed(issues[1] ?? "", ISSUE_COMPLETIONS);
+			const kanban = prefix.trimStart().match(/^kanban(?:\s+|$)(.*)$/i);
+			if (kanban) return filterNamed(kanban[1] ?? "", KANBAN_COMPLETIONS);
 			const nested = prefix.trimStart().match(/^uplift(?:\s+|$)(.*)$/i);
 			if (nested) return filterCompletions(nested[1] ?? "");
-			return filterCompletions(prefix, [{ value: "uplift", label: "uplift — Prompt Uplift commands" }]);
+			return filterCompletions(prefix, [
+				{ value: "issues", label: "issues — Tissue issue tracking" },
+				{ value: "kanban", label: "kanban — Spectrum Web Co board" },
+				{ value: "uplift", label: "uplift — Prompt Uplift commands" },
+			]);
 		},
 		handler: handleCommand,
 	});
@@ -109,12 +322,23 @@ export default function allInOne(pi: ExtensionAPI): void {
 		const manager = ctx.sessionManager;
 		const entries =
 			typeof manager.getBranch === "function" ? manager.getBranch() : manager.getEntries();
-		const saved = findCustom<{ enabled?: boolean }>(entries, "aio-state");
+		const saved = findCustom<{ enabled?: boolean; issuesEnabled?: boolean }>(entries, "aio-state");
 		if (typeof saved?.enabled === "boolean") state.enabled = saved.enabled;
+		if (typeof saved?.issuesEnabled === "boolean") issueState.enabled = saved.issuesEnabled;
 		applyFlag();
 		const last = findCustom<UpliftResult>(entries, "aio-uplift-last");
 		if (last && typeof last.xml === "string" && typeof last.root === "string") lastResult = last;
+		const lastIssue = findCustom<SyncResult>(entries, "aio-issue-last");
+		if (lastIssue?.issue && typeof lastIssue.issue.id === "string") issueState.last = lastIssue;
 		const reason = (event as { reason?: string }).reason;
+		if (issueState.enabled) {
+			try {
+				ensureRepo(ctx.cwd);
+				void refreshHud(ctx);
+			} catch {
+				// fail-open: never block session start
+			}
+		}
 		if (ctx.hasUI && (reason === "startup" || reason === "new")) {
 			notify(
 				ctx,
@@ -122,6 +346,9 @@ export default function allInOne(pi: ExtensionAPI): void {
 					? "Prompt Uplift on — prefix raw: to skip."
 					: "Prompt Uplift off — /uplift on to enable.",
 			);
+			if (issueState.enabled) {
+				notify(ctx, "Issue tracking on — Tissue + Spectrum Web Co");
+			}
 		}
 	});
 
@@ -167,6 +394,20 @@ export default function allInOne(pi: ExtensionAPI): void {
 				}
 				notify(ctx, `Prompt Uplift · ${result.root} · ${result.source}`);
 			}
+			if (issueState.enabled) {
+				try {
+					const tracked = await trackUpliftedPrompt({
+						root: ctx.cwd,
+						original: decision.text,
+						run,
+						boardName: config.issues.boardName,
+						github: resolveGithub(ctx.cwd),
+					});
+					recordIssue(ctx, tracked);
+				} catch {
+					// fail-open: never change the uplifted return
+				}
+			}
 			return { text: result.xml, images: event.images };
 		} catch (error) {
 			if (error instanceof Error && error.name === "AbortError") {
@@ -182,13 +423,20 @@ export default function allInOne(pi: ExtensionAPI): void {
 	});
 
 	pi.on("before_agent_start", (event) => {
-		if (!injectAddendum) return;
-		injectAddendum = false;
+		if (!injectAddendum && !injectIssueAddendum) return;
 		const parts = Array.isArray(event.systemPrompt)
 			? [...event.systemPrompt]
 			: [String(event.systemPrompt ?? "")];
-		if (parts.join("\n").includes("## Prompt Uplift")) return;
-		parts.push(SYSTEM_ADDENDUM);
+		let joined = parts.join("\n");
+		if (injectAddendum && !joined.includes("## Prompt Uplift")) {
+			parts.push(SYSTEM_ADDENDUM);
+			joined = parts.join("\n");
+		}
+		if (injectIssueAddendum && !joined.includes("## Issue tracking")) {
+			parts.push(ISSUE_ADDENDUM);
+		}
+		injectAddendum = false;
+		injectIssueAddendum = false;
 		return { systemPrompt: parts };
 	});
 }
