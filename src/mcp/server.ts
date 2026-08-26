@@ -1,4 +1,5 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { z } from "zod";
 import type { GithubClient, GithubFail, MergePullOk, PullNumberInput } from "./github.ts";
 import type { GreptileReviewInput, GreptileWhoami } from "./greptile.ts";
 import { DEFAULT_GITHUB_ORG, type GreptileReview, type MergeGate } from "./types.ts";
@@ -79,7 +80,7 @@ export function createAioMcpServer(deps: AioMcpServerDeps): McpServer {
 		"aio_status",
 		{
 			description: "Org and Greptile signed-in status. Never includes tokens.",
-			inputSchema: { type: "object", properties: {} },
+			inputSchema: {},
 		},
 		async () => {
 			const who = await greptile.whoami();
@@ -92,10 +93,7 @@ export function createAioMcpServer(deps: AioMcpServerDeps): McpServer {
 		{
 			description: "List repositories in a GitHub org.",
 			inputSchema: {
-				type: "object",
-				properties: {
-					org: { type: "string", description: "GitHub org (defaults to configured org)" },
-				},
+				org: z.string().optional().describe("GitHub org (defaults to configured org)"),
 			},
 		},
 		async (args: { org?: string }) => text(await github.listRepos(args?.org)),
@@ -106,12 +104,8 @@ export function createAioMcpServer(deps: AioMcpServerDeps): McpServer {
 		{
 			description: "Create a repository in the configured GitHub org.",
 			inputSchema: {
-				type: "object",
-				required: ["name"],
-				properties: {
-					name: { type: "string", description: "Repository name" },
-					private: { type: "boolean", description: "Create as private" },
-				},
+				name: z.string().describe("Repository name"),
+				private: z.boolean().optional().describe("Create as private"),
 			},
 		},
 		async (args: { name: string; private?: boolean }) =>
@@ -123,15 +117,11 @@ export function createAioMcpServer(deps: AioMcpServerDeps): McpServer {
 		{
 			description: "Open a pull request. owner/repo default to the current gh repo.",
 			inputSchema: {
-				type: "object",
-				required: ["title"],
-				properties: {
-					title: { type: "string", description: "Pull request title" },
-					body: { type: "string", description: "Pull request body" },
-					base: { type: "string", description: "Base branch" },
-					owner: { type: "string", description: "Repo owner" },
-					repo: { type: "string", description: "Repo name" },
-				},
+				title: z.string().describe("Pull request title"),
+				body: z.string().optional().describe("Pull request body"),
+				base: z.string().optional().describe("Base branch"),
+				owner: z.string().optional().describe("Repo owner"),
+				repo: z.string().optional().describe("Repo name"),
 			},
 		},
 		async (args: { title: string; body?: string; base?: string; owner?: string; repo?: string }) =>
@@ -151,12 +141,9 @@ export function createAioMcpServer(deps: AioMcpServerDeps): McpServer {
 		{
 			description: "List pull requests for a repo.",
 			inputSchema: {
-				type: "object",
-				properties: {
-					owner: { type: "string", description: "Repo owner" },
-					repo: { type: "string", description: "Repo name" },
-					state: { type: "string", description: "PR state filter" },
-				},
+				owner: z.string().optional().describe("Repo owner"),
+				repo: z.string().optional().describe("Repo name"),
+				state: z.string().optional().describe("PR state filter"),
 			},
 		},
 		async (args: { owner?: string; repo?: string; state?: string }) =>
@@ -168,13 +155,9 @@ export function createAioMcpServer(deps: AioMcpServerDeps): McpServer {
 		{
 			description: "Get one pull request by number.",
 			inputSchema: {
-				type: "object",
-				required: ["number"],
-				properties: {
-					number: { type: "integer", description: "Pull request number" },
-					owner: { type: "string", description: "Repo owner" },
-					repo: { type: "string", description: "Repo name" },
-				},
+				number: z.number().int().describe("Pull request number"),
+				owner: z.string().optional().describe("Repo owner"),
+				repo: z.string().optional().describe("Repo name"),
 			},
 		},
 		async (args: { number: number; owner?: string; repo?: string }) =>
@@ -185,7 +168,7 @@ export function createAioMcpServer(deps: AioMcpServerDeps): McpServer {
 		"greptile_whoami",
 		{
 			description: "Greptile CLI identity. Signed-out is a normal result.",
-			inputSchema: { type: "object", properties: {} },
+			inputSchema: {},
 		},
 		async () => {
 			const who = await greptile.whoami();
@@ -198,10 +181,7 @@ export function createAioMcpServer(deps: AioMcpServerDeps): McpServer {
 		{
 			description: "Run greptile review --json in the current working directory.",
 			inputSchema: {
-				type: "object",
-				properties: {
-					base: { type: "string", description: "Optional review base branch" },
-				},
+				base: z.string().optional().describe("Optional review base branch"),
 			},
 		},
 		async (args: { base?: string }) => text(await greptile.review({ cwd: process.cwd(), base: args?.base })),
@@ -212,13 +192,9 @@ export function createAioMcpServer(deps: AioMcpServerDeps): McpServer {
 		{
 			description: "Merge a PR only after greptile.review then allowsMerge. No force flag.",
 			inputSchema: {
-				type: "object",
-				required: ["number"],
-				properties: {
-					number: { type: "integer", description: "Pull request number" },
-					owner: { type: "string", description: "Repo owner" },
-					repo: { type: "string", description: "Repo name" },
-				},
+				number: z.number().int().describe("Pull request number"),
+				owner: z.string().optional().describe("Repo owner"),
+				repo: z.string().optional().describe("Repo name"),
 			},
 		},
 		async (args: { number: number; owner?: string; repo?: string }) =>
