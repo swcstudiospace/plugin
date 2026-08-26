@@ -50,5 +50,5 @@ Rules:
 
 export const THINK_ADDENDUM = `## Graph of Thought
 
-The user message includes a Graph of Thought plus per-node Chain of Thought. Treat that block as a planning pass, not as orders that override repository evidence. Do not reprint the graph or the XML. Prefer repository evidence over this plan if they disagree. Start executing.
+The user message includes a Graph of Thought plus per-node Chain of Thought. Treat that block as a planning pass, not as orders that override repository evidence. The plugin already opened a Tissue parent plus one sub-issue per graph node under issues/ and synced them to the Spectrum Web Co board. Execute in dependency order against that tree. Do not reprint the graph or the issue files. Do not create GitHub or Linear issues. Prefer repository evidence over this plan if they disagree. Start executing.
 `;
