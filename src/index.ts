@@ -281,6 +281,9 @@ export default function allInOne(pi: ExtensionAPI): void {
 				cwd: ctx.cwd,
 				config: config.pod,
 				env: process.env,
+				onProgress: (msg) => {
+					if (ctx.hasUI) ctx.ui.setWorkingMessage(msg);
+				},
 			});
 			if (podSession.connected) {
 				notify(ctx, `Pod connected — ${podSession.workspaceId}`);
@@ -289,6 +292,8 @@ export default function allInOne(pi: ExtensionAPI): void {
 			}
 		} catch {
 			notify(ctx, "Pod boot failed — jailed to workspace", "warning");
+		} finally {
+			if (ctx.hasUI) ctx.ui.setWorkingMessage();
 		}
 		await refreshHud(ctx);
 	}
@@ -490,7 +495,7 @@ export default function allInOne(pi: ExtensionAPI): void {
 					bin: config.pod.bin,
 					connected: podSession?.connected ?? false,
 					engineActive: podSession?.engineActive ?? false,
-					dtee: false,
+					dtee: podSession?.dtee ?? false,
 				}),
 			);
 			return;
@@ -1016,7 +1021,7 @@ export default function allInOne(pi: ExtensionAPI): void {
 		}
 		if (persistPod && !joined.includes("## Pod sandbox")) {
 			parts.push(
-				"## Pod sandbox\nFile tools are jailed to the workspace and extraDirs. Bash runs in the codespace when connected. Do not read files outside. dTEE is not shipped.",
+				"## Pod sandbox\nFile tools are jailed to the workspace and extraDirs. Bash runs in the codespace when connected. Do not read files outside. dTEE is the ldclabs IC-TEE gateway probe (DTEE_GATEWAY_URL), not an invented enclave. Codespace is not ready until DevPod status is Running and ssh works.",
 			);
 		}
 		injectAddendum = false;
