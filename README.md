@@ -13,6 +13,7 @@ omp plugin link /root/src/repos/plugin
 Confirm with `omp plugin list` — you should see `● omp-all-in-one@0.1.0`.
 
 Extension modules load at **session start**. `/reload-plugins` does not pick up `omp.extensions`. Quit omp and start a new session.
+TUI widgets (kanban, LSP section, uplift chrome) load the same way.
 
 One-off without a permanent install:
 
@@ -49,7 +50,7 @@ Skipped automatically: slash commands, trivial acknowledgements (`ok`, `lgtm`, �
 | `/aio` | Same as `/uplift` (plugin root command) |
 | `/aio uplift …` | Delegate to `/uplift` |
 | `/issues` | Issue tracking status / last Tissue → ktui sync |
-| `/kanban` | Overlay of the Spectrum Web Co board (not the Textual TUI) |
+| `/kanban` | Overlay of the Spectrum Web Co board (not the Textual `ktui` TUI) |
 | `/aio issues` | Same as `/issues` |
 | `/aio kanban` | Same as `/kanban` |
 | `/think` | Graph of Thought on / off / status / last |
@@ -69,6 +70,20 @@ Prefixes: `uplift:` force · `raw:` skip.
 
 Flags: `--aio-uplift-off` starts the session with uplift disabled. `--aio-issues-off` starts with issue tracking disabled. `--aio-think-off` starts with Graph of Thought disabled. `--aio-lsp-off` starts with Live LSP disabled. `--aio-pod-off` starts with pod boot disabled.
 
+## TUI chrome
+
+Interactive OMP keeps persistent chrome around the editor (not a flash of working-message or default cards):
+
+- **Kanban** above the editor — themed columns with counts, up to three task titles, Last issue, and `/kanban`. Offline: accent title plus a warning `board offline`.
+- **Uplift chrome** (`aio-chrome`) above the editor — Uplift on/off and last root/source; Think on and node count; Tools idle or `▶ {tool}`; Pod connected/off/disabled.
+- **LSP section** below the editor — always visible. Shows `LSP clean` or an error/warning digest.
+
+Transcript cards are custom labeled Box + Text for `aio-uplift`, `aio-think`, `aio-issue`, and `aio-lsp`. Uplift shows `Prompt Uplift · root · source` plus the first lines of XML when expanded, not a raw dump.
+
+`/kanban` is still an overlay of the Spectrum Web Co board. That overlay is **not** the Textual `ktui` TUI — run `ktui` in another terminal for that.
+
+Chrome loads with `omp.extensions` at **session start**. Quit omp and open a new session after linking the plugin; `/reload-plugins` does not pick it up.
+
 ## Graph of Thought
 
 After XML uplift, Graph of Thought (3–8 nodes) then sequential Chain of Thought per node.
@@ -83,7 +98,7 @@ Commands: `/think` `on` | `off` | `status` | `last` (also `/aio think …`). Fla
 
 ## Live LSP
 
-Lazy stdio language servers feed diagnostics into the session. Fail-open: missing binaries stay disabled (no auto-install). Quiet when clean. Never blocks the agent.
+Lazy stdio language servers feed diagnostics into the session. Fail-open: missing binaries stay disabled (no auto-install). The **LSP section** below the editor always shows `LSP clean` or a digest. Never blocks the agent.
 
 | Language | Server (PATH) |
 |---|---|
@@ -234,8 +249,8 @@ bun test
 bun run check
 ```
 
-1. Start a **new** omp session. `/uplift` should autocomplete.
-2. Type a one-line feature request. The transcript should show `Prompt Uplift · …` plus the XML; the agent should receive that XML, not the one-liner.
+1. Start a **new** omp session. `/uplift` should autocomplete. Themed kanban and uplift chrome should sit above the editor; the LSP section below should show `LSP clean` or a digest.
+2. Type a one-line feature request. The transcript should show a custom `Prompt Uplift · …` card plus the XML; the agent should receive that XML, not the one-liner.
 3. `raw: do this exactly` should reach the agent un-uplifted.
 
 ## Issue tracking
@@ -250,7 +265,7 @@ Idempotent: `<!-- aio-id: {workUnitId} -->` on the parent and `<!-- aio-id: {wor
 
 Issues sync to the existing ktui board **Spectrum Web Co** via the `ktui` CLI. Agent tools come from MCP `ktui mcp --start-server` (tool `mcp__ktui_ktui`). This plugin's `.mcp.json` starts that server; no `--scope`.
 
-OMP shows a HUD plus a `/kanban` overlay. That is **not** the real Textual TUI — run `ktui` in another terminal for that.
+OMP shows a themed kanban widget above the editor plus a `/kanban` overlay. That overlay is **not** the real Textual TUI — run `ktui` in another terminal for that. See **TUI chrome**.
 
 GitHub association is the `origin` remote URL stored on the issue (plus a category named `owner/repo`).
 
