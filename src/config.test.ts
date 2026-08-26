@@ -4,6 +4,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { defaultConfig, loadConfig } from "./config.ts";
 import { DEFAULT_BOARD_NAME } from "./issues/types.ts";
+import { DEFAULT_LSP_CONFIG } from "./lsp/types.ts";
 
 const ISSUES = {
 	enabled: true,
@@ -15,6 +16,7 @@ const THINK = { enabled: true, minNodes: 3, maxNodes: 8 };
 const GITHUB = { org: "swcstudiospace", autoPr: true };
 const GREPTILE = { requiredForMerge: true, bin: "greptile", minConfidence: 5 };
 const SUPABASE = { enabled: true };
+const LSP = DEFAULT_LSP_CONFIG;
 
 const prevDir = process.env.PI_CODING_AGENT_DIR;
 const tempDirs: string[] = [];
@@ -46,6 +48,7 @@ describe("loadConfig", () => {
 			github: GITHUB,
 			greptile: GREPTILE,
 			supabase: SUPABASE,
+			lsp: LSP,
 		});
 	});
 
@@ -67,6 +70,7 @@ describe("loadConfig", () => {
 			github: GITHUB,
 			greptile: GREPTILE,
 			supabase: SUPABASE,
+			lsp: LSP,
 		});
 
 		withAgentDir(JSON.stringify({ uplift: { maxChars: 50 } }));
@@ -77,6 +81,7 @@ describe("loadConfig", () => {
 			github: GITHUB,
 			greptile: GREPTILE,
 			supabase: SUPABASE,
+			lsp: LSP,
 		});
 
 		withAgentDir(JSON.stringify({ uplift: { skipTrivial: false, extra: true }, ignored: 1 }));
@@ -87,6 +92,7 @@ describe("loadConfig", () => {
 			github: GITHUB,
 			greptile: GREPTILE,
 			supabase: SUPABASE,
+			lsp: LSP,
 		});
 	});
 
@@ -104,6 +110,7 @@ describe("loadConfig", () => {
 			github: GITHUB,
 			greptile: GREPTILE,
 			supabase: SUPABASE,
+			lsp: LSP,
 		});
 	});
 
@@ -116,6 +123,7 @@ describe("loadConfig", () => {
 			github: GITHUB,
 			greptile: GREPTILE,
 			supabase: SUPABASE,
+			lsp: LSP,
 		});
 
 		withAgentDir(JSON.stringify({ issues: { boardName: "  Other Board  ", ktuiBin: "/bin/ktui" } }));

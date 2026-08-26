@@ -4,6 +4,7 @@ import { join } from "node:path";
 import { DEFAULT_BOARD_NAME, type IssuesConfig } from "./issues/types.ts";
 import { DEFAULT_GITHUB_ORG, type GithubConfig, type GreptileConfig, type SupabaseConfig } from "./mcp/types.ts";
 import { MAX_NODES, MIN_NODES, type ThinkConfig } from "./think/types.ts";
+import { DEFAULT_LSP_CONFIG, type LspConfig } from "./lsp/types.ts";
 
 export interface AioConfig {
 	uplift: { enabled: boolean; skipTrivial: boolean; maxChars: number; echo: boolean };
@@ -12,6 +13,7 @@ export interface AioConfig {
 	github: GithubConfig;
 	greptile: GreptileConfig;
 	supabase: SupabaseConfig;
+	lsp: LspConfig;
 }
 
 export function defaultConfig(): AioConfig {
@@ -45,6 +47,7 @@ export function defaultConfig(): AioConfig {
 		supabase: {
 			enabled: true,
 		},
+		lsp: { ...DEFAULT_LSP_CONFIG },
 	};
 }
 
@@ -138,6 +141,14 @@ function mergeSupabase(supabase: Record<string, unknown> | undefined, defaults: 
 	};
 }
 
+function mergeLsp(lsp: Record<string, unknown> | undefined, defaults: LspConfig): LspConfig {
+	if (!lsp) return defaults;
+	return {
+		...defaults,
+		enabled: typeof lsp.enabled === "boolean" ? lsp.enabled : defaults.enabled,
+	};
+}
+
 export function loadConfig(): AioConfig {
 	const defaults = defaultConfig();
 	const dir = process.env.PI_CODING_AGENT_DIR?.trim() || join(homedir(), ".omp", "agent");
@@ -150,5 +161,6 @@ export function loadConfig(): AioConfig {
 		github: mergeGithub(asRecord(file.github), defaults.github),
 		greptile: mergeGreptile(asRecord(file.greptile), defaults.greptile),
 		supabase: mergeSupabase(asRecord(file.supabase), defaults.supabase),
+		lsp: mergeLsp(asRecord(file.lsp), defaults.lsp),
 	};
 }

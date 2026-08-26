@@ -17,7 +17,7 @@
 			"version": "0.1.0",
 			"author": { "name": "SWC Studio" },
 			"category": "productivity",
-			"keywords": ["uplift", "prompt", "xml", "omp", "tissue", "kanban", "ktui", "issues", "hermes", "skills", "think", "got", "cot", "github", "greptile", "mcp", "pr", "supabase", "postgres", "auth"]
+			"keywords": ["uplift", "prompt", "xml", "omp", "tissue", "kanban", "ktui", "issues", "hermes", "skills", "think", "got", "cot", "github", "greptile", "mcp", "pr", "supabase", "postgres", "auth", "lsp", "diagnostics"]
 		}
 	]
 }

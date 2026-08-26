@@ -53,6 +53,7 @@ Skipped automatically: slash commands, trivial acknowledgements (`ok`, `lgtm`, â
 | `/aio issues` | Same as `/issues` |
 | `/aio kanban` | Same as `/kanban` |
 | `/think` | Graph of Thought on / off / status / last |
+| `/lsp` | Live LSP status / diagnostics |
 | `/pr create [titleâ€¦]` | Open a GitHub PR (title defaults to the current branch) |
 | `/pr list` | List pull requests in the current repo |
 | `/review [base]` | Run Greptile CLI review; notify confidence and comment count |
@@ -65,7 +66,7 @@ Skipped automatically: slash commands, trivial acknowledgements (`ok`, `lgtm`, â
 
 Prefixes: `uplift:` force Â· `raw:` skip.
 
-Flags: `--aio-uplift-off` starts the session with uplift disabled. `--aio-issues-off` starts with issue tracking disabled. `--aio-think-off` starts with Graph of Thought disabled.
+Flags: `--aio-uplift-off` starts the session with uplift disabled. `--aio-issues-off` starts with issue tracking disabled. `--aio-think-off` starts with Graph of Thought disabled. `--aio-lsp-off` starts with Live LSP disabled.
 
 ## Graph of Thought
 
@@ -76,6 +77,25 @@ The agent receives the uplifted XML plus a `GRAPH_OF_THOUGHT` block with `THINKI
 Commands: `/think` `on` | `off` | `status` | `last` (also `/aio think â€¦`). Flag: `--aio-think-off`. Config: `think: { enabled, minNodes, maxNodes }` in `all-in-one.json`.
 
 `raw:` and `/uplift skip` still skip the whole pre-pass, including think.
+
+## Live LSP
+
+Lazy stdio language servers feed diagnostics into the session. Fail-open: missing binaries stay disabled (no auto-install). Quiet when clean. Never blocks the agent.
+
+| Language | Server (PATH) |
+|---|---|
+| C# | csharp-ls |
+| Rust | rust-analyzer |
+| Java | jdtls |
+| Python | pyright-langserver |
+| TypeScript | typescript-language-server |
+| Elixir | elixir-ls |
+| OCaml | ocamllsp |
+| PHP | intelephense |
+
+After `write` / `edit`, diagnostics sync. A changed error set is injected at `turn_end` (`aio-lsp`) and as `## Live LSP` on `before_agent_start`.
+
+Tools: `lsp_status` / `lsp_diagnostics` (optional `path` to sync first). Command: `/lsp` `status` | `diagnostics`. Flag: `--aio-lsp-off`. Config: `lsp.enabled` in `all-in-one.json`.
 
 ## GitHub org MCP + Greptile gate
 
@@ -170,13 +190,16 @@ Tools (text results, no tokens):
   },
   "supabase": {
     "enabled": true
+  },
+  "lsp": {
+    "enabled": true
   }
 }
 ```
 
 Prompts longer than `maxChars` skip the LLM and use fallback wrap. Set `echo` to `false` to hide the per-turn XML transcript (the agent still receives the rewrite; `/uplift last` still shows it). `raw:` and skip still skip the whole pre-pass, including Graph of Thought.
 
-`supabase.enabled` defaults to true. Unset env vars make tools return `missing_credentials`.
+`supabase.enabled` defaults to true. Unset env vars make tools return `missing_credentials`. `lsp.enabled` defaults to true. Missing language-server binaries stay disabled; nothing is auto-installed.
 
 ## Verify
 
