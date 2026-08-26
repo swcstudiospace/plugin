@@ -3,7 +3,7 @@ import { existsSync, mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import type { CliResult, CliRunner } from "../mcp/types.ts";
-import { bootPod, probeAnda, probeDtee, upWorkspace, waitUntilReady } from "./boot.ts";
+import { bootPod, diagnosePod, probeAnda, probeDtee, upWorkspace, waitUntilReady } from "./boot.ts";
 import { workspaceIdFor } from "./workspace.ts";
 
 function runner(
@@ -157,11 +157,13 @@ describe("bootPod", () => {
 				run,
 				cwd,
 				config: { enabled: true, pollMs: 1, readyTimeoutMs: 5 },
+				fetchFn: async () => ({ ok: true, status: 200 }),
 				env: {},
 				sleep: async () => {},
 				now: () => t++,
 			});
 			expect(session.connected).toBe(false);
+			expect(session.engineActive).toBe(true);
 			expect(session.reason).toContain("not ready");
 			expect(run.calls.some((c) => c.args[0] === "list")).toBe(false);
 		} finally {
@@ -209,10 +211,15 @@ describe("bootPod", () => {
 				run,
 				cwd,
 				config: { enabled: true, extraDirs: ["scratch"] },
+				fetchFn: async (url) => {
+					if (url.includes("8443")) throw new Error("ECONNREFUSED");
+					return { ok: true, status: 200 };
+				},
 				env: {},
 			});
 			expect(session.connected).toBe(false);
 			expect(session.enabled).toBe(true);
+			expect(session.engineActive).toBe(true);
 			expect(session.dtee).toBe(false);
 			expect(session.reason).toContain("not found");
 			expect(existsSync(resolve(cwd, "scratch"))).toBe(true);
@@ -233,10 +240,32 @@ describe("bootPod", () => {
 				run,
 				cwd,
 				config: { enabled: true },
+				fetchFn: async () => ({ ok: true, status: 200 }),
 				env: {},
 			});
 			expect(session.connected).toBe(false);
+			expect(session.engineActive).toBe(true);
 			expect(session.reason).toContain("ENOENT");
+		} finally {
+			rmSync(cwd, { recursive: true, force: true });
+		}
+	});
+
+	test("disabled does not fetch", async () => {
+		const cwd = mkdtempSync(join(tmpdir(), "omp-pod-off-"));
+		try {
+			const session = await bootPod({
+				run: runner(async () => ({ stdout: "", stderr: "", code: 0 })),
+				cwd,
+				config: { enabled: false },
+				fetchFn: async () => {
+					throw new Error("fetch should not be called");
+				},
+				env: {},
+			});
+			expect(session.connected).toBe(false);
+			expect(session.engineActive).toBe(false);
+			expect(session.reason).toContain("disabled");
 		} finally {
 			rmSync(cwd, { recursive: true, force: true });
 		}
@@ -264,5 +293,58 @@ describe("upWorkspace", () => {
 		});
 		expect(miss.ok).toBe(false);
 		expect(miss.code).toBe(127);
+	});
+});
+
+describe("diagnosePod", () => {
+	test("version 0 list of 2 Stopped anda 200 dtee throw never up or ssh", async () => {
+		const run = runner(async (_bin, args) => {
+			if (args[0] === "version") return { stdout: "0.6.15", stderr: "", code: 0 };
+			if (args[0] === "list") {
+				return { stdout: JSON.stringify([{ id: "a" }, { id: "b" }]), stderr: "", code: 0 };
+			}
+			if (args[0] === "status") {
+				return { stdout: JSON.stringify({ id: "omp-ws", state: "Stopped" }), stderr: "", code: 0 };
+			}
+			return { stdout: "", stderr: "unexpected", code: 1 };
+		});
+		const doctor = await diagnosePod({
+			run,
+			bin: "devpod",
+			id: "omp-ws",
+			nexusUrl: "http://127.0.0.1:8091",
+			dteeUrl: "http://127.0.0.1:8443",
+			enabled: true,
+			fetchFn: async (url) => {
+				if (url.includes("8443")) throw new Error("ECONNREFUSED");
+				return { ok: true, status: 200 };
+			},
+		});
+		expect(doctor.binOk).toBe(true);
+		expect(doctor.workspaces).toBe(2);
+		expect(doctor.workspaceState).toBe("Stopped");
+		expect(doctor.engineActive).toBe(true);
+		expect(doctor.dtee).toBe(false);
+		expect(run.calls.some((c) => c.args[0] === "up" || c.args[0] === "ssh")).toBe(false);
+	});
+
+	test("version 127 and invalid list json", async () => {
+		const run = runner(async (_bin, args) => {
+			if (args[0] === "version") return { stdout: "", stderr: "missing", code: 127 };
+			if (args[0] === "list") return { stdout: "not-json", stderr: "", code: 0 };
+			if (args[0] === "status") return { stdout: "{}", stderr: "", code: 0 };
+			return { stdout: "", stderr: "", code: 1 };
+		});
+		const doctor = await diagnosePod({
+			run,
+			bin: "devpod",
+			id: "omp-ws",
+			nexusUrl: "http://127.0.0.1:8091",
+			dteeUrl: "http://127.0.0.1:8443",
+			enabled: false,
+			fetchFn: async () => ({ ok: true, status: 200 }),
+		});
+		expect(doctor.binOk).toBe(false);
+		expect(doctor.workspaces).toBe(0);
 	});
 });
