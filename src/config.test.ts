@@ -11,6 +11,7 @@ const ISSUES = {
 	ktuiBin: "ktui",
 	echo: true,
 };
+const THINK = { enabled: true, minNodes: 3, maxNodes: 8 };
 
 const prevDir = process.env.PI_CODING_AGENT_DIR;
 const tempDirs: string[] = [];
@@ -38,6 +39,7 @@ describe("loadConfig", () => {
 		expect(defaultConfig()).toEqual({
 			uplift: { enabled: true, skipTrivial: true, maxChars: 20000, echo: true },
 			issues: ISSUES,
+			think: THINK,
 		});
 	});
 
@@ -55,18 +57,21 @@ describe("loadConfig", () => {
 		expect(loadConfig()).toEqual({
 			uplift: { enabled: false, skipTrivial: true, maxChars: 20000, echo: true },
 			issues: ISSUES,
+			think: THINK,
 		});
 
 		withAgentDir(JSON.stringify({ uplift: { maxChars: 50 } }));
 		expect(loadConfig()).toEqual({
 			uplift: { enabled: true, skipTrivial: true, maxChars: 50, echo: true },
 			issues: ISSUES,
+			think: THINK,
 		});
 
 		withAgentDir(JSON.stringify({ uplift: { skipTrivial: false, extra: true }, ignored: 1 }));
 		expect(loadConfig()).toEqual({
 			uplift: { enabled: true, skipTrivial: false, maxChars: 20000, echo: true },
 			issues: ISSUES,
+			think: THINK,
 		});
 	});
 
@@ -80,6 +85,7 @@ describe("loadConfig", () => {
 		expect(loadConfig()).toEqual({
 			uplift: { enabled: true, skipTrivial: true, maxChars: 20000, echo: false },
 			issues: ISSUES,
+			think: THINK,
 		});
 	});
 
@@ -88,6 +94,7 @@ describe("loadConfig", () => {
 		expect(loadConfig()).toEqual({
 			uplift: { enabled: true, skipTrivial: true, maxChars: 20000, echo: true },
 			issues: { ...ISSUES, enabled: false },
+			think: THINK,
 		});
 
 		withAgentDir(JSON.stringify({ issues: { boardName: "  Other Board  ", ktuiBin: "/bin/ktui" } }));
@@ -103,4 +110,12 @@ describe("loadConfig", () => {
 		withAgentDir(JSON.stringify({ issues: { enabled: "no", boardName: 1, ktuiBin: "", echo: 0 } }));
 		expect(loadConfig().issues).toEqual(ISSUES);
 	});
+
+	test("think partial JSON merges onto defaults", () => {
+		withAgentDir(JSON.stringify({ think: { enabled: false } }));
+		expect(loadConfig().think).toEqual({ ...THINK, enabled: false });
+		withAgentDir(JSON.stringify({ think: { maxNodes: 5 } }));
+		expect(loadConfig().think).toEqual({ enabled: true, minNodes: 3, maxNodes: 5 });
+	});
+
 });

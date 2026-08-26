@@ -52,10 +52,22 @@ Skipped automatically: slash commands, trivial acknowledgements (`ok`, `lgtm`, �
 | `/kanban` | Overlay of the Spectrum Web Co board (not the Textual TUI) |
 | `/aio issues` | Same as `/issues` |
 | `/aio kanban` | Same as `/kanban` |
+| `/think` | Graph of Thought on / off / status / last |
+| `/aio think …` | Same as `/think` |
 
 Prefixes: `uplift:` force · `raw:` skip.
 
-Flags: `--aio-uplift-off` starts the session with uplift disabled. `--aio-issues-off` starts with issue tracking disabled.
+Flags: `--aio-uplift-off` starts the session with uplift disabled. `--aio-issues-off` starts with issue tracking disabled. `--aio-think-off` starts with Graph of Thought disabled.
+
+## Graph of Thought
+
+After XML uplift, Graph of Thought (3–8 nodes) then sequential Chain of Thought per node.
+
+The agent receives the uplifted XML plus a `GRAPH_OF_THOUGHT` block with `THINKING` / `CONCLUSION` per node.
+
+Commands: `/think` `on` | `off` | `status` | `last` (also `/aio think …`). Flag: `--aio-think-off`. Config: `think: { enabled, minNodes, maxNodes }` in `all-in-one.json`.
+
+`raw:` and `/uplift skip` still skip the whole pre-pass, including think.
 
 ## Config
 
@@ -74,11 +86,16 @@ Flags: `--aio-uplift-off` starts the session with uplift disabled. `--aio-issues
     "boardName": "Spectrum Web Co",
     "ktuiBin": "ktui",
     "echo": true
+  },
+  "think": {
+    "enabled": true,
+    "minNodes": 3,
+    "maxNodes": 8
   }
 }
 ```
 
-Prompts longer than `maxChars` skip the LLM and use fallback wrap. Set `echo` to `false` to hide the per-turn XML transcript (the agent still receives the rewrite; `/uplift last` still shows it).
+Prompts longer than `maxChars` skip the LLM and use fallback wrap. Set `echo` to `false` to hide the per-turn XML transcript (the agent still receives the rewrite; `/uplift last` still shows it). `raw:` and skip still skip the whole pre-pass, including Graph of Thought.
 
 ## Verify
 

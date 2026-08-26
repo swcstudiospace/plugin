@@ -2,10 +2,12 @@ import { existsSync, readFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { join } from "node:path";
 import { DEFAULT_BOARD_NAME, type IssuesConfig } from "./issues/types.ts";
+import { MAX_NODES, MIN_NODES, type ThinkConfig } from "./think/types.ts";
 
 export interface AioConfig {
 	uplift: { enabled: boolean; skipTrivial: boolean; maxChars: number; echo: boolean };
 	issues: IssuesConfig;
+	think: ThinkConfig;
 }
 
 export function defaultConfig(): AioConfig {
@@ -21,6 +23,11 @@ export function defaultConfig(): AioConfig {
 			boardName: DEFAULT_BOARD_NAME,
 			ktuiBin: "ktui",
 			echo: true,
+		},
+		think: {
+			enabled: true,
+			minNodes: MIN_NODES,
+			maxNodes: MAX_NODES,
 		},
 	};
 }
@@ -69,6 +76,23 @@ function mergeIssues(issues: Record<string, unknown> | undefined, defaults: Issu
 	};
 }
 
+function mergeThink(think: Record<string, unknown> | undefined, defaults: ThinkConfig): ThinkConfig {
+	if (!think) return defaults;
+	const minNodes =
+		typeof think.minNodes === "number" && Number.isInteger(think.minNodes) && think.minNodes >= 1
+			? think.minNodes
+			: defaults.minNodes;
+	const maxNodes =
+		typeof think.maxNodes === "number" && Number.isInteger(think.maxNodes) && think.maxNodes >= minNodes
+			? Math.min(think.maxNodes, MAX_NODES)
+			: defaults.maxNodes;
+	return {
+		enabled: typeof think.enabled === "boolean" ? think.enabled : defaults.enabled,
+		minNodes: Math.min(minNodes, maxNodes),
+		maxNodes,
+	};
+}
+
 export function loadConfig(): AioConfig {
 	const defaults = defaultConfig();
 	const dir = process.env.PI_CODING_AGENT_DIR?.trim() || join(homedir(), ".omp", "agent");
@@ -77,5 +101,6 @@ export function loadConfig(): AioConfig {
 	return {
 		uplift: mergeUplift(asRecord(file.uplift), defaults.uplift),
 		issues: mergeIssues(asRecord(file.issues), defaults.issues),
+		think: mergeThink(asRecord(file.think), defaults.think),
 	};
 }
