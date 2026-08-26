@@ -35,6 +35,10 @@ import { applyThinkToggle, parseThinkArgs, THINK_COMPLETIONS } from "./think/com
 import { formatThinkEcho, formatThinkStatus } from "./think/format.ts";
 import { runThink, type ThinkResult } from "./think/pipeline.ts";
 import { THINK_ADDENDUM } from "./think/prompts.ts";
+import { LspHub, injectLspNote, resolveMutationPath } from "./lsp/hub.ts";
+import { registerLspTools } from "./lsp/tools.ts";
+import { parseLspArgs, LSP_COMPLETIONS } from "./lsp/commands.ts";
+
 
 const COMPLETIONS = [
 	{ value: "on", label: "on — enable Prompt Uplift" },
@@ -96,6 +100,7 @@ export default function allInOne(pi: ExtensionAPI): void {
 	if (hermesSkills > 0) pi.logger.info(`all-in-one: ${hermesSkills} Hermes skills`);
 
 	const config = loadConfig();
+	const lsp = new LspHub(config.lsp);
 	const github = createGithub({ run: defaultCliRunner, org: config.github.org });
 	const greptile = createGreptile({ run: defaultCliRunner, ...config.greptile });
 	const state: UpliftState = {
@@ -128,6 +133,12 @@ export default function allInOne(pi: ExtensionAPI): void {
 		type: "boolean",
 		default: false,
 	});
+	pi.registerFlag("aio-lsp-off", {
+		description: "Disable Live LSP",
+		type: "boolean",
+		default: false,
+	});
+
 
 	function persist(): void {
 		pi.appendEntry("aio-state", {
@@ -141,6 +152,7 @@ export default function allInOne(pi: ExtensionAPI): void {
 		if (pi.getFlag("aio-uplift-off") === true) state.enabled = false;
 		if (pi.getFlag("aio-issues-off") === true) issueState.enabled = false;
 		if (pi.getFlag("aio-think-off") === true) thinkState.enabled = false;
+		if (pi.getFlag("aio-lsp-off") === true) config.lsp.enabled = false;
 	}
 
 	function notify(ctx: ExtensionContext, message: string, level: "info" | "warning" | "error" = "info"): void {
@@ -318,6 +330,23 @@ export default function allInOne(pi: ExtensionAPI): void {
 		notify(ctx, "Usage: /think [on|off|toggle|status|last]");
 	}
 
+	async function handleLsp(args: string, ctx: ExtensionContext): Promise<void> {
+		try {
+			const { cmd } = parseLspArgs(args);
+			if (cmd === "diagnostics") {
+				notify(ctx, lsp.parentDigest() || "none");
+				return;
+			}
+			if (cmd === "status") {
+				notify(ctx, lsp.formatStatus());
+				return;
+			}
+			notify(ctx, "Usage: /lsp [status|diagnostics]");
+		} catch {
+			// fail-open
+		}
+	}
+
 	async function handleShipKind(kind: "pr" | "review" | "merge", args: string, ctx: ExtensionContext): Promise<void> {
 		const { cmd, rest } = parseShipArgs(kind, args);
 		try {
@@ -403,6 +432,10 @@ export default function allInOne(pi: ExtensionAPI): void {
 			await handleThink(rest, ctx);
 			return;
 		}
+		if (cmd === "lsp") {
+			await handleLsp(rest, ctx);
+			return;
+		}
 		if (cmd === "pr" || cmd === "review" || cmd === "merge") {
 			await handleShipKind(cmd, rest, ctx);
 			return;
@@ -467,6 +500,14 @@ export default function allInOne(pi: ExtensionAPI): void {
 		handler: (args, ctx) => handleShipKind("merge", args, ctx),
 	});
 
+	registerLspTools(pi, lsp);
+
+	pi.registerCommand("lsp", {
+		description: "Live LSP status / diagnostics",
+		getArgumentCompletions: (prefix) => filterNamed(prefix, LSP_COMPLETIONS),
+		handler: handleLsp,
+	});
+
 	pi.registerCommand("aio", {
 		description: "All-in-one plugin commands",
 		getArgumentCompletions: (prefix) => {
@@ -476,6 +517,8 @@ export default function allInOne(pi: ExtensionAPI): void {
 			if (kanban) return filterNamed(kanban[1] ?? "", KANBAN_COMPLETIONS);
 			const think = prefix.trimStart().match(/^think(?:\s+|$)(.*)$/i);
 			if (think) return filterNamed(think[1] ?? "", THINK_COMPLETIONS);
+			const lspArgs = prefix.trimStart().match(/^lsp(?:\s+|$)(.*)$/i);
+			if (lspArgs) return filterNamed(lspArgs[1] ?? "", LSP_COMPLETIONS);
 			const pr = prefix.trimStart().match(/^pr(?:\s+|$)(.*)$/i);
 			if (pr) return filterNamed(pr[1] ?? "", PR_COMPLETIONS);
 			const nested = prefix.trimStart().match(/^uplift(?:\s+|$)(.*)$/i);
@@ -485,6 +528,7 @@ export default function allInOne(pi: ExtensionAPI): void {
 				{ value: "kanban", label: "kanban — Spectrum Web Co board" },
 				{ value: "uplift", label: "uplift — Prompt Uplift commands" },
 				{ value: "think", label: "think — Graph of Thought + Chain of Thought" },
+				{ value: "lsp", label: "lsp — Live LSP status / diagnostics" },
 				{ value: "pr", label: "pr — GitHub pull requests" },
 				{ value: "review", label: "review — Greptile code review" },
 				{ value: "merge", label: "merge — Greptile-gated squash merge" },
@@ -495,6 +539,7 @@ export default function allInOne(pi: ExtensionAPI): void {
 
 	pi.on("session_start", (event, ctx) => {
 		applyFlag();
+		lsp.setCwd(ctx.cwd);
 		const manager = ctx.sessionManager;
 		const entries =
 			typeof manager.getBranch === "function" ? manager.getBranch() : manager.getEntries();
@@ -536,6 +581,9 @@ export default function allInOne(pi: ExtensionAPI): void {
 			}
 			if (thinkState.enabled) {
 				notify(ctx, "Graph of Thought on — sequential CoT per node.");
+			}
+			if (config.lsp.enabled) {
+				notify(ctx, "Live LSP on — diagnostics steer the session.");
 			}
 		}
 		if (!greptileSignedOutNotified) {
@@ -665,7 +713,15 @@ export default function allInOne(pi: ExtensionAPI): void {
 	});
 
 	pi.on("before_agent_start", (event) => {
-		if (!injectAddendum && !injectIssueAddendum && !injectThinkAddendum) return;
+		let lspDigest = "";
+		if (config.lsp.enabled) {
+			try {
+				lspDigest = lsp.parentDigest();
+			} catch {
+				lspDigest = "";
+			}
+		}
+		if (!injectAddendum && !injectIssueAddendum && !injectThinkAddendum && !lspDigest) return;
 		const parts = Array.isArray(event.systemPrompt)
 			? [...event.systemPrompt]
 			: [String(event.systemPrompt ?? "")];
@@ -680,10 +736,42 @@ export default function allInOne(pi: ExtensionAPI): void {
 		}
 		if (injectIssueAddendum && !joined.includes("## Issue tracking")) {
 			parts.push(ISSUE_ADDENDUM);
+			joined = parts.join("\n");
+		}
+		if (lspDigest && !joined.includes("## Live LSP")) {
+			parts.push(`## Live LSP\n${lspDigest}\nUse lsp_diagnostics / lsp_status.`);
 		}
 		injectAddendum = false;
 		injectIssueAddendum = false;
 		injectThinkAddendum = false;
 		return { systemPrompt: parts };
+	});
+
+	pi.on("tool_result", (event, ctx) => {
+		try {
+			if (event.toolName === "write" || event.toolName === "edit") {
+				const path = resolveMutationPath(ctx.cwd, event.input);
+				if (path) void lsp.onFileMutation(path);
+			} else if (event.toolName === "bash") {
+				const command = typeof event.input.command === "string" ? event.input.command : "";
+				void lsp.onBash(command);
+			}
+		} catch {
+			// fail-open
+		}
+	});
+
+	pi.on("turn_end", () => {
+		try {
+			const digest = lsp.shouldInjectParent();
+			if (digest) injectLspNote(pi, digest);
+			lsp.reapIdle();
+		} catch {
+			// fail-open
+		}
+	});
+
+	pi.on("session_stop", () => {
+		void lsp.close();
 	});
 }
