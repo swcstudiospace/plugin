@@ -123,7 +123,7 @@ export default function allInOne(pi: ExtensionAPI): void {
 
 	function recordIssue(ctx: ExtensionContext, result: SyncResult): void {
 		issueState.last = result;
-		injectIssueAddendum = true;
+		injectIssueAddendum = Boolean(result.issue.id);
 		try {
 			pi.appendEntry("aio-issue-last", result);
 		} catch {
