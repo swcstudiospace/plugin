@@ -163,4 +163,13 @@ describe("loadConfig", () => {
 		});
 	});
 
+	test("pod readyTimeoutMs and dteeUrl merge from JSON", () => {
+		withAgentDir(JSON.stringify({ pod: { readyTimeoutMs: 1000, dteeUrl: "http://example:9" } }));
+		expect(loadConfig().pod).toEqual({
+			...POD,
+			readyTimeoutMs: 1000,
+			dteeUrl: "http://example:9",
+		});
+	});
+
 });

@@ -179,14 +179,16 @@ Tools (text results, no tokens):
 When `pod.enabled` is true (default **false**), **omp open** (`session_start`) boots an isolated DevPod codespace, then attaches:
 
 1. Create `pod.extraDirs` on load (relative paths resolve against session cwd).
-2. DevPod `up` (`devpod up <cwd> --id <workspaceId> --open-ide=false`).
-3. Anda Engine probe (`ANDA_NEXUS_URL` / `pod.nexusUrl`) — **not** dTEE (not shipped; status is always `dtee: false`).
+2. DevPod `up` (`devpod up <cwd> --id <workspaceId> --open-ide=false`). Exit 0 is **not** SSH-ready.
+3. Wait until ready (DevPod `startWait` equivalent): poll `devpod status <id> --output json` until `state`/`Status` is `Running` (Busy/empty: sleep `pollMs`, default 2s), then `devpod ssh <id> --command true` until exit 0. `connected` is true only after SSH works. Timeout `readyTimeoutMs` (default 300000 / 5 min); on timeout `connected` stays false and the reason includes "not ready".
+4. Anda Engine probe (`ANDA_NEXUS_URL` / `pod.nexusUrl`, default `http://127.0.0.1:8091`).
+5. dTEE probe — **ldclabs** (not iclabs) [IC-TEE](https://github.com/ldclabs/ic-tee) gateway reachability. `anda_web3_client` feature `tee` wraps `ic_tee_gateway_sdk` `TeeClient`. HTTP probe of `DTEE_GATEWAY_URL` || `IC_TEE_GATEWAY_URL` || `pod.dteeUrl` (default `http://127.0.0.1:8443`). Not an invented enclave. Missing daemon → `dtee: false`.
 
-File tools (`read`, `write`, `edit`, `grep` path, rooted `glob`) are jailed to the workspace plus those extra dirs. When the pod is connected, bash is rewritten to `devpod ssh <id> --command`. Missing binary is fail-open: notify, still jail to cwd + extraDirs, no fake ssh.
+File tools (`read`, `write`, `edit`, `grep` path, rooted `glob`) are jailed to the workspace plus those extra dirs. When the pod is connected, bash is rewritten to `` `${bin} ssh ${id} --command ${JSON.stringify(command)}` `` (`wrapBashCommand` quotes `--command`). Missing binary is fail-open: notify, still jail to cwd + extraDirs, no fake ssh.
 
 Child Ultrathink / swarm sessions (`PI_AIO_CHILD` / `PI_ULTRATHINK_CHILD`) do not boot a nested pod.
 
-Bin: `AIMEE_POD_BIN` || `pod.bin` || `devpod`. Nexus: `ANDA_NEXUS_URL` || `pod.nexusUrl` || `http://127.0.0.1:8091`. Flag: `--aio-pod-off`. Commands: `/pod` `status` | `up` | `connect` | `doctor`.
+Bin: `AIMEE_POD_BIN` || `pod.bin` || `devpod`. Nexus: `ANDA_NEXUS_URL` || `pod.nexusUrl` || `http://127.0.0.1:8091`. dTEE gateway: `DTEE_GATEWAY_URL` || `IC_TEE_GATEWAY_URL` || `pod.dteeUrl` || `http://127.0.0.1:8443`. Flag: `--aio-pod-off`. Commands: `/pod` `status` | `up` | `connect` | `doctor`.
 
 ## Config
 
@@ -231,14 +233,17 @@ Bin: `AIMEE_POD_BIN` || `pod.bin` || `devpod`. Nexus: `ANDA_NEXUS_URL` || `pod.n
     "bin": "devpod",
     "workspaceId": "",
     "extraDirs": [],
-    "nexusUrl": "http://127.0.0.1:8091"
+    "nexusUrl": "http://127.0.0.1:8091",
+    "dteeUrl": "http://127.0.0.1:8443",
+    "readyTimeoutMs": 300000,
+    "pollMs": 2000
   }
 }
 ```
 
 Prompts longer than `maxChars` skip the LLM and use fallback wrap. Set `echo` to `false` to hide the per-turn XML transcript (the agent still receives the rewrite; `/uplift last` still shows it). `raw:` and skip still skip the whole pre-pass, including Graph of Thought.
 
-`supabase.enabled` defaults to true. Unset env vars make tools return `missing_credentials`. `lsp.enabled` defaults to true. Missing language-server binaries stay disabled; nothing is auto-installed. `pod.enabled` defaults to false — only configured sessions pay `devpod up`. Missing DevPod is fail-open (notify, jail to cwd + extraDirs, no fake ssh). dTEE is not shipped.
+`supabase.enabled` defaults to true. Unset env vars make tools return `missing_credentials`. `lsp.enabled` defaults to true. Missing language-server binaries stay disabled; nothing is auto-installed. `pod.enabled` defaults to false — only configured sessions pay `devpod up`. Missing DevPod is fail-open (notify, jail to cwd + extraDirs, no fake ssh). Codespace is not connected until `status --output json` is Running and `ssh --command true` succeeds (`readyTimeoutMs` default 5 min). dTEE is an **ldclabs** IC-TEE gateway probe (`dtee: boolean`); missing daemon → `dtee: false`.
 
 ## Verify
 

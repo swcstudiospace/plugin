@@ -164,6 +164,17 @@ function mergePod(pod: Record<string, unknown> | undefined, defaults: PodConfig)
 		extraDirs,
 		nexusUrl:
 			typeof pod.nexusUrl === "string" && pod.nexusUrl.trim() ? pod.nexusUrl.trim() : defaults.nexusUrl,
+		readyTimeoutMs:
+			typeof pod.readyTimeoutMs === "number" &&
+			Number.isFinite(pod.readyTimeoutMs) &&
+			pod.readyTimeoutMs > 0
+				? pod.readyTimeoutMs
+				: defaults.readyTimeoutMs,
+		pollMs:
+			typeof pod.pollMs === "number" && Number.isFinite(pod.pollMs) && pod.pollMs > 0
+				? pod.pollMs
+				: defaults.pollMs,
+		dteeUrl: typeof pod.dteeUrl === "string" && pod.dteeUrl.trim() ? pod.dteeUrl.trim() : defaults.dteeUrl,
 	};
 }
 
