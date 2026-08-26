@@ -1,4 +1,4 @@
-import { join } from "node:path";
+import { join, resolve } from "node:path";
 import type { ExtensionAPI, ExtensionContext } from "@oh-my-pi/pi-coding-agent";
 import { completePrompt, recentConversation } from "./complete.ts";
 import { applyCommand, formatStatus, formatUpliftEcho, parseAioArgs } from "./commands.ts";
@@ -41,6 +41,11 @@ import { THINK_ADDENDUM } from "./think/prompts.ts";
 import { LspHub, injectLspNote, resolveMutationPath } from "./lsp/hub.ts";
 import { registerLspTools } from "./lsp/tools.ts";
 import { parseLspArgs, LSP_COMPLETIONS } from "./lsp/commands.ts";
+import { bootPod } from "./pod/boot.ts";
+import { parsePodArgs, POD_COMPLETIONS } from "./pod/commands.ts";
+import { registerPodTools } from "./pod/tools.ts";
+import type { PodSession } from "./pod/types.ts";
+import { isAllowedPath, wrapBashCommand } from "./pod/workspace.ts";
 
 const COMPLETIONS = [
 	{ value: "on", label: "on — enable Prompt Uplift" },
@@ -146,6 +151,7 @@ export default function allInOne(pi: ExtensionAPI): void {
 	if (hermesSkills > 0) pi.logger.info(`all-in-one: ${hermesSkills} Hermes skills`);
 
 	const config = loadConfig();
+	let podSession: PodSession | undefined;
 	const lsp = new LspHub(config.lsp);
 	const github = createGithub({ run: defaultCliRunner, org: config.github.org });
 	const greptile = createGreptile({ run: defaultCliRunner, ...config.greptile });
@@ -187,6 +193,11 @@ export default function allInOne(pi: ExtensionAPI): void {
 		type: "boolean",
 		default: false,
 	});
+	pi.registerFlag("aio-pod-off", {
+		description: "Disable pod codespace boot",
+		type: "boolean",
+		default: false,
+	});
 
 	function persist(): void {
 		pi.appendEntry("aio-state", {
@@ -201,6 +212,7 @@ export default function allInOne(pi: ExtensionAPI): void {
 		if (pi.getFlag("aio-issues-off") === true) issueState.enabled = false;
 		if (pi.getFlag("aio-think-off") === true) thinkState.enabled = false;
 		if (pi.getFlag("aio-lsp-off") === true) config.lsp.enabled = false;
+		if (pi.getFlag("aio-pod-off") === true) config.pod.enabled = false;
 	}
 
 	function notify(ctx: ExtensionContext, message: string, level: "info" | "warning" | "error" = "info"): void {
@@ -219,6 +231,25 @@ export default function allInOne(pi: ExtensionAPI): void {
 		} catch {
 			ctx.ui.setWidget("aio-kanban", formatBoardHud(undefined, issueState.last), { placement: "aboveEditor" });
 		}
+	}
+
+	async function bootPodSession(ctx: ExtensionContext): Promise<void> {
+		try {
+			podSession = await bootPod({
+				run: defaultCliRunner,
+				cwd: ctx.cwd,
+				config: config.pod,
+				env: process.env,
+			});
+			if (podSession.connected) {
+				notify(ctx, `Pod connected — ${podSession.workspaceId}`);
+			} else {
+				notify(ctx, podSession.reason || "Pod not connected", "warning");
+			}
+		} catch {
+			notify(ctx, "Pod boot failed — jailed to workspace", "warning");
+		}
+		await refreshHud(ctx);
 	}
 
 	function recordIssue(ctx: ExtensionContext, result: SyncResult, tree?: GraphSyncResult): void {
@@ -397,6 +428,34 @@ export default function allInOne(pi: ExtensionAPI): void {
 		}
 	}
 
+	async function handlePod(args: string, ctx: ExtensionContext): Promise<void> {
+		const { cmd } = parsePodArgs(args);
+		if (cmd === "status") {
+			notify(
+				ctx,
+				JSON.stringify(podSession ?? { enabled: config.pod.enabled, connected: false, dtee: false }),
+			);
+			return;
+		}
+		if (cmd === "up" || cmd === "connect") {
+			await bootPodSession(ctx);
+			return;
+		}
+		if (cmd === "doctor") {
+			notify(
+				ctx,
+				JSON.stringify({
+					bin: config.pod.bin,
+					connected: podSession?.connected ?? false,
+					engineActive: podSession?.engineActive ?? false,
+					dtee: false,
+				}),
+			);
+			return;
+		}
+		notify(ctx, "Usage: /pod [status|up|connect|doctor]");
+	}
+
 	async function handleSupabase(args: string, ctx: ExtensionContext): Promise<void> {
 		if (!config.supabase.enabled) {
 			notify(ctx, "Supabase disabled", "warning");
@@ -538,6 +597,10 @@ export default function allInOne(pi: ExtensionAPI): void {
 			await handleSupabase(rest, ctx);
 			return;
 		}
+		if (cmd === "pod") {
+			await handlePod(rest, ctx);
+			return;
+		}
 		if (cmd === "pr" || cmd === "review" || cmd === "merge") {
 			await handleShipKind(cmd, rest, ctx);
 			return;
@@ -623,6 +686,17 @@ export default function allInOne(pi: ExtensionAPI): void {
 		handler: handleSupabase,
 	});
 
+	registerPodTools(pi, {
+		enabled: () => config.pod.enabled,
+		session: () => podSession,
+	});
+
+	pi.registerCommand("pod", {
+		description: "DevPod codespace",
+		getArgumentCompletions: (prefix) => filterNamed(prefix, POD_COMPLETIONS),
+		handler: handlePod,
+	});
+
 	pi.registerCommand("aio", {
 		description: "All-in-one plugin commands",
 		getArgumentCompletions: (prefix) => {
@@ -636,6 +710,8 @@ export default function allInOne(pi: ExtensionAPI): void {
 			if (lspArgs) return filterNamed(lspArgs[1] ?? "", LSP_COMPLETIONS);
 			const supabaseArgs = prefix.trimStart().match(/^supabase(?:\s+|$)(.*)$/i);
 			if (supabaseArgs) return filterNamed(supabaseArgs[1] ?? "", SUPABASE_COMPLETIONS);
+			const podArgs = prefix.trimStart().match(/^pod(?:\s+|$)(.*)$/i);
+			if (podArgs) return filterNamed(podArgs[1] ?? "", POD_COMPLETIONS);
 			const pr = prefix.trimStart().match(/^pr(?:\s+|$)(.*)$/i);
 			if (pr) return filterNamed(pr[1] ?? "", PR_COMPLETIONS);
 			const nested = prefix.trimStart().match(/^uplift(?:\s+|$)(.*)$/i);
@@ -650,12 +726,13 @@ export default function allInOne(pi: ExtensionAPI): void {
 				{ value: "review", label: "review — Greptile code review" },
 				{ value: "merge", label: "merge — Greptile-gated squash merge" },
 				{ value: "supabase", label: "supabase — databases and auth" },
+				{ value: "pod", label: "pod — DevPod codespace" },
 			]);
 		},
 		handler: handleCommand,
 	});
 
-	pi.on("session_start", (event, ctx) => {
+	pi.on("session_start", async (event, ctx) => {
 		sessionCwd = ctx.cwd;
 		applyFlag();
 		lsp.setCwd(ctx.cwd);
@@ -732,6 +809,10 @@ export default function allInOne(pi: ExtensionAPI): void {
 					// fail-open
 				}
 			})();
+		}
+		if (config.pod.enabled) {
+			notify(ctx, "Pod boot — codespace up…");
+			await bootPodSession(ctx);
 		}
 	});
 
@@ -867,7 +948,8 @@ export default function allInOne(pi: ExtensionAPI): void {
 		}
 		const persistThink = thinkState.enabled && Boolean(lastGraph);
 		const persistIssue = issueState.enabled && Boolean(issueTree || issueState.last);
-		if (!injectAddendum && !injectIssueAddendum && !injectThinkAddendum && !lspDigest && !persistThink && !persistIssue) return;
+		const persistPod = config.pod.enabled;
+		if (!injectAddendum && !injectIssueAddendum && !injectThinkAddendum && !lspDigest && !persistThink && !persistIssue && !persistPod) return;
 		const parts = Array.isArray(event.systemPrompt)
 			? [...event.systemPrompt]
 			: [String(event.systemPrompt ?? "")];
@@ -887,10 +969,47 @@ export default function allInOne(pi: ExtensionAPI): void {
 		if (lspDigest && !joined.includes("## Live LSP")) {
 			parts.push(`## Live LSP\n${lspDigest}\nUse lsp_diagnostics / lsp_status.`);
 		}
+		if (persistPod && !joined.includes("## Pod sandbox")) {
+			parts.push(
+				"## Pod sandbox\nFile tools are jailed to the workspace and extraDirs. Bash runs in the codespace when connected. Do not read files outside. dTEE is not shipped.",
+			);
+		}
 		injectAddendum = false;
 		injectIssueAddendum = false;
 		injectThinkAddendum = false;
 		return { systemPrompt: parts };
+	});
+
+	pi.on("tool_call", (event, ctx) => {
+		if (!config.pod.enabled) return;
+		const roots = [podSession?.localFolder || ctx.cwd, ...(podSession?.extraDirs ?? [])];
+		const input = event.input as Record<string, unknown>;
+		if (event.toolName === "read" || event.toolName === "write" || event.toolName === "edit") {
+			if (typeof input.path === "string" && !isAllowedPath(resolve(ctx.cwd, input.path), roots)) {
+				return { block: true, reason: "path is outside the pod workspace" };
+			}
+			return;
+		}
+		if (event.toolName === "grep" || event.toolName === "glob") {
+			const pathVal = typeof input.path === "string" ? input.path : undefined;
+			const targetVal = typeof input.target === "string" ? input.target : undefined;
+			const candidate = pathVal ?? targetVal;
+			if (candidate && !isAllowedPath(resolve(ctx.cwd, candidate), roots)) {
+				return { block: true, reason: "path is outside the pod workspace" };
+			}
+			return;
+		}
+		if (event.toolName === "bash" && podSession?.connected && typeof input.command === "string") {
+			return {
+				input: {
+					...input,
+					command: wrapBashCommand(input.command, {
+						bin: config.pod.bin,
+						id: podSession.workspaceId,
+					}),
+				},
+			};
+		}
 	});
 
 	pi.on("tool_result", (event, ctx) => {
