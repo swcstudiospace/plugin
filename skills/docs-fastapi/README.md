@@ -1,0 +1,84 @@
+# docs-fastapi
+
+Exported documentation references.
+
+- [Testing Events: lifespan and startup - shutdown - FastAPI](references/001-Testing-Events-lifespan-and-startup-shutdown-FastAPI.md) — https://fastapi.tiangolo.com/advanced/testing-events
+- [WebSockets - FastAPI](references/002-WebSockets-FastAPI.md) — https://fastapi.tiangolo.com/advanced/websockets
+- [Lifespan Events - FastAPI](references/003-Lifespan-Events-FastAPI.md) — https://fastapi.tiangolo.com/advanced/events
+- [Testing WebSockets - FastAPI](references/004-Testing-WebSockets-FastAPI.md) — https://fastapi.tiangolo.com/advanced/testing-websockets
+- [Behind a Proxy - FastAPI](references/005-Behind-a-Proxy-FastAPI.md) — https://fastapi.tiangolo.com/advanced/behind-a-proxy
+- [Sub Applications - Mounts - FastAPI](references/006-Sub-Applications-Mounts-FastAPI.md) — https://fastapi.tiangolo.com/advanced/sub-applications
+- [Advanced Middleware - FastAPI](references/007-Advanced-Middleware-FastAPI.md) — https://fastapi.tiangolo.com/advanced/middleware
+- [Templates - FastAPI](references/008-Templates-FastAPI.md) — https://fastapi.tiangolo.com/advanced/templates
+- [Using the Request Directly - FastAPI](references/009-Using-the-Request-Directly-FastAPI.md) — https://fastapi.tiangolo.com/advanced/using-request-directly
+- [Using Dataclasses - FastAPI](references/010-Using-Dataclasses-FastAPI.md) — https://fastapi.tiangolo.com/advanced/dataclasses
+- [OAuth2 scopes - FastAPI](references/011-OAuth2-scopes-FastAPI.md) — https://fastapi.tiangolo.com/advanced/security/oauth2-scopes
+- [HTTP Basic Auth - FastAPI](references/012-HTTP-Basic-Auth-FastAPI.md) — https://fastapi.tiangolo.com/advanced/security/http-basic-auth
+- [Advanced Security - FastAPI](references/013-Advanced-Security-FastAPI.md) — https://fastapi.tiangolo.com/advanced/security
+- [Advanced Dependencies - FastAPI](references/014-Advanced-Dependencies-FastAPI.md) — https://fastapi.tiangolo.com/advanced/advanced-dependencies
+- [Response Cookies - FastAPI](references/015-Response-Cookies-FastAPI.md) — https://fastapi.tiangolo.com/advanced/response-cookies
+- [Response Headers - FastAPI](references/016-Response-Headers-FastAPI.md) — https://fastapi.tiangolo.com/advanced/response-headers
+- [Response - Change Status Code - FastAPI](references/017-Response-Change-Status-Code-FastAPI.md) — https://fastapi.tiangolo.com/advanced/response-change-status-code
+- [Custom Response - HTML, Stream, File, others - FastAPI](references/018-Custom-Response-HTML-Stream-File-others-FastAPI.md) — https://fastapi.tiangolo.com/advanced/custom-response
+- [Additional Responses in OpenAPI - FastAPI](references/019-Additional-Responses-in-OpenAPI-FastAPI.md) — https://fastapi.tiangolo.com/advanced/additional-responses
+- [Path Operation Advanced Configuration - FastAPI](references/020-Path-Operation-Advanced-Configuration-FastAPI.md) — https://fastapi.tiangolo.com/advanced/path-operation-advanced-configuration
+- [Return a Response Directly - FastAPI](references/021-Return-a-Response-Directly-FastAPI.md) — https://fastapi.tiangolo.com/advanced/response-directly
+- [Stream Data - FastAPI](references/022-Stream-Data-FastAPI.md) — https://fastapi.tiangolo.com/advanced/stream-data
+- [Advanced User Guide - FastAPI](references/023-Advanced-User-Guide-FastAPI.md) — https://fastapi.tiangolo.com/advanced
+- [Additional Status Codes - FastAPI](references/024-Additional-Status-Codes-FastAPI.md) — https://fastapi.tiangolo.com/advanced/additional-status-codes
+- [Debugging - FastAPI](references/025-Debugging-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/debugging
+- [Testing - FastAPI](references/026-Testing-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/testing
+- [Background Tasks - FastAPI](references/027-Background-Tasks-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/background-tasks
+- [Static Files - FastAPI](references/028-Static-Files-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/static-files
+- [Frontend - FastAPI](references/029-Frontend-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/frontend
+- [Stream JSON Lines - FastAPI](references/030-Stream-JSON-Lines-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/stream-json-lines
+- [Metadata and Docs URLs - FastAPI](references/031-Metadata-and-Docs-URLs-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/metadata
+- [Server-Sent Events (SSE) - FastAPI](references/032-Server-Sent-Events-SSE-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/server-sent-events
+- [SQL (Relational) Databases - FastAPI](references/033-SQL-Relational-Databases-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/sql-databases
+- [Bigger Applications - Multiple Files - FastAPI](references/034-Bigger-Applications-Multiple-Files-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/bigger-applications
+- [CORS (Cross-Origin Resource Sharing) - FastAPI](references/035-CORS-Cross-Origin-Resource-Sharing-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/cors
+- [Middleware - FastAPI](references/036-Middleware-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/middleware
+- [OAuth2 with Password (and hashing), Bearer with JWT tokens - FastAPI](references/037-OAuth2-with-Password-and-hashing-Bearer-with-JWT-tokens-Fast.md) — https://fastapi.tiangolo.com/tutorial/security/oauth2-jwt
+- [Simple OAuth2 with Password and Bearer - FastAPI](references/038-Simple-OAuth2-with-Password-and-Bearer-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/security/simple-oauth2
+- [Security - First Steps - FastAPI](references/039-Security-First-Steps-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/security/first-steps
+- [Get Current User - FastAPI](references/040-Get-Current-User-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/security/get-current-user
+- [Security - FastAPI](references/041-Security-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/security
+- [Dependencies with yield - FastAPI](references/042-Dependencies-with-yield-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-with-yield
+- [Global Dependencies - FastAPI](references/043-Global-Dependencies-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/dependencies/global-dependencies
+- [Dependencies in path operation decorators - FastAPI](references/044-Dependencies-in-path-operation-decorators-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-in-path-operation-decorators
+- [Sub-dependencies - FastAPI](references/045-Sub-dependencies-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/dependencies/sub-dependencies
+- [Classes as Dependencies - FastAPI](references/046-Classes-as-Dependencies-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/dependencies/classes-as-dependencies
+- [Dependencies - FastAPI](references/047-Dependencies-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/dependencies
+- [Body - Updates - FastAPI](references/048-Body-Updates-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/body-updates
+- [Path Operation Configuration - FastAPI](references/049-Path-Operation-Configuration-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/path-operation-configuration
+- [JSON Compatible Encoder - FastAPI](references/050-JSON-Compatible-Encoder-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/encoder
+- [Request Forms and Files - FastAPI](references/051-Request-Forms-and-Files-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/request-forms-and-files
+- [Handling Errors - FastAPI](references/052-Handling-Errors-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/handling-errors
+- [Request Files - FastAPI](references/053-Request-Files-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/request-files
+- [Form Data - FastAPI](references/054-Form-Data-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/request-forms
+- [Response Status Code - FastAPI](references/055-Response-Status-Code-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/response-status-code
+- [Form Models - FastAPI](references/056-Form-Models-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/request-form-models
+- [Extra Models - FastAPI](references/057-Extra-Models-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/extra-models
+- [Response Model - Return Type - FastAPI](references/058-Response-Model-Return-Type-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/response-model
+- [Header Parameter Models - FastAPI](references/059-Header-Parameter-Models-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/header-param-models
+- [Cookie Parameter Models - FastAPI](references/060-Cookie-Parameter-Models-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/cookie-param-models
+- [Cookie Parameters - FastAPI](references/061-Cookie-Parameters-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/cookie-params
+- [Header Parameters - FastAPI](references/062-Header-Parameters-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/header-params
+- [Declare Request Example Data - FastAPI](references/063-Declare-Request-Example-Data-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/schema-extra-example
+- [Extra Data Types - FastAPI](references/064-Extra-Data-Types-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/extra-data-types
+- [Body - Nested Models - FastAPI](references/065-Body-Nested-Models-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/body-nested-models
+- [Body - Multiple Parameters - FastAPI](references/066-Body-Multiple-Parameters-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/body-multiple-params
+- [Body - Fields - FastAPI](references/067-Body-Fields-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/body-fields
+- [Path Parameters and Numeric Validations - FastAPI](references/068-Path-Parameters-and-Numeric-Validations-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/path-params-numeric-validations
+- [Query Parameter Models - FastAPI](references/069-Query-Parameter-Models-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/query-param-models
+- [Query Parameters and String Validations - FastAPI](references/070-Query-Parameters-and-String-Validations-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/query-params-str-validations
+- [Request Body - FastAPI](references/071-Request-Body-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/body
+- [Query Parameters - FastAPI](references/072-Query-Parameters-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/query-params
+- [First Steps - FastAPI](references/073-First-Steps-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/first-steps
+- [Path Parameters - FastAPI](references/074-Path-Parameters-FastAPI.md) — https://fastapi.tiangolo.com/tutorial/path-params
+- [Concurrency and async / await - FastAPI](references/075-Concurrency-and-async-await-FastAPI.md) — https://fastapi.tiangolo.com/async
+- [Tutorial - User Guide - FastAPI](references/076-Tutorial-User-Guide-FastAPI.md) — https://fastapi.tiangolo.com/tutorial
+- [Learn - FastAPI](references/077-Learn-FastAPI.md) — https://fastapi.tiangolo.com/learn
+- [Python Types Intro - FastAPI](references/078-Python-Types-Intro-FastAPI.md) — https://fastapi.tiangolo.com/python-types
+- [FastAPI - FastAPI](references/079-FastAPI-FastAPI.md) — https://fastapi.tiangolo.com/
+- [Features - FastAPI](references/080-Features-FastAPI.md) — https://fastapi.tiangolo.com/features

@@ -1,0 +1,177 @@
+# Background Workflow Execution - Agno
+
+Source: https://docs.agno.com/workflows/background-execution
+
+Pass `background=True` to `Workflow.arun()` to start a detached asynchronous task. Configure a workflow database when you need to poll the persisted run. Combine `background=True` with `stream=True` for buffered SSE events that can be resumed after a client disconnects.
+See [Background Execution](/background-execution/overview) for the full guide covering polling, resumable streaming, and the `/resume` endpoint.
+
+Start background execution with `.arun()`. The polling pattern below requires a workflow database. Call `workflow.get_run(run_id)` and check `.has_completed()` on the returned run.
+
+## [​](#prerequisites) Prerequisites
+
+1
+
+Set up your virtual environment
+
+Mac
+
+Windows
+
+```
+uv venv --python 3.12
+source .venv/bin/activate
+```
+
+```
+uv venv --python 3.12
+.venv\Scripts\activate
+```
+
+2
+
+Install dependencies
+
+```
+uv pip install -U agno openai sqlalchemy yfinance
+```
+
+3
+
+Export your OpenAI API key
+
+Mac/Linux
+
+Windows
+
+```
+export OPENAI_API_KEY="your_openai_api_key_here"
+```
+
+```
+$Env:OPENAI_API_KEY="your_openai_api_key_here"
+```
+
+## [​](#example) Example
+
+```
+import asyncio
+
+from agno.agent import Agent
+from agno.db.sqlite import SqliteDb
+from agno.models.openai import OpenAIResponses
+from agno.team import Team
+from agno.tools.hackernews import HackerNewsTools
+from agno.tools.yfinance import YFinanceTools
+from agno.utils.pprint import pprint_run_response
+from agno.workflow.step import Step
+from agno.workflow.workflow import Workflow
+
+# Define agents
+hackernews_agent = Agent(
+    name="HackerNews Agent",
+    model=OpenAIResponses(id="gpt-5.2"),
+    tools=[HackerNewsTools()],
+    role="Extract key insights and content from HackerNews posts",
+)
+finance_agent = Agent(
+    name="Finance Agent",
+    model=OpenAIResponses(id="gpt-5.2"),
+    tools=[YFinanceTools()],
+    role="Get stock prices and financial data",
+)
+
+# Define research team for complex analysis
+research_team = Team(
+    name="Research Team",
+    members=[hackernews_agent, finance_agent],
+    instructions="Research tech topics and related stocks",
+)
+
+content_planner = Agent(
+    name="Content Planner",
+    model=OpenAIResponses(id="gpt-5.2"),
+    instructions=[
+        "Plan a content schedule over 4 weeks for the provided topic and research content",
+        "Ensure that I have posts for 3 posts per week",
+    ],
+)
+
+# Define steps
+research_step = Step(
+    name="Research Step",
+    team=research_team,
+)
+
+content_planning_step = Step(
+    name="Content Planning Step",
+    agent=content_planner,
+)
+
+content_creation_workflow = Workflow(
+    name="Content Creation Workflow",
+    description="Automated content creation from blog posts to social media",
+    db=SqliteDb(
+        session_table="workflow_session",
+        db_file="tmp/workflow.db",
+    ),
+    steps=[research_step, content_planning_step],
+)
+
+async def main():
+    print("Starting Async Background Workflow Test")
+
+    # Start background execution (async)
+    bg_response = await content_creation_workflow.arun(
+        input="AI trends in 2024", background=True
+    )
+    print(f"Initial Response: {bg_response.status} - {bg_response.content}")
+    print(f"Run ID: {bg_response.run_id}")
+
+    # Poll every 5 seconds until completion
+    poll_count = 0
+
+    while True:
+        poll_count += 1
+        print(f"\nPoll #{poll_count} (every 5s)")
+
+        result = content_creation_workflow.get_run(bg_response.run_id)
+
+        if result is None:
+            print("Workflow not found yet, still waiting...")
+            if poll_count > 50:
+                print(f"Timeout after {poll_count} attempts")
+                break
+            await asyncio.sleep(5)
+            continue
+
+        if result.has_completed():
+            break
+
+        if poll_count > 200:
+            print(f"Timeout after {poll_count} attempts")
+            break
+
+        await asyncio.sleep(5)
+
+    final_result = content_creation_workflow.get_run(bg_response.run_id)
+
+    print("\nFinal Result:")
+    print("=" * 50)
+    if final_result is not None:
+        pprint_run_response(final_result, markdown=True)
+    else:
+        print("No persisted result was found.")
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+You can also use WebSocket for background workflows. See the [Workflow WebSocket](https://github.com/agno-agi/agno/tree/main/cookbook/04_workflows/06_advanced_concepts/background_execution) examples.
+
+## [​](#developer-resources) Developer Resources
+
+- [Background Execution Poll](https://github.com/agno-agi/agno/blob/main/cookbook/04_workflows/06_advanced_concepts/background_execution/background_poll.py)
+- [Background Execution WebSocket](https://github.com/agno-agi/agno/blob/main/cookbook/04_workflows/06_advanced_concepts/background_execution/websocket_server.py)
+- [Background Execution guide](/background-execution/overview)
+
+⌘I

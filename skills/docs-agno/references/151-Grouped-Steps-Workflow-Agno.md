@@ -1,0 +1,114 @@
+# Grouped Steps Workflow - Agno
+
+Source: https://docs.agno.com/workflows/workflow-patterns/grouped-steps-workflow
+
+`Steps` groups a list of steps into one named sequential unit. Pass the unit anywhere a workflow accepts a step-like component, including as a `Router` choice.
+
+## [​](#basic-example) Basic Example
+
+grouped\_steps\_workflow.py
+
+```
+from agno.workflow import Step, StepInput, StepOutput, Steps, Workflow
+
+def research(step_input: StepInput) -> StepOutput:
+    return StepOutput(content=f"Research for {step_input.input}")
+
+def write(step_input: StepInput) -> StepOutput:
+    return StepOutput(content=f"Draft from:\n{step_input.previous_step_content}")
+
+def edit(step_input: StepInput) -> StepOutput:
+    return StepOutput(content=f"Edited:\n{step_input.previous_step_content}")
+
+article_creation_sequence = Steps(
+    name="ArticleCreation",
+    description="Complete article creation workflow from research to final edit",
+    steps=[
+        Step(name="research", executor=research),
+        Step(name="writing", executor=write),
+        Step(name="editing", executor=edit),
+    ],
+)
+
+workflow = Workflow(
+    name="Article Creation Workflow",
+    steps=[article_creation_sequence],
+)
+
+workflow.print_response("Write an article about renewable energy", markdown=True)
+```
+
+## [​](#steps-with-router) Steps with Router
+
+Combine `Steps` with a `Router` to create distinct sequences for different content types or workflows:
+
+```
+from agno.workflow import Router, Step, StepInput, StepOutput, Steps, Workflow
+
+def generate_image(step_input: StepInput) -> StepOutput:
+    return StepOutput(content=f"Image request: {step_input.input}")
+
+def describe_image(step_input: StepInput) -> StepOutput:
+    return StepOutput(content=f"Image description for {step_input.previous_step_content}")
+
+def generate_video(step_input: StepInput) -> StepOutput:
+    return StepOutput(content=f"Video request: {step_input.input}")
+
+def describe_video(step_input: StepInput) -> StepOutput:
+    return StepOutput(content=f"Video description for {step_input.previous_step_content}")
+
+image_sequence = Steps(
+    name="image_generation",
+    description="Complete image generation and analysis workflow",
+    steps=[
+        Step(name="generate_image", executor=generate_image),
+        Step(name="describe_image", executor=describe_image),
+    ],
+)
+
+video_sequence = Steps(
+    name="video_generation",
+    description="Complete video production and analysis workflow",
+    steps=[
+        Step(name="generate_video", executor=generate_video),
+        Step(name="describe_video", executor=describe_video),
+    ],
+)
+
+def media_sequence_selector(step_input: StepInput) -> Steps:
+    if not step_input.input:
+        return image_sequence
+
+    message_lower = step_input.input.lower()
+
+    if "video" in message_lower:
+        return video_sequence
+    return image_sequence
+
+media_workflow = Workflow(
+    name="AI Media Generation Workflow",
+    description="Generate and analyze images or videos using AI agents",
+    steps=[
+        Router(
+            name="Media Type Router",
+            description="Routes to appropriate media generation pipeline",
+            selector=media_sequence_selector,
+            choices=[image_sequence, video_sequence],
+        ),
+    ],
+)
+
+media_workflow.print_response("Create an image of a magical forest", markdown=True)
+media_workflow.print_response("Create a cinematic video of city timelapse", markdown=True)
+```
+
+## [​](#developer-resources) Developer Resources
+
+- [Sequential steps example](/workflows/usage/sequence-of-steps)
+- [Workflow patterns overview](/workflows/workflow-patterns/overview)
+
+## [​](#reference) Reference
+
+For complete API documentation, see [Steps Reference](/reference/workflows/steps-step).
+
+⌘I

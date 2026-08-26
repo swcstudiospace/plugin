@@ -1,0 +1,84 @@
+# docs-openai
+
+Exported documentation references.
+
+- [Manage permissions in the OpenAI platform](references/001-Manage-permissions-in-the-OpenAI-platform.md) — https://developers.openai.com/api/docs/guides/rbac.md
+- [Local shell](references/002-Local-shell.md) — https://developers.openai.com/api/docs/guides/tools-local-shell.md
+- [Manage service accounts with Terraform](references/003-Manage-service-accounts-with-Terraform.md) — https://developers.openai.com/api/docs/guides/terraform/service-accounts.md
+- [Manage projects and access with Terraform](references/004-Manage-projects-and-access-with-Terraform.md) — https://developers.openai.com/api/docs/guides/terraform/projects-and-access.md
+- [Integrations and observability](references/005-Integrations-and-observability.md) — https://developers.openai.com/api/docs/guides/agents/integrations-observability.md
+- [Import and reconcile OpenAI resources](references/006-Import-and-reconcile-OpenAI-resources.md) — https://developers.openai.com/api/docs/guides/terraform/import-and-reconcile.md
+- [Latency optimization](references/007-Latency-optimization.md) — https://developers.openai.com/api/docs/guides/latency-optimization.md
+- [IP egress ranges](references/008-IP-egress-ranges.md) — https://developers.openai.com/api/docs/guides/ip-addresses.md
+- [Image generation](references/009-Image-generation.md) — https://developers.openai.com/api/docs/guides/tools-image-generation.md
+- [Images and vision](references/010-Images-and-vision.md) — https://developers.openai.com/api/docs/guides/images-vision.md
+- [Graders](references/011-Graders.md) — https://developers.openai.com/api/docs/guides/graders.md
+- [Getting started with datasets](references/012-Getting-started-with-datasets.md) — https://developers.openai.com/api/docs/guides/evaluation-getting-started.md
+- [Image generation](references/013-Image-generation.md) — https://developers.openai.com/api/docs/guides/image-generation.md
+- [Guardrails and human review](references/014-Guardrails-and-human-review.md) — https://developers.openai.com/api/docs/guides/agents/guardrails-approvals.md
+- [Fine-tuning best practices](references/015-Fine-tuning-best-practices.md) — https://developers.openai.com/api/docs/guides/fine-tuning-best-practices.md
+- [Function calling](references/016-Function-calling.md) — https://developers.openai.com/api/docs/guides/function-calling.md
+- [Frontend prompt instructions](references/017-Frontend-prompt-instructions.md) — https://developers.openai.com/api/docs/guides/frontend-prompt.md
+- [File inputs](references/018-File-inputs.md) — https://developers.openai.com/api/docs/guides/file-inputs.md
+- [File transcription](references/019-File-transcription.md) — https://developers.openai.com/api/docs/guides/speech-to-text.md
+- [File search](references/020-File-search.md) — https://developers.openai.com/api/docs/guides/tools-file-search.md
+- [Flex processing](references/021-Flex-processing.md) — https://developers.openai.com/api/docs/guides/flex-processing.md
+- [Evaluate agent workflows](references/022-Evaluate-agent-workflows.md) — https://developers.openai.com/api/docs/guides/agent-evals.md
+- [Evaluate external models](references/023-Evaluate-external-models.md) — https://developers.openai.com/api/docs/guides/external-models.md
+- [Evaluation best practices](references/024-Evaluation-best-practices.md) — https://developers.openai.com/api/docs/guides/evaluation-best-practices.md
+- [Data controls in the OpenAI platform](references/025-Data-controls-in-the-OpenAI-platform.md) — https://developers.openai.com/api/docs/guides/your-data.md
+- [Deep research](references/026-Deep-research.md) — https://developers.openai.com/api/docs/guides/deep-research.md
+- [Error codes](references/027-Error-codes.md) — https://developers.openai.com/api/docs/guides/error-codes.md
+- [Direct preference optimization](references/028-Direct-preference-optimization.md) — https://developers.openai.com/api/docs/guides/direct-preference-optimization.md
+- [Counting tokens](references/029-Counting-tokens.md) — https://developers.openai.com/api/docs/guides/token-counting.md
+- [Cybersecurity checks](references/030-Cybersecurity-checks.md) — https://developers.openai.com/api/docs/guides/safety-checks/cybersecurity.md
+- [Conversation state](references/031-Conversation-state.md) — https://developers.openai.com/api/docs/guides/conversation-state.md
+- [Cost optimization](references/032-Cost-optimization.md) — https://developers.openai.com/api/docs/guides/cost-optimization.md
+- [Configuring workload identity federation for Microsoft Azure](references/033-Configuring-workload-identity-federation-for-Microsoft-Azure.md) — https://developers.openai.com/api/docs/guides/workload-identity-federation/microsoft-azure.md
+- [Configuring workload identity federation for Kubernetes](references/034-Configuring-workload-identity-federation-for-Kubernetes.md) — https://developers.openai.com/api/docs/guides/workload-identity-federation/kubernetes.md
+- [Configuring workload identity federation for Oracle Cloud Infrastructure](references/035-Configuring-workload-identity-federation-for-Oracle-Cloud-In.md) — https://developers.openai.com/api/docs/guides/workload-identity-federation/oracle-cloud.md
+- [Configuring workload identity federation for SPIFFE](references/036-Configuring-workload-identity-federation-for-SPIFFE.md) — https://developers.openai.com/api/docs/guides/workload-identity-federation/spiffe.md
+- [Configuring workload identity federation for Google Cloud](references/037-Configuring-workload-identity-federation-for-Google-Cloud.md) — https://developers.openai.com/api/docs/guides/workload-identity-federation/google-cloud.md
+- [Configuring workload identity federation for GitHub Actions](references/038-Configuring-workload-identity-federation-for-GitHub-Actions.md) — https://developers.openai.com/api/docs/guides/workload-identity-federation/github-actions.md
+- [Computer use](references/039-Computer-use.md) — https://developers.openai.com/api/docs/guides/tools-computer-use.md
+- [Configuring workload identity federation for AWS](references/040-Configuring-workload-identity-federation-for-AWS.md) — https://developers.openai.com/api/docs/guides/workload-identity-federation/aws.md
+- [Code Interpreter](references/041-Code-Interpreter.md) — https://developers.openai.com/api/docs/guides/tools-code-interpreter.md
+- [Code generation](references/042-Code-generation.md) — https://developers.openai.com/api/docs/guides/code-generation.md
+- [Compaction](references/043-Compaction.md) — https://developers.openai.com/api/docs/guides/compaction.md
+- [Completions API](references/044-Completions-API.md) — https://developers.openai.com/api/docs/guides/completions.md
+- [ChatKit](references/045-ChatKit.md) — https://developers.openai.com/api/docs/guides/chatkit.md
+- [Citation Formatting](references/046-Citation-Formatting.md) — https://developers.openai.com/api/docs/guides/citation-formatting.md
+- [ChatKit widgets](references/047-ChatKit-widgets.md) — https://developers.openai.com/api/docs/guides/chatkit-widgets.md
+- [Batch API](references/048-Batch-API.md) — https://developers.openai.com/api/docs/guides/batch.md
+- [Background mode](references/049-Background-mode.md) — https://developers.openai.com/api/docs/guides/background.md
+- [ChatGPT Developer mode](references/050-ChatGPT-Developer-mode.md) — https://developers.openai.com/api/docs/guides/developer-mode.md
+- [Agents SDK](references/051-Agents-SDK.md) — https://developers.openai.com/api/docs/guides/agents.md
+- [API deployment checklist](references/052-API-deployment-checklist.md) — https://developers.openai.com/api/docs/guides/deployment-checklist.md
+- [Audio and speech](references/053-Audio-and-speech.md) — https://developers.openai.com/api/docs/guides/audio.md
+- [Apply Patch](references/054-Apply-Patch.md) — https://developers.openai.com/api/docs/guides/tools-apply-patch.md
+- [Agent Builder](references/055-Agent-Builder.md) — https://developers.openai.com/api/docs/guides/agent-builder.md
+- [Agent definitions](references/056-Agent-definitions.md) — https://developers.openai.com/api/docs/guides/agents/define-agents.md
+- [Actions in ChatKit](references/057-Actions-in-ChatKit.md) — https://developers.openai.com/api/docs/guides/chatkit-actions.md
+- [Admin APIs](references/058-Admin-APIs.md) — https://developers.openai.com/api/docs/guides/admin-apis.md
+- [Advanced usage](references/059-Advanced-usage.md) — https://developers.openai.com/api/docs/guides/advanced-usage.md
+- [Advanced integrations with ChatKit](references/060-Advanced-integrations-with-ChatKit.md) — https://developers.openai.com/api/docs/guides/custom-chatkit.md
+- [Deprecations](references/061-Deprecations.md) — https://developers.openai.com/api/docs/deprecations.md
+- [GPT Release Notes](references/062-GPT-Release-Notes.md) — https://developers.openai.com/api/docs/gpts/release-notes.md
+- [Assistants migration guide](references/063-Assistants-migration-guide.md) — https://developers.openai.com/api/docs/assistants/migration.md
+- [Changelog](references/064-Changelog.md) — https://developers.openai.com/api/docs/changelog.md
+- [Key concepts](references/065-Key-concepts.md) — https://developers.openai.com/api/docs/concepts.md
+- [Assistants File Search](references/066-Assistants-File-Search.md) — https://developers.openai.com/api/docs/assistants/tools/file-search.md
+- [Overview of OpenAI Crawlers](references/067-Overview-of-OpenAI-Crawlers.md) — https://developers.openai.com/api/docs/bots.md
+- [Assistants Code Interpreter](references/068-Assistants-Code-Interpreter.md) — https://developers.openai.com/api/docs/assistants/tools/code-interpreter.md
+- [Assistants API tools](references/069-Assistants-API-tools.md) — https://developers.openai.com/api/docs/assistants/tools.md
+- [Assistants Function Calling](references/070-Assistants-Function-Calling.md) — https://developers.openai.com/api/docs/assistants/tools/function-calling.md
+- [GPT Actions library](references/071-GPT-Actions-library.md) — https://developers.openai.com/api/docs/actions/actions-library.md
+- [Production notes on GPT Actions](references/072-Production-notes-on-GPT-Actions.md) — https://developers.openai.com/api/docs/actions/production.md
+- [Sending and returning files with GPT Actions](references/073-Sending-and-returning-files-with-GPT-Actions.md) — https://developers.openai.com/api/docs/actions/sending-files.md
+- [Assistants API deep dive](references/074-Assistants-API-deep-dive.md) — https://developers.openai.com/api/docs/assistants/deep-dive.md
+- [Data retrieval with GPT Actions](references/075-Data-retrieval-with-GPT-Actions.md) — https://developers.openai.com/api/docs/actions/data-retrieval.md
+- [GPT Action authentication](references/076-GPT-Action-authentication.md) — https://developers.openai.com/api/docs/actions/authentication.md
+- [GPT Actions](references/077-GPT-Actions.md) — https://developers.openai.com/api/docs/actions/introduction.md
+- [OpenAI API docs — full documentation](references/078-OpenAI-API-docs-full-documentation.md) — https://developers.openai.com/api/docs/llms-full.txt
+- [Getting started with GPT Actions](references/079-Getting-started-with-GPT-Actions.md) — https://developers.openai.com/api/docs/actions/getting-started.md
+- [OpenAI API Platform Documentation](references/080-OpenAI-API-Platform-Documentation.md) — https://developers.openai.com/api/docs

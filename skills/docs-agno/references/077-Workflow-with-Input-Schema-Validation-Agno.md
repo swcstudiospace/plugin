@@ -1,0 +1,217 @@
+# Workflow with Input Schema Validation - Agno
+
+Source: https://docs.agno.com/workflows/usage/workflow-with-input-schema
+
+Set `input_schema` on a workflow to validate input with a Pydantic model. The workflow checks that the input is properly structured and typed before execution begins.
+
+## [​](#accepted-input) Accepted Input
+
+| Input | Behavior |
+| --- | --- |
+| `ResearchTopic` instance | Accepted as already validated |
+| Matching dictionary or JSON string | Parsed into `ResearchTopic` before the first step runs |
+| Different Pydantic model or invalid data | Raises `ValueError` before the first step runs |
+
+workflow\_with\_input\_schema.py
+
+```
+from typing import List
+
+from agno.agent import Agent
+from agno.db.sqlite import SqliteDb
+from agno.models.openai import OpenAIResponses
+from agno.team import Team
+from agno.tools.hackernews import HackerNewsTools
+from agno.tools.websearch import WebSearchTools
+from agno.workflow.step import Step
+from agno.workflow.workflow import Workflow
+from pydantic import BaseModel, Field
+
+class DifferentModel(BaseModel):
+    name: str
+
+class ResearchTopic(BaseModel):
+    """Structured research topic with specific requirements"""
+
+    topic: str
+    focus_areas: List[str] = Field(description="Specific areas to focus on")
+    target_audience: str = Field(description="Who this research is for")
+    sources_required: int = Field(description="Number of sources needed", default=5)
+
+# Define agents
+hackernews_agent = Agent(
+    name="HackerNews Agent",
+    model=OpenAIResponses(id="gpt-5.2"),
+    tools=[HackerNewsTools()],
+    role="Extract key insights and content from HackerNews posts",
+)
+web_agent = Agent(
+    name="Web Agent",
+    model=OpenAIResponses(id="gpt-5.2"),
+    tools=[WebSearchTools()],
+    role="Search the web for current news and trends",
+)
+
+# Define research team for complex analysis
+research_team = Team(
+    name="Research Team",
+    members=[hackernews_agent, web_agent],
+    instructions="Research tech topics from HackerNews and the web",
+)
+
+content_planner = Agent(
+    name="Content Planner",
+    model=OpenAIResponses(id="gpt-5.2"),
+    instructions=[
+        "Plan a content schedule over 4 weeks for the provided topic and research content",
+        "Ensure that I have posts for 3 posts per week",
+    ],
+)
+
+# Define steps
+research_step = Step(
+    name="Research Step",
+    team=research_team,
+)
+
+content_planning_step = Step(
+    name="Content Planning Step",
+    agent=content_planner,
+)
+
+# Create and use workflow
+if __name__ == "__main__":
+    content_creation_workflow = Workflow(
+        name="Content Creation Workflow",
+        description="Automated content creation from blog posts to social media",
+        db=SqliteDb(
+            session_table="workflow_session",
+            db_file="tmp/workflow.db",
+        ),
+        steps=[research_step, content_planning_step],
+        input_schema=ResearchTopic,  # <-- Define input schema for validation
+    )
+
+    print("=== Example 1: Valid Pydantic Model Input ===")
+    research_topic = ResearchTopic(
+        topic="AI trends in 2024",
+        focus_areas=[
+            "Machine Learning",
+            "Natural Language Processing",
+            "Computer Vision",
+            "AI Ethics",
+        ],
+        target_audience="Tech professionals and business leaders",
+    )
+
+    # This will work properly - input matches the schema
+    content_creation_workflow.print_response(
+        input=research_topic,
+        markdown=True,
+    )
+
+    print("\n=== Example 2: Valid Dictionary Input ===")
+    # This will also work - dict matches ResearchTopic structure
+    content_creation_workflow.print_response(
+        input={
+            "topic": "AI trends in 2024",
+            "focus_areas": ["Machine Learning", "Computer Vision"],
+            "target_audience": "Tech professionals",
+            "sources_required": 8
+        },
+        markdown=True,
+    )
+
+    print("\n=== Example 3: Missing Required Fields (Commented - Would Fail) ===")
+    # This would fail - missing required 'target_audience' field
+    # Uncomment to see validation error:
+    # content_creation_workflow.print_response(
+    #     input=ResearchTopic(
+    #         topic="AI trends in 2024",
+    #         focus_areas=[
+    #             "Machine Learning",
+    #             "Natural Language Processing",
+    #             "Computer Vision",
+    #             "AI Ethics",
+    #         ],
+    #         # target_audience missing - will raise ValidationError
+    #     ),
+    #     markdown=True,
+    # )
+
+    print("\n=== Example 4: Wrong Model Type (Commented - Would Fail) ===")
+    # This would fail - different Pydantic model provided
+    # Uncomment to see validation error:
+    # content_creation_workflow.print_response(
+    #     input=DifferentModel(name="test"),
+    #     markdown=True,
+    # )
+
+    print("\n=== Example 5: Type Mismatch (Commented - Would Fail) ===")
+    # This would fail - wrong data types
+    # Uncomment to see validation error:
+    # content_creation_workflow.print_response(
+    #     input={
+    #         "topic": 123,  # Should be string
+    #         "focus_areas": "Machine Learning",  # Should be List[str]
+    #         "target_audience": ["audience1", "audience2"],  # Should be string
+    #     },
+    #     markdown=True,
+    # )
+```
+
+## [​](#run-the-example) Run the Example
+
+1
+
+Set up your virtual environment
+
+Mac
+
+Windows
+
+```
+uv venv --python 3.12
+source .venv/bin/activate
+```
+
+```
+uv venv --python 3.12
+.venv\Scripts\activate
+```
+
+2
+
+Install dependencies
+
+```
+uv pip install -U agno openai sqlalchemy ddgs
+```
+
+3
+
+Export your OpenAI API key
+
+Mac/Linux
+
+Windows
+
+```
+export OPENAI_API_KEY="your_openai_api_key_here"
+```
+
+```
+$Env:OPENAI_API_KEY="your_openai_api_key_here"
+```
+
+4
+
+Run the example
+
+Save the code above as `workflow_with_input_schema.py`, then run:
+
+```
+python workflow_with_input_schema.py
+```
+
+⌘I

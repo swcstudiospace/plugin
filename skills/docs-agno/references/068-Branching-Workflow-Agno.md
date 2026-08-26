@@ -1,0 +1,181 @@
+# Branching Workflow - Agno
+
+Source: https://docs.agno.com/workflows/workflow-patterns/branching-workflow
+
+**Example use cases**: Expert routing, content type detection, multi-path processing
+A `Router` uses a selector function to decide at runtime which of its `choices` to execute. Multiple selected choices run sequentially. A selected `Parallel`, `Loop`, or other container applies its own control flow.
+![Workflows router steps diagram](https://mintcdn.com/agno-v2/6A2IKapU7R02zCpZ/images/workflows-router-steps-light.png?fit=max&auto=format&n=6A2IKapU7R02zCpZ&q=85&s=11256e6d5ebe78ee137ba56647bb732c)
+![Workflows router steps diagram](https://mintcdn.com/agno-v2/6A2IKapU7R02zCpZ/images/workflows-router-steps.png?fit=max&auto=format&n=6A2IKapU7R02zCpZ&q=85&s=593bc69b1647af6571151c051145e7c6)
+
+## [​](#selector-flexibility) Selector Flexibility
+
+The Router selector function supports multiple return types:
+
+| Return value | Behavior |
+| --- | --- |
+| Step name as `str` | Resolve the matching named choice |
+| `Step`, `Steps`, `Condition`, `Loop`, `Parallel`, or `Router` | Execute that step-like object |
+| `list` of supported values | Resolve each item and execute them sequentially |
+
+The selector can also receive `step_choices` as an optional second parameter for dynamic selection, or be a [CEL expression](/examples/workflows/cel-expressions/router/cel-ternary) string that returns a step name.
+
+## [​](#example-string-based-selector) Example: String-based Selector
+
+The simplest approach is to return the step name as a string:
+
+branching\_workflow.py
+
+```
+from typing import Union, List
+
+from agno.agent import Agent
+from agno.models.openai import OpenAIChat
+from agno.workflow import Router, Step, StepInput, Workflow
+
+tech_expert = Agent(
+    name="tech_expert",
+    model=OpenAIChat(id="gpt-4o-mini"),
+    instructions="You are a tech expert. Provide technical analysis.",
+)
+
+biz_expert = Agent(
+    name="biz_expert",
+    model=OpenAIChat(id="gpt-4o-mini"),
+    instructions="You are a business expert. Provide business insights.",
+)
+
+generalist = Agent(
+    name="generalist",
+    model=OpenAIChat(id="gpt-4o-mini"),
+    instructions="You are a generalist. Provide general information.",
+)
+
+tech_step = Step(name="Tech Research", agent=tech_expert)
+business_step = Step(name="Business Research", agent=biz_expert)
+general_step = Step(name="General Research", agent=generalist)
+
+def route_by_topic(step_input: StepInput) -> Union[str, Step, List[Step]]:
+    """Selector can return step name as string - Router resolves it."""
+    topic = step_input.input.lower()
+
+    if "tech" in topic or "ai" in topic or "software" in topic:
+        return "Tech Research"  # Return name as string
+    elif "business" in topic or "market" in topic or "finance" in topic:
+        return "Business Research"
+    else:
+        return "General Research"
+
+workflow = Workflow(
+    name="Expert Routing",
+    steps=[
+        Router(
+            name="Topic Router",
+            selector=route_by_topic,
+            choices=[tech_step, business_step, general_step],
+        ),
+    ],
+)
+
+workflow.print_response("Latest developments in artificial intelligence", markdown=True)
+```
+
+## [​](#example-using-step_choices-parameter) Example: Using step\_choices Parameter
+
+Access available choices dynamically for more flexible routing:
+
+dynamic\_routing.py
+
+```
+from agno.workflow import Router, Step, StepInput, StepOutput, Workflow
+
+def research(step_input: StepInput) -> StepOutput:
+    return StepOutput(content=f"Research for {step_input.input}")
+
+def write(step_input: StepInput) -> StepOutput:
+    return StepOutput(content=f"Draft from:\n{step_input.previous_step_content}")
+
+def review(step_input: StepInput) -> StepOutput:
+    return StepOutput(content=f"Reviewed:\n{step_input.previous_step_content}")
+
+researcher = Step(name="researcher", executor=research)
+writer = Step(name="writer", executor=write)
+reviewer = Step(name="reviewer", executor=review)
+
+def dynamic_selector(step_input: StepInput, step_choices: list):
+    user_input = step_input.input.lower()
+    step_map = {s.name: s for s in step_choices if hasattr(s, "name") and s.name}
+
+    if "research" in user_input:
+        return "researcher"
+    if "write" in user_input:
+        return step_map.get("writer", step_choices[0])
+    if "full" in user_input:
+        return [step_map["researcher"], step_map["writer"], step_map["reviewer"]]
+    return step_choices[0]
+
+workflow = Workflow(
+    name="Dynamic Routing",
+    steps=[
+        Router(
+            name="Dynamic Router",
+            selector=dynamic_selector,
+            choices=[researcher, writer, reviewer],
+        ),
+    ],
+)
+
+workflow.print_response("Run the full pipeline")
+```
+
+## [​](#example-nested-choices) Example: Nested Choices
+
+Nested lists in choices become Steps containers for sequential execution:
+
+nested\_routing.py
+
+```
+from agno.workflow import Router, Step, StepInput, StepOutput, Workflow
+
+def process_a(step_input: StepInput) -> StepOutput:
+    return StepOutput(content=f"A: {step_input.input}")
+
+def process_b(step_input: StepInput) -> StepOutput:
+    return StepOutput(content=f"B: {step_input.input}")
+
+def process_c(step_input: StepInput) -> StepOutput:
+    return StepOutput(content=f"C after {step_input.previous_step_content}")
+
+step_a = Step(name="single", executor=process_a)
+step_b = Step(name="first_in_group", executor=process_b)
+step_c = Step(name="second_in_group", executor=process_c)
+
+def nested_selector(step_input: StepInput, step_choices: list):
+    user_input = str(step_input.input).lower()
+    if "single" in user_input:
+        return step_choices[0]
+    return step_choices[1]
+
+workflow = Workflow(
+    name="Nested Choices Routing",
+    steps=[
+        Router(
+            name="Nested Router",
+            selector=nested_selector,
+            choices=[step_a, [step_b, step_c]],
+        ),
+    ],
+)
+
+workflow.print_response("Run the grouped branch")
+```
+
+## [​](#developer-resources) Developer Resources
+
+- [Router Steps Workflow](/workflows/usage/router-steps-workflow)
+- [Router with step\_choices](/workflows/usage/router-with-step-choices)
+
+## [​](#reference) Reference
+
+For complete API documentation, see [Router Steps Reference](/reference/workflows/router-steps).
+
+⌘I

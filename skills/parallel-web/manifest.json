@@ -1,0 +1,1611 @@
+{
+  "name": "parallel-web",
+  "generated_at": "2026-07-29T07:00:04Z",
+  "query": null,
+  "source_id": null,
+  "ranking": "all pages (recency)",
+  "page_count": 200,
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "pages": [
+    {
+      "title": "Create Task Run - Parallel",
+      "url": "https://docs.parallel.ai/api-reference/tasks/create-task-run",
+      "content_hash": "sha256:bce6ddb7dc1093519d3d92a20e67b8a7ea9c9b44a7a053aba706854a991c3499",
+      "file": "references/001-Create-Task-Run-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Task API Webhooks - Parallel",
+      "url": "https://docs.parallel.ai/task-api/webhooks",
+      "content_hash": "sha256:0278d014478781cf68f70d14aaf901554ad4ba7a6b565757c87d4a88209e6432",
+      "file": "references/002-Task-API-Webhooks-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Search - Parallel",
+      "url": "https://docs.parallel.ai/api-reference/search/search",
+      "content_hash": "sha256:1d8ed80ab312dddcd50bb14acaa7d38f06068ded3a718affe8f6c86b18de886f",
+      "file": "references/003-Search-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Create a Snapshot Monitor - Parallel",
+      "url": "https://docs.parallel.ai/monitor-api/quickstart-snapshot",
+      "content_hash": "sha256:2769c7fc21e6e0c478ce0276b34371efc0820d9841f4ccb53dd03dcef10cbf8b",
+      "file": "references/004-Create-a-Snapshot-Monitor-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Search Modes - Parallel",
+      "url": "https://docs.parallel.ai/search/modes",
+      "content_hash": "sha256:8b122cb80ad671b0baf1826890635e2f80d3273f29992886ca8e4e48628da995",
+      "file": "references/005-Search-Modes-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Task API Deep Research Quickstart - Parallel",
+      "url": "https://docs.parallel.ai/task-api/examples/task-deep-research",
+      "content_hash": "sha256:74b589bed99068cba365ccb9ef3533070a472d7eab52d42844074498112b83fd",
+      "file": "references/006-Task-API-Deep-Research-Quickstart-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Interactions - Parallel",
+      "url": "https://docs.parallel.ai/task-api/guides/interactions",
+      "content_hash": "sha256:ffdc7b78e1f5469f07203fe477ffdaa3df38462bb28fdfff1f0c8202fa0305fd",
+      "file": "references/007-Interactions-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Ingest API - Parallel",
+      "url": "https://docs.parallel.ai/task-api/ingest-api",
+      "content_hash": "sha256:e74c527abae4fa550d1e1333b136dfca9d9cd628f88ec89cf0b90967cda1d44d",
+      "file": "references/008-Ingest-API-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Entity Search - Parallel",
+      "url": "https://docs.parallel.ai/findall-api/entity-search",
+      "content_hash": "sha256:61acb4106554d0e4ff99988a68cc238636bfe792910326fe6573c759477e9242",
+      "file": "references/009-Entity-Search-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Cancel - Parallel",
+      "url": "https://docs.parallel.ai/findall-api/features/findall-cancel",
+      "content_hash": "sha256:229584286200c12e9e2e3a5ded89d42ab0b77a7d1df107b4e47be70c298ecaed",
+      "file": "references/010-Cancel-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Agent Skills - Parallel",
+      "url": "https://docs.parallel.ai/integrations/agent-skills",
+      "content_hash": "sha256:2f4ea6cecce20feb9261a26f5a188fd5393788714e9668efc1234bf8f8e89686",
+      "file": "references/011-Agent-Skills-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Agentic Payments (MPP & x402) - Parallel",
+      "url": "https://docs.parallel.ai/integrations/agentic-payments",
+      "content_hash": "sha256:bd8e3d7658fad34574e990911499757c568f470fda8d39ac72237c3b9670cb6b",
+      "file": "references/012-Agentic-Payments-MPP-x402-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Crawler - Parallel",
+      "url": "https://docs.parallel.ai/resources/crawler",
+      "content_hash": "sha256:1a231f7050fbac9ca7eaa991defa9c07bb69f8d878e3d5b541a508a418318778",
+      "file": "references/013-Crawler-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Webhook Setup - Parallel",
+      "url": "https://docs.parallel.ai/resources/webhook-setup",
+      "content_hash": "sha256:8f744230124ef8dbc38ce3683a31d5408f6bea4d8b8e061a945efe80e34a198e",
+      "file": "references/014-Webhook-Setup-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Add Enrichment to FindAll Run - Parallel",
+      "url": "https://docs.parallel.ai/api-reference/findall/add-enrichment-to-findall-run",
+      "content_hash": "sha256:ff2bf73d662274b1b151813620b4408a55b99987a799043ee1ef973869ddbfff",
+      "file": "references/015-Add-Enrichment-to-FindAll-Run-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Extend FindAll Run - Parallel",
+      "url": "https://docs.parallel.ai/api-reference/findall/extend-findall-run",
+      "content_hash": "sha256:d6f904f99708b9679c288019e60a2df508eab7efa7f68dba8342fcfdd0fc6bc4",
+      "file": "references/016-Extend-FindAll-Run-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Get FindAll Run Schema - Parallel",
+      "url": "https://docs.parallel.ai/api-reference/findall/get-findall-run-schema",
+      "content_hash": "sha256:ed52d301736cb195687e2fa6561dc21fcbe18386edc52e8fd5f7f19d4996e5de",
+      "file": "references/017-Get-FindAll-Run-Schema-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Stream FindAll Events - Parallel",
+      "url": "https://docs.parallel.ai/api-reference/findall/stream-findall-events",
+      "content_hash": "sha256:4f5264523917cf482b0fad3eaeeba9cb1687aa8590508ba17e3c4fe2912d391a",
+      "file": "references/018-Stream-FindAll-Events-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Task Runs Lifecycle - Parallel",
+      "url": "https://docs.parallel.ai/task-api/guides/execute-task-run",
+      "content_hash": "sha256:86f622cfce5ef7bf328290b29c4feda882260bc988ab1fb21f86bf89d0de40ed",
+      "file": "references/019-Task-Runs-Lifecycle-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Task Spec - Parallel",
+      "url": "https://docs.parallel.ai/task-api/guides/specify-a-task",
+      "content_hash": "sha256:dcea77bcf5db3d55183133b8e76df2925571680bc8df8d89233ffa4b3df8255d",
+      "file": "references/020-Task-Spec-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Cancel FindAll Run - Parallel",
+      "url": "https://docs.parallel.ai/api-reference/findall/cancel-findall-run",
+      "content_hash": "sha256:eca81dbe1bd379b48f7a8ab14fef80ad941839422086c2612163d192cf4fddca",
+      "file": "references/021-Cancel-FindAll-Run-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Create FindAll Run - Parallel",
+      "url": "https://docs.parallel.ai/api-reference/findall/create-findall-run",
+      "content_hash": "sha256:46531e9f4f13f7914977bfa2416f61728c148f4befa8b7987dd7ea8422be0ec4",
+      "file": "references/022-Create-FindAll-Run-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Candidates - Parallel",
+      "url": "https://docs.parallel.ai/findall-api/core-concepts/findall-candidates",
+      "content_hash": "sha256:f0e28aa86247436537c0d0612ce66d82255012f9012285e05f12a0ef03d6e569",
+      "file": "references/023-Candidates-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Run Lifecycle - Parallel",
+      "url": "https://docs.parallel.ai/findall-api/core-concepts/findall-lifecycle",
+      "content_hash": "sha256:baf7472b29c8ddbaf047edce84c40f46c2c71a2eabcf757c88e89f172004c34f",
+      "file": "references/024-Run-Lifecycle-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Generators - Parallel",
+      "url": "https://docs.parallel.ai/findall-api/core-concepts/findall-generator-pricing",
+      "content_hash": "sha256:5b6441bddd216e3cd529f30238325262fe2d3958c86d5cca8584c4dc111b0ebf",
+      "file": "references/025-Generators-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Enrichments - Parallel",
+      "url": "https://docs.parallel.ai/findall-api/features/findall-enrich",
+      "content_hash": "sha256:55855c916e695156b8edb4e986e5e5731590616c631ae8a0319e3f9f98b0c2f4",
+      "file": "references/026-Enrichments-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Extend - Parallel",
+      "url": "https://docs.parallel.ai/findall-api/features/findall-extend",
+      "content_hash": "sha256:ee726a74103c122a9f265d5b694cbbbac21d6c5a50cb45408e3d92fd7f695d2e",
+      "file": "references/027-Extend-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Preview - Parallel",
+      "url": "https://docs.parallel.ai/findall-api/features/findall-preview",
+      "content_hash": "sha256:eeef157b248c03d02bf0a156ea10ce45b203567adb07542d88d48b68019a6dac",
+      "file": "references/028-Preview-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "FindAll API Webhooks - Parallel",
+      "url": "https://docs.parallel.ai/findall-api/features/findall-webhook",
+      "content_hash": "sha256:a6979b337ec8d57413b2c344d7df46e1f5bf594dbaa6d3853ae433d88d94fcd6",
+      "file": "references/029-FindAll-API-Webhooks-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Extract API Best Practices - Parallel",
+      "url": "https://docs.parallel.ai/extract/best-practices",
+      "content_hash": "sha256:d966581f8a5f43518fcdb061aeb3592ecbf3083a1b2cddb927a727defc0455d5",
+      "file": "references/030-Extract-API-Best-Practices-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Extract API Quickstart - Parallel",
+      "url": "https://docs.parallel.ai/extract/extract-quickstart",
+      "content_hash": "sha256:6550d1453528dd87deebe60c0238e379bb660a4bf97e906d8557207bb76915da",
+      "file": "references/031-Extract-API-Quickstart-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "FindAll API Streaming Events - Parallel",
+      "url": "https://docs.parallel.ai/findall-api/features/findall-sse",
+      "content_hash": "sha256:505a5f97e1986e54543f47d3f2928415f659b46c70ba8cd6a97a6be9504fbeca",
+      "file": "references/032-FindAll-API-Streaming-Events-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Parallel API Pricing - Parallel",
+      "url": "https://docs.parallel.ai/getting-started/pricing",
+      "content_hash": "sha256:fa1700c0a6cbaa3948f9e53bf6161666800766fe6bb7925f717fa8fac43be60c",
+      "file": "references/033-Parallel-API-Pricing-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "API Rate Limits - Parallel",
+      "url": "https://docs.parallel.ai/getting-started/rate-limits",
+      "content_hash": "sha256:d77d0f289f7016ef34805d3681586000d03f5dd4dd8f1e6e207cc382c7f102e3",
+      "file": "references/034-API-Rate-Limits-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Parallel MCP Server Quickstart - Parallel",
+      "url": "https://docs.parallel.ai/integrations/mcp/quickstart",
+      "content_hash": "sha256:74aa8f7b39f1512a296e84878a69336fcd8dd7f62986133f9be023faeaa94d6f",
+      "file": "references/035-Parallel-MCP-Server-Quickstart-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Advanced Extract Settings - Parallel",
+      "url": "https://docs.parallel.ai/extract/advanced-extract-settings",
+      "content_hash": "sha256:82cfc52fe73ee15415ab5de56454b4a2564a69367e456104584c6fe23be9d0f2",
+      "file": "references/036-Advanced-Extract-Settings-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Search API Best Practices - Parallel",
+      "url": "https://docs.parallel.ai/search/best-practices",
+      "content_hash": "sha256:049c3e71911d697bb35d16e8a61452b6c74aaf36a44d278c2e2b2810e6dc5ba8",
+      "file": "references/037-Search-API-Best-Practices-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Search API Quickstart - Parallel",
+      "url": "https://docs.parallel.ai/search/search-quickstart",
+      "content_hash": "sha256:d13c0e18c664866f642372c7e63006c470d41909b63f076e113c505248e5d70d",
+      "file": "references/038-Search-API-Quickstart-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Extract - Parallel",
+      "url": "https://docs.parallel.ai/api-reference/extract/extract",
+      "content_hash": "sha256:ee407aa690778cfd1b006450d095b71d2d044506070e828bda21be01fba5e604",
+      "file": "references/039-Extract-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Parallel CLI - Parallel",
+      "url": "https://docs.parallel.ai/integrations/cli",
+      "content_hash": "sha256:dcfa55300ccdd58fa1fa0e44eb3cfa396c38264a1c3799cbacac248a9b7f8a82",
+      "file": "references/040-Parallel-CLI-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Research Basis - Parallel",
+      "url": "https://docs.parallel.ai/task-api/guides/access-research-basis",
+      "content_hash": "sha256:61defd76731ddaf6457c9693d9a5b0e68b4915449d731488fcc780c42796023b",
+      "file": "references/041-Research-Basis-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Processors - Parallel",
+      "url": "https://docs.parallel.ai/task-api/guides/choose-a-processor",
+      "content_hash": "sha256:6dacbe33bbb482827504114144f96640cbf49944756c26a24c9a81dce8a5e852",
+      "file": "references/042-Processors-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Task API Quickstart - Parallel",
+      "url": "https://docs.parallel.ai/task-api/task-quickstart",
+      "content_hash": "sha256:30687694a88a8d23a8eabb8fa8646c05511f83c54b485a805e63a9106e8b077a",
+      "file": "references/043-Task-API-Quickstart-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Upgrade from Beta to GA - Parallel",
+      "url": "https://docs.parallel.ai/search/search-migration-guide",
+      "content_hash": "sha256:4cea59efd1e994dcb326f683412dc0d59890eaa41dbd26fde76b550628f75b02",
+      "file": "references/044-Upgrade-from-Beta-to-GA-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Chat Completions",
+      "url": "https://docs.parallel.ai/llms-full.txt",
+      "content_hash": "sha256:cf88e310f8aebfca13c1acfe807e18f31cd7cd5faa1eee5e632ef201b719372f",
+      "file": "references/045-Chat-Completions.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Parallel",
+      "url": "https://docs.parallel.ai/llms.txt",
+      "content_hash": "sha256:4ba778e87f1c19d488ad2c2a332b9ab89defd8847b84867d55f3b160f83abba6",
+      "file": "references/046-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Extract Migration Guide: Beta to GA - Parallel",
+      "url": "https://docs.parallel.ai/extract/extract-migration-guide",
+      "content_hash": "sha256:ed44104c51cdd3733a25f92d24f3e547c418d7a2c4ea20f6bc180c8d7fc77fe5",
+      "file": "references/047-Extract-Migration-Guide-Beta-to-GA-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "FindAll API Quickstart - Parallel",
+      "url": "https://docs.parallel.ai/findall-api/findall-quickstart",
+      "content_hash": "sha256:b4617eae282a96341585c3d3028681d6f36a92d22217d8ec8e3b11083adcabad",
+      "file": "references/048-FindAll-API-Quickstart-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Search - Parallel",
+      "url": "https://docs.parallel.ai/api-reference/legacy/search-beta/search",
+      "content_hash": "sha256:b89e9b4ca6ad8b4824df11802d42eac7bbb28276fe55fd8e3ed150773b1bdafc",
+      "file": "references/049-Search-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "page-50",
+      "url": "https://docs.parallel.ai/docs-legacy-openapi.json",
+      "content_hash": "sha256:986ab6e130aaf199de184e04d81fdddce822f84e0d3f7676e0371a0a706f4595",
+      "file": "references/050-page-50.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "page-51",
+      "url": "https://docs.parallel.ai/docs-latest-openapi.json",
+      "content_hash": "sha256:11025d5b45cc469a53a2bae8c72cddf226bca12d6ca5aa4c9144eb9576dbd346",
+      "file": "references/051-page-51.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "page-52",
+      "url": "https://docs.parallel.ai/public-openapi.json",
+      "content_hash": "sha256:11025d5b45cc469a53a2bae8c72cddf226bca12d6ca5aa4c9144eb9576dbd346",
+      "file": "references/052-page-52.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Extract - Parallel",
+      "url": "https://docs.parallel.ai/api-reference/legacy/extract-beta/extract",
+      "content_hash": "sha256:be8165fd9f8821deae0a136cc558d68e225e56ed43886b40c3e39e7f34410ac4",
+      "file": "references/053-Extract-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Task API Webhooks",
+      "url": "https://docs.parallel.ai/task-api/webhooks.md",
+      "content_hash": "sha256:d7c572c662fe178ff01be305c09e984796bb4430fa269dbf6b53aaffbf112660",
+      "file": "references/054-Task-API-Webhooks.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Task API Streaming Events",
+      "url": "https://docs.parallel.ai/task-api/task-sse.md",
+      "content_hash": "sha256:2967001468bc319ae2499eac390d89e2f5943e3ead4abbe797100a056516aa2d",
+      "file": "references/055-Task-API-Streaming-Events.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Task MCP",
+      "url": "https://docs.parallel.ai/integrations/mcp/task-mcp.md",
+      "content_hash": "sha256:179d115ea2143830dcc52583d1b3af8d304fc13866ee9012781a53f73a1dc9a7",
+      "file": "references/056-Task-MCP.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Source Policy",
+      "url": "https://docs.parallel.ai/resources/source-policy.md",
+      "content_hash": "sha256:7a82346b89b5e888c210df2cf143f58e2044b0a1f33b1f4fd2a93b4e4d9bf9e8",
+      "file": "references/057-Source-Policy.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Task Spec",
+      "url": "https://docs.parallel.ai/task-api/guides/specify-a-task.md",
+      "content_hash": "sha256:90a18cc82fb03e7ddbc6ba160b2af20e0b2eb22daaf0063459bc84630347adb3",
+      "file": "references/058-Task-Spec.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "MCP Tool Calling",
+      "url": "https://docs.parallel.ai/task-api/mcp-tool-call.md",
+      "content_hash": "sha256:f9a72c5889c164dad7165503740e3074b776d13c48fa54d61abd1a7cf4a9e2bf",
+      "file": "references/059-MCP-Tool-Calling.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Ingest API",
+      "url": "https://docs.parallel.ai/task-api/ingest-api.md",
+      "content_hash": "sha256:eeea2344943ed4dce1bef79079368d0c283852e76fcf2deaf729e099ee8fbb04",
+      "file": "references/060-Ingest-API.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Task API Quickstart",
+      "url": "https://docs.parallel.ai/task-api/task-quickstart.md",
+      "content_hash": "sha256:b98ede38032611bc11d44bbe4cde76a529e73d7c21358f8131983cef3ee7bf63",
+      "file": "references/061-Task-API-Quickstart.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Processors",
+      "url": "https://docs.parallel.ai/task-api/guides/choose-a-processor.md",
+      "content_hash": "sha256:e698ab509a05f84d241f2c20dd299d5cf3e9b7020aec4731c8bca93dec5f31d2",
+      "file": "references/062-Processors.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Task Runs Lifecycle",
+      "url": "https://docs.parallel.ai/task-api/guides/execute-task-run.md",
+      "content_hash": "sha256:462616d6b5e85d742d3bc0e71ec33ce957fd04610d2a87feb52d49e8bf38dec4",
+      "file": "references/063-Task-Runs-Lifecycle.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Interactions",
+      "url": "https://docs.parallel.ai/task-api/guides/interactions.md",
+      "content_hash": "sha256:9a1347461a3cf4d71dbba4f4dd5c4a1cc3af0127538603ead7d55aa40c8dfa89",
+      "file": "references/064-Interactions.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Research Basis",
+      "url": "https://docs.parallel.ai/task-api/guides/access-research-basis.md",
+      "content_hash": "sha256:282b7d73bb5ef1da47fbfb0729dffce069259c0745c2094e098572cff19d354f",
+      "file": "references/065-Research-Basis.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Task API Enrichment Quickstart",
+      "url": "https://docs.parallel.ai/task-api/examples/task-enrichment.md",
+      "content_hash": "sha256:3e52871870ae2127b5cc26efec44eb1cd54ef73f12ff7cb56ea011ae936c0181",
+      "file": "references/066-Task-API-Enrichment-Quickstart.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Task Group",
+      "url": "https://docs.parallel.ai/task-api/group-api.md",
+      "content_hash": "sha256:4bfbd2fc2ad18fb98b32beb9a936bd3d5f5cc34d6d9803315d77cf485b27e44b",
+      "file": "references/067-Task-Group.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Task API Deep Research Quickstart",
+      "url": "https://docs.parallel.ai/task-api/examples/task-deep-research.md",
+      "content_hash": "sha256:90cb5385f0d85dc8d1f6914484f2e1d9c495d559fea832d8fa3a26fc81f5d05b",
+      "file": "references/068-Task-API-Deep-Research-Quickstart.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Interactive Research",
+      "url": "https://docs.parallel.ai/task-api/examples/interactive-research.md",
+      "content_hash": "sha256:10b2d288ef3529c6228431ff37cb541e4a8ba18ebdc6a6cfb3add6591d621722",
+      "file": "references/069-Interactive-Research.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Task API Best Practices",
+      "url": "https://docs.parallel.ai/task-api/best-practices.md",
+      "content_hash": "sha256:2328cfb06a0de803c78ac7dd0d856f95aae8658106e8289d18b92b34c435b28a",
+      "file": "references/070-Task-API-Best-Practices.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Create Key",
+      "url": "https://docs.parallel.ai/service-api/keys/create-key.md",
+      "content_hash": "sha256:8882cc7ce8de2369aba9157b10f70f4e9f48b549ff6897105843483c23dfff1a",
+      "file": "references/071-Create-Key.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Get Balance",
+      "url": "https://docs.parallel.ai/service-api/balance/get-balance.md",
+      "content_hash": "sha256:90f20d3846d1ac44e5ad0d0826ddd5e3d894079e55ccae71610e02dc7b0f2b05",
+      "file": "references/072-Get-Balance.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Delete Key",
+      "url": "https://docs.parallel.ai/service-api/keys/delete-key.md",
+      "content_hash": "sha256:f0ede26c6ddeadcb23baa6244e1f849ec1080e446f662a12c60ce18cd060c49d",
+      "file": "references/073-Delete-Key.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Add to Balance",
+      "url": "https://docs.parallel.ai/service-api/balance/add-to-balance.md",
+      "content_hash": "sha256:4f72defcd801e6fa93755e1dd84927a518cc0b57bf01aa316a216fbddd3b3a00",
+      "file": "references/074-Add-to-Balance.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Delete App",
+      "url": "https://docs.parallel.ai/service-api/apps/delete-app.md",
+      "content_hash": "sha256:76293c5da9f2c432ad5b1fd6c395abbaded4b1964ae59afa7c0b58501557e797",
+      "file": "references/075-Delete-App.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "List Apps",
+      "url": "https://docs.parallel.ai/service-api/apps/list-apps.md",
+      "content_hash": "sha256:144a7cd366304c9b2ea46dffe7ce91880e824898872fcb1fc6cf1170f654aafd",
+      "file": "references/076-List-Apps.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Search API Quickstart",
+      "url": "https://docs.parallel.ai/search/search-quickstart.md",
+      "content_hash": "sha256:1f9b6376b26f577a91627ba11a46797bcbf684ae71929c86f8b502bc55e5fda6",
+      "file": "references/077-Search-API-Quickstart.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Create App",
+      "url": "https://docs.parallel.ai/service-api/apps/create-app.md",
+      "content_hash": "sha256:48c1b69e2b6f2e695bc9f8c63294f084ae5964c45baa33c13b7768f6628bb744",
+      "file": "references/078-Create-App.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Search MCP",
+      "url": "https://docs.parallel.ai/integrations/mcp/search-mcp.md",
+      "content_hash": "sha256:54411c00a259ed4f2a618a7942a6a0a3ab97dd240ac8c5a264a25c4e3c45d4fe",
+      "file": "references/079-Search-MCP.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Search Modes",
+      "url": "https://docs.parallel.ai/search/modes.md",
+      "content_hash": "sha256:77f1962c5de069ca5ed263b5ac31a8f51893ed37ed86ad22aecb7c08881d6f38",
+      "file": "references/080-Search-Modes.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Upgrade from Beta to GA",
+      "url": "https://docs.parallel.ai/search/search-migration-guide.md",
+      "content_hash": "sha256:0a303e8ade7af396cfb8ce56d05370234963f4a81c5df88e8956668a41db3e3e",
+      "file": "references/081-Upgrade-from-Beta-to-GA.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Migrate to Parallel Search",
+      "url": "https://docs.parallel.ai/search/migrate-to-parallel.md",
+      "content_hash": "sha256:a44a6a7755fa340a1d2a64d14ad5f80bca0df6547e4524d7144abd1b28bfb9d2",
+      "file": "references/082-Migrate-to-Parallel-Search.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Advanced Search Settings",
+      "url": "https://docs.parallel.ai/search/advanced-search-settings.md",
+      "content_hash": "sha256:ef6fc8fd74bb74fe4b5b59bec33736b2407173f9fb7164a43a578f7efb6b4b8a",
+      "file": "references/083-Advanced-Search-Settings.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Search API Best Practices",
+      "url": "https://docs.parallel.ai/search/best-practices.md",
+      "content_hash": "sha256:24b7977c8a80d4d735e5bd1bf061aa52b83ff2806f336f04f05bf57b47ee52a6",
+      "file": "references/084-Search-API-Best-Practices.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Responses API Quickstart",
+      "url": "https://docs.parallel.ai/responses-api/responses-quickstart.md",
+      "content_hash": "sha256:80f47a5fdf79b68071cbb9e9325dfbc70f8f12fcdab652e45c78a4f93c204d93",
+      "file": "references/085-Responses-API-Quickstart.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Responses API Structured Outputs",
+      "url": "https://docs.parallel.ai/responses-api/features/structured-outputs.md",
+      "content_hash": "sha256:6e1c9f613ada2065b59504fe3170a19f8dd6e2a6d54c1d75075aed53bba92c97",
+      "file": "references/086-Responses-API-Structured-Outputs.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "OpenAI Responses Compatibility",
+      "url": "https://docs.parallel.ai/responses-api/openai-compatibility.md",
+      "content_hash": "sha256:642e5727e74c0f102198d97e939fc012d8713f8c06e6f42d16fe8fa6024154a4",
+      "file": "references/087-OpenAI-Responses-Compatibility.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Citations",
+      "url": "https://docs.parallel.ai/responses-api/features/citations.md",
+      "content_hash": "sha256:f09c51bddcc53abd64342f5f7f0460de3c0b9a5ef308a8ac5142f48ca8bbf10b",
+      "file": "references/088-Citations.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Responses API Streaming Events",
+      "url": "https://docs.parallel.ai/responses-api/features/streaming-events.md",
+      "content_hash": "sha256:0dfa7e4218cca97f95dfdc3029ff01542ee36ba434c33b043d8af031f00bc62c",
+      "file": "references/089-Responses-API-Streaming-Events.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Statefulness",
+      "url": "https://docs.parallel.ai/responses-api/features/statefulness.md",
+      "content_hash": "sha256:b252667b77a2f3a3e3d806c6c29f7e5ddc8cafbe9165e4fde6886587c2ef1582",
+      "file": "references/090-Statefulness.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Webhook Setup",
+      "url": "https://docs.parallel.ai/resources/webhook-setup.md",
+      "content_hash": "sha256:d21565d22242a6e4d57b7f7eac23a943bce965a9765edb02bf02c5ea1121054a",
+      "file": "references/091-Webhook-Setup.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Using It as a Research Subagent",
+      "url": "https://docs.parallel.ai/responses-api/examples/research-subagent.md",
+      "content_hash": "sha256:0c20e82df5984e82a6680db27375f25452f0c64fe261de3314d8dd8d40dea37e",
+      "file": "references/092-Using-It-as-a-Research-Subagent.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Using the Responses API Directly",
+      "url": "https://docs.parallel.ai/responses-api/examples/direct-requests.md",
+      "content_hash": "sha256:6527ebd0acf5ad689e5ce1491d1cdf89663f56c982dc5300c77853a1717d62eb",
+      "file": "references/093-Using-the-Responses-API-Directly.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "API Error Codes and Warnings",
+      "url": "https://docs.parallel.ai/resources/warnings-and-errors.md",
+      "content_hash": "sha256:6266d26bfec5ed934fecda47a76b1e5a44b336f2969ff46ea73db608953f5450",
+      "file": "references/094-API-Error-Codes-and-Warnings.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Parallel API Changelog",
+      "url": "https://docs.parallel.ai/resources/changelog.md",
+      "content_hash": "sha256:6db8e3dce074a028874730e1482185ed1f498940bbbcd621da6ec9df733bf189",
+      "file": "references/095-Parallel-API-Changelog.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Parallel API FAQs",
+      "url": "https://docs.parallel.ai/resources/faqs.md",
+      "content_hash": "sha256:243996d1d4368ec75f6f69af49271d5f7f087fb1925f3e7f3b534475a7b2d09b",
+      "file": "references/096-Parallel-API-FAQs.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Crawler",
+      "url": "https://docs.parallel.ai/resources/crawler.md",
+      "content_hash": "sha256:8cdcfc5b1e91de17a9a63bdd7316c9c114d3ead966ecafc9efa01f46d92e781e",
+      "file": "references/097-Crawler.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Monitor API Webhooks",
+      "url": "https://docs.parallel.ai/monitor-api/monitor-webhooks.md",
+      "content_hash": "sha256:a4fe9d568c553c1f498949aa1c005cf581bc4567b8b7c057571a8a507b3445a8",
+      "file": "references/098-Monitor-API-Webhooks.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Create a Snapshot Monitor",
+      "url": "https://docs.parallel.ai/monitor-api/quickstart-snapshot.md",
+      "content_hash": "sha256:a01d6fcac6adcf34eb86f5672f520e3b14cb9fe9a5268536efd03a484bad7ffd",
+      "file": "references/099-Create-a-Snapshot-Monitor.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Follow-up Tasks",
+      "url": "https://docs.parallel.ai/monitor-api/monitor-task.md",
+      "content_hash": "sha256:01aa483bfea96b97f376f2a7f8df5866830da0245e7ac82ef93fac26cbf5a470",
+      "file": "references/100-Follow-up-Tasks.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Slack Integration",
+      "url": "https://docs.parallel.ai/monitor-api/monitor-slack.md",
+      "content_hash": "sha256:c2b28a31c767a21d8956a02422d212331c666a5a88689b4811e40588fb8d527f",
+      "file": "references/101-Slack-Integration.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Zapier",
+      "url": "https://docs.parallel.ai/integrations/zapier.md",
+      "content_hash": "sha256:ba2185f24fda5a3ed42da2ba4e2be758996b81d4ea459fa4c8066fc7d2f296f2",
+      "file": "references/102-Zapier.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Monitor API Quickstart",
+      "url": "https://docs.parallel.ai/monitor-api/monitor-quickstart.md",
+      "content_hash": "sha256:735f244e7fce911ee9a07e45fd361f8231513c367d5532b23a929004e767af1e",
+      "file": "references/103-Monitor-API-Quickstart.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Monitor Migration Guide: Alpha to GA",
+      "url": "https://docs.parallel.ai/monitor-api/monitor-migration-guide.md",
+      "content_hash": "sha256:0b8da976d4c623d26fda78928bf106037ed743f475b9f5bce51456d6ff63d64c",
+      "file": "references/104-Monitor-Migration-Guide-Alpha-to-GA.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Vercel",
+      "url": "https://docs.parallel.ai/integrations/vercel.md",
+      "content_hash": "sha256:dc027175920f52f927a08655716b1616274f43d0073127dd1195aa367de4b3ac",
+      "file": "references/105-Vercel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Events",
+      "url": "https://docs.parallel.ai/monitor-api/monitor-events.md",
+      "content_hash": "sha256:88316d8be6116ae46cccb65635f4490859958f214acdbaba1480733f42b09052",
+      "file": "references/106-Events.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "OpenRouter",
+      "url": "https://docs.parallel.ai/integrations/openrouter.md",
+      "content_hash": "sha256:c40625aa0d605a7e762017173d15d482a4651d7c4f16a27ebec007da1ebb0c31",
+      "file": "references/107-OpenRouter.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Pi Extension",
+      "url": "https://docs.parallel.ai/integrations/pi-extension.md",
+      "content_hash": "sha256:6af1f82f91048d3e1be53b0ce62665c52bcbe07e3a11f54230792e31d84e6cce",
+      "file": "references/108-Pi-Extension.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Superhuman",
+      "url": "https://docs.parallel.ai/integrations/superhuman.md",
+      "content_hash": "sha256:32e086748ed85153dfaf50251b78239c24c5aa6c0e75d5271bb81aa83310bbce",
+      "file": "references/109-Superhuman.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "OpenAI Tool Calling",
+      "url": "https://docs.parallel.ai/integrations/openai-tool-calling.md",
+      "content_hash": "sha256:90fa1f2250939c305d5cfd7f2b8fc6057fe32de88cbbbbaf7c5b715a508f7994",
+      "file": "references/110-OpenAI-Tool-Calling.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "OpenCode Plugin",
+      "url": "https://docs.parallel.ai/integrations/opencode-plugin.md",
+      "content_hash": "sha256:1559d06447c2a83ca1ae1fd664c444c2971ca3313c638a69497fb51fabade918",
+      "file": "references/111-OpenCode-Plugin.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Ollama Tool Calling",
+      "url": "https://docs.parallel.ai/integrations/ollama-tool-calling.md",
+      "content_hash": "sha256:20aeaab9f2bdeb4c8e73f414dc135437deeb067c7fc5af1ecf64d1ab0d61abd1",
+      "file": "references/112-Ollama-Tool-Calling.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "n8n",
+      "url": "https://docs.parallel.ai/integrations/n8n.md",
+      "content_hash": "sha256:6c8671aea4ef83f04d7bb87ad51947d840b8a3f1019e23c9f0824ee5fcc624ac",
+      "file": "references/113-n8n.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "OAuth Provider",
+      "url": "https://docs.parallel.ai/integrations/oauth-provider.md",
+      "content_hash": "sha256:0bd6536c91f437168542292a914d346afbcee6900b7fa087d10fb49f07a4ff63",
+      "file": "references/114-OAuth-Provider.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Parallel MCP Server Quickstart",
+      "url": "https://docs.parallel.ai/integrations/mcp/quickstart.md",
+      "content_hash": "sha256:03f950a678d7094ebf6fbf8f7d1f586061cbf21ec03c96f3ed6f55993da39124",
+      "file": "references/115-Parallel-MCP-Server-Quickstart.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Programmatic Use",
+      "url": "https://docs.parallel.ai/integrations/mcp/programmatic-use.md",
+      "content_hash": "sha256:ab4c2ef1c76e8a0457fc881ebe62e8b780c20534a0461b323a7323d6da67fa06",
+      "file": "references/116-Programmatic-Use.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "LangChain",
+      "url": "https://docs.parallel.ai/integrations/langchain.md",
+      "content_hash": "sha256:6547fd9788c7ea0828fcb1e23a82a900fd03c6549d7d139bdebddf0923e18121",
+      "file": "references/117-LangChain.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Google Gemini Enterprise",
+      "url": "https://docs.parallel.ai/integrations/google-gemini-enterprise.md",
+      "content_hash": "sha256:853457520ffe6bf1493204414bff7d81c4b32d70c6da71e22d5dc0a5ca6d6fa2",
+      "file": "references/118-Google-Gemini-Enterprise.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Google Sheets",
+      "url": "https://docs.parallel.ai/integrations/gsuite.md",
+      "content_hash": "sha256:96118029a24f58be342b756aaa5bff2796f0f361a91d308408d441b8341853bf",
+      "file": "references/119-Google-Sheets.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Parallel CLI",
+      "url": "https://docs.parallel.ai/integrations/cli.md",
+      "content_hash": "sha256:784c1e9e63d3c1ff9ebf071482e61a27c4abb15fe9d8dcb927956ef7814081ff",
+      "file": "references/120-Parallel-CLI.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Cursor Plugin",
+      "url": "https://docs.parallel.ai/integrations/cursor-marketplace.md",
+      "content_hash": "sha256:1047d9b95e1e96844074e1a46687992a8f04514e4018cb15ce21d9d20b85c03c",
+      "file": "references/121-Cursor-Plugin.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Google Cloud Marketplace",
+      "url": "https://docs.parallel.ai/integrations/google-cloud-marketplace.md",
+      "content_hash": "sha256:0696bef7bed8173d2d6227097e07a5cd1aa9ef738a5d7d59ad5613cc30ef225a",
+      "file": "references/122-Google-Cloud-Marketplace.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Developer Tools Overview",
+      "url": "https://docs.parallel.ai/integrations/developer-quickstart.md",
+      "content_hash": "sha256:d36a2addaa628768bdb15b2da3126976f380bf78873a84780c5a10d0e76ef29e",
+      "file": "references/123-Developer-Tools-Overview.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Anthropic Tool Calling",
+      "url": "https://docs.parallel.ai/integrations/anthropic-tool-calling.md",
+      "content_hash": "sha256:bc1b09ddc260136068ba08eb36bdd5c7b91b7e086d4b1cb1ed5e1855be02a567",
+      "file": "references/124-Anthropic-Tool-Calling.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Browser Use",
+      "url": "https://docs.parallel.ai/integrations/browseruse.md",
+      "content_hash": "sha256:9c170fafe8bb9404705f8d63843a3f37ae8357f0a1dde195b6aba3e799d796ca",
+      "file": "references/125-Browser-Use.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "AWS Marketplace",
+      "url": "https://docs.parallel.ai/integrations/aws-marketplace.md",
+      "content_hash": "sha256:3d10bbdd6318f0aeda422a5a80c823d20bef88ea6e3440f6143e73c9cad3db85",
+      "file": "references/126-AWS-Marketplace.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Claude Code Plugin",
+      "url": "https://docs.parallel.ai/integrations/claude-code-marketplace.md",
+      "content_hash": "sha256:49d99aa27a40b4922e38830e77c14409833b62fa3f07bba939c38db692c37f51",
+      "file": "references/127-Claude-Code-Plugin.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "ClawHub",
+      "url": "https://docs.parallel.ai/integrations/clawhub.md",
+      "content_hash": "sha256:f5ddc6f65fc93587b7c5662379328830aeb9c3325846a7093e41b1d887469ebe",
+      "file": "references/128-ClawHub.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Account API",
+      "url": "https://docs.parallel.ai/integrations/account-api.md",
+      "content_hash": "sha256:dc2a2a3dfffde98e92955d74c3a5747b415033e5b8dd12eb46bd2437b3fd76d6",
+      "file": "references/129-Account-API.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Agentic Payments (MPP & x402)",
+      "url": "https://docs.parallel.ai/integrations/agentic-payments.md",
+      "content_hash": "sha256:c50988acf7ece125e026a1c4d4545185cd31f7e78e933a000d29600ace379054",
+      "file": "references/130-Agentic-Payments-MPP-x402.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Agent Skills",
+      "url": "https://docs.parallel.ai/integrations/agent-skills.md",
+      "content_hash": "sha256:b943aed3209d94d3a4e9f371b9f2e4cd737e03af2645abbbd209ac991891ab8d",
+      "file": "references/131-Agent-Skills.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "API Rate Limits",
+      "url": "https://docs.parallel.ai/getting-started/rate-limits.md",
+      "content_hash": "sha256:3c3c65552124b7b4fbf168c09a464f97ace1a62a5b0fb352c8e590a1bb2104da",
+      "file": "references/132-API-Rate-Limits.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Parallel API Overview",
+      "url": "https://docs.parallel.ai/getting-started/overview.md",
+      "content_hash": "sha256:49795fcfcb49789c3051c495994164a5d47f9648745daaf0f8c6e7a144e96934",
+      "file": "references/133-Parallel-API-Overview.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Parallel API Pricing",
+      "url": "https://docs.parallel.ai/getting-started/pricing.md",
+      "content_hash": "sha256:4d12941b99f6fd07271b2bfa31061f30deb9fef1dd12f286078ccb1721168120",
+      "file": "references/134-Parallel-API-Pricing.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Parallel API Glossary",
+      "url": "https://docs.parallel.ai/getting-started/glossary.md",
+      "content_hash": "sha256:62cecb110542fe2de3635d79c1f6c3b425d874ea8845508d44b3d49a2dfa1e98",
+      "file": "references/135-Parallel-API-Glossary.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "FindAll Migration Guide",
+      "url": "https://docs.parallel.ai/findall-api/findall-migration-guide.md",
+      "content_hash": "sha256:f643699b3742ba85ec5afbcfb36d746fa0a02ee5a61ba0fb7a0b54ce7503fedb",
+      "file": "references/136-FindAll-Migration-Guide.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "FindAll API Quickstart",
+      "url": "https://docs.parallel.ai/findall-api/findall-quickstart.md",
+      "content_hash": "sha256:e5a1558ac48b0f17f170cfb0157a01c924cef3db724d9f3d03aaddf11bd109cf",
+      "file": "references/137-FindAll-API-Quickstart.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Refresh Runs",
+      "url": "https://docs.parallel.ai/findall-api/features/findall-refresh.md",
+      "content_hash": "sha256:b38a6eda9f939f94252f85a6074598cebd5d19b106a160dd5a74914a3067e432",
+      "file": "references/138-Refresh-Runs.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "FindAll API Webhooks",
+      "url": "https://docs.parallel.ai/findall-api/features/findall-webhook.md",
+      "content_hash": "sha256:b955af5a789b6b19b333bbe0da1392e17d6bbd7681b2557d8b88b844d302dfdd",
+      "file": "references/139-FindAll-API-Webhooks.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "FindAll API Streaming Events",
+      "url": "https://docs.parallel.ai/findall-api/features/findall-sse.md",
+      "content_hash": "sha256:fe273ea537d5ae07708f6292db31e9a0780d321c1e22cba6f78ab5f76a92fd05",
+      "file": "references/140-FindAll-API-Streaming-Events.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Extend",
+      "url": "https://docs.parallel.ai/findall-api/features/findall-extend.md",
+      "content_hash": "sha256:6616a94eae83b1f0bcf4cbfd81f69b97345beac31fe8502fa595cf94099f978c",
+      "file": "references/141-Extend.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Preview",
+      "url": "https://docs.parallel.ai/findall-api/features/findall-preview.md",
+      "content_hash": "sha256:077474432faa16d72b8e3c375f6443fd4b55c0abb688675e1dae2e6dc61e29d6",
+      "file": "references/142-Preview.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Enrichments",
+      "url": "https://docs.parallel.ai/findall-api/features/findall-enrich.md",
+      "content_hash": "sha256:8f162614728c3f9f66edc748f2d9c0641c482c8352e2cc6856cc92e05adb5817",
+      "file": "references/143-Enrichments.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Generators",
+      "url": "https://docs.parallel.ai/findall-api/core-concepts/findall-generator-pricing.md",
+      "content_hash": "sha256:1087da50242de47f2746a8e6b0caa90b494a3fb8826986d7033d1dafc66cb02e",
+      "file": "references/144-Generators.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Candidates",
+      "url": "https://docs.parallel.ai/findall-api/core-concepts/findall-candidates.md",
+      "content_hash": "sha256:1cff9b5fcdd3dfb65eef91476dec4191084d4575e3e19f5069ae28d9ece98c02",
+      "file": "references/145-Candidates.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Entity Search",
+      "url": "https://docs.parallel.ai/findall-api/entity-search.md",
+      "content_hash": "sha256:e07601e0f4b72d4435831103028847ca8d8968e6019d36964791425a2e3067a4",
+      "file": "references/146-Entity-Search.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Run Lifecycle",
+      "url": "https://docs.parallel.ai/findall-api/core-concepts/findall-lifecycle.md",
+      "content_hash": "sha256:f8e79371115762b36ff1a7f51176df30d4dc7704e013374480891130181868cd",
+      "file": "references/147-Run-Lifecycle.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Cancel",
+      "url": "https://docs.parallel.ai/findall-api/features/findall-cancel.md",
+      "content_hash": "sha256:328f6710a858fccbad9dd3b15f814eb7639e474c991e2983a9e1f3b27f233f8f",
+      "file": "references/148-Cancel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Extract API Best Practices",
+      "url": "https://docs.parallel.ai/extract/best-practices.md",
+      "content_hash": "sha256:f42afc8b9651c0dd880c815359a610f9586b9a71e1076134db1a01aafb964528",
+      "file": "references/149-Extract-API-Best-Practices.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Advanced Extract Settings",
+      "url": "https://docs.parallel.ai/extract/advanced-extract-settings.md",
+      "content_hash": "sha256:29d1536d37a808a3d734b546d1c2db3ab7e7d236cb328220aafc406252218aa1",
+      "file": "references/150-Advanced-Extract-Settings.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Extract Migration Guide: Beta to GA",
+      "url": "https://docs.parallel.ai/extract/extract-migration-guide.md",
+      "content_hash": "sha256:a4b189a6a41bf8ab8823aa9503fb90a8def2f53e588969e93b5966f1764778fc",
+      "file": "references/151-Extract-Migration-Guide-Beta-to-GA.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Extract API Quickstart",
+      "url": "https://docs.parallel.ai/extract/extract-quickstart.md",
+      "content_hash": "sha256:3bf64dee21009287c9bcd67b57273ce7b5bf01014bff4fafed38518cf87cc0a1",
+      "file": "references/152-Extract-API-Quickstart.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Snowflake",
+      "url": "https://docs.parallel.ai/data-integrations/snowflake.md",
+      "content_hash": "sha256:5711764575fa4d935330b983084c7f616f77c6662de408f38f6ed49ea6f8eedf",
+      "file": "references/153-Snowflake.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Apache Spark",
+      "url": "https://docs.parallel.ai/data-integrations/spark.md",
+      "content_hash": "sha256:b191f286aece40ac7bfad26f2ce6fc28eaba29e5610a492f12c94d3d64bd1ed0",
+      "file": "references/154-Apache-Spark.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Supabase",
+      "url": "https://docs.parallel.ai/data-integrations/supabase.md",
+      "content_hash": "sha256:cb79c2cb490d8d260eb2adf3de32e8d30896c88a4a1a250ecc2458de868df7f8",
+      "file": "references/155-Supabase.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Data Integrations",
+      "url": "https://docs.parallel.ai/data-integrations/overview.md",
+      "content_hash": "sha256:7b60e6738b3b539c721b1a1bbc601890f69bc4035ad11f8c32d30bc42a31c7b9",
+      "file": "references/156-Data-Integrations.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Polars",
+      "url": "https://docs.parallel.ai/data-integrations/polars.md",
+      "content_hash": "sha256:832059d3f34c9e49fc4aaa6fcbfa142a80a2bce9775768a42dac625de1b12cd8",
+      "file": "references/157-Polars.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "DuckDB",
+      "url": "https://docs.parallel.ai/data-integrations/duckdb.md",
+      "content_hash": "sha256:75f7ab752316331efd8263f26f16247772289ea5a568ded2dc4a6858ecbc977f",
+      "file": "references/158-DuckDB.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Retrieve Task Run Result",
+      "url": "https://docs.parallel.ai/api-reference/tasks/retrieve-task-run-result.md",
+      "content_hash": "sha256:5f3d7ccbc838ebbafd250da7c93543b7f43e95696d97fe5389c7611411797412",
+      "file": "references/159-Retrieve-Task-Run-Result.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Stream Task Run Events",
+      "url": "https://docs.parallel.ai/api-reference/tasks/stream-task-run-events-1.md",
+      "content_hash": "sha256:1e2a7fb031830d4be1c759a674a064e74a60d4196ae991cf4fef8914e800a77c",
+      "file": "references/160-Stream-Task-Run-Events.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "OpenAI ChatCompletions Compatibility",
+      "url": "https://docs.parallel.ai/chat-api/chat-quickstart.md",
+      "content_hash": "sha256:11833afa6e4ca4c604b346c267b6c9ed5ce06b72d0dcfe0f7d2b6fd16af365ae",
+      "file": "references/161-OpenAI-ChatCompletions-Compatibility.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Google BigQuery",
+      "url": "https://docs.parallel.ai/data-integrations/bigquery.md",
+      "content_hash": "sha256:046222fa6490fc2995d81bd24dfed6eafca6708ebbba61bd8d4ec9af5b90a6f8",
+      "file": "references/162-Google-BigQuery.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Stream Task Run Events",
+      "url": "https://docs.parallel.ai/api-reference/tasks/stream-task-run-events.md",
+      "content_hash": "sha256:20ebc3e42c750aab300d1f14b5f20fb96fc89980c44c7825aa448431bfa4df53",
+      "file": "references/163-Stream-Task-Run-Events.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Stream Task Group Events",
+      "url": "https://docs.parallel.ai/api-reference/tasks/stream-task-group-events.md",
+      "content_hash": "sha256:2bb0c862aa2a3ce193a6bb5731de285fed04f1e1123ce235462d7da185c46d9f",
+      "file": "references/164-Stream-Task-Group-Events.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Create Task Run",
+      "url": "https://docs.parallel.ai/api-reference/tasks/create-task-run.md",
+      "content_hash": "sha256:68aa9e6b5cd47ebcb2910a4db613e18ebcf2d5c0b1adbca2320634585d598b94",
+      "file": "references/165-Create-Task-Run.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Retrieve Task Group",
+      "url": "https://docs.parallel.ai/api-reference/tasks/retrieve-task-group.md",
+      "content_hash": "sha256:0013247c9798d2aa7a5311521cbf6e6982f35e55140c7f273665c150ed98f586",
+      "file": "references/166-Retrieve-Task-Group.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Retrieve Task Run Input",
+      "url": "https://docs.parallel.ai/api-reference/tasks/retrieve-task-run-input.md",
+      "content_hash": "sha256:486a83f23eadc9f4971620609937233afba638e51713b0897d982eb274e441b1",
+      "file": "references/167-Retrieve-Task-Run-Input.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Retrieve Task Group Run",
+      "url": "https://docs.parallel.ai/api-reference/tasks/retrieve-task-group-run.md",
+      "content_hash": "sha256:fd08095b585a8266bb57e9fd6ab40023c4930134bf53a933c8a15a0a0a646e9c",
+      "file": "references/168-Retrieve-Task-Group-Run.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Retrieve Task Run",
+      "url": "https://docs.parallel.ai/api-reference/tasks/retrieve-task-run.md",
+      "content_hash": "sha256:5d4d6a885ab93fddfa857214971844cc364f2778078c213516bd7c8611d639f1",
+      "file": "references/169-Retrieve-Task-Run.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Create Task Group",
+      "url": "https://docs.parallel.ai/api-reference/tasks/create-task-group.md",
+      "content_hash": "sha256:3808986e019f4b147bc677cbf52f3fc46c5bb4d7c859c52aec51994b9b519d1e",
+      "file": "references/170-Create-Task-Group.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Search",
+      "url": "https://docs.parallel.ai/api-reference/search/search.md",
+      "content_hash": "sha256:4aa8e3b8255ea547e9f7e4ea0d6c6dc3748ef5672825cbdfab9e53c3296891cc",
+      "file": "references/171-Search.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Add Runs to Task Group",
+      "url": "https://docs.parallel.ai/api-reference/tasks/add-runs-to-task-group.md",
+      "content_hash": "sha256:f4e435d0655086636b9966e1cd5f94901986b100e6014efc324807fed2c237bc",
+      "file": "references/172-Add-Runs-to-Task-Group.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Fetch Task Group Runs",
+      "url": "https://docs.parallel.ai/api-reference/tasks/fetch-task-group-runs.md",
+      "content_hash": "sha256:452a17a9f643f475b3ee1b35630afffc8bc57003c97ef320e2da7394e1bb8841",
+      "file": "references/173-Fetch-Task-Group-Runs.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Update Monitor",
+      "url": "https://docs.parallel.ai/api-reference/monitor/update-monitor.md",
+      "content_hash": "sha256:841c1f073016b8267c53205c8c8238514d6874e9dd68388826cd3cb8066b8801",
+      "file": "references/174-Update-Monitor.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "List Monitor Events",
+      "url": "https://docs.parallel.ai/api-reference/monitor/list-monitor-events.md",
+      "content_hash": "sha256:4044b680df9b7d937c9f066dd645a69d40bb137217e35ac31c366d21b2cdd453",
+      "file": "references/175-List-Monitor-Events.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Trigger Monitor Run",
+      "url": "https://docs.parallel.ai/api-reference/monitor/trigger-monitor-run.md",
+      "content_hash": "sha256:b9c6081cea587f9c4c3efa0642244ab12419d7d8039ea7f1b460ca5ce2ed1af1",
+      "file": "references/176-Trigger-Monitor-Run.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Create Response",
+      "url": "https://docs.parallel.ai/api-reference/responses-api/create-response.md",
+      "content_hash": "sha256:81360446e6296bea34d08b65cca662a58e0cb1f738938510a7def0ea8f24b507",
+      "file": "references/177-Create-Response.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Stream FindAll Events",
+      "url": "https://docs.parallel.ai/api-reference/findall/stream-findall-events.md",
+      "content_hash": "sha256:ee6ca0656139bb7b02bc12427aee45247532185f72b5e0ecbdb10288f8e97fa5",
+      "file": "references/178-Stream-FindAll-Events.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Create Monitor",
+      "url": "https://docs.parallel.ai/api-reference/monitor/create-monitor.md",
+      "content_hash": "sha256:9746546c31ca5accd522713f3309070e554a995c38b93c94f2e9980f2ecfb929",
+      "file": "references/179-Create-Monitor.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "List Monitors",
+      "url": "https://docs.parallel.ai/api-reference/monitor/list-monitors.md",
+      "content_hash": "sha256:5662b22df82f00a96bc52d7777c242919f98ec0a2675fa1c5d1f85c1a8e7dfa9",
+      "file": "references/180-List-Monitors.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Retrieve Monitor",
+      "url": "https://docs.parallel.ai/api-reference/monitor/retrieve-monitor.md",
+      "content_hash": "sha256:5acbbd7f14355bbce67b1d8d4aa2b9e657a94ec807484943fc8b981aba1bc633",
+      "file": "references/181-Retrieve-Monitor.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Get FindAll Run Schema",
+      "url": "https://docs.parallel.ai/api-reference/findall/get-findall-run-schema.md",
+      "content_hash": "sha256:648077a1165b87ffd60bb95702ab946e7c7e7ab0a73143db9b57f05ac9bbfe36",
+      "file": "references/182-Get-FindAll-Run-Schema.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Cancel Monitor",
+      "url": "https://docs.parallel.ai/api-reference/monitor/cancel-monitor.md",
+      "content_hash": "sha256:904a5f93dc28162c933498d06dead381849dbf0c20ece3bfff6a8335c3d6b49e",
+      "file": "references/183-Cancel-Monitor.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Retrieve FindAll Run Status",
+      "url": "https://docs.parallel.ai/api-reference/findall/retrieve-findall-run-status.md",
+      "content_hash": "sha256:525b54dd2234eabb020a823215887f7a064353478767b698b571fe7d0bfcbccc",
+      "file": "references/184-Retrieve-FindAll-Run-Status.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Ingest FindAll Run",
+      "url": "https://docs.parallel.ai/api-reference/findall/ingest-findall-run.md",
+      "content_hash": "sha256:9d6b6bfdd9a2ee01f2c9220bb8305430089e09db0a96a346e618a17099efaa57",
+      "file": "references/185-Ingest-FindAll-Run.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Extend FindAll Run",
+      "url": "https://docs.parallel.ai/api-reference/findall/extend-findall-run.md",
+      "content_hash": "sha256:5a5c87c505bd2b4e124c4fa0e1255e98287a43db1f613986074086ea86c4b496",
+      "file": "references/186-Extend-FindAll-Run.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Fast Entity Search",
+      "url": "https://docs.parallel.ai/api-reference/findall/fast-entity-search.md",
+      "content_hash": "sha256:17b6a3a72c9ec15b90db79f9484a6c08aa5d77e3db72ff3c89e246ffcc1646b1",
+      "file": "references/187-Fast-Entity-Search.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "FindAll Run Result",
+      "url": "https://docs.parallel.ai/api-reference/findall/findall-run-result.md",
+      "content_hash": "sha256:f1f5a3ad28a7331aaae983cfc5f3a4ddf4033b289da5c9638be01adc1257708f",
+      "file": "references/188-FindAll-Run-Result.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Parallel API Overview - Parallel",
+      "url": "https://docs.parallel.ai/getting-started/overview",
+      "content_hash": "sha256:ea3e8e7393e9a961cd559abed4e0a746e892656e62d89cd69643ad2ce59ceb33",
+      "file": "references/189-Parallel-API-Overview-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Chat Completions",
+      "url": "https://docs.parallel.ai/api-reference/chat-api-beta/chat-completions.md",
+      "content_hash": "sha256:4036b4082e1ffaa0ae1024b4f4e68cc1473f1c406f4a0f22c12280a2e245d582",
+      "file": "references/190-Chat-Completions.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Extract",
+      "url": "https://docs.parallel.ai/api-reference/extract/extract.md",
+      "content_hash": "sha256:4087a46b66baa1201ae9f38bcbed22cec5b6837fcf13a762ea2337454f2ef048",
+      "file": "references/191-Extract.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Create FindAll Run",
+      "url": "https://docs.parallel.ai/api-reference/findall/create-findall-run.md",
+      "content_hash": "sha256:7c35a372af5ef5b1badff5aac6b427db35de3bd4514e7770278f8388e574a93e",
+      "file": "references/192-Create-FindAll-Run.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Cancel FindAll Run",
+      "url": "https://docs.parallel.ai/api-reference/findall/cancel-findall-run.md",
+      "content_hash": "sha256:eb7ba47b1d01aab4f08d59c47caff74a00c93844ce2575ddfcb8dc2fdb3d959b",
+      "file": "references/193-Cancel-FindAll-Run.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Add Enrichment to FindAll Run",
+      "url": "https://docs.parallel.ai/api-reference/findall/add-enrichment-to-findall-run.md",
+      "content_hash": "sha256:e6b123b6b8db54e08161ef19619c6819ec5ce8066a4c2e198ff27c092068e16b",
+      "file": "references/194-Add-Enrichment-to-FindAll-Run.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Delete Monitor - Parallel",
+      "url": "https://docs.parallel.ai/api-reference/legacy/monitor-alpha/delete-monitor",
+      "content_hash": "sha256:162b477ebdb51ec615e3b8e164e00311455da2caff5a38613aee4a098fb1b259",
+      "file": "references/195-Delete-Monitor-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Update Monitor - Parallel",
+      "url": "https://docs.parallel.ai/api-reference/legacy/monitor-alpha/update-monitor",
+      "content_hash": "sha256:7aacee90d8f787b4b9b07f53209bc2e5437cddcf651457e4ce97398e29a919a2",
+      "file": "references/196-Update-Monitor-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "List Monitors - Parallel",
+      "url": "https://docs.parallel.ai/api-reference/legacy/monitor-alpha/list-monitors-1",
+      "content_hash": "sha256:31813ff14952a4327e7369ed4900e8b96294b228997eca954007419967cbb0e7",
+      "file": "references/197-List-Monitors-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "List Monitors - Parallel",
+      "url": "https://docs.parallel.ai/api-reference/legacy/monitor-alpha/list-monitors",
+      "content_hash": "sha256:4f3cd3a86bab3958d70c59bf38684ff61c3854590c81189fbdd8989df2756446",
+      "file": "references/198-List-Monitors-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Retrieve Monitor - Parallel",
+      "url": "https://docs.parallel.ai/api-reference/legacy/monitor-alpha/retrieve-monitor",
+      "content_hash": "sha256:a985fe43fce4c5d6b00604cbbf948d1db7b10ed908d593c8d69cccf838262f24",
+      "file": "references/199-Retrieve-Monitor-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    },
+    {
+      "title": "Get FindAll Run Schema - Parallel",
+      "url": "https://docs.parallel.ai/api-reference/legacy/findall/get-findall-run-schema",
+      "content_hash": "sha256:700c9363cc442686ed0c5670704b3aa30f633b3a9225badc76ce0254a3008acb",
+      "file": "references/200-Get-FindAll-Run-Schema-Parallel.md",
+      "source": "parallel-web-docs",
+      "version": "2026-07"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+# Loop Steps - Agno
+
+Source: https://docs.agno.com/reference/workflows/loop-steps
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `steps` | `WorkflowSteps` | Required | Steps to execute in each loop iteration |
+| `name` | `Optional[str]` | `None` | Name of the loop step |
+| `description` | `Optional[str]` | `None` | Description of the loop step |
+| `max_iterations` | `int` | `3` | Maximum number of iterations for the loop |
+| `forward_iteration_output` | `bool` | `False` | If True, each iteration receives the previous iteration’s output as input. If False, all iterations receive the original loop input |
+| `end_condition` | `Optional[Union[Callable[[List[StepOutput]], bool], Callable[[List[StepOutput]], Awaitable[bool]], str]]` | `None` | Function or [CEL expression](/examples/workflows/cel-expressions/loop/cel-content-keyword) string to evaluate if the loop should end |
+| `human_review` | `Optional[HumanReview]` | `None` | All HITL settings in a single config. See [HumanReview Config](/workflows/hitl/human-review). |
+| `requires_confirmation` | `bool` | `False` | Pause for user confirmation before starting the loop |
+| `confirmation_message` | `Optional[str]` | `None` | Message shown to user when requesting confirmation |
+| `requires_iteration_review` | `bool` | `False` | Pause after each iteration so the user can review and approve, edit, or reject. See [Loop HITL](/workflows/hitl/loop#iteration-review). |
+| `iteration_review_message` | `Optional[str]` | `None` | Message shown to user during iteration review |
+| `on_reject` | `Union[OnReject, str]` | `OnReject.skip` | Action when rejected: `skip`, `cancel`, `retry` |
+
+⌘I

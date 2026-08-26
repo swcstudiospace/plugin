@@ -1,0 +1,73 @@
+# Router Steps - Agno
+
+Source: https://docs.agno.com/reference/workflows/router-steps
+
+## [​](#parameters) Parameters
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `selector` | `Callable[[StepInput], ...] | Callable[[StepInput, list], ...] | str` | `None` | Function or CEL expression string to select steps dynamically. Functions can optionally accept `step_choices` as second parameter |
+| `choices` | `WorkflowSteps` | Required | Available steps for selection. Supports nested lists (becomes Steps container) |
+| `name` | `Optional[str]` | `None` | Name of the router step |
+| `description` | `Optional[str]` | `None` | Description of the router step |
+| `human_review` | `Optional[HumanReview]` | `None` | All HITL settings in a single config. See [HumanReview Config](/workflows/hitl/human-review). |
+| `requires_confirmation` | `bool` | `False` | Pause for user confirmation before executing selected route |
+| `confirmation_message` | `Optional[str]` | `None` | Message shown to user when requesting confirmation |
+| `requires_user_input` | `bool` | `False` | Pause for user to select route(s) instead of using selector. See [Router HITL](/workflows/hitl/router#user-selection). |
+| `user_input_message` | `Optional[str]` | `None` | Message shown to user when requesting route selection |
+| `allow_multiple_selections` | `bool` | `False` | Allow user to select multiple routes |
+| `user_input_schema` | `Optional[List[Dict[str, Any]]]` | `None` | Custom input schema for the user-input pause. If unset, the pause presents the available `choices` for route selection |
+| `requires_output_review` | `bool` | `False` | Pause after the selected route completes to review its output. See [Output Review](/workflows/hitl/output-review). |
+| `output_review_message` | `Optional[str]` | `None` | Message shown to user during output review |
+| `hitl_max_retries` | `int` | `3` | Max re-executions when an output review is rejected with `OnReject.retry` |
+| `on_reject` | `Union[OnReject, str]` | `OnReject.skip` | Action when rejected: `skip`, `cancel`, `retry` |
+
+## [​](#selector-return-types) Selector Return Types
+
+The selector function can return any of the following:
+
+| Return Type | Description |
+| --- | --- |
+| `str` | Step name as string - Router resolves it from choices |
+| `Step` | Step object directly |
+| `List[Step]` | List of steps for chaining execution |
+
+`selector` also accepts a [CEL expression](/examples/workflows/cel-expressions/router/cel-ternary) string in place of a function. The expression must evaluate to a step name from `choices`.
+
+## [​](#selector-function-signatures) Selector Function Signatures
+
+### [​](#basic-signature) Basic Signature
+
+```
+def selector(step_input: StepInput) -> Union[str, Step, List[Step]]:
+    ...
+```
+
+### [​](#extended-signature-with-step_choices) Extended Signature (with step\_choices)
+
+```
+def selector(step_input: StepInput, step_choices: list) -> Union[str, Step, List[Step]]:
+    ...
+```
+
+The `step_choices` parameter provides access to the prepared Step objects from `Router.choices`, enabling dynamic selection based on available options.
+
+### [​](#extended-signature-with-session_state) Extended Signature (with session\_state)
+
+```
+def selector(step_input: StepInput, session_state: dict) -> Union[str, Step, List[Step]]:
+    ...
+```
+
+If the selector accepts a `session_state` parameter, the workflow’s session state is passed to it at call time.
+
+### [​](#async-support) Async Support
+
+All selector signatures support async functions:
+
+```
+async def selector(step_input: StepInput, step_choices: list) -> Union[str, Step, List[Step]]:
+    ...
+```
+
+⌘I

@@ -1,0 +1,107 @@
+# Team with Knowledge Base - Agno
+
+Source: https://docs.agno.com/knowledge/teams/team-with-knowledge
+
+Attach Agno documentation to the team and give one member a web-search tool.
+
+team\_with\_knowledge.py
+
+```
+from pathlib import Path
+
+from agno.agent import Agent
+from agno.knowledge.embedder.openai import OpenAIEmbedder
+from agno.knowledge.knowledge import Knowledge
+from agno.models.openai import OpenAIResponses
+from agno.team import Team
+from agno.tools.websearch import WebSearchTools
+from agno.vectordb.lancedb import LanceDb, SearchType
+
+cwd = Path(__file__).parent
+tmp_dir = cwd.joinpath("tmp")
+tmp_dir.mkdir(parents=True, exist_ok=True)
+
+agno_docs_knowledge = Knowledge(
+    vector_db=LanceDb(
+        uri=str(tmp_dir.joinpath("lancedb")),
+        table_name="agno_docs",
+        search_type=SearchType.hybrid,
+        embedder=OpenAIEmbedder(id="text-embedding-3-small"),
+    ),
+)
+
+web_agent = Agent(
+    name="Web Search Agent",
+    role="Handle web search requests",
+    model=OpenAIResponses(id="gpt-5-mini"),
+    tools=[WebSearchTools()],
+    instructions=["Always include sources"],
+)
+
+team_with_knowledge = Team(
+    name="Team with Knowledge",
+    members=[web_agent],
+    model=OpenAIResponses(id="gpt-5-mini"),
+    knowledge=agno_docs_knowledge,
+    show_members_responses=True,
+    markdown=True,
+)
+
+if __name__ == "__main__":
+    agno_docs_knowledge.insert(url="https://docs.agno.com/llms-full.txt")
+    team_with_knowledge.print_response("Tell me about the Agno framework", stream=True)
+```
+
+## [​](#usage) Usage
+
+1
+
+Set up your virtual environment
+
+Mac
+
+Windows
+
+```
+uv venv --python 3.12
+source .venv/bin/activate
+```
+
+```
+uv venv --python 3.12
+.venv\Scripts\activate
+```
+
+2
+
+Install dependencies
+
+```
+uv pip install -U agno lancedb openai ddgs
+```
+
+3
+
+Set environment variables
+
+```
+export OPENAI_API_KEY=your_openai_api_key_here
+```
+
+4
+
+Run the team
+
+```
+python team_with_knowledge.py
+```
+
+## [​](#next-steps) Next Steps
+
+| Task | Guide |
+| --- | --- |
+| Give members separate knowledge tables | [Distributed RAG with LanceDB](/knowledge/teams/distributed-rag-lancedb) |
+| Store distributed knowledge in PostgreSQL | [Distributed RAG with PgVector](/knowledge/teams/distributed-rag-pgvector) |
+| Review team-level knowledge behavior | [Teams with Knowledge](/knowledge/teams/overview) |
+
+⌘I

@@ -1,0 +1,109 @@
+# Timeout - Agno
+
+Source: https://docs.agno.com/workflows/hitl/timeout
+
+HITL timeouts set a deadline for Step confirmation and output-review responses. When the timeout expires, the workflow resolves the pending requirement based on the `on_timeout` policy the next time `continue_run()` is called. Step user-input pauses and other workflow primitives do not support timeout policies.
+
+```
+from agno.workflow import Workflow
+from agno.workflow.step import Step
+from agno.workflow.types import OnTimeout
+from agno.db.sqlite import SqliteDb
+
+workflow = Workflow(
+    name="timeout_workflow",
+    db=SqliteDb(db_file="workflow.db"),
+    steps=[
+        Step(
+            name="draft_email",
+            agent=draft_agent,
+            requires_output_review=True,
+            output_review_message="Review the draft (auto-approves in 5 minutes)",
+            hitl_timeout=300,
+            on_timeout=OnTimeout.approve,
+        ),
+        Step(name="send_email", agent=send_agent),
+    ],
+)
+```
+
+There is no background timer.
+
+## [​](#parameters) Parameters
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `hitl_timeout` | `int` | `None` | Seconds before auto-resolving. `None` = no timeout |
+| `on_timeout` | `OnTimeout` | `OnTimeout.cancel` | Action when timeout expires |
+
+## [​](#ontimeout-options) OnTimeout Options
+
+| Value | Behavior |
+| --- | --- |
+| `OnTimeout.approve` | Confirm the requirement and continue |
+| `OnTimeout.skip` | Skip the step |
+| `OnTimeout.cancel` | Cancel the workflow |
+
+## [​](#timeout-flow) Timeout Flow
+
+```
+run_output = workflow.run("Draft an email about the team lunch")
+
+if run_output.is_paused:
+    for req in run_output.steps_requiring_output_review:
+        print(f"Draft: {req.step_output.content}")
+        print(f"Timeout at: {req.timeout_at}")
+        print(f"On timeout: {req.on_timeout}")
+
+    # If called after timeout expires, auto-resolves based on on_timeout
+    run_output = workflow.continue_run(run_output)
+```
+
+The `timeout_at` datetime is available on the `StepRequirement` for frontend countdown display.
+
+## [​](#with-output-review) With Output Review
+
+With output review, an expired `approve` policy accepts the output on the next `continue_run()` call.
+
+```
+Step(
+    name="generate_report",
+    agent=report_agent,
+    requires_output_review=True,
+    output_review_message="Review the report",
+    hitl_timeout=600,           # 10 minutes
+    on_timeout=OnTimeout.approve,  # Auto-approve after 10 minutes
+)
+```
+
+## [​](#with-confirmation) With Confirmation
+
+Timeout also works with pre-execution confirmation:
+
+```
+Step(
+    name="deploy",
+    agent=deploy_agent,
+    requires_confirmation=True,
+    confirmation_message="Deploy to production?",
+    hitl_timeout=120,            # 2 minutes
+    on_timeout=OnTimeout.cancel,  # Cancel if no response
+)
+```
+
+## [​](#choosing-an-ontimeout-policy) Choosing an OnTimeout Policy
+
+| Policy | Use When |
+| --- | --- |
+| `approve` | The action or output is low-risk and delays are costly |
+| `skip` | The step is optional. Skipping doesn’t break the workflow |
+| `cancel` | The step is critical. Proceeding without review is unacceptable |
+
+## [​](#developer-resources) Developer Resources
+
+- [Output Review](/workflows/hitl/output-review)
+- [Workflow HITL overview](/workflows/hitl/overview)
+- [Step reference](/reference/workflows/step)
+- [Cookbooks](https://github.com/agno-agi/agno/tree/main/cookbook/04_workflows/08_human_in_the_loop/timeout)
+
+⌘I

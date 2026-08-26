@@ -1,0 +1,163 @@
+# Distributed RAG with LanceDB - Agno
+
+Source: https://docs.agno.com/knowledge/teams/distributed-rag-lancedb
+
+A coordinating team delegates retrieval and response tasks across agents with separate LanceDB knowledge tables.
+
+distributed\_rag\_lancedb.py
+
+```
+from agno.agent import Agent
+from agno.knowledge.embedder.openai import OpenAIEmbedder
+from agno.knowledge.knowledge import Knowledge
+from agno.models.openai import OpenAIResponses
+from agno.team import Team
+from agno.vectordb.lancedb import LanceDb, SearchType
+
+primary_knowledge = Knowledge(
+    vector_db=LanceDb(
+        table_name="recipes_primary",
+        uri="tmp/lancedb",
+        search_type=SearchType.vector,
+        embedder=OpenAIEmbedder(id="text-embedding-3-small"),
+    ),
+)
+
+context_knowledge = Knowledge(
+    vector_db=LanceDb(
+        table_name="recipes_context",
+        uri="tmp/lancedb",
+        search_type=SearchType.hybrid,
+        embedder=OpenAIEmbedder(id="text-embedding-3-small"),
+    ),
+)
+
+primary_retriever = Agent(
+    name="Primary Retriever",
+    model=OpenAIResponses(id="gpt-5-mini"),
+    role="Retrieve primary documents and core information from knowledge base",
+    knowledge=primary_knowledge,
+    search_knowledge=True,
+    instructions=[
+        "Search the primary knowledge table.",
+        "Return the matching recipe details and source context.",
+    ],
+    markdown=True,
+)
+
+context_expander = Agent(
+    name="Context Expander",
+    model=OpenAIResponses(id="gpt-5-mini"),
+    role="Expand context by finding related and supplementary information",
+    knowledge=context_knowledge,
+    search_knowledge=True,
+    instructions=[
+        "Search the context knowledge table.",
+        "Return related recipe details and source context.",
+    ],
+    markdown=True,
+)
+
+answer_synthesizer = Agent(
+    name="Answer Synthesizer",
+    model=OpenAIResponses(id="gpt-5-mini"),
+    role="Synthesize retrieved information into an answer",
+    instructions=[
+        "Combine information from the Primary Retriever and Context Expander.",
+        "Cite the supplied sources.",
+    ],
+    markdown=True,
+)
+
+quality_validator = Agent(
+    name="Quality Validator",
+    model=OpenAIResponses(id="gpt-5-mini"),
+    role="Validate answer quality and suggest improvements",
+    instructions=[
+        "Compare the draft response with the retrieved information.",
+        "Identify conflicts and unsupported details.",
+    ],
+    markdown=True,
+)
+
+distributed_rag_team = Team(
+    name="Distributed RAG Team",
+    model=OpenAIResponses(id="gpt-5-mini"),
+    members=[
+        primary_retriever,
+        context_expander,
+        answer_synthesizer,
+        quality_validator,
+    ],
+    instructions=[
+        "Coordinate the retrieval and response tasks in order.",
+        "Primary Retriever: First retrieve core relevant information.",
+        "Context Expander: Then expand with related context and background.",
+        "Answer Synthesizer: Synthesize the retrieved information.",
+        "Quality Validator: Finally check the response against the retrieved information.",
+    ],
+    show_members_responses=True,
+    markdown=True,
+)
+
+if __name__ == "__main__":
+    query = "How do I make chicken and galangal in coconut milk soup? Include cooking tips and variations."
+    source_url = "https://agno-public.s3.amazonaws.com/recipes/ThaiRecipes.pdf"
+
+    primary_knowledge.insert(name="Thai Recipes Primary", url=source_url)
+    context_knowledge.insert(name="Thai Recipes Context", url=source_url)
+    distributed_rag_team.print_response(input=query)
+```
+
+## [​](#usage) Usage
+
+1
+
+Set up your virtual environment
+
+Mac
+
+Windows
+
+```
+uv venv --python 3.12
+source .venv/bin/activate
+```
+
+```
+uv venv --python 3.12
+.venv\Scripts\activate
+```
+
+2
+
+Install required libraries
+
+```
+uv pip install -U agno lancedb openai pypdf
+```
+
+3
+
+Export the API key
+
+```
+export OPENAI_API_KEY=your_openai_api_key_here
+```
+
+4
+
+Run the team
+
+```
+python distributed_rag_lancedb.py
+```
+
+## [​](#next-steps) Next Steps
+
+| Task | Guide |
+| --- | --- |
+| Run the pattern with PostgreSQL | [Distributed RAG with PgVector](/knowledge/teams/distributed-rag-pgvector) |
+| Attach one knowledge base to a team | [Team with Knowledge Base](/knowledge/teams/team-with-knowledge) |
+
+⌘I

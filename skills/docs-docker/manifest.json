@@ -1,0 +1,619 @@
+{
+  "name": "docs-docker",
+  "generated_at": "2026-07-29T03:51:07Z",
+  "query": null,
+  "source_id": null,
+  "ranking": "all pages (recency)",
+  "page_count": 76,
+  "embedding_model": null,
+  "pages": [
+    {
+      "title": "Change general organization information",
+      "url": "https://docs.docker.com/admin/organization/setup/general-settings.md",
+      "content_hash": "sha256:e63f6891113b5056a66d2ec8240ad1b41f073ea25da48c9e0b54341c35b944d9",
+      "file": "references/001-Change-general-organization-information.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Change general organization information | Docker Docs",
+      "url": "https://docs.docker.com/admin/organization/setup/general-settings",
+      "content_hash": "sha256:a431466329d167e0def75ba3198d04c634a034248c8a06c38128f2e29401df9c",
+      "file": "references/002-Change-general-organization-information-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Convert an account into an organization | Docker Docs",
+      "url": "https://docs.docker.com/admin/organization/setup/convert-account",
+      "content_hash": "sha256:b196ca32ce423bfc4e9420a4bc05682b8786ef8fa3d7159875279c5df7683dfe",
+      "file": "references/003-Convert-an-account-into-an-organization-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Convert an account into an organization",
+      "url": "https://docs.docker.com/admin/organization/setup/convert-account.md",
+      "content_hash": "sha256:bf1c1c4cd2c8b160c77de526c7dcc13ae28e4eab814f3df69ed68849b2be7129",
+      "file": "references/004-Convert-an-account-into-an-organization.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Organization FAQs | Docker Docs",
+      "url": "https://docs.docker.com/admin/organization/organization-faqs",
+      "content_hash": "sha256:5fa9f6c4c1a8988ed4504260195abd58b698db6e59d444187088e9ee2bfafcf2",
+      "file": "references/005-Organization-FAQs-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Organization FAQs",
+      "url": "https://docs.docker.com/admin/organization/organization-faqs.md",
+      "content_hash": "sha256:3442f8c7472f62d5c5b8bf9f19d62a90839074ed8522075665be170693454422",
+      "file": "references/006-Organization-FAQs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Manage organization members | Docker Docs",
+      "url": "https://docs.docker.com/admin/organization/manage/members",
+      "content_hash": "sha256:4284bb1d055ac883c682c3167ce16e990414858f0b944cefe0f7eb8a42fa80b2",
+      "file": "references/007-Manage-organization-members-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Manage organization members",
+      "url": "https://docs.docker.com/admin/organization/manage/members.md",
+      "content_hash": "sha256:285d883be582ac63417db85af99f03d52a21304e553e4d7a40fd63b8b861247d",
+      "file": "references/008-Manage-organization-members.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Manage subscription seats | Docker Docs",
+      "url": "https://docs.docker.com/admin/organization/manage/manage-seats",
+      "content_hash": "sha256:19a2881f1b2b11da18304b5dafe1c78b9860fc60f7a83ad64523eea9282c5e89",
+      "file": "references/009-Manage-subscription-seats-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Manage usage and access for Docker products",
+      "url": "https://docs.docker.com/admin/organization/manage/manage-products.md",
+      "content_hash": "sha256:8935794aebed23873b4b07bbfdfaf6d674e1fb0ff147775eb1c2f83c874dc300",
+      "file": "references/010-Manage-usage-and-access-for-Docker-products.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Manage subscription seats",
+      "url": "https://docs.docker.com/admin/organization/manage/manage-seats.md",
+      "content_hash": "sha256:bbc45980d6f6c6169cd39cb5fa7756d28a12066c9a0b8207f59484f73dbaa87e",
+      "file": "references/011-Manage-subscription-seats.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Manage license assignment | Docker Docs",
+      "url": "https://docs.docker.com/admin/organization/manage/manage-licenses",
+      "content_hash": "sha256:1c2110956af91ce354a7b450845a4ee0ced4619c2c0e513a0251e320f7d5c5f6",
+      "file": "references/012-Manage-license-assignment-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Manage usage and access for Docker products | Docker Docs",
+      "url": "https://docs.docker.com/admin/organization/manage/manage-products",
+      "content_hash": "sha256:1786ec4cc9923e5cea9315d9996580f0bcf34e0b508c78f6c9182ad3f42404b6",
+      "file": "references/013-Manage-usage-and-access-for-Docker-products-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Create and manage a team",
+      "url": "https://docs.docker.com/admin/organization/manage/manage-a-team.md",
+      "content_hash": "sha256:5012251a97277061347185ee3dbbe87fbd3d1c61d6df657dd867d3ca3d0e4da6",
+      "file": "references/014-Create-and-manage-a-team.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Manage license assignment",
+      "url": "https://docs.docker.com/admin/organization/manage/manage-licenses.md",
+      "content_hash": "sha256:63d9fe07f1637c05cd25715bb7270359402f8b43900922c5a0397e04228e859d",
+      "file": "references/015-Manage-license-assignment.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Create and manage a team | Docker Docs",
+      "url": "https://docs.docker.com/admin/organization/manage/manage-a-team",
+      "content_hash": "sha256:3a0b7c40613815bbc172ce0e1dfb6b3561b28d5232430711a946f723740ecf25",
+      "file": "references/016-Create-and-manage-a-team-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Deactivate an organization | Docker Docs",
+      "url": "https://docs.docker.com/admin/organization/deactivate-account",
+      "content_hash": "sha256:4249a9fc5274fcea8eeec1bd3c41c9f8f4cd187e1a66964e59d7d3c70d3eeb95",
+      "file": "references/017-Deactivate-an-organization-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Deactivate an organization",
+      "url": "https://docs.docker.com/admin/organization/deactivate-account.md",
+      "content_hash": "sha256:7103c4c138432ec811bd49d7e2a57642b0d563849b54e46376ede1a4518fcbbd",
+      "file": "references/018-Deactivate-an-organization.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Insights | Docker Docs",
+      "url": "https://docs.docker.com/admin/insights",
+      "content_hash": "sha256:ad177e5d5ad0e981b41b3bd9e613645764268ff2dfebc611fd374d88b8f05c36",
+      "file": "references/019-Insights-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Insights",
+      "url": "https://docs.docker.com/admin/insights.md",
+      "content_hash": "sha256:19997387dd5bb338ff0a36b1ea77cc5820eca12259e979d3d0b3a4b538b1a19f",
+      "file": "references/020-Insights.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Create new company | Docker Docs",
+      "url": "https://docs.docker.com/admin/company/new-company",
+      "content_hash": "sha256:e488fef938746e28c0f843986e5085a5ea06155230963cb3081a27fcf7b5c113",
+      "file": "references/021-Create-new-company-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Create new company",
+      "url": "https://docs.docker.com/admin/company/new-company.md",
+      "content_hash": "sha256:517a19dca493e3605403da1c36a2fac3ac4f1f59f887e470ffabc8010f685ac2",
+      "file": "references/022-Create-new-company.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Manage your company | Docker Docs",
+      "url": "https://docs.docker.com/admin/company/manage",
+      "content_hash": "sha256:708c80ea9b476a3328e1177c31169cca16a98dd62bab2728f81a24b924b5091a",
+      "file": "references/023-Manage-your-company-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Manage your company",
+      "url": "https://docs.docker.com/admin/company/manage.md",
+      "content_hash": "sha256:2a2081b64e1400b8b868a43554239d19010592f8f286e64fdcb3b56531128e66",
+      "file": "references/024-Manage-your-company.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Company FAQs | Docker Docs",
+      "url": "https://docs.docker.com/admin/company/company-faqs",
+      "content_hash": "sha256:72134c36c725b9c1f68009be57e121ad08b096e94ee8c300d016ca8eff3a5ff9",
+      "file": "references/025-Company-FAQs-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Company FAQs",
+      "url": "https://docs.docker.com/admin/company/company-faqs.md",
+      "content_hash": "sha256:d80654628f39f1e5a111bd158e43581d582cc36a0737af268e815b81dce3443e",
+      "file": "references/026-Company-FAQs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Activity logs | Docker Docs",
+      "url": "https://docs.docker.com/admin/activity-logs",
+      "content_hash": "sha256:3ef644218412eb0a0b0324447f572a6e84ccd649c8203b0423284534632ea6f3",
+      "file": "references/027-Activity-logs-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Activity logs",
+      "url": "https://docs.docker.com/admin/activity-logs.md",
+      "content_hash": "sha256:06bddc1690642bea50d887b5d7ec8ab5ba5c4d0cf230bad0b92b222c9a0661a0",
+      "file": "references/028-Activity-logs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Manage a Docker account",
+      "url": "https://docs.docker.com/accounts/manage-account.md",
+      "content_hash": "sha256:cd99c56c46ff1aefbe86fd4759997b8d8635be7a6b4acfa606e8f24fb949592e",
+      "file": "references/029-Manage-a-Docker-account.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Docker account FAQs",
+      "url": "https://docs.docker.com/accounts/general-faqs.md",
+      "content_hash": "sha256:e952493be999bcf8ea618895b8436cb4dd987ba32de18895512de8bc6e808365",
+      "file": "references/030-Docker-account-FAQs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Manage a Docker account | Docker Docs",
+      "url": "https://docs.docker.com/accounts/manage-account",
+      "content_hash": "sha256:2e2c620891ee771094412eba6189d4228608016aeb29c1c2ccabd35777792857",
+      "file": "references/031-Manage-a-Docker-account-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Docker account FAQs | Docker Docs",
+      "url": "https://docs.docker.com/accounts/general-faqs",
+      "content_hash": "sha256:b6f2bf8df86756903739355d451be37ca567789e79a87aa713a92b751f273bb5",
+      "file": "references/032-Docker-account-FAQs-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Deactivate a Docker account | Docker Docs",
+      "url": "https://docs.docker.com/accounts/deactivate-user-account",
+      "content_hash": "sha256:f8edfcff4e2491cf4d61d5e0685b0a265c391f6770b29ee36ad1f6491bc85882",
+      "file": "references/033-Deactivate-a-Docker-account-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Deactivate a Docker account",
+      "url": "https://docs.docker.com/accounts/deactivate-user-account.md",
+      "content_hash": "sha256:7c06aff68de60a91642e0b2d81ffdb10eb2bd365d0daebe19e2ba5d5978b5ecd",
+      "file": "references/034-Deactivate-a-Docker-account.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Create a Docker account | Docker Docs",
+      "url": "https://docs.docker.com/accounts/create-account",
+      "content_hash": "sha256:8109c95cd64ad5ca8d97056ccd37faeef71564e22bb59b5dafc30f04815681e5",
+      "file": "references/035-Create-a-Docker-account-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Create a Docker account",
+      "url": "https://docs.docker.com/accounts/create-account.md",
+      "content_hash": "sha256:a955f4fc0ae7885deff282e5b0b58b2cc9c4c8e21d11d60617b3ae1390802611",
+      "file": "references/036-Create-a-Docker-account.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Docker Documentation",
+      "url": "https://docs.docker.com/llms.txt",
+      "content_hash": "sha256:f2679826446706eb83b43cbe07fd477c16fa8ae7075fa2de16eeb29f1b766e8d",
+      "file": "references/037-Docker-Documentation.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Manuals",
+      "url": "https://docs.docker.com/manuals.md",
+      "content_hash": "sha256:697f9416030b4e8d32498a1ea602b58a341579eb73697288fa7cabc448cde6e9",
+      "file": "references/038-Manuals.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Reference documentation",
+      "url": "https://docs.docker.com/reference.md",
+      "content_hash": "sha256:db7818fc640c9ee0b46ba68ea7fd1acd96a8597bcbde7d676f65178f31421c76",
+      "file": "references/039-Reference-documentation.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Docker guides",
+      "url": "https://docs.docker.com/guides.md",
+      "content_hash": "sha256:d82d84c9aea9d88bd02be0e2dcb19043eca1b78604d78a0e9f5ad96492fdf449",
+      "file": "references/040-Docker-guides.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Get started",
+      "url": "https://docs.docker.com/get-started.md",
+      "content_hash": "sha256:2570555a6bc128de3862095408a412ebc622052f83773205148333eb57ff4722",
+      "file": "references/041-Get-started.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Docker Engine API | Docker Docs",
+      "url": "https://docs.docker.com/reference/api/engine",
+      "content_hash": "sha256:6b285a24b7e0be4394877f13538ee4d663fc229c2f96cd87f96c3724f76adb8d",
+      "file": "references/042-Docker-Engine-API-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "dockerd | Docker Docs",
+      "url": "https://docs.docker.com/reference/cli/dockerd",
+      "content_hash": "sha256:12b0680617d2a7eadc4bb0d0cc35d35008b0011a01a971b2f7c8e83dfac1aa70",
+      "file": "references/043-dockerd-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "docker compose | Docker Docs",
+      "url": "https://docs.docker.com/reference/cli/docker/compose",
+      "content_hash": "sha256:db1125a507616c25afe1ce61d1e18e16cf49d929c2c9bbbfcb0e7988bf5df160",
+      "file": "references/044-docker-compose-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Compose file reference | Docker Docs",
+      "url": "https://docs.docker.com/reference/compose-file",
+      "content_hash": "sha256:028edd709464092f1a2195e25a5bc28d58214d860deddc9fef339a645f982335",
+      "file": "references/045-Compose-file-reference-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "docker | Docker Docs",
+      "url": "https://docs.docker.com/reference/cli/docker",
+      "content_hash": "sha256:52c9b0d3c0037b4eb836732f171a93a0feb81837adf03f8ca2ddd9980a6dcd27",
+      "file": "references/046-docker-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Dockerfile reference | Docker Docs",
+      "url": "https://docs.docker.com/reference/dockerfile",
+      "content_hash": "sha256:5bf93d64d97162c86eb2d6a4b2d05d1a71281457685841837540a9bac1a67fb9",
+      "file": "references/047-Dockerfile-reference-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Deploy Docker Desktop | Docker Docs",
+      "url": "https://docs.docker.com/enterprise/enterprise-deployment",
+      "content_hash": "sha256:1982f444dd4c69088f884dec7407fc6480be977e2d47fbc72348ff3ecd0412e6",
+      "file": "references/048-Deploy-Docker-Desktop-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Docker accounts | Docker Docs",
+      "url": "https://docs.docker.com/accounts",
+      "content_hash": "sha256:413645a5c019eb0feb20d0194741d78a1e272c9bbf8d9c6e812a35d8f1048cb7",
+      "file": "references/049-Docker-accounts-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Security for developers | Docker Docs",
+      "url": "https://docs.docker.com/security",
+      "content_hash": "sha256:bec1116751b1281be0c6b144a41d0b8381a17b208fee06476f428557732a1659",
+      "file": "references/050-Security-for-developers-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Docker Scout | Docker Docs",
+      "url": "https://docs.docker.com/scout",
+      "content_hash": "sha256:5ec6b67b465bc94c9ccdb9d0b9f5e3b38757c4e8fd0941aa23054c1b46b4b2ae",
+      "file": "references/051-Docker-Scout-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Administration | Docker Docs",
+      "url": "https://docs.docker.com/admin",
+      "content_hash": "sha256:cc6d787e498b44e5ad27d0be36739579e8da58cfae7ab169f42b6ddb0c660893",
+      "file": "references/052-Administration-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Docker Hardened Images | Docker Docs",
+      "url": "https://docs.docker.com/dhi",
+      "content_hash": "sha256:a854f547bc489711d8bdf6cd80de06a79bcaad4987e68a79e7bac485559df807",
+      "file": "references/053-Docker-Hardened-Images-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Docker Compose | Docker Docs",
+      "url": "https://docs.docker.com/compose",
+      "content_hash": "sha256:ee1e9df1cf0133304e8f1253abf123252a6822fec1cdc4d3921cfba64675b14c",
+      "file": "references/054-Docker-Compose-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Docker Engine | Docker Docs",
+      "url": "https://docs.docker.com/engine",
+      "content_hash": "sha256:6cf4adb9ed57f9f91b06e62a9bfe78cb9d1fb56130ecf1c53a50b1d1e77436f1",
+      "file": "references/055-Docker-Engine-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Docker Build | Docker Docs",
+      "url": "https://docs.docker.com/build",
+      "content_hash": "sha256:e373bca92aa35c8f08c0e2eccada67c9d4c14d9e39a43772d71030d97e2b8157",
+      "file": "references/056-Docker-Build-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Testcontainers | Docker Docs",
+      "url": "https://docs.docker.com/testcontainers",
+      "content_hash": "sha256:64d7e3cd935dce581a8682c40566c81273a42b8cd999f80462aa117a31de1be2",
+      "file": "references/057-Testcontainers-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Docker Build Cloud | Docker Docs",
+      "url": "https://docs.docker.com/build-cloud",
+      "content_hash": "sha256:bd9ee379d585571f64fd5ff7408c6e7a0330715a11cb9b563fc0b04d77458355",
+      "file": "references/058-Docker-Build-Cloud-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Docker Offload | Docker Docs",
+      "url": "https://docs.docker.com/offload",
+      "content_hash": "sha256:7712ddbd1e8e4e66491c871844ccbf94e6c4b83bd09538e6ec4bff374b4a3c93",
+      "file": "references/059-Docker-Offload-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Docker Model Runner | Docker Docs",
+      "url": "https://docs.docker.com/ai/model-runner",
+      "content_hash": "sha256:9ef263fec86350adc082783b22737254cb6c2ae7519610c233cd2ffc6a2a365d",
+      "file": "references/060-Docker-Model-Runner-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Docker Desktop | Docker Docs",
+      "url": "https://docs.docker.com/desktop",
+      "content_hash": "sha256:5fe7d72cdd3860dc9a993b600fc4d8e10948b111e2046a5f4fe78922a45f6f34",
+      "file": "references/061-Docker-Desktop-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Docker Agent | Docker Docs",
+      "url": "https://docs.docker.com/ai/docker-agent",
+      "content_hash": "sha256:b1a546bd3e2feb5b22747cf7452bf9bf4b253170ec789367e97e19b4bd70821c",
+      "file": "references/062-Docker-Agent-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Gordon | Docker Docs",
+      "url": "https://docs.docker.com/ai/gordon",
+      "content_hash": "sha256:df001044a0343c270e6728d30d4b5647673c5dbeb3061902759385294da2c3d8",
+      "file": "references/063-Gordon-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Docker MCP Catalog and Toolkit | Docker Docs",
+      "url": "https://docs.docker.com/ai/mcp-catalog-and-toolkit",
+      "content_hash": "sha256:f36af397538c91e5c61029ef3c129d9c271a368c06c8204e682901fb82fce166",
+      "file": "references/064-Docker-MCP-Catalog-and-Toolkit-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Docker Sandboxes | Docker Docs",
+      "url": "https://docs.docker.com/ai/sandboxes",
+      "content_hash": "sha256:e1b10037d390dd9b5ce0eee87c2fd582aa4958a7826e3fcadda1c271b8b0966d",
+      "file": "references/065-Docker-Sandboxes-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Introduction | Docker Docs",
+      "url": "https://docs.docker.com/get-started/introduction",
+      "content_hash": "sha256:4713079865408923cd75f7e71b68dc26dfb929f25e2761c8e7663d1f496df074",
+      "file": "references/066-Introduction-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "What is a container? | Docker Docs",
+      "url": "https://docs.docker.com/get-started/docker-concepts/the-basics/what-is-a-container",
+      "content_hash": "sha256:18560cc219fe8177e50b3e3c7621c3018ecceb3173f474013de07eec7d1be0bd",
+      "file": "references/067-What-is-a-container-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Overview of the Docker workshop | Docker Docs",
+      "url": "https://docs.docker.com/get-started/workshop",
+      "content_hash": "sha256:73c45ab1669ff80f7e43eb029a6983e221c5320dfa61221b1ee18fb21ffc8d1f",
+      "file": "references/068-Overview-of-the-Docker-workshop-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Manuals | Docker Docs",
+      "url": "https://docs.docker.com/manuals",
+      "content_hash": "sha256:128a41d2ac0963f34fd1f45483c0d56017aa8ebdd66281dca27fa1768b82f0f4",
+      "file": "references/069-Manuals-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Get Docker | Docker Docs",
+      "url": "https://docs.docker.com/get-started/get-docker",
+      "content_hash": "sha256:4c119e419c51f42ce9b32d37011a7e077d638a81f67e0540a2c6b70b55937e32",
+      "file": "references/070-Get-Docker-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "What is Docker? | Docker Docs",
+      "url": "https://docs.docker.com/get-started/docker-overview",
+      "content_hash": "sha256:313f31b0f8f95e58b4214faa6efcd3dbe554034b9bb882e0d0780deb3a90c041",
+      "file": "references/071-What-is-Docker-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Get started | Docker Docs",
+      "url": "https://docs.docker.com/get-started",
+      "content_hash": "sha256:15492d70c40b82c898a33521cdd85dc1fe89435baa4d7f793ded4032408c6398",
+      "file": "references/072-Get-started-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Reference documentation | Docker Docs",
+      "url": "https://docs.docker.com/reference",
+      "content_hash": "sha256:7f4b604866a40f911b10591afb73093a2a7c5558930a2ad246759138c0957eee",
+      "file": "references/073-Reference-documentation-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Docker Docs",
+      "url": "https://docs.docker.com/",
+      "content_hash": "sha256:8f60fc5789b5ab9123ff4bfba44de47365af6c87304e1f051f6b621f1ee7819a",
+      "file": "references/074-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Docker Documentation full text",
+      "url": "https://docs.docker.com/llms-full.txt",
+      "content_hash": "sha256:40481aa7d239ae6017c38c929eec412c8d200183a147ce4ccfd9b5f4b8131018",
+      "file": "references/075-Docker-Documentation-full-text.md",
+      "source": "docker",
+      "version": "latest"
+    },
+    {
+      "title": "Docker guides | Docker Docs",
+      "url": "https://docs.docker.com/guides",
+      "content_hash": "sha256:542fdab52377b6528d7214d105a4f97dbff8b47db69432c54e589413fabb3405",
+      "file": "references/076-Docker-guides-Docker-Docs.md",
+      "source": "docker",
+      "version": "latest"
+    }
+  ]
+}

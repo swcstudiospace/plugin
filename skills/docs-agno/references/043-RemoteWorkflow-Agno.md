@@ -1,0 +1,283 @@
+# RemoteWorkflow - Agno
+
+Source: https://docs.agno.com/reference/workflows/remote-workflow
+
+`RemoteWorkflow` runs workflows hosted on a remote AgentOS instance or A2A-compatible server.
+
+## [​](#installation) Installation
+
+```
+pip install 'agno[os]'
+```
+
+## [​](#basic-usage) Basic Usage
+
+```
+from agno.workflow import RemoteWorkflow
+
+# Create a remote workflow pointing to a remote AgentOS instance
+workflow = RemoteWorkflow(
+    base_url="http://localhost:7777",
+    workflow_id="qa-workflow",
+)
+
+# Run the workflow (async)
+response = await workflow.arun("What are the benefits of Python?")
+print(response.content)
+```
+
+## [​](#parameters) Parameters
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `base_url` | `str` | Required | Base URL of the remote AgentOS instance (e.g., `"http://localhost:7777"`) |
+| `workflow_id` | `str` | Required | ID of the remote workflow to execute |
+| `timeout` | `float` | `300.0` | Request timeout in seconds |
+| `protocol` | `Literal["agentos", "a2a"]` | `"agentos"` | Communication protocol: AgentOS REST API or A2A for cross-framework communication |
+| `a2a_protocol` | `Literal["json-rpc", "rest"]` | `"rest"` | Transport used when `protocol="a2a"`: JSON-RPC or REST |
+| `config_ttl` | `float` | `300.0` | Time-to-live for cached configuration in seconds |
+
+## [​](#properties) Properties
+
+### [​](#id) `id`
+
+Returns the workflow ID.
+
+```
+print(workflow.id)  # "qa-workflow"
+```
+
+### [​](#name) `name`
+
+Returns the workflow’s name from the remote configuration.
+
+```
+print(workflow.name)  # "QA Workflow"
+```
+
+### [​](#description) `description`
+
+Returns the workflow’s description from the remote configuration.
+
+```
+print(workflow.description)  # "A Q&A workflow for answering questions"
+```
+
+### [​](#db) `db`
+
+Returns a `RemoteDb` instance if the workflow has a database configured.
+
+```
+if workflow.db:
+    print(f"Database ID: {workflow.db.id}")
+```
+
+## [​](#methods) Methods
+
+### [​](#arun) `arun`
+
+Execute the remote workflow asynchronously.
+
+```
+# Non-streaming
+response = await workflow.arun(
+    "Explain machine learning",
+    user_id="user-123",
+    session_id="session-456",
+)
+print(response.content)
+print(f"Status: {response.status}")
+
+# Streaming
+async for event in workflow.arun(
+    "Generate a report",
+    stream=True,
+    user_id="user-123",
+):
+    if event.event == "RunContent" and hasattr(event, "content"):
+        print(event.content, end="", flush=True)
+```
+
+**Parameters:**
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `input` | `str | Dict | List | BaseModel` | Required | The input for the workflow |
+| `additional_data` | `Optional[Dict]` | `None` | Additional data to pass to the workflow |
+| `user_id` | `Optional[str]` | `None` | User ID for the run |
+| `run_id` | `Optional[str]` | `None` | Custom run ID |
+| `session_id` | `Optional[str]` | `None` | Session ID for context persistence |
+| `session_state` | `Optional[Dict]` | `None` | Session state dictionary |
+| `images` | `Optional[List[Image]]` | `None` | Images to include |
+| `audio` | `Optional[List[Audio]]` | `None` | Audio to include |
+| `videos` | `Optional[List[Video]]` | `None` | Videos to include |
+| `files` | `Optional[List[File]]` | `None` | Files to include |
+| `stream` | `bool` | `False` | Whether to stream the response |
+| `stream_events` | `Optional[bool]` | `None` | Whether to stream events |
+| `auth_token` | `Optional[str]` | `None` | JWT token for authentication |
+
+**Returns:**
+
+- `WorkflowRunOutput` when `stream=False`
+- `AsyncIterator[WorkflowRunOutputEvent]` when `stream=True`
+
+### [​](#acontinue_run) `acontinue_run`
+
+Continue a paused workflow run through the AgentOS protocol.
+
+```
+response = await workflow.acontinue_run(
+    run_id="run-123",
+    session_id="session-456",
+    step_requirements=resolved_requirements,
+)
+```
+
+**Parameters:**
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `run_response` | `Optional[WorkflowRunOutput]` | `None` | Paused run output containing the run ID, session ID, and requirements |
+| `run_id` | `Optional[str]` | `None` | Run ID. Required unless `run_response` supplies one |
+| `session_id` | `Optional[str]` | `None` | Session ID. Overrides the ID from `run_response` |
+| `step_requirements` | `Optional[List[Any]]` | `None` | Resolved requirements. Overrides requirements from `run_response` |
+| `stream` | `bool` | `False` | Whether to stream the continued run |
+| `auth_token` | `Optional[str]` | `None` | JWT token for authentication |
+
+**Returns:**
+
+- `WorkflowRunOutput` when `stream=False`
+- `AsyncIterator[WorkflowRunOutputEvent]` when `stream=True`
+
+### [​](#acancel_run) `acancel_run`
+
+Cancel a running workflow execution through the AgentOS protocol.
+
+```
+success = await workflow.acancel_run(run_id="run-123")
+if success:
+    print("Run cancelled")
+```
+
+**Parameters:**
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `run_id` | `str` | Required | ID of the run to cancel |
+| `auth_token` | `Optional[str]` | `None` | JWT token for authentication |
+
+**Returns:** `bool` - True if successfully cancelled
+
+### [​](#get_workflow_config) `get_workflow_config`
+
+Get the workflow configuration from the remote server (always fetches fresh).
+
+```
+config = await workflow.get_workflow_config()
+print(f"Workflow name: {config.name}")
+print(f"Steps: {config.steps}")
+```
+
+**Returns:** `WorkflowResponse`
+
+### [​](#refresh_config) `refresh_config`
+
+Force refresh the cached workflow configuration through the AgentOS protocol.
+
+```
+config = await workflow.refresh_config()
+```
+
+**Returns:** `WorkflowResponse`
+`RemoteWorkflow` can connect to any A2A-compatible server using the `protocol="a2a"` parameter:
+
+### [​](#connecting-to-agno-a2a-servers) Connecting to Agno A2A Servers
+
+```
+from agno.workflow import RemoteWorkflow
+
+# Connect to an Agno AgentOS with A2A interface
+workflow = RemoteWorkflow(
+    base_url="http://localhost:7001/a2a/workflows/my-workflow",
+    workflow_id="my-workflow",
+    protocol="a2a",
+)
+
+response = await workflow.arun("Hello!")
+print(response.content)
+```
+
+| Protocol | a2a\_protocol | Use Case |
+| --- | --- | --- |
+| `"agentos"` | N/A | Default. Connect to Agno AgentOS REST API |
+| `"a2a"` | `"rest"` | Connect to A2A servers using REST endpoints |
+| `"a2a"` | `"json-rpc"` | Connect to Google ADK or pure JSON-RPC A2A servers |
+
+## [​](#using-in-agentos-gateway) Using in AgentOS Gateway
+
+Remote workflows can be registered in a local AgentOS to create a gateway:
+
+```
+from agno.workflow import RemoteWorkflow
+from agno.os import AgentOS
+
+agent_os = AgentOS(
+    workflows=[
+        RemoteWorkflow(base_url="http://server-1:7777", workflow_id="qa-workflow"),
+        RemoteWorkflow(base_url="http://server-2:7777", workflow_id="analysis-workflow"),
+    ],
+)
+```
+
+See [AgentOS Gateway](/agent-os/remote-execution/gateway) for more details.
+
+## [​](#streaming-example) Streaming Example
+
+```
+from agno.workflow import RemoteWorkflow
+
+workflow = RemoteWorkflow(
+    base_url="http://localhost:7777",
+    workflow_id="story-workflow",
+)
+
+print("Response: ", end="", flush=True)
+async for event in workflow.arun(
+    "Write a story about space exploration",
+    stream=True,
+    user_id="user-123",
+):
+    # Handle content from agent events or workflow completion
+    if event.event == "RunContent" and hasattr(event, "content"):
+        print(event.content, end="", flush=True)
+    elif event.event == "WorkflowAgentCompleted" and hasattr(event, "content"):
+        print(event.content, end="", flush=True)
+```
+
+## [​](#error-handling) Error Handling
+
+```
+from agno.exceptions import RemoteServerUnavailableError
+
+try:
+    response = await workflow.arun("Hello")
+except RemoteServerUnavailableError as e:
+    print(f"Remote server unavailable: {e.message}")
+```
+
+## [​](#authentication) Authentication
+
+For authenticated AgentOS instances, pass the `auth_token` parameter:
+
+```
+response = await workflow.arun(
+    "Process this request",
+    auth_token="your-jwt-token",
+)
+```
+
+## [​](#notes) Notes
+
+Remote Workflows via WebSocket are not yet supported. Use HTTP streaming instead.
+
+⌘I

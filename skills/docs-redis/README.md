@@ -1,0 +1,77 @@
+# docs-redis
+
+Exported documentation references.
+
+- [Redis Insight v2.52.0, June 2024 | Docs](references/001-Redis-Insight-v2-52-0-June-2024-Docs.md) — https://redis.io/docs/latest/develop/tools/insight/release-notes/v.2.52.0
+- [Redis Insight v2.58.0, October 2024 | Docs](references/002-Redis-Insight-v2-58-0-October-2024-Docs.md) — https://redis.io/docs/latest/develop/tools/insight/release-notes/v.2.58.0
+- [Redis Insight v2.56.0, September 2024 | Docs](references/003-Redis-Insight-v2-56-0-September-2024-Docs.md) — https://redis.io/docs/latest/develop/tools/insight/release-notes/v.2.56.0
+- [Redis Insight v2.54.0, August 2024 | Docs](references/004-Redis-Insight-v2-54-0-August-2024-Docs.md) — https://redis.io/docs/latest/develop/tools/insight/release-notes/v.2.54.0
+- [Redis Insight v2.62.0, November 2024 | Docs](references/005-Redis-Insight-v2-62-0-November-2024-Docs.md) — https://redis.io/docs/latest/develop/tools/insight/release-notes/v.2.62.0
+- [Redis Insight v2.60.0, October 2024 | Docs](references/006-Redis-Insight-v2-60-0-October-2024-Docs.md) — https://redis.io/docs/latest/develop/tools/insight/release-notes/v.2.60.0
+- [Redis Insight v2.64.0, December 2024 | Docs](references/007-Redis-Insight-v2-64-0-December-2024-Docs.md) — https://redis.io/docs/latest/develop/tools/insight/release-notes/v.2.64.0
+- [Redis Insight v2.64.1, December 2024 | Docs](references/008-Redis-Insight-v2-64-1-December-2024-Docs.md) — https://redis.io/docs/latest/develop/tools/insight/release-notes/v.2.64.1
+- [Redis Insight v2.66.0, January 2025 | Docs](references/009-Redis-Insight-v2-66-0-January-2025-Docs.md) — https://redis.io/docs/latest/develop/tools/insight/release-notes/v.2.66.0
+- [Redis Insight v2.68.0, April 2025 | Docs](references/010-Redis-Insight-v2-68-0-April-2025-Docs.md) — https://redis.io/docs/latest/develop/tools/insight/release-notes/v.2.68.0
+- [Redis Insight v2.70.1, July 2025 | Docs](references/011-Redis-Insight-v2-70-1-July-2025-Docs.md) — https://redis.io/docs/latest/develop/tools/insight/release-notes/v.2.70.1
+- [Redis Insight v2.70.0, May 2025 | Docs](references/012-Redis-Insight-v2-70-0-May-2025-Docs.md) — https://redis.io/docs/latest/develop/tools/insight/release-notes/v.2.70.0
+- [Redis Insight v3.0.0, November 2025 | Docs](references/013-Redis-Insight-v3-0-0-November-2025-Docs.md) — https://redis.io/docs/latest/develop/tools/insight/release-notes/v.3.0.0
+- [Redis Insight v3.0.3, February 2026 | Docs](references/014-Redis-Insight-v3-0-3-February-2026-Docs.md) — https://redis.io/docs/latest/develop/tools/insight/release-notes/v.3.0.3
+- [Redis Insight v3.0.2, January 2026 | Docs](references/015-Redis-Insight-v3-0-2-January-2026-Docs.md) — https://redis.io/docs/latest/develop/tools/insight/release-notes/v.3.0.2
+- [Redis Insight v3.2.0, February 2026 | Docs](references/016-Redis-Insight-v3-2-0-February-2026-Docs.md) — https://redis.io/docs/latest/develop/tools/insight/release-notes/v.3.2.0
+- [Redis Insight v3.4.2, April 2026 | Docs](references/017-Redis-Insight-v3-4-2-April-2026-Docs.md) — https://redis.io/docs/latest/develop/tools/insight/release-notes/v.3.4.2
+- [Redis Insight v3.8.0, July 2026 | Docs](references/018-Redis-Insight-v3-8-0-July-2026-Docs.md) — https://redis.io/docs/latest/develop/tools/insight/release-notes/v.3.8.0
+- [Redis Insight v3.4.1, April 2026 | Docs](references/019-Redis-Insight-v3-4-1-April-2026-Docs.md) — https://redis.io/docs/latest/develop/tools/insight/release-notes/v.3.4.1
+- [Redis 8.6 Commands Reference | Docs](references/020-Redis-8-6-Commands-Reference-Docs.md) — https://redis.io/docs/latest/commands/redis-8-6-commands
+- [Redis Insight v3.6.0, June 2026 | Docs](references/021-Redis-Insight-v3-6-0-June-2026-Docs.md) — https://redis.io/docs/latest/develop/tools/insight/release-notes/v.3.6.0
+- [Redis 8.8 Commands Reference | Docs](references/022-Redis-8-8-Commands-Reference-Docs.md) — https://redis.io/docs/latest/commands/redis-8-8-commands
+- [Release notes](references/023-Release-notes.md) — https://redis.io/docs/latest/operate/rs/release-notes/index.html.md
+- [redis-cli](references/024-redis-cli.md) — https://redis.io/docs/latest/operate/rs/references/cli-utilities/redis-cli/index.html.md
+- [Redis for AI and search](references/025-Redis-for-AI-and-search.md) — https://redis.io/docs/latest/develop/ai/index.html.md
+- [REST API](references/026-REST-API.md) — https://redis.io/docs/latest/operate/rs/references/rest-api/index.html.md
+- [Network port configurations](references/027-Network-port-configurations.md) — https://redis.io/docs/latest/operate/rs/networking/port-configurations/index.html.md
+- [Redis Software product lifecycle](references/028-Redis-Software-product-lifecycle.md) — https://redis.io/docs/latest/operate/rs/installing-upgrading/product-lifecycle/index.html.md
+- [Redis Software](references/029-Redis-Software.md) — https://redis.io/docs/latest/operate/rs/index.html.md
+- [Hardware requirements](references/030-Hardware-requirements.md) — https://redis.io/docs/latest/operate/rs/installing-upgrading/install/plan-deployment/hardware-requirements/index.html.md
+- [Test client connection](references/031-Test-client-connection.md) — https://redis.io/docs/latest/operate/rs/databases/connect/test-client-connectivity/index.html.md
+- [Install Redis Insight](references/032-Install-Redis-Insight.md) — https://redis.io/docs/latest/operate/redisinsight/install/index.html.md
+- [Connect to a database](references/033-Connect-to-a-database.md) — https://redis.io/docs/latest/operate/rs/databases/connect/index.html.md
+- [Redis Cloud quick start](references/034-Redis-Cloud-quick-start.md) — https://redis.io/docs/latest/operate/rc/rc-quickstart/index.html.md
+- [Redis Cloud](references/035-Redis-Cloud.md) — https://redis.io/docs/latest/operate/rc/index.html.md
+- [Back up and export a database](references/036-Back-up-and-export-a-database.md) — https://redis.io/docs/latest/operate/rc/databases/back-up-data/index.html.md
+- [ACL](references/037-ACL.md) — https://redis.io/docs/latest/operate/oss_and_stack/management/security/acl/index.html.md
+- [Redis persistence](references/038-Redis-persistence.md) — https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/index.html.md
+- [Redis Enterprise for Kubernetes](references/039-Redis-Enterprise-for-Kubernetes.md) — https://redis.io/docs/latest/operate/kubernetes/index.html.md
+- [Redis configuration](references/040-Redis-configuration.md) — https://redis.io/docs/latest/operate/oss_and_stack/management/config/index.html.md
+- [Install Redis Open Source](references/041-Install-Redis-Open-Source.md) — https://redis.io/docs/latest/operate/oss_and_stack/install/install-stack/index.html.md
+- [Redis products](references/042-Redis-products.md) — https://redis.io/docs/latest/operate/index.html.md
+- [Create a Redis Cloud database with the Vercel integration](references/043-Create-a-Redis-Cloud-database-with-the-Vercel-integration.md) — https://redis.io/docs/latest/operate/rc/cloud-integrations/vercel/index.html.md
+- [RIOT-X](references/044-RIOT-X.md) — https://redis.io/docs/latest/integrate/riot/index.html.md
+- [Prometheus metrics v2](references/045-Prometheus-metrics-v2.md) — https://redis.io/docs/latest/integrate/prometheus-with-redis-enterprise/prometheus-metrics-definitions/index.html.md
+- [Python client for Redis](references/046-Python-client-for-Redis.md) — https://redis.io/docs/latest/integrate/redis-py/index.html.md
+- [RedisVL](references/047-RedisVL.md) — https://redis.io/docs/latest/integrate/redisvl/index.html.md
+- [Libraries and tools](references/048-Libraries-and-tools.md) — https://redis.io/docs/latest/integrate/index.html.md
+- [redis-py guide (Python)](references/049-redis-py-guide-Python.md) — https://redis.io/docs/latest/develop/clients/redis-py/index.html.md
+- [Redis Data Integration](references/050-Redis-Data-Integration.md) — https://redis.io/docs/latest/integrate/redis-data-integration/index.html.md
+- [go-redis guide (Go)](references/051-go-redis-guide-Go.md) — https://redis.io/docs/latest/develop/clients/go/index.html.md
+- [StackExchange.Redis guide (C#/.NET)](references/052-StackExchange-Redis-guide-C-NET.md) — https://redis.io/docs/latest/develop/clients/dotnet/index.html.md
+- [Jedis guide (Java)](references/053-Jedis-guide-Java.md) — https://redis.io/docs/latest/develop/clients/jedis/index.html.md
+- [node-redis guide (JavaScript)](references/054-node-redis-guide-JavaScript.md) — https://redis.io/docs/latest/develop/clients/nodejs/index.html.md
+- [Redis for VS Code](references/055-Redis-for-VS-Code.md) — https://redis.io/docs/latest/develop/tools/redis-for-vscode/index.html.md
+- [Redis Insight release notes](references/056-Redis-Insight-release-notes.md) — https://redis.io/docs/latest/develop/tools/insight/release-notes/index.html.md
+- [Connect with Redis client API libraries](references/057-Connect-with-Redis-client-API-libraries.md) — https://redis.io/docs/latest/develop/clients/index.html.md
+- [Key eviction](references/058-Key-eviction.md) — https://redis.io/docs/latest/develop/reference/eviction/index.html.md
+- [Redis CLI](references/059-Redis-CLI.md) — https://redis.io/docs/latest/develop/tools/cli/index.html.md
+- [Redis Streams](references/060-Redis-Streams.md) — https://redis.io/docs/latest/develop/data-types/streams/index.html.md
+- [Redis data types](references/061-Redis-data-types.md) — https://redis.io/docs/latest/develop/data-types/index.html.md
+- [Develop with Redis](references/062-Develop-with-Redis.md) — https://redis.io/docs/latest/develop/index.html.md
+- [TTL](references/063-TTL.md) — https://redis.io/docs/latest/commands/ttl/index.html.md
+- [SET](references/064-SET.md) — https://redis.io/docs/latest/commands/set/index.html.md
+- [GET](references/065-GET.md) — https://redis.io/docs/latest/commands/get/index.html.md
+- [HSET](references/066-HSET.md) — https://redis.io/docs/latest/commands/hset/index.html.md
+- [DEL](references/067-DEL.md) — https://redis.io/docs/latest/commands/del/index.html.md
+- [AUTH](references/068-AUTH.md) — https://redis.io/docs/latest/commands/auth/index.html.md
+- [EXPIRE](references/069-EXPIRE.md) — https://redis.io/docs/latest/commands/expire/index.html.md
+- [Commands | Docs](references/070-Commands-Docs.md) — https://redis.io/docs/latest/commands
+- [APIs](references/071-APIs.md) — https://redis.io/docs/latest/apis/index.html.md
+- [Quick starts](references/072-Quick-starts.md) — https://redis.io/docs/latest/develop/get-started/index.html.md
+- [Docs](references/073-Docs.md) — https://redis.io/docs/latest

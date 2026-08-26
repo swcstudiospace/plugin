@@ -1,0 +1,83 @@
+# docs-tailwind
+
+Exported documentation references.
+
+- [font-feature-settings - Typography - Tailwind CSS](references/001-font-feature-settings-Typography-Tailwind-CSS.md) — https://tailwindcss.com/docs/font-feature-settings
+- [font-variant-numeric - Typography - Tailwind CSS](references/002-font-variant-numeric-Typography-Tailwind-CSS.md) — https://tailwindcss.com/docs/font-variant-numeric
+- [font-weight - Typography - Tailwind CSS](references/003-font-weight-Typography-Tailwind-CSS.md) — https://tailwindcss.com/docs/font-weight
+- [font-stretch - Typography - Tailwind CSS](references/004-font-stretch-Typography-Tailwind-CSS.md) — https://tailwindcss.com/docs/font-stretch
+- [font-size - Typography - Tailwind CSS](references/005-font-size-Typography-Tailwind-CSS.md) — https://tailwindcss.com/docs/font-size
+- [font-smoothing - Typography - Tailwind CSS](references/006-font-smoothing-Typography-Tailwind-CSS.md) — https://tailwindcss.com/docs/font-smoothing
+- [font-style - Typography - Tailwind CSS](references/007-font-style-Typography-Tailwind-CSS.md) — https://tailwindcss.com/docs/font-style
+- [font-family - Typography - Tailwind CSS](references/008-font-family-Typography-Tailwind-CSS.md) — https://tailwindcss.com/docs/font-family
+- [max-block-size - Sizing - Tailwind CSS](references/009-max-block-size-Sizing-Tailwind-CSS.md) — https://tailwindcss.com/docs/max-block-size
+- [block-size - Sizing - Tailwind CSS](references/010-block-size-Sizing-Tailwind-CSS.md) — https://tailwindcss.com/docs/block-size
+- [min-block-size - Sizing - Tailwind CSS](references/011-min-block-size-Sizing-Tailwind-CSS.md) — https://tailwindcss.com/docs/min-block-size
+- [min-inline-size - Sizing - Tailwind CSS](references/012-min-inline-size-Sizing-Tailwind-CSS.md) — https://tailwindcss.com/docs/min-inline-size
+- [max-inline-size - Sizing - Tailwind CSS](references/013-max-inline-size-Sizing-Tailwind-CSS.md) — https://tailwindcss.com/docs/max-inline-size
+- [inline-size - Sizing - Tailwind CSS](references/014-inline-size-Sizing-Tailwind-CSS.md) — https://tailwindcss.com/docs/inline-size
+- [max-height - Sizing - Tailwind CSS](references/015-max-height-Sizing-Tailwind-CSS.md) — https://tailwindcss.com/docs/max-height
+- [min-height - Sizing - Tailwind CSS](references/016-min-height-Sizing-Tailwind-CSS.md) — https://tailwindcss.com/docs/min-height
+- [height - Sizing - Tailwind CSS](references/017-height-Sizing-Tailwind-CSS.md) — https://tailwindcss.com/docs/height
+- [width - Sizing - Tailwind CSS](references/018-width-Sizing-Tailwind-CSS.md) — https://tailwindcss.com/docs/width
+- [min-width - Sizing - Tailwind CSS](references/019-min-width-Sizing-Tailwind-CSS.md) — https://tailwindcss.com/docs/min-width
+- [max-width - Sizing - Tailwind CSS](references/020-max-width-Sizing-Tailwind-CSS.md) — https://tailwindcss.com/docs/max-width
+- [margin - Spacing - Tailwind CSS](references/021-margin-Spacing-Tailwind-CSS.md) — https://tailwindcss.com/docs/margin
+- [place-items - Flexbox & Grid - Tailwind CSS](references/022-place-items-Flexbox-Grid-Tailwind-CSS.md) — https://tailwindcss.com/docs/place-items
+- [place-self - Flexbox & Grid - Tailwind CSS](references/023-place-self-Flexbox-Grid-Tailwind-CSS.md) — https://tailwindcss.com/docs/place-self
+- [padding - Spacing - Tailwind CSS](references/024-padding-Spacing-Tailwind-CSS.md) — https://tailwindcss.com/docs/padding
+- [align-self - Flexbox & Grid - Tailwind CSS](references/025-align-self-Flexbox-Grid-Tailwind-CSS.md) — https://tailwindcss.com/docs/align-self
+- [place-content - Flexbox & Grid - Tailwind CSS](references/026-place-content-Flexbox-Grid-Tailwind-CSS.md) — https://tailwindcss.com/docs/place-content
+- [align-content - Flexbox & Grid - Tailwind CSS](references/027-align-content-Flexbox-Grid-Tailwind-CSS.md) — https://tailwindcss.com/docs/align-content
+- [justify-self - Flexbox & Grid - Tailwind CSS](references/028-justify-self-Flexbox-Grid-Tailwind-CSS.md) — https://tailwindcss.com/docs/justify-self
+- [align-items - Flexbox & Grid - Tailwind CSS](references/029-align-items-Flexbox-Grid-Tailwind-CSS.md) — https://tailwindcss.com/docs/align-items
+- [justify-content - Flexbox & Grid - Tailwind CSS](references/030-justify-content-Flexbox-Grid-Tailwind-CSS.md) — https://tailwindcss.com/docs/justify-content
+- [justify-items - Flexbox & Grid - Tailwind CSS](references/031-justify-items-Flexbox-Grid-Tailwind-CSS.md) — https://tailwindcss.com/docs/justify-items
+- [gap - Flexbox & Grid - Tailwind CSS](references/032-gap-Flexbox-Grid-Tailwind-CSS.md) — https://tailwindcss.com/docs/gap
+- [grid-auto-rows - Flexbox & Grid - Tailwind CSS](references/033-grid-auto-rows-Flexbox-Grid-Tailwind-CSS.md) — https://tailwindcss.com/docs/grid-auto-rows
+- [grid-auto-columns - Flexbox & Grid - Tailwind CSS](references/034-grid-auto-columns-Flexbox-Grid-Tailwind-CSS.md) — https://tailwindcss.com/docs/grid-auto-columns
+- [grid-auto-flow - Flexbox & Grid - Tailwind CSS](references/035-grid-auto-flow-Flexbox-Grid-Tailwind-CSS.md) — https://tailwindcss.com/docs/grid-auto-flow
+- [grid-template-rows - Flexbox & Grid - Tailwind CSS](references/036-grid-template-rows-Flexbox-Grid-Tailwind-CSS.md) — https://tailwindcss.com/docs/grid-template-rows
+- [grid-row - Flexbox & Grid - Tailwind CSS](references/037-grid-row-Flexbox-Grid-Tailwind-CSS.md) — https://tailwindcss.com/docs/grid-row
+- [flex-shrink - Flexbox & Grid - Tailwind CSS](references/038-flex-shrink-Flexbox-Grid-Tailwind-CSS.md) — https://tailwindcss.com/docs/flex-shrink
+- [grid-template-columns - Flexbox & Grid - Tailwind CSS](references/039-grid-template-columns-Flexbox-Grid-Tailwind-CSS.md) — https://tailwindcss.com/docs/grid-template-columns
+- [grid-column - Flexbox & Grid - Tailwind CSS](references/040-grid-column-Flexbox-Grid-Tailwind-CSS.md) — https://tailwindcss.com/docs/grid-column
+- [order - Flexbox & Grid - Tailwind CSS](references/041-order-Flexbox-Grid-Tailwind-CSS.md) — https://tailwindcss.com/docs/order
+- [flex - Flexbox & Grid - Tailwind CSS](references/042-flex-Flexbox-Grid-Tailwind-CSS.md) — https://tailwindcss.com/docs/flex
+- [flex-grow - Flexbox & Grid - Tailwind CSS](references/043-flex-grow-Flexbox-Grid-Tailwind-CSS.md) — https://tailwindcss.com/docs/flex-grow
+- [flex-direction - Flexbox & Grid - Tailwind CSS](references/044-flex-direction-Flexbox-Grid-Tailwind-CSS.md) — https://tailwindcss.com/docs/flex-direction
+- [flex-wrap - Flexbox & Grid - Tailwind CSS](references/045-flex-wrap-Flexbox-Grid-Tailwind-CSS.md) — https://tailwindcss.com/docs/flex-wrap
+- [top / right / bottom / left - Layout - Tailwind CSS](references/046-top-right-bottom-left-Layout-Tailwind-CSS.md) — https://tailwindcss.com/docs/top-right-bottom-left
+- [flex-basis - Flexbox & Grid - Tailwind CSS](references/047-flex-basis-Flexbox-Grid-Tailwind-CSS.md) — https://tailwindcss.com/docs/flex-basis
+- [z-index - Layout - Tailwind CSS](references/048-z-index-Layout-Tailwind-CSS.md) — https://tailwindcss.com/docs/z-index
+- [overscroll-behavior - Layout - Tailwind CSS](references/049-overscroll-behavior-Layout-Tailwind-CSS.md) — https://tailwindcss.com/docs/overscroll-behavior
+- [visibility - Layout - Tailwind CSS](references/050-visibility-Layout-Tailwind-CSS.md) — https://tailwindcss.com/docs/visibility
+- [overflow - Layout - Tailwind CSS](references/051-overflow-Layout-Tailwind-CSS.md) — https://tailwindcss.com/docs/overflow
+- [position - Layout - Tailwind CSS](references/052-position-Layout-Tailwind-CSS.md) — https://tailwindcss.com/docs/position
+- [object-fit - Layout - Tailwind CSS](references/053-object-fit-Layout-Tailwind-CSS.md) — https://tailwindcss.com/docs/object-fit
+- [isolation - Layout - Tailwind CSS](references/054-isolation-Layout-Tailwind-CSS.md) — https://tailwindcss.com/docs/isolation
+- [object-position - Layout - Tailwind CSS](references/055-object-position-Layout-Tailwind-CSS.md) — https://tailwindcss.com/docs/object-position
+- [clear - Layout - Tailwind CSS](references/056-clear-Layout-Tailwind-CSS.md) — https://tailwindcss.com/docs/clear
+- [float - Layout - Tailwind CSS](references/057-float-Layout-Tailwind-CSS.md) — https://tailwindcss.com/docs/float
+- [display - Layout - Tailwind CSS](references/058-display-Layout-Tailwind-CSS.md) — https://tailwindcss.com/docs/display
+- [box-sizing - Layout - Tailwind CSS](references/059-box-sizing-Layout-Tailwind-CSS.md) — https://tailwindcss.com/docs/box-sizing
+- [break-inside - Layout - Tailwind CSS](references/060-break-inside-Layout-Tailwind-CSS.md) — https://tailwindcss.com/docs/break-inside
+- [box-decoration-break - Layout - Tailwind CSS](references/061-box-decoration-break-Layout-Tailwind-CSS.md) — https://tailwindcss.com/docs/box-decoration-break
+- [break-before - Layout - Tailwind CSS](references/062-break-before-Layout-Tailwind-CSS.md) — https://tailwindcss.com/docs/break-before
+- [break-after - Layout - Tailwind CSS](references/063-break-after-Layout-Tailwind-CSS.md) — https://tailwindcss.com/docs/break-after
+- [columns - Layout - Tailwind CSS](references/064-columns-Layout-Tailwind-CSS.md) — https://tailwindcss.com/docs/columns
+- [aspect-ratio - Layout - Tailwind CSS](references/065-aspect-ratio-Layout-Tailwind-CSS.md) — https://tailwindcss.com/docs/aspect-ratio
+- [Preflight - Base styles - Tailwind CSS](references/066-Preflight-Base-styles-Tailwind-CSS.md) — https://tailwindcss.com/docs/preflight
+- [Functions and directives - Core concepts - Tailwind CSS](references/067-Functions-and-directives-Core-concepts-Tailwind-CSS.md) — https://tailwindcss.com/docs/functions-and-directives
+- [Adding custom styles - Core concepts - Tailwind CSS](references/068-Adding-custom-styles-Core-concepts-Tailwind-CSS.md) — https://tailwindcss.com/docs/adding-custom-styles
+- [Detecting classes in source files - Core concepts - Tailwind CSS](references/069-Detecting-classes-in-source-files-Core-concepts-Tailwind-CSS.md) — https://tailwindcss.com/docs/detecting-classes-in-source-files
+- [Colors - Core concepts - Tailwind CSS](references/070-Colors-Core-concepts-Tailwind-CSS.md) — https://tailwindcss.com/docs/colors
+- [Theme variables - Core concepts - Tailwind CSS](references/071-Theme-variables-Core-concepts-Tailwind-CSS.md) — https://tailwindcss.com/docs/theme
+- [Responsive design - Core concepts - Tailwind CSS](references/072-Responsive-design-Core-concepts-Tailwind-CSS.md) — https://tailwindcss.com/docs/responsive-design
+- [Hover, focus, and other states - Core concepts - Tailwind CSS](references/073-Hover-focus-and-other-states-Core-concepts-Tailwind-CSS.md) — https://tailwindcss.com/docs/hover-focus-and-other-states
+- [Dark mode - Core concepts - Tailwind CSS](references/074-Dark-mode-Core-concepts-Tailwind-CSS.md) — https://tailwindcss.com/docs/dark-mode
+- [Styling with utility classes - Core concepts - Tailwind CSS](references/075-Styling-with-utility-classes-Core-concepts-Tailwind-CSS.md) — https://tailwindcss.com/docs/styling-with-utility-classes
+- [Compatibility - Getting started - Tailwind CSS](references/076-Compatibility-Getting-started-Tailwind-CSS.md) — https://tailwindcss.com/docs/compatibility
+- [Upgrade guide - Getting started - Tailwind CSS](references/077-Upgrade-guide-Getting-started-Tailwind-CSS.md) — https://tailwindcss.com/docs/upgrade-guide
+- [Installing Tailwind CSS with Vite - Tailwind CSS](references/078-Installing-Tailwind-CSS-with-Vite-Tailwind-CSS.md) — https://tailwindcss.com/docs/installation/using-vite
+- [Editor setup - Getting started - Tailwind CSS](references/079-Editor-setup-Getting-started-Tailwind-CSS.md) — https://tailwindcss.com/docs/editor-setup

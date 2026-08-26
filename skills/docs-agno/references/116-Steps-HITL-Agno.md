@@ -1,0 +1,146 @@
+# Steps HITL - Agno
+
+Source: https://docs.agno.com/workflows/hitl/steps
+
+The `Steps` component groups multiple steps into a pipeline. It supports confirmation HITL, pausing before the entire pipeline executes.
+All HITL settings are configured via [`HumanReview`](/workflows/hitl/human-review). Steps only supports `requires_confirmation`. Passing unsupported fields (like `requires_output_review`) raises a `ValueError`.
+
+## [​](#pipeline-confirmation) Pipeline Confirmation
+
+When `requires_confirmation=True`, the pipeline pauses before executing any of its steps:
+
+- **Confirm**: Execute all steps in the pipeline
+- **Reject**: Apply the configured `on_reject` action. The default skips the entire pipeline.
+
+```
+from agno.workflow import Workflow
+from agno.workflow.step import Step
+from agno.workflow.steps import Steps
+from agno.workflow.types import HumanReview, StepInput, StepOutput
+from agno.db.sqlite import SqliteDb
+
+def collect_data(step_input: StepInput) -> StepOutput:
+    return StepOutput(content="Collection: 1000 records gathered")
+
+def validate_data(step_input: StepInput) -> StepOutput:
+    return StepOutput(content="Validation: Schema verified")
+
+def transform_data(step_input: StepInput) -> StepOutput:
+    return StepOutput(content="Transform: Data normalized")
+
+def enrich_data(step_input: StepInput) -> StepOutput:
+    return StepOutput(content="Enrichment: External data merged")
+
+def generate_report(step_input: StepInput) -> StepOutput:
+    return StepOutput(content=f"Report: {step_input.previous_step_content}")
+
+workflow = Workflow(
+    name="data_pipeline",
+    db=SqliteDb(db_file="workflow.db"),
+    steps=[
+        Step(name="collect", executor=collect_data),
+        Steps(
+            name="advanced_processing",
+            steps=[
+                Step(name="validate", executor=validate_data),
+                Step(name="transform", executor=transform_data),
+                Step(name="enrich", executor=enrich_data),
+            ],
+            human_review=HumanReview(
+                requires_confirmation=True,
+                confirmation_message="Run advanced processing pipeline?",
+            ),
+        ),
+        Step(name="report", executor=generate_report),
+    ],
+)
+
+run_output = workflow.run("Process data")
+
+if run_output.is_paused:
+    for req in run_output.steps_requiring_confirmation:
+        print(f"Pipeline: {req.step_name}")
+        print(f"Message: {req.confirmation_message}")
+
+        if input("Run pipeline? (y/n): ").lower() == "y":
+            req.confirm()
+            print("Executing pipeline")
+        else:
+            req.reject()
+            print("Skipping pipeline")
+
+    run_output = workflow.continue_run(run_output)
+
+print(run_output.content)
+```
+
+## [​](#parameters) Parameters
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `requires_confirmation` | `bool` | Pause before executing the pipeline |
+| `confirmation_message` | `str` | Message shown to the user |
+| `on_reject` | `OnReject` | Action when rejected: `skip` (default), `cancel`, or `retry` |
+
+## [​](#rejection-behavior) Rejection Behavior
+
+Set `on_reject` on `HumanReview`:
+
+```
+from agno.workflow import OnReject
+from agno.workflow.types import HumanReview
+
+review = HumanReview(
+    requires_confirmation=True,
+    on_reject=OnReject.cancel,
+)
+```
+
+| Policy | Result |
+| --- | --- |
+| `OnReject.skip` | Skip every step in the pipeline and continue with the next workflow step. This is the default. |
+| `OnReject.cancel` | Cancel the workflow. |
+| `OnReject.retry` | Resume at the rejected pipeline and execute its steps when `continue_run()` is called. The resolved confirmation does not pause a second time. |
+
+## [​](#pipeline-behavior) Pipeline Behavior
+
+The confirmation happens once before the pipeline starts. Individual steps within the pipeline do not pause for confirmation (unless they have their own HITL configuration).
+
+| User Action | Result |
+| --- | --- |
+| Confirm | Execute all steps in sequence |
+| Reject | Apply `on_reject` to skip, cancel, or execute the pipeline with `retry` |
+
+## [​](#streaming) Streaming
+
+Handle pipeline HITL in streaming workflows:
+
+```
+from agno.run.workflow import StepPausedEvent
+
+for event in workflow.run("input", stream=True, stream_events=True):
+    if isinstance(event, StepPausedEvent):
+        print(f"Paused at: {event.step_name}")
+
+session = workflow.get_session()
+run_output = session.runs[-1]
+
+while run_output.is_paused:
+    for req in run_output.steps_requiring_confirmation:
+        req.confirm()
+
+    for event in workflow.continue_run(run_output, stream=True, stream_events=True):
+        pass
+
+    session = workflow.get_session()
+    run_output = session.runs[-1]
+```
+
+## [​](#developer-resources) Developer Resources
+
+- [HumanReview Config](/workflows/hitl/human-review)
+- [Workflow HITL overview](/workflows/hitl/overview)
+- [Steps reference](/reference/workflows/steps-step)
+- [Grouped steps workflow pattern](/workflows/workflow-patterns/grouped-steps-workflow)
+
+⌘I

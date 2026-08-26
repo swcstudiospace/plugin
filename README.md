@@ -106,3 +106,18 @@ OMP shows a HUD plus a `/kanban` overlay. That is **not** the real Textual TUI â
 GitHub association is the `origin` remote URL stored on the issue (plus a category named `owner/repo`). Push later with `git add issues/` â€” this does not call `gh issue create`.
 
 Commands: `/issues`, `/kanban` (also `/aio issues` / `/aio kanban`). Config: `issues` key in `all-in-one.json`. Flag: `--aio-issues-off`.
+
+## Hermes skills
+
+The plugin ships a flattened copy of the Hermes Agent skill library under `skills/<name>/SKILL.md` so OMP discovers them (first-level skill dirs only). Nested Hermes categories (`software-development/clippyos-development`) become `skills/clippyos-development`.
+
+This is a **one-way import**. `~/.hermes` is not modified. Auth, tokens, session dumps, databases, and `.env` are not copied. Re-run:
+
+```bash
+bun run import:hermes
+```
+
+Idempotent: unchanged skills are left alone; locally edited imports are not overwritten (see `skills/.hermes-import-report.md`).
+
+Not imported: `auth.json`, `mcp-tokens/`, `.env`, `state.db`, session dumps, memories (`USER.md` has private channel ids), `SOUL.md` identity.
+

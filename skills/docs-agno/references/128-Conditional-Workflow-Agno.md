@@ -1,0 +1,111 @@
+# Conditional Workflow - Agno
+
+Source: https://docs.agno.com/workflows/workflow-patterns/conditional-workflow
+
+**Example use cases**: Content type routing, topic-specific processing, quality-based decisions
+A `Condition` selects a branch from an evaluator result. Steps within the selected branch run in their configured order.
+![Workflows condition steps diagram](https://mintcdn.com/agno-v2/2M3_dMYopb5-EJab/images/workflows-condition-steps-light.png?fit=max&auto=format&n=2M3_dMYopb5-EJab&q=85&s=4707a731d8959351f09170c57e311704)
+![Workflows condition steps diagram](https://mintcdn.com/agno-v2/2M3_dMYopb5-EJab/images/workflows-condition-steps.png?fit=max&auto=format&n=2M3_dMYopb5-EJab&q=85&s=8a4040e90a6beadd349e845193af3c3d)
+
+## [​](#how-it-works) How It Works
+
+The `Condition` class runs its `evaluator` and executes different steps based on the result:
+
+- **If branch (`steps`)**: Executes when the evaluator returns `True`
+- **Else branch (`else_steps`)**: Executes when the evaluator returns `False` (optional)
+
+If the condition is `False` and no `else_steps` are provided, the condition is skipped and the workflow continues to the next step.
+The evaluator can be a Python function (sync or async), a boolean, or a [CEL expression](/examples/workflows/cel-expressions/condition/cel-basic) string.
+
+## [​](#basic-example) Basic Example
+
+conditional\_workflow.py
+
+```
+from agno.workflow import Condition, Step, StepInput, StepOutput, Workflow
+
+def is_tech_topic(step_input: StepInput) -> bool:
+    topic = str(step_input.input).lower()
+    return any(keyword in topic for keyword in ["ai", "tech", "software"])
+
+def research_technology(step_input: StepInput) -> StepOutput:
+    return StepOutput(content=f"Technology research for {step_input.input}")
+
+def create_analysis(step_input: StepInput) -> StepOutput:
+    prior = step_input.previous_step_content or "No technology branch was run"
+    return StepOutput(content=f"Analysis:\n{prior}")
+
+workflow = Workflow(
+    name="Conditional Research",
+    steps=[
+        Condition(
+            name="Tech Topic Check",
+            evaluator=is_tech_topic,
+            steps=[Step(name="Tech Research", executor=research_technology)],
+        ),
+        Step(name="General Analysis", executor=create_analysis),
+    ],
+)
+
+workflow.print_response("Comprehensive analysis of AI and machine learning trends", markdown=True)
+```
+
+## [​](#if/else-branching) If/Else Branching
+
+Use `else_steps` to define an alternative execution path when the condition is `False`:
+
+condition\_with\_else.py
+
+```
+from agno.workflow import Condition, Step, StepInput, StepOutput, Workflow
+
+def is_technical_issue(step_input: StepInput) -> bool:
+    text = str(step_input.input or "").lower()
+    tech_keywords = ["error", "bug", "crash", "not working", "api", "timeout"]
+    return any(kw in text for kw in tech_keywords)
+
+def diagnose(step_input: StepInput) -> StepOutput:
+    return StepOutput(content=f"Technical diagnosis for: {step_input.input}")
+
+def general_support(step_input: StepInput) -> StepOutput:
+    return StepOutput(content=f"General support response for: {step_input.input}")
+
+def follow_up(step_input: StepInput) -> StepOutput:
+    return StepOutput(content=f"Follow-up:\n{step_input.previous_step_content}")
+
+workflow = Workflow(
+    name="Customer Support Router",
+    steps=[
+        Condition(
+            name="TechnicalTriage",
+            evaluator=is_technical_issue,
+            # If branch: technical pipeline
+            steps=[
+                Step(name="Diagnose", executor=diagnose),
+            ],
+            # Else branch: general support
+            else_steps=[
+                Step(name="GeneralSupport", executor=general_support),
+            ],
+        ),
+        Step(name="FollowUp", executor=follow_up),
+    ],
+)
+
+# Technical query -> executes Diagnose, then FollowUp
+workflow.print_response("My app keeps crashing with a timeout error")
+
+# Non-technical query -> executes GeneralSupport, then FollowUp
+workflow.print_response("How do I change my shipping address?")
+```
+
+## [​](#developer-resources) Developer Resources
+
+- [Condition Steps Workflow](/workflows/usage/condition-steps-workflow-stream)
+- [Condition with List of Steps](/workflows/usage/condition-with-list-of-steps)
+
+## [​](#reference) Reference
+
+For complete API documentation, see [Condition Steps Reference](/reference/workflows/conditional-steps).
+
+⌘I

@@ -1,0 +1,84 @@
+# docs-django
+
+Exported documentation references.
+
+- [Writing your first Django app, part 1 | Django documentation | Django](references/001-Writing-your-first-Django-app-part-1-Django-documentation-Dj.md) — https://docs.djangoproject.com/en/dev/intro/tutorial01
+- [Writing your first Django app, part 2 | Django documentation | Django](references/002-Writing-your-first-Django-app-part-2-Django-documentation-Dj.md) — https://docs.djangoproject.com/en/dev/intro/tutorial02
+- [Django at a glance | Django documentation | Django](references/003-Django-at-a-glance-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/intro/overview
+- [Advanced tutorial: How to write reusable apps | Django documentation | Django](references/004-Advanced-tutorial-How-to-write-reusable-apps-Django-document.md) — https://docs.djangoproject.com/en/dev/intro/reusable-apps
+- [Writing your first contribution for Django | Django documentation | Django](references/005-Writing-your-first-contribution-for-Django-Django-documentat.md) — https://docs.djangoproject.com/en/dev/intro/contributing
+- [Quick install guide | Django documentation | Django](references/006-Quick-install-guide-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/intro/install
+- [Django’s security policies | Django documentation | Django](references/007-Django-s-security-policies-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/internals/security
+- [Getting started | Django documentation | Django](references/008-Getting-started-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/intro
+- [Django’s release process | Django documentation | Django](references/009-Django-s-release-process-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/internals/release-process
+- [Organization of the Django Project | Django documentation | Django](references/010-Organization-of-the-Django-Project-Django-documentation-Djan.md) — https://docs.djangoproject.com/en/dev/internals/organization
+- [How to release Django | Django documentation | Django](references/011-How-to-release-Django-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/internals/howto-release-django
+- [Mailing lists and Forum | Django documentation | Django](references/012-Mailing-lists-and-Forum-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/internals/mailing-lists
+- [Django Deprecation Timeline | Django documentation | Django](references/013-Django-Deprecation-Timeline-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/internals/deprecation
+- [The Django source code repository | Django documentation | Django](references/014-The-Django-source-code-repository-Django-documentation-Djang.md) — https://docs.djangoproject.com/en/dev/internals/git
+- [Writing documentation | Django documentation | Django](references/015-Writing-documentation-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/internals/contributing/writing-documentation
+- [Working with Git and GitHub | Django documentation | Django](references/016-Working-with-Git-and-GitHub-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/working-with-git
+- [Submitting contributions | Django documentation | Django](references/017-Submitting-contributions-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/submitting-patches
+- [Unit tests | Django documentation | Django](references/018-Unit-tests-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/unit-tests
+- [Coding style | Django documentation | Django](references/019-Coding-style-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/coding-style
+- [JavaScript code | Django documentation | Django](references/020-JavaScript-code-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/javascript
+- [Contributing code | Django documentation | Django](references/021-Contributing-code-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/internals/contributing/writing-code
+- [Triaging tickets | Django documentation | Django](references/022-Triaging-tickets-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/internals/contributing/triaging-tickets
+- [Committing code | Django documentation | Django](references/023-Committing-code-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/internals/contributing/committing-code
+- [Advice for new contributors | Django documentation | Django](references/024-Advice-for-new-contributors-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/internals/contributing/new-contributors
+- [Localizing Django | Django documentation | Django](references/025-Localizing-Django-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/internals/contributing/localizing
+- [Contributing to Django | Django documentation | Django](references/026-Contributing-to-Django-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/internals/contributing
+- [Accessibility | Django documentation | Django](references/027-Accessibility-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/internals/contributing/accessibility
+- [Reporting bugs and requesting features | Django documentation | Django](references/028-Reporting-bugs-and-requesting-features-Django-documentation.md) — https://docs.djangoproject.com/en/dev/internals/contributing/bugs-and-features
+- [Django documentation | Django documentation | Django](references/029-Django-documentation-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev
+- [How to create database migrations | Django documentation | Django](references/030-How-to-create-database-migrations-Django-documentation-Djang.md) — https://docs.djangoproject.com/en/dev/howto/writing-migrations
+- [Django internals | Django documentation | Django](references/031-Django-internals-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/internals
+- [How to install Django on Windows | Django documentation | Django](references/032-How-to-install-Django-on-Windows-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/howto/windows
+- [How to deploy static files | Django documentation | Django](references/033-How-to-deploy-static-files-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/howto/static-files/deployment
+- [How to upgrade Django to a newer version | Django documentation | Django](references/034-How-to-upgrade-Django-to-a-newer-version-Django-documentatio.md) — https://docs.djangoproject.com/en/dev/howto/upgrade-version
+- [How to create PDF files | Django documentation | Django](references/035-How-to-create-PDF-files-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/howto/outputting-pdf
+- [How to override templates | Django documentation | Django](references/036-How-to-override-templates-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/howto/overriding-templates
+- [How to manage static files (e.g. images, JavaScript, CSS) | Django documentation | Django](references/037-How-to-manage-static-files-e-g-images-JavaScript-CSS-Django.md) — https://docs.djangoproject.com/en/dev/howto/static-files
+- [How to create CSV output | Django documentation | Django](references/038-How-to-create-CSV-output-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/howto/outputting-csv
+- [Migrating email to mailers | Django documentation | Django](references/039-Migrating-email-to-mailers-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/howto/mailers-migration
+- [How to configure and use logging | Django documentation | Django](references/040-How-to-configure-and-use-logging-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/howto/logging
+- [How to provide initial data for models | Django documentation | Django](references/041-How-to-provide-initial-data-for-models-Django-documentation.md) — https://docs.djangoproject.com/en/dev/howto/initial-data
+- [How to integrate Django with a legacy database | Django documentation | Django](references/042-How-to-integrate-Django-with-a-legacy-database-Django-docume.md) — https://docs.djangoproject.com/en/dev/howto/legacy-databases
+- [How to use Django with uWSGI | Django documentation | Django](references/043-How-to-use-Django-with-uWSGI-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/uwsgi
+- [How to manage error reporting | Django documentation | Django](references/044-How-to-manage-error-reporting-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/howto/error-reporting
+- [How to use Django with Gunicorn | Django documentation | Django](references/045-How-to-use-Django-with-Gunicorn-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/gunicorn
+- [How to use Django with Apache and mod_wsgi | Django documentation | Django](references/046-How-to-use-Django-with-Apache-and-mod_wsgi-Django-documentat.md) — https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/modwsgi
+- [How to use Django with Granian | Django documentation | Django](references/047-How-to-use-Django-with-Granian-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/granian
+- [How to authenticate against Django’s user database from Apache | Django documentation | Django](references/048-How-to-authenticate-against-Django-s-user-database-from-Apac.md) — https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/apache-auth
+- [Deployment checklist | Django documentation | Django](references/049-Deployment-checklist-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/howto/deployment/checklist
+- [How to deploy with WSGI | Django documentation | Django](references/050-How-to-deploy-with-WSGI-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/howto/deployment/wsgi
+- [How to use Django with Uvicorn | Django documentation | Django](references/051-How-to-use-Django-with-Uvicorn-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/howto/deployment/asgi/uvicorn
+- [How to use Django with Hypercorn | Django documentation | Django](references/052-How-to-use-Django-with-Hypercorn-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/howto/deployment/asgi/hypercorn
+- [How to use Django with Daphne | Django documentation | Django](references/053-How-to-use-Django-with-Daphne-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/howto/deployment/asgi/daphne
+- [How to use Django with Granian | Django documentation | Django](references/054-How-to-use-Django-with-Granian-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/howto/deployment/asgi/granian
+- [How to create custom template tags and filters | Django documentation | Django](references/055-How-to-create-custom-template-tags-and-filters-Django-docume.md) — https://docs.djangoproject.com/en/dev/howto/custom-template-tags
+- [How to deploy Django | Django documentation | Django](references/056-How-to-deploy-Django-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/howto/deployment
+- [How to deploy with ASGI | Django documentation | Django](references/057-How-to-deploy-with-ASGI-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/howto/deployment/asgi
+- [How to delete a Django application | Django documentation | Django](references/058-How-to-delete-a-Django-application-Django-documentation-Djan.md) — https://docs.djangoproject.com/en/dev/howto/delete-app
+- [How to customize the shell command | Django documentation | Django](references/059-How-to-customize-the-shell-command-Django-documentation-Djan.md) — https://docs.djangoproject.com/en/dev/howto/custom-shell
+- [How to implement a custom template backend | Django documentation | Django](references/060-How-to-implement-a-custom-template-backend-Django-documentat.md) — https://docs.djangoproject.com/en/dev/howto/custom-template-backend
+- [How to create custom django-admin commands | Django documentation | Django](references/061-How-to-create-custom-django-admin-commands-Django-documentat.md) — https://docs.djangoproject.com/en/dev/howto/custom-management-commands
+- [How to create custom model fields | Django documentation | Django](references/062-How-to-create-custom-model-fields-Django-documentation-Djang.md) — https://docs.djangoproject.com/en/dev/howto/custom-model-fields
+- [How to write custom lookups | Django documentation | Django](references/063-How-to-write-custom-lookups-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/howto/custom-lookups
+- [How to write a custom storage class | Django documentation | Django](references/064-How-to-write-a-custom-storage-class-Django-documentation-Dja.md) — https://docs.djangoproject.com/en/dev/howto/custom-file-storage
+- [How to use Django’s CSRF protection | Django documentation | Django](references/065-How-to-use-Django-s-CSRF-protection-Django-documentation-Dja.md) — https://docs.djangoproject.com/en/dev/howto/csrf
+- [How to use Django’s Content Security Policy | Django documentation | Django](references/066-How-to-use-Django-s-Content-Security-Policy-Django-documenta.md) — https://docs.djangoproject.com/en/dev/howto/csp
+- [How to authenticate using REMOTE_USER | Django documentation | Django](references/067-How-to-authenticate-using-REMOTE_USER-Django-documentation-D.md) — https://docs.djangoproject.com/en/dev/howto/auth-remote-user
+- [How-to guides | Django documentation | Django](references/068-How-to-guides-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/howto
+- [FAQ: Using Django | Django documentation | Django](references/069-FAQ-Using-Django-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/faq/usage
+- [Glossary | Django documentation | Django](references/070-Glossary-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/glossary
+- [FAQ: Installation | Django documentation | Django](references/071-FAQ-Installation-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/faq/install
+- [Troubleshooting | Django documentation | Django](references/072-Troubleshooting-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/faq/troubleshooting
+- [FAQ: Databases and models | Django documentation | Django](references/073-FAQ-Databases-and-models-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/faq/models
+- [FAQ: Contributing code | Django documentation | Django](references/074-FAQ-Contributing-code-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/faq/contributing
+- [FAQ: General | Django documentation | Django](references/075-FAQ-General-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/faq/general
+- [FAQ: Getting Help | Django documentation | Django](references/076-FAQ-Getting-Help-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/faq/help
+- [FAQ: The admin | Django documentation | Django](references/077-FAQ-The-admin-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/faq/admin
+- [Django FAQ | Django documentation | Django](references/078-Django-FAQ-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/faq
+- [Django documentation | Django documentation | Django](references/079-Django-documentation-Django-documentation-Django.md) — https://docs.djangoproject.com/en/6.0
+- [Django documentation contents | Django documentation | Django](references/080-Django-documentation-contents-Django-documentation-Django.md) — https://docs.djangoproject.com/en/dev/contents

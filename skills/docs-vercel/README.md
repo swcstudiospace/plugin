@@ -1,0 +1,153 @@
+# docs-vercel
+
+Exported documentation references.
+
+- [Structured Outputs](references/001-Structured-Outputs.md) — https://vercel.com/docs/ai-gateway/sdks-and-apis/openresponses/structured-outputs
+- [Reasoning](references/002-Reasoning.md) — https://vercel.com/docs/ai-gateway/sdks-and-apis/openresponses/reasoning
+- [Streaming](references/003-Streaming.md) — https://vercel.com/docs/ai-gateway/sdks-and-apis/openresponses/streaming
+- [Tool Calling](references/004-Tool-Calling.md) — https://vercel.com/docs/ai-gateway/sdks-and-apis/openresponses/tool-calling
+- [Text Generation](references/005-Text-Generation.md) — https://vercel.com/docs/ai-gateway/sdks-and-apis/openresponses/text-generation
+- [OpenResponses API](references/006-OpenResponses-API.md) — https://vercel.com/docs/ai-gateway/sdks-and-apis/openresponses
+- [Advanced Features](references/007-Advanced-Features.md) — https://vercel.com/docs/ai-gateway/sdks-and-apis/anthropic-messages-api/advanced
+- [File Attachments](references/008-File-Attachments.md) — https://vercel.com/docs/ai-gateway/sdks-and-apis/anthropic-messages-api/images
+- [Streaming](references/009-Streaming.md) — https://vercel.com/docs/ai-gateway/sdks-and-apis/anthropic-messages-api/streaming
+- [Structured Outputs](references/010-Structured-Outputs.md) — https://vercel.com/docs/ai-gateway/sdks-and-apis/anthropic-messages-api/structured-outputs
+- [Extended Thinking](references/011-Extended-Thinking.md) — https://vercel.com/docs/ai-gateway/sdks-and-apis/anthropic-messages-api/reasoning
+- [Messages](references/012-Messages.md) — https://vercel.com/docs/ai-gateway/sdks-and-apis/anthropic-messages-api/messages
+- [Anthropic Messages API](references/013-Anthropic-Messages-API.md) — https://vercel.com/docs/ai-gateway/sdks-and-apis/anthropic-messages-api
+- [Tool Calls](references/014-Tool-Calls.md) — https://vercel.com/docs/ai-gateway/sdks-and-apis/anthropic-messages-api/tool-calling
+- [Image Generation](references/015-Image-Generation.md) — https://vercel.com/docs/ai-gateway/sdks-and-apis/openai-chat-completions/image-generation
+- [Direct REST API Usage](references/016-Direct-REST-API-Usage.md) — https://vercel.com/docs/ai-gateway/sdks-and-apis/openai-chat-completions/rest-api
+- [Advanced Configuration](references/017-Advanced-Configuration.md) — https://vercel.com/docs/ai-gateway/sdks-and-apis/openai-chat-completions/advanced
+- [Embeddings with the OpenAI-Compatible API](references/018-Embeddings-with-the-OpenAI-Compatible-API.md) — https://vercel.com/docs/ai-gateway/sdks-and-apis/openai-chat-completions/embeddings
+- [Reasoning](references/019-Reasoning.md) — https://vercel.com/docs/ai-gateway/sdks-and-apis/openai-chat-completions/reasoning
+- [File Attachments](references/020-File-Attachments.md) — https://vercel.com/docs/ai-gateway/sdks-and-apis/openai-chat-completions/images
+- [Structured Outputs](references/021-Structured-Outputs.md) — https://vercel.com/docs/ai-gateway/sdks-and-apis/openai-chat-completions/structured-outputs
+- [Tool Calls](references/022-Tool-Calls.md) — https://vercel.com/docs/ai-gateway/sdks-and-apis/openai-chat-completions/tool-calling
+- [File Attachments](references/023-File-Attachments.md) — https://vercel.com/docs/ai-gateway/sdks-and-apis/responses/images
+- [OpenAI Chat Completions API](references/024-OpenAI-Chat-Completions-API.md) — https://vercel.com/docs/ai-gateway/sdks-and-apis/openai-chat-completions
+- [Chat Completions](references/025-Chat-Completions.md) — https://vercel.com/docs/ai-gateway/sdks-and-apis/openai-chat-completions/chat-completions
+- [Streaming](references/026-Streaming.md) — https://vercel.com/docs/ai-gateway/sdks-and-apis/openai-chat-completions/streaming
+- [Reasoning](references/027-Reasoning.md) — https://vercel.com/docs/ai-gateway/sdks-and-apis/responses/reasoning
+- [Structured Outputs](references/028-Structured-Outputs.md) — https://vercel.com/docs/ai-gateway/sdks-and-apis/responses/structured-outputs
+- [Streaming](references/029-Streaming.md) — https://vercel.com/docs/ai-gateway/sdks-and-apis/responses/streaming
+- [Tool Calling](references/030-Tool-Calling.md) — https://vercel.com/docs/ai-gateway/sdks-and-apis/responses/tool-calling
+- [Responses API over WebSocket](references/031-Responses-API-over-WebSocket.md) — https://vercel.com/docs/ai-gateway/sdks-and-apis/responses/websockets
+- [Text Generation](references/032-Text-Generation.md) — https://vercel.com/docs/ai-gateway/sdks-and-apis/responses/text-generation
+- [OpenAI Responses API](references/033-OpenAI-Responses-API.md) — https://vercel.com/docs/ai-gateway/sdks-and-apis/responses
+- [AI SDK for Python](references/034-AI-SDK-for-Python.md) — https://vercel.com/docs/ai-gateway/sdks-and-apis/ai-sdk-python
+- [SDKs & APIs](references/035-SDKs-APIs.md) — https://vercel.com/docs/ai-gateway/sdks-and-apis
+- [AI SDK](references/036-AI-SDK.md) — https://vercel.com/docs/ai-gateway/sdks-and-apis/ai-sdk
+- [Speech to Text and Text to Speech Quickstart](references/037-Speech-to-Text-and-Text-to-Speech-Quickstart.md) — https://vercel.com/docs/ai-gateway/getting-started/speech
+- [page-38](references/038-page-38.md) — https://vercel.com/docs/ai-gateway/getting-started/realtime
+- [Video Generation Quickstart](references/039-Video-Generation-Quickstart.md) — https://vercel.com/docs/ai-gateway/getting-started/video
+- [Image Generation Quickstart](references/040-Image-Generation-Quickstart.md) — https://vercel.com/docs/ai-gateway/getting-started/image
+- [AI SDK](references/041-AI-SDK.md) — https://vercel.com/docs/ai-sdk
+- [AI Gateway](references/042-AI-Gateway.md) — https://vercel.com/docs/ai-gateway
+- [Text Generation Quickstart](references/043-Text-Generation-Quickstart.md) — https://vercel.com/docs/ai-gateway/getting-started/text
+- [Getting Started](references/044-Getting-Started.md) — https://vercel.com/docs/ai-gateway/getting-started
+- [Installation](references/045-Installation.md) — https://vercel.com/docs/agent/installation
+- [Vercel Agent Pricing](references/046-Vercel-Agent-Pricing.md) — https://vercel.com/docs/agent/pricing
+- [Managing Code Reviews](references/047-Managing-Code-Reviews.md) — https://vercel.com/docs/agent/pr-review/usage
+- [Investigation](references/048-Investigation.md) — https://vercel.com/docs/agent/investigation
+- [Code Review](references/049-Code-Review.md) — https://vercel.com/docs/agent/pr-review
+- [Chat](references/050-Chat.md) — https://vercel.com/docs/agent/chat
+- [Vercel Agent](references/051-Vercel-Agent.md) — https://vercel.com/docs/agent
+- [Two-factor Authentication](references/052-Two-factor-Authentication.md) — https://vercel.com/docs/two-factor-authentication
+- [SAML Single Sign-On](references/053-SAML-Single-Sign-On.md) — https://vercel.com/docs/saml
+- [Forward Passport identity to another backend](references/054-Forward-Passport-identity-to-another-backend.md) — https://vercel.com/docs/passport/forward-identity
+- [Verify forwarded Passport tokens](references/055-Verify-forwarded-Passport-tokens.md) — https://vercel.com/docs/passport/verify-identity
+- [Passport token claims](references/056-Passport-token-claims.md) — https://vercel.com/docs/passport/token-claims
+- [Restrict access to deployments with Passport](references/057-Restrict-access-to-deployments-with-Passport.md) — https://vercel.com/docs/passport
+- [Configure additional identity scopes](references/058-Configure-additional-identity-scopes.md) — https://vercel.com/docs/passport/additional-identity-scopes
+- [Read Passport identity in your application](references/059-Read-Passport-identity-in-your-application.md) — https://vercel.com/docs/passport/read-identity
+- [Directory Sync](references/060-Directory-Sync.md) — https://vercel.com/docs/directory-sync
+- [Set up Passport with an identity provider](references/061-Set-up-Passport-with-an-identity-provider.md) — https://vercel.com/docs/passport/set-up-identity-provider
+- [Automated & Agent Access](references/062-Automated-Agent-Access.md) — https://vercel.com/docs/deployment-protection/automated-agent-access
+- [Restrict access to production source maps](references/063-Restrict-access-to-production-source-maps.md) — https://vercel.com/docs/deployment-protection/protected-source-maps
+- [Restrict access to deployments with Vercel Authentication](references/064-Restrict-access-to-deployments-with-Vercel-Authentication.md) — https://vercel.com/docs/deployment-protection/methods-to-protect-deployments/vercel-authentication
+- [Restrict deployment access by IP address](references/065-Restrict-deployment-access-by-IP-address.md) — https://vercel.com/docs/deployment-protection/methods-to-protect-deployments/trusted-ips
+- [Methods to Protect Deployments](references/066-Methods-to-Protect-Deployments.md) — https://vercel.com/docs/deployment-protection/methods-to-protect-deployments
+- [Password Protection](references/067-Password-Protection.md) — https://vercel.com/docs/deployment-protection/methods-to-protect-deployments/password-protection
+- [Deployment Protection Exceptions](references/068-Deployment-Protection-Exceptions.md) — https://vercel.com/docs/deployment-protection/methods-to-bypass-deployment-protection/deployment-protection-exceptions
+- [Sharable Links](references/069-Sharable-Links.md) — https://vercel.com/docs/deployment-protection/methods-to-bypass-deployment-protection/sharable-links
+- [Protection Bypass for Automation](references/070-Protection-Bypass-for-Automation.md) — https://vercel.com/docs/deployment-protection/methods-to-bypass-deployment-protection/protection-bypass-automation
+- [OPTIONS Allowlist](references/071-OPTIONS-Allowlist.md) — https://vercel.com/docs/deployment-protection/methods-to-bypass-deployment-protection/options-allowlist
+- [Using the Activity Log](references/072-Using-the-Activity-Log.md) — https://vercel.com/docs/activity-log
+- [Trusted Sources](references/073-Trusted-Sources.md) — https://vercel.com/docs/deployment-protection/methods-to-bypass-deployment-protection/trusted-sources
+- [Bypass Deployment Protection for testing, sharing, and automation](references/074-Bypass-Deployment-Protection-for-testing-sharing-and-automat.md) — https://vercel.com/docs/deployment-protection/methods-to-bypass-deployment-protection
+- [Troubleshooting Sign in with Vercel](references/075-Troubleshooting-Sign-in-with-Vercel.md) — https://vercel.com/docs/sign-in-with-vercel/troubleshooting
+- [Deployment Protection on Vercel](references/076-Deployment-Protection-on-Vercel.md) — https://vercel.com/docs/deployment-protection
+- [Manage Sign in with Vercel from the Dashboard](references/077-Manage-Sign-in-with-Vercel-from-the-Dashboard.md) — https://vercel.com/docs/sign-in-with-vercel/manage-from-dashboard
+- [Authorization Server API](references/078-Authorization-Server-API.md) — https://vercel.com/docs/sign-in-with-vercel/authorization-server-api
+- [Consent Page](references/079-Consent-Page.md) — https://vercel.com/docs/sign-in-with-vercel/consent-page
+- [Tokens](references/080-Tokens.md) — https://vercel.com/docs/sign-in-with-vercel/tokens
+- [Scopes and Permissions](references/081-Scopes-and-Permissions.md) — https://vercel.com/docs/sign-in-with-vercel/scopes-and-permissions
+- [Error](references/082-Error.md) — https://vercel.com/docs/sign-in-with-vercel/getting-started
+- [Sign in with Vercel](references/083-Sign-in-with-Vercel.md) — https://vercel.com/docs/sign-in-with-vercel
+- [Account Management](references/084-Account-Management.md) — https://vercel.com/docs/accounts
+- [Report Abuse](references/085-Report-Abuse.md) — https://vercel.com/docs/platforms/platform-elements/blocks/report-abuse
+- [DNS Table](references/086-DNS-Table.md) — https://vercel.com/docs/platforms/platform-elements/blocks/dns-table
+- [Your custom content](references/087-Your-custom-content.md) — https://vercel.com/docs/platforms/platform-elements/blocks/deploy-popover
+- [Claim Deployment](references/088-Claim-Deployment.md) — https://vercel.com/docs/platforms/platform-elements/blocks/claim-deployment
+- [Domain Settings](references/089-Domain-Settings.md) — https://vercel.com/docs/platforms/platform-elements/blocks/custom-domain
+- [Blocks](references/090-Blocks.md) — https://vercel.com/docs/platforms/platform-elements/blocks
+- [Hello from my platform!](references/091-Hello-from-my-platform.md) — https://vercel.com/docs/platforms/platform-elements/actions/deploy-files
+- [Actions](references/092-Actions.md) — https://vercel.com/docs/platforms/platform-elements/actions
+- [Add Custom Domain](references/093-Add-Custom-Domain.md) — https://vercel.com/docs/platforms/platform-elements/actions/add-custom-domain
+- [Platform Template](references/094-Platform-Template.md) — https://vercel.com/docs/platforms/examples/platform-template
+- [Platform Elements](references/095-Platform-Elements.md) — https://vercel.com/docs/platforms/platform-elements
+- [{tenant.name}](references/096-tenant-name.md) — https://vercel.com/docs/platforms/examples/multi-tenant-template
+- [OSS AI Vibe Coding Platform](references/097-OSS-AI-Vibe-Coding-Platform.md) — https://vercel.com/docs/platforms/examples/oss-coding-agent
+- [Multi-Project Platforms Reference](references/098-Multi-Project-Platforms-Reference.md) — https://vercel.com/docs/platforms/multi-project-platforms/reference
+- [Examples](references/099-Examples.md) — https://vercel.com/docs/platforms/examples
+- [Multi-Project Platforms Concepts](references/100-Multi-Project-Platforms-Concepts.md) — https://vercel.com/docs/platforms/multi-project-platforms/concepts
+- [Hello from my platform!](references/101-Hello-from-my-platform.md) — https://vercel.com/docs/platforms/multi-project-platforms/quickstart
+- [Multi-tenant Preview URLs](references/102-Multi-tenant-Preview-URLs.md) — https://vercel.com/docs/platforms/multi-tenant-platforms/preview-url-prefixes
+- [Multi-Project Platforms](references/103-Multi-Project-Platforms.md) — https://vercel.com/docs/platforms/multi-project-platforms
+- [Multi-tenant Limits](references/104-Multi-tenant-Limits.md) — https://vercel.com/docs/platforms/multi-tenant-platforms/limits
+- [Proxy and Routing](references/105-Proxy-and-Routing.md) — https://vercel.com/docs/platforms/multi-tenant-platforms/middleware-and-routing
+- [Multi-tenant Reference](references/106-Multi-tenant-Reference.md) — https://vercel.com/docs/platforms/multi-tenant-platforms/reference
+- [{customer.siteTitle}](references/107-customer-siteTitle.md) — https://vercel.com/docs/platforms/multi-tenant-platforms/custom-subpaths
+- [Serving Static Files](references/108-Serving-Static-Files.md) — https://vercel.com/docs/platforms/multi-tenant-platforms/serving-static-files
+- [Multi-Tenant Platform Quickstart](references/109-Multi-Tenant-Platform-Quickstart.md) — https://vercel.com/docs/platforms/multi-tenant-platforms/quickstart
+- [Multi-Tenant Platform Concepts](references/110-Multi-Tenant-Platform-Concepts.md) — https://vercel.com/docs/platforms/multi-tenant-platforms/concepts
+- [Configuring Custom Domains](references/111-Configuring-Custom-Domains.md) — https://vercel.com/docs/platforms/multi-tenant-platforms/configuring-domains
+- [Multi-Tenant Platforms](references/112-Multi-Tenant-Platforms.md) — https://vercel.com/docs/platforms/multi-tenant-platforms
+- [Vercel API Reference](references/113-Vercel-API-Reference.md) — https://vercel.com/docs/integrations/create-integration/marketplace-api/reference/vercel
+- [Production checklist for launch](references/114-Production-checklist-for-launch.md) — https://vercel.com/docs/production-checklist
+- [Partner API Reference](references/115-Partner-API-Reference.md) — https://vercel.com/docs/integrations/create-integration/marketplace-api/reference/partner
+- [Incremental Migration to Vercel](references/116-Incremental-Migration-to-Vercel.md) — https://vercel.com/docs/incremental-migration
+- [Supported Frameworks on Vercel](references/117-Supported-Frameworks-on-Vercel.md) — https://vercel.com/docs/frameworks/more-frameworks
+- [xmcp on Vercel](references/118-xmcp-on-Vercel.md) — https://vercel.com/docs/frameworks/backend/xmcp
+- [NestJS on Vercel](references/119-NestJS-on-Vercel.md) — https://vercel.com/docs/frameworks/backend/nestjs
+- [Hono on Vercel](references/120-Hono-on-Vercel.md) — https://vercel.com/docs/frameworks/backend/hono
+- [Koa on Vercel](references/121-Koa-on-Vercel.md) — https://vercel.com/docs/frameworks/backend/koa
+- [Deploy a Flask app on Vercel](references/122-Deploy-a-Flask-app-on-Vercel.md) — https://vercel.com/docs/frameworks/backend/flask
+- [Fastify on Vercel](references/123-Fastify-on-Vercel.md) — https://vercel.com/docs/frameworks/backend/fastify
+- [Deploy a FastAPI app on Vercel](references/124-Deploy-a-FastAPI-app-on-Vercel.md) — https://vercel.com/docs/frameworks/backend/fastapi
+- [Elysia on Vercel](references/125-Elysia-on-Vercel.md) — https://vercel.com/docs/frameworks/backend/elysia
+- [Backends on Vercel](references/126-Backends-on-Vercel.md) — https://vercel.com/docs/frameworks/backend
+- [Deploy a Celery app on Vercel](references/127-Deploy-a-Celery-app-on-Vercel.md) — https://vercel.com/docs/frameworks/backend/celery
+- [Express on Vercel](references/128-Express-on-Vercel.md) — https://vercel.com/docs/frameworks/backend/express
+- [Create React App on Vercel](references/129-Create-React-App-on-Vercel.md) — https://vercel.com/docs/frameworks/frontend/create-react-app
+- [React Router on Vercel](references/130-React-Router-on-Vercel.md) — https://vercel.com/docs/frameworks/frontend/react-router
+- [Nitro on Vercel](references/131-Nitro-on-Vercel.md) — https://vercel.com/docs/frameworks/backend/nitro
+- [Vite on Vercel](references/132-Vite-on-Vercel.md) — https://vercel.com/docs/frameworks/frontend/vite
+- [{title}](references/133-title.md) — https://vercel.com/docs/frameworks/frontend/astro
+- [Frontends on Vercel](references/134-Frontends-on-Vercel.md) — https://vercel.com/docs/frameworks/frontend
+- [Deploy a Django app on Vercel](references/135-Deploy-a-Django-app-on-Vercel.md) — https://vercel.com/docs/frameworks/full-stack/django
+- [My App](references/136-My-App.md) — https://vercel.com/docs/frameworks/full-stack/vite-with-nitro
+- [TanStack Start on Vercel](references/137-TanStack-Start-on-Vercel.md) — https://vercel.com/docs/frameworks/full-stack/tanstack-start
+- [Nuxt on Vercel](references/138-Nuxt-on-Vercel.md) — https://vercel.com/docs/frameworks/full-stack/nuxt
+- [This route is rendered on the server](references/139-This-route-is-rendered-on-the-server.md) — https://vercel.com/docs/frameworks/full-stack/remix
+- [Next.js](references/140-Next-js.md) — https://vercel.com/docs/frameworks/full-stack/nextjs
+- [Hello!](references/141-Hello.md) — https://vercel.com/docs/frameworks/full-stack/sveltekit
+- [What is Compute?](references/142-What-is-Compute.md) — https://vercel.com/docs/fundamentals/what-is-compute
+- [Frameworks on Vercel](references/143-Frameworks-on-Vercel.md) — https://vercel.com/docs/frameworks
+- [Full-stack frameworks on Vercel](references/144-Full-stack-frameworks-on-Vercel.md) — https://vercel.com/docs/frameworks/full-stack
+- [How requests flow through Vercel](references/145-How-requests-flow-through-Vercel.md) — https://vercel.com/docs/fundamentals/infrastructure
+- [Vercel fundamental concepts](references/146-Vercel-fundamental-concepts.md) — https://vercel.com/docs/fundamentals
+- [How Vercel builds your application](references/147-How-Vercel-builds-your-application.md) — https://vercel.com/docs/fundamentals/builds
+- [Vercel Documentation](references/148-Vercel-Documentation.md) — https://vercel.com/docs
+- [Getting started with Vercel](references/149-Getting-started-with-Vercel.md) — https://vercel.com/docs/getting-started-with-vercel

@@ -1,0 +1,82 @@
+# docs-github
+
+Exported documentation references.
+
+- [Permissions required for fine-grained personal access tokens - GitHub Docs](references/001-Permissions-required-for-fine-grained-personal-access-tokens.md) — https://docs.github.com/en/rest/authentication/permissions-required-for-fine-grained-personal-access-tokens
+- [Authenticating to the REST API - GitHub Docs](references/002-Authenticating-to-the-REST-API-GitHub-Docs.md) — https://docs.github.com/en/rest/authentication/authenticating-to-the-rest-api
+- [Branches - GitHub Docs](references/003-Branches-GitHub-Docs.md) — https://docs.github.com/en/pull-requests/reference/branches
+- [Pull requests - GitHub Docs](references/004-Pull-requests-GitHub-Docs.md) — https://docs.github.com/en/pull-requests/reference/pull-requests
+- [Workflow syntax for GitHub Actions - GitHub Docs](references/005-Workflow-syntax-for-GitHub-Actions-GitHub-Docs.md) — https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax
+- [About Projects - GitHub Docs](references/006-About-Projects-GitHub-Docs.md) — https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects
+- [Workflow commands for GitHub Actions - GitHub Docs](references/007-Workflow-commands-for-GitHub-Actions-GitHub-Docs.md) — https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands
+- [Events that trigger workflows - GitHub Docs](references/008-Events-that-trigger-workflows-GitHub-Docs.md) — https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows
+- [Understanding GitHub Actions - GitHub Docs](references/009-Understanding-GitHub-Actions-GitHub-Docs.md) — https://docs.github.com/en/actions/get-started/understand-github-actions
+- [Quickstart for GitHub Actions - GitHub Docs](references/010-Quickstart-for-GitHub-Actions-GitHub-Docs.md) — https://docs.github.com/en/actions/get-started/quickstart
+- [Licensing a repository - GitHub Docs](references/011-Licensing-a-repository-GitHub-Docs.md) — https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository
+- [About releases - GitHub Docs](references/012-About-releases-GitHub-Docs.md) — https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases
+- [Quickstart for repositories - GitHub Docs](references/013-Quickstart-for-repositories-GitHub-Docs.md) — https://docs.github.com/en/repositories/creating-and-managing-repositories/quickstart-for-repositories
+- [About the repository README file - GitHub Docs](references/014-About-the-repository-README-file-GitHub-Docs.md) — https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes
+- [About rulesets - GitHub Docs](references/015-About-rulesets-GitHub-Docs.md) — https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets
+- [Cloning a repository - GitHub Docs](references/016-Cloning-a-repository-GitHub-Docs.md) — https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository
+- [Basic writing and formatting syntax - GitHub Docs](references/017-Basic-writing-and-formatting-syntax-GitHub-Docs.md) — https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax
+- [About protected branches - GitHub Docs](references/018-About-protected-branches-GitHub-Docs.md) — https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches
+- [Hello World - GitHub Docs](references/019-Hello-World-GitHub-Docs.md) — https://docs.github.com/en/get-started/using-github/hello-world
+- [Troubleshooting connectivity problems - GitHub Docs](references/020-Troubleshooting-connectivity-problems-GitHub-Docs.md) — https://docs.github.com/en/get-started/using-github/troubleshooting-connectivity-problems
+- [What is GitHub? - GitHub Docs](references/021-What-is-GitHub-GitHub-Docs.md) — https://docs.github.com/en/get-started/start-your-journey/what-is-github
+- [Types of GitHub accounts - GitHub Docs](references/022-Types-of-GitHub-accounts-GitHub-Docs.md) — https://docs.github.com/en/get-started/learning-about-github/types-of-github-accounts
+- [GitHub's plans - GitHub Docs](references/023-GitHub-s-plans-GitHub-Docs.md) — https://docs.github.com/en/get-started/learning-about-github/githubs-plans
+- [Set up Git - GitHub Docs](references/024-Set-up-Git-GitHub-Docs.md) — https://docs.github.com/en/get-started/git-basics/set-up-git
+- [About remote repositories - GitHub Docs](references/025-About-remote-repositories-GitHub-Docs.md) — https://docs.github.com/en/get-started/git-basics/about-remote-repositories
+- [Recovering your account if you lose your 2FA credentials - GitHub Docs](references/026-Recovering-your-account-if-you-lose-your-2FA-credentials-Git.md) — https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/recovering-your-account-if-you-lose-your-2fa-credentials
+- [Get started with GitHub documentation - GitHub Docs](references/027-Get-started-with-GitHub-documentation-GitHub-Docs.md) — https://docs.github.com/en/get-started
+- [Configuring two-factor authentication recovery methods - GitHub Docs](references/028-Configuring-two-factor-authentication-recovery-methods-GitHu.md) — https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication-recovery-methods
+- [Configuring two-factor authentication - GitHub Docs](references/029-Configuring-two-factor-authentication-GitHub-Docs.md) — https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication
+- [Managing your personal access tokens - GitHub Docs](references/030-Managing-your-personal-access-tokens-GitHub-Docs.md) — https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens
+- [Displaying verification statuses for all of your commits - GitHub Docs](references/031-Displaying-verification-statuses-for-all-of-your-commits-Git.md) — https://docs.github.com/en/authentication/managing-commit-signature-verification/displaying-verification-statuses-for-all-of-your-commits
+- [Testing your SSH connection - GitHub Docs](references/032-Testing-your-SSH-connection-GitHub-Docs.md) — https://docs.github.com/en/authentication/connecting-to-github-with-ssh/testing-your-ssh-connection
+- [About authentication to GitHub - GitHub Docs](references/033-About-authentication-to-GitHub-GitHub-Docs.md) — https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-authentication-to-github
+- [Generating a new SSH key and adding it to the ssh-agent - GitHub Docs](references/034-Generating-a-new-SSH-key-and-adding-it-to-the-ssh-agent-GitH.md) — https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+- [Managing deploy keys - GitHub Docs](references/035-Managing-deploy-keys-GitHub-Docs.md) — https://docs.github.com/en/authentication/connecting-to-github-with-ssh/managing-deploy-keys
+- [Adding a new SSH key to your GitHub account - GitHub Docs](references/036-Adding-a-new-SSH-key-to-your-GitHub-account-GitHub-Docs.md) — https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account
+- [Checking for existing SSH keys - GitHub Docs](references/037-Checking-for-existing-SSH-keys-GitHub-Docs.md) — https://docs.github.com/en/authentication/connecting-to-github-with-ssh/checking-for-existing-ssh-keys
+- [GitHub Copilot Cookbook - GitHub Docs](references/038-GitHub-Copilot-Cookbook-GitHub-Docs.md) — https://docs.github.com/en/copilot/tutorials/copilot-cookbook
+- [Connecting to GitHub with SSH - GitHub Docs](references/039-Connecting-to-GitHub-with-SSH-GitHub-Docs.md) — https://docs.github.com/en/authentication/connecting-to-github-with-ssh
+- [Models and pricing for GitHub Copilot - GitHub Docs](references/040-Models-and-pricing-for-GitHub-Copilot-GitHub-Docs.md) — https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing
+- [Application card: GitHub Copilot Chat - GitHub Docs](references/041-Application-card-GitHub-Copilot-Chat-GitHub-Docs.md) — https://docs.github.com/en/copilot/responsible-use/chat
+- [Supported AI models in GitHub Copilot - GitHub Docs](references/042-Supported-AI-models-in-GitHub-Copilot-GitHub-Docs.md) — https://docs.github.com/en/copilot/reference/ai-models/supported-models
+- [Model multipliers for annual plans on request-based billing (legacy) - GitHub Docs](references/043-Model-multipliers-for-annual-plans-on-request-based-billing.md) — https://docs.github.com/en/copilot/reference/copilot-billing/request-based-billing-legacy/model-multipliers-for-annual-plans
+- [Hosting of models for GitHub Copilot - GitHub Docs](references/044-Hosting-of-models-for-GitHub-Copilot-GitHub-Docs.md) — https://docs.github.com/en/copilot/reference/ai-models/model-hosting
+- [AI model comparison - GitHub Docs](references/045-AI-model-comparison-GitHub-Docs.md) — https://docs.github.com/en/copilot/reference/ai-models/model-comparison
+- [Troubleshooting common issues with GitHub Copilot - GitHub Docs](references/046-Troubleshooting-common-issues-with-GitHub-Copilot-GitHub-Doc.md) — https://docs.github.com/en/copilot/how-tos/troubleshoot-copilot/troubleshoot-common-issues
+- [Using GitHub Copilot code review - GitHub Docs](references/047-Using-GitHub-Copilot-code-review-GitHub-Docs.md) — https://docs.github.com/en/copilot/how-tos/use-copilot-agents/request-a-code-review/use-code-review
+- [Installing the GitHub Copilot extension in your environment - GitHub Docs](references/048-Installing-the-GitHub-Copilot-extension-in-your-environment.md) — https://docs.github.com/en/copilot/how-tos/set-up/install-copilot-extension
+- [Managing GitHub Copilot policies as an individual subscriber - GitHub Docs](references/049-Managing-GitHub-Copilot-policies-as-an-individual-subscriber.md) — https://docs.github.com/en/copilot/how-tos/manage-your-account/manage-policies
+- [Usage-based billing for individuals - GitHub Docs](references/050-Usage-based-billing-for-individuals-GitHub-Docs.md) — https://docs.github.com/en/copilot/concepts/billing/usage-based-billing-for-individuals
+- [Monitoring your GitHub Copilot usage and entitlements (legacy) - GitHub Docs](references/051-Monitoring-your-GitHub-Copilot-usage-and-entitlements-legacy.md) — https://docs.github.com/en/copilot/reference/copilot-billing/request-based-billing-legacy/monitor-premium-requests
+- [Getting code suggestions in your IDE with GitHub Copilot - GitHub Docs](references/052-Getting-code-suggestions-in-your-IDE-with-GitHub-Copilot-Git.md) — https://docs.github.com/en/copilot/how-tos/get-code-suggestions/get-ide-code-suggestions
+- [Adding agent skills for GitHub Copilot - GitHub Docs](references/053-Adding-agent-skills-for-GitHub-Copilot-GitHub-Docs.md) — https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/add-skills
+- [Adding repository custom instructions for GitHub Copilot - GitHub Docs](references/054-Adding-repository-custom-instructions-for-GitHub-Copilot-Git.md) — https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/add-custom-instructions/add-repository-instructions
+- [Using GitHub Copilot CLI - GitHub Docs](references/055-Using-GitHub-Copilot-CLI-GitHub-Docs.md) — https://docs.github.com/en/copilot/how-tos/copilot-cli/use-copilot-cli/overview
+- [Getting started with GitHub Copilot CLI - GitHub Docs](references/056-Getting-started-with-GitHub-Copilot-CLI-GitHub-Docs.md) — https://docs.github.com/en/copilot/how-tos/copilot-cli/cli-getting-started
+- [Installing GitHub Copilot CLI - GitHub Docs](references/057-Installing-GitHub-Copilot-CLI-GitHub-Docs.md) — https://docs.github.com/en/copilot/how-tos/copilot-cli/set-up-copilot-cli/install-copilot-cli
+- [Best practices for GitHub Copilot CLI - GitHub Docs](references/058-Best-practices-for-GitHub-Copilot-CLI-GitHub-Docs.md) — https://docs.github.com/en/copilot/how-tos/copilot-cli/cli-best-practices
+- [Asking GitHub Copilot questions in your IDE - GitHub Docs](references/059-Asking-GitHub-Copilot-questions-in-your-IDE-GitHub-Docs.md) — https://docs.github.com/en/copilot/how-tos/chat-with-copilot/chat-in-ide
+- [What is GitHub Copilot? - GitHub Docs](references/060-What-is-GitHub-Copilot-GitHub-Docs.md) — https://docs.github.com/en/copilot/get-started/what-is-github-copilot
+- [Quickstart for GitHub Copilot - GitHub Docs](references/061-Quickstart-for-GitHub-Copilot-GitHub-Docs.md) — https://docs.github.com/en/copilot/get-started/quickstart
+- [GitHub Copilot features - GitHub Docs](references/062-GitHub-Copilot-features-GitHub-Docs.md) — https://docs.github.com/en/copilot/get-started/features
+- [Plans for GitHub Copilot - GitHub Docs](references/063-Plans-for-GitHub-Copilot-GitHub-Docs.md) — https://docs.github.com/en/copilot/get-started/plans
+- [Usage limits for GitHub Copilot - GitHub Docs](references/064-Usage-limits-for-GitHub-Copilot-GitHub-Docs.md) — https://docs.github.com/en/copilot/concepts/usage-limits
+- [Usage-based billing for organizations and enterprises - GitHub Docs](references/065-Usage-based-billing-for-organizations-and-enterprises-GitHub.md) — https://docs.github.com/en/copilot/concepts/billing/usage-based-billing-for-organizations-and-enterprises
+- [About individual GitHub Copilot plans and benefits - GitHub Docs](references/066-About-individual-GitHub-Copilot-plans-and-benefits-GitHub-Do.md) — https://docs.github.com/en/copilot/concepts/billing/individual-plans
+- [About GitHub Copilot CLI - GitHub Docs](references/067-About-GitHub-Copilot-CLI-GitHub-Docs.md) — https://docs.github.com/en/copilot/concepts/agents/copilot-cli/about-copilot-cli
+- [Requests in GitHub Copilot (legacy) - GitHub Docs](references/068-Requests-in-GitHub-Copilot-legacy-GitHub-Docs.md) — https://docs.github.com/en/copilot/reference/copilot-billing/request-based-billing-legacy/copilot-requests
+- [GitHub Copilot documentation - GitHub Docs](references/069-GitHub-Copilot-documentation-GitHub-Docs.md) — https://docs.github.com/en/copilot
+- [About agent skills - GitHub Docs](references/070-About-agent-skills-GitHub-Docs.md) — https://docs.github.com/en/copilot/concepts/agents/about-agent-skills
+- [GitHub Actions documentation - GitHub Docs](references/071-GitHub-Actions-documentation-GitHub-Docs.md) — https://docs.github.com/en/actions
+- [GitHub GraphQL API documentation - GitHub Docs](references/072-GitHub-GraphQL-API-documentation-GitHub-Docs.md) — https://docs.github.com/en/graphql
+- [GitHub REST API documentation - GitHub Docs](references/073-GitHub-REST-API-documentation-GitHub-Docs.md) — https://docs.github.com/en/rest
+- [Creating custom agents for Copilot cloud agent in your IDE - GitHub Docs](references/074-Creating-custom-agents-for-Copilot-cloud-agent-in-your-IDE-G.md) — https://docs.github.com/en/copilot/how-tos/use-copilot-agents/cloud-agent/create-custom-agents-in-your-ide
+- [About GitHub Copilot cloud agent - GitHub Docs](references/075-About-GitHub-Copilot-cloud-agent-GitHub-Docs.md) — https://docs.github.com/en/copilot/concepts/agents/cloud-agent/about-cloud-agent
+- [Setting up the GitHub MCP Server - GitHub Docs](references/076-Setting-up-the-GitHub-MCP-Server-GitHub-Docs.md) — https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp-in-your-ide/set-up-the-github-mcp-server
+- [Extending GitHub Copilot Chat with Model Context Protocol (MCP) servers - GitHub Docs](references/077-Extending-GitHub-Copilot-Chat-with-Model-Context-Protocol-MC.md) — https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp-in-your-ide/extend-copilot-chat-with-mcp
+- [Using the GitHub MCP Server in your IDE - GitHub Docs](references/078-Using-the-GitHub-MCP-Server-in-your-IDE-GitHub-Docs.md) — https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp-in-your-ide/use-the-github-mcp-server

@@ -1,3 +1,4 @@
+import { join } from "node:path";
 import type { ExtensionAPI, ExtensionContext } from "@oh-my-pi/pi-coding-agent";
 import { completePrompt, recentConversation } from "./complete.ts";
 import { applyCommand, formatStatus, formatUpliftEcho, parseAioArgs } from "./commands.ts";
@@ -19,6 +20,7 @@ import { resolveGithub } from "./issues/github.ts";
 import { defaultKtuiRunner } from "./issues/kanban.ts";
 import { ensureRepo, listIssues } from "./issues/tissue.ts";
 import { refreshSnapshot, syncAllIssues, trackUpliftedPrompt } from "./issues/track.ts";
+import { importedSkillCount } from "./skills/import.ts";
 import type { IssueTrackState, SyncResult } from "./issues/types.ts";
 import type { UpliftResult, UpliftState } from "./types.ts";
 import { decideUplift } from "./uplift/detect.ts";
@@ -70,6 +72,8 @@ export default function allInOne(pi: ExtensionAPI): void {
 	pi.setLabel("All-in-one");
 	if (process.env.PI_AIO_CHILD === "1" || process.env.PI_ULTRATHINK_CHILD === "1") return;
 	pi.logger.info("all-in-one: Prompt Uplift loaded");
+	const hermesSkills = importedSkillCount(join(import.meta.dir, "..", "skills"));
+	if (hermesSkills > 0) pi.logger.info(`all-in-one: ${hermesSkills} Hermes skills`);
 
 	const config = loadConfig();
 	const state: UpliftState = {

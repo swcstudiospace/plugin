@@ -1,0 +1,28 @@
+# StepOutput - Agno
+
+Source: https://docs.agno.com/reference/workflows/step_output
+
+`StepOutput` contains a workflow step’s content, status, media, metrics, and nested step outputs.
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `step_name` | `Optional[str]` | `None` | Step identification name |
+| `step_id` | `Optional[str]` | `None` | Unique step identifier |
+| `step_type` | `Optional[str]` | `None` | Type of step (e.g., “Loop”, “Condition”, “Parallel”) |
+| `executor_type` | `Optional[str]` | `None` | Type of executor: “agent”, “team”, “function”, “workflow”, or “parallel” |
+| `executor_name` | `Optional[str]` | `None` | Name of the executor |
+| `content` | `Optional[Union[str, Dict[str, Any], List[Any], BaseModel, Any]]` | `None` | Primary output (can be any format) |
+| `step_run_id` | `Optional[str]` | `None` | Link to the run ID of the step execution |
+| `images` | `Optional[List[Image]]` | `None` | Media outputs - images (new or passed-through) |
+| `videos` | `Optional[List[Video]]` | `None` | Media outputs - videos (new or passed-through) |
+| `audio` | `Optional[List[Audio]]` | `None` | Media outputs - audio (new or passed-through) |
+| `files` | `Optional[List[File]]` | `None` | File outputs (new or passed-through) |
+| `metrics` | `Optional[RunMetrics]` | `None` | Execution metrics and metadata |
+| `success` | `bool` | `True` | Execution success status |
+| `error` | `Optional[str]` | `None` | Error message if execution failed |
+| `stop` | `bool` | `False` | Request early workflow termination |
+| `is_paused` | `bool` | `False` | Indicates the step’s agent or team is paused for tool-level HITL |
+| `steps` | `Optional[List[StepOutput]]` | `None` | Nested step outputs for composite steps (Loop, Condition, etc.) |
+| `requires_iteration_review_pause` | `bool` | `False` | Signals the workflow to pause for per-iteration review. Transient flag, not serialized |
+
+⌘I

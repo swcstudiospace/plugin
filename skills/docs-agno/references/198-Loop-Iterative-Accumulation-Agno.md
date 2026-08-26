@@ -1,0 +1,49 @@
+# Loop Iterative Accumulation - Agno
+
+Source: https://docs.agno.com/workflows/usage/loop-iterative-accumulation
+
+Set `forward_iteration_output=True` so each iteration receives the previous iteration’s output. Read that value with `step_input.get_last_step_content()`.
+This example increments a numeric value by 10 each iteration, stopping when it reaches 50 or more.
+
+loop\_iterative\_accumulation.py
+
+```
+from agno.workflow import Loop, Step, Workflow
+from agno.workflow.types import StepInput, StepOutput
+
+def increment_executor(step_input: StepInput) -> StepOutput:
+    """Increment the previous step's numeric content by 10."""
+    last_content = step_input.get_last_step_content()
+    if last_content and last_content.isdigit():
+        new_value = int(last_content) + 10
+        return StepOutput(content=str(new_value))
+    return StepOutput(content="0")
+
+workflow = Workflow(
+    name="Iterative Accumulation Workflow",
+    steps=[
+        Step(
+            name="Initial Value",
+            executor=lambda step_input: StepOutput(content=step_input.input),
+        ),
+        Loop(
+            name="Increment Loop",
+            steps=[
+                Step(
+                    name="Increment Step",
+                    executor=increment_executor,
+                )
+            ],
+            end_condition=lambda step_outputs: int(step_outputs[-1].content) >= 50,
+            max_iterations=10,
+            forward_iteration_output=True,  # Pass each iteration's output to the next (defaults to False)
+        ),
+    ],
+)
+
+if __name__ == "__main__":
+    # Starting from 35: iteration 1 -> 45, iteration 2 -> 55 (>= 50, stops)
+    workflow.print_response("35")
+```
+
+⌘I

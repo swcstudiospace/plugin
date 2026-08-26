@@ -1,0 +1,643 @@
+{
+  "name": "docs-tailwind",
+  "generated_at": "2026-07-29T03:56:11Z",
+  "query": null,
+  "source_id": null,
+  "ranking": "all pages (recency)",
+  "page_count": 79,
+  "embedding_model": null,
+  "pages": [
+    {
+      "title": "font-feature-settings - Typography - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/font-feature-settings",
+      "content_hash": "sha256:f90ab5a2428abfb77fcecdf0e25a313160c5d60d4cd0b15626e60af3957d6b1b",
+      "file": "references/001-font-feature-settings-Typography-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "font-variant-numeric - Typography - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/font-variant-numeric",
+      "content_hash": "sha256:7bc762dd993de1a1f3bfc1f30cc8c35d4e3867933de91fc9a962771c30ebdf5b",
+      "file": "references/002-font-variant-numeric-Typography-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "font-weight - Typography - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/font-weight",
+      "content_hash": "sha256:e3c97f06c1fed02d93404a8281f2962d4c375f2f9b9a7b55e21cb89bd90b1679",
+      "file": "references/003-font-weight-Typography-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "font-stretch - Typography - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/font-stretch",
+      "content_hash": "sha256:a443b0f260e085d91b1c1cc92d17c540d87363e71c28d81c070ddea577ff73dd",
+      "file": "references/004-font-stretch-Typography-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "font-size - Typography - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/font-size",
+      "content_hash": "sha256:cd8988f5ccd6a052d567d0b5db5ad6de93e678e560daec7f54fccb376ffb75e8",
+      "file": "references/005-font-size-Typography-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "font-smoothing - Typography - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/font-smoothing",
+      "content_hash": "sha256:20fd05dca9e056ee79642c2f08b413c59293f2677d97d9af5b822208b5dbbd3d",
+      "file": "references/006-font-smoothing-Typography-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "font-style - Typography - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/font-style",
+      "content_hash": "sha256:b31b1ab746e4ea7a0783a5b2c2242e0ff7a0fd1dda420032bbc7bdacc680f203",
+      "file": "references/007-font-style-Typography-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "font-family - Typography - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/font-family",
+      "content_hash": "sha256:55a6e4d6d595ef00d3f891f9fd8d0d79c47fd007e6da3123498ceb9113f73480",
+      "file": "references/008-font-family-Typography-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "max-block-size - Sizing - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/max-block-size",
+      "content_hash": "sha256:efc9c1ca5eaeb669ef250e3a8fb6f1072401688d78d7e17cef5ad5da1457ae0b",
+      "file": "references/009-max-block-size-Sizing-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "block-size - Sizing - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/block-size",
+      "content_hash": "sha256:3bf52501f6f2b803ef928139d3470d2b8102d7312ea0234aa3e88e1da0260488",
+      "file": "references/010-block-size-Sizing-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "min-block-size - Sizing - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/min-block-size",
+      "content_hash": "sha256:4c2c9c4baed4bae0a595a2ba1f01532b3eb4383c707273d1980b8dc6dbbdc947",
+      "file": "references/011-min-block-size-Sizing-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "min-inline-size - Sizing - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/min-inline-size",
+      "content_hash": "sha256:b0eecebbf77f820ab7e1685e37978b5917bdd733773f43bc848cf5bd7fd28b08",
+      "file": "references/012-min-inline-size-Sizing-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "max-inline-size - Sizing - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/max-inline-size",
+      "content_hash": "sha256:2f297c39fb7e22e528bb00b23323d0612c2a262875d08da832ab73cfce87029c",
+      "file": "references/013-max-inline-size-Sizing-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "inline-size - Sizing - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/inline-size",
+      "content_hash": "sha256:29e6d70909365582180111adfc267191cb78584305c55fc6f81729d34e0f89c1",
+      "file": "references/014-inline-size-Sizing-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "max-height - Sizing - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/max-height",
+      "content_hash": "sha256:c771ea7e067788993dd2d02131f76fae1c0619d398e5e698cb904ab2c29b724d",
+      "file": "references/015-max-height-Sizing-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "min-height - Sizing - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/min-height",
+      "content_hash": "sha256:595a34afb3ec479ce4fe29127a63ef4b2fbc7e3c0cd4488a89e5c1324df3f19c",
+      "file": "references/016-min-height-Sizing-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "height - Sizing - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/height",
+      "content_hash": "sha256:194a0e1b357489006f6d6bbdd137357444cd0f2a91184cbb5f4904d66ca83b31",
+      "file": "references/017-height-Sizing-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "width - Sizing - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/width",
+      "content_hash": "sha256:a118c7258c38523eee0c4daef275587dd0847bd646af18f47799e57ebce43f5b",
+      "file": "references/018-width-Sizing-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "min-width - Sizing - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/min-width",
+      "content_hash": "sha256:02db223d9a3b5186cad47d8210b72f89a6b28d5b63acb01df3e3483158969640",
+      "file": "references/019-min-width-Sizing-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "max-width - Sizing - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/max-width",
+      "content_hash": "sha256:72e2c6c33008e8ed7729792f39eb14d87ef7e203ec1bdef80f50f4bf9af419be",
+      "file": "references/020-max-width-Sizing-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "margin - Spacing - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/margin",
+      "content_hash": "sha256:e1a728d05b67bc908ec0d1191ab68e77764b96bba975a3ef8e7efde0b3fa0d34",
+      "file": "references/021-margin-Spacing-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "place-items - Flexbox & Grid - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/place-items",
+      "content_hash": "sha256:dc8685f6b0086ad0479c1fae2de431267d8fb67b193fbdc4fc105f8f8dd3b0d0",
+      "file": "references/022-place-items-Flexbox-Grid-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "place-self - Flexbox & Grid - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/place-self",
+      "content_hash": "sha256:d9ba1227e4e4a99319028275662db4fe52f8a23c5faa1bfdc41a0a21ad310b6c",
+      "file": "references/023-place-self-Flexbox-Grid-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "padding - Spacing - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/padding",
+      "content_hash": "sha256:972793b7bf39df4e67151d823f9b8080e047018eca1b08bba2bbcd8cb41ebb88",
+      "file": "references/024-padding-Spacing-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "align-self - Flexbox & Grid - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/align-self",
+      "content_hash": "sha256:bb8bfb837dd4f5e1de8f6ea47533fc56de90992805b40969068ce255028aeccc",
+      "file": "references/025-align-self-Flexbox-Grid-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "place-content - Flexbox & Grid - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/place-content",
+      "content_hash": "sha256:f9c4c3f32bcb7aa88a965d388c1f706d2cfb4581202fea869c91662c59762114",
+      "file": "references/026-place-content-Flexbox-Grid-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "align-content - Flexbox & Grid - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/align-content",
+      "content_hash": "sha256:fdc2812f60e5cb68fc4d6d83df0c8c3cf6c9213a93bcb56d6a62cbe3d5b7edd5",
+      "file": "references/027-align-content-Flexbox-Grid-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "justify-self - Flexbox & Grid - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/justify-self",
+      "content_hash": "sha256:38a6e0c152ae4b5e10d2bc114203d61e3eedb5dd4a0536428dd01d3c5caa1bff",
+      "file": "references/028-justify-self-Flexbox-Grid-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "align-items - Flexbox & Grid - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/align-items",
+      "content_hash": "sha256:e462594eb8e47519b562e8806be36426fe2798662e30fe39ee475f4f3f208d06",
+      "file": "references/029-align-items-Flexbox-Grid-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "justify-content - Flexbox & Grid - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/justify-content",
+      "content_hash": "sha256:e773474f78199826942e3928a9a9a59c5adbd4638c8eb93e3c3ecccba15ece12",
+      "file": "references/030-justify-content-Flexbox-Grid-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "justify-items - Flexbox & Grid - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/justify-items",
+      "content_hash": "sha256:9fd1fb6409d2903b47cc9bebfa784cb36ef671c9f09ef1242e154c24ee525caa",
+      "file": "references/031-justify-items-Flexbox-Grid-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "gap - Flexbox & Grid - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/gap",
+      "content_hash": "sha256:c1156c460b6917f2ac6ac9a2952e26f1f57814ce81353fdde5050f4a4614778a",
+      "file": "references/032-gap-Flexbox-Grid-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "grid-auto-rows - Flexbox & Grid - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/grid-auto-rows",
+      "content_hash": "sha256:95f31a87a55efc5ec3a8571e163bf4190f10edc6561a62063ce5a67bdbdc2f2d",
+      "file": "references/033-grid-auto-rows-Flexbox-Grid-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "grid-auto-columns - Flexbox & Grid - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/grid-auto-columns",
+      "content_hash": "sha256:0d17b4721abaa24febf95afc649e3e588299bc30992b0c61876e307e07343069",
+      "file": "references/034-grid-auto-columns-Flexbox-Grid-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "grid-auto-flow - Flexbox & Grid - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/grid-auto-flow",
+      "content_hash": "sha256:87f0249d2be625845d2cae8e9e7d4a05b0b6df0dcc15d22209b0ed4971c7138a",
+      "file": "references/035-grid-auto-flow-Flexbox-Grid-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "grid-template-rows - Flexbox & Grid - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/grid-template-rows",
+      "content_hash": "sha256:a27146d0920f72acde9ddf9f7c6cb5f9b8a48daacae6ed21d0a556c054db95f2",
+      "file": "references/036-grid-template-rows-Flexbox-Grid-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "grid-row - Flexbox & Grid - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/grid-row",
+      "content_hash": "sha256:3c1c63847db29998ac2f6a22045c42cf0a8988c86a670f096068543b202c7d81",
+      "file": "references/037-grid-row-Flexbox-Grid-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "flex-shrink - Flexbox & Grid - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/flex-shrink",
+      "content_hash": "sha256:abe949ad7f8c08a6a9dde8bb9675c47d94cf117246004b4582b8c0a2cd8bce06",
+      "file": "references/038-flex-shrink-Flexbox-Grid-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "grid-template-columns - Flexbox & Grid - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/grid-template-columns",
+      "content_hash": "sha256:05e6116d9a2f94486385dfb0a50f55362d2e420119cc594e420c25b6bdd3e8db",
+      "file": "references/039-grid-template-columns-Flexbox-Grid-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "grid-column - Flexbox & Grid - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/grid-column",
+      "content_hash": "sha256:3a3556e4200549077bbf2168b58caba65cd3acf2f6580b41031fe366111aa8e3",
+      "file": "references/040-grid-column-Flexbox-Grid-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "order - Flexbox & Grid - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/order",
+      "content_hash": "sha256:9a1165010fdb0a1164e2ef800ba77c01daa6bc146614cafe4c153b0936ed7577",
+      "file": "references/041-order-Flexbox-Grid-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "flex - Flexbox & Grid - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/flex",
+      "content_hash": "sha256:186b13724ed39d49b6b181c02ee5ee8aa183b9b47a6af77dc0341de9a50b2d8d",
+      "file": "references/042-flex-Flexbox-Grid-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "flex-grow - Flexbox & Grid - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/flex-grow",
+      "content_hash": "sha256:9f8ab0ae609419c4737743a947a5b99db60768d18da180bdeb7326cb2a0581e4",
+      "file": "references/043-flex-grow-Flexbox-Grid-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "flex-direction - Flexbox & Grid - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/flex-direction",
+      "content_hash": "sha256:277b863a38dac5b32e583e8cee738a9f83c33936f0fb0e54d0c7a061afb9647e",
+      "file": "references/044-flex-direction-Flexbox-Grid-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "flex-wrap - Flexbox & Grid - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/flex-wrap",
+      "content_hash": "sha256:33a66dd2a6e9f5d8f7ec91dcd27a6b4a7dbcc5566ebf31e47266bd558a37fd97",
+      "file": "references/045-flex-wrap-Flexbox-Grid-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "top / right / bottom / left - Layout - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/top-right-bottom-left",
+      "content_hash": "sha256:240e458f3e12ee58734d5750790352256f6053c0254eb14741e691e2d39f2ae7",
+      "file": "references/046-top-right-bottom-left-Layout-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "flex-basis - Flexbox & Grid - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/flex-basis",
+      "content_hash": "sha256:2345398e75b7826a7458a2514977cfc7c37fb7d99bf8f5526d45b1d481f0aa7c",
+      "file": "references/047-flex-basis-Flexbox-Grid-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "z-index - Layout - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/z-index",
+      "content_hash": "sha256:6d9c611b3636a748a560d8fde83c1e639c1ba917ab5034c1c80f55e817275b4c",
+      "file": "references/048-z-index-Layout-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "overscroll-behavior - Layout - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/overscroll-behavior",
+      "content_hash": "sha256:ca82ca40611016da2fcaa972bc1e7db59a0e0e23b3b168d6d457f59e428312db",
+      "file": "references/049-overscroll-behavior-Layout-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "visibility - Layout - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/visibility",
+      "content_hash": "sha256:c6fc710db71bffaca18fe3cc07b30fd5d00f4706086fd1212a07152a6313b84e",
+      "file": "references/050-visibility-Layout-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "overflow - Layout - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/overflow",
+      "content_hash": "sha256:33b57e992652721bc3a4d07acd34e51335941eaa09311352b27592fe807b0f69",
+      "file": "references/051-overflow-Layout-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "position - Layout - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/position",
+      "content_hash": "sha256:d03eb7263f54b1c6480606c973d8ef74ec733f7520cbaf061b1d7552b791eb39",
+      "file": "references/052-position-Layout-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "object-fit - Layout - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/object-fit",
+      "content_hash": "sha256:f9a28f45c4805c54bacbe3f060b08db4a0580ed27dd6de0f980e2624db0733fb",
+      "file": "references/053-object-fit-Layout-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "isolation - Layout - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/isolation",
+      "content_hash": "sha256:cc10f45c105be7323eeb7e695215877b484abb83b5aa8f63e2885aa77f4b4f6f",
+      "file": "references/054-isolation-Layout-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "object-position - Layout - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/object-position",
+      "content_hash": "sha256:ab2d27b192ea33d1dc130a4bdf9ae64dbf2ff050e50be373ab028741aa0f5972",
+      "file": "references/055-object-position-Layout-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "clear - Layout - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/clear",
+      "content_hash": "sha256:ff9aa62ef8d0af47dac142655eb3f758ab78759549fc766c678911d0de0cf975",
+      "file": "references/056-clear-Layout-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "float - Layout - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/float",
+      "content_hash": "sha256:bd0641b37e9ad3f7e2fe89970332893a6d29fdcac88dcbcd6be8c2f281c6fd13",
+      "file": "references/057-float-Layout-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "display - Layout - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/display",
+      "content_hash": "sha256:4b40fc8ad1dd69d620dda7862dde43b0d22a4210556f9c7179a13ec040df49bc",
+      "file": "references/058-display-Layout-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "box-sizing - Layout - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/box-sizing",
+      "content_hash": "sha256:f9d9fd269fc71d002e1dfe73c26f0f590e1b0756bdebf889bc03cb3868b8f447",
+      "file": "references/059-box-sizing-Layout-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "break-inside - Layout - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/break-inside",
+      "content_hash": "sha256:03ea35ec629748a58a42b6145382e739e471731531663fabddf543810cf8ce30",
+      "file": "references/060-break-inside-Layout-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "box-decoration-break - Layout - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/box-decoration-break",
+      "content_hash": "sha256:0f0a8eba299087da4dd9ee52de2b052a449912cc7b30bf729b548fccd6dcd31a",
+      "file": "references/061-box-decoration-break-Layout-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "break-before - Layout - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/break-before",
+      "content_hash": "sha256:addf518e28841e5639265aea0fabb340acbbac78a0fb49199b999c5b57b1e737",
+      "file": "references/062-break-before-Layout-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "break-after - Layout - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/break-after",
+      "content_hash": "sha256:5dce9c3b6c6c9f52039446bd1057bc2f30500d6124ece071620baf6518e819d3",
+      "file": "references/063-break-after-Layout-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "columns - Layout - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/columns",
+      "content_hash": "sha256:cf188d9efe5bb2d58c907b686fea79d7c7c01bc1391648b01e735bdccd793ed7",
+      "file": "references/064-columns-Layout-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "aspect-ratio - Layout - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/aspect-ratio",
+      "content_hash": "sha256:1fec910455a9a7a6142c4c60f68da0f3a4c9e3a868b58025d3d0adb0dfcbe6f4",
+      "file": "references/065-aspect-ratio-Layout-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "Preflight - Base styles - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/preflight",
+      "content_hash": "sha256:f6610f416bf4924751563b351c490f8c6166849e02670eae4b6ae2e0315716ea",
+      "file": "references/066-Preflight-Base-styles-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "Functions and directives - Core concepts - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/functions-and-directives",
+      "content_hash": "sha256:09cabd09a86d8a5033fcb76f3cc5ea653ea858caf00130888eaa3ec0d433c3c6",
+      "file": "references/067-Functions-and-directives-Core-concepts-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "Adding custom styles - Core concepts - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/adding-custom-styles",
+      "content_hash": "sha256:29b9f67c43394d9969f981400579c5333c71e854f5c704318fed735d900e8a4d",
+      "file": "references/068-Adding-custom-styles-Core-concepts-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "Detecting classes in source files - Core concepts - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/detecting-classes-in-source-files",
+      "content_hash": "sha256:849b0fc183cab5f2fef8f24e3be198a934eb5e1f73a5e5b67f61035f92a3aa64",
+      "file": "references/069-Detecting-classes-in-source-files-Core-concepts-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "Colors - Core concepts - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/colors",
+      "content_hash": "sha256:902a53c7d6f3322207dd9e24de7c6167a6a83d964a3e1de4d77c12819edeefe9",
+      "file": "references/070-Colors-Core-concepts-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "Theme variables - Core concepts - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/theme",
+      "content_hash": "sha256:ec9a52fa3056e08aba2df3797de05b9700a2356149a52750fae2ab0031573e7a",
+      "file": "references/071-Theme-variables-Core-concepts-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "Responsive design - Core concepts - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/responsive-design",
+      "content_hash": "sha256:dcc0133c57cddd5fb9083d661f98a9da63d350c952e8ac56b2efca419420e042",
+      "file": "references/072-Responsive-design-Core-concepts-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "Hover, focus, and other states - Core concepts - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/hover-focus-and-other-states",
+      "content_hash": "sha256:3bfef0a23a920744192a308597252a615c77169d33bfce2eb7a099ac0a980078",
+      "file": "references/073-Hover-focus-and-other-states-Core-concepts-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "Dark mode - Core concepts - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/dark-mode",
+      "content_hash": "sha256:4107ceb1789db82dbb4d0482239c2c873aa0ddbb5f4eee24647dad73876cbd33",
+      "file": "references/074-Dark-mode-Core-concepts-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "Styling with utility classes - Core concepts - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/styling-with-utility-classes",
+      "content_hash": "sha256:66c2450dcd0b2f5c5dab0f5139fcc20009d71a60d368ecc05d427b26b9d94af1",
+      "file": "references/075-Styling-with-utility-classes-Core-concepts-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "Compatibility - Getting started - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/compatibility",
+      "content_hash": "sha256:049e5e8390681902595a614b664a2619ca7a96cedd55db1d8b924db1aaaac693",
+      "file": "references/076-Compatibility-Getting-started-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "Upgrade guide - Getting started - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/upgrade-guide",
+      "content_hash": "sha256:5507b21c68243486e5202a12a102f494cbcd4edefbb608bfc847c9aab4ba4245",
+      "file": "references/077-Upgrade-guide-Getting-started-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "Installing Tailwind CSS with Vite - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/installation/using-vite",
+      "content_hash": "sha256:70f23cf6c5759a1571439966adb14a8f0dc0f4dfcdbdc307879637cd19946475",
+      "file": "references/078-Installing-Tailwind-CSS-with-Vite-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    },
+    {
+      "title": "Editor setup - Getting started - Tailwind CSS",
+      "url": "https://tailwindcss.com/docs/editor-setup",
+      "content_hash": "sha256:7f0bd93f8ed533ea3d07deb7d422c00ea185bee39c5908747ab38ddae5080368",
+      "file": "references/079-Editor-setup-Getting-started-Tailwind-CSS.md",
+      "source": "tailwind",
+      "version": "latest"
+    }
+  ]
+}

@@ -1,0 +1,651 @@
+{
+  "name": "docs-django",
+  "generated_at": "2026-07-29T03:47:39Z",
+  "query": null,
+  "source_id": null,
+  "ranking": "all pages (recency)",
+  "page_count": 80,
+  "embedding_model": null,
+  "pages": [
+    {
+      "title": "Writing your first Django app, part 1 | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/intro/tutorial01",
+      "content_hash": "sha256:297db739e2adf8e4e4824e37e7aea59302e572da858469da1aa6f532268a7fc8",
+      "file": "references/001-Writing-your-first-Django-app-part-1-Django-documentation-Dj.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "Writing your first Django app, part 2 | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/intro/tutorial02",
+      "content_hash": "sha256:15d7dcd2f067728e139d8d570d23920a2717a92df997c7ab1d14a3291b66de3c",
+      "file": "references/002-Writing-your-first-Django-app-part-2-Django-documentation-Dj.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "Django at a glance | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/intro/overview",
+      "content_hash": "sha256:3595b4301637d0d4c72af0dd4d38dc59108ea14a24a64950f5fb4830ec70f7b7",
+      "file": "references/003-Django-at-a-glance-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "Advanced tutorial: How to write reusable apps | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/intro/reusable-apps",
+      "content_hash": "sha256:50abae6e6603fe0f8b01ef3f60f51237c6c0d526e85872ffaac39967828f81ea",
+      "file": "references/004-Advanced-tutorial-How-to-write-reusable-apps-Django-document.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "Writing your first contribution for Django | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/intro/contributing",
+      "content_hash": "sha256:6ec685d4f7e3c2c69e450064b2d1da495a0e90f562d5c53c8f9cfc1381dce0f1",
+      "file": "references/005-Writing-your-first-contribution-for-Django-Django-documentat.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "Quick install guide | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/intro/install",
+      "content_hash": "sha256:48c446e95821482c8f6a784636067e0f5882b78b332cf3c8c5e57eb9c22f0929",
+      "file": "references/006-Quick-install-guide-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "Django\u2019s security policies | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/internals/security",
+      "content_hash": "sha256:3e9007710e082024705298ad734f433c43a5ee00f5ee541f669c17f0df342f10",
+      "file": "references/007-Django-s-security-policies-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "Getting started | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/intro",
+      "content_hash": "sha256:c826e21437e0b0a5d3f58d1d3b1d6b91fa527ea6fe9bc5d3a82fd75c45754583",
+      "file": "references/008-Getting-started-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "Django\u2019s release process | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/internals/release-process",
+      "content_hash": "sha256:fc16f1f2411773603d9cef541cd264be653388845dd1ccb80b1d65308a2f0767",
+      "file": "references/009-Django-s-release-process-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "Organization of the Django Project | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/internals/organization",
+      "content_hash": "sha256:75e94d9bc3dbcd47741cd44141d17f22a5609efc98a2aeaeca6870599f9423da",
+      "file": "references/010-Organization-of-the-Django-Project-Django-documentation-Djan.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "How to release Django | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/internals/howto-release-django",
+      "content_hash": "sha256:b5e506e1b4aebdabf6e552b276ac64580f80ec946ebffe2352be4281e55b14aa",
+      "file": "references/011-How-to-release-Django-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "Mailing lists and Forum | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/internals/mailing-lists",
+      "content_hash": "sha256:c735fe8b93f0765ae86a3013243b5913c63e93ece1e6ba5d1b233fa98ba44be8",
+      "file": "references/012-Mailing-lists-and-Forum-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "Django Deprecation Timeline | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/internals/deprecation",
+      "content_hash": "sha256:6aacc0b397f46e8ee2553daf879ac09539227812a989d49b7e943e1ee8efeefd",
+      "file": "references/013-Django-Deprecation-Timeline-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "The Django source code repository | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/internals/git",
+      "content_hash": "sha256:a39e1e8faec347dde271067c1d60da724a1bcc0b355b9e0f2bf66a3f5bc8c275",
+      "file": "references/014-The-Django-source-code-repository-Django-documentation-Djang.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "Writing documentation | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/internals/contributing/writing-documentation",
+      "content_hash": "sha256:ef0067c9e5728c2840bf912b8b047adb4132545fd23ec28181b1b1c0afb83789",
+      "file": "references/015-Writing-documentation-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "Working with Git and GitHub | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/working-with-git",
+      "content_hash": "sha256:340bb079aed410284048829ad7f7c7c5117ce80c2b25ab9798832b22cf537305",
+      "file": "references/016-Working-with-Git-and-GitHub-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "Submitting contributions | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/submitting-patches",
+      "content_hash": "sha256:d1f78791b28676591364405cffe7e605539f7b85a9aabe55cc3eae94ce3f8671",
+      "file": "references/017-Submitting-contributions-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "Unit tests | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/unit-tests",
+      "content_hash": "sha256:2f576b07dcdd1bc599a7012c270c8cc621163dada4681c7292babe99eac83b9d",
+      "file": "references/018-Unit-tests-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "Coding style | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/coding-style",
+      "content_hash": "sha256:84f3b3caec71babfdddc1c4bb1e2bd98405e4cc1afd9d81403f191c3dce80c59",
+      "file": "references/019-Coding-style-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "JavaScript code | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/javascript",
+      "content_hash": "sha256:8dbef0bf37ed3fb4e001602f55551f41877d4cd791a2375538efdf7ef7c94341",
+      "file": "references/020-JavaScript-code-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "Contributing code | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/internals/contributing/writing-code",
+      "content_hash": "sha256:a00082846182d5371b9b360f195b99c0ca5a97149b56cec4be1a4249ddc3e38b",
+      "file": "references/021-Contributing-code-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "Triaging tickets | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/internals/contributing/triaging-tickets",
+      "content_hash": "sha256:e734e547f0f220aabed6132b50cfa3d79f37b6e5bf55b6151800f7ee4dd2d559",
+      "file": "references/022-Triaging-tickets-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "Committing code | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/internals/contributing/committing-code",
+      "content_hash": "sha256:9afeabe6a5ee31406680e5133856a69233d4e0a36df27793ef260feb716c38ce",
+      "file": "references/023-Committing-code-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "Advice for new contributors | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/internals/contributing/new-contributors",
+      "content_hash": "sha256:c5b937039d7d1bb04688b203532bc62a66dd56cf3d31d4b967b032ec2ea66f0e",
+      "file": "references/024-Advice-for-new-contributors-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "Localizing Django | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/internals/contributing/localizing",
+      "content_hash": "sha256:c7251627f786e0058d5cd4cbb15fd96c57a4a5b0cc6bfd3484a4bfbc27e25659",
+      "file": "references/025-Localizing-Django-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "Contributing to Django | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/internals/contributing",
+      "content_hash": "sha256:c3f8c903d4db7841634f8de0a13345e67af05f0b171e866fdc4b00fce4e538c9",
+      "file": "references/026-Contributing-to-Django-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "Accessibility | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/internals/contributing/accessibility",
+      "content_hash": "sha256:3f19093a0a782cb7208422b87af05989ffeafe4d66a2078cf1ff08ff5834656d",
+      "file": "references/027-Accessibility-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "Reporting bugs and requesting features | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/internals/contributing/bugs-and-features",
+      "content_hash": "sha256:b007d8d7524bde721758e655c17d5dd23250e3efeeeec62cb167f043cef6742e",
+      "file": "references/028-Reporting-bugs-and-requesting-features-Django-documentation.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "Django documentation | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev",
+      "content_hash": "sha256:81345c668e4a0053b4eab5a1c52373b04fb25228531593cfc04e8b780f05571d",
+      "file": "references/029-Django-documentation-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "How to create database migrations | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/howto/writing-migrations",
+      "content_hash": "sha256:bfd5d161611b4456169cf2fda5b6d44c9ae82dee541025628db366d7b8d7dff0",
+      "file": "references/030-How-to-create-database-migrations-Django-documentation-Djang.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "Django internals | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/internals",
+      "content_hash": "sha256:2efecc85ee2561b84b34bfb9d2d6b01870a6b2c18e869e3d0020e666655cff22",
+      "file": "references/031-Django-internals-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "How to install Django on Windows | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/howto/windows",
+      "content_hash": "sha256:49419c509a6ef800e44cfe585a0655ef548c56475d966bf490e1227b25db04dc",
+      "file": "references/032-How-to-install-Django-on-Windows-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "How to deploy static files | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/howto/static-files/deployment",
+      "content_hash": "sha256:39349f6f114855cebfcb760d7ce62a3d3e4c833e56999d0e253a016c7e4e729e",
+      "file": "references/033-How-to-deploy-static-files-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "How to upgrade Django to a newer version | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/howto/upgrade-version",
+      "content_hash": "sha256:116f04d21c8fd0ed1981d209011822aaf3afeeaf529b4c837c2cf1b836f1be93",
+      "file": "references/034-How-to-upgrade-Django-to-a-newer-version-Django-documentatio.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "How to create PDF files | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/howto/outputting-pdf",
+      "content_hash": "sha256:307b42ceacc2d4072664bb7a29b6eb6c431aff89f1062be087087f8fe9bd2718",
+      "file": "references/035-How-to-create-PDF-files-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "How to override templates | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/howto/overriding-templates",
+      "content_hash": "sha256:15bad4b73b924f6a1d4efd596c7a9b4a36024053aaab4f091d6b8f8cda6a324e",
+      "file": "references/036-How-to-override-templates-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "How to manage static files (e.g. images, JavaScript, CSS) | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/howto/static-files",
+      "content_hash": "sha256:07b85d851c962a6c74c711fb36333a0ac8b8b5efcb29b335213c7dabf5a10d9b",
+      "file": "references/037-How-to-manage-static-files-e-g-images-JavaScript-CSS-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "How to create CSV output | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/howto/outputting-csv",
+      "content_hash": "sha256:b573944fcac6715087ae006c408762dff269eecf794e6b3a08de0d5c9e79f2e1",
+      "file": "references/038-How-to-create-CSV-output-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "Migrating email to mailers | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/howto/mailers-migration",
+      "content_hash": "sha256:43b2b99939bf2da60e225fa3d60316c6d305c9a9986ea229c267ca04cfb5eced",
+      "file": "references/039-Migrating-email-to-mailers-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "How to configure and use logging | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/howto/logging",
+      "content_hash": "sha256:cd7134e38c25522ebbd5796e07a6998056f9952351908f27164cdcb7a1fe3abb",
+      "file": "references/040-How-to-configure-and-use-logging-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "How to provide initial data for models | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/howto/initial-data",
+      "content_hash": "sha256:96d0e37c08753b75be1b7cd9683e5a02562a639901674489388fbf276b0e9792",
+      "file": "references/041-How-to-provide-initial-data-for-models-Django-documentation.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "How to integrate Django with a legacy database | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/howto/legacy-databases",
+      "content_hash": "sha256:3a3a75ae68e023b09a400bfeffe3804fa40738600d3f23f0550ce90786ba066f",
+      "file": "references/042-How-to-integrate-Django-with-a-legacy-database-Django-docume.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "How to use Django with uWSGI | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/uwsgi",
+      "content_hash": "sha256:9c55c57342b364d5de217766d8587f514d699152a5bfe21f36f72250fe66cdb1",
+      "file": "references/043-How-to-use-Django-with-uWSGI-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "How to manage error reporting | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/howto/error-reporting",
+      "content_hash": "sha256:d31c46b55baccf7b8f999573728d7dcfb8cea047978967aa1b045fafa1abda2f",
+      "file": "references/044-How-to-manage-error-reporting-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "How to use Django with Gunicorn | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/gunicorn",
+      "content_hash": "sha256:665f47d10fa91a28a4c473630d9b9486fd7a736dd07b660e280b860445a377bc",
+      "file": "references/045-How-to-use-Django-with-Gunicorn-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "How to use Django with Apache and mod_wsgi | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/modwsgi",
+      "content_hash": "sha256:dd8eeba89edbb044939764fd8977a43fe672328e25277d6d213f1bcd36db6ec2",
+      "file": "references/046-How-to-use-Django-with-Apache-and-mod_wsgi-Django-documentat.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "How to use Django with Granian | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/granian",
+      "content_hash": "sha256:da045f604bbb2c98925063821678d75e094a9c46d7281b0d532fe61e8faf9eaa",
+      "file": "references/047-How-to-use-Django-with-Granian-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "How to authenticate against Django\u2019s user database from Apache | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/apache-auth",
+      "content_hash": "sha256:c931d89d516be7eb737714061273e9198b759540f3cd00c2025c56e71be9d96d",
+      "file": "references/048-How-to-authenticate-against-Django-s-user-database-from-Apac.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "Deployment checklist | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/howto/deployment/checklist",
+      "content_hash": "sha256:23d6487391a65a1c5c402380c36ce0b94b59c84483461bdf83aeb8f0d3053e7a",
+      "file": "references/049-Deployment-checklist-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "How to deploy with WSGI | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/howto/deployment/wsgi",
+      "content_hash": "sha256:2f5508734682f3aafcf2ed7f0dfd2384b90a11648da6be48362ecdef65bd1d03",
+      "file": "references/050-How-to-deploy-with-WSGI-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "How to use Django with Uvicorn | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/howto/deployment/asgi/uvicorn",
+      "content_hash": "sha256:32ebefdd93015b6482bf93f642d9a01b251deb45007a4e9633222d51c7b95d70",
+      "file": "references/051-How-to-use-Django-with-Uvicorn-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "How to use Django with Hypercorn | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/howto/deployment/asgi/hypercorn",
+      "content_hash": "sha256:2b23553da712c12337ecd8293fa8bd928ca6041f6e59ea72cb636b087eab0576",
+      "file": "references/052-How-to-use-Django-with-Hypercorn-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "How to use Django with Daphne | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/howto/deployment/asgi/daphne",
+      "content_hash": "sha256:10738b039e3064e21cda27556785e466c608bc42f01fcdd36b66074fa24de87d",
+      "file": "references/053-How-to-use-Django-with-Daphne-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "How to use Django with Granian | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/howto/deployment/asgi/granian",
+      "content_hash": "sha256:3b215eddd12335d270fe97d55b0729e35d75c61ef4e49e86ae9eb5cf7f046903",
+      "file": "references/054-How-to-use-Django-with-Granian-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "How to create custom template tags and filters | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/howto/custom-template-tags",
+      "content_hash": "sha256:29493d266a572dd604ef6c574bc8db7ebee077d2f35a0fb25afeaf9ac1b02fb5",
+      "file": "references/055-How-to-create-custom-template-tags-and-filters-Django-docume.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "How to deploy Django | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/howto/deployment",
+      "content_hash": "sha256:f5e7fa36b69cf23280df03f78000ba016ae1a9c4f84e5bc5e976a5ffc3eea251",
+      "file": "references/056-How-to-deploy-Django-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "How to deploy with ASGI | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/howto/deployment/asgi",
+      "content_hash": "sha256:4358b48812567b32db5ee826e5ec335734bfefc28cb544c0f4a54ee57c41bf89",
+      "file": "references/057-How-to-deploy-with-ASGI-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "How to delete a Django application | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/howto/delete-app",
+      "content_hash": "sha256:d73f97974a9a03e2971db016215024853312f3d5fe9d8cf6e9c8053ead2fcf22",
+      "file": "references/058-How-to-delete-a-Django-application-Django-documentation-Djan.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "How to customize the shell command | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/howto/custom-shell",
+      "content_hash": "sha256:0605214f5a9db66894a47dcd53849852bc7f23b30f7872baf3195274c42460d6",
+      "file": "references/059-How-to-customize-the-shell-command-Django-documentation-Djan.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "How to implement a custom template backend | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/howto/custom-template-backend",
+      "content_hash": "sha256:6579d5962a9be18fdc44f1cfaae8628a4b16aca52dcdd2cbf423ec3491e0d972",
+      "file": "references/060-How-to-implement-a-custom-template-backend-Django-documentat.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "How to create custom django-admin commands | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/howto/custom-management-commands",
+      "content_hash": "sha256:be82510939390f7c445e5074e73009c6cbfb1a39ede36b1de424e78132d286f5",
+      "file": "references/061-How-to-create-custom-django-admin-commands-Django-documentat.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "How to create custom model fields | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/howto/custom-model-fields",
+      "content_hash": "sha256:eddc98d27e1bc9aba69bde6b6d5a3a49a144ca8d3e6cd25f36d36be73c441006",
+      "file": "references/062-How-to-create-custom-model-fields-Django-documentation-Djang.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "How to write custom lookups | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/howto/custom-lookups",
+      "content_hash": "sha256:36e6c67bf1978ed82d3ec749d18ade1861b799077c9fa004e38d92f7a02a32a4",
+      "file": "references/063-How-to-write-custom-lookups-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "How to write a custom storage class | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/howto/custom-file-storage",
+      "content_hash": "sha256:470f86e64dde708010c3f071fd1085f2e4d6c8a35dc078694395b4f69e2feca2",
+      "file": "references/064-How-to-write-a-custom-storage-class-Django-documentation-Dja.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "How to use Django\u2019s CSRF protection | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/howto/csrf",
+      "content_hash": "sha256:3e06f29ceaca1ae24581ed2659539dd75c696c7da4b3730ed726912baab26174",
+      "file": "references/065-How-to-use-Django-s-CSRF-protection-Django-documentation-Dja.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "How to use Django\u2019s Content Security Policy | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/howto/csp",
+      "content_hash": "sha256:4f5d59bee42e0d1e580d809650ae1edea3ca84c5a7ca17b26e900a9b02d65d26",
+      "file": "references/066-How-to-use-Django-s-Content-Security-Policy-Django-documenta.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "How to authenticate using REMOTE_USER | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/howto/auth-remote-user",
+      "content_hash": "sha256:122274dfe99dc996169a0a5770b76e00f66d7dc7b28fd973918061156bb73f53",
+      "file": "references/067-How-to-authenticate-using-REMOTE_USER-Django-documentation-D.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "How-to guides | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/howto",
+      "content_hash": "sha256:bb13db7634818e8c107d1768263b43de492027db1935bd14be05c9edc2ec551f",
+      "file": "references/068-How-to-guides-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "FAQ: Using Django | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/faq/usage",
+      "content_hash": "sha256:e383eb4766293f6b1db94579f770e82695fa53f56f2b540233b0f83468c9895c",
+      "file": "references/069-FAQ-Using-Django-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "Glossary | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/glossary",
+      "content_hash": "sha256:e751aa2e8f1d13fe01797e76ab657646be5cc25473cc75852b68a21d04e043ab",
+      "file": "references/070-Glossary-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "FAQ: Installation | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/faq/install",
+      "content_hash": "sha256:713ef1e5a8754da8da8b5b8ecacd59065e5b22ae5c03cbda2169159af50a6630",
+      "file": "references/071-FAQ-Installation-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "Troubleshooting | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/faq/troubleshooting",
+      "content_hash": "sha256:86c368a64000238998184073469e2483a1034534328e04431ff4ada33ce25ff9",
+      "file": "references/072-Troubleshooting-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "FAQ: Databases and models | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/faq/models",
+      "content_hash": "sha256:408db1e913acfb7847cbf06e544374a94d348d8830d5df98cbc14347d7ddd617",
+      "file": "references/073-FAQ-Databases-and-models-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "FAQ: Contributing code | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/faq/contributing",
+      "content_hash": "sha256:defcf6374d0ed8eb617993442b41c20a795b7c561f8b64e5fa687d1c2575b83e",
+      "file": "references/074-FAQ-Contributing-code-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "FAQ: General | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/faq/general",
+      "content_hash": "sha256:c933232cc72badbf0359dfc9cfa706e83cd950346d5071a85976d213e3edfe6e",
+      "file": "references/075-FAQ-General-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "FAQ: Getting Help | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/faq/help",
+      "content_hash": "sha256:681379c8a8086a268b2e7a5ef0b4ee367bb18420c94f3b73f2c0eed1e31196e1",
+      "file": "references/076-FAQ-Getting-Help-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "FAQ: The admin | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/faq/admin",
+      "content_hash": "sha256:0c24b4ee1b01e3574b4e06cf8262855a5ca50c36c090897892917bb4970668ec",
+      "file": "references/077-FAQ-The-admin-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "Django FAQ | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/faq",
+      "content_hash": "sha256:3860f117f0a4b7df890eca49ffc88e7e7f29a169161abb913c5033f3365d6f79",
+      "file": "references/078-Django-FAQ-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "Django documentation | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/6.0",
+      "content_hash": "sha256:a99910de29a998cfca583123c269c682939ad7914d8a779308a8f502160c640a",
+      "file": "references/079-Django-documentation-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    },
+    {
+      "title": "Django documentation contents | Django documentation | Django",
+      "url": "https://docs.djangoproject.com/en/dev/contents",
+      "content_hash": "sha256:13921f797c0298d12b6b07e2567e897d2dfa758efccd12ef6c3c930af57e2c44",
+      "file": "references/080-Django-documentation-contents-Django-documentation-Django.md",
+      "source": "django",
+      "version": "latest"
+    }
+  ]
+}

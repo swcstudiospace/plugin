@@ -1,0 +1,73 @@
+# docs-golang
+
+Exported documentation references.
+
+- [Go 1.9 Release Notes - The Go Programming Language](references/001-Go-1-9-Release-Notes-The-Go-Programming-Language.md) — https://go.dev/doc/go1.9
+- [Go 1.11 Release Notes - The Go Programming Language](references/002-Go-1-11-Release-Notes-The-Go-Programming-Language.md) — https://go.dev/doc/go1.11
+- [Go 1.10 Release Notes - The Go Programming Language](references/003-Go-1-10-Release-Notes-The-Go-Programming-Language.md) — https://go.dev/doc/go1.10
+- [Go 1.13 Release Notes - The Go Programming Language](references/004-Go-1-13-Release-Notes-The-Go-Programming-Language.md) — https://go.dev/doc/go1.13
+- [Go 1.12 Release Notes - The Go Programming Language](references/005-Go-1-12-Release-Notes-The-Go-Programming-Language.md) — https://go.dev/doc/go1.12
+- [Go 1.14 Release Notes - The Go Programming Language](references/006-Go-1-14-Release-Notes-The-Go-Programming-Language.md) — https://go.dev/doc/go1.14
+- [Go 1.15 Release Notes - The Go Programming Language](references/007-Go-1-15-Release-Notes-The-Go-Programming-Language.md) — https://go.dev/doc/go1.15
+- [Go 1.17 Release Notes - The Go Programming Language](references/008-Go-1-17-Release-Notes-The-Go-Programming-Language.md) — https://go.dev/doc/go1.17
+- [Go 1.16 Release Notes - The Go Programming Language](references/009-Go-1-16-Release-Notes-The-Go-Programming-Language.md) — https://go.dev/doc/go1.16
+- [Go 1.18 Release Notes - The Go Programming Language](references/010-Go-1-18-Release-Notes-The-Go-Programming-Language.md) — https://go.dev/doc/go1.18
+- [Go 1.19 Release Notes - The Go Programming Language](references/011-Go-1-19-Release-Notes-The-Go-Programming-Language.md) — https://go.dev/doc/go1.19
+- [Go 1.21 Release Notes - The Go Programming Language](references/012-Go-1-21-Release-Notes-The-Go-Programming-Language.md) — https://go.dev/doc/go1.21
+- [Go 1.20 Release Notes - The Go Programming Language](references/013-Go-1-20-Release-Notes-The-Go-Programming-Language.md) — https://go.dev/doc/go1.20
+- [Go 1.22 Release Notes - The Go Programming Language](references/014-Go-1-22-Release-Notes-The-Go-Programming-Language.md) — https://go.dev/doc/go1.22
+- [Go 1.23 Release Notes - The Go Programming Language](references/015-Go-1-23-Release-Notes-The-Go-Programming-Language.md) — https://go.dev/doc/go1.23
+- [Go 1.25 Release Notes - The Go Programming Language](references/016-Go-1-25-Release-Notes-The-Go-Programming-Language.md) — https://go.dev/doc/go1.25
+- [Go 1.24 Release Notes - The Go Programming Language](references/017-Go-1-24-Release-Notes-The-Go-Programming-Language.md) — https://go.dev/doc/go1.24
+- [Go 1 and the Future of Go Programs - The Go Programming Language](references/018-Go-1-and-the-Future-of-Go-Programs-The-Go-Programming-Langua.md) — https://go.dev/doc/go1compat
+- [Go 1.26 Release Notes - The Go Programming Language](references/019-Go-1-26-Release-Notes-The-Go-Programming-Language.md) — https://go.dev/doc/go1.26
+- [A Quick Guide to Go's Assembler - The Go Programming Language](references/020-A-Quick-Guide-to-Go-s-Assembler-The-Go-Programming-Language.md) — https://go.dev/doc/asm
+- [Debugging Go Code with GDB - The Go Programming Language](references/021-Debugging-Go-Code-with-GDB-The-Go-Programming-Language.md) — https://go.dev/doc/gdb
+- [Data Race Detector - The Go Programming Language](references/022-Data-Race-Detector-The-Go-Programming-Language.md) — https://go.dev/doc/articles/race_detector
+- [Go Doc Comments - The Go Programming Language](references/023-Go-Doc-Comments-The-Go-Programming-Language.md) — https://go.dev/doc/comment
+- [About the go command - The Go Programming Language](references/024-About-the-go-command-The-Go-Programming-Language.md) — https://go.dev/doc/articles/go_command
+- [Codewalk: Share Memory By Communicating - The Go Programming Language](references/025-Codewalk-Share-Memory-By-Communicating-The-Go-Programming-La.md) — https://go.dev/doc/codewalk/sharemem
+- [Codewalk: First-Class Functions in Go - The Go Programming Language](references/026-Codewalk-First-Class-Functions-in-Go-The-Go-Programming-Lang.md) — https://go.dev/doc/codewalk/functions
+- [Codewalk: Generating arbitrary text: a Markov chain algorithm - The Go Programming Language](references/027-Codewalk-Generating-arbitrary-text-a-Markov-chain-algorithm.md) — https://go.dev/doc/codewalk/markov
+- [Module version numbering - The Go Programming Language](references/028-Module-version-numbering-The-Go-Programming-Language.md) — https://go.dev/doc/modules/version-numbers
+- [Publishing a module - The Go Programming Language](references/029-Publishing-a-module-The-Go-Programming-Language.md) — https://go.dev/doc/modules/publishing
+- [Module release and versioning workflow - The Go Programming Language](references/030-Module-release-and-versioning-workflow-The-Go-Programming-La.md) — https://go.dev/doc/modules/release-workflow
+- [Managing module source - The Go Programming Language](references/031-Managing-module-source-The-Go-Programming-Language.md) — https://go.dev/doc/modules/managing-source
+- [Organizing a Go module - The Go Programming Language](references/032-Organizing-a-Go-module-The-Go-Programming-Language.md) — https://go.dev/doc/modules/layout
+- [Developing a major version update - The Go Programming Language](references/033-Developing-a-major-version-update-The-Go-Programming-Languag.md) — https://go.dev/doc/modules/major-version
+- [Avoiding SQL injection risk - The Go Programming Language](references/034-Avoiding-SQL-injection-risk-The-Go-Programming-Language.md) — https://go.dev/doc/database/sql-injection
+- [Developing and publishing modules - The Go Programming Language](references/035-Developing-and-publishing-modules-The-Go-Programming-Languag.md) — https://go.dev/doc/modules/developing
+- [Canceling in-progress operations - The Go Programming Language](references/036-Canceling-in-progress-operations-The-Go-Programming-Language.md) — https://go.dev/doc/database/cancel-operations
+- [Managing connections - The Go Programming Language](references/037-Managing-connections-The-Go-Programming-Language.md) — https://go.dev/doc/database/manage-connections
+- [Executing transactions - The Go Programming Language](references/038-Executing-transactions-The-Go-Programming-Language.md) — https://go.dev/doc/database/execute-transactions
+- [Using prepared statements - The Go Programming Language](references/039-Using-prepared-statements-The-Go-Programming-Language.md) — https://go.dev/doc/database/prepared-statements
+- [Executing SQL statements that don't return data - The Go Programming Language](references/040-Executing-SQL-statements-that-don-t-return-data-The-Go-Progr.md) — https://go.dev/doc/database/change-data
+- [Querying for data - The Go Programming Language](references/041-Querying-for-data-The-Go-Programming-Language.md) — https://go.dev/doc/database/querying
+- [Accessing relational databases - The Go Programming Language](references/042-Accessing-relational-databases-The-Go-Programming-Language.md) — https://go.dev/doc/database
+- [Release History - The Go Programming Language](references/043-Release-History-The-Go-Programming-Language.md) — https://go.dev/doc/devel/release
+- [Opening a database handle - The Go Programming Language](references/044-Opening-a-database-handle-The-Go-Programming-Language.md) — https://go.dev/doc/database/open-handle
+- [Tutorial: Accessing a relational database - The Go Programming Language](references/045-Tutorial-Accessing-a-relational-database-The-Go-Programming.md) — https://go.dev/doc/tutorial/database-access
+- [Contribution Guide - The Go Programming Language](references/046-Contribution-Guide-The-Go-Programming-Language.md) — https://go.dev/doc/contribute
+- [The Go Memory Model - The Go Programming Language](references/047-The-Go-Memory-Model-The-Go-Programming-Language.md) — https://go.dev/ref/mem
+- [Go Modules Reference - The Go Programming Language](references/048-Go-Modules-Reference-The-Go-Programming-Language.md) — https://go.dev/ref/mod
+- [go.mod file reference - The Go Programming Language](references/049-go-mod-file-reference-The-Go-Programming-Language.md) — https://go.dev/doc/modules/gomod-ref
+- [Coverage profiling support for integration tests - The Go Programming Language](references/050-Coverage-profiling-support-for-integration-tests-The-Go-Prog.md) — https://go.dev/doc/build-cover
+- [Profile-guided optimization - The Go Programming Language](references/051-Profile-guided-optimization-The-Go-Programming-Language.md) — https://go.dev/doc/pgo
+- [Command Documentation - The Go Programming Language](references/052-Command-Documentation-The-Go-Programming-Language.md) — https://go.dev/doc/cmd
+- [Managing dependencies - The Go Programming Language](references/053-Managing-dependencies-The-Go-Programming-Language.md) — https://go.dev/doc/modules/managing-dependencies
+- [A Guide to the Go Garbage Collector - The Go Programming Language](references/054-A-Guide-to-the-Go-Garbage-Collector-The-Go-Programming-Langu.md) — https://go.dev/doc/gc-guide
+- [Diagnostics - The Go Programming Language](references/055-Diagnostics-The-Go-Programming-Language.md) — https://go.dev/doc/diagnostics
+- [Editor plugins and IDEs - The Go Programming Language](references/056-Editor-plugins-and-IDEs-The-Go-Programming-Language.md) — https://go.dev/doc/editors
+- [Effective Go - The Go Programming Language](references/057-Effective-Go-The-Go-Programming-Language.md) — https://go.dev/doc/effective_go
+- [Frequently Asked Questions (FAQ) - The Go Programming Language](references/058-Frequently-Asked-Questions-FAQ-The-Go-Programming-Language.md) — https://go.dev/doc/faq
+- [Writing Web Applications - The Go Programming Language](references/059-Writing-Web-Applications-The-Go-Programming-Language.md) — https://go.dev/doc/articles/wiki
+- [How to Write Go Code - The Go Programming Language](references/060-How-to-Write-Go-Code-The-Go-Programming-Language.md) — https://go.dev/doc/code
+- [Tutorial: Getting started with fuzzing - The Go Programming Language](references/061-Tutorial-Getting-started-with-fuzzing-The-Go-Programming-Lan.md) — https://go.dev/doc/tutorial/fuzz
+- [Tutorial: Getting started with generics - The Go Programming Language](references/062-Tutorial-Getting-started-with-generics-The-Go-Programming-La.md) — https://go.dev/doc/tutorial/generics
+- [Tutorial: Developing a RESTful API with Go and Gin - The Go Programming Language](references/063-Tutorial-Developing-a-RESTful-API-with-Go-and-Gin-The-Go-Pro.md) — https://go.dev/doc/tutorial/web-service-gin
+- [Tutorial: Getting started with multi-module workspaces - The Go Programming Language](references/064-Tutorial-Getting-started-with-multi-module-workspaces-The-Go.md) — https://go.dev/doc/tutorial/workspaces
+- [Tutorial: Create a Go module - The Go Programming Language](references/065-Tutorial-Create-a-Go-module-The-Go-Programming-Language.md) — https://go.dev/doc/tutorial/create-module
+- [Tutorial: Get started with Go - The Go Programming Language](references/066-Tutorial-Get-started-with-Go-The-Go-Programming-Language.md) — https://go.dev/doc/tutorial/getting-started
+- [Download and install - The Go Programming Language](references/067-Download-and-install-The-Go-Programming-Language.md) — https://go.dev/doc/install
+- [The Go Programming Language Specification - The Go Programming Language](references/068-The-Go-Programming-Language-Specification-The-Go-Programming.md) — https://go.dev/ref/spec
+- [Documentation - The Go Programming Language](references/069-Documentation-The-Go-Programming-Language.md) — https://go.dev/doc

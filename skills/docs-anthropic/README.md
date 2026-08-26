@@ -1,0 +1,84 @@
+# docs-anthropic
+
+Exported documentation references.
+
+- [Using Agent Skills with the API](references/001-Using-Agent-Skills-with-the-API.md) — https://platform.claude.com/docs/en/build-with-claude/skills-guide.md
+- [Tutorial: Build a tool-using agent](references/002-Tutorial-Build-a-tool-using-agent.md) — https://platform.claude.com/docs/en/agents-and-tools/tool-use/build-a-tool-using-agent.md
+- [Using the Messages API](references/003-Using-the-Messages-API.md) — https://platform.claude.com/docs/en/build-with-claude/working-with-messages.md
+- [Troubleshoot MCP tunnels](references/004-Troubleshoot-MCP-tunnels.md) — https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/troubleshooting.md
+- [Troubleshooting thinking](references/005-Troubleshooting-thinking.md) — https://platform.claude.com/docs/en/build-with-claude/thinking-troubleshooting.md
+- [Troubleshooting tool use](references/006-Troubleshooting-tool-use.md) — https://platform.claude.com/docs/en/agents-and-tools/tool-use/troubleshooting-tool-use.md
+- [Tool use with prompt caching](references/007-Tool-use-with-prompt-caching.md) — https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-use-with-prompt-caching.md
+- [Tool search tool](references/008-Tool-search-tool.md) — https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool.md
+- [Tool reference](references/009-Tool-reference.md) — https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-reference.md
+- [Tool runner (SDK)](references/010-Tool-runner-SDK.md) — https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-runner.md
+- [Thinking](references/011-Thinking.md) — https://platform.claude.com/docs/en/build-with-claude/thinking.md
+- [Token counting](references/012-Token-counting.md) — https://platform.claude.com/docs/en/build-with-claude/token-counting.md
+- [Tool combinations](references/013-Tool-combinations.md) — https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-combinations.md
+- [Task budgets](references/014-Task-budgets.md) — https://platform.claude.com/docs/en/build-with-claude/task-budgets.md
+- [Text editor tool](references/015-Text-editor-tool.md) — https://platform.claude.com/docs/en/agents-and-tools/tool-use/text-editor-tool.md
+- [Thinking in tool and multi-turn workflows](references/016-Thinking-in-tool-and-multi-turn-workflows.md) — https://platform.claude.com/docs/en/build-with-claude/thinking-tool-workflows.md
+- [Strict tool use](references/017-Strict-tool-use.md) — https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use.md
+- [Structured outputs](references/018-Structured-outputs.md) — https://platform.claude.com/docs/en/build-with-claude/structured-outputs.md
+- [Streaming messages](references/019-Streaming-messages.md) — https://platform.claude.com/docs/en/build-with-claude/streaming.md
+- [Stop reasons and fallback](references/020-Stop-reasons-and-fallback.md) — https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons.md
+- [Skills for enterprise](references/021-Skills-for-enterprise.md) — https://platform.claude.com/docs/en/agents-and-tools/agent-skills/enterprise.md
+- [Steering thinking](references/022-Steering-thinking.md) — https://platform.claude.com/docs/en/build-with-claude/thinking-steering-and-cost.md
+- [Skill authoring best practices](references/023-Skill-authoring-best-practices.md) — https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices.md
+- [Server tools](references/024-Server-tools.md) — https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools.md
+- [Prompt caching](references/025-Prompt-caching.md) — https://platform.claude.com/docs/en/build-with-claude/prompt-caching.md
+- [Remote MCP servers](references/026-Remote-MCP-servers.md) — https://platform.claude.com/docs/en/agents-and-tools/remote-mcp-servers.md
+- [Search results](references/027-Search-results.md) — https://platform.claude.com/docs/en/build-with-claude/search-results.md
+- [Refusals and fallback](references/028-Refusals-and-fallback.md) — https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback.md
+- [PDF support](references/029-PDF-support.md) — https://platform.claude.com/docs/en/build-with-claude/pdf-support.md
+- [Programmatic tool calling](references/030-Programmatic-tool-calling.md) — https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling.md
+- [Multilingual support](references/031-Multilingual-support.md) — https://platform.claude.com/docs/en/build-with-claude/multilingual-support.md
+- [Parallel tool use](references/032-Parallel-tool-use.md) — https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use.md
+- [Memory tool](references/033-Memory-tool.md) — https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool.md
+- [Mid-conversation system messages and tool changes](references/034-Mid-conversation-system-messages-and-tool-changes.md) — https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages.md
+- [Manage tunnels in the Console](references/035-Manage-tunnels-in-the-Console.md) — https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/console.md
+- [MCP connector](references/036-MCP-connector.md) — https://platform.claude.com/docs/en/agents-and-tools/mcp-connector.md
+- [MCP tunnels security](references/037-MCP-tunnels-security.md) — https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/security.md
+- [MCP tunnels reference](references/038-MCP-tunnels-reference.md) — https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/reference.md
+- [Manage tool context](references/039-Manage-tool-context.md) — https://platform.claude.com/docs/en/agents-and-tools/tool-use/manage-tool-context.md
+- [How tool use works](references/040-How-tool-use-works.md) — https://platform.claude.com/docs/en/agents-and-tools/tool-use/how-tool-use-works.md
+- [Handle streaming refusals](references/041-Handle-streaming-refusals.md) — https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals.md
+- [Handle tool calls](references/042-Handle-tool-calls.md) — https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls.md
+- [Fast mode (research preview)](references/043-Fast-mode-research-preview.md) — https://platform.claude.com/docs/en/build-with-claude/fast-mode.md
+- [Files API](references/044-Files-API.md) — https://platform.claude.com/docs/en/build-with-claude/files.md
+- [Get your Claude API key](references/045-Get-your-Claude-API-key.md) — https://platform.claude.com/docs/en/get-api-key.md
+- [Fine-grained tool streaming](references/046-Fine-grained-tool-streaming.md) — https://platform.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming.md
+- [Extended thinking](references/047-Extended-thinking.md) — https://platform.claude.com/docs/en/build-with-claude/extended-thinking.md
+- [Fallback credit](references/048-Fallback-credit.md) — https://platform.claude.com/docs/en/build-with-claude/fallback-credit.md
+- [Embeddings](references/049-Embeddings.md) — https://platform.claude.com/docs/en/build-with-claude/embeddings.md
+- [Effort](references/050-Effort.md) — https://platform.claude.com/docs/en/build-with-claude/effort.md
+- [Coordinates and bounding boxes](references/051-Coordinates-and-bounding-boxes.md) — https://platform.claude.com/docs/en/build-with-claude/vision-coordinates.md
+- [Define tools](references/052-Define-tools.md) — https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools.md
+- [Deploy MCP tunnels with Docker Compose](references/053-Deploy-MCP-tunnels-with-Docker-Compose.md) — https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/deploy-compose.md
+- [Deploy MCP tunnels with Helm](references/054-Deploy-MCP-tunnels-with-Helm.md) — https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/deploy-helm.md
+- [Context windows](references/055-Context-windows.md) — https://platform.claude.com/docs/en/build-with-claude/context-windows.md
+- [Context editing](references/056-Context-editing.md) — https://platform.claude.com/docs/en/build-with-claude/context-editing.md
+- [Compaction](references/057-Compaction.md) — https://platform.claude.com/docs/en/build-with-claude/compaction.md
+- [Computer use tool](references/058-Computer-use-tool.md) — https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool.md
+- [Code execution tool](references/059-Code-execution-tool.md) — https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool.md
+- [Claude Platform on AWS](references/060-Claude-Platform-on-AWS.md) — https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws.md
+- [Claude on Google Cloud](references/061-Claude-on-Google-Cloud.md) — https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai.md
+- [Claude on Amazon Bedrock (Opus 4.6 and earlier)](references/062-Claude-on-Amazon-Bedrock-Opus-4-6-and-earlier.md) — https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy.md
+- [Claude in Amazon Bedrock (Opus 4.7 and later)](references/063-Claude-in-Amazon-Bedrock-Opus-4-7-and-later.md) — https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock.md
+- [Claude in Microsoft Foundry](references/064-Claude-in-Microsoft-Foundry.md) — https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry.md
+- [Cache diagnostics](references/065-Cache-diagnostics.md) — https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics.md
+- [Citations](references/066-Citations.md) — https://platform.claude.com/docs/en/build-with-claude/citations.md
+- [Batch processing](references/067-Batch-processing.md) — https://platform.claude.com/docs/en/build-with-claude/batch-processing.md
+- [Build an orchestration mode](references/068-Build-an-orchestration-mode.md) — https://platform.claude.com/docs/en/build-with-claude/mid-conversation-effort-example.md
+- [Architecture and components](references/069-Architecture-and-components.md) — https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/concepts.md
+- [Bash tool](references/070-Bash-tool.md) — https://platform.claude.com/docs/en/agents-and-tools/tool-use/bash-tool.md
+- [MCP tunnels quickstart](references/071-MCP-tunnels-quickstart.md) — https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/quickstart.md
+- [MCP tunnels](references/072-MCP-tunnels.md) — https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/overview.md
+- [Tool use with Claude](references/073-Tool-use-with-Claude.md) — https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview.md
+- [Advisor tool](references/074-Advisor-tool.md) — https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool.md
+- [Get started with Claude](references/075-Get-started-with-Claude.md) — https://platform.claude.com/docs/en/get-started.md
+- [Intro to Claude](references/076-Intro-to-Claude.md) — https://platform.claude.com/docs/en/intro.md
+- [Get started with Agent Skills in the API](references/077-Get-started-with-Agent-Skills-in-the-API.md) — https://platform.claude.com/docs/en/agents-and-tools/agent-skills/quickstart.md
+- [Features overview](references/078-Features-overview.md) — https://platform.claude.com/docs/en/build-with-claude/overview.md
+- [Agent Skills](references/079-Agent-Skills.md) — https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview.md
+- [Documentation - Claude Platform Docs](references/080-Documentation-Claude-Platform-Docs.md) — https://platform.claude.com/docs/en/home

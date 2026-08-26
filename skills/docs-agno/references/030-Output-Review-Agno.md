@@ -1,0 +1,261 @@
+# Output Review - Agno
+
+Source: https://docs.agno.com/workflows/hitl/output-review
+
+Output review pauses the workflow **after** a step executes, letting a human inspect the output before it continues to the next step. This complements pre-execution confirmation, which pauses **before** a step runs.
+Configure it with [`human_review=HumanReview(...)`](/workflows/hitl/human-review) on the primitive. Flat parameters on `Step` (for example `requires_output_review=True`) still work for backward compatibility.
+Supported on [Step](/workflows/hitl/step), [Router](/workflows/hitl/router#output-review), and [Loop](/workflows/hitl/loop#iteration-review) (via `requires_iteration_review` on `HumanReview`).
+
+```
+from agno.workflow import Workflow, OnReject
+from agno.workflow.step import Step
+from agno.workflow.types import HumanReview
+from agno.db.sqlite import SqliteDb
+
+workflow = Workflow(
+    name="email_workflow",
+    db=SqliteDb(db_file="workflow.db"),
+    steps=[
+        Step(
+            name="draft_email",
+            agent=draft_agent,
+            human_review=HumanReview(
+                requires_output_review=True,
+                output_review_message="Review the email draft before sending",
+                on_reject=OnReject.cancel,
+            ),
+        ),
+        Step(name="send_email", agent=send_agent),
+    ],
+)
+
+run_output = workflow.run("Draft an email about the Friday standup")
+
+if run_output.is_paused:
+    for req in run_output.steps_requiring_output_review:
+        print(req.step_output.content)
+
+        if user_approves():
+            req.confirm()
+        else:
+            req.reject()
+
+    run_output = workflow.continue_run(run_output)
+```
+
+The step executes, then the workflow pauses with the full output available in `req.step_output`. The reviewer calls `confirm()`, `reject()`, or `edit()` before resuming.
+
+## [​](#parameters) Parameters
+
+Pass these fields inside `HumanReview`. See [HumanReview Config](/workflows/hitl/human-review) for the full field list, defaults, and validation rules.
+
+| Field | Type | Default | Description |
+| --- | --- | --- | --- |
+| `requires_output_review` | `bool | Callable[[StepOutput], bool]` | `False` | Pause after execution for review. Pass a callable for [conditional review](#conditional-review) |
+| `output_review_message` | `str` | `None` | Message shown to the reviewer |
+| `on_reject` | `OnReject` | `OnReject.skip` | Action on rejection: `skip`, `cancel`, `retry` |
+| `max_retries` | `int` | `3` | Maximum retry attempts when `on_reject=OnReject.retry` |
+| `timeout` | `int` | `None` | Seconds before auto-resolving. Only applies on Step. See [Timeout](/workflows/hitl/timeout) |
+| `on_timeout` | `OnTimeout` | `OnTimeout.cancel` | Action when timeout expires. See [Timeout](/workflows/hitl/timeout) |
+
+## [​](#reviewer-actions) Reviewer Actions
+
+| Method | Effect |
+| --- | --- |
+| `req.confirm()` | Accept output as-is. Continues to next step |
+| `req.reject()` | Reject output. Behavior depends on `on_reject` |
+| `req.reject(feedback="...")` | Reject with feedback. Feedback is sent to the agent on [retry](#reject-with-retry) |
+| `req.edit("new output")` | Accept with modifications. Edited output replaces original |
+
+## [​](#reject-with-retry) Reject with Retry
+
+Set `on_reject=OnReject.retry` to re-execute the step when a reviewer rejects. Pair with `reject(feedback=...)` to send the reviewer’s feedback to the agent on the next attempt.
+
+```
+from agno.workflow import Workflow, OnReject
+from agno.workflow.step import Step
+from agno.workflow.types import HumanReview
+from agno.db.sqlite import SqliteDb
+
+workflow = Workflow(
+    name="email_review_workflow",
+    db=SqliteDb(db_file="workflow.db"),
+    steps=[
+        Step(
+            name="draft_email",
+            agent=draft_agent,
+            human_review=HumanReview(
+                requires_output_review=True,
+                output_review_message="Review the email draft",
+                on_reject=OnReject.retry,
+                max_retries=3,
+            ),
+        ),
+        Step(name="send_email", agent=send_agent),
+    ],
+)
+
+run_output = workflow.run("Draft an email about the Friday standup")
+
+while run_output.is_paused:
+    for req in run_output.steps_requiring_output_review:
+        print(f"Attempt {req.retry_count + 1}:")
+        print(req.step_output.content)
+
+        if user_approves():
+            req.confirm()
+        else:
+            feedback = input("What should change? ")
+            req.reject(feedback=feedback)
+
+    run_output = workflow.continue_run(run_output)
+```
+
+The feedback string is injected into the agent’s message as `"Feedback from reviewer: ..."` on the next execution. Without feedback, the step simply re-runs with the same input.
+
+### [​](#retry-behavior) Retry Behavior
+
+| Scenario | Result |
+| --- | --- |
+| Reject with `on_reject=OnReject.retry` | Step re-executes and `retry_count` increments. Previous output is removed from collected outputs |
+| Reject with feedback | Feedback is passed to the agent on the next attempt |
+| `max_retries` exhausted | Workflow is cancelled with a max-retries message |
+
+## [​](#edit-output) Edit Output
+
+Accept with modifications. The edited content replaces the original step output before it flows to the next step. Use this when the fix is minor and a full retry would be wasteful.
+
+```
+run_output = workflow.run("Draft an email about the Friday standup")
+
+if run_output.is_paused:
+    for req in run_output.steps_requiring_output_review:
+        print(req.step_output.content)
+
+        choice = input("[a]pprove / [e]dit / [r]eject: ").strip().lower()
+
+        if choice == "a":
+            req.confirm()
+        elif choice == "e":
+            edited = input("Enter corrected output: ")
+            req.edit(edited)
+        else:
+            req.reject()
+
+    run_output = workflow.continue_run(run_output)
+```
+
+`edit()` sets `confirmed=True` and stores the edited content. On resume, the edited output replaces the original in collected outputs.
+
+## [​](#conditional-review) Conditional Review
+
+Pass a callable to `requires_output_review` inside `HumanReview` to evaluate at runtime whether review is needed. The predicate receives the `StepOutput` and returns `True` to pause or `False` to auto-approve.
+
+```
+from agno.workflow import Workflow, OnReject
+from agno.workflow.step import Step
+from agno.workflow.types import HumanReview, StepOutput
+from agno.db.sqlite import SqliteDb
+
+def needs_review(step_output: StepOutput) -> bool:
+    """Only review outputs longer than 200 characters."""
+    content = str(step_output.content) if step_output.content else ""
+    return len(content) > 200
+
+workflow = Workflow(
+    name="conditional_review_workflow",
+    db=SqliteDb(db_file="workflow.db"),
+    steps=[
+        Step(
+            name="draft_email",
+            agent=draft_agent,
+            human_review=HumanReview(
+                requires_output_review=needs_review,
+                output_review_message="Long email detected. Review before sending",
+                on_reject=OnReject.retry,
+                max_retries=2,
+            ),
+        ),
+        Step(name="send_email", agent=send_agent),
+    ],
+)
+```
+
+Common review predicates:
+
+| Condition | Example |
+| --- | --- |
+| Output length | `len(str(output.content)) > 200` |
+| Contains sensitive keywords | `"password" in str(output.content).lower()` |
+| Confidence score | `output.content.confidence < 0.8` (with structured output) |
+| Random sampling | `random.random() < 0.1` for 10% review rate |
+
+## [​](#full-review-loop) Full Review Loop
+
+The complete pattern with all three reviewer actions:
+
+```
+from agno.workflow import Workflow, OnReject
+from agno.workflow.step import Step
+from agno.workflow.types import HumanReview
+from agno.db.sqlite import SqliteDb
+
+workflow = Workflow(
+    name="review_workflow",
+    db=SqliteDb(db_file="workflow.db"),
+    steps=[
+        Step(
+            name="draft",
+            agent=draft_agent,
+            human_review=HumanReview(
+                requires_output_review=True,
+                output_review_message="Review the draft",
+                on_reject=OnReject.retry,
+                max_retries=3,
+            ),
+        ),
+        Step(name="publish", agent=publish_agent),
+    ],
+)
+
+run_output = workflow.run("Write a client email")
+
+while run_output.is_paused:
+    for req in run_output.steps_requiring_output_review:
+        print(req.step_output.content)
+
+        choice = input("[a]pprove / [r]eject / [e]dit: ")
+        if choice == "a":
+            req.confirm()
+        elif choice == "r":
+            feedback = input("What should change? ")
+            req.reject(feedback=feedback)
+        elif choice == "e":
+            edited = input("Enter corrected output: ")
+            req.edit(edited)
+
+    run_output = workflow.continue_run(run_output)
+```
+
+## [​](#steprequirement-properties) StepRequirement Properties
+
+When a step pauses for output review, the `StepRequirement` includes:
+
+| Property | Type | Description |
+| --- | --- | --- |
+| `step_name` | `str` | Name of the paused step |
+| `step_output` | `StepOutput` | The step’s output for review |
+| `output_review_message` | `str` | Message from the step configuration |
+| `retry_count` | `int` | Number of retry attempts so far |
+| `rejection_feedback` | `str` | Feedback from the last rejection |
+| `timeout_at` | `datetime` | When the timeout expires (if set) |
+
+## [​](#developer-resources) Developer Resources
+
+- [HumanReview Config](/workflows/hitl/human-review)
+- [Workflow HITL overview](/workflows/hitl/overview)
+- [Timeout](/workflows/hitl/timeout)
+- [Step reference](/reference/workflows/step)
+- [Cookbooks](https://github.com/agno-agi/agno/tree/main/cookbook/04_workflows/08_human_in_the_loop/output_review)
+
+⌘I

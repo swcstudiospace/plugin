@@ -1,0 +1,139 @@
+# Stream a function step through AgentOS - Agno
+
+Source: https://docs.agno.com/workflows/usage/step-with-function-streaming-agentos
+
+An async function executor can yield agent events followed by its final `StepOutput`.
+
+step\_with\_function\_streaming\_agentos.py
+
+```
+from typing import AsyncIterator, Union
+
+from agno.agent.agent import Agent
+from agno.db.in_memory import InMemoryDb
+from agno.db.sqlite import SqliteDb
+from agno.models.openai import OpenAIChat
+from agno.os import AgentOS
+from agno.run.agent import RunOutputEvent
+from agno.tools.hackernews import HackerNewsTools
+from agno.workflow.step import Step, StepInput, StepOutput
+from agno.workflow.workflow import Workflow
+
+research_agent = Agent(
+    name="Hacker News Researcher",
+    model=OpenAIChat(id="gpt-4o"),
+    tools=[HackerNewsTools()],
+    instructions="Find relevant Hacker News stories and summarize the key points.",
+)
+
+content_planner = Agent(
+    name="Content Planner",
+    model=OpenAIChat(id="gpt-4o"),
+    instructions="Create an actionable content plan from the supplied research.",
+    db=InMemoryDb(),
+)
+
+async def stream_content_plan(
+    step_input: StepInput,
+) -> AsyncIterator[Union[RunOutputEvent, StepOutput]]:
+    """Stream planner events, then return the completed content plan."""
+    message = step_input.input
+    previous_step_content = step_input.previous_step_content
+
+    planning_prompt = f"""
+    Topic: {message}
+    Research: {previous_step_content or "No research results"}
+
+    Create a four-week content plan with three posts per week.
+    """
+
+    try:
+        events = content_planner.arun(
+            planning_prompt, stream=True, stream_events=True
+        )
+        async for event in events:
+            yield event
+
+        response = content_planner.get_last_run_output()
+        yield StepOutput(content=response.content if response else "")
+    except Exception as exc:
+        yield StepOutput(
+            content=f"Content planning failed: {exc}",
+            success=False,
+        )
+
+research_step = Step(
+    name="Research Step",
+    agent=research_agent,
+)
+
+content_planning_step = Step(
+    name="Content Planning Step",
+    executor=stream_content_plan,
+)
+
+streaming_content_workflow = Workflow(
+    name="Streaming Content Creation Workflow",
+    description="Automated content creation with streaming custom execution functions",
+    db=SqliteDb(
+        session_table="workflow_session",
+        db_file="tmp/workflow.db",
+    ),
+    steps=[
+        research_step,
+        content_planning_step,
+    ],
+)
+
+agent_os = AgentOS(
+    workflows=[streaming_content_workflow],
+)
+app = agent_os.get_app()
+
+if __name__ == "__main__":
+    agent_os.serve(app="step_with_function_streaming_agentos:app", reload=True)
+```
+
+## [​](#install) Install
+
+```
+uv pip install "agno[os]" openai
+```
+
+## [​](#set-openai-key) Set OpenAI Key
+
+Set your `OPENAI_API_KEY` as an environment variable. You can get one [from OpenAI](https://platform.openai.com/account/api-keys).
+
+Mac
+
+Windows
+
+```
+export OPENAI_API_KEY=sk-***
+```
+
+```
+setx OPENAI_API_KEY sk-***
+```
+
+## [​](#run) Run
+
+```
+python step_with_function_streaming_agentos.py
+```
+
+## [​](#how-it-works) How it works
+
+1. `stream_content_plan` yields each `RunOutputEvent` from `content_planner.arun()`.
+2. The workflow adds its run, session, and step context to those events.
+3. The function yields one `StepOutput` after the planner finishes.
+4. AgentOS exposes the workflow and its event stream through the runtime API.
+
+## [​](#next-steps) Next steps
+
+| Task | Guide |
+| --- | --- |
+| Connect the runtime to the control plane | [Connect your AgentOS](/agent-os/connect-your-os) |
+| Run a workflow through the API | [Use the AgentOS API](/agent-os/using-the-api) |
+
+⌘I

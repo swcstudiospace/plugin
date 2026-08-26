@@ -1,0 +1,651 @@
+{
+  "name": "docs-openai",
+  "generated_at": "2026-07-29T03:57:58Z",
+  "query": null,
+  "source_id": null,
+  "ranking": "all pages (recency)",
+  "page_count": 80,
+  "embedding_model": null,
+  "pages": [
+    {
+      "title": "Manage permissions in the OpenAI platform",
+      "url": "https://developers.openai.com/api/docs/guides/rbac.md",
+      "content_hash": "sha256:893046ee6b4ca31d67661cbf680cf746447cea47a1914c1e402511fd235675a7",
+      "file": "references/001-Manage-permissions-in-the-OpenAI-platform.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Local shell",
+      "url": "https://developers.openai.com/api/docs/guides/tools-local-shell.md",
+      "content_hash": "sha256:76d3748042fd753452d84cf61d0585bb350c41c3f15c46ea735f1c73c8c97a3e",
+      "file": "references/002-Local-shell.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Manage service accounts with Terraform",
+      "url": "https://developers.openai.com/api/docs/guides/terraform/service-accounts.md",
+      "content_hash": "sha256:0b3848c6d78ad4bdc3a4eb75a40edbc36cf6702bc128b67c341578b586a854e9",
+      "file": "references/003-Manage-service-accounts-with-Terraform.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Manage projects and access with Terraform",
+      "url": "https://developers.openai.com/api/docs/guides/terraform/projects-and-access.md",
+      "content_hash": "sha256:61b385e951f17b9f7f7e7079d352dd47bc361cd39f39582d9a1017675de34b2c",
+      "file": "references/004-Manage-projects-and-access-with-Terraform.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Integrations and observability",
+      "url": "https://developers.openai.com/api/docs/guides/agents/integrations-observability.md",
+      "content_hash": "sha256:3fd9e6bbeeb6a04cc24a74a0216d5ea0936fe805d6e0fc470b4f025eac0a2d8f",
+      "file": "references/005-Integrations-and-observability.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Import and reconcile OpenAI resources",
+      "url": "https://developers.openai.com/api/docs/guides/terraform/import-and-reconcile.md",
+      "content_hash": "sha256:0c2a7047dd545cf96100ed5495f7bab2e5de60c771a02d0a6e38b739af8ea696",
+      "file": "references/006-Import-and-reconcile-OpenAI-resources.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Latency optimization",
+      "url": "https://developers.openai.com/api/docs/guides/latency-optimization.md",
+      "content_hash": "sha256:5e42d0e7bced19c90bd7bebf0a62dd002af3efd5d46b74ab1621b3bd2cf07d83",
+      "file": "references/007-Latency-optimization.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "IP egress ranges",
+      "url": "https://developers.openai.com/api/docs/guides/ip-addresses.md",
+      "content_hash": "sha256:73e540f4d82d0a5c05a94746b926ba06aa98a9a3e209a150f05e999c26c1403c",
+      "file": "references/008-IP-egress-ranges.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Image generation",
+      "url": "https://developers.openai.com/api/docs/guides/tools-image-generation.md",
+      "content_hash": "sha256:e0f6f391a1552c0fb30303ef2577b13a44408e0d1ed9544025922202e76da4af",
+      "file": "references/009-Image-generation.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Images and vision",
+      "url": "https://developers.openai.com/api/docs/guides/images-vision.md",
+      "content_hash": "sha256:785f08e41a062637aef0924f24ffd1400a83d7272f11a11be35fbbf903d1da37",
+      "file": "references/010-Images-and-vision.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Graders",
+      "url": "https://developers.openai.com/api/docs/guides/graders.md",
+      "content_hash": "sha256:57e1e7c89a93b927025df9be958307a2053420f77eae0c337d96f199957545d5",
+      "file": "references/011-Graders.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Getting started with datasets",
+      "url": "https://developers.openai.com/api/docs/guides/evaluation-getting-started.md",
+      "content_hash": "sha256:dfd34e9188dbf411b5ce5afbf429484a4bcce2921735c295a065f64137a3364b",
+      "file": "references/012-Getting-started-with-datasets.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Image generation",
+      "url": "https://developers.openai.com/api/docs/guides/image-generation.md",
+      "content_hash": "sha256:c795bfd5ee90cc4c8535b8d0dc3b77f06927adca9e1563c28140c71945e19cc9",
+      "file": "references/013-Image-generation.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Guardrails and human review",
+      "url": "https://developers.openai.com/api/docs/guides/agents/guardrails-approvals.md",
+      "content_hash": "sha256:ceec2ab2a81ebd06e33664699db1956135d2b8765860807be28769e1f45bfcaa",
+      "file": "references/014-Guardrails-and-human-review.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Fine-tuning best practices",
+      "url": "https://developers.openai.com/api/docs/guides/fine-tuning-best-practices.md",
+      "content_hash": "sha256:d8c90fc14d9e4a5077866b35eaef73740366e11e139436bdb390250402c09a96",
+      "file": "references/015-Fine-tuning-best-practices.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Function calling",
+      "url": "https://developers.openai.com/api/docs/guides/function-calling.md",
+      "content_hash": "sha256:823de78f105937cfac0280eb986b2ef711af26879bce9b16de5b5fbd168563f3",
+      "file": "references/016-Function-calling.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Frontend prompt instructions",
+      "url": "https://developers.openai.com/api/docs/guides/frontend-prompt.md",
+      "content_hash": "sha256:8cc509be5b051d1494655f8d7afd6d84c832fa7e064101896e27ea4a2c87fdf6",
+      "file": "references/017-Frontend-prompt-instructions.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "File inputs",
+      "url": "https://developers.openai.com/api/docs/guides/file-inputs.md",
+      "content_hash": "sha256:be1c2dc24da52e82ed4f50ea4ddb5544f51c905c3bf304a030ae7399c1c6708c",
+      "file": "references/018-File-inputs.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "File transcription",
+      "url": "https://developers.openai.com/api/docs/guides/speech-to-text.md",
+      "content_hash": "sha256:03af0214d0b747cab90a3f28d67f62586074b1baf1a642da1f756b845d1481d3",
+      "file": "references/019-File-transcription.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "File search",
+      "url": "https://developers.openai.com/api/docs/guides/tools-file-search.md",
+      "content_hash": "sha256:830393bfa2249916866ef360f8960b7c85ed6986ac71ee0a3a518b40c98e0bf2",
+      "file": "references/020-File-search.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Flex processing",
+      "url": "https://developers.openai.com/api/docs/guides/flex-processing.md",
+      "content_hash": "sha256:1915c4181e1d6c41a2efd148e506634cc9855c0c99ca63b014dd3e31d3473a60",
+      "file": "references/021-Flex-processing.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Evaluate agent workflows",
+      "url": "https://developers.openai.com/api/docs/guides/agent-evals.md",
+      "content_hash": "sha256:80922385e8c0ad36a6d6d39479c770763a2eb2314e27ecd0fbc94566dc7dd37f",
+      "file": "references/022-Evaluate-agent-workflows.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Evaluate external models",
+      "url": "https://developers.openai.com/api/docs/guides/external-models.md",
+      "content_hash": "sha256:b04c73b9f7fff5ac91c650054247a0ae9360c89776c76042afa2d06e531ec29c",
+      "file": "references/023-Evaluate-external-models.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Evaluation best practices",
+      "url": "https://developers.openai.com/api/docs/guides/evaluation-best-practices.md",
+      "content_hash": "sha256:d82da1c478f96d932b1f4982195e90b4719c3c3e9818c4ffd0a95b48fc4403a1",
+      "file": "references/024-Evaluation-best-practices.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Data controls in the OpenAI platform",
+      "url": "https://developers.openai.com/api/docs/guides/your-data.md",
+      "content_hash": "sha256:600eb1f598824e5b1a30665595a95a58f65acc68c049a8e7b0c56684944e1ec7",
+      "file": "references/025-Data-controls-in-the-OpenAI-platform.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Deep research",
+      "url": "https://developers.openai.com/api/docs/guides/deep-research.md",
+      "content_hash": "sha256:5be223c39dcf80e3f3da11926af822b332a67edaf73c9626b3e14174f455d1aa",
+      "file": "references/026-Deep-research.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Error codes",
+      "url": "https://developers.openai.com/api/docs/guides/error-codes.md",
+      "content_hash": "sha256:a86f1286926090a5f74a62240c4e807a248436f3aaee607530c7ceec1399ce22",
+      "file": "references/027-Error-codes.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Direct preference optimization",
+      "url": "https://developers.openai.com/api/docs/guides/direct-preference-optimization.md",
+      "content_hash": "sha256:8b5eaec0d2d29cbde6389ef98533287e912b34aac37ca78785cc5c0c90ee4a4b",
+      "file": "references/028-Direct-preference-optimization.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Counting tokens",
+      "url": "https://developers.openai.com/api/docs/guides/token-counting.md",
+      "content_hash": "sha256:53c671e4c86a7da67f24fc51e9ee0e85f0ecb38e0cbd43af60f240bff3a8aaa8",
+      "file": "references/029-Counting-tokens.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Cybersecurity checks",
+      "url": "https://developers.openai.com/api/docs/guides/safety-checks/cybersecurity.md",
+      "content_hash": "sha256:fc9bf03232c2db9fd7d92b234c2c9fd65e4c3e5ce3c27f085843458fbc818605",
+      "file": "references/030-Cybersecurity-checks.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Conversation state",
+      "url": "https://developers.openai.com/api/docs/guides/conversation-state.md",
+      "content_hash": "sha256:d83f4b6c7cd482a68589050f60e2de6f38f1171d317fa3ee5fde74ae6e7b70b4",
+      "file": "references/031-Conversation-state.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Cost optimization",
+      "url": "https://developers.openai.com/api/docs/guides/cost-optimization.md",
+      "content_hash": "sha256:0a8ecab632f319978efaedac5f7a974af553908caea0bc0478e9eb1ca79aa84a",
+      "file": "references/032-Cost-optimization.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Configuring workload identity federation for Microsoft Azure",
+      "url": "https://developers.openai.com/api/docs/guides/workload-identity-federation/microsoft-azure.md",
+      "content_hash": "sha256:fc24c389b7d1613d29c2d84dce1e683a39d016351f2cb285890b9df3dbd2f844",
+      "file": "references/033-Configuring-workload-identity-federation-for-Microsoft-Azure.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Configuring workload identity federation for Kubernetes",
+      "url": "https://developers.openai.com/api/docs/guides/workload-identity-federation/kubernetes.md",
+      "content_hash": "sha256:d37366cbd05a436343fb49995585c689cb47401a5cc840db5f4cf683f4ddf06c",
+      "file": "references/034-Configuring-workload-identity-federation-for-Kubernetes.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Configuring workload identity federation for Oracle Cloud Infrastructure",
+      "url": "https://developers.openai.com/api/docs/guides/workload-identity-federation/oracle-cloud.md",
+      "content_hash": "sha256:045f991093f37bb5452cf6ce41a485b12e6557c77a45abcf5d4f7a851ea8acba",
+      "file": "references/035-Configuring-workload-identity-federation-for-Oracle-Cloud-In.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Configuring workload identity federation for SPIFFE",
+      "url": "https://developers.openai.com/api/docs/guides/workload-identity-federation/spiffe.md",
+      "content_hash": "sha256:ebf0dfc72eb1de81fca2b985c4415299159ef39e25595d4952432b0f3d3b8050",
+      "file": "references/036-Configuring-workload-identity-federation-for-SPIFFE.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Configuring workload identity federation for Google Cloud",
+      "url": "https://developers.openai.com/api/docs/guides/workload-identity-federation/google-cloud.md",
+      "content_hash": "sha256:f2a2c72f773b7c387a3ef6025d70aea7ddc3afafc487ac7e4aadb34d6dbb6134",
+      "file": "references/037-Configuring-workload-identity-federation-for-Google-Cloud.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Configuring workload identity federation for GitHub Actions",
+      "url": "https://developers.openai.com/api/docs/guides/workload-identity-federation/github-actions.md",
+      "content_hash": "sha256:4e46260845a52bc58e0f2608c369d45e7c6833f6f3f0fb88629f52958e8d0551",
+      "file": "references/038-Configuring-workload-identity-federation-for-GitHub-Actions.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Computer use",
+      "url": "https://developers.openai.com/api/docs/guides/tools-computer-use.md",
+      "content_hash": "sha256:e803ddbbcb9b75252f7653651dc0ee8bcdb942ef4e98fa18737b87feedaeb774",
+      "file": "references/039-Computer-use.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Configuring workload identity federation for AWS",
+      "url": "https://developers.openai.com/api/docs/guides/workload-identity-federation/aws.md",
+      "content_hash": "sha256:176d845e246359ebd1148ec2da88b83ed23b7e393ca1159e512efa8094affd53",
+      "file": "references/040-Configuring-workload-identity-federation-for-AWS.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Code Interpreter",
+      "url": "https://developers.openai.com/api/docs/guides/tools-code-interpreter.md",
+      "content_hash": "sha256:4164fa4ec8fe29316099f17e319e37690c041875b88bd1248e11115c8ee9c795",
+      "file": "references/041-Code-Interpreter.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Code generation",
+      "url": "https://developers.openai.com/api/docs/guides/code-generation.md",
+      "content_hash": "sha256:bfef7b2725b699c9929f2d740385766167e256b849b7b7a0cbeb2ee1afd960c4",
+      "file": "references/042-Code-generation.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Compaction",
+      "url": "https://developers.openai.com/api/docs/guides/compaction.md",
+      "content_hash": "sha256:25f93b2e5a42d5bdd753caf9ea638a98e9d1ab291158e7c676589132b0381cab",
+      "file": "references/043-Compaction.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Completions API",
+      "url": "https://developers.openai.com/api/docs/guides/completions.md",
+      "content_hash": "sha256:0f94f86b976627317a7a57e5213ccc0ca06eab59159d9ec7aeee5910e4bce895",
+      "file": "references/044-Completions-API.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "ChatKit",
+      "url": "https://developers.openai.com/api/docs/guides/chatkit.md",
+      "content_hash": "sha256:b656551450476e5f69aab01ed0a70fff4de0d08cd52d96374454fbda72a9a4d9",
+      "file": "references/045-ChatKit.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Citation Formatting",
+      "url": "https://developers.openai.com/api/docs/guides/citation-formatting.md",
+      "content_hash": "sha256:800fed1720423c55bf7496882eb64ffa7c6e3620592553b593b080dbcfa2282e",
+      "file": "references/046-Citation-Formatting.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "ChatKit widgets",
+      "url": "https://developers.openai.com/api/docs/guides/chatkit-widgets.md",
+      "content_hash": "sha256:12672c25e3d8779db170808ea37962dd4470f1b3818181785ff9cbe84caae0f7",
+      "file": "references/047-ChatKit-widgets.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Batch API",
+      "url": "https://developers.openai.com/api/docs/guides/batch.md",
+      "content_hash": "sha256:edf406b914ad98fca8e0b4beb7cf814c2f6da765b84f922563dfe50dbbc48aa5",
+      "file": "references/048-Batch-API.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Background mode",
+      "url": "https://developers.openai.com/api/docs/guides/background.md",
+      "content_hash": "sha256:dff06a4411ce5240574f0ac2480062d18e0ab0f362f17449054c07654c8e9240",
+      "file": "references/049-Background-mode.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "ChatGPT Developer mode",
+      "url": "https://developers.openai.com/api/docs/guides/developer-mode.md",
+      "content_hash": "sha256:a7ad81ff74e668c0ed3c447083ec4d1b3e0f9f442073f739957b1d76baac8776",
+      "file": "references/050-ChatGPT-Developer-mode.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Agents SDK",
+      "url": "https://developers.openai.com/api/docs/guides/agents.md",
+      "content_hash": "sha256:45365b051e98f9915c86d28a01b4fdb3076ab13db49da68659e46caa0f00c890",
+      "file": "references/051-Agents-SDK.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "API deployment checklist",
+      "url": "https://developers.openai.com/api/docs/guides/deployment-checklist.md",
+      "content_hash": "sha256:caf3bb7bcc01c6f87b3a5b8fc927e8085e8b0bb6dca9595f4d88ce1a7aabea63",
+      "file": "references/052-API-deployment-checklist.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Audio and speech",
+      "url": "https://developers.openai.com/api/docs/guides/audio.md",
+      "content_hash": "sha256:62c9810f1a08bfad35cbc4fbf8318ba741fd0e317c793e540f3f2640d1cef8a7",
+      "file": "references/053-Audio-and-speech.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Apply Patch",
+      "url": "https://developers.openai.com/api/docs/guides/tools-apply-patch.md",
+      "content_hash": "sha256:36492873a3e308b3094c0987f5913d2e7fdf6164648a1d9a5708e9abc3f4e713",
+      "file": "references/054-Apply-Patch.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Agent Builder",
+      "url": "https://developers.openai.com/api/docs/guides/agent-builder.md",
+      "content_hash": "sha256:8703c2798d4b7d03dc375b71f1fc2d398521cf239f24645d8681aec7b4188f72",
+      "file": "references/055-Agent-Builder.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Agent definitions",
+      "url": "https://developers.openai.com/api/docs/guides/agents/define-agents.md",
+      "content_hash": "sha256:369171576ffae5dfa94b9bf59cbfb4a0769c4484cf9590f7066985e5d90aa3da",
+      "file": "references/056-Agent-definitions.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Actions in ChatKit",
+      "url": "https://developers.openai.com/api/docs/guides/chatkit-actions.md",
+      "content_hash": "sha256:4e8fe44d3f9b254d93f64c6adccc5e7eec1dd8f2dcd7b02b888c6275a5783db9",
+      "file": "references/057-Actions-in-ChatKit.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Admin APIs",
+      "url": "https://developers.openai.com/api/docs/guides/admin-apis.md",
+      "content_hash": "sha256:be86678b86b5dc481807d88324d064c6b8e646090a441f884b88da2b24716fe7",
+      "file": "references/058-Admin-APIs.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Advanced usage",
+      "url": "https://developers.openai.com/api/docs/guides/advanced-usage.md",
+      "content_hash": "sha256:7cb2a3dd26c3244706ff64a0be8547f084dd38550ccdd34b345a3cec745c8323",
+      "file": "references/059-Advanced-usage.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Advanced integrations with ChatKit",
+      "url": "https://developers.openai.com/api/docs/guides/custom-chatkit.md",
+      "content_hash": "sha256:7bcea1454c23bbf02d89ed9f7814deb5ed8db952793ed7c358fd8f5dbd197ac1",
+      "file": "references/060-Advanced-integrations-with-ChatKit.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Deprecations",
+      "url": "https://developers.openai.com/api/docs/deprecations.md",
+      "content_hash": "sha256:bc076eead9620d09a63709698c76e4382213541589b26f6f884dd725809dc260",
+      "file": "references/061-Deprecations.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "GPT Release Notes",
+      "url": "https://developers.openai.com/api/docs/gpts/release-notes.md",
+      "content_hash": "sha256:0f20fdb60b0c1469f8b047aca189411633b49b36b7d160f36638a47cf61e9979",
+      "file": "references/062-GPT-Release-Notes.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Assistants migration guide",
+      "url": "https://developers.openai.com/api/docs/assistants/migration.md",
+      "content_hash": "sha256:2fd6640b53d72d6c86ddcc01ee8adf27aa89aa7f69bfecb5fbe8c64d2a98828b",
+      "file": "references/063-Assistants-migration-guide.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Changelog",
+      "url": "https://developers.openai.com/api/docs/changelog.md",
+      "content_hash": "sha256:78625311e1061978628466b70e0376bb0f25a93d0300cc823e85ee99e9d37902",
+      "file": "references/064-Changelog.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Key concepts",
+      "url": "https://developers.openai.com/api/docs/concepts.md",
+      "content_hash": "sha256:a3abbe2c56b375bd4063f5741da33b30a51dcc55b9dc91adfc62f12cee49af8b",
+      "file": "references/065-Key-concepts.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Assistants File Search",
+      "url": "https://developers.openai.com/api/docs/assistants/tools/file-search.md",
+      "content_hash": "sha256:ea8ef1f3353e60aea00e67468d32b97c0d2c9ef7e8504ce8122d2810d9672074",
+      "file": "references/066-Assistants-File-Search.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Overview of OpenAI Crawlers",
+      "url": "https://developers.openai.com/api/docs/bots.md",
+      "content_hash": "sha256:8bde0c1106605e69bae33941e7c7898f947daeb77ab64e90cdd1531dd53c5be2",
+      "file": "references/067-Overview-of-OpenAI-Crawlers.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Assistants Code Interpreter",
+      "url": "https://developers.openai.com/api/docs/assistants/tools/code-interpreter.md",
+      "content_hash": "sha256:92b717c744485d0bcd116f03cc7115a077be50a70a0f52d5fb4771ba5c921fe7",
+      "file": "references/068-Assistants-Code-Interpreter.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Assistants API tools",
+      "url": "https://developers.openai.com/api/docs/assistants/tools.md",
+      "content_hash": "sha256:2f7989299184d3f71ed7e1415c8da26081bca10f604f1f33b4f6dc6d6fd3d23a",
+      "file": "references/069-Assistants-API-tools.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Assistants Function Calling",
+      "url": "https://developers.openai.com/api/docs/assistants/tools/function-calling.md",
+      "content_hash": "sha256:e32d33e0d1a29101382e08618e82ba447dabf0de5d3932788a61ef3e8d1c2145",
+      "file": "references/070-Assistants-Function-Calling.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "GPT Actions library",
+      "url": "https://developers.openai.com/api/docs/actions/actions-library.md",
+      "content_hash": "sha256:c8a65076933671e27ee61673b56afa9f7367d7316b9b237566e8b1256b0027a6",
+      "file": "references/071-GPT-Actions-library.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Production notes on GPT Actions",
+      "url": "https://developers.openai.com/api/docs/actions/production.md",
+      "content_hash": "sha256:5605f7fb7e84a7e22e2b7c0569c4fe67a18aad9fa34ae42e9f009849dda1c296",
+      "file": "references/072-Production-notes-on-GPT-Actions.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Sending and returning files with GPT Actions",
+      "url": "https://developers.openai.com/api/docs/actions/sending-files.md",
+      "content_hash": "sha256:054f990f977a1262b768a1e811ba2e83c8375f8515362881b2f300c37394d710",
+      "file": "references/073-Sending-and-returning-files-with-GPT-Actions.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Assistants API deep dive",
+      "url": "https://developers.openai.com/api/docs/assistants/deep-dive.md",
+      "content_hash": "sha256:a0ca469667f1f4db6a2d318fe3c2575ca3ab7f161fa2dca18a2475c8951df9ec",
+      "file": "references/074-Assistants-API-deep-dive.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Data retrieval with GPT Actions",
+      "url": "https://developers.openai.com/api/docs/actions/data-retrieval.md",
+      "content_hash": "sha256:66d185c7d205496c5b505bebedfce0e810a3d462e22c23604d25108db0811b67",
+      "file": "references/075-Data-retrieval-with-GPT-Actions.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "GPT Action authentication",
+      "url": "https://developers.openai.com/api/docs/actions/authentication.md",
+      "content_hash": "sha256:a23e19f578f1f85f451eb42fc6d1a4d49fd8a0ebae462d474f84a15a1e1921a6",
+      "file": "references/076-GPT-Action-authentication.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "GPT Actions",
+      "url": "https://developers.openai.com/api/docs/actions/introduction.md",
+      "content_hash": "sha256:51a6a1170a405958e94068043cd37c054859928b460ee4c5fcbe4341f0df17b3",
+      "file": "references/077-GPT-Actions.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "OpenAI API docs \u2014 full documentation",
+      "url": "https://developers.openai.com/api/docs/llms-full.txt",
+      "content_hash": "sha256:b588a21ed4e69cf18e752aae62f2578aa69a30963da23dc88df9184208e63908",
+      "file": "references/078-OpenAI-API-docs-full-documentation.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "Getting started with GPT Actions",
+      "url": "https://developers.openai.com/api/docs/actions/getting-started.md",
+      "content_hash": "sha256:9a96fed76f9a6f4f11ec3965ab4697aab6e00b7074e9eab861942cb4ba723f20",
+      "file": "references/079-Getting-started-with-GPT-Actions.md",
+      "source": "openai",
+      "version": "latest"
+    },
+    {
+      "title": "OpenAI API Platform Documentation",
+      "url": "https://developers.openai.com/api/docs",
+      "content_hash": "sha256:5b79d05de2b53fc1c2093eeb72dc5b515667d9e414efb8226b00a7bb41f2a57f",
+      "file": "references/080-OpenAI-API-Platform-Documentation.md",
+      "source": "openai",
+      "version": "latest"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+---
+name: docs-golang
+description: Offline documentation skill for Go (https://go.dev/doc/). Use when answering questions about Go APIs, guides, configuration, or best practices. Prefer references/ and cite Source URLs.
+version: 0.1.0
+metadata:
+  openclaw:
+    emoji: "📘"
+    requires:
+      bins: [python3]
+  hermes:
+    tags: [docs, golang, software-engineering]
+---
+
+# Go docs
+
+Offline documentation package for **Go**.
+
+- Source site: https://go.dev/doc/
+- Pages packaged: 69
+- Local hybrid corpus DB (this VPS): `/root/.openclaw/workspace/projects/docs-scraper/data/db/skills/docs-golang.sqlite`
+
+## When to use
+Answer engineering questions about Go using files under `references/`.
+Each reference file starts with a **Source:** URL — cite it.
+
+## How to answer
+1. Search `references/` for relevant pages (filename + content).
+2. Prefer official wording; do not invent APIs not present in references.
+3. Optional deeper retrieval against the live corpus:
+
+```bash
+cd /root/.openclaw/workspace/projects/docs-scraper
+source .venv/bin/activate
+python scripts/query.py "your question" --db /root/.openclaw/workspace/projects/docs-scraper/data/db/skills/docs-golang.sqlite -k 8 --mode hybrid
+```
+
+## Refresh
+```bash
+cd /root/.openclaw/workspace/projects/docs-scraper
+source .venv/bin/activate
+python scripts/batch_docs_skills.py --only golang
+```
+
+## Safety
+Public docs only. Respect ToS/redistribution if publishing outside this VPS.

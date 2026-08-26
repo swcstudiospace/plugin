@@ -1,0 +1,643 @@
+{
+  "name": "docs-stripe",
+  "generated_at": "2026-07-29T03:55:24Z",
+  "query": null,
+  "source_id": null,
+  "ranking": "all pages (recency)",
+  "page_count": 79,
+  "embedding_model": null,
+  "pages": [
+    {
+      "title": "Checkout prices migration guide",
+      "url": "https://docs.stripe.com/payments/checkout/migrating-prices.md",
+      "content_hash": "sha256:5ee6a3c39997055b76ac4338f5862fd046121dafbcd264c0d49dacbd1fddf739",
+      "file": "references/001-Checkout-prices-migration-guide.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Checkout Sessions",
+      "url": "https://docs.stripe.com/api/checkout/sessions.md",
+      "content_hash": "sha256:c7e28a5f47faffb4c70d44d69687a63040df97bfe33f5b6703da0bf54a889897",
+      "file": "references/002-Checkout-Sessions.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Make line item quantities adjustable",
+      "url": "https://docs.stripe.com/payments/checkout/adjustable-quantity.md",
+      "content_hash": "sha256:b685c223bc4dea50ed72ab2861564029247b7dba870b6c88464e20f718d81ae4",
+      "file": "references/003-Make-line-item-quantities-adjustable.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Checkout",
+      "url": "https://docs.stripe.com/checkout/elements-with-checkout-sessions-api/changelog.md",
+      "content_hash": "sha256:45e0f3b7a24e19560726e119f5d808585dd0c8adc68cf984d53641e0ee56ea05",
+      "file": "references/004-Checkout.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Collect customer phone numbers",
+      "url": "https://docs.stripe.com/payments/checkout/phone-numbers.md",
+      "content_hash": "sha256:ce34a184434766b962fbbceb118b8984d15fa771e0ad5bf974fa68746d2297e1",
+      "file": "references/005-Collect-customer-phone-numbers.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Dynamically customize shipping options",
+      "url": "https://docs.stripe.com/payments/checkout/custom-shipping-options.md",
+      "content_hash": "sha256:7fa13e98ae307b4878116a47a6663a6e578cc2be47e0a2fc654f62583582f3e5",
+      "file": "references/006-Dynamically-customize-shipping-options.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Set up future payments",
+      "url": "https://docs.stripe.com/payments/checkout/save-and-reuse.md",
+      "content_hash": "sha256:cbc109f11b13304547c0b478b50bb211a99d1ff5f93ea1dbb9287325d8cfd962",
+      "file": "references/007-Set-up-future-payments.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "[Deprecated] One-time payments with Checkout",
+      "url": "https://docs.stripe.com/payments/checkout/client.md",
+      "content_hash": "sha256:a43e7d1fd800b25f8307882cc3a82be56793bfaf56a89617f5bfce41eaebd2bc",
+      "file": "references/008-Deprecated-One-time-payments-with-Checkout.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Add discounts, upsells, and optional items",
+      "url": "https://docs.stripe.com/payments/checkout/promotions.md",
+      "content_hash": "sha256:f0c23d1bd303596660d1f7b4ac64bfe67d9cd4ec654bf68429dd5cef12f90045",
+      "file": "references/009-Add-discounts-upsells-and-optional-items.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Manual currency prices",
+      "url": "https://docs.stripe.com/payments/checkout/localize-prices/manual-currency-prices.md",
+      "content_hash": "sha256:7b5cd1aeb9b017ee2cfe32a78c410a4cf0790df0be2bf970d83fe1e4fa0fd9ae",
+      "file": "references/010-Manual-currency-prices.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "No-cost orders",
+      "url": "https://docs.stripe.com/payments/checkout/no-cost-orders.md",
+      "content_hash": "sha256:2d8c260bcc6ed3cc888287defbc6d3a569a0fa9dcd3a72ed9fe17c91a9c27b24",
+      "file": "references/011-No-cost-orders.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Analyze your conversion funnel",
+      "url": "https://docs.stripe.com/payments/checkout/analyze-conversion-funnel.md",
+      "content_hash": "sha256:7030e1dbbace77a3be9d8fd9a260ee254a162db63f5e239467f117e3c78498d3",
+      "file": "references/012-Analyze-your-conversion-funnel.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Set the billing cycle date",
+      "url": "https://docs.stripe.com/payments/checkout/billing-cycle.md",
+      "content_hash": "sha256:712f538a0d729d144ca6d5daa91c8eda48e30f91ceffcec3aca54627ea38b4d6",
+      "file": "references/013-Set-the-billing-cycle-date.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "After the payment",
+      "url": "https://docs.stripe.com/payments/checkout/after-the-payment.md",
+      "content_hash": "sha256:0100f58bb74b36db1363bdee5c746f444e712d47efd3a943b402982279dd273b",
+      "file": "references/014-After-the-payment.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Subscription upsells",
+      "url": "https://docs.stripe.com/payments/checkout/upsells.md",
+      "content_hash": "sha256:7feab0e2d502d46dcacc58d2c6902316c4bf8b46e44b7eb888e2d82c66f49137",
+      "file": "references/015-Subscription-upsells.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Let customers decide what to pay",
+      "url": "https://docs.stripe.com/payments/checkout/pay-what-you-want.md",
+      "content_hash": "sha256:5c90e131ca1088c86d02a58482c30eb75b8aec54c05cd7fd2a68d1edbf6a12fa",
+      "file": "references/016-Let-customers-decide-what-to-pay.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Save payment details during payment",
+      "url": "https://docs.stripe.com/payments/checkout/save-during-payment.md",
+      "content_hash": "sha256:d974cce463c4fe13d290beb27f51aca5b7ff1c8f2cb8e7e7008a855ad97223c9",
+      "file": "references/017-Save-payment-details-during-payment.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Customize card brands",
+      "url": "https://docs.stripe.com/payments/checkout/customization/card-brands.md",
+      "content_hash": "sha256:cb68401996cb6a1b0bb8a6407ac782f8cc351907264393f4f7de5bf0851fa12c",
+      "file": "references/018-Customize-card-brands.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Manage payment methods",
+      "url": "https://docs.stripe.com/payments/checkout/payment-methods.md",
+      "content_hash": "sha256:84d9160f5e0b0d833928f7ab8a57e7042f675a60ad0a9cd82fcda6830569ff71",
+      "file": "references/019-Manage-payment-methods.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Collect taxes",
+      "url": "https://docs.stripe.com/payments/checkout/taxes.md",
+      "content_hash": "sha256:eccf01b43a32b432d7f8b304030e1f2b78e9d2c7d7e6dd300ea041fb49f5441c",
+      "file": "references/020-Collect-taxes.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Collect physical addresses",
+      "url": "https://docs.stripe.com/payments/collect-addresses.md",
+      "content_hash": "sha256:15919fc51db9258ed0f6980046907db67ccd65d85ecd1451adfd70ce64fa9a4c",
+      "file": "references/021-Collect-physical-addresses.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Extend checkout with custom components",
+      "url": "https://docs.stripe.com/payments/checkout/custom-components.md",
+      "content_hash": "sha256:49ae8bc12b012e7a63cef207cceebee5793112e9ffaee0fa60be4133c45fb843",
+      "file": "references/022-Extend-checkout-with-custom-components.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Subscriptions with Checkout Sessions",
+      "url": "https://docs.stripe.com/payments/subscriptions.md",
+      "content_hash": "sha256:67f43a93d6a05267e4b631c25ef951cd9762db69b607d31124d53ad050c78f71",
+      "file": "references/023-Subscriptions-with-Checkout-Sessions.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Charge for shipping",
+      "url": "https://docs.stripe.com/payments/during-payment/charge-shipping.md",
+      "content_hash": "sha256:aea1cd3edded897780827cc84baba82564995daae8ecc308e19ece342db71876",
+      "file": "references/024-Charge-for-shipping.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Limit customers to one subscription",
+      "url": "https://docs.stripe.com/payments/checkout/limit-subscriptions.md",
+      "content_hash": "sha256:1284ee3dcb4263c1ef7d026cfd9b024060180c50fc0c745065872f197bc13d5a",
+      "file": "references/025-Limit-customers-to-one-subscription.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Cross-sells",
+      "url": "https://docs.stripe.com/payments/checkout/cross-sells.md",
+      "content_hash": "sha256:0020b0c441ec333c55096864f1f6a471210aea9bd8743935294740ffa51bb1e8",
+      "file": "references/026-Cross-sells.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Overview",
+      "url": "https://docs.stripe.com/products-prices/overview.md",
+      "content_hash": "sha256:b35fb1d33a627b659ace1f435c1aa3eddbd4739f63d25fac66d2c9e7a07a8ad3",
+      "file": "references/027-Overview.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Add discounts",
+      "url": "https://docs.stripe.com/payments/checkout/discounts.md",
+      "content_hash": "sha256:d264844e17b713cd62b498d2c8a09472afdc2dbc8188a9042f401be015754a10",
+      "file": "references/028-Add-discounts.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Customize redirect behavior",
+      "url": "https://docs.stripe.com/payments/checkout/custom-success-page.md",
+      "content_hash": "sha256:a4bb90cb9fdb3845569bdd2567d9c56d0130b48548c5f93a867a20a32a0567c6",
+      "file": "references/029-Customize-redirect-behavior.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Use your custom domain",
+      "url": "https://docs.stripe.com/payments/checkout/custom-domains.md",
+      "content_hash": "sha256:93340eb2f1681a3d9a4348e018506d4cc2ec55b7891fe1bfe18358aabae9ec1f",
+      "file": "references/030-Use-your-custom-domain.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Fulfill orders",
+      "url": "https://docs.stripe.com/checkout/fulfillment.md",
+      "content_hash": "sha256:f595397354a23802597499ce5ca0f2bb979775ccd9a076712da9874ba43a4c3f",
+      "file": "references/031-Fulfill-orders.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "The Setup Intents API",
+      "url": "https://docs.stripe.com/payments/setup-intents.md",
+      "content_hash": "sha256:0318eb5f254c6b4aba97b0d193af6630bf7b50d7a6bda85d3c2a795bf9bbb9a4",
+      "file": "references/032-The-Setup-Intents-API.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Thanks for your order!",
+      "url": "https://docs.stripe.com/checkout/embedded/quickstart.md",
+      "content_hash": "sha256:4f440501732868f0f415832fee91d35bbcea6e4cd94ec06625ee7c601fc64b47",
+      "file": "references/033-Thanks-for-your-order.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Customize Checkout",
+      "url": "https://docs.stripe.com/payments/checkout/customization.md",
+      "content_hash": "sha256:301e1749a90cfbbdf77f1a9aa9dc18f26d2d890bfa4dd3f887a740d6db49683c",
+      "file": "references/034-Customize-Checkout.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "How Checkout works",
+      "url": "https://docs.stripe.com/payments/checkout/how-checkout-works.md",
+      "content_hash": "sha256:c51e57bc515217f5fff6cabe4a589a941057e5cd37068ec834e3043f4c188ba1",
+      "file": "references/035-How-Checkout-works.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Custom payment methods",
+      "url": "https://docs.stripe.com/payments/payment-methods/custom-payment-methods.md",
+      "content_hash": "sha256:2319b9a8bb210a3fd812e5396b25597b913d5da081528b8b57776e012b255928",
+      "file": "references/036-Custom-payment-methods.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Orchestration",
+      "url": "https://docs.stripe.com/payments/orchestration.md",
+      "content_hash": "sha256:d73e5e593f3f543cb3992ef03d27abcbcb5d399c101a8d901f268b41c72373b8",
+      "file": "references/037-Orchestration.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Build a payments page",
+      "url": "https://docs.stripe.com/payments/checkout.md",
+      "content_hash": "sha256:38052c7afc500ab12fafdb5272de02664428613c459b4fd72d639c3cd6750d6f",
+      "file": "references/038-Build-a-payments-page.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Regions with special payment method requirements",
+      "url": "https://docs.stripe.com/payments/local-markets.md",
+      "content_hash": "sha256:74e400e5bc9c98350ad1c22db1375454b2c0ae8dad80a8efe994dc0e16c7f081",
+      "file": "references/039-Regions-with-special-payment-method-requirements.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Wallets",
+      "url": "https://docs.stripe.com/payments/wallets.md",
+      "content_hash": "sha256:6e1b40d96eeff11887459d457a09654f0872cdbf45740c8bb8f98f9d7c022bdc",
+      "file": "references/040-Wallets.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Bank redirects",
+      "url": "https://docs.stripe.com/payments/bank-redirects.md",
+      "content_hash": "sha256:83f0056fb8db94c64a3076b08146173d8ec57c1cda894825f4a6260590a5cb0e",
+      "file": "references/041-Bank-redirects.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Bank transfer payments",
+      "url": "https://docs.stripe.com/payments/bank-transfers.md",
+      "content_hash": "sha256:2ffec1fc5e11585411727a3500fb02c49a0c0ccac085f1786afeaf0d615c4c64",
+      "file": "references/042-Bank-transfer-payments.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Vouchers",
+      "url": "https://docs.stripe.com/payments/vouchers.md",
+      "content_hash": "sha256:f91a531092aeb4b532c3f75eee7665bae69a005e9285569f4cf08838fa4c2484",
+      "file": "references/043-Vouchers.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Real-time payments",
+      "url": "https://docs.stripe.com/payments/real-time.md",
+      "content_hash": "sha256:6e732a8c1a1f358e7be8bd46d92a5dc7fb367a7e145d67aa79badf7ccf79c33e",
+      "file": "references/044-Real-time-payments.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Klarna payments",
+      "url": "https://docs.stripe.com/payments/klarna.md",
+      "content_hash": "sha256:38b815a1e04c70a149d50ed7aece41c6e753d57a1e858e6a1216b0d59e1ff797",
+      "file": "references/045-Klarna-payments.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Affirm payments",
+      "url": "https://docs.stripe.com/payments/affirm.md",
+      "content_hash": "sha256:5a0320eb4f661377150eb64caea7580840a94bf5d209b97088418650b70279e2",
+      "file": "references/046-Affirm-payments.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Afterpay and Clearpay payments",
+      "url": "https://docs.stripe.com/payments/afterpay-clearpay.md",
+      "content_hash": "sha256:a0de5ca865143f6c6f3a5a53ff7ee2362d27b264c52e13608195c21755a65543",
+      "file": "references/047-Afterpay-and-Clearpay-payments.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Buy now, pay later",
+      "url": "https://docs.stripe.com/payments/buy-now-pay-later.md",
+      "content_hash": "sha256:ee64e9d846ed128d1f2c33533f5f72785f5d0166b41b9b21ea3121ced9581e53",
+      "file": "references/048-Buy-now-pay-later.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "How cards work",
+      "url": "https://docs.stripe.com/payments/cards/overview.md",
+      "content_hash": "sha256:7eda6ac1bd705247e9ae57c3373a301e274d2e00e7a4c6568be048f3f7c9c569",
+      "file": "references/049-How-cards-work.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Cartes Bancaires (CB)",
+      "url": "https://docs.stripe.com/payments/cartes-bancaires.md",
+      "content_hash": "sha256:1bb83f07d025d17897583a750f2e5b74f728929cdf11175d7e0772b86957332d",
+      "file": "references/050-Cartes-Bancaires-CB.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Stablecoin payments",
+      "url": "https://docs.stripe.com/payments/stablecoin-payments.md",
+      "content_hash": "sha256:f2d7744beaddaf0b670517f397136d8929c880949536ce493f692a11be8fa2c1",
+      "file": "references/051-Stablecoin-payments.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "eftpos Australia",
+      "url": "https://docs.stripe.com/payments/eftpos-australia.md",
+      "content_hash": "sha256:d91780c7245abcf00579e37e4da9674a50366d70f73abe66b471653cae47e80e",
+      "file": "references/052-eftpos-Australia.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Linked external accounts",
+      "url": "https://docs.stripe.com/get-started/account/linked-external-accounts.md",
+      "content_hash": "sha256:b23cf668a2203476e45cbdb15cc9cab124f5b34dcf07ae6a9c745d04a99c1f1f",
+      "file": "references/053-Linked-external-accounts.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Bank Debits",
+      "url": "https://docs.stripe.com/payments/bank-debits.md",
+      "content_hash": "sha256:790568f54b9d420dd4bd9b324177a3b0d6e45cd48375264cecbf5c7384f3d5e2",
+      "file": "references/054-Bank-Debits.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Versioning",
+      "url": "https://docs.stripe.com/api/versioning.md",
+      "content_hash": "sha256:276d3e1b51d8bafe7c7f7e0f4fd7aad0cdcfa49280fc52149dc73560155605d2",
+      "file": "references/055-Versioning.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Start a team",
+      "url": "https://docs.stripe.com/get-started/account/teams.md",
+      "content_hash": "sha256:2d24ea2187028f4079fffabd26b0d4fcfca1d7629047bad3551b2dc9867fa4ec",
+      "file": "references/056-Start-a-team.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Errors",
+      "url": "https://docs.stripe.com/api/errors.md",
+      "content_hash": "sha256:ca516fe41e919b5d9c3496f0c4f6f9408c960328cebd9c07a6b9dae1c6c5cb8c",
+      "file": "references/057-Errors.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Payment Methods API",
+      "url": "https://docs.stripe.com/payments/payment-methods.md",
+      "content_hash": "sha256:338d533638e965258ee74b4258dc8a333f451b35f9d7a0ef6335354989c91ba9",
+      "file": "references/058-Payment-Methods-API.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Resolve webhook signature verification errors",
+      "url": "https://docs.stripe.com/webhooks/signature.md",
+      "content_hash": "sha256:9142037417e2b76f7f9f37a97961ebab98744fc4ab9287beac3923e4d56dc499",
+      "file": "references/059-Resolve-webhook-signature-verification-errors.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Integrate with events",
+      "url": "https://docs.stripe.com/event-destinations.md",
+      "content_hash": "sha256:afef38d8cf4143b01de3c166a34e893ea16a22cf74eec149e9a901e91ed36903",
+      "file": "references/060-Integrate-with-events.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Set up and deploy a webhook",
+      "url": "https://docs.stripe.com/webhooks/quickstart.md",
+      "content_hash": "sha256:3504c3e64363c328bf7418709dc3fd6ba5fd512701866dd0cb77296b5bbd079b",
+      "file": "references/061-Set-up-and-deploy-a-webhook.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Types of events",
+      "url": "https://docs.stripe.com/api/events/types.md",
+      "content_hash": "sha256:6f1ea470ca2b364da6c19ad36b5369d0536026cd6709575891de7fbef7d661ea",
+      "file": "references/062-Types-of-events.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Payments analytics",
+      "url": "https://docs.stripe.com/payments/analytics.md",
+      "content_hash": "sha256:b62158e5af11504a4334dbce47ea864e260a5e1bfea06c5dbd4f3e6350e5f55f",
+      "file": "references/063-Payments-analytics.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Integration security guide",
+      "url": "https://docs.stripe.com/security/guide.md",
+      "content_hash": "sha256:8e9eb32da1c70933464538ca894254b946201a1992146b05306d209d08df8fb8",
+      "file": "references/064-Integration-security-guide.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Build a pre-built subscription page with Stripe Checkout",
+      "url": "https://docs.stripe.com/billing/quickstart.md",
+      "content_hash": "sha256:d8acccd6b638bdeedf83b16b6b50312a9a202cd7bc20c9918e4a12f223567cbb",
+      "file": "references/065-Build-a-pre-built-subscription-page-with-Stripe-Checkout.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Build an advanced integration",
+      "url": "https://docs.stripe.com/payments/quickstart.md",
+      "content_hash": "sha256:15374c9925ac034f3cd68df7d457d0ebd76d27fb09ef132ceaf19bc23473aa10",
+      "file": "references/066-Build-an-advanced-integration.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Security at Stripe",
+      "url": "https://docs.stripe.com/security.md",
+      "content_hash": "sha256:86194e69ef5b00c05fc8ee3bb4109f41388b1addf106b09377b2c0ab0420008b",
+      "file": "references/067-Security-at-Stripe.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Build a Stripe-hosted checkout page",
+      "url": "https://docs.stripe.com/checkout/quickstart.md",
+      "content_hash": "sha256:8f32d68c3a2b6ec457f29b977a0cbf1265e793ea12c9c19caffbe87e40816645",
+      "file": "references/068-Build-a-Stripe-hosted-checkout-page.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Declines",
+      "url": "https://docs.stripe.com/declines.md",
+      "content_hash": "sha256:29d9be71e650d407bd7d887d45ecebf463f5ea62c11907c6b89924733c63a6a4",
+      "file": "references/069-Declines.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Refund and cancel payments",
+      "url": "https://docs.stripe.com/refunds.md",
+      "content_hash": "sha256:d6359e3c8c233220abc904b8187919368b13eda5ca2a5b689b2e7de85708a0f2",
+      "file": "references/070-Refund-and-cancel-payments.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Stripe SDKs",
+      "url": "https://docs.stripe.com/sdks.md",
+      "content_hash": "sha256:73ea7d7558fe44d70de8166258b7802a6944f948d09dd34c02969fbb9fe64f1d",
+      "file": "references/071-Stripe-SDKs.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Receive Stripe events in your webhook endpoint",
+      "url": "https://docs.stripe.com/webhooks.md",
+      "content_hash": "sha256:19aa900fdc22d53beb294c42a6dce4eac78aab631e72472efe98b30abf3743b6",
+      "file": "references/072-Receive-Stripe-events-in-your-webhook-endpoint.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "API upgrades",
+      "url": "https://docs.stripe.com/upgrades.md",
+      "content_hash": "sha256:0b806a5fa1401aa4577f5eb624d64730d459fc4700e780c01849846ff1396ef1",
+      "file": "references/073-API-upgrades.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Stripe Projects CLI",
+      "url": "https://docs.stripe.com/projects.md",
+      "content_hash": "sha256:8beed3fb51114b1062d9a45c64a7b48a5ab55e24059dd22b4b35a846f4e5a8b8",
+      "file": "references/074-Stripe-Projects-CLI.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "API Reference",
+      "url": "https://docs.stripe.com/api.md",
+      "content_hash": "sha256:76cde4ae56e2cc95efd43012a19e17ace46a4584697a3b7300c296aed699f1f0",
+      "file": "references/075-API-Reference.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Receive payouts",
+      "url": "https://docs.stripe.com/payouts.md",
+      "content_hash": "sha256:052981dcd73f6c63b1fe3f963267c7b710d6e1f9fa6cc6b87ef5a55fdebff0a5",
+      "file": "references/076-Receive-payouts.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Platforms and marketplaces with Stripe Connect",
+      "url": "https://docs.stripe.com/connect.md",
+      "content_hash": "sha256:2bc2265648927b76d608ed7f3d3ca289e13617fa79dce43709bf84173cc822e0",
+      "file": "references/077-Platforms-and-marketplaces-with-Stripe-Connect.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Supported currencies",
+      "url": "https://docs.stripe.com/currencies.md",
+      "content_hash": "sha256:1be4911e7ea487728c47100db2f7f93b82cec377f2151f34e201602dc75f023e",
+      "file": "references/078-Supported-currencies.md",
+      "source": "stripe",
+      "version": "latest"
+    },
+    {
+      "title": "Testing",
+      "url": "https://docs.stripe.com/testing.md",
+      "content_hash": "sha256:7a99727a0cd072998528d23823824c43662e7979e34df4960d4365408a7cd2fd",
+      "file": "references/079-Testing.md",
+      "source": "stripe",
+      "version": "latest"
+    }
+  ]
+}

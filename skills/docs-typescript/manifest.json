@@ -1,0 +1,651 @@
+{
+  "name": "docs-typescript",
+  "generated_at": "2026-07-29T03:46:12Z",
+  "query": null,
+  "source_id": null,
+  "ranking": "all pages (recency)",
+  "page_count": 80,
+  "embedding_model": null,
+  "pages": [
+    {
+      "title": "TypeScript: Documentation - TypeScript 5.1",
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-1.html",
+      "content_hash": "sha256:9dd094c2764b8b758ad071c3ddfacead8b9d137b8e60f1e925665a28a6d0daa3",
+      "file": "references/001-TypeScript-Documentation-TypeScript-5-1.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - TypeScript 5.2",
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-2.html",
+      "content_hash": "sha256:581b17414e484dc143b9e8a4f54099a732edaa9de759e26370fc319908d2f18a",
+      "file": "references/002-TypeScript-Documentation-TypeScript-5-2.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - TypeScript 5.3",
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-3.html",
+      "content_hash": "sha256:ace284eda0cf5d19d18a9eb26fa088fa4005a743f2b245564061b5934e9e8cea",
+      "file": "references/003-TypeScript-Documentation-TypeScript-5-3.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - TypeScript 5.5",
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html",
+      "content_hash": "sha256:122feae11780bc7da345886f8f5ba6b05595e8e04117bf90cffce2d2d7374a07",
+      "file": "references/004-TypeScript-Documentation-TypeScript-5-5.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - TypeScript 5.4",
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html",
+      "content_hash": "sha256:2dc41d95932e3775d788594e18efc131a8aebd756414fe9b20ba705062112b6e",
+      "file": "references/005-TypeScript-Documentation-TypeScript-5-4.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - TypeScript 5.6",
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-6.html",
+      "content_hash": "sha256:1de8afcb25b9a732a0dceb73db8f8df3bdf17c7fc46bfd942aa3d6d64f837d5a",
+      "file": "references/006-TypeScript-Documentation-TypeScript-5-6.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - TypeScript 5.7",
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-7.html",
+      "content_hash": "sha256:9ff8789b1ec842ea219507b1fc2a09f7da2682f7650228f5b4eb14350cb46f46",
+      "file": "references/007-TypeScript-Documentation-TypeScript-5-7.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - TypeScript 5.8",
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-8.html",
+      "content_hash": "sha256:9dcc794f43eed118c81b02a61be7a89733a626348d1620bd073b56e8f06ac9aa",
+      "file": "references/008-TypeScript-Documentation-TypeScript-5-8.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - TypeScript 5.9",
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-9.html",
+      "content_hash": "sha256:a72e41def6e86b728a332c105785c846a577b68bf3277876d2ebf36139262d3e",
+      "file": "references/009-TypeScript-Documentation-TypeScript-5-9.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - TypeScript 6.0",
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html",
+      "content_hash": "sha256:d3ab23409d964750a0b13123d03717e3b3de4d0f1b2c4aae8e35d5c9f9cd526e",
+      "file": "references/010-TypeScript-Documentation-TypeScript-6-0.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Nightly Builds",
+      "url": "https://www.typescriptlang.org/docs/handbook/nightly-builds.html",
+      "content_hash": "sha256:405e6c63b6b48cc0365622747f870cdbe20d0faed3dee7eb3a2b8360be52d576",
+      "file": "references/011-TypeScript-Documentation-Nightly-Builds.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Integrating with Build Tools",
+      "url": "https://www.typescriptlang.org/docs/handbook/integrating-with-build-tools.html",
+      "content_hash": "sha256:fc5dfe88323885d81a8917099243a6f722c0b52ea2937aca07a4bdb1acf3d71b",
+      "file": "references/012-TypeScript-Documentation-Integrating-with-Build-Tools.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Configuring Watch",
+      "url": "https://www.typescriptlang.org/docs/handbook/configuring-watch.html",
+      "content_hash": "sha256:4f8369cbe5a77c0375f8613f7fa364afffb87d47529e684cc09c019022b6be7c",
+      "file": "references/013-TypeScript-Documentation-Configuring-Watch.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - tsc CLI Options",
+      "url": "https://www.typescriptlang.org/docs/handbook/compiler-options.html",
+      "content_hash": "sha256:5e2cd54d782459f7dba5e72fe8d738c0ae086fb8a665672dc712e31d146671cc",
+      "file": "references/014-TypeScript-Documentation-tsc-CLI-Options.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Project References",
+      "url": "https://www.typescriptlang.org/docs/handbook/project-references.html",
+      "content_hash": "sha256:e734375a74fc664b2f924b33f5620599081b2feef8c6b84241d4f3d815d221a5",
+      "file": "references/015-TypeScript-Documentation-Project-References.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - What is a tsconfig.json",
+      "url": "https://www.typescriptlang.org/docs/handbook/tsconfig-json.html",
+      "content_hash": "sha256:6f78c9dcc82f790d0ba96308a912990158cb703a4574163f934b948149ea63a0",
+      "file": "references/016-TypeScript-Documentation-What-is-a-tsconfig-json.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Compiler Options in MSBuild",
+      "url": "https://www.typescriptlang.org/docs/handbook/compiler-options-in-msbuild.html",
+      "content_hash": "sha256:f66da8e79230542199c93ce35f5dc4a77128c808d0bbe93a8a82d51494c75f8a",
+      "file": "references/017-TypeScript-Documentation-Compiler-Options-in-MSBuild.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Creating .d.ts Files from .js files",
+      "url": "https://www.typescriptlang.org/docs/handbook/declaration-files/dts-from-js.html",
+      "content_hash": "sha256:84a6c7035ed73e3233c3360663223df75df7e2c4b653644cd8b262f779906d29",
+      "file": "references/018-TypeScript-Documentation-Creating-d-ts-Files-from-js-files.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - JSDoc Reference",
+      "url": "https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html",
+      "content_hash": "sha256:dc738c57681ed2680ffae446cb11749e6f3dcc83321e6879ec96a856c1c04b16",
+      "file": "references/019-TypeScript-Documentation-JSDoc-Reference.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Type Checking JavaScript Files",
+      "url": "https://www.typescriptlang.org/docs/handbook/type-checking-javascript-files.html",
+      "content_hash": "sha256:dbb7fa0810bb2a62eab9f52066f40bd2b0502cef1a9afbfd13e12ec41f769c39",
+      "file": "references/020-TypeScript-Documentation-Type-Checking-JavaScript-Files.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - JS Projects Utilizing TypeScript",
+      "url": "https://www.typescriptlang.org/docs/handbook/intro-to-js-ts.html",
+      "content_hash": "sha256:f61706764cfe99cef96760a4a8d44e12e15c88f114180b4906973f606a57c712",
+      "file": "references/021-TypeScript-Documentation-JS-Projects-Utilizing-TypeScript.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Consumption",
+      "url": "https://www.typescriptlang.org/docs/handbook/declaration-files/consumption.html",
+      "content_hash": "sha256:4212b207dd7a3bdfbae9eb333ab237288f185e4bef76f5efa453b462bfccb7a9",
+      "file": "references/022-TypeScript-Documentation-Consumption.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Publishing",
+      "url": "https://www.typescriptlang.org/docs/handbook/declaration-files/publishing.html",
+      "content_hash": "sha256:94bcf5ded0b36114aa90d5b05a3478c8abe3351d44f45a517a6d10f3f7963197",
+      "file": "references/023-TypeScript-Documentation-Publishing.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Deep Dive",
+      "url": "https://www.typescriptlang.org/docs/handbook/declaration-files/deep-dive.html",
+      "content_hash": "sha256:dd0c53a8032db9e3c3cdf50d8e616a8e08ddb1e3b81fa433715be8a6de4cac2b",
+      "file": "references/024-TypeScript-Documentation-Deep-Dive.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Do's and Don'ts",
+      "url": "https://www.typescriptlang.org/docs/handbook/declaration-files/do-s-and-don-ts.html",
+      "content_hash": "sha256:61b62b4137c665b42b560e52ff9aa43079964b31c1aa1388403818b0ae8d6f7c",
+      "file": "references/025-TypeScript-Documentation-Do-s-and-Don-ts.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Global: Modifying Module",
+      "url": "https://www.typescriptlang.org/docs/handbook/declaration-files/templates/global-modifying-module-d-ts.html",
+      "content_hash": "sha256:49f7df2d7e5fc653e92e58f5ba903de711f0f96327f5ab09bba12b4c114b27e4",
+      "file": "references/026-TypeScript-Documentation-Global-Modifying-Module.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Global .d.ts",
+      "url": "https://www.typescriptlang.org/docs/handbook/declaration-files/templates/global-d-ts.html",
+      "content_hash": "sha256:30ebf4e4f16803c710e1343c03f9eca45db49150e36c712725794fec0fad1a33",
+      "file": "references/027-TypeScript-Documentation-Global-d-ts.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Module: Function",
+      "url": "https://www.typescriptlang.org/docs/handbook/declaration-files/templates/module-function-d-ts.html",
+      "content_hash": "sha256:e83d45f4a69d32a641153b13c1c827f491b7281889a75bb2355c1c67227b6ef5",
+      "file": "references/028-TypeScript-Documentation-Module-Function.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Module: Class",
+      "url": "https://www.typescriptlang.org/docs/handbook/declaration-files/templates/module-class-d-ts.html",
+      "content_hash": "sha256:bb20e0e14ba8fd62172ea3f49cea99a980531bac0921c0daa7c21217db18d523",
+      "file": "references/029-TypeScript-Documentation-Module-Class.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Declaration Reference",
+      "url": "https://www.typescriptlang.org/docs/handbook/declaration-files/by-example.html",
+      "content_hash": "sha256:afbd7b05f5d7f70a22c679400c9c2cba2fe003bd2604b44c4b8c1476ebcab181",
+      "file": "references/030-TypeScript-Documentation-Declaration-Reference.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Module: Plugin",
+      "url": "https://www.typescriptlang.org/docs/handbook/declaration-files/templates/module-plugin-d-ts.html",
+      "content_hash": "sha256:a51a45542a074b243a0e4112cad255e96a805456450c738668bde1611f16ff01",
+      "file": "references/031-TypeScript-Documentation-Module-Plugin.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Modules .d.ts",
+      "url": "https://www.typescriptlang.org/docs/handbook/declaration-files/templates/module-d-ts.html",
+      "content_hash": "sha256:4a5d0f8a31ff2d4357a32d0b404141141b323192347d4128c07f5601a55bfa57",
+      "file": "references/032-TypeScript-Documentation-Modules-d-ts.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Using Babel with TypeScript",
+      "url": "https://www.typescriptlang.org/docs/handbook/babel-with-typescript.html",
+      "content_hash": "sha256:6fd0911fdeafae887cb19b6ab0a77bc0b6c04f094d2b192130a674317bfbfdc9",
+      "file": "references/033-TypeScript-Documentation-Using-Babel-with-TypeScript.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Introduction",
+      "url": "https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html",
+      "content_hash": "sha256:d1392a30ff41e773b9df3d8daa0690de0ae05183bffeb66188c31b466b0ab8f6",
+      "file": "references/034-TypeScript-Documentation-Introduction.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Library Structures",
+      "url": "https://www.typescriptlang.org/docs/handbook/declaration-files/library-structures.html",
+      "content_hash": "sha256:9c814171730371d3f2817d8abeae0678eca9cb4a7af43c638856a37679a17d5c",
+      "file": "references/035-TypeScript-Documentation-Library-Structures.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Migrating from JavaScript",
+      "url": "https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html",
+      "content_hash": "sha256:4cde5abceed4204d46bb8abf0384f4e532c9e46ad9acefe8aa55c47261bd127e",
+      "file": "references/036-TypeScript-Documentation-Migrating-from-JavaScript.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - DOM Manipulation",
+      "url": "https://www.typescriptlang.org/docs/handbook/dom-manipulation.html",
+      "content_hash": "sha256:667faeb8aadaf4bee74963e29d2c617aba98761829f74a25f9d69482befc4da5",
+      "file": "references/037-TypeScript-Documentation-DOM-Manipulation.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Gulp",
+      "url": "https://www.typescriptlang.org/docs/handbook/gulp.html",
+      "content_hash": "sha256:ba9f357aa8ea065fdffd74c3dbb984a8420cea5b63ba0a0e0fe02ac2a34a20ec",
+      "file": "references/038-TypeScript-Documentation-Gulp.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - ASP.NET Core",
+      "url": "https://www.typescriptlang.org/docs/handbook/asp-net-core.html",
+      "content_hash": "sha256:c314a6a222ff5ce731c9d110cf092ffd6c50dddb8ecd07d097c00ea2d8fb79de",
+      "file": "references/039-TypeScript-Documentation-ASP-NET-Core.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Modules - ESM/CJS Interoperability",
+      "url": "https://www.typescriptlang.org/docs/handbook/modules/appendices/esm-cjs-interop.html",
+      "content_hash": "sha256:cd4b7e4d10deac022d1f6596d165408242258535e503d745e61a8069a9d61e0a",
+      "file": "references/040-TypeScript-Documentation-Modules-ESM-CJS-Interoperability.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Modules - Reference",
+      "url": "https://www.typescriptlang.org/docs/handbook/modules/reference.html",
+      "content_hash": "sha256:22c5e3927e206b9150173aeeb377afa0a2e3a3c5221b75bc761f5adcd4afe1c6",
+      "file": "references/041-TypeScript-Documentation-Modules-Reference.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Modules - Choosing Compiler Options",
+      "url": "https://www.typescriptlang.org/docs/handbook/modules/guides/choosing-compiler-options.html",
+      "content_hash": "sha256:1aaebdec821a9ef5f8482bb116b972323f343fb061a6ce428ce157fa3ffbe431",
+      "file": "references/042-TypeScript-Documentation-Modules-Choosing-Compiler-Options.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Modules - Theory",
+      "url": "https://www.typescriptlang.org/docs/handbook/modules/theory.html",
+      "content_hash": "sha256:03cac83de86b3046dbc64392380f998a51635f42d512fea3ec069d2b3f878d3c",
+      "file": "references/043-TypeScript-Documentation-Modules-Theory.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Variable Declaration",
+      "url": "https://www.typescriptlang.org/docs/handbook/variable-declarations.html",
+      "content_hash": "sha256:9c8fb33e434d65048951d8b32b86ce08b9bb13c20e665f11da9f4d0d4d07e888",
+      "file": "references/044-TypeScript-Documentation-Variable-Declaration.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Type Compatibility",
+      "url": "https://www.typescriptlang.org/docs/handbook/type-compatibility.html",
+      "content_hash": "sha256:3eb0321a3f284330e78e26c674afd3210e60ac1d40d72d56fc80345a8d29f406",
+      "file": "references/045-TypeScript-Documentation-Type-Compatibility.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Type Inference",
+      "url": "https://www.typescriptlang.org/docs/handbook/type-inference.html",
+      "content_hash": "sha256:c9691d5e1ac359668a50519eff2636661cd828a1efa7f3f5c247285688c28537",
+      "file": "references/046-TypeScript-Documentation-Type-Inference.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Modules - Introduction",
+      "url": "https://www.typescriptlang.org/docs/handbook/modules/introduction.html",
+      "content_hash": "sha256:6fa04f21e17a627c6403e76b88e7c7e80864265191bacfd774524d1047589fd3",
+      "file": "references/047-TypeScript-Documentation-Modules-Introduction.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Triple-Slash Directives",
+      "url": "https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html",
+      "content_hash": "sha256:590230daf08fe046d465f4bd4af9f303fdf4416829055a35c82706b7fb0e4b93",
+      "file": "references/048-TypeScript-Documentation-Triple-Slash-Directives.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Symbols",
+      "url": "https://www.typescriptlang.org/docs/handbook/symbols.html",
+      "content_hash": "sha256:710bbe61a3d098d87ac6b3ed22c51d7eb7b0065061392a8958d6ad0439c7e0c8",
+      "file": "references/049-TypeScript-Documentation-Symbols.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Namespaces and Modules",
+      "url": "https://www.typescriptlang.org/docs/handbook/namespaces-and-modules.html",
+      "content_hash": "sha256:d691816c47563f3face015f4e2a50dc7321bf4ef57d233e8683e28f661fbfad4",
+      "file": "references/050-TypeScript-Documentation-Namespaces-and-Modules.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Namespaces",
+      "url": "https://www.typescriptlang.org/docs/handbook/namespaces.html",
+      "content_hash": "sha256:9b63a0f72780865652fb8a4ae13f7a77a812bfb408fb14b5b7c2d01ffdb9cc4f",
+      "file": "references/051-TypeScript-Documentation-Namespaces.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - JSX",
+      "url": "https://www.typescriptlang.org/docs/handbook/jsx.html",
+      "content_hash": "sha256:378fef187e32b9d962b9b5567e126394123c21dfcbd517381886af40bd65a090",
+      "file": "references/052-TypeScript-Documentation-JSX.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Handbook - Enums",
+      "url": "https://www.typescriptlang.org/docs/handbook/enums.html",
+      "content_hash": "sha256:647a10218f4f7f6486cd11cc1956a9835503757e2e1ce73de883d4cdcd028ae4",
+      "file": "references/053-TypeScript-Handbook-Enums.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Mixins",
+      "url": "https://www.typescriptlang.org/docs/handbook/mixins.html",
+      "content_hash": "sha256:88c3ec3311d69335ca7c409bc248a4b41ec21f234270fde1626f74e0c5c5a908",
+      "file": "references/054-TypeScript-Documentation-Mixins.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Iterators and Generators",
+      "url": "https://www.typescriptlang.org/docs/handbook/iterators-and-generators.html",
+      "content_hash": "sha256:69fb06a3ce6a46a60673359e27e5cc5ad97cea5c601cae362f036815bb2d10bc",
+      "file": "references/055-TypeScript-Documentation-Iterators-and-Generators.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Decorators",
+      "url": "https://www.typescriptlang.org/docs/handbook/decorators.html",
+      "content_hash": "sha256:0d3d645c33e4693d6d211816badaa1ff3f15aa051891a1523f41588b126990f8",
+      "file": "references/056-TypeScript-Documentation-Decorators.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Declaration Merging",
+      "url": "https://www.typescriptlang.org/docs/handbook/declaration-merging.html",
+      "content_hash": "sha256:30d0e4d64b4aa6a3ae29a4ad0b2c066afd5cda4d2f3fd626a19c0ff7c377180f",
+      "file": "references/057-TypeScript-Documentation-Declaration-Merging.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Modules",
+      "url": "https://www.typescriptlang.org/docs/handbook/2/modules.html",
+      "content_hash": "sha256:7ffddbc63c90f2a9bc0577b21eded809967b672753bed5f07efe4afb1096fffb",
+      "file": "references/058-TypeScript-Documentation-Modules.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Utility Types",
+      "url": "https://www.typescriptlang.org/docs/handbook/utility-types.html",
+      "content_hash": "sha256:0476bd4499a6d9bc9ef8ae80c6c3dec2bfea12a7596be2b9e2368e205d5bcb36",
+      "file": "references/059-TypeScript-Documentation-Utility-Types.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Classes",
+      "url": "https://www.typescriptlang.org/docs/handbook/2/classes.html",
+      "content_hash": "sha256:55c7cd97386221011c3296e33c3f8acb22dec16e0fc0f78c66f3130920189069",
+      "file": "references/060-TypeScript-Documentation-Classes.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Template Literal Types",
+      "url": "https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html",
+      "content_hash": "sha256:5c11febb98140eee81dc8d140fd6304d142eecbfdc3ae9bc70b476500e02541c",
+      "file": "references/061-TypeScript-Documentation-Template-Literal-Types.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Conditional Types",
+      "url": "https://www.typescriptlang.org/docs/handbook/2/conditional-types.html",
+      "content_hash": "sha256:1b44ed1cb10d54db74c52c84097994a470ace0443394dd858f731472ed554966",
+      "file": "references/062-TypeScript-Documentation-Conditional-Types.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Mapped Types",
+      "url": "https://www.typescriptlang.org/docs/handbook/2/mapped-types.html",
+      "content_hash": "sha256:0858922c5cdfb3735562a3043913354dfbf4a374528376e4ca40851c1fcafd5a",
+      "file": "references/063-TypeScript-Documentation-Mapped-Types.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Typeof Type Operator",
+      "url": "https://www.typescriptlang.org/docs/handbook/2/typeof-types.html",
+      "content_hash": "sha256:242d4ef85cf8f3ab5fa55be99a6a72be9024d50df978fa9e683c1c5cac47fb4f",
+      "file": "references/064-TypeScript-Documentation-Typeof-Type-Operator.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Indexed Access Types",
+      "url": "https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html",
+      "content_hash": "sha256:d941d1220aeccf1d6ebbde11cd9fa00342a740b7a300112001b15ac235c469df",
+      "file": "references/065-TypeScript-Documentation-Indexed-Access-Types.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Generics",
+      "url": "https://www.typescriptlang.org/docs/handbook/2/generics.html",
+      "content_hash": "sha256:af6f49eaa588c46018ba61843fa9a165bc085b6d041f82cc5244b08e2406d664",
+      "file": "references/066-TypeScript-Documentation-Generics.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Keyof Type Operator",
+      "url": "https://www.typescriptlang.org/docs/handbook/2/keyof-types.html",
+      "content_hash": "sha256:b9c39029f341b6445813cae4a8be2c9b4f885edd59909fc34bb0c20d1acaa889",
+      "file": "references/067-TypeScript-Documentation-Keyof-Type-Operator.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Object Types",
+      "url": "https://www.typescriptlang.org/docs/handbook/2/objects.html",
+      "content_hash": "sha256:9963e7365f33f9a72f989d79b8a5819d97f08feb9758cd7f93f95b664cb2c616",
+      "file": "references/068-TypeScript-Documentation-Object-Types.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Creating Types from Types",
+      "url": "https://www.typescriptlang.org/docs/handbook/2/types-from-types.html",
+      "content_hash": "sha256:0e0b866c61113e83afe3a58b571e80fb28895833f15815638bdd3ae3fb0bcc65",
+      "file": "references/069-TypeScript-Documentation-Creating-Types-from-Types.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - More on Functions",
+      "url": "https://www.typescriptlang.org/docs/handbook/2/functions.html",
+      "content_hash": "sha256:cf7a2b9095f8c96a4cba1f390c3312eda5cb68431d9a450e91a751dd576710ce",
+      "file": "references/070-TypeScript-Documentation-More-on-Functions.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Narrowing",
+      "url": "https://www.typescriptlang.org/docs/handbook/2/narrowing.html",
+      "content_hash": "sha256:242a923108470e165d34764a491296496ac8688084dc00dccca50c6444d07960",
+      "file": "references/071-TypeScript-Documentation-Narrowing.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - The Basics",
+      "url": "https://www.typescriptlang.org/docs/handbook/2/basic-types.html",
+      "content_hash": "sha256:1bf053501a68e3429f1297fcc1ce9f9c11d87fbb90ec476e03975a1cc5ebbd8e",
+      "file": "references/072-TypeScript-Documentation-The-Basics.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - Everyday Types",
+      "url": "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html",
+      "content_hash": "sha256:2d2c46eba5f64e22d109fb025a7324f37bac59f351f0d6da02d453313541560c",
+      "file": "references/073-TypeScript-Documentation-Everyday-Types.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - TypeScript for Functional Programmers",
+      "url": "https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes-func.html",
+      "content_hash": "sha256:324573836c4cac5c89072e2c98e5314c6e0826cef5acd6209081d9938ebfbcbc",
+      "file": "references/074-TypeScript-Documentation-TypeScript-for-Functional-Programme.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - TypeScript Tooling in 5 minutes",
+      "url": "https://www.typescriptlang.org/docs/handbook/typescript-tooling-in-5-minutes.html",
+      "content_hash": "sha256:e6a8001128ecadd4df006c4587e484d076105f38b33b91ebab0d08775fe2157d",
+      "file": "references/075-TypeScript-Documentation-TypeScript-Tooling-in-5-minutes.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - TypeScript for JavaScript Programmers",
+      "url": "https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html",
+      "content_hash": "sha256:684397f7be24825f6c27c6d672ce3fec5365aa28c6eb9d2acbd993a0153f22fc",
+      "file": "references/076-TypeScript-Documentation-TypeScript-for-JavaScript-Programme.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - TypeScript for Java/C# Programmers",
+      "url": "https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes-oop.html",
+      "content_hash": "sha256:d34dd758431be9b149fc4343570456db2ef932c04e8a9eef04195dc346ccf274",
+      "file": "references/077-TypeScript-Documentation-TypeScript-for-Java-C-Programmers.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Handbook - The TypeScript Handbook",
+      "url": "https://www.typescriptlang.org/docs/handbook/intro.html",
+      "content_hash": "sha256:d5e58522e9efdea334bacc88ae11b248b44d5375ea79410cf1d45f5a74f6a2de",
+      "file": "references/078-TypeScript-Handbook-The-TypeScript-Handbook.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: Documentation - TypeScript for the New Programmer",
+      "url": "https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html",
+      "content_hash": "sha256:994a6f1858e5c0b001b680e0730ad5b0e0290a678b50bcfa614e602061f4329a",
+      "file": "references/079-TypeScript-Documentation-TypeScript-for-the-New-Programmer.md",
+      "source": "typescript",
+      "version": "latest"
+    },
+    {
+      "title": "TypeScript: The starting point for learning TypeScript",
+      "url": "https://www.typescriptlang.org/docs",
+      "content_hash": "sha256:caededaf7e03c93a28407f89439712531c7c3958dce5597a74e19b1dc3113886",
+      "file": "references/080-TypeScript-The-starting-point-for-learning-TypeScript.md",
+      "source": "typescript",
+      "version": "latest"
+    }
+  ]
+}

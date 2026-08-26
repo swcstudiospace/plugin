@@ -1,0 +1,164 @@
+# Router with Loop Steps - Agno
+
+Source: https://docs.agno.com/workflows/usage/router-with-loop-steps
+
+A `Router` can choose a `Loop` as one of its paths. This selector routes a topic to either one web research step or an iterative Hacker News research loop.
+
+## [​](#how-it-works) How it works
+
+- The selector checks the topic against the deep-tech keywords.
+- Matching topics run the `Loop`, which stops at the quality threshold or `max_iterations`.
+- Other topics run one web research step.
+- Both paths feed the publishing step.
+
+## [​](#example) Example
+
+The workflow switches between one web search and iterative tech research.
+Install dependencies:
+
+```
+uv pip install agno openai ddgs
+```
+
+router\_with\_loop\_steps.py
+
+```
+from typing import List, Union
+
+from agno.agent.agent import Agent
+from agno.tools.hackernews import HackerNewsTools
+from agno.tools.websearch import WebSearchTools
+from agno.workflow.loop import Loop
+from agno.workflow.router import Router
+from agno.workflow.step import Step
+from agno.workflow.types import StepInput, StepOutput
+from agno.workflow.workflow import Workflow
+
+# Define the research agents
+hackernews_agent = Agent(
+    name="HackerNews Researcher",
+    instructions="You are a researcher specializing in finding the latest tech news and discussions from Hacker News. Focus on startup trends, programming topics, and tech industry insights.",
+    tools=[HackerNewsTools()],
+)
+
+web_agent = Agent(
+    name="Web Researcher",
+    instructions="Search news sites, blogs, and official documentation for the topic.",
+    tools=[WebSearchTools()],
+)
+
+content_agent = Agent(
+    name="Content Publisher",
+    instructions="You are a content creator who takes research data and creates engaging, well-structured articles. Format the content with proper headings, bullet points, and clear conclusions.",
+)
+
+# Create the research steps
+research_hackernews = Step(
+    name="research_hackernews",
+    agent=hackernews_agent,
+    description="Research latest tech trends from Hacker News",
+)
+
+research_web = Step(
+    name="research_web",
+    agent=web_agent,
+    description="Research the topic on the web",
+)
+
+publish_content = Step(
+    name="publish_content",
+    agent=content_agent,
+    description="Create and format final content for publication",
+)
+
+# End condition function for the loop
+
+def research_quality_check(outputs: List[StepOutput]) -> bool:
+    """
+    Evaluate if research results are sufficient
+    Returns True to break the loop, False to continue
+    """
+    if not outputs:
+        return False
+
+    # Check if any output contains substantial content
+    for output in outputs:
+        if output.content and len(output.content) > 300:
+            print(
+                f"Research quality check passed - found substantial content ({len(output.content)} chars)"
+            )
+            return True
+
+    print("Research quality check failed - need more substantial research")
+    return False
+
+# Create a Loop step for deep tech research
+deep_tech_research_loop = Loop(
+    name="Deep Tech Research Loop",
+    steps=[research_hackernews],
+    end_condition=research_quality_check,
+    max_iterations=3,
+    description="Perform iterative deep research on tech topics",
+)
+
+# Router function that selects between web research and a deep-tech research loop
+
+def research_strategy_router(step_input: StepInput) -> List[Union[Step, Loop]]:
+    """
+    Decide between web research and the deep-tech research loop.
+    """
+    # Use the original workflow message if this is the first step
+    topic = step_input.previous_step_content or step_input.input or ""
+    topic = topic.lower()
+
+    # Check if the topic requires deep tech research
+    deep_tech_keywords = [
+        "startup trends",
+        "ai developments",
+        "machine learning research",
+        "programming languages",
+        "developer tools",
+        "silicon valley",
+        "venture capital",
+        "cryptocurrency analysis",
+        "blockchain technology",
+        "open source projects",
+        "github trends",
+        "tech industry",
+        "software engineering",
+    ]
+
+    # Check if it's a complex tech topic that needs deep research
+    if any(keyword in topic for keyword in deep_tech_keywords) or (
+        "tech" in topic and len(topic.split()) > 3
+    ):
+        print(
+            f"Deep tech topic detected: Using iterative research loop for '{topic}'"
+        )
+        return [deep_tech_research_loop]
+    else:
+        print(f"Simple topic detected: Using web research for '{topic}'")
+        return [research_web]
+
+workflow = Workflow(
+    name="Adaptive Research Workflow",
+    description="Select web research or iterative tech research based on the topic",
+    steps=[
+        Router(
+            name="research_strategy_router",
+            selector=research_strategy_router,
+            choices=[research_web, deep_tech_research_loop],
+            description="Choose web research or a deep-tech research loop",
+        ),
+        publish_content,
+    ],
+)
+
+if __name__ == "__main__":
+    print("=== Testing with deep tech topic ===")
+    workflow.print_response(
+        "Latest developments in artificial intelligence and machine learning and deep tech research trends"
+    )
+```
+
+⌘I

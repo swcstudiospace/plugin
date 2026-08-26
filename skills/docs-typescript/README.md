@@ -1,0 +1,84 @@
+# docs-typescript
+
+Exported documentation references.
+
+- [TypeScript: Documentation - TypeScript 5.1](references/001-TypeScript-Documentation-TypeScript-5-1.md) — https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-1.html
+- [TypeScript: Documentation - TypeScript 5.2](references/002-TypeScript-Documentation-TypeScript-5-2.md) — https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-2.html
+- [TypeScript: Documentation - TypeScript 5.3](references/003-TypeScript-Documentation-TypeScript-5-3.md) — https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-3.html
+- [TypeScript: Documentation - TypeScript 5.5](references/004-TypeScript-Documentation-TypeScript-5-5.md) — https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html
+- [TypeScript: Documentation - TypeScript 5.4](references/005-TypeScript-Documentation-TypeScript-5-4.md) — https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html
+- [TypeScript: Documentation - TypeScript 5.6](references/006-TypeScript-Documentation-TypeScript-5-6.md) — https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-6.html
+- [TypeScript: Documentation - TypeScript 5.7](references/007-TypeScript-Documentation-TypeScript-5-7.md) — https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-7.html
+- [TypeScript: Documentation - TypeScript 5.8](references/008-TypeScript-Documentation-TypeScript-5-8.md) — https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-8.html
+- [TypeScript: Documentation - TypeScript 5.9](references/009-TypeScript-Documentation-TypeScript-5-9.md) — https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-9.html
+- [TypeScript: Documentation - TypeScript 6.0](references/010-TypeScript-Documentation-TypeScript-6-0.md) — https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html
+- [TypeScript: Documentation - Nightly Builds](references/011-TypeScript-Documentation-Nightly-Builds.md) — https://www.typescriptlang.org/docs/handbook/nightly-builds.html
+- [TypeScript: Documentation - Integrating with Build Tools](references/012-TypeScript-Documentation-Integrating-with-Build-Tools.md) — https://www.typescriptlang.org/docs/handbook/integrating-with-build-tools.html
+- [TypeScript: Documentation - Configuring Watch](references/013-TypeScript-Documentation-Configuring-Watch.md) — https://www.typescriptlang.org/docs/handbook/configuring-watch.html
+- [TypeScript: Documentation - tsc CLI Options](references/014-TypeScript-Documentation-tsc-CLI-Options.md) — https://www.typescriptlang.org/docs/handbook/compiler-options.html
+- [TypeScript: Documentation - Project References](references/015-TypeScript-Documentation-Project-References.md) — https://www.typescriptlang.org/docs/handbook/project-references.html
+- [TypeScript: Documentation - What is a tsconfig.json](references/016-TypeScript-Documentation-What-is-a-tsconfig-json.md) — https://www.typescriptlang.org/docs/handbook/tsconfig-json.html
+- [TypeScript: Documentation - Compiler Options in MSBuild](references/017-TypeScript-Documentation-Compiler-Options-in-MSBuild.md) — https://www.typescriptlang.org/docs/handbook/compiler-options-in-msbuild.html
+- [TypeScript: Documentation - Creating .d.ts Files from .js files](references/018-TypeScript-Documentation-Creating-d-ts-Files-from-js-files.md) — https://www.typescriptlang.org/docs/handbook/declaration-files/dts-from-js.html
+- [TypeScript: Documentation - JSDoc Reference](references/019-TypeScript-Documentation-JSDoc-Reference.md) — https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html
+- [TypeScript: Documentation - Type Checking JavaScript Files](references/020-TypeScript-Documentation-Type-Checking-JavaScript-Files.md) — https://www.typescriptlang.org/docs/handbook/type-checking-javascript-files.html
+- [TypeScript: Documentation - JS Projects Utilizing TypeScript](references/021-TypeScript-Documentation-JS-Projects-Utilizing-TypeScript.md) — https://www.typescriptlang.org/docs/handbook/intro-to-js-ts.html
+- [TypeScript: Documentation - Consumption](references/022-TypeScript-Documentation-Consumption.md) — https://www.typescriptlang.org/docs/handbook/declaration-files/consumption.html
+- [TypeScript: Documentation - Publishing](references/023-TypeScript-Documentation-Publishing.md) — https://www.typescriptlang.org/docs/handbook/declaration-files/publishing.html
+- [TypeScript: Documentation - Deep Dive](references/024-TypeScript-Documentation-Deep-Dive.md) — https://www.typescriptlang.org/docs/handbook/declaration-files/deep-dive.html
+- [TypeScript: Documentation - Do's and Don'ts](references/025-TypeScript-Documentation-Do-s-and-Don-ts.md) — https://www.typescriptlang.org/docs/handbook/declaration-files/do-s-and-don-ts.html
+- [TypeScript: Documentation - Global: Modifying Module](references/026-TypeScript-Documentation-Global-Modifying-Module.md) — https://www.typescriptlang.org/docs/handbook/declaration-files/templates/global-modifying-module-d-ts.html
+- [TypeScript: Documentation - Global .d.ts](references/027-TypeScript-Documentation-Global-d-ts.md) — https://www.typescriptlang.org/docs/handbook/declaration-files/templates/global-d-ts.html
+- [TypeScript: Documentation - Module: Function](references/028-TypeScript-Documentation-Module-Function.md) — https://www.typescriptlang.org/docs/handbook/declaration-files/templates/module-function-d-ts.html
+- [TypeScript: Documentation - Module: Class](references/029-TypeScript-Documentation-Module-Class.md) — https://www.typescriptlang.org/docs/handbook/declaration-files/templates/module-class-d-ts.html
+- [TypeScript: Documentation - Declaration Reference](references/030-TypeScript-Documentation-Declaration-Reference.md) — https://www.typescriptlang.org/docs/handbook/declaration-files/by-example.html
+- [TypeScript: Documentation - Module: Plugin](references/031-TypeScript-Documentation-Module-Plugin.md) — https://www.typescriptlang.org/docs/handbook/declaration-files/templates/module-plugin-d-ts.html
+- [TypeScript: Documentation - Modules .d.ts](references/032-TypeScript-Documentation-Modules-d-ts.md) — https://www.typescriptlang.org/docs/handbook/declaration-files/templates/module-d-ts.html
+- [TypeScript: Documentation - Using Babel with TypeScript](references/033-TypeScript-Documentation-Using-Babel-with-TypeScript.md) — https://www.typescriptlang.org/docs/handbook/babel-with-typescript.html
+- [TypeScript: Documentation - Introduction](references/034-TypeScript-Documentation-Introduction.md) — https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html
+- [TypeScript: Documentation - Library Structures](references/035-TypeScript-Documentation-Library-Structures.md) — https://www.typescriptlang.org/docs/handbook/declaration-files/library-structures.html
+- [TypeScript: Documentation - Migrating from JavaScript](references/036-TypeScript-Documentation-Migrating-from-JavaScript.md) — https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html
+- [TypeScript: Documentation - DOM Manipulation](references/037-TypeScript-Documentation-DOM-Manipulation.md) — https://www.typescriptlang.org/docs/handbook/dom-manipulation.html
+- [TypeScript: Documentation - Gulp](references/038-TypeScript-Documentation-Gulp.md) — https://www.typescriptlang.org/docs/handbook/gulp.html
+- [TypeScript: Documentation - ASP.NET Core](references/039-TypeScript-Documentation-ASP-NET-Core.md) — https://www.typescriptlang.org/docs/handbook/asp-net-core.html
+- [TypeScript: Documentation - Modules - ESM/CJS Interoperability](references/040-TypeScript-Documentation-Modules-ESM-CJS-Interoperability.md) — https://www.typescriptlang.org/docs/handbook/modules/appendices/esm-cjs-interop.html
+- [TypeScript: Documentation - Modules - Reference](references/041-TypeScript-Documentation-Modules-Reference.md) — https://www.typescriptlang.org/docs/handbook/modules/reference.html
+- [TypeScript: Documentation - Modules - Choosing Compiler Options](references/042-TypeScript-Documentation-Modules-Choosing-Compiler-Options.md) — https://www.typescriptlang.org/docs/handbook/modules/guides/choosing-compiler-options.html
+- [TypeScript: Documentation - Modules - Theory](references/043-TypeScript-Documentation-Modules-Theory.md) — https://www.typescriptlang.org/docs/handbook/modules/theory.html
+- [TypeScript: Documentation - Variable Declaration](references/044-TypeScript-Documentation-Variable-Declaration.md) — https://www.typescriptlang.org/docs/handbook/variable-declarations.html
+- [TypeScript: Documentation - Type Compatibility](references/045-TypeScript-Documentation-Type-Compatibility.md) — https://www.typescriptlang.org/docs/handbook/type-compatibility.html
+- [TypeScript: Documentation - Type Inference](references/046-TypeScript-Documentation-Type-Inference.md) — https://www.typescriptlang.org/docs/handbook/type-inference.html
+- [TypeScript: Documentation - Modules - Introduction](references/047-TypeScript-Documentation-Modules-Introduction.md) — https://www.typescriptlang.org/docs/handbook/modules/introduction.html
+- [TypeScript: Documentation - Triple-Slash Directives](references/048-TypeScript-Documentation-Triple-Slash-Directives.md) — https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html
+- [TypeScript: Documentation - Symbols](references/049-TypeScript-Documentation-Symbols.md) — https://www.typescriptlang.org/docs/handbook/symbols.html
+- [TypeScript: Documentation - Namespaces and Modules](references/050-TypeScript-Documentation-Namespaces-and-Modules.md) — https://www.typescriptlang.org/docs/handbook/namespaces-and-modules.html
+- [TypeScript: Documentation - Namespaces](references/051-TypeScript-Documentation-Namespaces.md) — https://www.typescriptlang.org/docs/handbook/namespaces.html
+- [TypeScript: Documentation - JSX](references/052-TypeScript-Documentation-JSX.md) — https://www.typescriptlang.org/docs/handbook/jsx.html
+- [TypeScript: Handbook - Enums](references/053-TypeScript-Handbook-Enums.md) — https://www.typescriptlang.org/docs/handbook/enums.html
+- [TypeScript: Documentation - Mixins](references/054-TypeScript-Documentation-Mixins.md) — https://www.typescriptlang.org/docs/handbook/mixins.html
+- [TypeScript: Documentation - Iterators and Generators](references/055-TypeScript-Documentation-Iterators-and-Generators.md) — https://www.typescriptlang.org/docs/handbook/iterators-and-generators.html
+- [TypeScript: Documentation - Decorators](references/056-TypeScript-Documentation-Decorators.md) — https://www.typescriptlang.org/docs/handbook/decorators.html
+- [TypeScript: Documentation - Declaration Merging](references/057-TypeScript-Documentation-Declaration-Merging.md) — https://www.typescriptlang.org/docs/handbook/declaration-merging.html
+- [TypeScript: Documentation - Modules](references/058-TypeScript-Documentation-Modules.md) — https://www.typescriptlang.org/docs/handbook/2/modules.html
+- [TypeScript: Documentation - Utility Types](references/059-TypeScript-Documentation-Utility-Types.md) — https://www.typescriptlang.org/docs/handbook/utility-types.html
+- [TypeScript: Documentation - Classes](references/060-TypeScript-Documentation-Classes.md) — https://www.typescriptlang.org/docs/handbook/2/classes.html
+- [TypeScript: Documentation - Template Literal Types](references/061-TypeScript-Documentation-Template-Literal-Types.md) — https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html
+- [TypeScript: Documentation - Conditional Types](references/062-TypeScript-Documentation-Conditional-Types.md) — https://www.typescriptlang.org/docs/handbook/2/conditional-types.html
+- [TypeScript: Documentation - Mapped Types](references/063-TypeScript-Documentation-Mapped-Types.md) — https://www.typescriptlang.org/docs/handbook/2/mapped-types.html
+- [TypeScript: Documentation - Typeof Type Operator](references/064-TypeScript-Documentation-Typeof-Type-Operator.md) — https://www.typescriptlang.org/docs/handbook/2/typeof-types.html
+- [TypeScript: Documentation - Indexed Access Types](references/065-TypeScript-Documentation-Indexed-Access-Types.md) — https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html
+- [TypeScript: Documentation - Generics](references/066-TypeScript-Documentation-Generics.md) — https://www.typescriptlang.org/docs/handbook/2/generics.html
+- [TypeScript: Documentation - Keyof Type Operator](references/067-TypeScript-Documentation-Keyof-Type-Operator.md) — https://www.typescriptlang.org/docs/handbook/2/keyof-types.html
+- [TypeScript: Documentation - Object Types](references/068-TypeScript-Documentation-Object-Types.md) — https://www.typescriptlang.org/docs/handbook/2/objects.html
+- [TypeScript: Documentation - Creating Types from Types](references/069-TypeScript-Documentation-Creating-Types-from-Types.md) — https://www.typescriptlang.org/docs/handbook/2/types-from-types.html
+- [TypeScript: Documentation - More on Functions](references/070-TypeScript-Documentation-More-on-Functions.md) — https://www.typescriptlang.org/docs/handbook/2/functions.html
+- [TypeScript: Documentation - Narrowing](references/071-TypeScript-Documentation-Narrowing.md) — https://www.typescriptlang.org/docs/handbook/2/narrowing.html
+- [TypeScript: Documentation - The Basics](references/072-TypeScript-Documentation-The-Basics.md) — https://www.typescriptlang.org/docs/handbook/2/basic-types.html
+- [TypeScript: Documentation - Everyday Types](references/073-TypeScript-Documentation-Everyday-Types.md) — https://www.typescriptlang.org/docs/handbook/2/everyday-types.html
+- [TypeScript: Documentation - TypeScript for Functional Programmers](references/074-TypeScript-Documentation-TypeScript-for-Functional-Programme.md) — https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes-func.html
+- [TypeScript: Documentation - TypeScript Tooling in 5 minutes](references/075-TypeScript-Documentation-TypeScript-Tooling-in-5-minutes.md) — https://www.typescriptlang.org/docs/handbook/typescript-tooling-in-5-minutes.html
+- [TypeScript: Documentation - TypeScript for JavaScript Programmers](references/076-TypeScript-Documentation-TypeScript-for-JavaScript-Programme.md) — https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html
+- [TypeScript: Documentation - TypeScript for Java/C# Programmers](references/077-TypeScript-Documentation-TypeScript-for-Java-C-Programmers.md) — https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes-oop.html
+- [TypeScript: Handbook - The TypeScript Handbook](references/078-TypeScript-Handbook-The-TypeScript-Handbook.md) — https://www.typescriptlang.org/docs/handbook/intro.html
+- [TypeScript: Documentation - TypeScript for the New Programmer](references/079-TypeScript-Documentation-TypeScript-for-the-New-Programmer.md) — https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html
+- [TypeScript: The starting point for learning TypeScript](references/080-TypeScript-The-starting-point-for-learning-TypeScript.md) — https://www.typescriptlang.org/docs

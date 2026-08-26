@@ -1,0 +1,651 @@
+{
+  "name": "docs-mdn-web",
+  "generated_at": "2026-07-29T03:44:34Z",
+  "query": null,
+  "source_id": null,
+  "ranking": "all pages (recency)",
+  "page_count": 80,
+  "embedding_model": null,
+  "pages": [
+    {
+      "title": "<article> HTML article contents element - HTML | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/article",
+      "content_hash": "sha256:ce68f6b8e4f02dc059abb3365e3eeaae44337ee1e5f57676ccfe3da23d1219a0",
+      "file": "references/001-article-HTML-article-contents-element-HTML-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "<header> HTML header element - HTML | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/header",
+      "content_hash": "sha256:2315199a5eb3878c95ae644ef2e7aad460e8e9c2b548594d24191fb9f27a2249",
+      "file": "references/002-header-HTML-header-element-HTML-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "<footer> HTML footer element - HTML | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/footer",
+      "content_hash": "sha256:c357f8d81ddf025b1d40b2dc18806ea53361d114a39a645165dc283e99c314a4",
+      "file": "references/003-footer-HTML-footer-element-HTML-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "<title> HTML document title element - HTML | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/title",
+      "content_hash": "sha256:5e6ee46e89f809c650768b246212e5eb1d8a5d4a4936f71333e37275234c90b1",
+      "file": "references/004-title-HTML-document-title-element-HTML-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "<body> HTML document body element - HTML | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/body",
+      "content_hash": "sha256:a0858949893f7212adced374e3eb69e4f0555db7b995e0118a708ae89bc97b12",
+      "file": "references/005-body-HTML-document-body-element-HTML-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "EXSLT - XML | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/XML/EXSLT",
+      "content_hash": "sha256:420b6625cbcc19b32c1f8943ac2e89dc589195bd19504414689dcd4ea3513d89",
+      "file": "references/006-EXSLT-XML-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "XPath - XML | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/XML/XPath",
+      "content_hash": "sha256:0ad24e317f07aae66fa139218d492f93ebf9319666f9a773e30eb62bf3b4f2a2",
+      "file": "references/007-XPath-XML-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "<head> HTML document metadata (header) element - HTML | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/head",
+      "content_hash": "sha256:e81cc49a66ef7d7a9fc80a5333e93744be95e7def1cbbd25a6a01f7c9aed5b66",
+      "file": "references/008-head-HTML-document-metadata-header-element-HTML-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Contributors by commit history",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/contributors.txt",
+      "content_hash": "sha256:185017d18f34147721d7f0ed8a3cb31bc2c93206b84e04519d0dc0e602a5f340",
+      "file": "references/009-Contributors-by-commit-history.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "XSLT: Extensible Stylesheet Language Transformations - XML | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/XML/XSLT",
+      "content_hash": "sha256:d2fd442c6944e4d5c17df03dc06e4f049fffa82110aeefc0d6a756501d2f7d2b",
+      "file": "references/010-XSLT-Extensible-Stylesheet-Language-Transformations-XML-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "XML introduction - XML | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/XML/Guides/XML_introduction",
+      "content_hash": "sha256:d6387eee81bf95a1e822940fe3d2e0a0d584a296606d8e93efe256834abd6adb",
+      "file": "references/011-XML-introduction-XML-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "OpenSearch description format - XML | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/XML/Guides/OpenSearch",
+      "content_hash": "sha256:4e470b9231dbcb9f35db92e52faa77bef922d3d61508534a5885849c12de17ed",
+      "file": "references/012-OpenSearch-description-format-XML-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Web application manifest - Progressive web apps | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Manifest",
+      "content_hash": "sha256:d21e2758fa6e8d70812e1f5697aab00b40f647d740062e44a231c311e67706b2",
+      "file": "references/013-Web-application-manifest-Progressive-web-apps-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Document Object Model (DOM) - Web APIs | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model",
+      "content_hash": "sha256:29b8c8eeff54e842096387cb07749ef5095946222670f1ff87e374dc69ef32e4",
+      "file": "references/014-Document-Object-Model-DOM-Web-APIs-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Color mixer - CSS | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Colors/Color_mixer",
+      "content_hash": "sha256:93e6a4a6a6684459dad371e90712a9bd1890b53681b37394834e5a6dc96c4b7c",
+      "file": "references/015-Color-mixer-CSS-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Shape generator - CSS | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Shapes/Shape_generator",
+      "content_hash": "sha256:1e011ed1ed59eeace4fe5f2c93823924a13fe463326dc463d794eab3cde145ed",
+      "file": "references/016-Shape-generator-CSS-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Color format converter - CSS | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Colors/Color_format_converter",
+      "content_hash": "sha256:9004a787c0b9f50965de3c0b6eed125e6bcab90eef2a72439edaa1d69e905f61",
+      "file": "references/017-Color-format-converter-CSS-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Border-radius generator - CSS | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Backgrounds_and_borders/Border-radius_generator",
+      "content_hash": "sha256:15496f7ee608d9f435dd191ac1a505beb023a952550045ce366aaf3e75c7daa1",
+      "file": "references/018-Border-radius-generator-CSS-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Box-shadow generator - CSS | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Backgrounds_and_borders/Box-shadow_generator",
+      "content_hash": "sha256:1b52a85467de95480cbdc9df3fc862c4253b32eb9cbdcd3b0497fec339ee7bf9",
+      "file": "references/019-Box-shadow-generator-CSS-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Privacy on the web | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/Privacy",
+      "content_hash": "sha256:064bd26bda5b27da31ba4f6cd1bcf7c4c3969432789b447851be579f28f179ab",
+      "file": "references/020-Privacy-on-the-web-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Security | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/Security",
+      "content_hash": "sha256:44c58494e90ae488ea60017bf9346700c7f261a58b32ed0e96eba5e1e83b7b4e",
+      "file": "references/021-Security-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Progressive web apps | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps",
+      "content_hash": "sha256:3b874e0cfa9aff94a3effc84f9f1a7b38e1a6c4187d2501218512cb67fc20094",
+      "file": "references/022-Progressive-web-apps-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Border-image generator - CSS | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Backgrounds_and_borders/Border-image_generator",
+      "content_hash": "sha256:eaab56ac19973d29874c205c1bd7be4443089c787e634ff98b9a18aea4314136",
+      "file": "references/023-Border-image-generator-CSS-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Web performance | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/Performance",
+      "content_hash": "sha256:2969bb56c5158f8a49715b032a05a98fc2e49beddc9bcad6d27402795575f5cb",
+      "file": "references/024-Web-performance-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Media technologies on the web | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/Media",
+      "content_hash": "sha256:c8a4c2aa5f45a75595aa28635d70fa5d57dfe26423d6791b32727b4f49aca164",
+      "file": "references/025-Media-technologies-on-the-web-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "URIs | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/URI",
+      "content_hash": "sha256:6485b88b6dd91a7e5f9db1245a7236ea482a05419aa962d0377e41c010d081eb",
+      "file": "references/026-URIs-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "WebDriver | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/WebDriver",
+      "content_hash": "sha256:30770addd3a0760a1267c0fa1c6f21f70dca985116b132e759cd3f84381069bc",
+      "file": "references/027-WebDriver-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Using the Web Speech API - Web APIs | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API/Using_the_Web_Speech_API",
+      "content_hash": "sha256:8c5fd0bfac3e16a08221303336325dd576289ee069c3cea08494b55ba1769d9f",
+      "file": "references/028-Using-the-Web-Speech-API-Web-APIs-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "HTTP: Hypertext Transfer Protocol | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP",
+      "content_hash": "sha256:ab6cd8ac3e1a7571c2262be2a814b95ff428cf04bb96a120d96a5f814a688e24",
+      "file": "references/029-HTTP-Hypertext-Transfer-Protocol-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Accessibility | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/Accessibility",
+      "content_hash": "sha256:055334095cbb3b2e5f1fc3a5ad9c47272cce1be9d4e7579fae91c81b5a09fc27",
+      "file": "references/030-Accessibility-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Using the Fetch API - Web APIs | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch",
+      "content_hash": "sha256:4eb609d4a4986d64858f0ec856fdc12f2d41680548fdca875b58a082f74f8da9",
+      "file": "references/031-Using-the-Fetch-API-Web-APIs-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Using Web Workers - Web APIs | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers",
+      "content_hash": "sha256:fb4bd41b365404797d561d1d0699922642313ecd1fd488a138c1cecb24e33193",
+      "file": "references/032-Using-Web-Workers-Web-APIs-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Service Worker API - Web APIs | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API",
+      "content_hash": "sha256:004479427dadc901ed99f5fa229872dc913d96ea87c362049e880bd935c7446b",
+      "file": "references/033-Service-Worker-API-Web-APIs-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Using the Web Animations API - Web APIs | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API/Using_the_Web_Animations_API",
+      "content_hash": "sha256:d43c6c3196e3b864677b623f20a111335072d383abf5030aba90302ff29e3d63",
+      "file": "references/034-Using-the-Web-Animations-API-Web-APIs-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Working with the History API - Web APIs | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/History_API/Working_with_the_History_API",
+      "content_hash": "sha256:69014a07a90c5b5aa44b03d707f05d033ce6a82322b2fffdbcaa4d8d97d21c32",
+      "file": "references/035-Working-with-the-History-API-Web-APIs-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Push API - Web APIs | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Push_API",
+      "content_hash": "sha256:8b042f68f57d32ed181f90af8e7728cc959c2be1bfc7f888b06a7903809f12d6",
+      "file": "references/036-Push-API-Web-APIs-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "HTML DOM API - Web APIs | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API",
+      "content_hash": "sha256:4268acd0a3a4af9aa54963a2984db29f5dfdf9135f39b7b7c46f353669bce616",
+      "file": "references/037-HTML-DOM-API-Web-APIs-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Web APIs | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API",
+      "content_hash": "sha256:3178b18527ab5dba52cb2c9e70c122bcf5679d49b2c8dd404ec6c34a118c4b14",
+      "file": "references/038-Web-APIs-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Geolocation API - Web APIs | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API",
+      "content_hash": "sha256:eb281fc123cf3b4024baaa7136682e0162d040522bf4e1562cdaf6c749f54f18",
+      "file": "references/039-Geolocation-API-Web-APIs-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Fetch API - Web APIs | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API",
+      "content_hash": "sha256:1df83ab9db2ff85d5a7613c6db4d73515baddbd7514bcf8718994394484295bf",
+      "file": "references/040-Fetch-API-Web-APIs-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Using classes - JavaScript | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_classes",
+      "content_hash": "sha256:2a57e7425202755d0968441057da92664f98515482f688be5b30418ec7deee4f",
+      "file": "references/041-Using-classes-JavaScript-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "File System API - Web APIs | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/File_System_API",
+      "content_hash": "sha256:4e1a93fe9a46a27590402452c860c9a00a4b2f2fa74ca6bcbbb66ae16bcd8705",
+      "file": "references/042-File-System-API-Web-APIs-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Working with objects - JavaScript | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_objects",
+      "content_hash": "sha256:2b078824fd8e2ae7eaf7319d52f54fc6fa205e1e64fe78aacfd1be7be932dcc6",
+      "file": "references/043-Working-with-objects-JavaScript-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Loops and iteration - JavaScript | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration",
+      "content_hash": "sha256:343081f1c02a589b9cb44c563036cf967265d7261d12dec9e160842068aa5f36",
+      "file": "references/044-Loops-and-iteration-JavaScript-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "JavaScript Guide - JavaScript | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
+      "content_hash": "sha256:821d7b2dbce14e1d73dcf74d3acd28a01263e4a8b5e08280920b1481ee0e88cd",
+      "file": "references/045-JavaScript-Guide-JavaScript-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "JavaScript reference - JavaScript | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference",
+      "content_hash": "sha256:adb71d870055bd9da60232dcc2973a5a68cd81d2c934dfcd2a22126675795a4c",
+      "file": "references/046-JavaScript-reference-JavaScript-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Control flow and error handling - JavaScript | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling",
+      "content_hash": "sha256:1d5f6fb230ea9f88988a9b38ef129300a5c4dd05e46d6ee0407ad0b6a57f10db",
+      "file": "references/047-Control-flow-and-error-handling-JavaScript-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Functions - JavaScript | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions",
+      "content_hash": "sha256:ea2781e04c90885220b3a4bd3211edd5cbffb7525b021a83a65ff58f86f407a9",
+      "file": "references/048-Functions-JavaScript-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Statements and declarations - JavaScript | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements",
+      "content_hash": "sha256:5d93b5fa2b1beba9a2052a6a24054169a16f341a8baa806fd21c0e4788310ee6",
+      "file": "references/049-Statements-and-declarations-JavaScript-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Standard built-in objects - JavaScript | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects",
+      "content_hash": "sha256:a6c3a7783d6225c44fa1618f5b62700a961a4d2d50b1f24f1411e2dfc642fa65",
+      "file": "references/050-Standard-built-in-objects-JavaScript-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Expressions and operators - JavaScript | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators",
+      "content_hash": "sha256:e91fa01205d26fb6cef5c27818876001c33aa81d722d4a0ba52db1cb41381bf7",
+      "file": "references/051-Expressions-and-operators-JavaScript-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "JavaScript | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+      "content_hash": "sha256:de7da78800bf6a305e26c09fb0496e6e9010abcccb880f0fefcab215fa8a45a9",
+      "file": "references/052-JavaScript-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "CSS layout cookbook - CSS | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/How_to/Layout_cookbook",
+      "content_hash": "sha256:1c0c8d676ad9497686be6105b30725b80144cf0e70b6155841bc5c45e8a0c37d",
+      "file": "references/053-CSS-layout-cookbook-CSS-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Center an element - CSS | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/How_to/Layout_cookbook/Center_an_element",
+      "content_hash": "sha256:a997c44cdaeffdea26c62d4f149ed52c788b000ca6fa9f1f3886d24a739e6fed",
+      "file": "references/054-Center-an-element-CSS-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Card - CSS | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/How_to/Layout_cookbook/Card",
+      "content_hash": "sha256:f9c5759b438441e667a863562cf006bbc2cb7155b40abfa704013d8b9e94aa4c",
+      "file": "references/055-Card-CSS-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "CSS guides - CSS | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides",
+      "content_hash": "sha256:b9fc942571451ca6547564d63e651c0469433279b44d6a12c2ac76a709cebc05",
+      "file": "references/056-CSS-guides-CSS-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Column layouts - CSS | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/How_to/Layout_cookbook/Column_layouts",
+      "content_hash": "sha256:b30e2d1126c602e7ffca3f57c797fc292a270e282dced1f8e5f7cd072b6aaea0",
+      "file": "references/057-Column-layouts-CSS-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Basic concepts of flexbox - CSS | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Flexible_box_layout/Basic_concepts",
+      "content_hash": "sha256:5132a01ddf6b2ab81fa3d3c8fb2e1204fb80727351ddddebe56d98b543878125",
+      "file": "references/058-Basic-concepts-of-flexbox-CSS-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Applying color to HTML elements using CSS - CSS | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Colors/Applying_color",
+      "content_hash": "sha256:2631dea15311345f63847296a989ffc52482c9cf7d43c80400d00b5133db328f",
+      "file": "references/059-Applying-color-to-HTML-elements-using-CSS-CSS-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Using CSS animations - CSS | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Animations/Using",
+      "content_hash": "sha256:e3254780735a21708b168dc0373c760d7bcfc4ea45be633d63de456cd8462344",
+      "file": "references/060-Using-CSS-animations-CSS-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Introduction to the CSS box model - CSS | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Box_model/Introduction",
+      "content_hash": "sha256:d65e82d497402efb1e9d663fe73e82ca125f9e53870835e236daed30e69bd8a9",
+      "file": "references/061-Introduction-to-the-CSS-box-model-CSS-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "CSS reference - CSS | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference",
+      "content_hash": "sha256:8283bac0fff6b111aa73e88835a036d678366844243e75421f21070e0aa0b197",
+      "file": "references/062-CSS-reference-CSS-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "CSS values - CSS | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values",
+      "content_hash": "sha256:35c3efe422bce18b94ebe99648c7a86fdc0c945fbd63ad9ce625353250ef79ec",
+      "file": "references/063-CSS-values-CSS-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "CSS selectors - CSS | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors",
+      "content_hash": "sha256:115fdee70aa00cb3764d780ded0a5d75aed8f587bd66f84fe149afbc0422c1c1",
+      "file": "references/064-CSS-selectors-CSS-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "CSS at-rules - CSS | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules",
+      "content_hash": "sha256:838b6869b2dbd8cb6dce2ed4bfd2f4a58696cdc768255beec61bd64c25991411",
+      "file": "references/065-CSS-at-rules-CSS-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "CSS properties - CSS | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties",
+      "content_hash": "sha256:0821cf8d9b7d698ba4abd78f4479dd750c671cb724effe582e9664e9616b224e",
+      "file": "references/066-CSS-properties-CSS-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "MathML | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/MathML",
+      "content_hash": "sha256:01bf9c7025d952ec7d0245dae77b7991c92e307b9a24077a7e53a298ca8e7c34",
+      "file": "references/067-MathML-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "XML: Extensible Markup Language | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/XML",
+      "content_hash": "sha256:6492033a4aa39340688bf9631a04c84f274769aa9bf9bcc19b7acecea1694e44",
+      "file": "references/068-XML-Extensible-Markup-Language-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "CSS: Cascading Style Sheets | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS",
+      "content_hash": "sha256:9d24a238916d9d9efa0eb5c810a9cf9f82b602445a4c4a801dc5692baf745c5a",
+      "file": "references/069-CSS-Cascading-Style-Sheets-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "HTML guides - HTML | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Guides",
+      "content_hash": "sha256:2810777012fe84520ba0e751d9dc554a94a7ccf0036dbe3ee7d0700db2c85c46",
+      "file": "references/070-HTML-guides-HTML-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "SVG: Scalable Vector Graphics | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/SVG",
+      "content_hash": "sha256:ef6d5c945da105aa81d56f4e31fa678501ae3dad7494c39dd64b8e6717bf6256",
+      "file": "references/071-SVG-Scalable-Vector-Graphics-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Using date and time formats in HTML - HTML | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Date_and_time_formats",
+      "content_hash": "sha256:67bafea4818dad2a67e6867c18752e0aa2a148adba50120a5eb2abf1e1cf1a1b",
+      "file": "references/072-Using-date-and-time-formats-in-HTML-HTML-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "HTML cheatsheet for syntax and common tasks - HTML | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Cheatsheet",
+      "content_hash": "sha256:f2b5af9c62e0ee96af5de95e149b7576d31d95cce112a93f439b7657b75d824c",
+      "file": "references/073-HTML-cheatsheet-for-syntax-and-common-tasks-HTML-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "HTML reference - HTML | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference",
+      "content_hash": "sha256:75f3c03fc51cf547ab7eabbe9c58b3b10d5e8dd369327da621ba5b77d1456ea4",
+      "file": "references/074-HTML-reference-HTML-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Using responsive images in HTML - HTML | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Responsive_images",
+      "content_hash": "sha256:0889d5ff1559bd4b45851f941356025b20c46245d3fb458a7ac1da2471d1c34f",
+      "file": "references/075-Using-responsive-images-in-HTML-HTML-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Global attributes - HTML | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes",
+      "content_hash": "sha256:613b9f56c9ea705608693ce416e9874ccf426a2011e9cceec527a2e17a8149b1",
+      "file": "references/076-Global-attributes-HTML-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "HTML attribute reference - HTML | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes",
+      "content_hash": "sha256:1bb294e0f25c6d19a9778ec25ffb96f9db3345c70809bd05a9709eff280900f4",
+      "file": "references/077-HTML-attribute-reference-HTML-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "Web technology for developers | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web",
+      "content_hash": "sha256:5c04d1a7fd8f398132560f34fe7bebf5a4932a6704ee4fcbd42b7d104aa513f8",
+      "file": "references/078-Web-technology-for-developers-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "HTML: HyperText Markup Language | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML",
+      "content_hash": "sha256:a47104b91c3d7ccf9edeb59bef342d242c7729615244bd34f67119eea73031b1",
+      "file": "references/079-HTML-HyperText-Markup-Language-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    },
+    {
+      "title": "HTML elements reference - HTML | MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements",
+      "content_hash": "sha256:a1504ce4caf3cbdc5c97c4f443ffb7dd088bd505151c0a2db6587a3ab41555b9",
+      "file": "references/080-HTML-elements-reference-HTML-MDN.md",
+      "source": "mdn-web",
+      "version": "latest"
+    }
+  ]
+}
