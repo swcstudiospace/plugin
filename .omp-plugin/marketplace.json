@@ -1,0 +1,23 @@
+{
+	"$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+	"name": "aio",
+	"owner": {
+		"name": "SWC Studio",
+		"email": "noreply@swcstudio.space"
+	},
+	"metadata": {
+		"description": "All-in-one OMP plugin marketplace. Prompt Uplift expands sparse prompts into nested XML specs.",
+		"version": "0.1.0"
+	},
+	"plugins": [
+		{
+			"name": "all-in-one",
+			"description": "Prompt Uplift: every user prompt is expanded into a detailed nested XML specification before the agent runs. Prefix raw: to skip.",
+			"source": "./",
+			"version": "0.1.0",
+			"author": { "name": "SWC Studio" },
+			"category": "productivity",
+			"keywords": ["uplift", "prompt", "xml", "omp"]
+		}
+	]
+}
