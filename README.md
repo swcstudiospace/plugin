@@ -64,7 +64,7 @@ Skipped automatically: slash commands, trivial acknowledgements (`ok`, `lgtm`, �
 | `/aio merge …` | Same as `/merge` |
 | `/aio think …` | Same as `/think` |
 | `/supabase` | `status` / `projects` / `tables` / `users` |
-| `/pod` | `status` / `up` / `connect` / `doctor` |
+| `/pod` | `status` / `up` / `connect` / `doctor` / `on` / `off` |
 
 Prefixes: `uplift:` force · `raw:` skip.
 
@@ -75,7 +75,7 @@ Flags: `--aio-uplift-off` starts the session with uplift disabled. `--aio-issues
 Interactive OMP keeps persistent chrome around the editor (not a flash of working-message or default cards):
 
 - **Kanban** above the editor — themed columns with counts, up to three task titles, Last issue, and `/kanban`. Offline: accent title plus a warning `board offline`.
-- **Uplift chrome** (`aio-chrome`) above the editor — Uplift on/off and last root/source; Think on and node count; Tools idle or `▶ {tool}`; Pod connected/off/disabled.
+- **Uplift chrome** (`aio-chrome`) above the editor — Uplift on/off and last root/source; Think on and node count; Tools idle or `▶ {tool}`; Pod connected / not connected / disabled; `Anda active` when the nexus probe succeeds.
 - **LSP section** below the editor — always visible. Shows `LSP clean` or an error/warning digest.
 
 Transcript cards are custom labeled Box + Text for `aio-uplift`, `aio-think`, `aio-issue`, and `aio-lsp`. Uplift shows `Prompt Uplift · root · source` plus the first lines of XML when expanded, not a raw dump.
@@ -188,7 +188,7 @@ File tools (`read`, `write`, `edit`, `grep` path, rooted `glob`) are jailed to t
 
 Child Ultrathink / swarm sessions (`PI_AIO_CHILD` / `PI_ULTRATHINK_CHILD`) do not boot a nested pod.
 
-Bin: `AIMEE_POD_BIN` || `pod.bin` || `devpod`. Nexus: `ANDA_NEXUS_URL` || `pod.nexusUrl` || `http://127.0.0.1:8091`. dTEE gateway: `DTEE_GATEWAY_URL` || `IC_TEE_GATEWAY_URL` || `pod.dteeUrl` || `http://127.0.0.1:8443`. Flag: `--aio-pod-off`. Commands: `/pod` `status` | `up` | `connect` | `doctor`.
+Bin: `AIMEE_POD_BIN` || `pod.bin` || `devpod`. Nexus: `ANDA_NEXUS_URL` || `pod.nexusUrl` || `http://127.0.0.1:8091`. dTEE gateway: `DTEE_GATEWAY_URL` || `IC_TEE_GATEWAY_URL` || `pod.dteeUrl` || `http://127.0.0.1:8443`. Flag: `--aio-pod-off`. Commands: `/pod` `status` | `up` | `connect` | `doctor` | `on` | `off`. `/pod on` enables without booting. `/pod up` and `/pod connect` enable then `devpod up`. `/pod doctor` and `/pod status` live-probe DevPod (`version` / `list` / `status`) plus Anda and dTEE — they never call `up` or `ssh`. Failed boot still probes Anda so `engineActive` can be true while `connected` is false.
 
 ## Config
 
@@ -243,7 +243,7 @@ Bin: `AIMEE_POD_BIN` || `pod.bin` || `devpod`. Nexus: `ANDA_NEXUS_URL` || `pod.n
 
 Prompts longer than `maxChars` skip the LLM and use fallback wrap. Set `echo` to `false` to hide the per-turn XML transcript (the agent still receives the rewrite; `/uplift last` still shows it). `raw:` and skip still skip the whole pre-pass, including Graph of Thought.
 
-`supabase.enabled` defaults to true. Unset env vars make tools return `missing_credentials`. `lsp.enabled` defaults to true. Missing language-server binaries stay disabled; nothing is auto-installed. `pod.enabled` defaults to false — only configured sessions pay `devpod up`. Missing DevPod is fail-open (notify, jail to cwd + extraDirs, no fake ssh). Codespace is not connected until `status --output json` is Running and `ssh --command true` succeeds (`readyTimeoutMs` default 5 min). dTEE is an **ldclabs** IC-TEE gateway probe (`dtee: boolean`); missing daemon → `dtee: false`.
+`supabase.enabled` defaults to true. Unset env vars make tools return `missing_credentials`. `lsp.enabled` defaults to true. Missing language-server binaries stay disabled; nothing is auto-installed. `pod.enabled` defaults to false — only configured sessions pay `devpod up` on open. `/pod up` turns it on for the session. Missing DevPod is fail-open (notify, jail to cwd + extraDirs, no fake ssh). Codespace is not connected until `status --output json` is Running and `ssh --command true` succeeds (`readyTimeoutMs` default 5 min). `/pod doctor` reports Anda independently of the codespace. dTEE is an **ldclabs** IC-TEE gateway probe (`dtee: boolean`); missing daemon → `dtee: false`.
 
 ## Verify
 

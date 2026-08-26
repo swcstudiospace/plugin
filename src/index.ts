@@ -46,11 +46,12 @@ import { THINK_ADDENDUM } from "./think/prompts.ts";
 import { LspHub, injectLspNote, resolveMutationPath } from "./lsp/hub.ts";
 import { registerLspTools } from "./lsp/tools.ts";
 import { parseLspArgs, LSP_COMPLETIONS } from "./lsp/commands.ts";
-import { bootPod } from "./pod/boot.ts";
+import { bootPod, diagnosePod } from "./pod/boot.ts";
 import { parsePodArgs, POD_COMPLETIONS } from "./pod/commands.ts";
+import { formatPodDoctor } from "./pod/format.ts";
 import { registerPodTools } from "./pod/tools.ts";
 import type { PodSession } from "./pod/types.ts";
-import { isAllowedPath, wrapBashCommand } from "./pod/workspace.ts";
+import { isAllowedPath, wrapBashCommand, workspaceIdFor } from "./pod/workspace.ts";
 
 const COMPLETIONS = [
 	{ value: "on", label: "on — enable Prompt Uplift" },
@@ -213,6 +214,7 @@ export default function allInOne(pi: ExtensionAPI): void {
 			enabled: state.enabled,
 			issuesEnabled: issueState.enabled,
 			thinkEnabled: thinkState.enabled,
+			podEnabled: config.pod.enabled,
 		});
 	}
 
@@ -240,6 +242,7 @@ export default function allInOne(pi: ExtensionAPI): void {
 				enabled: config.pod.enabled,
 				connected: Boolean(podSession?.connected),
 				workspaceId: podSession?.workspaceId,
+				anda: Boolean(podSession?.engineActive),
 			},
 		};
 	}
@@ -475,32 +478,52 @@ export default function allInOne(pi: ExtensionAPI): void {
 		}
 	}
 
+	async function runDoctor(cwd = sessionCwd) {
+		return diagnosePod({
+			run: defaultCliRunner,
+			bin: process.env.AIMEE_POD_BIN?.trim() || config.pod.bin,
+			id: config.pod.workspaceId || podSession?.workspaceId || workspaceIdFor(cwd),
+			nexusUrl: process.env.ANDA_NEXUS_URL?.trim() || config.pod.nexusUrl,
+			dteeUrl:
+				process.env.DTEE_GATEWAY_URL?.trim() ||
+				process.env.IC_TEE_GATEWAY_URL?.trim() ||
+				config.pod.dteeUrl,
+			enabled: config.pod.enabled,
+			session: podSession,
+		});
+	}
+
 	async function handlePod(args: string, ctx: ExtensionContext): Promise<void> {
 		const { cmd } = parsePodArgs(args);
-		if (cmd === "status") {
-			notify(
-				ctx,
-				JSON.stringify(podSession ?? { enabled: config.pod.enabled, connected: false, dtee: false }),
-			);
+		if (cmd === "on") {
+			config.pod.enabled = true;
+			persist();
+			notify(ctx, "Pod boot on");
+			await refreshHud(ctx);
+			return;
+		}
+		if (cmd === "off") {
+			config.pod.enabled = false;
+			persist();
+			notify(ctx, "Pod boot off");
+			await refreshHud(ctx);
+			return;
+		}
+		if (cmd === "status" || cmd === "doctor") {
+			try {
+				notify(ctx, formatPodDoctor(await runDoctor(ctx.cwd)));
+			} catch {
+				notify(ctx, "Pod doctor failed", "warning");
+			}
 			return;
 		}
 		if (cmd === "up" || cmd === "connect") {
+			config.pod.enabled = true;
+			persist();
 			await bootPodSession(ctx);
 			return;
 		}
-		if (cmd === "doctor") {
-			notify(
-				ctx,
-				JSON.stringify({
-					bin: config.pod.bin,
-					connected: podSession?.connected ?? false,
-					engineActive: podSession?.engineActive ?? false,
-					dtee: podSession?.dtee ?? false,
-				}),
-			);
-			return;
-		}
-		notify(ctx, "Usage: /pod [status|up|connect|doctor]");
+		notify(ctx, "Usage: /pod [status|up|connect|doctor|on|off]");
 	}
 
 	async function handleSupabase(args: string, ctx: ExtensionContext): Promise<void> {
@@ -736,6 +759,7 @@ export default function allInOne(pi: ExtensionAPI): void {
 	registerPodTools(pi, {
 		enabled: () => config.pod.enabled,
 		session: () => podSession,
+		doctor: () => runDoctor(),
 	});
 
 	pi.registerCommand("pod", {
@@ -786,13 +810,16 @@ export default function allInOne(pi: ExtensionAPI): void {
 		const manager = ctx.sessionManager;
 		const entries =
 			typeof manager.getBranch === "function" ? manager.getBranch() : manager.getEntries();
-		const saved = findCustom<{ enabled?: boolean; issuesEnabled?: boolean; thinkEnabled?: boolean }>(
-			entries,
-			"aio-state",
-		);
+		const saved = findCustom<{
+			enabled?: boolean;
+			issuesEnabled?: boolean;
+			thinkEnabled?: boolean;
+			podEnabled?: boolean;
+		}>(entries, "aio-state");
 		if (typeof saved?.enabled === "boolean") state.enabled = saved.enabled;
 		if (typeof saved?.issuesEnabled === "boolean") issueState.enabled = saved.issuesEnabled;
 		if (typeof saved?.thinkEnabled === "boolean") thinkState.enabled = saved.thinkEnabled;
+		if (typeof saved?.podEnabled === "boolean") config.pod.enabled = saved.podEnabled;
 		applyFlag();
 		const last = findCustom<UpliftResult & { graph?: ThoughtGraph }>(entries, "aio-uplift-last");
 		if (last && typeof last.xml === "string" && typeof last.root === "string") lastResult = last;
