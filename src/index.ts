@@ -39,7 +39,6 @@ import { LspHub, injectLspNote, resolveMutationPath } from "./lsp/hub.ts";
 import { registerLspTools } from "./lsp/tools.ts";
 import { parseLspArgs, LSP_COMPLETIONS } from "./lsp/commands.ts";
 
-
 const COMPLETIONS = [
 	{ value: "on", label: "on — enable Prompt Uplift" },
 	{ value: "off", label: "off — disable" },
@@ -138,7 +137,6 @@ export default function allInOne(pi: ExtensionAPI): void {
 		type: "boolean",
 		default: false,
 	});
-
 
 	function persist(): void {
 		pi.appendEntry("aio-state", {
