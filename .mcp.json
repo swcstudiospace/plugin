@@ -1,0 +1,8 @@
+{
+	"mcpServers": {
+		"ktui": {
+			"command": "ktui",
+			"args": ["mcp", "--start-server"]
+		}
+	}
+}

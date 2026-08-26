@@ -6,18 +6,18 @@
 		"email": "noreply@swcstudio.space"
 	},
 	"metadata": {
-		"description": "All-in-one OMP plugin marketplace. Prompt Uplift expands sparse prompts into nested XML specs.",
+		"description": "All-in-one OMP plugin marketplace. Prompt Uplift expands sparse prompts into nested XML specs. Tissue + ktui issue tracking and kanban.",
 		"version": "0.1.0"
 	},
 	"plugins": [
 		{
 			"name": "all-in-one",
-			"description": "Prompt Uplift: every user prompt is expanded into a detailed nested XML specification before the agent runs. Prefix raw: to skip.",
+			"description": "Prompt Uplift: every user prompt is expanded into a detailed nested XML specification before the agent runs. Prefix raw: to skip. Tissue issues sync to the Spectrum Web Co ktui board.",
 			"source": "./",
 			"version": "0.1.0",
 			"author": { "name": "SWC Studio" },
 			"category": "productivity",
-			"keywords": ["uplift", "prompt", "xml", "omp"]
+			"keywords": ["uplift", "prompt", "xml", "omp", "tissue", "kanban", "ktui", "issues"]
 		}
 	]
 }

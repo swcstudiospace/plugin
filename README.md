@@ -48,10 +48,14 @@ Skipped automatically: slash commands, trivial acknowledgements (`ok`, `lgtm`, �
 | `/uplift last` | Show the last uplifted XML |
 | `/aio` | Same as `/uplift` (plugin root command) |
 | `/aio uplift …` | Delegate to `/uplift` |
+| `/issues` | Issue tracking status / last Tissue → ktui sync |
+| `/kanban` | Overlay of the Spectrum Web Co board (not the Textual TUI) |
+| `/aio issues` | Same as `/issues` |
+| `/aio kanban` | Same as `/kanban` |
 
 Prefixes: `uplift:` force · `raw:` skip.
 
-Flag: `--aio-uplift-off` starts the session with uplift disabled.
+Flags: `--aio-uplift-off` starts the session with uplift disabled. `--aio-issues-off` starts with issue tracking disabled.
 
 ## Config
 
@@ -63,6 +67,12 @@ Flag: `--aio-uplift-off` starts the session with uplift disabled.
     "enabled": true,
     "skipTrivial": true,
     "maxChars": 20000,
+    "echo": true
+  },
+  "issues": {
+    "enabled": true,
+    "boardName": "Spectrum Web Co",
+    "ktuiBin": "ktui",
     "echo": true
   }
 }
@@ -82,3 +92,17 @@ bun run check
 1. Start a **new** omp session. `/uplift` should autocomplete.
 2. Type a one-line feature request. The transcript should show `Prompt Uplift · …` plus the XML; the agent should receive that XML, not the one-liner.
 3. `raw: do this exactly` should reach the agent un-uplifted.
+
+## Issue tracking
+
+On session start in a git/project folder, the plugin ensures an `issues/` Tissue repo in **that folder** (session cwd) — not the plugin package unless you opened it. Marker is `issues/tissue.json`.
+
+Each uplifted prompt writes one markdown issue under `issues/`. Skipped, `raw:`, and trivial prompts do not.
+
+Issues sync to the existing ktui board **Spectrum Web Co** via the `ktui` CLI. Agent tools come from MCP `ktui mcp --start-server` (tool `mcp__ktui_ktui`). This plugin's `.mcp.json` starts that server; no `--scope`.
+
+OMP shows a HUD plus a `/kanban` overlay. That is **not** the real Textual TUI — run `ktui` in another terminal for that.
+
+GitHub association is the `origin` remote URL stored on the issue (plus a category named `owner/repo`). Push later with `git add issues/` — this does not call `gh issue create`.
+
+Commands: `/issues`, `/kanban` (also `/aio issues` / `/aio kanban`). Config: `issues` key in `all-in-one.json`. Flag: `--aio-issues-off`.

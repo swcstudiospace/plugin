@@ -37,6 +37,7 @@ function findCustom<T>(entries: readonly { type: string }[], customType: string)
 export default function allInOne(pi: ExtensionAPI): void {
 	pi.setLabel("All-in-one");
 	if (process.env.PI_AIO_CHILD === "1" || process.env.PI_ULTRATHINK_CHILD === "1") return;
+	pi.logger.info("all-in-one: Prompt Uplift loaded");
 
 	const config = loadConfig();
 	const state: UpliftState = {

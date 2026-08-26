@@ -3,6 +3,14 @@ import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { defaultConfig, loadConfig } from "./config.ts";
+import { DEFAULT_BOARD_NAME } from "./issues/types.ts";
+
+const ISSUES = {
+	enabled: true,
+	boardName: DEFAULT_BOARD_NAME,
+	ktuiBin: "ktui",
+	echo: true,
+};
 
 const prevDir = process.env.PI_CODING_AGENT_DIR;
 const tempDirs: string[] = [];
@@ -29,6 +37,7 @@ describe("loadConfig", () => {
 		expect(loadConfig()).toEqual(defaultConfig());
 		expect(defaultConfig()).toEqual({
 			uplift: { enabled: true, skipTrivial: true, maxChars: 20000, echo: true },
+			issues: ISSUES,
 		});
 	});
 
@@ -45,16 +54,19 @@ describe("loadConfig", () => {
 		withAgentDir(JSON.stringify({ uplift: { enabled: false } }));
 		expect(loadConfig()).toEqual({
 			uplift: { enabled: false, skipTrivial: true, maxChars: 20000, echo: true },
+			issues: ISSUES,
 		});
 
 		withAgentDir(JSON.stringify({ uplift: { maxChars: 50 } }));
 		expect(loadConfig()).toEqual({
 			uplift: { enabled: true, skipTrivial: true, maxChars: 50, echo: true },
+			issues: ISSUES,
 		});
 
 		withAgentDir(JSON.stringify({ uplift: { skipTrivial: false, extra: true }, ignored: 1 }));
 		expect(loadConfig()).toEqual({
 			uplift: { enabled: true, skipTrivial: false, maxChars: 20000, echo: true },
+			issues: ISSUES,
 		});
 	});
 
@@ -67,6 +79,28 @@ describe("loadConfig", () => {
 		withAgentDir(JSON.stringify({ uplift: { echo: false } }));
 		expect(loadConfig()).toEqual({
 			uplift: { enabled: true, skipTrivial: true, maxChars: 20000, echo: false },
+			issues: ISSUES,
 		});
+	});
+
+	test("issues partial JSON merges onto defaults", () => {
+		withAgentDir(JSON.stringify({ issues: { enabled: false } }));
+		expect(loadConfig()).toEqual({
+			uplift: { enabled: true, skipTrivial: true, maxChars: 20000, echo: true },
+			issues: { ...ISSUES, enabled: false },
+		});
+
+		withAgentDir(JSON.stringify({ issues: { boardName: "  Other Board  ", ktuiBin: "/bin/ktui" } }));
+		expect(loadConfig().issues).toEqual({
+			enabled: true,
+			boardName: "Other Board",
+			ktuiBin: "/bin/ktui",
+			echo: true,
+		});
+	});
+
+	test("issues wrong-typed fields fall back to defaults", () => {
+		withAgentDir(JSON.stringify({ issues: { enabled: "no", boardName: 1, ktuiBin: "", echo: 0 } }));
+		expect(loadConfig().issues).toEqual(ISSUES);
 	});
 });
