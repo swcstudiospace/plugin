@@ -1,4 +1,4 @@
-import type { CliResult, CliRunner } from "./types.ts";
+import type { CliRunner } from "./types.ts";
 
 export const defaultCliRunner: CliRunner = async (bin, args, cwd) => {
 	const proc = Bun.spawn([bin, ...args], {
