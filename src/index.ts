@@ -9,6 +9,11 @@ import { createGreptile } from "./mcp/greptile.ts";
 import { createSupabase } from "./mcp/supabase.ts";
 import { defaultCliRunner } from "./mcp/run.ts";
 import { createBoardComponent } from "./issues/board-ui.ts";
+import { createChromeWidget, type ChromeState } from "./ui/chrome.ts";
+import { createKanbanWidget } from "./ui/kanban.ts";
+import { createLspWidget } from "./ui/lsp.ts";
+import { registerAioRenderers } from "./ui/renderers.ts";
+
 import {
 	ISSUE_COMPLETIONS,
 	KANBAN_COMPLETIONS,
@@ -151,6 +156,8 @@ export default function allInOne(pi: ExtensionAPI): void {
 	if (hermesSkills > 0) pi.logger.info(`all-in-one: ${hermesSkills} Hermes skills`);
 
 	const config = loadConfig();
+	registerAioRenderers(pi);
+
 	let podSession: PodSession | undefined;
 	const lsp = new LspHub(config.lsp);
 	const github = createGithub({ run: defaultCliRunner, org: config.github.org });
@@ -171,6 +178,8 @@ export default function allInOne(pi: ExtensionAPI): void {
 	const thinkState = { enabled: config.think.enabled };
 	let lastGraph: ThoughtGraph | undefined;
 	let injectThinkAddendum = false;
+	let lastTool: string | undefined;
+
 	let greptileSignedOutNotified = false;
 
 	pi.registerFlag("aio-uplift-off", {
@@ -219,19 +228,51 @@ export default function allInOne(pi: ExtensionAPI): void {
 		if (ctx.hasUI) ctx.ui.notify(message, level);
 	}
 
+	function chromeState(): ChromeState {
+		return {
+			upliftOn: state.enabled,
+			lastRoot: lastResult?.root,
+			lastSource: lastResult?.source,
+			thinkOn: thinkState.enabled,
+			thinkNodes: lastGraph?.nodes.length,
+			lastTool,
+			pod: {
+				enabled: config.pod.enabled,
+				connected: Boolean(podSession?.connected),
+				workspaceId: podSession?.workspaceId,
+			},
+		};
+	}
+
+
 	async function refreshHud(ctx: ExtensionContext): Promise<void> {
 		if (!ctx.hasUI) return;
+		ctx.ui.setWidget("aio-chrome", createChromeWidget(chromeState()), { placement: "aboveEditor" });
 		if (!issueState.enabled) {
 			ctx.ui.setWidget("aio-kanban", undefined);
-			return;
+		} else {
+			try {
+				const snap = await refreshSnapshot(run, config.issues.boardName);
+				ctx.ui.setWidget("aio-kanban", createKanbanWidget(snap, issueState.last), {
+					placement: "aboveEditor",
+				});
+			} catch {
+				ctx.ui.setWidget("aio-kanban", createKanbanWidget(undefined, issueState.last), {
+					placement: "aboveEditor",
+				});
+			}
 		}
-		try {
-			const snap = await refreshSnapshot(run, config.issues.boardName);
-			ctx.ui.setWidget("aio-kanban", formatBoardHud(snap, issueState.last), { placement: "aboveEditor" });
-		} catch {
-			ctx.ui.setWidget("aio-kanban", formatBoardHud(undefined, issueState.last), { placement: "aboveEditor" });
+		if (config.lsp.enabled) {
+			ctx.ui.setWidget(
+				"aio-lsp",
+				createLspWidget({ digest: lsp.parentDigest() || undefined, statusLine: undefined }),
+				{ placement: "belowEditor" },
+			);
+		} else {
+			ctx.ui.setWidget("aio-lsp", undefined);
 		}
 	}
+
 
 	async function bootPodSession(ctx: ExtensionContext): Promise<void> {
 		try {
@@ -307,7 +348,7 @@ export default function allInOne(pi: ExtensionAPI): void {
 			try {
 				void ctx.ui
 					.custom(
-						(_tui, _theme, _kb, done) =>
+						(_tui, theme, _kb, done) =>
 							createBoardComponent(
 								snap ?? {
 									boardId: 0,
@@ -317,6 +358,7 @@ export default function allInOne(pi: ExtensionAPI): void {
 									categoryId: null,
 								},
 								done,
+								theme,
 							),
 						{ overlay: true },
 					)
@@ -768,11 +810,12 @@ export default function allInOne(pi: ExtensionAPI): void {
 		if (issueState.enabled) {
 			try {
 				ensureRepo(ctx.cwd);
-				void refreshHud(ctx);
 			} catch {
 				// fail-open: never block session start
 			}
 		}
+		void refreshHud(ctx);
+
 		if (ctx.hasUI && (reason === "startup" || reason === "new")) {
 			notify(
 				ctx,
@@ -923,6 +966,8 @@ export default function allInOne(pi: ExtensionAPI): void {
 					// fail-open: never change the uplifted return
 				}
 			}
+			void refreshHud(ctx);
+
 			return { text: result.xml, images: event.images };
 		} catch (error) {
 			if (error instanceof Error && error.name === "AbortError") {
@@ -1025,6 +1070,23 @@ export default function allInOne(pi: ExtensionAPI): void {
 			// fail-open
 		}
 	});
+
+	pi.on("tool_execution_start", (event, ctx) => {
+		lastTool = event.toolName;
+		if (ctx.hasUI) {
+			ctx.ui.setStatus("aio-tool", event.toolName);
+			void refreshHud(ctx);
+		}
+	});
+
+	pi.on("tool_execution_end", (event, ctx) => {
+		if (lastTool === event.toolName) lastTool = undefined;
+		if (ctx.hasUI) {
+			ctx.ui.setStatus("aio-tool", undefined);
+			void refreshHud(ctx);
+		}
+	});
+
 
 	pi.on("turn_end", () => {
 		try {
