@@ -1,0 +1,26 @@
+{
+	"name": "omp-all-in-one",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"description": "OMP all-in-one plugin. Prompt Uplift expands every user prompt into a detailed XML specification. Tissue + ktui issue tracking.",
+	"scripts": {
+		"test": "bun test",
+		"check": "bunx tsc --noEmit"
+	},
+	"devDependencies": {
+		"@oh-my-pi/pi-ai": "^18.0.4",
+		"@oh-my-pi/pi-coding-agent": "^18.0.4",
+		"@oh-my-pi/pi-tui": "^18.0.4",
+		"@types/bun": "^1.4.0"
+	},
+	"omp": {
+		"extensions": ["./src/index.ts"]
+	},
+	"pi": {
+		"extensions": ["./src/index.ts"]
+	},
+	"aimee": {
+		"extensions": ["./src/index.ts"]
+	}
+}
