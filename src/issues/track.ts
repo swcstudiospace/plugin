@@ -48,6 +48,7 @@ function writeTrackedIssue(
 	description: string,
 	github: GithubAssoc | undefined,
 	existing?: TissueIssue,
+	now?: () => number,
 ): TissueIssue {
 	if (existing) {
 		writeFileSync(
@@ -60,7 +61,7 @@ function writeTrackedIssue(
 		);
 		return parseIssueFile(existing.path) ?? { ...existing, title, description };
 	}
-	const created = createIssue(root, title, description);
+	const created = createIssue(root, title, description, now ? { now } : undefined);
 	writeFileSync(
 		created.path,
 		formatIssueBody({
@@ -160,6 +161,11 @@ export async function trackThoughtGraph(opts: {
 	});
 	try {
 		ensureRepo(opts.root);
+		let tick = Date.now();
+		const now = (): number => {
+			tick += 1;
+			return tick;
+		};
 		const existingParent = findByMarker(opts.root, unitId);
 		let parent = writeTrackedIssue(
 			opts.root,
@@ -167,6 +173,7 @@ export async function trackThoughtGraph(opts: {
 			parentDescription(opts.graph, unitId, existingParent?.id ?? "pending", {}),
 			opts.github,
 			existingParent,
+			now,
 		);
 		const children: TissueIssue[] = [];
 		const childIds: Record<string, string> = {};
@@ -178,6 +185,7 @@ export async function trackThoughtGraph(opts: {
 				childDescription(node, unitId, parent.id),
 				opts.github,
 				existingChild,
+				now,
 			);
 			children.push(child);
 			childIds[node.id] = child.id;
