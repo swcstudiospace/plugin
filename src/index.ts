@@ -18,15 +18,17 @@ import {
 import {
 	formatBoardHud,
 	formatBoardList,
+	formatIssueAddendum,
 	formatIssueEcho,
 	formatIssueList,
 } from "./issues/format.ts";
 import { resolveGithub } from "./issues/github.ts";
 import { defaultKtuiRunner } from "./issues/kanban.ts";
 import { ensureRepo, listIssues } from "./issues/tissue.ts";
-import { refreshSnapshot, syncAllIssues, trackUpliftedPrompt } from "./issues/track.ts";
+import { refreshSnapshot, syncAllIssues, trackThoughtGraph, trackUpliftedPrompt } from "./issues/track.ts";
+import { registerIssueTools } from "./issues/tools.ts";
 import { importedSkillCount } from "./skills/import.ts";
-import type { IssueTrackState, SyncResult } from "./issues/types.ts";
+import type { GraphSyncResult, IssueTrackState, SyncResult } from "./issues/types.ts";
 import type { UpliftResult, UpliftState } from "./types.ts";
 import type { ThoughtGraph } from "./think/types.ts";
 import { decideUplift } from "./uplift/detect.ts";
@@ -47,11 +49,6 @@ const COMPLETIONS = [
 	{ value: "skip", label: "skip — skip the next prompt" },
 	{ value: "last", label: "last — show the last uplifted XML" },
 ];
-
-const ISSUE_ADDENDUM = `## Issue tracking
-
-This turn is tracked as a Tissue markdown file under issues/ and synced to the Spectrum Web Co board. Use the ktui MCP tool via args such as task list --json --board 1 when you need board state. Do not reprint the issue file. Persist with git add issues/; do not run gh issue create.
-`;
 
 function filterCompletions(
 	prefix: string,
@@ -163,6 +160,8 @@ export default function allInOne(pi: ExtensionAPI): void {
 	let lastResult: UpliftResult | undefined;
 	let injectAddendum = false;
 	let injectIssueAddendum = false;
+	let issueTree: GraphSyncResult | undefined;
+	let sessionCwd = process.cwd();
 	const thinkState = { enabled: config.think.enabled };
 	let lastGraph: ThoughtGraph | undefined;
 	let injectThinkAddendum = false;
@@ -222,11 +221,13 @@ export default function allInOne(pi: ExtensionAPI): void {
 		}
 	}
 
-	function recordIssue(ctx: ExtensionContext, result: SyncResult): void {
+	function recordIssue(ctx: ExtensionContext, result: SyncResult, tree?: GraphSyncResult): void {
 		issueState.last = result;
+		if (tree) issueTree = tree;
 		injectIssueAddendum = Boolean(result.issue.id);
 		try {
 			pi.appendEntry("aio-issue-last", result);
+			if (tree) pi.appendEntry("aio-issue-tree", tree);
 		} catch {
 			// fail-open
 		}
@@ -602,6 +603,13 @@ export default function allInOne(pi: ExtensionAPI): void {
 	});
 
 	registerLspTools(pi, lsp);
+	registerIssueTools(pi, {
+		enabled: () => issueState.enabled,
+		list: () => listIssues(sessionCwd),
+		tree: () => issueTree,
+		last: () => issueState.last,
+		snapshot: () => refreshSnapshot(run, config.issues.boardName),
+	});
 
 	pi.registerCommand("lsp", {
 		description: "Live LSP status / diagnostics",
@@ -648,6 +656,7 @@ export default function allInOne(pi: ExtensionAPI): void {
 	});
 
 	pi.on("session_start", (event, ctx) => {
+		sessionCwd = ctx.cwd;
 		applyFlag();
 		lsp.setCwd(ctx.cwd);
 		const manager = ctx.sessionManager;
@@ -670,6 +679,14 @@ export default function allInOne(pi: ExtensionAPI): void {
 		}
 		const lastIssue = findCustom<SyncResult>(entries, "aio-issue-last");
 		if (lastIssue?.issue && typeof lastIssue.issue.id === "string") issueState.last = lastIssue;
+		const lastTree = findCustom<GraphSyncResult>(entries, "aio-issue-tree");
+		if (
+			lastTree?.parent?.issue &&
+			typeof lastTree.parent.issue.id === "string" &&
+			Array.isArray(lastTree.children)
+		) {
+			issueTree = lastTree;
+		}
 		const reason = (event as { reason?: string }).reason;
 		if (issueState.enabled) {
 			try {
@@ -799,14 +816,28 @@ export default function allInOne(pi: ExtensionAPI): void {
 			}
 			if (issueState.enabled) {
 				try {
-					const tracked = await trackUpliftedPrompt({
-						root: ctx.cwd,
-						original: decision.text,
-						run,
-						boardName: config.issues.boardName,
-						github: resolveGithub(ctx.cwd),
-					});
-					recordIssue(ctx, tracked);
+					if ("graph" in result && result.graph) {
+						const tracked = await trackThoughtGraph({
+							root: ctx.cwd,
+							original: decision.text,
+							graph: result.graph,
+							run,
+							boardName: config.issues.boardName,
+							github: resolveGithub(ctx.cwd),
+						});
+						recordIssue(ctx, tracked.parent, tracked);
+						notify(ctx, `Issue tracking · parent + ${tracked.children.length} sub-issues`);
+					} else {
+						issueTree = undefined;
+						const tracked = await trackUpliftedPrompt({
+							root: ctx.cwd,
+							original: decision.text,
+							run,
+							boardName: config.issues.boardName,
+							github: resolveGithub(ctx.cwd),
+						});
+						recordIssue(ctx, tracked);
+					}
 				} catch {
 					// fail-open: never change the uplifted return
 				}
@@ -834,7 +865,9 @@ export default function allInOne(pi: ExtensionAPI): void {
 				lspDigest = "";
 			}
 		}
-		if (!injectAddendum && !injectIssueAddendum && !injectThinkAddendum && !lspDigest) return;
+		const persistThink = thinkState.enabled && Boolean(lastGraph);
+		const persistIssue = issueState.enabled && Boolean(issueTree || issueState.last);
+		if (!injectAddendum && !injectIssueAddendum && !injectThinkAddendum && !lspDigest && !persistThink && !persistIssue) return;
 		const parts = Array.isArray(event.systemPrompt)
 			? [...event.systemPrompt]
 			: [String(event.systemPrompt ?? "")];
@@ -843,12 +876,12 @@ export default function allInOne(pi: ExtensionAPI): void {
 			parts.push(SYSTEM_ADDENDUM);
 			joined = parts.join("\n");
 		}
-		if (injectThinkAddendum && !joined.includes("## Graph of Thought")) {
+		if (persistThink && !joined.includes("## Graph of Thought")) {
 			parts.push(THINK_ADDENDUM);
 			joined = parts.join("\n");
 		}
-		if (injectIssueAddendum && !joined.includes("## Issue tracking")) {
-			parts.push(ISSUE_ADDENDUM);
+		if (persistIssue && !joined.includes("## Issue tracking")) {
+			parts.push(formatIssueAddendum(issueTree));
 			joined = parts.join("\n");
 		}
 		if (lspDigest && !joined.includes("## Live LSP")) {
