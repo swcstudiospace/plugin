@@ -23,9 +23,14 @@ import { refreshSnapshot, syncAllIssues, trackUpliftedPrompt } from "./issues/tr
 import { importedSkillCount } from "./skills/import.ts";
 import type { IssueTrackState, SyncResult } from "./issues/types.ts";
 import type { UpliftResult, UpliftState } from "./types.ts";
+import type { ThoughtGraph } from "./think/types.ts";
 import { decideUplift } from "./uplift/detect.ts";
 import { SYSTEM_ADDENDUM } from "./uplift/prompt.ts";
 import { runUplift } from "./uplift/run.ts";
+import { applyThinkToggle, parseThinkArgs, THINK_COMPLETIONS } from "./think/commands.ts";
+import { formatThinkEcho, formatThinkStatus } from "./think/format.ts";
+import { runThink } from "./think/pipeline.ts";
+import { THINK_ADDENDUM } from "./think/prompts.ts";
 
 const COMPLETIONS = [
 	{ value: "on", label: "on — enable Prompt Uplift" },
@@ -86,6 +91,9 @@ export default function allInOne(pi: ExtensionAPI): void {
 	let lastResult: UpliftResult | undefined;
 	let injectAddendum = false;
 	let injectIssueAddendum = false;
+	const thinkState = { enabled: config.think.enabled };
+	let lastGraph: ThoughtGraph | undefined;
+	let injectThinkAddendum = false;
 
 	pi.registerFlag("aio-uplift-off", {
 		description: "Disable Prompt Uplift",
@@ -97,14 +105,24 @@ export default function allInOne(pi: ExtensionAPI): void {
 		type: "boolean",
 		default: false,
 	});
+	pi.registerFlag("aio-think-off", {
+		description: "Disable Graph of Thought",
+		type: "boolean",
+		default: false,
+	});
 
 	function persist(): void {
-		pi.appendEntry("aio-state", { enabled: state.enabled, issuesEnabled: issueState.enabled });
+		pi.appendEntry("aio-state", {
+			enabled: state.enabled,
+			issuesEnabled: issueState.enabled,
+			thinkEnabled: thinkState.enabled,
+		});
 	}
 
 	function applyFlag(): void {
 		if (pi.getFlag("aio-uplift-off") === true) state.enabled = false;
 		if (pi.getFlag("aio-issues-off") === true) issueState.enabled = false;
+		if (pi.getFlag("aio-think-off") === true) thinkState.enabled = false;
 	}
 
 	function notify(ctx: ExtensionContext, message: string, level: "info" | "warning" | "error" = "info"): void {
@@ -259,10 +277,37 @@ export default function allInOne(pi: ExtensionAPI): void {
 		}
 	}
 
+	async function handleThink(args: string, ctx: ExtensionContext): Promise<void> {
+		const { cmd } = parseThinkArgs(args);
+		if (cmd === "on" || cmd === "off" || cmd === "toggle") {
+			const toggled = applyThinkToggle(thinkState, cmd);
+			persist();
+			notify(ctx, toggled.message);
+			return;
+		}
+		if (cmd === "status") {
+			notify(ctx, formatThinkStatus(thinkState.enabled, lastGraph));
+			return;
+		}
+		if (cmd === "last") {
+			if (!lastGraph) {
+				notify(ctx, "No last thought graph in this session yet", "warning");
+				return;
+			}
+			notify(ctx, formatThinkEcho(lastGraph));
+			return;
+		}
+		notify(ctx, "Usage: /think [on|off|toggle|status|last]");
+	}
+
 	async function handleCommand(args: string, ctx: ExtensionContext): Promise<void> {
 		const { cmd, rest } = parseAioArgs(args);
 		if (cmd === "issues" || cmd === "kanban") {
 			await handleIssueKind(cmd, rest, ctx);
+			return;
+		}
+		if (cmd === "think") {
+			await handleThink(rest, ctx);
 			return;
 		}
 		const result = applyCommand(state, cmd);
@@ -303,6 +348,12 @@ export default function allInOne(pi: ExtensionAPI): void {
 		handler: (args, ctx) => handleIssueKind("kanban", args, ctx),
 	});
 
+	pi.registerCommand("think", {
+		description: "Graph of Thought + Chain of Thought",
+		getArgumentCompletions: (prefix) => filterNamed(prefix, THINK_COMPLETIONS),
+		handler: handleThink,
+	});
+
 	pi.registerCommand("aio", {
 		description: "All-in-one plugin commands",
 		getArgumentCompletions: (prefix) => {
@@ -310,12 +361,15 @@ export default function allInOne(pi: ExtensionAPI): void {
 			if (issues) return filterNamed(issues[1] ?? "", ISSUE_COMPLETIONS);
 			const kanban = prefix.trimStart().match(/^kanban(?:\s+|$)(.*)$/i);
 			if (kanban) return filterNamed(kanban[1] ?? "", KANBAN_COMPLETIONS);
+			const think = prefix.trimStart().match(/^think(?:\s+|$)(.*)$/i);
+			if (think) return filterNamed(think[1] ?? "", THINK_COMPLETIONS);
 			const nested = prefix.trimStart().match(/^uplift(?:\s+|$)(.*)$/i);
 			if (nested) return filterCompletions(nested[1] ?? "");
 			return filterCompletions(prefix, [
 				{ value: "issues", label: "issues — Tissue issue tracking" },
 				{ value: "kanban", label: "kanban — Spectrum Web Co board" },
 				{ value: "uplift", label: "uplift — Prompt Uplift commands" },
+				{ value: "think", label: "think — Graph of Thought + Chain of Thought" },
 			]);
 		},
 		handler: handleCommand,
@@ -326,12 +380,21 @@ export default function allInOne(pi: ExtensionAPI): void {
 		const manager = ctx.sessionManager;
 		const entries =
 			typeof manager.getBranch === "function" ? manager.getBranch() : manager.getEntries();
-		const saved = findCustom<{ enabled?: boolean; issuesEnabled?: boolean }>(entries, "aio-state");
+		const saved = findCustom<{ enabled?: boolean; issuesEnabled?: boolean; thinkEnabled?: boolean }>(
+			entries,
+			"aio-state",
+		);
 		if (typeof saved?.enabled === "boolean") state.enabled = saved.enabled;
 		if (typeof saved?.issuesEnabled === "boolean") issueState.enabled = saved.issuesEnabled;
+		if (typeof saved?.thinkEnabled === "boolean") thinkState.enabled = saved.thinkEnabled;
 		applyFlag();
-		const last = findCustom<UpliftResult>(entries, "aio-uplift-last");
+		const last = findCustom<UpliftResult & { graph?: ThoughtGraph }>(entries, "aio-uplift-last");
 		if (last && typeof last.xml === "string" && typeof last.root === "string") lastResult = last;
+		if (last?.graph) lastGraph = last.graph;
+		else {
+			const lastThink = findCustom<ThoughtGraph>(entries, "aio-think-last");
+			if (lastThink) lastGraph = lastThink;
+		}
 		const lastIssue = findCustom<SyncResult>(entries, "aio-issue-last");
 		if (lastIssue?.issue && typeof lastIssue.issue.id === "string") issueState.last = lastIssue;
 		const reason = (event as { reason?: string }).reason;
@@ -353,6 +416,9 @@ export default function allInOne(pi: ExtensionAPI): void {
 			if (issueState.enabled) {
 				notify(ctx, "Issue tracking on — Tissue + Spectrum Web Co");
 			}
+			if (thinkState.enabled) {
+				notify(ctx, "Graph of Thought on — sequential CoT per node.");
+			}
 		}
 	});
 
@@ -371,15 +437,36 @@ export default function allInOne(pi: ExtensionAPI): void {
 
 		if (ctx.hasUI) ctx.ui.setWorkingMessage("Uplifting prompt…");
 		const signal = (ctx as ExtensionContext & { signal?: AbortSignal }).signal;
+		const complete = (system: string, user: string, completeSignal?: AbortSignal) =>
+			completePrompt(ctx, system, user, { images: event.images, signal: completeSignal ?? signal });
 		try {
-			const result = await runUplift({
+			const upliftResult = await runUplift({
 				original: decision.text,
 				conversation: recentConversation(ctx),
-				complete: (system, user, completeSignal) =>
-					completePrompt(ctx, system, user, { images: event.images, signal: completeSignal ?? signal }),
+				complete,
 				signal,
 				maxChars: config.uplift.maxChars,
 			});
+			let result = upliftResult;
+			if (thinkState.enabled) {
+				try {
+					result = await runThink({
+						uplift: result,
+						complete,
+						signal,
+						minNodes: config.think.minNodes,
+						maxNodes: config.think.maxNodes,
+						onProgress: (message) => {
+							if (ctx.hasUI) ctx.ui.setWorkingMessage(message);
+						},
+					});
+					lastGraph = result.graph;
+					injectThinkAddendum = true;
+					pi.appendEntry("aio-think-last", result.graph);
+				} catch (error) {
+					if (error instanceof Error && error.name === "AbortError") throw error;
+				}
+			}
 			lastResult = result;
 			injectAddendum = true;
 			pi.appendEntry("aio-uplift-last", result);
@@ -397,6 +484,21 @@ export default function allInOne(pi: ExtensionAPI): void {
 					// fail-open: never block the rewritten prompt
 				}
 				notify(ctx, `Prompt Uplift · ${result.root} · ${result.source}`);
+				if (lastGraph && injectThinkAddendum) {
+					try {
+						pi.sendMessage(
+							{
+								customType: "aio-think",
+								content: formatThinkEcho(lastGraph),
+								display: true,
+							},
+							{ triggerTurn: false },
+						);
+					} catch {
+						// fail-open: never block the rewritten prompt
+					}
+					notify(ctx, `Graph of Thought · ${lastGraph.nodes.length} nodes`);
+				}
 			}
 			if (issueState.enabled) {
 				try {
@@ -427,7 +529,7 @@ export default function allInOne(pi: ExtensionAPI): void {
 	});
 
 	pi.on("before_agent_start", (event) => {
-		if (!injectAddendum && !injectIssueAddendum) return;
+		if (!injectAddendum && !injectIssueAddendum && !injectThinkAddendum) return;
 		const parts = Array.isArray(event.systemPrompt)
 			? [...event.systemPrompt]
 			: [String(event.systemPrompt ?? "")];
@@ -436,11 +538,16 @@ export default function allInOne(pi: ExtensionAPI): void {
 			parts.push(SYSTEM_ADDENDUM);
 			joined = parts.join("\n");
 		}
+		if (injectThinkAddendum && !joined.includes("## Graph of Thought")) {
+			parts.push(THINK_ADDENDUM);
+			joined = parts.join("\n");
+		}
 		if (injectIssueAddendum && !joined.includes("## Issue tracking")) {
 			parts.push(ISSUE_ADDENDUM);
 		}
 		injectAddendum = false;
 		injectIssueAddendum = false;
+		injectThinkAddendum = false;
 		return { systemPrompt: parts };
 	});
 }
