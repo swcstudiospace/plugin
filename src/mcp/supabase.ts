@@ -275,7 +275,8 @@ export function createSupabase(options: CreateSupabaseOptions = {}): SupabaseCli
 		params.set("limit", String(clamp(input.limit, 20, ROW_LIMIT_MAX)));
 		if (input.order) params.set("order", input.order);
 		for (const [col, value] of Object.entries(input.filters ?? {})) {
-			params.set(col, filterToParam(value));
+			const text = String(value);
+			params.set(col, /[.=]/.test(text) ? text : `eq.${text}`);
 		}
 		const res = await callHttp(http, {
 			method: "GET",
