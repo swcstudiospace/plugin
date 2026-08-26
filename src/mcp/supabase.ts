@@ -276,7 +276,7 @@ export function createSupabase(options: CreateSupabaseOptions = {}): SupabaseCli
 		if (input.order) params.set("order", input.order);
 		for (const [col, value] of Object.entries(input.filters ?? {})) {
 			const text = String(value);
-			params.set(col, /[.=]/.test(text) ? text : `eq.${text}`);
+			params.set(col, /^[A-Za-z]+[.=]/.test(text) ? text : `eq.${text}`);
 		}
 		const res = await callHttp(http, {
 			method: "GET",
