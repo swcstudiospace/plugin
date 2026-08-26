@@ -14,6 +14,7 @@ const ISSUES = {
 const THINK = { enabled: true, minNodes: 3, maxNodes: 8 };
 const GITHUB = { org: "swcstudiospace", autoPr: true };
 const GREPTILE = { requiredForMerge: true, bin: "greptile", minConfidence: 5 };
+const SUPABASE = { enabled: true };
 
 const prevDir = process.env.PI_CODING_AGENT_DIR;
 const tempDirs: string[] = [];
@@ -44,6 +45,7 @@ describe("loadConfig", () => {
 			think: THINK,
 			github: GITHUB,
 			greptile: GREPTILE,
+			supabase: SUPABASE,
 		});
 	});
 
@@ -64,6 +66,7 @@ describe("loadConfig", () => {
 			think: THINK,
 			github: GITHUB,
 			greptile: GREPTILE,
+			supabase: SUPABASE,
 		});
 
 		withAgentDir(JSON.stringify({ uplift: { maxChars: 50 } }));
@@ -73,6 +76,7 @@ describe("loadConfig", () => {
 			think: THINK,
 			github: GITHUB,
 			greptile: GREPTILE,
+			supabase: SUPABASE,
 		});
 
 		withAgentDir(JSON.stringify({ uplift: { skipTrivial: false, extra: true }, ignored: 1 }));
@@ -82,6 +86,7 @@ describe("loadConfig", () => {
 			think: THINK,
 			github: GITHUB,
 			greptile: GREPTILE,
+			supabase: SUPABASE,
 		});
 	});
 
@@ -98,6 +103,7 @@ describe("loadConfig", () => {
 			think: THINK,
 			github: GITHUB,
 			greptile: GREPTILE,
+			supabase: SUPABASE,
 		});
 	});
 
@@ -109,6 +115,7 @@ describe("loadConfig", () => {
 			think: THINK,
 			github: GITHUB,
 			greptile: GREPTILE,
+			supabase: SUPABASE,
 		});
 
 		withAgentDir(JSON.stringify({ issues: { boardName: "  Other Board  ", ktuiBin: "/bin/ktui" } }));

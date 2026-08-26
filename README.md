@@ -61,6 +61,7 @@ Skipped automatically: slash commands, trivial acknowledgements (`ok`, `lgtm`, �
 | `/aio review …` | Same as `/review` |
 | `/aio merge …` | Same as `/merge` |
 | `/aio think …` | Same as `/think` |
+| `/supabase` | `status` / `projects` / `tables` / `users` |
 
 Prefixes: `uplift:` force · `raw:` skip.
 
@@ -100,6 +101,41 @@ Tools (text results, no tokens):
 
 Optional hosted Greptile HTTP MCP at `https://api.greptile.com/mcp` with `GREPTILE_API_KEY`. **Do not commit a Bearer key.** This plugin does not ship that server in `.mcp.json`.
 
+## Supabase
+
+The same stdio MCP server **`./bin/aio-mcp`** (`.mcp.json` key `aio`) also talks to Supabase: Management API (projects), Data API (tables/rows/rpc), and Auth Admin (list/get/create/delete users). Credentials are **env only** — never a config-file secret. **Do not add a hosted Supabase MCP URL to `.mcp.json`.**
+
+Slash commands call the same libraries as the MCP tools (they do not spawn a second MCP). Commands: `/supabase` `status` | `projects` | `tables` | `users`.
+
+Config: `supabase.enabled` (default `true`). If `enabled` is false, tools return `{ error: "disabled" }`. If env vars are unset, tools return `{ error: "missing_credentials" }` — they never throw.
+
+Keys never appear in tool results. JWT-shaped strings are masked (`first12…last4`).
+
+Env:
+
+| Variable | Used for |
+|---|---|
+| `SUPABASE_ACCESS_TOKEN` | Management API (`https://api.supabase.com/v1`) |
+| `SUPABASE_URL` | Data + Auth (no trailing slash) |
+| `SUPABASE_SERVICE_KEY` or `SUPABASE_SERVICE_ROLE_KEY` | Data + Auth service role |
+
+Tools (text results, no tokens):
+
+| Tool | Input |
+|---|---|
+| `supabase_status` | `{}` — `{ configured: { management, data } }`; no secrets |
+| `supabase_projects_list` | `{}` |
+| `supabase_project_get` | `{ projectId }` |
+| `supabase_tables_list` | `{ limit? }` |
+| `supabase_rows_read` | `{ table, limit?, order?, filters? }` |
+| `supabase_rpc_call` | `{ function, args? }` |
+| `supabase_auth_users_list` | `{ page?, perPage? }` |
+| `supabase_auth_user_get` | `{ id }` |
+| `supabase_auth_user_create` | `{ email, password?, emailConfirm? }` |
+| `supabase_auth_user_delete` | `{ id }` |
+
+`aio_status` also includes `supabase: { management, data }` booleans.
+
 ## Config
 
 `~/.omp/agent/all-in-one.json` (or `$PI_CODING_AGENT_DIR/all-in-one.json`). All keys optional.
@@ -131,11 +167,16 @@ Optional hosted Greptile HTTP MCP at `https://api.greptile.com/mcp` with `GREPTI
     "requiredForMerge": true,
     "bin": "greptile",
     "minConfidence": 5
+  },
+  "supabase": {
+    "enabled": true
   }
 }
 ```
 
 Prompts longer than `maxChars` skip the LLM and use fallback wrap. Set `echo` to `false` to hide the per-turn XML transcript (the agent still receives the rewrite; `/uplift last` still shows it). `raw:` and skip still skip the whole pre-pass, including Graph of Thought.
+
+`supabase.enabled` defaults to true. Unset env vars make tools return `missing_credentials`.
 
 ## Verify
 

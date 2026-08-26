@@ -2,7 +2,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { join } from "node:path";
 import { DEFAULT_BOARD_NAME, type IssuesConfig } from "./issues/types.ts";
-import { DEFAULT_GITHUB_ORG, type GithubConfig, type GreptileConfig } from "./mcp/types.ts";
+import { DEFAULT_GITHUB_ORG, type GithubConfig, type GreptileConfig, type SupabaseConfig } from "./mcp/types.ts";
 import { MAX_NODES, MIN_NODES, type ThinkConfig } from "./think/types.ts";
 
 export interface AioConfig {
@@ -11,6 +11,7 @@ export interface AioConfig {
 	think: ThinkConfig;
 	github: GithubConfig;
 	greptile: GreptileConfig;
+	supabase: SupabaseConfig;
 }
 
 export function defaultConfig(): AioConfig {
@@ -40,6 +41,9 @@ export function defaultConfig(): AioConfig {
 			requiredForMerge: true,
 			bin: "greptile",
 			minConfidence: 5,
+		},
+		supabase: {
+			enabled: true,
 		},
 	};
 }
@@ -127,6 +131,13 @@ function mergeGreptile(greptile: Record<string, unknown> | undefined, defaults: 
 	};
 }
 
+function mergeSupabase(supabase: Record<string, unknown> | undefined, defaults: SupabaseConfig): SupabaseConfig {
+	if (!supabase) return defaults;
+	return {
+		enabled: typeof supabase.enabled === "boolean" ? supabase.enabled : defaults.enabled,
+	};
+}
+
 export function loadConfig(): AioConfig {
 	const defaults = defaultConfig();
 	const dir = process.env.PI_CODING_AGENT_DIR?.trim() || join(homedir(), ".omp", "agent");
@@ -138,5 +149,6 @@ export function loadConfig(): AioConfig {
 		think: mergeThink(asRecord(file.think), defaults.think),
 		github: mergeGithub(asRecord(file.github), defaults.github),
 		greptile: mergeGreptile(asRecord(file.greptile), defaults.greptile),
+		supabase: mergeSupabase(asRecord(file.supabase), defaults.supabase),
 	};
 }

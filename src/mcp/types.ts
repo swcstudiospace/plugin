@@ -11,6 +11,10 @@ export interface GreptileConfig {
 	minConfidence: number;
 }
 
+export interface SupabaseConfig {
+	enabled: boolean;
+}
+
 export interface CliResult {
 	stdout: string;
 	stderr: string;

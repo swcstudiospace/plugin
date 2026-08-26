@@ -3,7 +3,7 @@
 	"version": "0.1.0",
 	"private": true,
 	"type": "module",
-	"description": "OMP all-in-one plugin. Prompt Uplift, Tissue + ktui, Hermes skills, GitHub org + Greptile MCP.",
+	"description": "OMP all-in-one plugin. Prompt Uplift, Tissue + ktui, Hermes skills, GitHub org + Greptile MCP, Supabase DB+auth.",
 	"scripts": {
 		"test": "bun test",
 		"check": "bunx tsc --noEmit",
