@@ -74,6 +74,8 @@ After XML uplift, Graph of Thought (3–8 nodes) then sequential Chain of Though
 
 The agent receives the uplifted XML plus a `GRAPH_OF_THOUGHT` block with `THINKING` / `CONCLUSION` per node.
 
+When think produced a graph, the plugin writes **one parent** Tissue issue plus **one sub-issue per graph node** under `issues/`, then syncs each to Spectrum Web Co. Idempotent via `<!-- aio-id: … -->` markers — re-running the same prompt updates in place. Think off (or think failed) still writes **one** issue from the prompt.
+
 Commands: `/think` `on` | `off` | `status` | `last` (also `/aio think …`). Flag: `--aio-think-off`. Config: `think: { enabled, minNodes, maxNodes }` in `all-in-one.json`.
 
 `raw:` and `/uplift skip` still skip the whole pre-pass, including think.
@@ -218,15 +220,19 @@ bun run check
 
 On session start in a git/project folder, the plugin ensures an `issues/` Tissue repo in **that folder** (session cwd) — not the plugin package unless you opened it. Marker is `issues/tissue.json`.
 
-Each uplifted prompt writes one markdown issue under `issues/`. Skipped, `raw:`, and trivial prompts do not.
+Each uplifted prompt with a Graph of Thought writes one parent markdown issue plus one child per graph node under `issues/`. Think off → one issue from the prompt. Skipped, `raw:`, and trivial prompts do not.
+
+Idempotent: `<!-- aio-id: {workUnitId} -->` on the parent and `<!-- aio-id: {workUnitId}/{node.id} -->` on each child. A re-run of the same prompt rewrites those files in place; it does not add extra `.md` files.
+
+`## Issue tracking` is attached on **every** agent start while a tree (or last issue) exists, so building stays on the board — not a one-shot addendum. Persist with `git add issues/`. Do not `gh issue create`.
 
 Issues sync to the existing ktui board **Spectrum Web Co** via the `ktui` CLI. Agent tools come from MCP `ktui mcp --start-server` (tool `mcp__ktui_ktui`). This plugin's `.mcp.json` starts that server; no `--scope`.
 
 OMP shows a HUD plus a `/kanban` overlay. That is **not** the real Textual TUI — run `ktui` in another terminal for that.
 
-GitHub association is the `origin` remote URL stored on the issue (plus a category named `owner/repo`). Push later with `git add issues/` — this does not call `gh issue create`.
+GitHub association is the `origin` remote URL stored on the issue (plus a category named `owner/repo`).
 
-Commands: `/issues`, `/kanban` (also `/aio issues` / `/aio kanban`). Config: `issues` key in `all-in-one.json`. Flag: `--aio-issues-off`.
+Tools: `issues_status` (last parent id/title + child count; never secrets) / `issues_list`. Commands: `/issues`, `/kanban` (also `/aio issues` / `/aio kanban`). Config: `issues` key in `all-in-one.json`. Flag: `--aio-issues-off`.
 
 ## Hermes skills
 
