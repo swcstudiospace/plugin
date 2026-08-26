@@ -29,7 +29,7 @@ import { SYSTEM_ADDENDUM } from "./uplift/prompt.ts";
 import { runUplift } from "./uplift/run.ts";
 import { applyThinkToggle, parseThinkArgs, THINK_COMPLETIONS } from "./think/commands.ts";
 import { formatThinkEcho, formatThinkStatus } from "./think/format.ts";
-import { runThink } from "./think/pipeline.ts";
+import { runThink, type ThinkResult } from "./think/pipeline.ts";
 import { THINK_ADDENDUM } from "./think/prompts.ts";
 
 const COMPLETIONS = [
@@ -447,10 +447,10 @@ export default function allInOne(pi: ExtensionAPI): void {
 				signal,
 				maxChars: config.uplift.maxChars,
 			});
-			let result = upliftResult;
+			let result: UpliftResult | ThinkResult = upliftResult;
 			if (thinkState.enabled) {
 				try {
-					result = await runThink({
+					const thought = await runThink({
 						uplift: result,
 						complete,
 						signal,
@@ -460,9 +460,10 @@ export default function allInOne(pi: ExtensionAPI): void {
 							if (ctx.hasUI) ctx.ui.setWorkingMessage(message);
 						},
 					});
-					lastGraph = result.graph;
+					result = thought;
+					lastGraph = thought.graph;
 					injectThinkAddendum = true;
-					pi.appendEntry("aio-think-last", result.graph);
+					pi.appendEntry("aio-think-last", thought.graph);
 				} catch (error) {
 					if (error instanceof Error && error.name === "AbortError") throw error;
 				}
