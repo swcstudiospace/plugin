@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test";
 import type { UpliftState } from "./types.ts";
-import { applyCommand, formatStatus, parseAioArgs } from "./commands.ts";
+import { applyCommand, formatStatus, formatUpliftEcho, parseAioArgs } from "./commands.ts";
 
 function state(init?: Partial<UpliftState>): UpliftState {
 	return { enabled: true, skipOnce: false, skipTrivial: true, ...init };
@@ -70,6 +70,13 @@ describe("applyCommand", () => {
 		const result = applyCommand(s, "last");
 		expect(result.showLast).toBe(true);
 		expect(s.enabled).toBe(true);
+	});
+
+	test("formatUpliftEcho includes header and full xml", () => {
+		const xml = "<BUILD_PROMPT><ORIGINAL>x</ORIGINAL></BUILD_PROMPT>";
+		expect(formatUpliftEcho({ root: "BUILD_PROMPT", source: "llm", xml })).toBe(
+			`Prompt Uplift · BUILD_PROMPT · llm\n\n${xml}`,
+		);
 	});
 
 	test("aio uplift off disables via parsed args", () => {

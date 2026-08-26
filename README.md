@@ -2,7 +2,7 @@
 
 OMP plugin. **Prompt Uplift** expands every user prompt into a nested XML specification before the coding agent runs — the same density as a production build prompt (role, context, constraints, named feature sections, acceptance, out of scope).
 
-Default **on**. Prefix `raw:` to send a prompt unchanged.
+Default **on**. Each rewrite is echoed in the transcript (root, source, full XML) so you can audit what the agent received. Prefix `raw:` to send a prompt unchanged. `/uplift off` disables.
 
 ## Install
 
@@ -28,12 +28,12 @@ omp plugin install all-in-one@aio
 ```
 
 ## What it does
-
 1. You type a short request.
 2. The plugin calls the session model to rewrite it as XML (`BUILD_PROMPT`, `FIX_PROMPT`, `RESEARCH_PROMPT`, `CHANGE_PROMPT`, or `UPLIFTED_PROMPT`).
 3. Nested sections are named after the work, not a flat generic list.
-4. The agent receives the XML plus a short system addendum: treat it as the spec, do not reprint it.
-5. If the model fails, a conservative fallback XML still wraps the original request.
+4. The rewritten XML is shown in the session (`Prompt Uplift · ROOT · llm|fallback`) before the agent runs.
+5. The agent receives the XML plus a short system addendum: treat it as the spec, do not reprint it.
+6. If the model fails, a conservative fallback XML still wraps the original request. That wrap is echoed too.
 
 Skipped automatically: slash commands, trivial acknowledgements (`ok`, `lgtm`, …), already-uplifted XML, extension-sourced / steer messages, Ultrathink/swarm child sessions.
 
@@ -62,12 +62,13 @@ Flag: `--aio-uplift-off` starts the session with uplift disabled.
   "uplift": {
     "enabled": true,
     "skipTrivial": true,
-    "maxChars": 20000
+    "maxChars": 20000,
+    "echo": true
   }
 }
 ```
 
-Prompts longer than `maxChars` skip the LLM and use fallback wrap.
+Prompts longer than `maxChars` skip the LLM and use fallback wrap. Set `echo` to `false` to hide the per-turn XML transcript (the agent still receives the rewrite; `/uplift last` still shows it).
 
 ## Verify
 
@@ -79,5 +80,5 @@ bun run check
 ```
 
 1. Start a **new** omp session. `/uplift` should autocomplete.
-2. Type a one-line feature request. The agent should receive nested XML, not the one-liner.
+2. Type a one-line feature request. The transcript should show `Prompt Uplift · …` plus the XML; the agent should receive that XML, not the one-liner.
 3. `raw: do this exactly` should reach the agent un-uplifted.

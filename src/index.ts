@@ -1,6 +1,6 @@
 import type { ExtensionAPI, ExtensionContext } from "@oh-my-pi/pi-coding-agent";
 import { completePrompt, recentConversation } from "./complete.ts";
-import { applyCommand, formatStatus, parseAioArgs } from "./commands.ts";
+import { applyCommand, formatStatus, formatUpliftEcho, parseAioArgs } from "./commands.ts";
 import { loadConfig } from "./config.ts";
 import type { UpliftResult, UpliftState } from "./types.ts";
 import { decideUplift } from "./uplift/detect.ts";
@@ -74,7 +74,7 @@ export default function allInOne(pi: ExtensionAPI): void {
 				notify(ctx, result.message, "warning");
 				return;
 			}
-			notify(ctx, lastResult.xml);
+			notify(ctx, formatUpliftEcho(lastResult));
 			return;
 		}
 		if (cmd === "status") {
@@ -151,6 +151,21 @@ export default function allInOne(pi: ExtensionAPI): void {
 			lastResult = result;
 			injectAddendum = true;
 			pi.appendEntry("aio-uplift-last", result);
+			if (config.uplift.echo) {
+				try {
+					pi.sendMessage(
+						{
+							customType: "aio-uplift",
+							content: formatUpliftEcho(result),
+							display: true,
+						},
+						{ triggerTurn: false },
+					);
+				} catch {
+					// fail-open: never block the rewritten prompt
+				}
+				notify(ctx, `Prompt Uplift · ${result.root} · ${result.source}`);
+			}
 			return { text: result.xml, images: event.images };
 		} catch (error) {
 			if (error instanceof Error && error.name === "AbortError") {

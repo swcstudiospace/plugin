@@ -28,7 +28,7 @@ describe("loadConfig", () => {
 		withAgentDir();
 		expect(loadConfig()).toEqual(defaultConfig());
 		expect(defaultConfig()).toEqual({
-			uplift: { enabled: true, skipTrivial: true, maxChars: 20000 },
+			uplift: { enabled: true, skipTrivial: true, maxChars: 20000, echo: true },
 		});
 	});
 
@@ -44,22 +44,29 @@ describe("loadConfig", () => {
 	test("partial JSON merges onto defaults", () => {
 		withAgentDir(JSON.stringify({ uplift: { enabled: false } }));
 		expect(loadConfig()).toEqual({
-			uplift: { enabled: false, skipTrivial: true, maxChars: 20000 },
+			uplift: { enabled: false, skipTrivial: true, maxChars: 20000, echo: true },
 		});
 
 		withAgentDir(JSON.stringify({ uplift: { maxChars: 50 } }));
 		expect(loadConfig()).toEqual({
-			uplift: { enabled: true, skipTrivial: true, maxChars: 50 },
+			uplift: { enabled: true, skipTrivial: true, maxChars: 50, echo: true },
 		});
 
 		withAgentDir(JSON.stringify({ uplift: { skipTrivial: false, extra: true }, ignored: 1 }));
 		expect(loadConfig()).toEqual({
-			uplift: { enabled: true, skipTrivial: false, maxChars: 20000 },
+			uplift: { enabled: true, skipTrivial: false, maxChars: 20000, echo: true },
 		});
 	});
 
 	test("wrong-typed fields fall back to defaults", () => {
 		withAgentDir(JSON.stringify({ uplift: { enabled: "no", skipTrivial: 1, maxChars: "big" } }));
 		expect(loadConfig()).toEqual(defaultConfig());
+	});
+
+	test("echo false merges onto defaults", () => {
+		withAgentDir(JSON.stringify({ uplift: { echo: false } }));
+		expect(loadConfig()).toEqual({
+			uplift: { enabled: true, skipTrivial: true, maxChars: 20000, echo: false },
+		});
 	});
 });

@@ -3,7 +3,7 @@ import { homedir } from "node:os";
 import { join } from "node:path";
 
 export interface AioConfig {
-	uplift: { enabled: boolean; skipTrivial: boolean; maxChars: number };
+	uplift: { enabled: boolean; skipTrivial: boolean; maxChars: number; echo: boolean };
 }
 
 export function defaultConfig(): AioConfig {
@@ -12,6 +12,7 @@ export function defaultConfig(): AioConfig {
 			enabled: true,
 			skipTrivial: true,
 			maxChars: 20000,
+			echo: true,
 		},
 	};
 }
@@ -45,6 +46,7 @@ export function loadConfig(): AioConfig {
 				typeof uplift.maxChars === "number" && Number.isFinite(uplift.maxChars) && uplift.maxChars >= 0
 					? uplift.maxChars
 					: defaults.uplift.maxChars,
+			echo: typeof uplift.echo === "boolean" ? uplift.echo : defaults.uplift.echo,
 		},
 	};
 }

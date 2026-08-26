@@ -19,6 +19,10 @@ export function formatStatus(
 	return text;
 }
 
+export function formatUpliftEcho(result: { root: string; source: string; xml: string }): string {
+	return `Prompt Uplift · ${result.root} · ${result.source}\n\n${result.xml}`;
+}
+
 export function applyCommand(
 	state: UpliftState,
 	cmd: string,
