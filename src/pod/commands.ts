@@ -10,4 +10,6 @@ export const POD_COMPLETIONS: Array<{ value: string; label: string }> = [
 	{ value: "up", label: "up — start the pod workspace" },
 	{ value: "connect", label: "connect — connect to the pod workspace" },
 	{ value: "doctor", label: "doctor — diagnose pod workspace" },
+	{ value: "on", label: "on — enable pod boot" },
+	{ value: "off", label: "off — disable pod boot" },
 ];

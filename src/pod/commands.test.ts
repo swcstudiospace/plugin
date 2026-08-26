@@ -28,6 +28,16 @@ describe("parsePodArgs", () => {
 		expect(parsePodArgs("DOCTOR")).toEqual({ cmd: "doctor", rest: "" });
 	});
 
+	test("on", () => {
+		expect(parsePodArgs("on")).toEqual({ cmd: "on", rest: "" });
+		expect(parsePodArgs("ON")).toEqual({ cmd: "on", rest: "" });
+	});
+
+	test("off", () => {
+		expect(parsePodArgs("off")).toEqual({ cmd: "off", rest: "" });
+		expect(parsePodArgs("OFF")).toEqual({ cmd: "off", rest: "" });
+	});
+
 	test("unknown kept as cmd", () => {
 		expect(parsePodArgs("rpc")).toEqual({ cmd: "rpc", rest: "" });
 		expect(parsePodArgs("RPC foo")).toEqual({ cmd: "rpc", rest: "foo" });
@@ -35,12 +45,14 @@ describe("parsePodArgs", () => {
 });
 
 describe("POD_COMPLETIONS", () => {
-	test("covers status up connect doctor", () => {
+	test("covers status up connect doctor on off", () => {
 		expect(POD_COMPLETIONS.map((item) => item.value)).toEqual([
 			"status",
 			"up",
 			"connect",
 			"doctor",
+			"on",
+			"off",
 		]);
 	});
 });

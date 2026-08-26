@@ -109,3 +109,31 @@ export interface PodSession {
 	dtee: boolean;
 	reason?: string;
 }
+
+export interface DiagnosePodOpts {
+	run: CliRunner;
+	bin: string;
+	id: string;
+	nexusUrl: string;
+	dteeUrl: string;
+	enabled: boolean;
+	fetchFn?: AndaFetch;
+	session?: PodSession;
+}
+
+export interface PodDoctor {
+	bin: string;
+	binOk: boolean;
+	enabled: boolean;
+	connected: boolean;
+	workspaceId: string;
+	workspaceState?: string;
+	workspaces: number;
+	engineActive: boolean;
+	nexusUrl: string;
+	dtee: boolean;
+	dteeUrl: string;
+	extraDirs: number;
+	localFolder?: string;
+	reason?: string;
+}

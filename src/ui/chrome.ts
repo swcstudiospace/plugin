@@ -12,6 +12,7 @@ export interface ChromeState {
 		enabled: boolean;
 		connected: boolean;
 		workspaceId?: string;
+		anda?: boolean;
 	};
 }
 
@@ -35,8 +36,11 @@ export function createChromeWidget(state: ChromeState): (tui: unknown, theme: Pa
 			podText = pod.workspaceId ? `Pod connected · ${pod.workspaceId}` : "Pod connected";
 			podColor = "success";
 		} else if (pod?.enabled) {
-			podText = "Pod off";
+			podText = "Pod not connected";
 			podColor = "warning";
+		}
+		if (pod?.anda) {
+			podText = `${podText} · Anda active`;
 		}
 
 		const lines = [

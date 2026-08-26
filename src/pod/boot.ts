@@ -3,11 +3,13 @@ import {
 	type AndaFetch,
 	type AndaProbe,
 	type BootPodOpts,
+	type DiagnosePodOpts,
 	type ConnectWorkspaceOpts,
 	type ConnectWorkspaceResult,
 	type DteeProbe,
 	type PodConfig,
 	type PodSession,
+	type PodDoctor,
 	type UpWorkspaceOpts,
 	type UpWorkspaceResult,
 	type WaitUntilReadyOpts,
@@ -87,6 +89,56 @@ export async function connectWorkspace(opts: ConnectWorkspaceOpts): Promise<Conn
 	};
 }
 
+export async function diagnosePod(opts: DiagnosePodOpts): Promise<PodDoctor> {
+	try {
+		const version = await invokeCli(opts.run, opts.bin, ["version"]);
+		let workspaces = 0;
+		const list = await invokeCli(opts.run, opts.bin, ["list", "--output", "json"]);
+		try {
+			const parsed: unknown = JSON.parse(list.stdout);
+			workspaces = Array.isArray(parsed) ? parsed.length : 0;
+		} catch {
+			workspaces = 0;
+		}
+		const status = await invokeCli(opts.run, opts.bin, ["status", opts.id, "--output", "json"]);
+		const workspaceState = parseStatusState(status.stdout, opts.id);
+		const anda = await probeAnda(opts.nexusUrl, opts.fetchFn);
+		const dtee = await probeDtee(opts.dteeUrl, opts.fetchFn);
+		return {
+			bin: opts.bin,
+			binOk: version.code === 0,
+			enabled: opts.enabled,
+			connected: opts.session?.connected ?? false,
+			workspaceId: opts.id,
+			...(workspaceState !== undefined ? { workspaceState } : {}),
+			workspaces,
+			engineActive: anda.active,
+			nexusUrl: opts.nexusUrl,
+			dtee: dtee.active,
+			dteeUrl: opts.dteeUrl,
+			extraDirs: opts.session?.extraDirs.length ?? 0,
+			...(opts.session?.localFolder !== undefined ? { localFolder: opts.session.localFolder } : {}),
+			...(opts.session?.reason !== undefined ? { reason: opts.session.reason } : {}),
+		};
+	} catch {
+		return {
+			bin: opts.bin,
+			binOk: false,
+			enabled: opts.enabled,
+			connected: opts.session?.connected ?? false,
+			workspaceId: opts.id,
+			workspaces: 0,
+			engineActive: false,
+			nexusUrl: opts.nexusUrl,
+			dtee: false,
+			dteeUrl: opts.dteeUrl,
+			extraDirs: opts.session?.extraDirs.length ?? 0,
+			...(opts.session?.localFolder !== undefined ? { localFolder: opts.session.localFolder } : {}),
+			...(opts.session?.reason !== undefined ? { reason: opts.session.reason } : {}),
+		};
+	}
+}
+
 function failedSession(
 	opts: BootPodOpts,
 	config: PodConfig,
@@ -126,6 +178,8 @@ export async function bootPod(opts: BootPodOpts): Promise<PodSession> {
 		const extraDirs = ensureExtraDirs(opts.cwd, config.extraDirs);
 		const up = await upWorkspace({ run: opts.run, bin, source, id: workspaceId });
 		if (up.code !== 0) {
+			const anda = await probeAnda(nexusUrl, opts.fetchFn);
+			const dtee = await probeDtee(dteeUrl, opts.fetchFn);
 			return {
 				enabled: true,
 				connected: false,
@@ -133,9 +187,9 @@ export async function bootPod(opts: BootPodOpts): Promise<PodSession> {
 				source,
 				localFolder: source,
 				extraDirs,
-				engineActive: false,
-				nexusUrl,
-				dtee: false,
+				engineActive: anda.active,
+				nexusUrl: anda.nexusUrl,
+				dtee: dtee.active,
 				reason: up.stderr.trim() || `up exited ${up.code}`,
 			};
 		}
@@ -151,6 +205,8 @@ export async function bootPod(opts: BootPodOpts): Promise<PodSession> {
 			now: opts.now,
 		});
 		if (!ready.ready) {
+			const anda = await probeAnda(nexusUrl, opts.fetchFn);
+			const dtee = await probeDtee(dteeUrl, opts.fetchFn);
 			return {
 				enabled: true,
 				connected: false,
@@ -158,9 +214,9 @@ export async function bootPod(opts: BootPodOpts): Promise<PodSession> {
 				source,
 				localFolder: source,
 				extraDirs,
-				engineActive: false,
-				nexusUrl,
-				dtee: false,
+				engineActive: anda.active,
+				nexusUrl: anda.nexusUrl,
+				dtee: dtee.active,
 				reason: ready.reason || "not ready",
 			};
 		}
@@ -187,6 +243,14 @@ export async function bootPod(opts: BootPodOpts): Promise<PodSession> {
 		};
 	} catch (err) {
 		const message = err instanceof Error ? err.message : String(err);
-		return failedSession(opts, config, { workspaceId, nexusUrl, reason: message });
+		const anda = await probeAnda(nexusUrl, opts.fetchFn);
+		const dtee = await probeDtee(dteeUrl, opts.fetchFn);
+		return failedSession(opts, config, {
+			workspaceId,
+			nexusUrl: anda.nexusUrl,
+			engineActive: anda.active,
+			dtee: dtee.active,
+			reason: message,
+		});
 	}
 }

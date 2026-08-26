@@ -49,20 +49,26 @@ describe("createChromeWidget", () => {
 		expect(render({ ...idle, lastTool: "bash" })).toContain("Tool ▶ bash");
 	});
 
-	test("pod connected, off, and disabled", () => {
+	test("pod connected, not connected, disabled, and Anda", () => {
 		expect(render(idle)).toContain("Pod disabled");
 		expect(
 			render({
 				...idle,
 				pod: { enabled: true, connected: false },
 			}),
-		).toContain("Pod off");
+		).toContain("Pod not connected");
 		expect(
 			render({
 				...idle,
 				pod: { enabled: true, connected: true, workspaceId: "ws-1" },
 			}),
 		).toContain("Pod connected · ws-1");
+		expect(
+			render({
+				...idle,
+				pod: { enabled: false, connected: false, anda: true },
+			}),
+		).toContain("Anda active");
 	});
 
 	test("stays within 6 lines", () => {
