@@ -6,18 +6,18 @@
 		"email": "noreply@swcstudio.space"
 	},
 	"metadata": {
-		"description": "All-in-one OMP plugin marketplace. Prompt Uplift, Tissue + ktui, imported Hermes skills.",
+		"description": "All-in-one OMP plugin marketplace. Prompt Uplift, Tissue + ktui, Hermes skills, GitHub org + Greptile MCP.",
 		"version": "0.1.0"
 	},
 	"plugins": [
 		{
 			"name": "all-in-one",
-			"description": "Prompt Uplift, Tissue issues on Spectrum Web Co, and the Hermes skill library.",
+			"description": "Prompt Uplift, Tissue issues, Hermes skills, GitHub org swcstudiospace MCP, and Greptile-gated merge.",
 			"source": "./",
 			"version": "0.1.0",
 			"author": { "name": "SWC Studio" },
 			"category": "productivity",
-			"keywords": ["uplift", "prompt", "xml", "omp", "tissue", "kanban", "ktui", "issues", "hermes", "skills", "think", "got", "cot"]
+			"keywords": ["uplift", "prompt", "xml", "omp", "tissue", "kanban", "ktui", "issues", "hermes", "skills", "think", "got", "cot", "github", "greptile", "mcp", "pr"]
 		}
 	]
 }

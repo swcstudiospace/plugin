@@ -3,6 +3,9 @@
 		"ktui": {
 			"command": "ktui",
 			"args": ["mcp", "--start-server"]
+		},
+		"aio": {
+			"command": "./bin/aio-mcp"
 		}
 	}
 }

@@ -3,6 +3,10 @@ import type { ExtensionAPI, ExtensionContext } from "@oh-my-pi/pi-coding-agent";
 import { completePrompt, recentConversation } from "./complete.ts";
 import { applyCommand, formatStatus, formatUpliftEcho, parseAioArgs } from "./commands.ts";
 import { loadConfig } from "./config.ts";
+import { parseShipArgs, PR_COMPLETIONS } from "./mcp/commands.ts";
+import { createGithub } from "./mcp/github.ts";
+import { createGreptile } from "./mcp/greptile.ts";
+import { defaultCliRunner } from "./mcp/run.ts";
 import { createBoardComponent } from "./issues/board-ui.ts";
 import {
 	ISSUE_COMPLETIONS,
@@ -73,6 +77,17 @@ function findCustom<T>(entries: readonly { type: string }[], customType: string)
 	}
 }
 
+async function branchTitle(cwd: string): Promise<string> {
+	try {
+		const result = await defaultCliRunner("git", ["rev-parse", "--abbrev-ref", "HEAD"], cwd);
+		const branch = result.stdout.trim();
+		if (result.code === 0 && branch && branch !== "HEAD") return branch;
+	} catch {
+		// fail-open
+	}
+	return "Update";
+}
+
 export default function allInOne(pi: ExtensionAPI): void {
 	pi.setLabel("All-in-one");
 	if (process.env.PI_AIO_CHILD === "1" || process.env.PI_ULTRATHINK_CHILD === "1") return;
@@ -81,6 +96,8 @@ export default function allInOne(pi: ExtensionAPI): void {
 	if (hermesSkills > 0) pi.logger.info(`all-in-one: ${hermesSkills} Hermes skills`);
 
 	const config = loadConfig();
+	const github = createGithub({ run: defaultCliRunner, org: config.github.org });
+	const greptile = createGreptile({ run: defaultCliRunner, ...config.greptile });
 	const state: UpliftState = {
 		enabled: config.uplift.enabled,
 		skipOnce: false,
@@ -94,6 +111,7 @@ export default function allInOne(pi: ExtensionAPI): void {
 	const thinkState = { enabled: config.think.enabled };
 	let lastGraph: ThoughtGraph | undefined;
 	let injectThinkAddendum = false;
+	let greptileSignedOutNotified = false;
 
 	pi.registerFlag("aio-uplift-off", {
 		description: "Disable Prompt Uplift",
@@ -300,6 +318,81 @@ export default function allInOne(pi: ExtensionAPI): void {
 		notify(ctx, "Usage: /think [on|off|toggle|status|last]");
 	}
 
+	async function handleShipKind(kind: "pr" | "review" | "merge", args: string, ctx: ExtensionContext): Promise<void> {
+		const { cmd, rest } = parseShipArgs(kind, args);
+		try {
+			if (kind === "pr") {
+				if (cmd === "create") {
+					const title = rest || (await branchTitle(ctx.cwd));
+					const created = await github.createPull({ title, cwd: ctx.cwd });
+					if (!created.ok) {
+						notify(ctx, created.error, "error");
+						return;
+					}
+					notify(ctx, created.htmlUrl);
+					return;
+				}
+				if (cmd === "list") {
+					const current = await github.currentRepo(ctx.cwd);
+					if (!current.ok) {
+						notify(ctx, current.error, "error");
+						return;
+					}
+					const listed = await github.listPulls({ owner: current.owner, repo: current.repo });
+					if (!listed.ok) {
+						notify(ctx, listed.error, "error");
+						return;
+					}
+					if (listed.pulls.length === 0) {
+						notify(ctx, "No pull requests");
+						return;
+					}
+					notify(
+						ctx,
+						listed.pulls.map((pull) => `#${pull.number} ${pull.title} ${pull.htmlUrl}`).join("\n"),
+					);
+					return;
+				}
+				notify(ctx, "Usage: /pr [create|list]");
+				return;
+			}
+			if (kind === "review") {
+				const review = await greptile.review({ cwd: ctx.cwd, base: rest || undefined });
+				const n = review.comments.length;
+				notify(ctx, `Greptile review · confidence ${review.confidence} · ${n} comment${n === 1 ? "" : "s"}`);
+				if (!review.signedIn) {
+					notify(ctx, "Greptile CLI signed out — run greptile login", "warning");
+				}
+				return;
+			}
+			const number = Number.parseInt(rest, 10);
+			if (!Number.isFinite(number) || number <= 0) {
+				notify(ctx, "Usage: /merge <n>", "warning");
+				return;
+			}
+			const review = await greptile.review({ cwd: ctx.cwd });
+			const gate = greptile.allowsMerge(review);
+			if (!gate.ok) {
+				notify(ctx, gate.reason, "warning");
+				return;
+			}
+			const current = await github.currentRepo(ctx.cwd);
+			if (!current.ok) {
+				notify(ctx, current.error, "error");
+				return;
+			}
+			const merged = await github.mergePull({ number, owner: current.owner, repo: current.repo });
+			if (!merged.ok) {
+				notify(ctx, merged.error, "error");
+				return;
+			}
+			notify(ctx, `Merged #${number}`);
+		} catch (error) {
+			const message = error instanceof Error ? error.message : String(error);
+			notify(ctx, message, "error");
+		}
+	}
+
 	async function handleCommand(args: string, ctx: ExtensionContext): Promise<void> {
 		const { cmd, rest } = parseAioArgs(args);
 		if (cmd === "issues" || cmd === "kanban") {
@@ -308,6 +401,10 @@ export default function allInOne(pi: ExtensionAPI): void {
 		}
 		if (cmd === "think") {
 			await handleThink(rest, ctx);
+			return;
+		}
+		if (cmd === "pr" || cmd === "review" || cmd === "merge") {
+			await handleShipKind(cmd, rest, ctx);
 			return;
 		}
 		const result = applyCommand(state, cmd);
@@ -354,6 +451,22 @@ export default function allInOne(pi: ExtensionAPI): void {
 		handler: handleThink,
 	});
 
+	pi.registerCommand("pr", {
+		description: "GitHub pull requests",
+		getArgumentCompletions: (prefix) => filterNamed(prefix, PR_COMPLETIONS),
+		handler: (args, ctx) => handleShipKind("pr", args, ctx),
+	});
+
+	pi.registerCommand("review", {
+		description: "Greptile code review",
+		handler: (args, ctx) => handleShipKind("review", args, ctx),
+	});
+
+	pi.registerCommand("merge", {
+		description: "Merge a pull request after a clean Greptile review",
+		handler: (args, ctx) => handleShipKind("merge", args, ctx),
+	});
+
 	pi.registerCommand("aio", {
 		description: "All-in-one plugin commands",
 		getArgumentCompletions: (prefix) => {
@@ -363,6 +476,8 @@ export default function allInOne(pi: ExtensionAPI): void {
 			if (kanban) return filterNamed(kanban[1] ?? "", KANBAN_COMPLETIONS);
 			const think = prefix.trimStart().match(/^think(?:\s+|$)(.*)$/i);
 			if (think) return filterNamed(think[1] ?? "", THINK_COMPLETIONS);
+			const pr = prefix.trimStart().match(/^pr(?:\s+|$)(.*)$/i);
+			if (pr) return filterNamed(pr[1] ?? "", PR_COMPLETIONS);
 			const nested = prefix.trimStart().match(/^uplift(?:\s+|$)(.*)$/i);
 			if (nested) return filterCompletions(nested[1] ?? "");
 			return filterCompletions(prefix, [
@@ -370,6 +485,9 @@ export default function allInOne(pi: ExtensionAPI): void {
 				{ value: "kanban", label: "kanban — Spectrum Web Co board" },
 				{ value: "uplift", label: "uplift — Prompt Uplift commands" },
 				{ value: "think", label: "think — Graph of Thought + Chain of Thought" },
+				{ value: "pr", label: "pr — GitHub pull requests" },
+				{ value: "review", label: "review — Greptile code review" },
+				{ value: "merge", label: "merge — Greptile-gated squash merge" },
 			]);
 		},
 		handler: handleCommand,
@@ -419,6 +537,23 @@ export default function allInOne(pi: ExtensionAPI): void {
 			if (thinkState.enabled) {
 				notify(ctx, "Graph of Thought on — sequential CoT per node.");
 			}
+		}
+		if (!greptileSignedOutNotified) {
+			void (async () => {
+				try {
+					const me = await greptile.whoami();
+					if (!me.signedIn && !greptileSignedOutNotified) {
+						greptileSignedOutNotified = true;
+						notify(
+							ctx,
+							"Greptile CLI signed out — /review and merge stay blocked until greptile login",
+							"warning",
+						);
+					}
+				} catch {
+					// fail-open
+				}
+			})();
 		}
 	});
 
