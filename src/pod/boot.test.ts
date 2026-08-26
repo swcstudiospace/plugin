@@ -3,7 +3,7 @@ import { existsSync, mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import type { CliResult, CliRunner } from "../mcp/types.ts";
-import { bootPod, probeAnda, upWorkspace } from "./boot.ts";
+import { bootPod, probeAnda, probeDtee, upWorkspace, waitUntilReady } from "./boot.ts";
 import { workspaceIdFor } from "./workspace.ts";
 
 function runner(
@@ -15,6 +15,28 @@ function runner(
 		return impl(bin, args, cwd);
 	};
 	return Object.assign(run, { calls });
+}
+
+function readyRunner(id: string, cwd: string, statusStates: string[] = ["Running"]) {
+	let statusCalls = 0;
+	return runner(async (_bin, args) => {
+		if (args[0] === "status") {
+			const state = statusStates[Math.min(statusCalls, statusStates.length - 1)] ?? "Busy";
+			statusCalls += 1;
+			return { stdout: JSON.stringify({ id, state }), stderr: "", code: 0 };
+		}
+		if (args[0] === "ssh") {
+			return { stdout: "", stderr: "", code: 0 };
+		}
+		if (args[0] === "list") {
+			return {
+				stdout: JSON.stringify([{ id, source: { localFolder: cwd } }]),
+				stderr: "",
+				code: 0,
+			};
+		}
+		return { stdout: "ok", stderr: "", code: 0 };
+	});
 }
 
 describe("probeAnda", () => {
@@ -33,32 +55,60 @@ describe("probeAnda", () => {
 	});
 });
 
+describe("probeDtee", () => {
+	test("mock fetch 200 is active", async () => {
+		const probe = await probeDtee("http://127.0.0.1:8443", async () => ({ ok: true, status: 200 }));
+		expect(probe.active).toBe(true);
+		expect(probe.dteeUrl).toBe("http://127.0.0.1:8443");
+	});
+
+	test("thrown fetch is inactive", async () => {
+		const probe = await probeDtee("http://127.0.0.1:8443", async () => {
+			throw new Error("ECONNREFUSED");
+		});
+		expect(probe.active).toBe(false);
+		expect(probe.dteeUrl).toBe("http://127.0.0.1:8443");
+	});
+});
+
+describe("waitUntilReady", () => {
+	test("Busy then Running then ssh 0 is ready", async () => {
+		const run = readyRunner("omp-ws", "/tmp/ws", ["Busy", "Running"]);
+		const ready = await waitUntilReady({
+			run,
+			bin: "devpod",
+			id: "omp-ws",
+			timeoutMs: 50,
+			pollMs: 1,
+			sleep: async () => {},
+		});
+		expect(ready.ready).toBe(true);
+		expect(run.calls.map((c) => c.args[0])).toEqual(["status", "status", "ssh"]);
+	});
+});
+
 describe("bootPod", () => {
 	test("mkdir extra, calls up then list, connected when up exits 0", async () => {
 		const cwd = mkdtempSync(join(tmpdir(), "omp-pod-boot-"));
 		const id = workspaceIdFor(cwd);
-		const run = runner(async (_bin, args) => {
-			if (args[0] === "list") {
-				return {
-					stdout: JSON.stringify([{ id, source: { localFolder: cwd } }]),
-					stderr: "",
-					code: 0,
-				};
-			}
-			return { stdout: "ok", stderr: "", code: 0 };
-		});
+		const run = readyRunner(id, cwd);
 		try {
 			const session = await bootPod({
 				run,
 				cwd,
 				config: { enabled: true, extraDirs: ["scratch"] },
-				fetchFn: async () => ({ ok: true, status: 200 }),
+				fetchFn: async (url) => {
+					if (url.includes("8443")) throw new Error("ECONNREFUSED");
+					return { ok: true, status: 200 };
+				},
 				env: {},
 			});
 			expect(existsSync(resolve(cwd, "scratch"))).toBe(true);
-			expect(run.calls.map((c) => c.args[0])).toEqual(["up", "list"]);
+			expect(run.calls.map((c) => c.args[0])).toEqual(["up", "status", "ssh", "list"]);
 			expect(run.calls[0]?.args).toEqual(["up", cwd, "--id", id, "--open-ide=false"]);
-			expect(run.calls[1]?.args).toEqual(["list", "--output", "json"]);
+			expect(run.calls[1]?.args).toEqual(["status", id, "--output", "json"]);
+			expect(run.calls[2]?.args).toEqual(["ssh", id, "--command", "true"]);
+			expect(run.calls[3]?.args).toEqual(["list", "--output", "json"]);
 			expect(session.connected).toBe(true);
 			expect(session.enabled).toBe(true);
 			expect(session.dtee).toBe(false);
@@ -66,6 +116,86 @@ describe("bootPod", () => {
 			expect(session.localFolder).toBe(cwd);
 			expect(session.extraDirs).toEqual([resolve(cwd, "scratch")]);
 			expect(session.workspaceId).toBe(id);
+		} finally {
+			rmSync(cwd, { recursive: true, force: true });
+		}
+	});
+
+	test("Busy status then Running then ssh 0 is connected", async () => {
+		const cwd = mkdtempSync(join(tmpdir(), "omp-pod-busy-"));
+		const id = workspaceIdFor(cwd);
+		const run = readyRunner(id, cwd, ["Busy", "Running"]);
+		const progress: string[] = [];
+		try {
+			const session = await bootPod({
+				run,
+				cwd,
+				config: { enabled: true, pollMs: 1, readyTimeoutMs: 50 },
+				fetchFn: async (url) => {
+					if (url.includes("8443")) throw new Error("ECONNREFUSED");
+					return { ok: true, status: 200 };
+				},
+				env: {},
+				sleep: async () => {},
+				onProgress: (msg) => progress.push(msg),
+			});
+			expect(session.connected).toBe(true);
+			expect(run.calls.map((c) => c.args[0])).toEqual(["up", "status", "status", "ssh", "list"]);
+			expect(progress).toContain("waiting for codespace…");
+		} finally {
+			rmSync(cwd, { recursive: true, force: true });
+		}
+	});
+
+	test("status never Running within timeout is connected false", async () => {
+		const cwd = mkdtempSync(join(tmpdir(), "omp-pod-timeout-"));
+		const id = workspaceIdFor(cwd);
+		const run = readyRunner(id, cwd, ["Busy"]);
+		let t = 0;
+		try {
+			const session = await bootPod({
+				run,
+				cwd,
+				config: { enabled: true, pollMs: 1, readyTimeoutMs: 5 },
+				env: {},
+				sleep: async () => {},
+				now: () => t++,
+			});
+			expect(session.connected).toBe(false);
+			expect(session.reason).toContain("not ready");
+			expect(run.calls.some((c) => c.args[0] === "list")).toBe(false);
+		} finally {
+			rmSync(cwd, { recursive: true, force: true });
+		}
+	});
+
+	test("dtee fetch 200 is true and throw is false", async () => {
+		const cwd = mkdtempSync(join(tmpdir(), "omp-pod-dtee-"));
+		const id = workspaceIdFor(cwd);
+		try {
+			const ok = await bootPod({
+				run: readyRunner(id, cwd),
+				cwd,
+				config: { enabled: true },
+				fetchFn: async () => ({ ok: true, status: 200 }),
+				env: {},
+			});
+			expect(ok.connected).toBe(true);
+			expect(ok.dtee).toBe(true);
+			expect(ok.engineActive).toBe(true);
+
+			const miss = await bootPod({
+				run: readyRunner(id, cwd),
+				cwd,
+				config: { enabled: true },
+				fetchFn: async () => {
+					throw new Error("ECONNREFUSED");
+				},
+				env: {},
+			});
+			expect(miss.connected).toBe(true);
+			expect(miss.dtee).toBe(false);
+			expect(miss.engineActive).toBe(false);
 		} finally {
 			rmSync(cwd, { recursive: true, force: true });
 		}

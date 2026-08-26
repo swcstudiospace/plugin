@@ -37,7 +37,33 @@ export function parseLocalFolder(listJson: string, id: string): string | undefin
 
 export function wrapBashCommand(command: string, opts: WrapBashOpts): string {
 	if (command.trim().startsWith(opts.bin)) return command;
-	return `${opts.bin} ssh ${opts.id} --command ${command}`;
+	return `${opts.bin} ssh ${opts.id} --command ${JSON.stringify(command)}`;
+}
+
+export function parseStatusState(stdout: string, id?: string): string | undefined {
+	const read = (value: unknown): string | undefined => {
+		if (!value || typeof value !== "object") return undefined;
+		if (Array.isArray(value)) {
+			for (const row of value) {
+				if (!row || typeof row !== "object") continue;
+				const rec = row as Record<string, unknown>;
+				if (id !== undefined && rec.id !== id) continue;
+				const raw = rec.state ?? rec.Status ?? rec.State;
+				const state = typeof raw === "string" && raw ? raw : read(rec.result);
+				if (state) return state;
+				if (id !== undefined && rec.id === id) return undefined;
+			}
+			return undefined;
+		}
+		const rec = value as Record<string, unknown>;
+		const raw = rec.state ?? rec.Status ?? rec.State;
+		return typeof raw === "string" && raw ? raw : read(rec.result);
+	};
+	try {
+		return read(JSON.parse(stdout));
+	} catch {
+		return undefined;
+	}
 }
 
 export function isAllowedPath(absPath: string, roots: string[]): boolean {

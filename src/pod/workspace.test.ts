@@ -6,6 +6,7 @@ import {
 	ensureExtraDirs,
 	isAllowedPath,
 	parseLocalFolder,
+	parseStatusState,
 	upArgs,
 	workspaceIdFor,
 	wrapBashCommand,
@@ -71,12 +72,37 @@ describe("isAllowedPath", () => {
 describe("wrapBashCommand", () => {
 	test("wraps unless the command already starts with the bin", () => {
 		expect(wrapBashCommand("ls -la", { bin: "devpod", id: "omp-my-repo" })).toBe(
-			"devpod ssh omp-my-repo --command ls -la",
+			`devpod ssh omp-my-repo --command ${JSON.stringify("ls -la")}`,
 		);
 		expect(wrapBashCommand("devpod ssh omp-my-repo --command ls", { bin: "devpod", id: "omp-my-repo" })).toBe(
 			"devpod ssh omp-my-repo --command ls",
 		);
 		expect(wrapBashCommand("  devpod up .", { bin: "devpod", id: "omp-my-repo" })).toBe("  devpod up .");
+	});
+
+	test("quotes spaces", () => {
+		expect(wrapBashCommand("echo hello world", { bin: "devpod", id: "omp-my-repo" })).toBe(
+			`devpod ssh omp-my-repo --command ${JSON.stringify("echo hello world")}`,
+		);
+	});
+});
+
+describe("parseStatusState", () => {
+	test("reads state from object, result wrapper, or matching array id", () => {
+		expect(parseStatusState(JSON.stringify({ state: "Running" }))).toBe("Running");
+		expect(parseStatusState(JSON.stringify({ Status: "Busy" }))).toBe("Busy");
+		expect(parseStatusState(JSON.stringify({ result: { state: "Running" } }))).toBe("Running");
+		expect(
+			parseStatusState(
+				JSON.stringify([
+					{ id: "other", state: "Busy" },
+					{ id: "omp-my-repo", state: "Running" },
+				]),
+				"omp-my-repo",
+			),
+		).toBe("Running");
+		expect(parseStatusState("not-json")).toBeUndefined();
+		expect(parseStatusState(JSON.stringify([{ id: "other", state: "Busy" }]), "omp-my-repo")).toBeUndefined();
 	});
 });
 
