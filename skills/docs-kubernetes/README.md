@@ -1,0 +1,84 @@
+# docs-kubernetes
+
+Exported documentation references.
+
+- [Reviewing pull requests | Kubernetes](references/001-Reviewing-pull-requests-Kubernetes.md) — https://kubernetes.io/docs/contribute/review/reviewing-prs
+- [Roles and responsibilities | Kubernetes](references/002-Roles-and-responsibilities-Kubernetes.md) — https://kubernetes.io/docs/contribute/participate/roles-and-responsibilities
+- [Protocols for Services | Kubernetes](references/003-Protocols-for-Services-Kubernetes.md) — https://kubernetes.io/docs/reference/networking/service-protocols
+- [Reference Documentation Quickstart | Kubernetes](references/004-Reference-Documentation-Quickstart-Kubernetes.md) — https://kubernetes.io/docs/contribute/generate-ref-docs/quickstart
+- [PodGroup Scheduling Policies | Kubernetes](references/005-PodGroup-Scheduling-Policies-Kubernetes.md) — https://kubernetes.io/docs/concepts/workloads/workload-api/policies
+- [Pods | Kubernetes](references/006-Pods-Kubernetes.md) — https://kubernetes.io/docs/concepts/workloads/pods
+- [PodGroup | Kubernetes](references/007-PodGroup-Kubernetes.md) — https://kubernetes.io/docs/reference/kubernetes-api/scheduling/pod-group-v1alpha2
+- [PodGroup Lifecycle | Kubernetes](references/008-PodGroup-Lifecycle-Kubernetes.md) — https://kubernetes.io/docs/concepts/workloads/podgroup-api/lifecycle
+- [PodDisruptionBudget | Kubernetes](references/009-PodDisruptionBudget-Kubernetes.md) — https://kubernetes.io/docs/reference/kubernetes-api/policy/pod-disruption-budget-v1
+- [Pod Group Disruption and Priority | Kubernetes](references/010-Pod-Group-Disruption-and-Priority-Kubernetes.md) — https://kubernetes.io/docs/concepts/workloads/workload-api/disruption-and-priority
+- [Performing a Rolling Update | Kubernetes](references/011-Performing-a-Rolling-Update-Kubernetes.md) — https://kubernetes.io/docs/tutorials/kubernetes-basics/update/update-intro
+- [Perform a Rolling Update on a DaemonSet | Kubernetes](references/012-Perform-a-Rolling-Update-on-a-DaemonSet-Kubernetes.md) — https://kubernetes.io/docs/tasks/manage-daemon/update-daemon-set
+- [Opening a pull request | Kubernetes](references/013-Opening-a-pull-request-Kubernetes.md) — https://kubernetes.io/docs/contribute/new-content/open-a-pr
+- [Overprovision Node Capacity For A Cluster | Kubernetes](references/014-Overprovision-Node-Capacity-For-A-Cluster-Kubernetes.md) — https://kubernetes.io/docs/tasks/administer-cluster/node-overprovisioning
+- [Nodes | Kubernetes](references/015-Nodes-Kubernetes.md) — https://kubernetes.io/docs/concepts/architecture/nodes
+- [Node Shutdowns | Kubernetes](references/016-Node-Shutdowns-Kubernetes.md) — https://kubernetes.io/docs/concepts/cluster-administration/node-shutdown
+- [MutatingAdmissionPolicy | Kubernetes](references/017-MutatingAdmissionPolicy-Kubernetes.md) — https://kubernetes.io/docs/reference/kubernetes-api/admissionregistration/mutating-admission-policy-v1
+- [Network Plugins | Kubernetes](references/018-Network-Plugins-Kubernetes.md) — https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins
+- [Managing Secrets using kubectl | Kubernetes](references/019-Managing-Secrets-using-kubectl-Kubernetes.md) — https://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-kubectl
+- [Linux Kernel Version Requirements | Kubernetes](references/020-Linux-Kernel-Version-Requirements-Kubernetes.md) — https://kubernetes.io/docs/reference/node/kernel-version-requirements
+- [Lease | Kubernetes](references/021-Lease-Kubernetes.md) — https://kubernetes.io/docs/reference/kubernetes-api/coordination/lease-v1
+- [Limit Ranges | Kubernetes](references/022-Limit-Ranges-Kubernetes.md) — https://kubernetes.io/docs/concepts/policy/limit-range
+- [Kubernetes Scheduler | Kubernetes](references/023-Kubernetes-Scheduler-Kubernetes.md) — https://kubernetes.io/docs/concepts/scheduling-eviction/kube-scheduler
+- [Kubernetes Issue Tracker | Kubernetes](references/024-Kubernetes-Issue-Tracker-Kubernetes.md) — https://kubernetes.io/docs/reference/issues-security/issues
+- [Kubelet Checkpoint API | Kubernetes](references/025-Kubelet-Checkpoint-API-Kubernetes.md) — https://kubernetes.io/docs/reference/node/kubelet-checkpoint-api
+- [Kubernetes Components | Kubernetes](references/026-Kubernetes-Components-Kubernetes.md) — https://kubernetes.io/docs/concepts/overview/components
+- [kubectl reference | Kubernetes](references/027-kubectl-reference-Kubernetes.md) — https://kubernetes.io/docs/reference/kubectl/generated
+- [kubectl Quick Reference | Kubernetes](references/028-kubectl-Quick-Reference-Kubernetes.md) — https://kubernetes.io/docs/reference/kubectl/quick-reference
+- [Kubeadm Generated | Kubernetes](references/029-Kubeadm-Generated-Kubernetes.md) — https://kubernetes.io/docs/reference/setup-tools/kubeadm/generated
+- [Kubeadm | Kubernetes](references/030-Kubeadm-Kubernetes.md) — https://kubernetes.io/docs/reference/setup-tools/kubeadm
+- [IPAddress | Kubernetes](references/031-IPAddress-Kubernetes.md) — https://kubernetes.io/docs/reference/kubernetes-api/networking/ip-address-v1
+- [Installing kubeadm | Kubernetes](references/032-Installing-kubeadm-Kubernetes.md) — https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm
+- [Install and Set Up kubectl on Windows | Kubernetes](references/033-Install-and-Set-Up-kubectl-on-Windows-Kubernetes.md) — https://kubernetes.io/docs/tasks/tools/install-kubectl-windows
+- [Install Tools | Kubernetes](references/034-Install-Tools-Kubernetes.md) — https://kubernetes.io/docs/tasks/tools
+- [Install and Set Up kubectl on Linux | Kubernetes](references/035-Install-and-Set-Up-kubectl-on-Linux-Kubernetes.md) — https://kubernetes.io/docs/tasks/tools/install-kubectl-linux
+- [Install and Set Up kubectl on macOS | Kubernetes](references/036-Install-and-Set-Up-kubectl-on-macOS-Kubernetes.md) — https://kubernetes.io/docs/tasks/tools/install-kubectl-macos
+- [Images | Kubernetes](references/037-Images-Kubernetes.md) — https://kubernetes.io/docs/concepts/containers/images
+- [HorizontalPodAutoscaler | Kubernetes](references/038-HorizontalPodAutoscaler-Kubernetes.md) — https://kubernetes.io/docs/reference/kubernetes-api/autoscaling/horizontal-pod-autoscaler-v2
+- [Feature Gates | Kubernetes](references/039-Feature-Gates-Kubernetes.md) — https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates
+- [FlowSchema | Kubernetes](references/040-FlowSchema-Kubernetes.md) — https://kubernetes.io/docs/reference/kubernetes-api/flowcontrol/flow-schema-v1
+- [Event | Kubernetes](references/041-Event-Kubernetes.md) — https://kubernetes.io/docs/reference/kubernetes-api/events/event-v1
+- [Exposing an External IP Address to Access an Application in a Cluster | Kubernetes](references/042-Exposing-an-External-IP-Address-to-Access-an-Application-in.md) — https://kubernetes.io/docs/tutorials/stateless-application/expose-external-ip-address
+- [DeviceClass | Kubernetes](references/043-DeviceClass-Kubernetes.md) — https://kubernetes.io/docs/reference/kubernetes-api/resource/device-class-v1
+- [EndpointSlice | Kubernetes](references/044-EndpointSlice-Kubernetes.md) — https://kubernetes.io/docs/reference/kubernetes-api/discovery/endpoint-slice-v1
+- [Deployments | Kubernetes](references/045-Deployments-Kubernetes.md) — https://kubernetes.io/docs/concepts/workloads/controllers/deployment
+- [Deploy and Access the Kubernetes Dashboard | Kubernetes](references/046-Deploy-and-Access-the-Kubernetes-Dashboard-Kubernetes.md) — https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard
+- [Declarative Management of Kubernetes Objects Using Configuration Files | Kubernetes](references/047-Declarative-Management-of-Kubernetes-Objects-Using-Configura.md) — https://kubernetes.io/docs/tasks/manage-kubernetes-objects/declarative-config
+- [Define a Command and Arguments for a Container | Kubernetes](references/048-Define-a-Command-and-Arguments-for-a-Container-Kubernetes.md) — https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container
+- [CustomResourceDefinition | Kubernetes](references/049-CustomResourceDefinition-Kubernetes.md) — https://kubernetes.io/docs/reference/kubernetes-api/apiextensions/custom-resource-definition-v1
+- [Debug Pods | Kubernetes](references/050-Debug-Pods-Kubernetes.md) — https://kubernetes.io/docs/tasks/debug/debug-application/debug-pods
+- [CSIDriver | Kubernetes](references/051-CSIDriver-Kubernetes.md) — https://kubernetes.io/docs/reference/kubernetes-api/storage/csi-driver-v1
+- [Custom Resources | Kubernetes](references/052-Custom-Resources-Kubernetes.md) — https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources
+- [Create a Cluster | Kubernetes](references/053-Create-a-Cluster-Kubernetes.md) — https://kubernetes.io/docs/tutorials/kubernetes-basics/create-cluster
+- [CronJob | Kubernetes](references/054-CronJob-Kubernetes.md) — https://kubernetes.io/docs/reference/kubernetes-api/batch/cron-job-v1
+- [ControllerRevision | Kubernetes](references/055-ControllerRevision-Kubernetes.md) — https://kubernetes.io/docs/reference/kubernetes-api/apps/controller-revision-v1
+- [Documentation Content Guide | Kubernetes](references/056-Documentation-Content-Guide-Kubernetes.md) — https://kubernetes.io/docs/contribute/style/content-guide
+- [Configure the Aggregation Layer | Kubernetes](references/057-Configure-the-Aggregation-Layer-Kubernetes.md) — https://kubernetes.io/docs/tasks/extend-kubernetes/configure-aggregation-layer
+- [Considerations for large clusters | Kubernetes](references/058-Considerations-for-large-clusters-Kubernetes.md) — https://kubernetes.io/docs/setup/best-practices/cluster-large
+- [Configure Default Memory Requests and Limits for a Namespace | Kubernetes](references/059-Configure-Default-Memory-Requests-and-Limits-for-a-Namespace.md) — https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/memory-default-namespace
+- [ComponentStatus | Kubernetes](references/060-ComponentStatus-Kubernetes.md) — https://kubernetes.io/docs/reference/kubernetes-api/core/component-status-v1
+- [ClusterRole | Kubernetes](references/061-ClusterRole-Kubernetes.md) — https://kubernetes.io/docs/reference/kubernetes-api/rbac/cluster-role-v1
+- [Cloud Native Security and Kubernetes | Kubernetes](references/062-Cloud-Native-Security-and-Kubernetes-Kubernetes.md) — https://kubernetes.io/docs/concepts/security/cloud-native-security
+- [CertificateSigningRequest | Kubernetes](references/063-CertificateSigningRequest-Kubernetes.md) — https://kubernetes.io/docs/reference/kubernetes-api/certificates/certificate-signing-request-v1
+- [Changing the Container Runtime on a Node from Docker Engine to containerd | Kubernetes](references/064-Changing-the-Container-Runtime-on-a-Node-from-Docker-Engine.md) — https://kubernetes.io/docs/tasks/administer-cluster/migrating-from-dockershim/change-runtime-containerd
+- [Available Documentation Versions | Kubernetes](references/065-Available-Documentation-Versions-Kubernetes.md) — https://kubernetes.io/docs/home/supported-doc-versions
+- [Bootstrapping clusters with kubeadm | Kubernetes](references/066-Bootstrapping-clusters-with-kubeadm-Kubernetes.md) — https://kubernetes.io/docs/setup/production-environment/tools/kubeadm
+- [Audit Annotations | Kubernetes](references/067-Audit-Annotations-Kubernetes.md) — https://kubernetes.io/docs/reference/labels-annotations-taints/audit-annotations
+- [Authenticating | Kubernetes](references/068-Authenticating-Kubernetes.md) — https://kubernetes.io/docs/reference/access-authn-authz/authentication
+- [Assign Memory Resources to Containers and Pods | Kubernetes](references/069-Assign-Memory-Resources-to-Containers-and-Pods-Kubernetes.md) — https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource
+- [Apply Pod Security Standards at the Cluster Level | Kubernetes](references/070-Apply-Pod-Security-Standards-at-the-Cluster-Level-Kubernetes.md) — https://kubernetes.io/docs/tutorials/security/cluster-level-pss
+- [API Groups | Kubernetes](references/071-API-Groups-Kubernetes.md) — https://kubernetes.io/docs/reference/kubernetes-api/group-versions
+- [APIService | Kubernetes](references/072-APIService-Kubernetes.md) — https://kubernetes.io/docs/reference/kubernetes-api/apiregistration/api-service-v1
+- [Administration with kubeadm | Kubernetes](references/073-Administration-with-kubeadm-Kubernetes.md) — https://kubernetes.io/docs/tasks/administer-cluster/kubeadm
+- [Adding Linux worker nodes | Kubernetes](references/074-Adding-Linux-worker-nodes-Kubernetes.md) — https://kubernetes.io/docs/tasks/administer-cluster/kubeadm/adding-linux-nodes
+- [Hello Minikube | Kubernetes](references/075-Hello-Minikube-Kubernetes.md) — https://kubernetes.io/docs/tutorials/hello-minikube
+- [Contribute to Kubernetes Documentation | Kubernetes](references/076-Contribute-to-Kubernetes-Documentation-Kubernetes.md) — https://kubernetes.io/docs/contribute/docs
+- [Glossary | Kubernetes](references/077-Glossary-Kubernetes.md) — https://kubernetes.io/docs/reference/glossary
+- [Building a Basic DaemonSet | Kubernetes](references/078-Building-a-Basic-DaemonSet-Kubernetes.md) — https://kubernetes.io/docs/tasks/manage-daemon/create-daemon-set
+- [Introduction to kubectl | Kubernetes](references/079-Introduction-to-kubectl-Kubernetes.md) — https://kubernetes.io/docs/reference/kubectl/introduction
+- [Kubernetes Documentation | Kubernetes](references/080-Kubernetes-Documentation-Kubernetes.md) — https://kubernetes.io/docs/home

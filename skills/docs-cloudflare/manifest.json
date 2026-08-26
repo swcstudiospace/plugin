@@ -1,0 +1,651 @@
+{
+  "name": "docs-cloudflare",
+  "generated_at": "2026-07-29T03:57:27Z",
+  "query": null,
+  "source_id": null,
+  "ranking": "all pages (recency)",
+  "page_count": 80,
+  "embedding_model": null,
+  "pages": [
+    {
+      "title": "Privacy Pass",
+      "url": "https://developers.cloudflare.com/privacy-pass/llms.txt",
+      "content_hash": "sha256:8ce46bb346c5e0963dfc8f32d316462af05c16a24f7a9bb8ac10779b95685e46",
+      "file": "references/001-Privacy-Pass.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Privacy Gateway",
+      "url": "https://developers.cloudflare.com/privacy-gateway/llms.txt",
+      "content_hash": "sha256:d1407cfc02d7d671c7dff5446f0c5a3e18d563642e0e4975af83b92901f11455",
+      "file": "references/002-Privacy-Gateway.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "MoQ",
+      "url": "https://developers.cloudflare.com/moq/llms.txt",
+      "content_hash": "sha256:55c947221823c434ad3930ff3eb12cdd15c16cb03f996c063f732664f85ddcff",
+      "file": "references/003-MoQ.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "KV",
+      "url": "https://developers.cloudflare.com/kv/llms.txt",
+      "content_hash": "sha256:3d14397e4aa62b45567349d12968d8c8d2324070d81c523696a69aea3a9a6008",
+      "file": "references/004-KV.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Pages",
+      "url": "https://developers.cloudflare.com/pages/llms.txt",
+      "content_hash": "sha256:212bcf8dd1432e9d54c297115940cad77244e998e0b6655c1e884162555e6e4e",
+      "file": "references/005-Pages.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Pipelines",
+      "url": "https://developers.cloudflare.com/pipelines/llms.txt",
+      "content_hash": "sha256:c4dd6942afca9ccba1a2bc38eaa68ee5e455895637be41e57ba2398128e204e1",
+      "file": "references/006-Pipelines.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Email Service",
+      "url": "https://developers.cloudflare.com/email-service/llms.txt",
+      "content_hash": "sha256:10dcefdb26894e315c67b97ea8fc94544a199f048121708c4f2d2e978cc079e8",
+      "file": "references/007-Email-Service.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Cloudflare Images",
+      "url": "https://developers.cloudflare.com/images/llms.txt",
+      "content_hash": "sha256:66b158b18789a6f622c94225b92c62bd31e76f774cd9732f4c68b1ab7a8d5593",
+      "file": "references/008-Cloudflare-Images.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Hyperdrive",
+      "url": "https://developers.cloudflare.com/hyperdrive/llms.txt",
+      "content_hash": "sha256:0ca1ece88ee5744dc0606d5692266a1f9315625ebece82ad380a92540c66b91d",
+      "file": "references/009-Hyperdrive.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Containers",
+      "url": "https://developers.cloudflare.com/containers/llms.txt",
+      "content_hash": "sha256:0dc15c95813396b3aab5445840d3e2b2d015428accf9b2275a101fb97eaa3a34",
+      "file": "references/010-Containers.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "D1",
+      "url": "https://developers.cloudflare.com/d1/llms.txt",
+      "content_hash": "sha256:395482e769084cdfb43237515f6c5ddd5f702620f8260274eb7c0321b2fd72ec",
+      "file": "references/011-D1.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Durable Objects",
+      "url": "https://developers.cloudflare.com/durable-objects/llms.txt",
+      "content_hash": "sha256:9730565f71760bb1290bbcbe7c2d8418b3bf8065c15a11c62851ddca8fa417f2",
+      "file": "references/012-Durable-Objects.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Dynamic Workers",
+      "url": "https://developers.cloudflare.com/dynamic-workers/llms.txt",
+      "content_hash": "sha256:4835e77633b182ba5a0fc5a83ce107d9a0e4df65d38f202264ec83fb9e0c07c2",
+      "file": "references/013-Dynamic-Workers.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Flagship",
+      "url": "https://developers.cloudflare.com/flagship/llms.txt",
+      "content_hash": "sha256:00fb67ad61f41d3dbd84e06894cc1268bbcd9218c4a22725a87c762002e979f3",
+      "file": "references/014-Flagship.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "AI Search",
+      "url": "https://developers.cloudflare.com/ai-search/llms.txt",
+      "content_hash": "sha256:75688d3f84e1f2c1207a01717e9aef30545155f7726178ed999e9281c7c3fb6e",
+      "file": "references/015-AI-Search.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Cloudflare for Platforms",
+      "url": "https://developers.cloudflare.com/cloudflare-for-platforms/llms.txt",
+      "content_hash": "sha256:c60b429b554c96a00750a580765955a3d51c7c8417bb704ea4ccaf0064f8f831",
+      "file": "references/016-Cloudflare-for-Platforms.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Browser Run",
+      "url": "https://developers.cloudflare.com/browser-run/llms.txt",
+      "content_hash": "sha256:c17ed46a7a7cb24e7adaed634df37b8da565fcc1cfa9c49ccffa97431ea3ae30",
+      "file": "references/017-Browser-Run.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "AI",
+      "url": "https://developers.cloudflare.com/ai/llms.txt",
+      "content_hash": "sha256:a0e0f996b86a79f55dc029c6c305f041cb2431f576b86fa2af857c483bbd8db7",
+      "file": "references/018-AI.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "AI Gateway",
+      "url": "https://developers.cloudflare.com/ai-gateway/llms.txt",
+      "content_hash": "sha256:f48edde7de7e318d31081e4fba80d0583b9adc1fd4c639038ac06994e0b5c592",
+      "file": "references/019-AI-Gateway.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Artifacts",
+      "url": "https://developers.cloudflare.com/artifacts/llms.txt",
+      "content_hash": "sha256:780209f47f2eb46642b4e7e77e4390c57d611cfe34e0c3148a5d68610302d0f8",
+      "file": "references/020-Artifacts.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Agent Lee",
+      "url": "https://developers.cloudflare.com/agent-lee/llms.txt",
+      "content_hash": "sha256:294af07f0b32d3b2f417c79ab70eda8e18bb7338f5325ef9f8b669f5f90f30ef",
+      "file": "references/021-Agent-Lee.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Version Management",
+      "url": "https://developers.cloudflare.com/version-management/llms.txt",
+      "content_hash": "sha256:01fa207c56379d24e4fb38d192acd5feb0942e82ace19596ba7b30c37edd898b",
+      "file": "references/022-Version-Management.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Agent Memory",
+      "url": "https://developers.cloudflare.com/agent-memory/llms.txt",
+      "content_hash": "sha256:c9745a3ecbb0d60047c3bf804b66f7947e377f63792adf6f7d62453df28dd23a",
+      "file": "references/023-Agent-Memory.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Agents",
+      "url": "https://developers.cloudflare.com/agents/llms.txt",
+      "content_hash": "sha256:33aa66fdc043058aeec9ca1afc7bff91d6dee9f57a19c6c4ee320572963090cd",
+      "file": "references/024-Agents.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Terraform",
+      "url": "https://developers.cloudflare.com/terraform/llms.txt",
+      "content_hash": "sha256:3a2298d949ab09112dd04f32ea4e5316cab781fb8c333f1293edcdf16a463488",
+      "file": "references/025-Terraform.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Tenant",
+      "url": "https://developers.cloudflare.com/tenant/llms.txt",
+      "content_hash": "sha256:bd21b62ef3ba683792ab139fa36f2f54a2a33d0b1619f021967be369c2dc4134",
+      "file": "references/026-Tenant.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Cloudflare Tunnel",
+      "url": "https://developers.cloudflare.com/tunnel/llms.txt",
+      "content_hash": "sha256:4347adf1c71ecd73c3a31a8be5f99d15d73efe77f96edcf2980e64d7b637ccba",
+      "file": "references/027-Cloudflare-Tunnel.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Time Services",
+      "url": "https://developers.cloudflare.com/time-services/llms.txt",
+      "content_hash": "sha256:ed84890451c92c85ac2420ce1614068093aabe744d9bc6f2617f11915476c258",
+      "file": "references/028-Time-Services.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "` to the new format `/posts/<YYYY>/<MM>/<DD>/<TITLE>`.\n- [Rewrite path of moved section of a website](https://developers.cloudflare.com/rules/transform/examples/rewrite-moved-section/index.md): Create a URL rewrite rule (part of Transform Rules) to rewrite everything under `/blog/<PATH>` to `/marketing/<PATH>`.\n- [Rewrite path of archived blog posts](https://developers.cloudflare.com/rules/transform/examples/rewrite-path-archived-posts/index.md): Create a URL rewrite rule (part of Transform Rules) to rewrite any requests for `/news/2012/...` URI paths to `/archive/news/2012/...`.\n- [Rewrite path for object storage bucket](https://developers.cloudflare.com/rules/transform/examples/rewrite-path-object-storage/index.md): Create a URL rewrite rule (part of Transform Rules) to rewrite any requests for `/files/...` URI paths to `/...`.\n- [Rewrite image paths with several URL segments](https://developers.cloudflare.com/rules/transform/examples/rewrite-several-url-different-url/index.md): Create a URL rewrite rule (part of Transform Rules) to rewrite any requests for `/images/<FOLDER1>/<FOLDER2>/<FILENAME>` to `/img/<FILENAME>`.\n- [Rewrite URL query string](https://developers.cloudflare.com/rules/transform/examples/rewrite-url-string-visitors/index.md): Create a transform rule to rewrite the request path from `/blog` to `/blog?sort-by=date`.\n- [Rewrite page path for visitors in specific countries](https://developers.cloudflare.com/rules/transform/examples/rewrite-welcome-for-countries/index.md): Create two URL rewrite rules (part of Transform Rules) to rewrite the path of the welcome page for visitors in specific countries.\n- [Set a response header with the current bot score](https://developers.cloudflare.com/rules/transform/examples/set-response-header-bot-score/index.md): Create a response header transform rule (part of Transform Rules) to set an `X-Bot-Score` HTTP header in the response with the current bot score.\n- [Set response header with a static value](https://developers.cloudflare.com/rules/transform/examples/set-response-header-static-value/index.md): Create a response header transform rule (part of Transform Rules) to set an `X-Bot-Score` HTTP header in the response to a static value (`Cloudflare`).\n- [Managed Transforms](https://developers.cloudflare.com/rules/transform/managed-transforms/index.md): Pre-built Transform Rules managed by Cloudflare for common use cases.\n- [Configure Managed Transforms](https://developers.cloudflare.com/rules/transform/managed-transforms/configure/index.md): Learn how to configure Managed Transforms.\n- [Available Managed Transforms](https://developers.cloudflare.com/rules/transform/managed-transforms/reference/index.md): Learn about Cloudflare's Managed Transforms for modifying HTTP headers, including bot protection, TLS client auth, and leaked credentials checks.\n- [Request Header Transform Rules](https://developers.cloudflare.com/rules/transform/request-header-modification/index.md): Learn how to modify HTTP request headers with Cloudflare's rules.\n- [Create a request header transform rule via API](https://developers.cloudflare.com/rules/transform/request-header-modification/create-api/index.md): Create request header modification rules using the API.\n- [Create a request header transform rule in the dashboard](https://developers.cloudflare.com/rules/transform/request-header-modification/create-dashboard/index.md): Create request header modification rules in the dashboard.\n- [Create a rule using Terraform](https://developers.cloudflare.com/terraform/additional-configurations/transform-rules/#create-a-request-header-transform-ruleindex.md): Create request header modification rules using Terraform.\n- [Available fields and functions](https://developers.cloudflare.com/rules/transform/request-header-modification/reference/fields-functions/index.md): Available fields and functions for request header modification rules.\n- [Format of HTTP request header names and values](https://developers.cloudflare.com/rules/transform/request-header-modification/reference/header-format/index.md): Supported header name and value formats for request header modifications.\n- [API parameter reference](https://developers.cloudflare.com/rules/transform/request-header-modification/reference/parameters/index.md): Configurable parameters for request header modification rules.\n- [Response Header Transform Rules](https://developers.cloudflare.com/rules/transform/response-header-modification/index.md): Add, set, or remove HTTP response headers with Transform Rules.\n- [Create a response header transform rule via API](https://developers.cloudflare.com/rules/transform/response-header-modification/create-api/index.md): Create response header modification rules using the API.\n- [Create a response header transform rule in the dashboard](https://developers.cloudflare.com/rules/transform/response-header-modification/create-dashboard/index.md): Create response header modification rules in the dashboard.\n- [Create a rule using Terraform](https://developers.cloudflare.com/terraform/additional-configurations/transform-rules/#create-a-response-header-transform-ruleindex.md): Create response header modification rules using Terraform.\n- [Available fields and functions](https://developers.cloudflare.com/rules/transform/response-header-modification/reference/fields-functions/index.md): Available fields and functions for response header modification rules.\n- [Format of HTTP response header names and values](https://developers.cloudflare.com/rules/transform/response-header-modification/reference/header-format/index.md): Supported header name and value formats for response header modifications.\n- [API parameter reference](https://developers.cloudflare.com/rules/transform/response-header-modification/reference/parameters/index.md): Configurable parameters for response header modification rules.\n- [Troubleshoot Transform Rules](https://developers.cloudflare.com/rules/transform/troubleshooting/index.md): Resolve common issues with Transform Rules.\n- [URL Rewrite Rules](https://developers.cloudflare.com/rules/transform/url-rewrite/index.md): Rewrite request URL paths and query strings with Transform Rules.\n- [Create a URL rewrite rule via API](https://developers.cloudflare.com/rules/transform/url-rewrite/create-api/index.md): Create URL rewrite rules using the Rulesets API.\n- [Create a URL rewrite rule in the dashboard](https://developers.cloudflare.com/rules/transform/url-rewrite/create-dashboard/index.md): Create URL rewrite rules in the Cloudflare dashboard.\n- [Create a rule using Terraform](https://developers.cloudflare.com/terraform/additional-configurations/transform-rules/#create-a-url-rewrite-ruleindex.md): Create URL rewrite rules using the Terraform Cloudflare provider.\n- [Available fields and functions](https://developers.cloudflare.com/rules/transform/url-rewrite/reference/fields-functions/index.md): Available fields and functions for URL rewrite rules.\n- [URL rewrite parameters](https://developers.cloudflare.com/rules/transform/url-rewrite/reference/parameters/index.md): Configurable parameters for URL rewrite rules.\n\n## Redirects\n\n- [Redirects](https://developers.cloudflare.com/rules/url-forwarding/index.md): Redirect visitors to different URLs with Single Redirects and Bulk Redirects.\n- [Bulk Redirects](https://developers.cloudflare.com/rules/url-forwarding/bulk-redirects/index.md): Redirect large numbers of URLs with Bulk Redirects at the account level.\n- [Bulk Redirects concepts](https://developers.cloudflare.com/rules/url-forwarding/bulk-redirects/concepts/index.md): Bulk Redirects work through a combination of URL redirects, a Bulk Redirect list, and a Bulk Redirect rule.\n- [Create Bulk Redirects via API](https://developers.cloudflare.com/rules/url-forwarding/bulk-redirects/create-api/index.md): Learn how to create Bulk Redirects using the Cloudflare API.\n- [Create Bulk Redirects in the dashboard](https://developers.cloudflare.com/rules/url-forwarding/bulk-redirects/create-dashboard/index.md): Create Bulk Redirects in the Cloudflare dashboard.\n- [Bulk Redirects FAQ](https://developers.cloudflare.com/rules/url-forwarding/bulk-redirects/faq/index.md): Answers to common questions about Bulk Redirects.\n- [How Bulk Redirects work](https://developers.cloudflare.com/rules/url-forwarding/bulk-redirects/how-it-works/index.md): How Bulk Redirects evaluate and match incoming requests.\n- [CSV file format for Bulk Redirects](https://developers.cloudflare.com/rules/url-forwarding/bulk-redirects/reference/csv-file-format/index.md): CSV file format for importing Bulk Redirect lists.\n- [Available fields and functions](https://developers.cloudflare.com/rules/url-forwarding/bulk-redirects/reference/fields-functions/index.md): Available fields and functions for Bulk Redirect rules.\n- [Bulk Redirects API JSON objects](https://developers.cloudflare.com/rules/url-forwarding/bulk-redirects/reference/json-objects/index.md): JSON object structure for Bulk Redirect API requests.\n- [URL redirect parameters](https://developers.cloudflare.com/rules/url-forwarding/bulk-redirects/reference/parameters/index.md): Configurable parameters for Bulk Redirect rules.\n- [Supported URL components in Bulk Redirects](https://developers.cloudflare.com/rules/url-forwarding/bulk-redirects/reference/url-components/index.md): URL components used in Bulk Redirect source and target URLs.\n- [Configure Bulk Redirects using Terraform](https://developers.cloudflare.com/rules/url-forwarding/bulk-redirects/terraform-example/index.md): Create Bulk Redirects using the Terraform Cloudflare provider.\n- [Redirect examples](https://developers.cloudflare.com/rules/url-forwarding/examples/index.md): Example URL forwarding rules for common redirect scenarios.\n- [Perform mobile redirects](https://developers.cloudflare.com/rules/url-forwarding/examples/perform-mobile-redirects/index.md): Create a redirect rule to redirect visitors using mobile devices to a different hostname.\n- [Redirect admin area requests to HTTPS](https://developers.cloudflare.com/rules/url-forwarding/examples/redirect-admin-https/index.md): Create a redirect rule to redirect requests for the administration area of `store.example.com` to HTTPS, keeping the original path and query string.\n- [Redirect requests from one domain to another](https://developers.cloudflare.com/rules/url-forwarding/examples/redirect-all-another-domain/index.md): Create a redirect rule to redirect all requests to a different domain, maintaining all functionality, except for the discontinued HTTP service (port 80).\n- [Redirect requests from one country to a domain](https://developers.cloudflare.com/rules/url-forwarding/examples/redirect-all-country/index.md): Create a redirect rule to redirect all website visitors from the United Kingdom to a different domain, maintaining the current functionality in the same paths.\n- [Redirect requests for a domain to a new domain](https://developers.cloudflare.com/rules/url-forwarding/examples/redirect-all-different-domain-root/index.md): Create a redirect rule to redirect all URLs for a domain to point to the root of a new domain, including any subdomains of the old domain.\n- [Redirect requests to a different hostname](https://developers.cloudflare.com/rules/url-forwarding/examples/redirect-all-different-hostname/index.md): Create a redirect rule to redirect all requests for `smallshop.example.com` to a different hostname using HTTPS, keeping the original path and query string.\n- [Redirect local visitors to specific subdomains](https://developers.cloudflare.com/rules/url-forwarding/examples/redirect-country-subdomains/index.md): Create a redirect rule to redirect United Kingdom and France visitors from the `example.com` website's  root path (`/`) to their localized subdomains `https://gb.example.com` and `https://fr.example.com`, respectively.\n- [Redirect visitors to a new page URL](https://developers.cloudflare.com/rules/url-forwarding/examples/redirect-new-url/index.md): Create a redirect rule to redirect visitors from `/contact-us/` to the page's new path `/contacts/`.\n- [Redirect from root to WWW](https://developers.cloudflare.com/rules/url-forwarding/examples/redirect-root-to-www/index.md): Create a redirect rule to forward HTTPS requests from the root (also known as the \u201capex\u201d or \u201cnaked\u201d domain) to the WWW subdomain.\n- [Redirect from WWW to root](https://developers.cloudflare.com/rules/url-forwarding/examples/redirect-www-to-root/index.md): Create a redirect rule to forward HTTPS requests from the WWW subdomain to the root (also known as the \u201capex\u201d or \u201cnaked\u201d domain).\n- [Remove locale from URL path](https://developers.cloudflare.com/rules/url-forwarding/examples/remove-locale-url/index.md): Create a redirect rule to redirect visitors from an old URL format with locale information to a new URL format.\n- [Single Redirects](https://developers.cloudflare.com/rules/url-forwarding/single-redirects/index.md): Create URL redirects with expression-based Single Redirect rules.\n- [Create a redirect rule via API](https://developers.cloudflare.com/rules/url-forwarding/single-redirects/create-api/index.md): Create Single Redirect rules using the Rulesets API.\n- [Create a redirect rule in the dashboard](https://developers.cloudflare.com/rules/url-forwarding/single-redirects/create-dashboard/index.md): Create Single Redirect rules in the Cloudflare dashboard.\n- [Single Redirects settings](https://developers.cloudflare.com/rules/url-forwarding/single-redirects/settings/index.md): Available settings for Single Redirect rules.\n- [Create a redirect rule using Terraform](https://developers.cloudflare.com/rules/url-forwarding/single-redirects/terraform-example/index.md): Create Single Redirect rules using the Terraform Cloudflare provider.\n\n## Origin Rules\n\n- [Origin Rules](https://developers.cloudflare.com/rules/origin-rules/index.md): Override the origin server, host header, SNI, and DNS resolution for matching requests.\n- [Create an origin rule via API](https://developers.cloudflare.com/rules/origin-rules/create-api/index.md): Create origin rules using the Rulesets API.\n- [Create an origin rule in the dashboard](https://developers.cloudflare.com/rules/origin-rules/create-dashboard/index.md): Create origin rules in the Cloudflare dashboard.\n- [Origin Rules examples](https://developers.cloudflare.com/rules/origin-rules/examples/index.md): Example origin rules for routing and header modifications.\n- [Change the HTTP Host header and DNS record](https://developers.cloudflare.com/rules/origin-rules/examples/change-http-host-header/index.md): Create an origin rule to change the HTTP `Host` header and the resolved DNS record.\n- [Change the destination port](https://developers.cloudflare.com/rules/origin-rules/examples/change-port/index.md): Create an origin rule to change the destination port.\n- [Define a single origin rule using Terraform](https://developers.cloudflare.com/rules/origin-rules/examples/define-single-origin-terraform/index.md): Create an origin rule using Terraform to override the `Host` header, the resolved hostname, and the destination port of API requests.\n- [Origin Rules FAQ](https://developers.cloudflare.com/rules/origin-rules/faq/index.md): Answers to common questions about origin rules.\n- [Origin Rules settings](https://developers.cloudflare.com/rules/origin-rules/features/index.md): Supported origin rule features and their availability by plan.\n- [Origin Rules API parameter reference](https://developers.cloudflare.com/rules/origin-rules/parameters/index.md): Configurable parameters for origin rules.\n- [Origin Rules tutorials](https://developers.cloudflare.com/rules/origin-rules/tutorials/index.md): Step-by-step tutorials for common origin rule configurations.\n- [Change URI path and Host header](https://developers.cloudflare.com/rules/origin-rules/tutorials/change-uri-path-and-host-header/index.md): This tutorial shows you how to modify both the URI path and the Host header of incoming requests using Transform Rules and Origin Rules.\n- [Point to Pages with a custom domain](https://developers.cloudflare.com/rules/origin-rules/tutorials/point-to-pages-with-custom-domain/index.md): This tutorial will instruct you how to configure an origin rule and a DNS record to point to a Pages deployment with a custom domain.\n- [Point to R2 bucket with a custom domain](https://developers.cloudflare.com/rules/origin-rules/tutorials/point-to-r2-bucket-with-custom-domain/index.md): This tutorial will instruct you how to configure an origin rule and a DNS record to point to an R2 bucket configured with a custom domain.\n\n## Cache Rules\n\n- [Cache Rules](https://developers.cloudflare.com/cache/how-to/cache-rules/index.md): Configure caching behavior for matching requests using Cache Rules.\n\n## Cloud Connector\n\n- [Cloud Connector](https://developers.cloudflare.com/rules/cloud-connector/index.md): Route matching requests to cloud provider storage buckets and services.\n- [Configure a Cloud Connector rule via API](https://developers.cloudflare.com/rules/cloud-connector/create-api/index.md): Create Cloud Connector rules using the Cloudflare API.\n- [Configure a Cloud Connector rule in the dashboard](https://developers.cloudflare.com/rules/cloud-connector/create-dashboard/index.md): Create Cloud Connector rules in the Cloudflare dashboard.\n- [Configure Cloud Connector rules using Terraform](https://developers.cloudflare.com/rules/cloud-connector/create-terraform/index.md): Create Cloud Connector rules using the Terraform Cloudflare provider.\n- [Cloud Connector examples](https://developers.cloudflare.com/rules/cloud-connector/examples/index.md): Example Cloud Connector rules for routing traffic to cloud storage providers.\n- [Route /images to an S3 Bucket using Terraform](https://developers.cloudflare.com/rules/cloud-connector/examples/route-images-to-aws-s3-using-terraform/index.md): Route requests with a URI path starting with `/images` to a specific AWS S3 bucket with Cloud Connector using Terraform.\n- [Route /images to an S3 Bucket](https://developers.cloudflare.com/rules/cloud-connector/examples/route-images-to-s3/index.md): Route requests with a URI path starting with `/images` to a specific AWS S3 bucket using Cloud Connector.\n- [Send EU visitors to a Google Cloud Storage bucket](https://developers.cloudflare.com/rules/cloud-connector/examples/send-eu-visitors-to-gcs/index.md): Route all traffic from EU visitors to a Google Cloud Storage bucket using Cloud Connector.\n- [Serve /static-assets from Azure Blob Storage](https://developers.cloudflare.com/rules/cloud-connector/examples/serve-static-assets-from-azure/index.md): Route requests with a URI path starting with `/static-assets` to an Azure Blob Storage container using Cloud Connector.\n- [Supported cloud providers in Cloud Connector](https://developers.cloudflare.com/rules/cloud-connector/providers/index.md): Cloud providers and storage services supported by Cloud Connector.\n\n## Custom Errors\n\n- [Custom Errors](https://developers.cloudflare.com/rules/custom-errors/index.md): Serve custom error pages for Cloudflare or origin server errors.\n- [Common API calls for Custom Errors](https://developers.cloudflare.com/rules/custom-errors/api-calls/index.md): Manage custom error rules and error pages using the Cloudflare API.\n- [Create custom error rules](https://developers.cloudflare.com/rules/custom-errors/create-rules/index.md): Create custom error rules in the dashboard or via the API.\n- [Edit Error Pages](https://developers.cloudflare.com/rules/custom-errors/edit-error-pages/index.md): Edit and customize the HTML content of error pages.\n- [Example custom error rules](https://developers.cloudflare.com/rules/custom-errors/example-rules/index.md): Example custom error rules for common error handling scenarios.\n- [Error page types](https://developers.cloudflare.com/rules/custom-errors/reference/error-page-types/index.md): Types of error pages you can customize with custom error rules.\n- [Error tokens](https://developers.cloudflare.com/rules/custom-errors/reference/error-tokens/index.md): Dynamic tokens available for use in custom error page HTML.\n- [Custom Errors parameters](https://developers.cloudflare.com/rules/custom-errors/reference/parameters/index.md): Configurable parameters for custom error rules.\n- [Troubleshoot Error Pages issues](https://developers.cloudflare.com/rules/custom-errors/troubleshooting/index.md): Resolve common issues with custom error rules and error pages.\n\n## Compression Rules\n\n- [Compression Rules](https://developers.cloudflare.com/rules/compression-rules/index.md): Customize response compression algorithms for specific content types and file extensions.\n- [Create a compression rule via API](https://developers.cloudflare.com/rules/compression-rules/create-api/index.md): Create compression rules using the Rulesets API.\n- [Create a compression rule in the dashboard](https://developers.cloudflare.com/rules/compression-rules/create-dashboard/index.md): Create compression rules in the Cloudflare dashboard.\n- [Compression Rules examples](https://developers.cloudflare.com/rules/compression-rules/examples/index.md): Example Compression Rules for Brotli, Gzip, and Zstandard configurations.\n- [Disable Brotli compression](https://developers.cloudflare.com/rules/compression-rules/examples/disable-all-brotli/index.md): Create a compression rule to turn off Brotli compression for all incoming requests of a given zone.\n- [Disable compression for AVIF images](https://developers.cloudflare.com/rules/compression-rules/examples/disable-compression-avif/index.md): Create a compression rule to turn off compression for AVIF images, based on either the content type or the file extension specified in the request.\n- [Enable Zstandard compression for default content types](https://developers.cloudflare.com/rules/compression-rules/examples/enable-zstandard/index.md): Create a compression rule to turn on Zstandard compression for response content types where Cloudflare applies compression by default.\n- [Use Gzip compression for CSV files](https://developers.cloudflare.com/rules/compression-rules/examples/gzip-for-csv/index.md): Create a compression rule to set Gzip compression as the preferred compression method for CSV files.\n- [Use only Brotli compression for a specific path](https://developers.cloudflare.com/rules/compression-rules/examples/only-brotli-url-path/index.md): Create a compression rule to set Brotli as the only supported compression algorithm for a specific URI path.\n- [Compression Rules settings](https://developers.cloudflare.com/rules/compression-rules/settings/index.md): Available compression algorithms and content type settings for Compression Rules.\n\n## Page Rules\n\n- [Page Rules](https://developers.cloudflare.com/rules/page-rules/index.md): Trigger actions based on URL patterns with Page Rules (deprecated).\n- [URL forwarding with Page Rules](https://developers.cloudflare.com/rules/page-rules/how-to/url-forwarding/index.md): Create URL forwarding rules with Page Rules.\n- [Manage Page Rules](https://developers.cloudflare.com/rules/page-rules/manage/index.md): Create, edit, and manage Page Rules in the dashboard.\n- [Additional reference for Page Rules](https://developers.cloudflare.com/rules/page-rules/reference/additional-reference/index.md): Additional reference information for Page Rules settings.\n- [Recommended page rules](https://developers.cloudflare.com/rules/page-rules/reference/recommended-rules/index.md): Recommended Page Rules configurations for common use cases.\n- [Page Rules settings](https://developers.cloudflare.com/rules/page-rules/reference/settings/index.md): Available Page Rules settings and their descriptions.\n- [Wildcard matching in Page Rules](https://developers.cloudflare.com/rules/page-rules/reference/wildcard-matching/index.md): How wildcard and pattern matching works in Page Rules URLs.\n- [Troubleshoot Page Rules - Billing and subscription](https://developers.cloudflare.com/rules/page-rules/troubleshooting/billing-and-subscription/index.md): Resolve billing and subscription issues with Page Rules.\n- [Troubleshoot Page Rules - General](https://developers.cloudflare.com/rules/page-rules/troubleshooting/general/index.md): Resolve common issues with Page Rules configuration.\n\n## URL normalization\n\n- [URL normalization](https://developers.cloudflare.com/rules/normalization/index.md): Normalize incoming request URLs before they reach other Cloudflare Rules.\n- [URL normalization examples](https://developers.cloudflare.com/rules/normalization/examples/index.md): Examples of the impact of different URL normalization settings in the URLs of incoming requests.\n- [How URL normalization works](https://developers.cloudflare.com/rules/normalization/how-it-works/index.md): How URL normalization modifies incoming request URIs before rule evaluation.\n- [Configure URL normalization in the dashboard](https://developers.cloudflare.com/rules/normalization/manage/index.md): How to configure URL normalization in the Cloudflare dashboard.\n- [URL normalization settings](https://developers.cloudflare.com/rules/normalization/settings/index.md): Available URL normalization types and configuration settings.\n\n## Trace a request\n\n- [Trace a request](https://developers.cloudflare.com/rules/trace-request/index.md): Trace a request through Cloudflare to see which rules match and apply.\n- [Cloudflare Trace changelog](https://developers.cloudflare.com/rules/trace-request/changelog/index.md): Track the latest updates and changes to Trace requests.\n- [Use Cloudflare Trace](https://developers.cloudflare.com/rules/trace-request/how-to/index.md): Learn how to use Cloudflare Trace in the dashboard and with the API.\n- [Cloudflare Trace limitations](https://developers.cloudflare.com/rules/trace-request/limitations/index.md): Known limitations when using the Trace feature.\n\n## Rules changelog\n\n- [Rules changelog](https://developers.cloudflare.com/rules/changelog/index.md): Track the latest updates and changes to Cloudflare Rules features.\n\n## reference\n\n- [Rules language](https://developers.cloudflare.com/ruleset-engine/rules-language/index.md): Cloudflare Rules language reference for expressions and fields.\n- [Page Rules migration guide](https://developers.cloudflare.com/rules/reference/page-rules-migration/index.md): Migrate from Page Rules to modern Cloudflare Rules alternatives.\n- [Troubleshoot Rules](https://developers.cloudflare.com/rules/reference/troubleshooting/index.md): Review common troubleshooting scenarios for Rules features.",
+      "url": "https://developers.cloudflare.com/rules/llms.txt",
+      "content_hash": "sha256:9b94f5853d650f9e7f40277ec4bb89dd570714bfe441a019a02e757589618b4b",
+      "file": "references/029-to-the-new-format-posts-YYYY-MM-DD-TITLE-Rewrite-path-of-mov.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Resource Tagging",
+      "url": "https://developers.cloudflare.com/resource-tagging/llms.txt",
+      "content_hash": "sha256:749ac8a11e20e16086f252892f63c104cd97ab715290ada8c2345864482dbc01",
+      "file": "references/030-Resource-Tagging.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Ruleset Engine",
+      "url": "https://developers.cloudflare.com/ruleset-engine/llms.txt",
+      "content_hash": "sha256:c7bb4270e763305c1cb7b191d51e3395a98a59b3be79a2a346f3f204a18fc92e",
+      "file": "references/031-Ruleset-Engine.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Support",
+      "url": "https://developers.cloudflare.com/support/llms.txt",
+      "content_hash": "sha256:87175241ab518934dd21b7279ae35972fb66c40792752a958420db0612d1c7c4",
+      "file": "references/032-Support.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Randomness Beacon",
+      "url": "https://developers.cloudflare.com/randomness-beacon/llms.txt",
+      "content_hash": "sha256:4bc0b925a46dea4006b35f3a52c8f3e5fbeda47fb6e67f24eb345c6abfd953db",
+      "file": "references/033-Randomness-Beacon.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Pulumi",
+      "url": "https://developers.cloudflare.com/pulumi/llms.txt",
+      "content_hash": "sha256:3ab8b5627d62263b817ce8c41f3618ebf393c51bd69c57f20d8dac2cc206d39c",
+      "file": "references/034-Pulumi.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Reference Architecture",
+      "url": "https://developers.cloudflare.com/reference-architecture/llms.txt",
+      "content_hash": "sha256:50092cd3b0362dff8f04b81bd732f53f3a50aaa693d43e49db94adc7b50e1643",
+      "file": "references/035-Reference-Architecture.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Registrar",
+      "url": "https://developers.cloudflare.com/registrar/llms.txt",
+      "content_hash": "sha256:18257546e8c34bd877b01df898835082356749418ac3ef59cdd57fd15f87a368",
+      "file": "references/036-Registrar.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Notifications",
+      "url": "https://developers.cloudflare.com/notifications/llms.txt",
+      "content_hash": "sha256:a6206964dd584befaf811a27f185b90cbc4afa6c535fc9a43be827cbb83a94d8",
+      "file": "references/037-Notifications.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Network",
+      "url": "https://developers.cloudflare.com/network/llms.txt",
+      "content_hash": "sha256:8f257c02685f35b3fde7a99fdf8043dad3c5de16a9e828845c9fb5596db1d5dc",
+      "file": "references/038-Network.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Cloudflare Fundamentals",
+      "url": "https://developers.cloudflare.com/fundamentals/llms.txt",
+      "content_hash": "sha256:f7a428b8acff3d1512310a8d8d3275c21d313bfbcd838b706608ac59efa5cc02",
+      "file": "references/039-Cloudflare-Fundamentals.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Billing",
+      "url": "https://developers.cloudflare.com/billing/llms.txt",
+      "content_hash": "sha256:a6f95379a5d4035b2f06335248023c653eb456eb718acbe1730da51bd18b29b0",
+      "file": "references/040-Billing.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Logs",
+      "url": "https://developers.cloudflare.com/logs/llms.txt",
+      "content_hash": "sha256:bc90b2b31f9bde91e4cd5a7a5f81e651c9bb853615cf1a4f5e91f1eaa2b4e551",
+      "file": "references/041-Logs.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Log Explorer",
+      "url": "https://developers.cloudflare.com/log-explorer/llms.txt",
+      "content_hash": "sha256:92b7e447938c957ad53680c4c1de235844643f5d979bbec8ade85ccfbfc13673",
+      "file": "references/042-Log-Explorer.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "WARP Client",
+      "url": "https://developers.cloudflare.com/warp-client/llms.txt",
+      "content_hash": "sha256:8b6533f81d8becc6146b29136c24d8ba7aad06c6c787dd273911c23dfea6425a",
+      "file": "references/043-WARP-Client.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Radar",
+      "url": "https://developers.cloudflare.com/radar/llms.txt",
+      "content_hash": "sha256:03169ca8e66f426726e99dd724d0f79d4744223450e0656af4ec684ad5603ee0",
+      "file": "references/044-Radar.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "AI Crawl Control",
+      "url": "https://developers.cloudflare.com/ai-crawl-control/llms.txt",
+      "content_hash": "sha256:bb78fec1af29f833a9e2518929c7d7e740dc455c1c8994b04341849f6b7ae3f7",
+      "file": "references/045-AI-Crawl-Control.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Analytics",
+      "url": "https://developers.cloudflare.com/analytics/llms.txt",
+      "content_hash": "sha256:5a3444cbd8cb241c2bf10b959d1f4a1ecc699be0d2ba859b2e7a74e43927360b",
+      "file": "references/046-Analytics.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Cloudflare WAN",
+      "url": "https://developers.cloudflare.com/cloudflare-wan/llms.txt",
+      "content_hash": "sha256:c0388f84a31e9cd7e8a10c0fe4acc09b00f7ddd5037ce382cd9a8c5414c6c271",
+      "file": "references/047-Cloudflare-WAN.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "1.1.1.1 (DNS Resolver)",
+      "url": "https://developers.cloudflare.com/1.1.1.1/llms.txt",
+      "content_hash": "sha256:d0c504865514e92502da7aa7760628b0946f7eb16884e9420f92b7e67016401f",
+      "file": "references/048-1-1-1-1-DNS-Resolver.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Multi-Cloud Networking",
+      "url": "https://developers.cloudflare.com/multi-cloud-networking/llms.txt",
+      "content_hash": "sha256:c533a3e3c0df44014a0f886ef87b9868f099e258f0317111aabab01a28c0d492",
+      "file": "references/049-Multi-Cloud-Networking.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Turnstile",
+      "url": "https://developers.cloudflare.com/turnstile/llms.txt",
+      "content_hash": "sha256:3392332349e305a3d183f0fda7bc580141c1c2798a60033c18ec125432d7012e",
+      "file": "references/050-Turnstile.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "WAF",
+      "url": "https://developers.cloudflare.com/waf/llms.txt",
+      "content_hash": "sha256:f0f8a388fd201b5280e1679f5d6c2e9dcba93c5d3149a62ded8c43b06643834c",
+      "file": "references/051-WAF.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Cloudflare Network Firewall",
+      "url": "https://developers.cloudflare.com/cloudflare-network-firewall/llms.txt",
+      "content_hash": "sha256:ebf919b837831528079e02c12a88f1224758b19b612a817cca62148a58794f47",
+      "file": "references/052-Cloudflare-Network-Firewall.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Cloudflare One",
+      "url": "https://developers.cloudflare.com/cloudflare-one/llms.txt",
+      "content_hash": "sha256:c6cb5d497aec1e9d12d56e52208015f300ffc66045608ac2b63ad10b463b3a08",
+      "file": "references/053-Cloudflare-One.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Data Localization Suite",
+      "url": "https://developers.cloudflare.com/data-localization/llms.txt",
+      "content_hash": "sha256:2e070e8fdfc8d0737eb507e95870732ada690c251a2fe18216016e5f501fc2bd",
+      "file": "references/054-Data-Localization-Suite.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Firewall Rules (deprecated)",
+      "url": "https://developers.cloudflare.com/firewall/llms.txt",
+      "content_hash": "sha256:cf8cdcb1f81aacda24c3ec4dd85d61ed3eeaa134983972b09825f5701e642ddb",
+      "file": "references/055-Firewall-Rules-deprecated.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Security Center",
+      "url": "https://developers.cloudflare.com/security-center/llms.txt",
+      "content_hash": "sha256:07ffc3796ca11122170ccbd245ffc556413c35dcc45027db622265e60b037caf",
+      "file": "references/056-Security-Center.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Secrets Store",
+      "url": "https://developers.cloudflare.com/secrets-store/llms.txt",
+      "content_hash": "sha256:04deb039cecaa83e14cc8ebeefaa000767f5b59d662985b4675502a9df36a3c1",
+      "file": "references/057-Secrets-Store.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "DMARC Management",
+      "url": "https://developers.cloudflare.com/dmarc-management/llms.txt",
+      "content_hash": "sha256:93b25e0663a57f7ca1c20036072a76f49020766011e6b8f2f221208052c15fbc",
+      "file": "references/058-DMARC-Management.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "DDoS Protection",
+      "url": "https://developers.cloudflare.com/ddos-protection/llms.txt",
+      "content_hash": "sha256:914371fe4c2291b8518c0782b739d0fa7e3bd31e2b76e0f9cf25b3377303493f",
+      "file": "references/059-DDoS-Protection.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Key Transparency Auditor",
+      "url": "https://developers.cloudflare.com/key-transparency/llms.txt",
+      "content_hash": "sha256:d0430923d0086b887af5cc13236f5a6be0c2e8bc4e1e0353c8e184cb62b3d67f",
+      "file": "references/060-Key-Transparency-Auditor.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Bots",
+      "url": "https://developers.cloudflare.com/bots/llms.txt",
+      "content_hash": "sha256:34b137d1ff9f4ecebd58666006fd3001545f11f3ab597cb6bf88b6773e8157eb",
+      "file": "references/061-Bots.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "API Shield",
+      "url": "https://developers.cloudflare.com/api-shield/llms.txt",
+      "content_hash": "sha256:8e829cc60d6e7f6ef812aab90af4d29ba1518648b89b226c3ad306305bccd496",
+      "file": "references/062-API-Shield.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Challenges",
+      "url": "https://developers.cloudflare.com/cloudflare-challenges/llms.txt",
+      "content_hash": "sha256:69114eb395ee416fe35510e9a8e69a96352c25c195d525e40111a571e306a4c4",
+      "file": "references/063-Challenges.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Client-side security",
+      "url": "https://developers.cloudflare.com/client-side-security/llms.txt",
+      "content_hash": "sha256:6d70a061eb070ebb6c975187004f376c4df7ea1c5fe5f65f5d46879d24e12dd7",
+      "file": "references/064-Client-side-security.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Waiting Room",
+      "url": "https://developers.cloudflare.com/waiting-room/llms.txt",
+      "content_hash": "sha256:44e33ae921fed77b1a8e79373b5c482e0ca4d8b411c698a092733315eff9bcdf",
+      "file": "references/065-Waiting-Room.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "SSL/TLS",
+      "url": "https://developers.cloudflare.com/ssl/llms.txt",
+      "content_hash": "sha256:00dcb0545771ffab0bd52799bc976e55ff97c1e0be16209a68ea78243cf563cf",
+      "file": "references/066-SSL-TLS.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Cloudflare Web Analytics",
+      "url": "https://developers.cloudflare.com/web-analytics/llms.txt",
+      "content_hash": "sha256:568cf33c8eedb26b87435f64db0c87e513836c13ef325e25224f572c5bede4e6",
+      "file": "references/067-Cloudflare-Web-Analytics.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Web3",
+      "url": "https://developers.cloudflare.com/web3/llms.txt",
+      "content_hash": "sha256:b9490beeae393d8d998e350626a653fa403dcb33bf3071db3a2f362ee5be6fbc",
+      "file": "references/068-Web3.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Smart Shield",
+      "url": "https://developers.cloudflare.com/smart-shield/llms.txt",
+      "content_hash": "sha256:f7572d244cf52d7b95e07816acf8e13af5a9058f371eef8eb2cfb6a492879fcf",
+      "file": "references/069-Smart-Shield.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Load Balancing",
+      "url": "https://developers.cloudflare.com/load-balancing/llms.txt",
+      "content_hash": "sha256:b9820b8c01752cd33348544d1ecf3473f1e5f41c98671feab788c4a52957b76a",
+      "file": "references/070-Load-Balancing.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Spectrum",
+      "url": "https://developers.cloudflare.com/spectrum/llms.txt",
+      "content_hash": "sha256:47e8fa6ab4bb9cf944c7ae8b361f3d47cc502d3723a61ba2a10388389245f415",
+      "file": "references/071-Spectrum.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Speed",
+      "url": "https://developers.cloudflare.com/speed/llms.txt",
+      "content_hash": "sha256:e22ae2e537694a2dd31b45e62985f0cc086ef4e0c98b9fcdc9e501b3e614c5da",
+      "file": "references/072-Speed.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Health Checks",
+      "url": "https://developers.cloudflare.com/health-checks/llms.txt",
+      "content_hash": "sha256:c091386afba823dd21a96591f0073c8fa0f32e53635f8674775b5f4c3521f578",
+      "file": "references/073-Health-Checks.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Google tag gateway for advertisers",
+      "url": "https://developers.cloudflare.com/google-tag-gateway/llms.txt",
+      "content_hash": "sha256:eff425ade3d8a0ff303f55f281e60057f0de6481d146f4cd776ebe50f2449ac3",
+      "file": "references/074-Google-tag-gateway-for-advertisers.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Cache / CDN",
+      "url": "https://developers.cloudflare.com/cache/llms.txt",
+      "content_hash": "sha256:83e114fe23beab54ee576eb71218ab459fbda7984142198414819064f5181c80",
+      "file": "references/075-Cache-CDN.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Automatic Platform Optimization",
+      "url": "https://developers.cloudflare.com/automatic-platform-optimization/llms.txt",
+      "content_hash": "sha256:a36df3835ae2a537a9bebcdd288718b51a34a57889e3e6e88ad867c91db80e48",
+      "file": "references/076-Automatic-Platform-Optimization.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "DNS",
+      "url": "https://developers.cloudflare.com/dns/llms.txt",
+      "content_hash": "sha256:3afbb692e6a8e3d4a6764650c029a2ba5f66a6ff7b148b09b265d6d67b00a3fd",
+      "file": "references/077-DNS.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "China Network",
+      "url": "https://developers.cloudflare.com/china-network/llms.txt",
+      "content_hash": "sha256:dde75ad794bf1d3a5b1a417b26611d5349400876792dd8baa697a3a0224e1cb4",
+      "file": "references/078-China-Network.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Cloudflare Developer Docs | Cloudflare Docs",
+      "url": "https://developers.cloudflare.com/",
+      "content_hash": "sha256:b48124667dc36cb5c09a09b7b9448770d049ed962d961d9c7da54dff277066e7",
+      "file": "references/079-Cloudflare-Developer-Docs-Cloudflare-Docs.md",
+      "source": "cloudflare",
+      "version": "latest"
+    },
+    {
+      "title": "Argo Smart Routing",
+      "url": "https://developers.cloudflare.com/argo-smart-routing/llms.txt",
+      "content_hash": "sha256:b7029bdf3a0e5ddc97a78a6cf8dee31c9d635a49f19a6812612fc460acfbfc4a",
+      "file": "references/080-Argo-Smart-Routing.md",
+      "source": "cloudflare",
+      "version": "latest"
+    }
+  ]
+}

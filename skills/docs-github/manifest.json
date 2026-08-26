@@ -1,0 +1,635 @@
+{
+  "name": "docs-github",
+  "generated_at": "2026-07-29T03:54:50Z",
+  "query": null,
+  "source_id": null,
+  "ranking": "all pages (recency)",
+  "page_count": 78,
+  "embedding_model": null,
+  "pages": [
+    {
+      "title": "Permissions required for fine-grained personal access tokens - GitHub Docs",
+      "url": "https://docs.github.com/en/rest/authentication/permissions-required-for-fine-grained-personal-access-tokens",
+      "content_hash": "sha256:918043cf600e23f75270859de96e90febcadadd3e3e866eaec9e2d7fdbe26d7c",
+      "file": "references/001-Permissions-required-for-fine-grained-personal-access-tokens.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Authenticating to the REST API - GitHub Docs",
+      "url": "https://docs.github.com/en/rest/authentication/authenticating-to-the-rest-api",
+      "content_hash": "sha256:1f9a99cef73546c8e7b3e94d3ba36ea59da9610797d80f1043f089aae6e6dc5b",
+      "file": "references/002-Authenticating-to-the-REST-API-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Branches - GitHub Docs",
+      "url": "https://docs.github.com/en/pull-requests/reference/branches",
+      "content_hash": "sha256:0af0b489a5696b7a9df3d1214d2bff08c6ca7121ccd59ebc1f889b817960de45",
+      "file": "references/003-Branches-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Pull requests - GitHub Docs",
+      "url": "https://docs.github.com/en/pull-requests/reference/pull-requests",
+      "content_hash": "sha256:bc4cfec74faae12e0e5546f46ffe24b4037c43bc1c2dae318bf1a7e58d1949d6",
+      "file": "references/004-Pull-requests-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Workflow syntax for GitHub Actions - GitHub Docs",
+      "url": "https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax",
+      "content_hash": "sha256:ce314dddc88f3cfcf522507fa0fed5552681e80a03c97b073c7d4117dfd731b6",
+      "file": "references/005-Workflow-syntax-for-GitHub-Actions-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "About Projects - GitHub Docs",
+      "url": "https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects",
+      "content_hash": "sha256:60bb75ec9bc37abe919d24bbae31703de6b1d6261605ec0772d86a025fce5ac5",
+      "file": "references/006-About-Projects-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Workflow commands for GitHub Actions - GitHub Docs",
+      "url": "https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands",
+      "content_hash": "sha256:879ffb4b6d63fab7a21657df3dcf68e6ed152e27117ec3543a55a4efaf4942c5",
+      "file": "references/007-Workflow-commands-for-GitHub-Actions-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Events that trigger workflows - GitHub Docs",
+      "url": "https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows",
+      "content_hash": "sha256:1a416b2094fd815e93b11509b3ba920e142e129cb135f7cfb7344a9b39294098",
+      "file": "references/008-Events-that-trigger-workflows-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Understanding GitHub Actions - GitHub Docs",
+      "url": "https://docs.github.com/en/actions/get-started/understand-github-actions",
+      "content_hash": "sha256:009528f5478a52fa5f9ce6e072801e3f86d52e07b14423b9a420419325b89281",
+      "file": "references/009-Understanding-GitHub-Actions-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Quickstart for GitHub Actions - GitHub Docs",
+      "url": "https://docs.github.com/en/actions/get-started/quickstart",
+      "content_hash": "sha256:cc8f729d13e6729af34a24ce58a356ec43f43dfefe15ca8ce3a1885f14a3c419",
+      "file": "references/010-Quickstart-for-GitHub-Actions-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Licensing a repository - GitHub Docs",
+      "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository",
+      "content_hash": "sha256:61ec71cdba907b265ea4ec623e30f6736292f9809ea3fcca2c33bb940fdc5870",
+      "file": "references/011-Licensing-a-repository-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "About releases - GitHub Docs",
+      "url": "https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases",
+      "content_hash": "sha256:08e4968e9ab3015d6534a98f97270e9ce63830520b1f2ad644eea141828b2025",
+      "file": "references/012-About-releases-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Quickstart for repositories - GitHub Docs",
+      "url": "https://docs.github.com/en/repositories/creating-and-managing-repositories/quickstart-for-repositories",
+      "content_hash": "sha256:a4ecb51b935bb9d8b88b190575d0421c0d29551e22c008335d735ba6406f9b45",
+      "file": "references/013-Quickstart-for-repositories-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "About the repository README file - GitHub Docs",
+      "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes",
+      "content_hash": "sha256:1d593fe418d2a75d8e93ae1eba5b45af71d2107a0cd39d7173ea916d5c0284ad",
+      "file": "references/014-About-the-repository-README-file-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "About rulesets - GitHub Docs",
+      "url": "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets",
+      "content_hash": "sha256:064ae02f206da4da91e1b4b0fa6b28bf275123bc21e2e18b148e33e86a644df1",
+      "file": "references/015-About-rulesets-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Cloning a repository - GitHub Docs",
+      "url": "https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository",
+      "content_hash": "sha256:3bf19b705a6d54a9ab4bcebae9995f85950b7da84065abf4309bddbb1b0ccd2a",
+      "file": "references/016-Cloning-a-repository-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Basic writing and formatting syntax - GitHub Docs",
+      "url": "https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax",
+      "content_hash": "sha256:23bc11a9c4dfaa81fde7b333a24f2524c2ee1cf3ae0f0a6132bbf61aca811ee7",
+      "file": "references/017-Basic-writing-and-formatting-syntax-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "About protected branches - GitHub Docs",
+      "url": "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches",
+      "content_hash": "sha256:21bb2d396621ffaa8b44bc20322ab9131b3782b998bda86477881ac374bfda54",
+      "file": "references/018-About-protected-branches-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Hello World - GitHub Docs",
+      "url": "https://docs.github.com/en/get-started/using-github/hello-world",
+      "content_hash": "sha256:68a5fe1c9b1ed8bb24daeb323e057b77ce3f8c6550714635d2ddaea847ddb077",
+      "file": "references/019-Hello-World-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Troubleshooting connectivity problems - GitHub Docs",
+      "url": "https://docs.github.com/en/get-started/using-github/troubleshooting-connectivity-problems",
+      "content_hash": "sha256:cbb6b9a759da5f7e8657d6cf77b5e3e020dc38689a174c4889844474b693ee21",
+      "file": "references/020-Troubleshooting-connectivity-problems-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "What is GitHub? - GitHub Docs",
+      "url": "https://docs.github.com/en/get-started/start-your-journey/what-is-github",
+      "content_hash": "sha256:7ea2598e799cd6fd9ee0ab3e633e9906c67cbb2846495a2773f6ec21b7260622",
+      "file": "references/021-What-is-GitHub-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Types of GitHub accounts - GitHub Docs",
+      "url": "https://docs.github.com/en/get-started/learning-about-github/types-of-github-accounts",
+      "content_hash": "sha256:9acd87a59904a8b0f34911f7bcfdeb4a6c77f0c5d750bc4958810635c0710e6d",
+      "file": "references/022-Types-of-GitHub-accounts-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "GitHub's plans - GitHub Docs",
+      "url": "https://docs.github.com/en/get-started/learning-about-github/githubs-plans",
+      "content_hash": "sha256:da98df4e26e7ec08eab9c60e8e8a9aaaa184b8c1034295a659068cc82147e791",
+      "file": "references/023-GitHub-s-plans-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Set up Git - GitHub Docs",
+      "url": "https://docs.github.com/en/get-started/git-basics/set-up-git",
+      "content_hash": "sha256:baa6c0189c1324d523518e98e4347e5bed3011149d75d185e8a0de1e4f81855e",
+      "file": "references/024-Set-up-Git-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "About remote repositories - GitHub Docs",
+      "url": "https://docs.github.com/en/get-started/git-basics/about-remote-repositories",
+      "content_hash": "sha256:6db869d65d012a46c360bbd2e9557238a23851a6a523700b3607889f50757e34",
+      "file": "references/025-About-remote-repositories-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Recovering your account if you lose your 2FA credentials - GitHub Docs",
+      "url": "https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/recovering-your-account-if-you-lose-your-2fa-credentials",
+      "content_hash": "sha256:74614878a9af41b6e038aff84795e85e8a36b14c9f372a8d9dbf9914b0c08208",
+      "file": "references/026-Recovering-your-account-if-you-lose-your-2FA-credentials-Git.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Get started with GitHub documentation - GitHub Docs",
+      "url": "https://docs.github.com/en/get-started",
+      "content_hash": "sha256:1df9c2503226a9efaad961aeb709450fe3812f7d5a856dba9d568b670cec8c84",
+      "file": "references/027-Get-started-with-GitHub-documentation-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Configuring two-factor authentication recovery methods - GitHub Docs",
+      "url": "https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication-recovery-methods",
+      "content_hash": "sha256:5defc29561152364f3d73ccef4948e860b3245a2593cfa12d58d78c5630e69a4",
+      "file": "references/028-Configuring-two-factor-authentication-recovery-methods-GitHu.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Configuring two-factor authentication - GitHub Docs",
+      "url": "https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication",
+      "content_hash": "sha256:649496ae5d2a31a02eb7111cb8ebed9205dc860d395a7c7bb072274e65bfdfe2",
+      "file": "references/029-Configuring-two-factor-authentication-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Managing your personal access tokens - GitHub Docs",
+      "url": "https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens",
+      "content_hash": "sha256:59d26e61778ed5c818c95f6ae13ea05b82d042f8733c79984e373b3df0abaaad",
+      "file": "references/030-Managing-your-personal-access-tokens-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Displaying verification statuses for all of your commits - GitHub Docs",
+      "url": "https://docs.github.com/en/authentication/managing-commit-signature-verification/displaying-verification-statuses-for-all-of-your-commits",
+      "content_hash": "sha256:f59a98e553ffadb2f1151fe900a84ab0a7ad067e1d119ee33c843f64fa1b73bb",
+      "file": "references/031-Displaying-verification-statuses-for-all-of-your-commits-Git.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Testing your SSH connection - GitHub Docs",
+      "url": "https://docs.github.com/en/authentication/connecting-to-github-with-ssh/testing-your-ssh-connection",
+      "content_hash": "sha256:7070382a06da1f0fff0755546dc2eb89207839b1710993fd5adbcdc42f90fd4d",
+      "file": "references/032-Testing-your-SSH-connection-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "About authentication to GitHub - GitHub Docs",
+      "url": "https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-authentication-to-github",
+      "content_hash": "sha256:2c686a4e13fedb3f93f4faeab343f419946a8e2d6f9741f02ed1f7ffc48b2ede",
+      "file": "references/033-About-authentication-to-GitHub-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Generating a new SSH key and adding it to the ssh-agent - GitHub Docs",
+      "url": "https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent",
+      "content_hash": "sha256:d8630041f3e457dbc93af809c0ab808bc6c11f7f6ec866a4a0c3b1132f8571db",
+      "file": "references/034-Generating-a-new-SSH-key-and-adding-it-to-the-ssh-agent-GitH.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Managing deploy keys - GitHub Docs",
+      "url": "https://docs.github.com/en/authentication/connecting-to-github-with-ssh/managing-deploy-keys",
+      "content_hash": "sha256:71ae25d3e893f09127d79377e60c6beab1d3422be6569f597bfdcfaad3fc20a6",
+      "file": "references/035-Managing-deploy-keys-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Adding a new SSH key to your GitHub account - GitHub Docs",
+      "url": "https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account",
+      "content_hash": "sha256:722584f55d607dd0570d0628acb51115d881c479e2df67650139a7d4924ee0ff",
+      "file": "references/036-Adding-a-new-SSH-key-to-your-GitHub-account-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Checking for existing SSH keys - GitHub Docs",
+      "url": "https://docs.github.com/en/authentication/connecting-to-github-with-ssh/checking-for-existing-ssh-keys",
+      "content_hash": "sha256:c7d91fa92e17585ed5986f03ab182dc6ce84f308f7014737feb6803afd9deab6",
+      "file": "references/037-Checking-for-existing-SSH-keys-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "GitHub Copilot Cookbook - GitHub Docs",
+      "url": "https://docs.github.com/en/copilot/tutorials/copilot-cookbook",
+      "content_hash": "sha256:427a408b0c45763e82ce96939d13158b584cb0eca15c90d96cc48c6dd579402c",
+      "file": "references/038-GitHub-Copilot-Cookbook-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Connecting to GitHub with SSH - GitHub Docs",
+      "url": "https://docs.github.com/en/authentication/connecting-to-github-with-ssh",
+      "content_hash": "sha256:ebc0f7d691f8c6618a877bc2dffa9e5eb3b5a0c656f11fe2fbf396cd069d6183",
+      "file": "references/039-Connecting-to-GitHub-with-SSH-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Models and pricing for GitHub Copilot - GitHub Docs",
+      "url": "https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing",
+      "content_hash": "sha256:919baf4a33cf3afc78f9ee894e97e7f4a457a4445e0567f8df5aba37900c976e",
+      "file": "references/040-Models-and-pricing-for-GitHub-Copilot-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Application card: GitHub Copilot Chat - GitHub Docs",
+      "url": "https://docs.github.com/en/copilot/responsible-use/chat",
+      "content_hash": "sha256:fbbd58913ac40569bc14f2bb3ff8867c5fb1ba4d8266b7b9c044708fc15b73e6",
+      "file": "references/041-Application-card-GitHub-Copilot-Chat-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Supported AI models in GitHub Copilot - GitHub Docs",
+      "url": "https://docs.github.com/en/copilot/reference/ai-models/supported-models",
+      "content_hash": "sha256:dab32dd4549422f06ee5428b78889a68d00a7890804c602819b428f0c704922d",
+      "file": "references/042-Supported-AI-models-in-GitHub-Copilot-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Model multipliers for annual plans on request-based billing (legacy) - GitHub Docs",
+      "url": "https://docs.github.com/en/copilot/reference/copilot-billing/request-based-billing-legacy/model-multipliers-for-annual-plans",
+      "content_hash": "sha256:c2507210314a8526ede70917d3899d6d63b2ed35c0dc193516e0e0e056e8ffc7",
+      "file": "references/043-Model-multipliers-for-annual-plans-on-request-based-billing.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Hosting of models for GitHub Copilot - GitHub Docs",
+      "url": "https://docs.github.com/en/copilot/reference/ai-models/model-hosting",
+      "content_hash": "sha256:2a310d53f10e744dc68162c82303891b859d230f424bef22334e17cf1da316dc",
+      "file": "references/044-Hosting-of-models-for-GitHub-Copilot-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "AI model comparison - GitHub Docs",
+      "url": "https://docs.github.com/en/copilot/reference/ai-models/model-comparison",
+      "content_hash": "sha256:b017cb73f0881ba1c48522392187682f3fa1839ce612aa38a0db775cdcf16d81",
+      "file": "references/045-AI-model-comparison-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Troubleshooting common issues with GitHub Copilot - GitHub Docs",
+      "url": "https://docs.github.com/en/copilot/how-tos/troubleshoot-copilot/troubleshoot-common-issues",
+      "content_hash": "sha256:1571bd5f3aa7c410998cff081546c957cb925b064e3c470f12f42f813e16686a",
+      "file": "references/046-Troubleshooting-common-issues-with-GitHub-Copilot-GitHub-Doc.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Using GitHub Copilot code review - GitHub Docs",
+      "url": "https://docs.github.com/en/copilot/how-tos/use-copilot-agents/request-a-code-review/use-code-review",
+      "content_hash": "sha256:6b4f92c20b38dfce8a861f878cc912943fa81b2a805c9916489454cf2fb39062",
+      "file": "references/047-Using-GitHub-Copilot-code-review-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Installing the GitHub Copilot extension in your environment - GitHub Docs",
+      "url": "https://docs.github.com/en/copilot/how-tos/set-up/install-copilot-extension",
+      "content_hash": "sha256:b556c82d69c6e271a4d4cea2b25394217fc4bdff3379deefdba8e16eea9ae6cc",
+      "file": "references/048-Installing-the-GitHub-Copilot-extension-in-your-environment.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Managing GitHub Copilot policies as an individual subscriber - GitHub Docs",
+      "url": "https://docs.github.com/en/copilot/how-tos/manage-your-account/manage-policies",
+      "content_hash": "sha256:3fe2e39e8e3c3b165d3cb6b30109ab12654d7dbf15f9a0e1a550249ca26c0f37",
+      "file": "references/049-Managing-GitHub-Copilot-policies-as-an-individual-subscriber.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Usage-based billing for individuals - GitHub Docs",
+      "url": "https://docs.github.com/en/copilot/concepts/billing/usage-based-billing-for-individuals",
+      "content_hash": "sha256:829a87016cea6ae90026dad73b06e5ff2f8f9ab73636cca4d6fb2ad232eea509",
+      "file": "references/050-Usage-based-billing-for-individuals-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Monitoring your GitHub Copilot usage and entitlements (legacy) - GitHub Docs",
+      "url": "https://docs.github.com/en/copilot/reference/copilot-billing/request-based-billing-legacy/monitor-premium-requests",
+      "content_hash": "sha256:db7987e6a9425e18a75d6f925eafce52f5fdadcad740c5477614378578dc415f",
+      "file": "references/051-Monitoring-your-GitHub-Copilot-usage-and-entitlements-legacy.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Getting code suggestions in your IDE with GitHub Copilot - GitHub Docs",
+      "url": "https://docs.github.com/en/copilot/how-tos/get-code-suggestions/get-ide-code-suggestions",
+      "content_hash": "sha256:0702b3df42ef3dd680cb90243bb54fee2b4224f55542c0bed1dc56e9f2cc5119",
+      "file": "references/052-Getting-code-suggestions-in-your-IDE-with-GitHub-Copilot-Git.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Adding agent skills for GitHub Copilot - GitHub Docs",
+      "url": "https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/add-skills",
+      "content_hash": "sha256:e46af7844e87dad26def4545a24c03b1025c32b44e5c518d5f6830c26b506e5a",
+      "file": "references/053-Adding-agent-skills-for-GitHub-Copilot-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Adding repository custom instructions for GitHub Copilot - GitHub Docs",
+      "url": "https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/add-custom-instructions/add-repository-instructions",
+      "content_hash": "sha256:473a2aca06a7521862a051dea14a949c4f1b51aa9ac7fcdd2bc0c5606d91c404",
+      "file": "references/054-Adding-repository-custom-instructions-for-GitHub-Copilot-Git.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Using GitHub Copilot CLI - GitHub Docs",
+      "url": "https://docs.github.com/en/copilot/how-tos/copilot-cli/use-copilot-cli/overview",
+      "content_hash": "sha256:5e8be937b58a4cf14acaa00b61165ecceee1a79b4181401d3a6d1d0d9d750df0",
+      "file": "references/055-Using-GitHub-Copilot-CLI-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Getting started with GitHub Copilot CLI - GitHub Docs",
+      "url": "https://docs.github.com/en/copilot/how-tos/copilot-cli/cli-getting-started",
+      "content_hash": "sha256:f6a017aee61f34e86d33cb9122e856c19a12b51b94a03a581d27516e35f61a8c",
+      "file": "references/056-Getting-started-with-GitHub-Copilot-CLI-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Installing GitHub Copilot CLI - GitHub Docs",
+      "url": "https://docs.github.com/en/copilot/how-tos/copilot-cli/set-up-copilot-cli/install-copilot-cli",
+      "content_hash": "sha256:ffb7be1dcfc51492dea0830bb34aad2770cbc3b17c21728f2e1e05a64a67a924",
+      "file": "references/057-Installing-GitHub-Copilot-CLI-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Best practices for GitHub Copilot CLI - GitHub Docs",
+      "url": "https://docs.github.com/en/copilot/how-tos/copilot-cli/cli-best-practices",
+      "content_hash": "sha256:81752cb6407ec04a010a15b82e4aa6ee2443ce86d443405344f5379d48c21c89",
+      "file": "references/058-Best-practices-for-GitHub-Copilot-CLI-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Asking GitHub Copilot questions in your IDE - GitHub Docs",
+      "url": "https://docs.github.com/en/copilot/how-tos/chat-with-copilot/chat-in-ide",
+      "content_hash": "sha256:e4789ed6de86c6fa8de8124b1e5a21425899bc8f162b7066506e5f689c258593",
+      "file": "references/059-Asking-GitHub-Copilot-questions-in-your-IDE-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "What is GitHub Copilot? - GitHub Docs",
+      "url": "https://docs.github.com/en/copilot/get-started/what-is-github-copilot",
+      "content_hash": "sha256:bd3fbaa06f2db0ff0a0eca57b264dfe2d8ee43fccf5e95dffa335d5c7de3a3bf",
+      "file": "references/060-What-is-GitHub-Copilot-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Quickstart for GitHub Copilot - GitHub Docs",
+      "url": "https://docs.github.com/en/copilot/get-started/quickstart",
+      "content_hash": "sha256:fd478c5a140303f164a6c4edabee8a6ffc9800bb2850ede2cf658b4cd52072d6",
+      "file": "references/061-Quickstart-for-GitHub-Copilot-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "GitHub Copilot features - GitHub Docs",
+      "url": "https://docs.github.com/en/copilot/get-started/features",
+      "content_hash": "sha256:319772b98aafa24e080320330d09b881689d1bec0d565cab8d41d5c0212e3274",
+      "file": "references/062-GitHub-Copilot-features-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Plans for GitHub Copilot - GitHub Docs",
+      "url": "https://docs.github.com/en/copilot/get-started/plans",
+      "content_hash": "sha256:4219157e16c133a03566398d394008a9406ae5e3e333cf179f156ee9c09fdd97",
+      "file": "references/063-Plans-for-GitHub-Copilot-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Usage limits for GitHub Copilot - GitHub Docs",
+      "url": "https://docs.github.com/en/copilot/concepts/usage-limits",
+      "content_hash": "sha256:6a97d04a0887b2f930261295c23684a856de68cb8b93fe2497e9ff1e1a5535e3",
+      "file": "references/064-Usage-limits-for-GitHub-Copilot-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Usage-based billing for organizations and enterprises - GitHub Docs",
+      "url": "https://docs.github.com/en/copilot/concepts/billing/usage-based-billing-for-organizations-and-enterprises",
+      "content_hash": "sha256:21ce4abb37176b35aa6c112d4b4d2b020460b9b7e9d3a44935bbb6848a093059",
+      "file": "references/065-Usage-based-billing-for-organizations-and-enterprises-GitHub.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "About individual GitHub Copilot plans and benefits - GitHub Docs",
+      "url": "https://docs.github.com/en/copilot/concepts/billing/individual-plans",
+      "content_hash": "sha256:f2b3aba4a3d2f74e88bc7dd93cf1518b39f5430fa3b8328cfaf06a55775aa796",
+      "file": "references/066-About-individual-GitHub-Copilot-plans-and-benefits-GitHub-Do.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "About GitHub Copilot CLI - GitHub Docs",
+      "url": "https://docs.github.com/en/copilot/concepts/agents/copilot-cli/about-copilot-cli",
+      "content_hash": "sha256:244e9e04b9ba74cf02cb2de3f1106eb09767ea1e0ee4fb8e46c13f5bf3307531",
+      "file": "references/067-About-GitHub-Copilot-CLI-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Requests in GitHub Copilot (legacy) - GitHub Docs",
+      "url": "https://docs.github.com/en/copilot/reference/copilot-billing/request-based-billing-legacy/copilot-requests",
+      "content_hash": "sha256:52ff648f33acdf78a2292d5aa46c610455bae2430a9a7c775736c35dfa6797c5",
+      "file": "references/068-Requests-in-GitHub-Copilot-legacy-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "GitHub Copilot documentation - GitHub Docs",
+      "url": "https://docs.github.com/en/copilot",
+      "content_hash": "sha256:f53ce7bf59ab286a289d512f02f8af12a0ecc2f58456389ff77af9e93653cb4c",
+      "file": "references/069-GitHub-Copilot-documentation-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "About agent skills - GitHub Docs",
+      "url": "https://docs.github.com/en/copilot/concepts/agents/about-agent-skills",
+      "content_hash": "sha256:75652b5be559e076852ebab86efa6c7d60560245453efe8f0fa7dee0fddbc4aa",
+      "file": "references/070-About-agent-skills-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "GitHub Actions documentation - GitHub Docs",
+      "url": "https://docs.github.com/en/actions",
+      "content_hash": "sha256:c559ab8c0af5b26adf737d62a5c8be62b83f18d9b2f5bbbcacd1b1881d072b84",
+      "file": "references/071-GitHub-Actions-documentation-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "GitHub GraphQL API documentation - GitHub Docs",
+      "url": "https://docs.github.com/en/graphql",
+      "content_hash": "sha256:b1e018d9908f80028ddcde7ece395aa88af02a39e097dc71e5df694ca8df158e",
+      "file": "references/072-GitHub-GraphQL-API-documentation-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "GitHub REST API documentation - GitHub Docs",
+      "url": "https://docs.github.com/en/rest",
+      "content_hash": "sha256:93cc85b0bb5383eaaed2a22631c1253c8efba42f8d011408563a52c8bb052bab",
+      "file": "references/073-GitHub-REST-API-documentation-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Creating custom agents for Copilot cloud agent in your IDE - GitHub Docs",
+      "url": "https://docs.github.com/en/copilot/how-tos/use-copilot-agents/cloud-agent/create-custom-agents-in-your-ide",
+      "content_hash": "sha256:639f266db5877e7d318ff9fef9748fdff9d2734f007666e59ed0c353d5b8e67f",
+      "file": "references/074-Creating-custom-agents-for-Copilot-cloud-agent-in-your-IDE-G.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "About GitHub Copilot cloud agent - GitHub Docs",
+      "url": "https://docs.github.com/en/copilot/concepts/agents/cloud-agent/about-cloud-agent",
+      "content_hash": "sha256:edef00b3f237cf338d62bed919245fc9d71eccb174e7d0af45ade0080879174d",
+      "file": "references/075-About-GitHub-Copilot-cloud-agent-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Setting up the GitHub MCP Server - GitHub Docs",
+      "url": "https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp-in-your-ide/set-up-the-github-mcp-server",
+      "content_hash": "sha256:7f9e4125f9438e159a41f9856403df92d196c41cdcddd6e3f757231843c40b01",
+      "file": "references/076-Setting-up-the-GitHub-MCP-Server-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Extending GitHub Copilot Chat with Model Context Protocol (MCP) servers - GitHub Docs",
+      "url": "https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp-in-your-ide/extend-copilot-chat-with-mcp",
+      "content_hash": "sha256:1d6d0c302bb9c57294a07a8adfc15c205f3e0552b5d8c93baac1ee6ae9a8ed2b",
+      "file": "references/077-Extending-GitHub-Copilot-Chat-with-Model-Context-Protocol-MC.md",
+      "source": "github",
+      "version": "latest"
+    },
+    {
+      "title": "Using the GitHub MCP Server in your IDE - GitHub Docs",
+      "url": "https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp-in-your-ide/use-the-github-mcp-server",
+      "content_hash": "sha256:e7d2db3dc374772e6713c31eb1e4d2465cb8364ccc282010fc347ea90d5a126a",
+      "file": "references/078-Using-the-GitHub-MCP-Server-in-your-IDE-GitHub-Docs.md",
+      "source": "github",
+      "version": "latest"
+    }
+  ]
+}

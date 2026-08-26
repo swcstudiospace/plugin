@@ -1,0 +1,651 @@
+{
+  "name": "docs-anthropic",
+  "generated_at": "2026-07-29T03:58:49Z",
+  "query": null,
+  "source_id": null,
+  "ranking": "all pages (recency)",
+  "page_count": 80,
+  "embedding_model": null,
+  "pages": [
+    {
+      "title": "Using Agent Skills with the API",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/skills-guide.md",
+      "content_hash": "sha256:d28ea4296a55ec5c1bfd8c51618e2ee16eb632fca773e482d1b178604d1c075e",
+      "file": "references/001-Using-Agent-Skills-with-the-API.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Tutorial: Build a tool-using agent",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/build-a-tool-using-agent.md",
+      "content_hash": "sha256:37143b0d7b1680c3dbdca07e3cc44e6b1bcee994a42d9f37553e621866475c49",
+      "file": "references/002-Tutorial-Build-a-tool-using-agent.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Using the Messages API",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/working-with-messages.md",
+      "content_hash": "sha256:f5081a193e796e61b60998ad57f1303f6c5698daac9a8395ef6f7c36e4767c9a",
+      "file": "references/003-Using-the-Messages-API.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Troubleshoot MCP tunnels",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/troubleshooting.md",
+      "content_hash": "sha256:8df1d0b2bb7c1315c60abf6989ade1f18089b5e4297cd6eb26b94940225ece09",
+      "file": "references/004-Troubleshoot-MCP-tunnels.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Troubleshooting thinking",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/thinking-troubleshooting.md",
+      "content_hash": "sha256:b56371d5f7d15bc1d7bb3ba4af9ba8d4673fbf137a55ae4426f307837d2c743e",
+      "file": "references/005-Troubleshooting-thinking.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Troubleshooting tool use",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/troubleshooting-tool-use.md",
+      "content_hash": "sha256:5479eb029395c87c41ac78f2928f3ca0d6a9dd9f1069496f1564789af5c759de",
+      "file": "references/006-Troubleshooting-tool-use.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Tool use with prompt caching",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-use-with-prompt-caching.md",
+      "content_hash": "sha256:04ea99020df9fecf36fe861181d134e8ece9307f2947f77bc1ed362e7039b7be",
+      "file": "references/007-Tool-use-with-prompt-caching.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Tool search tool",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool.md",
+      "content_hash": "sha256:78e1231874984c59d134e8d49e7ec33b1966d503707150b56c0e186a58348b8b",
+      "file": "references/008-Tool-search-tool.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Tool reference",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-reference.md",
+      "content_hash": "sha256:c9a8694be615dcc48343fe1191ff06786f57ffeb6754f4850b13baff364bbd4a",
+      "file": "references/009-Tool-reference.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Tool runner (SDK)",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-runner.md",
+      "content_hash": "sha256:1966a9c3a16396f434dc93774b08ffdc92a56898ec0bd44bba1bd4b42c5bff53",
+      "file": "references/010-Tool-runner-SDK.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Thinking",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/thinking.md",
+      "content_hash": "sha256:8cddd069b590ea295d5fd8f4889268edd49c662baa2b24ddf1bbcf0d5b221b50",
+      "file": "references/011-Thinking.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Token counting",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/token-counting.md",
+      "content_hash": "sha256:15f7b602ab439a2abd7a2880ae8366f5df4201c973d8121c326c0e9498e4b6dd",
+      "file": "references/012-Token-counting.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Tool combinations",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-combinations.md",
+      "content_hash": "sha256:4347e521b36a6daf7d8653f08c998957e18976758f3a0859d6dfce46dfd46eb1",
+      "file": "references/013-Tool-combinations.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Task budgets",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/task-budgets.md",
+      "content_hash": "sha256:1020e2b3818286fbe6ac045754efa7de0441052a0da1d97d881ce703a5edc15e",
+      "file": "references/014-Task-budgets.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Text editor tool",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/text-editor-tool.md",
+      "content_hash": "sha256:4fcb7c4661269f8ab15c77328f08c4c0824b162c708beec4c22e12d5fef337c1",
+      "file": "references/015-Text-editor-tool.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Thinking in tool and multi-turn workflows",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/thinking-tool-workflows.md",
+      "content_hash": "sha256:6273a123e3c0a7966853e71aea3b94d6f6f80ff07700340481ea4c29191818e8",
+      "file": "references/016-Thinking-in-tool-and-multi-turn-workflows.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Strict tool use",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use.md",
+      "content_hash": "sha256:2ebae01d3a44ae1aa0c64e2380061c81f9eedfdfb6015190d48c0e2884b50fb7",
+      "file": "references/017-Strict-tool-use.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Structured outputs",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs.md",
+      "content_hash": "sha256:2666c2c4d398b418dd25dd69cf2c8cb7dd1ffa4e3b4cb4bfc7564db56f0d41bb",
+      "file": "references/018-Structured-outputs.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Streaming messages",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/streaming.md",
+      "content_hash": "sha256:0b5e3684e88e8f0e72aee937e46a4985dc3c20c877f7e1456ef58bcfcc462f39",
+      "file": "references/019-Streaming-messages.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Stop reasons and fallback",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons.md",
+      "content_hash": "sha256:22a83ff99e9f74dc14160676377ce7e207972a6e542a155fdfe509ac594515a9",
+      "file": "references/020-Stop-reasons-and-fallback.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Skills for enterprise",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/enterprise.md",
+      "content_hash": "sha256:8fb01a3bbfae0b061d5de16b3e7bbf067d7954c72fffca7a2db0b7c9c1f1fce1",
+      "file": "references/021-Skills-for-enterprise.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Steering thinking",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/thinking-steering-and-cost.md",
+      "content_hash": "sha256:eb980f81d7ec721c265648b6f14da168d88ded6f7399c357db343edef6820159",
+      "file": "references/022-Steering-thinking.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Skill authoring best practices",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices.md",
+      "content_hash": "sha256:e0d979ce964eea0dd4bffa535cfa777839b3c797ca0905169193d7be6884d9b3",
+      "file": "references/023-Skill-authoring-best-practices.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Server tools",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools.md",
+      "content_hash": "sha256:f15fd669cb4f94e30afa8fb96204be00c7460c39c2db8a078fd3ef26d3b3d0c2",
+      "file": "references/024-Server-tools.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Prompt caching",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-caching.md",
+      "content_hash": "sha256:16f2ca71cee8fc03591a3c53269f75264f7446814d9ce4463810c8b28bdf71b8",
+      "file": "references/025-Prompt-caching.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Remote MCP servers",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/remote-mcp-servers.md",
+      "content_hash": "sha256:4b7fa0df1b384e99c37f80f9010d84a853f31628877c303a80d57bd4083e2506",
+      "file": "references/026-Remote-MCP-servers.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Search results",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/search-results.md",
+      "content_hash": "sha256:d2ffdec36f7a420aa3a44cff4d17a454d085d9d7847aaa6cdca8fe77e91aacf4",
+      "file": "references/027-Search-results.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Refusals and fallback",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback.md",
+      "content_hash": "sha256:867b580652c856d3f1127b3b4a4281e3311e3526cf966ba6bf8ebc2fac1cb8cb",
+      "file": "references/028-Refusals-and-fallback.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "PDF support",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/pdf-support.md",
+      "content_hash": "sha256:a40617f9d521cbfd588302e3cf978982720b9ef4e6b991e4b3cf11950d35c95f",
+      "file": "references/029-PDF-support.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Programmatic tool calling",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling.md",
+      "content_hash": "sha256:96d28a8e741551d1215f172866fd86a5ee3d3b06cad18c4432ce0ff585d9ca24",
+      "file": "references/030-Programmatic-tool-calling.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Multilingual support",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/multilingual-support.md",
+      "content_hash": "sha256:127de6098b0df878803c432a119370b9f058dec6c355df77c31e5888e418a68f",
+      "file": "references/031-Multilingual-support.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Parallel tool use",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use.md",
+      "content_hash": "sha256:93114657591b22819af64a7f730de5628099dc46a237a28862828cb5aa3a1c16",
+      "file": "references/032-Parallel-tool-use.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Memory tool",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool.md",
+      "content_hash": "sha256:34c839d4f51a25c028cb8eed157a38adbe5a51608069c7457eb564f02cefaab0",
+      "file": "references/033-Memory-tool.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Mid-conversation system messages and tool changes",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages.md",
+      "content_hash": "sha256:040f11bc78538925d6147fe998243ae4d5e1fdcb7b29a70a0e1e31c6c3ef2b20",
+      "file": "references/034-Mid-conversation-system-messages-and-tool-changes.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Manage tunnels in the Console",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/console.md",
+      "content_hash": "sha256:0c575053dd8eb156061c7d5281ded22f8bfe4c836e1631327f120261136dfbf2",
+      "file": "references/035-Manage-tunnels-in-the-Console.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "MCP connector",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/mcp-connector.md",
+      "content_hash": "sha256:1bc9052b67cc39e44e209ed7ccc390f7379a9da49cbc57181b24b198fff89b3b",
+      "file": "references/036-MCP-connector.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "MCP tunnels security",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/security.md",
+      "content_hash": "sha256:5a006ff76a24de6c00032113ba2d6405212ca5842252000b1a36188d7718f2f7",
+      "file": "references/037-MCP-tunnels-security.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "MCP tunnels reference",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/reference.md",
+      "content_hash": "sha256:66a6a46b6549dd7393c142547d7c7ec69337ac1e8782d57d68d17512290f9493",
+      "file": "references/038-MCP-tunnels-reference.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Manage tool context",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/manage-tool-context.md",
+      "content_hash": "sha256:087c0ff123a00866bb3d4ab4ba1a146768955f95b7ed455cd22505b0f8c20942",
+      "file": "references/039-Manage-tool-context.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "How tool use works",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/how-tool-use-works.md",
+      "content_hash": "sha256:2b0cd3ded0e493b01c195ab5bb0cec4c84d19a05297d32c61b043e930f0b2fde",
+      "file": "references/040-How-tool-use-works.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Handle streaming refusals",
+      "url": "https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals.md",
+      "content_hash": "sha256:622ecacff3683be097edf0f9d56c252d676cf6929009fadf17f0aba7804fa51f",
+      "file": "references/041-Handle-streaming-refusals.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Handle tool calls",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls.md",
+      "content_hash": "sha256:1695a5ffe3ddefecbcca6b3a3113a60e232c844aee23a8765081a23c75f7bc5b",
+      "file": "references/042-Handle-tool-calls.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Fast mode (research preview)",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/fast-mode.md",
+      "content_hash": "sha256:ba602d9e6f515c6e4d71ad71ef06b1e06a8836ee2ec48f4a0fea2ced9fd1b712",
+      "file": "references/043-Fast-mode-research-preview.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Files API",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/files.md",
+      "content_hash": "sha256:04c1e4f4980835d7076ca9095c9e2f6a327643673be4d9c6e0b6ddda2d2780c0",
+      "file": "references/044-Files-API.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Get your Claude API key",
+      "url": "https://platform.claude.com/docs/en/get-api-key.md",
+      "content_hash": "sha256:2de720ee243967bc57d192856e8c2bded591486bb8d5f3436e5538d3a07f6eee",
+      "file": "references/045-Get-your-Claude-API-key.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Fine-grained tool streaming",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming.md",
+      "content_hash": "sha256:4c85a83ad0bbecbb0c93af54ba52bb43e053a5ecb4dac6fcfcf4dae71e1ad406",
+      "file": "references/046-Fine-grained-tool-streaming.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Extended thinking",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/extended-thinking.md",
+      "content_hash": "sha256:c6a50a0c8d9c490391aecd0ee9f240072674fe48d19c0b85c23b0e8a834585b7",
+      "file": "references/047-Extended-thinking.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Fallback credit",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/fallback-credit.md",
+      "content_hash": "sha256:bb5946a93a8f950a8a24a57efa75d7a2dbb3741fa9c58927303e6159af8738d5",
+      "file": "references/048-Fallback-credit.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Embeddings",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/embeddings.md",
+      "content_hash": "sha256:71ea94c5e37fc9488caf6d53cec1c4bb98635fe6b39e70fef3970733b761b9a6",
+      "file": "references/049-Embeddings.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Effort",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/effort.md",
+      "content_hash": "sha256:040f611976efe1216d000d2a5c94d9cf9f744d6c13021a3e33814a7edf5be119",
+      "file": "references/050-Effort.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Coordinates and bounding boxes",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/vision-coordinates.md",
+      "content_hash": "sha256:603d3f8986b3ceea57344368192d285e21ea477f6d2515acac5a4c0053c1a274",
+      "file": "references/051-Coordinates-and-bounding-boxes.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Define tools",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools.md",
+      "content_hash": "sha256:ea218dc2c0c561511bc3c81ad985842492bfb49421a4d57cc510027b2b6daf5a",
+      "file": "references/052-Define-tools.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Deploy MCP tunnels with Docker Compose",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/deploy-compose.md",
+      "content_hash": "sha256:8ec754324968f193862d087b7b72b615db97bf3310e5d60dc3aad6cec310528f",
+      "file": "references/053-Deploy-MCP-tunnels-with-Docker-Compose.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Deploy MCP tunnels with Helm",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/deploy-helm.md",
+      "content_hash": "sha256:858904aa5106a703d54975ff480d2ad331065ebc454a1901c766e99ebfdfc42b",
+      "file": "references/054-Deploy-MCP-tunnels-with-Helm.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Context windows",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/context-windows.md",
+      "content_hash": "sha256:8cb9c37881354c6cae77792b2245c017fbeb47bcd3bc39dd5701f15d8222a7cd",
+      "file": "references/055-Context-windows.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Context editing",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/context-editing.md",
+      "content_hash": "sha256:33dac50c4e1f103ca7ff9443fb8a9af5c62df86b0cced678f896040ae799f889",
+      "file": "references/056-Context-editing.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Compaction",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/compaction.md",
+      "content_hash": "sha256:7bed3b97d60f672c3cfa9a706202597a5e1e2e27438ee608abc9ff08db50cb2a",
+      "file": "references/057-Compaction.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Computer use tool",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool.md",
+      "content_hash": "sha256:2b1edf8c46ec4111d4e2dfb7c3ac23deb0c94b00c7e4eb85a7c0afd8f6169cf1",
+      "file": "references/058-Computer-use-tool.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Code execution tool",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool.md",
+      "content_hash": "sha256:7560ede9ee12ec09f592e1c8dfec5b21fe2169ac78652c537aaa75803be07837",
+      "file": "references/059-Code-execution-tool.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Claude Platform on AWS",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws.md",
+      "content_hash": "sha256:2267e2d28d83327f9b21d50f5ea784647d43bbc01419987603eccbf9302b88db",
+      "file": "references/060-Claude-Platform-on-AWS.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Claude on Google Cloud",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai.md",
+      "content_hash": "sha256:8f648c1e8f92f59cb549b524b1bcf8d5502905f48c274c2e9122ff3fafd96269",
+      "file": "references/061-Claude-on-Google-Cloud.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Claude on Amazon Bedrock (Opus 4.6 and earlier)",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy.md",
+      "content_hash": "sha256:3437b7bd48d79b8bb41e750573b3f05f966ab9bebf5030f5f83f4d18a94ca2ee",
+      "file": "references/062-Claude-on-Amazon-Bedrock-Opus-4-6-and-earlier.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Claude in Amazon Bedrock (Opus 4.7 and later)",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock.md",
+      "content_hash": "sha256:520af15101a9ac530f0defe482fc2a9a3c7026a6007bba64fa48aa1048a3f20e",
+      "file": "references/063-Claude-in-Amazon-Bedrock-Opus-4-7-and-later.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Claude in Microsoft Foundry",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry.md",
+      "content_hash": "sha256:da3b79a023475c44b8e61e1f3545f6197d1112e75560f09b99d5d3ff15096d6c",
+      "file": "references/064-Claude-in-Microsoft-Foundry.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Cache diagnostics",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics.md",
+      "content_hash": "sha256:681cb785a89d3aec52ae08d1f197c76838b9d9e35cd253d23a47a14301b2fbb2",
+      "file": "references/065-Cache-diagnostics.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Citations",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/citations.md",
+      "content_hash": "sha256:bcc527500878f8943eb3ed2c22062550bf55483db352e2ef2df46cbf3bc64330",
+      "file": "references/066-Citations.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Batch processing",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/batch-processing.md",
+      "content_hash": "sha256:31345d9973209c35a433d20b15d63fa0b9362bc5d81998684267ee72db0bd738",
+      "file": "references/067-Batch-processing.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Build an orchestration mode",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/mid-conversation-effort-example.md",
+      "content_hash": "sha256:d1bd721810d7f7cf439d235a6c7f0d0d15de483102acc12d5c0a0fb79713ee27",
+      "file": "references/068-Build-an-orchestration-mode.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Architecture and components",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/concepts.md",
+      "content_hash": "sha256:a9058e59f22ac3a415324372ba65d539eeaf012a7a19012c0b4d08299b4ef2c3",
+      "file": "references/069-Architecture-and-components.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Bash tool",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/bash-tool.md",
+      "content_hash": "sha256:f264eb53773f413684805455e086cae47915fb3a2e92948736b6cc79ec10490e",
+      "file": "references/070-Bash-tool.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "MCP tunnels quickstart",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/quickstart.md",
+      "content_hash": "sha256:b965f39e62ed79337bebfe22491f1fd7b296850742ae8a88783e9f6ccc2eca75",
+      "file": "references/071-MCP-tunnels-quickstart.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "MCP tunnels",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/overview.md",
+      "content_hash": "sha256:f33aa36578b423f976464753cbfad5085d10e8f7c69b1f8767565e8ab4684366",
+      "file": "references/072-MCP-tunnels.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Tool use with Claude",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview.md",
+      "content_hash": "sha256:a7141716762e7ea881cfc38b9e9f017715634293dc09c57d7f7b06143a0cabae",
+      "file": "references/073-Tool-use-with-Claude.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Advisor tool",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool.md",
+      "content_hash": "sha256:e85a57ff20beb621d82a3c080324455a5bbdb071f2fef6bc3287b411c290ce41",
+      "file": "references/074-Advisor-tool.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Get started with Claude",
+      "url": "https://platform.claude.com/docs/en/get-started.md",
+      "content_hash": "sha256:ec3403458d728ac40c633fa6883d8c9431f68eedef478f3ff1d398e78eaecc89",
+      "file": "references/075-Get-started-with-Claude.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Intro to Claude",
+      "url": "https://platform.claude.com/docs/en/intro.md",
+      "content_hash": "sha256:f206e0216a52f124db8c321354c9f1ff71e2ef646d63bf147267cf24529477d6",
+      "file": "references/076-Intro-to-Claude.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Get started with Agent Skills in the API",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/quickstart.md",
+      "content_hash": "sha256:526584cadcee41bb5fe38a3104086955f66d20db20543d53d41aeaa4c97e2445",
+      "file": "references/077-Get-started-with-Agent-Skills-in-the-API.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Features overview",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/overview.md",
+      "content_hash": "sha256:de61711dcebc5beb3a28ffc2a4d2431cfa217abda72092417b08f84793fad5d2",
+      "file": "references/078-Features-overview.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Agent Skills",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview.md",
+      "content_hash": "sha256:554deaa2b07cad4d67d5c477a616316049b340783ef7218387a4fd00905e10b0",
+      "file": "references/079-Agent-Skills.md",
+      "source": "anthropic",
+      "version": "latest"
+    },
+    {
+      "title": "Documentation - Claude Platform Docs",
+      "url": "https://platform.claude.com/docs/en/home",
+      "content_hash": "sha256:d62095de8a647a038a578938f8010a95626c07867fed339b6f3acfebb2becc1b",
+      "file": "references/080-Documentation-Claude-Platform-Docs.md",
+      "source": "anthropic",
+      "version": "latest"
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+# Team Session - Agno
+
+Source: https://docs.agno.com/reference/teams/session
+
+## [​](#teamsession-attributes) TeamSession Attributes
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `session_id` | `str` | Required | Session UUID |
+| `team_id` | `Optional[str]` | `None` | ID of the team that this session is associated with |
+| `user_id` | `Optional[str]` | `None` | ID of the user interacting with this team |
+| `workflow_id` | `Optional[str]` | `None` | ID of the workflow that this session is associated with |
+| `team_data` | `Optional[Dict[str, Any]]` | `None` | Team Data: name, team\_id, and model |
+| `session_data` | `Optional[Dict[str, Any]]` | `None` | Session Data: session\_name, session\_state, images, videos, audio |
+| `metadata` | `Optional[Dict[str, Any]]` | `None` | Metadata stored with this team |
+| `runs` | `Optional[List[Union[TeamRunOutput, RunOutput]]]` | `None` | List of all runs in the session |
+| `summary` | `Optional[SessionSummary]` | `None` | Summary of the session |
+| `created_at` | `Optional[int]` | `None` | The unix timestamp when this session was created |
+| `updated_at` | `Optional[int]` | `None` | The unix timestamp when this session was last updated |
+
+## [​](#teamsession-methods) TeamSession Methods
+
+### [​](#upsert_run-run_response-unionteamrunoutput-runoutput) `upsert_run(run_response: Union[TeamRunOutput, RunOutput])`
+
+Adds a run to the runs list. If a run with the same `run_id` already exists, it updates the existing run.
+
+### [​](#get_run-run_id-str->-optionalunionteamrunoutput-runoutput) `get_run(run_id: str) -> Optional[Union[TeamRunOutput, RunOutput]]`
+
+Retrieves a specific run by its `run_id`.
+
+### [​](#get_messages->-listmessage) `get_messages(...) -> List[Message]`
+
+Returns the messages belonging to the session that fit the given criteria.
+**Parameters:**
+
+- `team_id` (Optional[str]): The id of the team to get the messages from
+- `member_ids` (Optional[List[str]]): The ids of the members to get the messages from
+- `last_n_runs` (Optional[int]): The number of runs to return messages from, counting from the latest. Defaults to all runs
+- `limit` (Optional[int]): The number of messages to return, counting from the latest. Defaults to all messages
+- `skip_roles` (Optional[List[str]]): Skip messages with these roles
+- `skip_statuses` (Optional[List[RunStatus]]): Skip messages with these statuses
+- `skip_history_messages` (bool): Skip messages that were tagged as history in previous runs. Defaults to True
+- `skip_member_messages` (bool): Skip messages created by members of the team. Defaults to True
+
+**Returns:**
+
+- `List[Message]`: The messages for the session
+
+### [​](#get_tool_calls-num_calls-optionalint-=-none->-listdictstr-any) `get_tool_calls(num_calls: Optional[int] = None) -> List[Dict[str, Any]]`
+
+Returns tool calls from the session’s messages, newest runs first. `num_calls` caps the number returned.
+
+### [​](#get_team_history-num_runs-optionalint-=-none->-listtuplestr-str) `get_team_history(num_runs: Optional[int] = None) -> List[Tuple[str, str]]`
+
+Gets the team leader’s history as (input, response) pairs from completed runs. `num_runs` limits how many recent runs are included.
+
+### [​](#get_team_history_context-num_runs-optionalint-=-none->-optionalstr) `get_team_history_context(num_runs: Optional[int] = None) -> Optional[str]`
+
+Gets the team history formatted as a string wrapped in `<team_history_context>` tags.
+
+### [​](#get_session_summary->-optionalsessionsummary) `get_session_summary() -> Optional[SessionSummary]`
+
+Get the session summary for the session
+
+### [​](#get_chat_history-last_n_runs-optionalint-=-none->-listmessage) `get_chat_history(last_n_runs: Optional[int] = None) -> List[Message]`
+
+Get the chat history (user and assistant messages) for the session. Use `get_messages()` for more filtering options.
+**Parameters:**
+
+- `last_n_runs` (Optional[int]): Number of recent runs to include. If None, all runs will be considered
+
+**Returns:**
+
+- `List[Message]`: The chat history for the session
+
+⌘I

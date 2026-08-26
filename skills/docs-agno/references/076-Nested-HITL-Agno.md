@@ -1,0 +1,125 @@
+# Nested HITL - Agno
+
+Source: https://docs.agno.com/workflows/hitl/nested
+
+A single step can use [step-level HITL](/workflows/hitl/step) (gate the step itself) and [executor-level HITL](/workflows/hitl/executor) (gate a tool call inside the agent) together. The workflow pauses twice in sequence: once *before* the step runs, then again *during* the step when the agent’s HITL tool is called.
+
+```
+from agno.agent import Agent
+from agno.db.sqlite import SqliteDb
+from agno.models.openai import OpenAIResponses
+from agno.tools import tool
+from agno.workflow.step import Step
+from agno.workflow.workflow import Workflow
+
+@tool(requires_confirmation=True)
+def send_alert(city: str, message: str) -> str:
+    return f"Alert sent for {city}: {message}"
+
+alert_agent = Agent(
+    name="AlertAgent",
+    model=OpenAIResponses(id="gpt-5.4"),
+    tools=[send_alert],
+    db=SqliteDb(db_file="workflow.db"),
+)
+
+workflow = Workflow(
+    name="DualConfirmation",
+    db=SqliteDb(db_file="workflow.db"),
+    steps=[
+        Step(
+            name="send_alert",
+            agent=alert_agent,
+            requires_confirmation=True,                       # step-level gate
+            confirmation_message="Proceed with sending the alert?",
+        ),
+    ],
+)
+```
+
+When this workflow runs:
+
+1. Pause 1 (step-level): the user sees `confirmation_message` and calls `req.confirm()`.
+2. Pause 2 (executor-level): the agent calls `send_alert` and the user approves the specific tool call.
+3. Step finishes.
+
+## [​](#the-active-requirement-pattern) The Active-Requirement Pattern
+
+`step_requirements` accumulates across pauses within a single run. The first pause adds the step-level requirement. After resolution and continue, a second pause adds the executor-level requirement on top of it. To detect the **current** pause type, always look at the last entry.
+
+```
+# Only the LAST requirement reflects the current pause state.
+_active = (run_output.step_requirements or [])[-1:]
+has_executor = any(r.requires_executor_input for r in _active)
+
+if has_executor:
+    resolve_executor_pause(run_output)
+else:
+    resolve_step_pause(run_output)
+```
+
+Iterating over the full `step_requirements` list re-reads requirements that were already resolved in earlier pauses of the same run. Two concrete failures:
+
+- **Wrong pause type detected.** If an earlier entry was an executor requirement and the current pause is step-level, `any(r.requires_executor_input for r in step_requirements)` is still `True`, so you run the executor branch and skip the step the workflow is actually waiting on. `continue_run` then raises because the active requirement is unresolved.
+- **Stale decisions reapplied.** A route selection or confirmation from a prior pause gets re-applied over the current one. For example, re-confirming an old router selection overrides the user’s new choice, sending the workflow down the previous branch.
+
+Scope to the active pause with `(run_output.step_requirements or [])[-1:]`, or use the filter properties (`steps_requiring_confirmation`, `steps_requiring_executor_resolution`, …) which already exclude resolved entries. See [Pause Anatomy](/workflows/hitl/pause-anatomy).
+
+## [​](#resolution-loop) Resolution Loop
+
+Wrap continue calls in a `while is_paused:` loop. Each pause resolves one gate; the workflow either pauses again or completes.
+
+```
+def resolve_step_pause(run_output):
+    for req in (run_output.step_requirements or [])[-1:]:
+        if req.requires_confirmation and not req.requires_executor_input:
+            req.confirm()  # or req.reject()
+
+def resolve_executor_pause(run_output):
+    for req in (run_output.step_requirements or [])[-1:]:
+        if req.requires_executor_input:
+            for executor_req in req.executor_requirements or []:
+                # Entries are serialized RunRequirement dicts. Mutate them in place.
+                executor_req["confirmation"] = True  # False to reject
+                executor_req["tool_execution"]["confirmed"] = True
+
+run_output = workflow.run("Send a weather alert for Tokyo about heavy rain")
+
+while run_output.is_paused:
+    _active = (run_output.step_requirements or [])[-1:]
+    if any(r.requires_executor_input for r in _active):
+        resolve_executor_pause(run_output)
+    else:
+        resolve_step_pause(run_output)
+
+    run_output = workflow.continue_run(run_output)
+
+print(run_output.content)
+```
+
+## [​](#cookbooks) Cookbooks
+
+Runnable examples in [cookbook/04\_workflows/08\_human\_in\_the\_loop/dual\_level\_hitl/](https://github.com/agno-agi/agno/tree/main/cookbook/04_workflows/08_human_in_the_loop/dual_level_hitl):
+
+| File | Step-Level Gate | Executor-Level Gate |
+| --- | --- | --- |
+| `01_step_confirmation_and_tool_confirmation.py` | Step confirmation | Tool confirmation |
+| `02_step_user_input_and_tool_confirmation.py` | Step user input | Tool confirmation |
+| `03_condition_and_tool_confirmation.py` | Condition confirmation | Tool confirmation |
+| `04_router_selection_and_tool_confirmation.py` | Router route selection | Tool confirmation |
+| `05_output_review_and_tool_confirmation.py` | Step output review | Tool confirmation |
+| `06_loop_confirmation_and_tool_confirmation.py` | Loop start confirmation | Tool confirmation |
+| `07_router_confirmation_and_tool_confirmation.py` | Router confirmation | Tool confirmation |
+| `09_multi_step_mixed_hitl.py` | Multiple steps with mixed gates | Tool confirmation |
+
+## [​](#developer-resources) Developer Resources
+
+- [HITL overview](/workflows/hitl/overview)
+- [Pause Anatomy](/workflows/hitl/pause-anatomy)
+- [Step HITL](/workflows/hitl/step)
+- [Executor HITL](/workflows/hitl/executor)
+- [Output Review](/workflows/hitl/output-review)
+- [Router HITL](/workflows/hitl/router)
+- [Cookbooks](https://github.com/agno-agi/agno/tree/main/cookbook/04_workflows/08_human_in_the_loop/dual_level_hitl)
+
+⌘I

@@ -1,0 +1,132 @@
+# Deploy a Flask app on Vercel
+
+Source: https://vercel.com/docs/frameworks/backend/flask
+
+---
+title: Deploy a Flask app on Vercel
+product: vercel
+url: /docs/frameworks/backend/flask
+canonical\_url: "https://vercel.com/docs/frameworks/backend/flask"
+last\_updated: 2026-07-06
+type: how-to
+prerequisites:
+- /docs/frameworks/backend
+- /docs/frameworks
+related:
+- /docs/cli/init
+- /docs/cli/deploy
+- /docs/cdn
+- /docs/headers
+- /docs/functions
+summary: Deploy a Flask app on Vercel. Learn how the Python runtime, WSGI, static assets, and Vercel Functions work together.
+install\_vercel\_plugin: npx plugins add vercel/vercel-plugin
+---
+# Deploy a Flask app on Vercel
+Deploy a Flask app to Vercel with the Python runtime and Vercel Functions.
+Vercel looks for a `Flask` instance named `app` at supported entrypoints in
+your repository.
+## Create or import your app
+Create a Flask app or use an existing one:
+### Get started with Vercel CLI
+Initialize a new Flask project with the [Vercel CLI `init` command](/docs/cli/init):
+```bash filename="terminal"
+vc init flask
+```
+This clones the [Flask example repository](https://github.com/vercel/vercel/tree/main/examples/flask) in a directory called `flask`.
+## Exporting the Flask application
+To run a Flask application on Vercel, define an `app` instance that initializes `Flask` at a supported entrypoint:
+- `app.py`, `index.py`, `server.py`, `main.py`, `wsgi.py`, or `asgi.py`
+- the same filenames inside `src/`, `app/`, or `api/`
+For example:
+```py filename="main.py"
+from flask import Flask
+app = Flask(\_\_name\_\_)
+@app.route("/")
+def hello\_world():
+return {"message": "Hello, World!"}
+```
+To point Vercel to a Flask app in a custom module, set `tool.vercel.entrypoint` in `pyproject.toml`:
+```toml filename="pyproject.toml"
+[tool.vercel]
+entrypoint = "backend.server:app"
+```
+The `tool.vercel.entrypoint` value tells Vercel to look for a `Flask` instance named `app` in `./backend/server.py`.
+### Build command
+The `build` property in `[tool.vercel.scripts]` defines the Build Command for Flask deployments. It runs after dependencies are installed and before your application is deployed.
+```toml filename="pyproject.toml"
+[tool.vercel.scripts]
+build = "python build.py"
+```
+For example:
+```py filename="build.py"
+def main():
+print("Running build command...")
+with open("build.txt", "w") as f:
+f.write("BUILD\_COMMAND")
+if \_\_name\_\_ == "\_\_main\_\_":
+main()
+```
+> \*\*💡 Note:\*\* If you define a [Build
+> Command](https://vercel.com/docs/project-configuration/vercel-json#buildcommand) in
+> `vercel.json` or in the Project Settings dashboard, it takes precedence over a
+> build script in `pyproject.toml`.
+### Local development
+Use `vercel dev` to run your application locally.
+```bash filename="terminal"
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+vercel dev
+```
+> \*\*💡 Note:\*\* Minimum CLI version required: 48.2.10
+### Deploying the application
+Deploy the project by connecting your Git repository or by using the [Vercel CLI](/docs/cli/deploy):
+```bash filename="terminal"
+vc deploy
+```
+> \*\*💡 Note:\*\* Minimum CLI version required: 48.2.10
+## Serving static assets
+To serve static assets, place them in the `public/\*\*` directory. Vercel serves
+those files from the [CDN](/docs/cdn) with default [headers](/docs/headers)
+unless you override them in `vercel.json`.
+```py filename="app.py" highlight={5-7}
+from flask import Flask, redirect
+app = Flask(\_\_name\_\_)
+@app.route("/favicon.ico")
+def favicon():
+# /vercel.svg is automatically served when included in the public/\*\* directory.
+return redirect("/vercel.svg", code=307)
+```
+> \*\*💡 Note:\*\* Flask's `app.static\_folder` should not be used for static files on Vercel. Use
+> the `public/\*\*` directory instead.
+## Vercel Functions
+When you deploy a Flask app to Vercel, it becomes a single [Vercel
+Function](/docs/functions). Vercel uses [Fluid
+compute](/docs/fluid-compute) by default, so the function scales with traffic.
+To configure that function, add an entry to the [`functions`
+object](/docs/project-configuration/vercel-json#functions) in `vercel.json` keyed by your
+resolved entrypoint file. For example, to let an app defined in `main.py`
+run for up to 60 seconds, set `maxDuration`:
+```json filename="vercel.json"
+{
+"$schema": "https://openapi.vercel.sh/vercel.json",
+"functions": {
+"main.py": {
+"maxDuration": 60
+}
+}
+}
+```
+For more options, see [Configuring
+functions](/docs/functions/configuring-functions) and the [`functions`
+property](/docs/project-configuration/vercel-json#functions).
+## Limitations
+All [Vercel Functions limitations](/docs/functions/limitations) apply to Flask applications, including:
+- \*\*Application size\*\*: The Flask application becomes a single bundle, which has a standard bundle size limit of 500MB. [Large Functions](/docs/functions/limitations#large-functions-beta) support Python bundles up to 5GB on Fluid compute when enabled (public beta).
+## More resources
+For more about deploying Flask on Vercel, see:
+- [Flask official documentation](https://flask.palletsprojects.com/)
+- [Vercel Functions documentation](/docs/functions)
+- [Backend templates on Vercel](https://vercel.com/templates?type=backend)
+---
+[View full sitemap](/docs/sitemap)

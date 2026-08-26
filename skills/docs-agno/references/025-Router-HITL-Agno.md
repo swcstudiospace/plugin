@@ -1,0 +1,287 @@
+# Router HITL - Agno
+
+Source: https://docs.agno.com/workflows/hitl/router
+
+Routers support three HITL modes: user selection (user chooses routes), confirmation (user approves automated routing), and output review (review router output after execution).
+HITL settings are configured via [`HumanReview`](/workflows/hitl/human-review). The one exception is `allow_multiple_selections`, which is set directly on the `Router`.
+
+## [​](#user-selection) User Selection
+
+Let users choose which route(s) to execute. The router pauses and presents available choices.
+
+```
+from agno.workflow import Workflow
+from agno.workflow.router import Router
+from agno.workflow.step import Step
+from agno.workflow.types import HumanReview, StepInput, StepOutput
+from agno.db.sqlite import SqliteDb
+
+def prepare_data(step_input: StepInput) -> StepOutput:
+    return StepOutput(content="Data prepared: 1000 records ready for analysis")
+
+def quick_analysis(step_input: StepInput) -> StepOutput:
+    return StepOutput(content="Quick analysis: Basic metrics computed")
+
+def deep_analysis(step_input: StepInput) -> StepOutput:
+    return StepOutput(content="Deep analysis: Full statistical analysis")
+
+def custom_analysis(step_input: StepInput) -> StepOutput:
+    return StepOutput(content="Custom analysis: User-defined parameters")
+
+def generate_report(step_input: StepInput) -> StepOutput:
+    return StepOutput(content=f"Report:\n{step_input.previous_step_content}")
+
+workflow = Workflow(
+    name="analysis_workflow",
+    db=SqliteDb(db_file="workflow.db"),
+    steps=[
+        Step(name="prepare", executor=prepare_data),
+        Router(
+            name="analysis_router",
+            choices=[
+                Step(name="quick", description="Fast analysis (2 min)", executor=quick_analysis),
+                Step(name="deep", description="Full analysis (10 min)", executor=deep_analysis),
+                Step(name="custom", description="Custom parameters", executor=custom_analysis),
+            ],
+            human_review=HumanReview(
+                requires_user_input=True,
+                user_input_message="Select analysis type:",
+            ),
+            allow_multiple_selections=False,
+        ),
+        Step(name="report", executor=generate_report),
+    ],
+)
+
+run_output = workflow.run("Analyze Q4 data")
+
+if run_output.is_paused:
+    for req in run_output.steps_requiring_route:
+        print(f"Router: {req.step_name}")
+        print(f"Message: {req.user_input_message}")
+        print(f"Options: {req.available_choices}")
+
+        choice = input("Select: ")
+        req.select(choice)
+
+    run_output = workflow.continue_run(run_output)
+
+print(run_output.content)
+```
+
+### [​](#parameters) Parameters
+
+| Field | Set on | Type | Description |
+| --- | --- | --- | --- |
+| `requires_user_input` | `HumanReview` | `bool` | Pause for user to select route(s) |
+| `user_input_message` | `HumanReview` | `str` | Message shown to the user |
+| `allow_multiple_selections` | `Router` | `bool` | Allow selecting multiple routes (default: `False`) |
+
+### [​](#selection-methods) Selection Methods
+
+| Method | Description |
+| --- | --- |
+| `req.select("route_name")` | Select a single route |
+| `req.select_single("route_name")` | Select exactly one route |
+| `req.select_multiple(["a", "b"])` | Select multiple routes (requires `allow_multiple_selections=True`) |
+
+## [​](#multiple-selection) Multiple Selection
+
+Allow users to select multiple routes. Selected routes execute in sequence.
+
+```
+Router(
+    name="processing_pipeline",
+    choices=[
+        Step(name="clean", description="Clean data", executor=clean_data),
+        Step(name="validate", description="Validate data", executor=validate_data),
+        Step(name="enrich", description="Enrich data", executor=enrich_data),
+        Step(name="transform", description="Transform data", executor=transform_data),
+    ],
+    human_review=HumanReview(
+        requires_user_input=True,
+        user_input_message="Select processing steps:",
+    ),
+    allow_multiple_selections=True,
+)
+```
+
+Handle multiple selections:
+
+```
+for req in run_output.steps_requiring_route:
+    print(f"Available: {req.available_choices}")
+
+    # User selects: "clean, validate, transform"
+    selections = input("Select (comma-separated): ").split(",")
+    selections = [s.strip() for s in selections]
+
+    req.select_multiple(selections)
+```
+
+The selected steps execute in the order they were selected. Unknown names are skipped with a warning.
+
+## [​](#confirmation-mode) Confirmation Mode
+
+Confirm automated routing decisions. A selector function determines the route, but the user must approve before execution.
+
+```
+def route_by_priority(step_input: StepInput) -> str:
+    content = step_input.previous_step_content or ""
+    if "urgent" in content.lower():
+        return "urgent_handler"
+    elif "billing" in content.lower():
+        return "billing_handler"
+    return "general_handler"
+
+Router(
+    name="request_router",
+    choices=[
+        Step(name="urgent_handler", executor=handle_urgent),
+        Step(name="billing_handler", executor=handle_billing),
+        Step(name="general_handler", executor=handle_general),
+    ],
+    selector=route_by_priority,
+    human_review=HumanReview(
+        requires_confirmation=True,
+        confirmation_message="Proceed with the selected route?",
+    ),
+)
+```
+
+Handle confirmation:
+
+```
+for req in run_output.steps_requiring_confirmation:
+    print(f"Router: {req.step_name}")
+    print(f"Message: {req.confirmation_message}")
+
+    if input("Confirm? (y/n): ").lower() == "y":
+        req.confirm()
+    else:
+        req.reject()
+```
+
+### [​](#confirmation-parameters) Confirmation Parameters
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `requires_confirmation` | `bool` | Pause for user to confirm routing decision |
+| `confirmation_message` | `str` | Message shown to the user |
+| `on_reject` | `OnReject` | Action when rejected: `skip` (default), `cancel` |
+
+## [​](#output-review) Output Review
+
+Review a router’s output after execution. If rejected, the reviewer can pick a different route. Set `on_reject=OnReject.retry` to re-route on rejection. See the dedicated [Output Review](/workflows/hitl/output-review) page for full details.
+
+```
+from agno.workflow import Workflow, OnReject
+from agno.workflow.router import Router
+from agno.workflow.step import Step
+from agno.workflow.types import HumanReview, StepInput, StepOutput
+from agno.db.sqlite import SqliteDb
+
+workflow = Workflow(
+    name="router_review_workflow",
+    db=SqliteDb(db_file="workflow.db"),
+    steps=[
+        Router(
+            name="analysis_router",
+            selector=lambda si: [Step(name="quick", executor=quick_analysis)],
+            choices=[
+                Step(name="quick", description="Fast analysis (2 min)", executor=quick_analysis),
+                Step(name="deep", description="Thorough analysis (10 min)", executor=deep_analysis),
+                Step(name="custom", description="Custom analysis", executor=custom_analysis),
+            ],
+            human_review=HumanReview(
+                requires_output_review=True,
+                output_review_message="Review the analysis. Approve, or pick a different type?",
+                on_reject=OnReject.retry,
+                max_retries=5,
+            ),
+        ),
+        Step(name="report", executor=generate_report),
+    ],
+)
+
+run_output = workflow.run("Analyze Q4 sales data")
+
+while run_output.is_paused:
+    for req in run_output.steps_requiring_output_review:
+        print(req.step_output.content)
+        print(f"Available routes: {req.available_choices}")
+
+        choice = input("Approve? (yes/no): ").strip().lower()
+        if choice in ("yes", "y"):
+            req.confirm()
+        else:
+            req.reject()
+
+    # After rejection, pick a different route
+    for req in run_output.steps_requiring_route:
+        print(f"Pick a different route: {req.available_choices}")
+        selection = input("Your choice: ").strip()
+        req.select(selection)
+
+    run_output = workflow.continue_run(run_output)
+```
+
+The router executes the selected branch, then pauses for review. On rejection with `OnReject.retry`, the workflow re-pauses for route selection so the reviewer can pick a different branch.
+
+### [​](#output-review-parameters) Output Review Parameters
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `requires_output_review` | `bool` | `False` | Pause after execution for review |
+| `output_review_message` | `str` | `None` | Message shown to the reviewer |
+| `on_reject` | `OnReject` | `OnReject.skip` | Action on rejection: `skip`, `cancel`, `retry` (re-route) |
+| `max_retries` | `int` | `3` | Maximum re-route attempts |
+
+## [​](#comparing-hitl-modes) Comparing HITL Modes
+
+| Mode | When It Pauses | User Action | Use Case |
+| --- | --- | --- | --- |
+| User Selection | Before execution | Chooses route(s) | Interactive wizards, user-driven workflows |
+| Confirmation | Before execution | Approves/rejects | Oversight of automated decisions |
+| Output Review | After execution | Approves/rejects/re-routes | Review results before continuing |
+
+Use **user selection** when the user should decide the path. Use **confirmation** when the system decides but needs human approval. Use **output review** when the result matters more than the route chosen.
+
+## [​](#timeout) Timeout
+
+`timeout` and `on_timeout` only apply to Step confirmation and output-review pauses. Router pauses wait until they are resolved. See [Timeout](/workflows/hitl/timeout).
+
+## [​](#streaming) Streaming
+
+Handle router HITL in streaming workflows:
+
+```
+from agno.run.workflow import StepPausedEvent
+
+for event in workflow.run("input", stream=True, stream_events=True):
+    if isinstance(event, StepPausedEvent):
+        print(f"Paused at router: {event.step_name}")
+
+session = workflow.get_session()
+run_output = session.runs[-1]
+
+while run_output.is_paused:
+    for req in run_output.steps_requiring_route:
+        req.select(req.available_choices[0])
+
+    for event in workflow.continue_run(run_output, stream=True, stream_events=True):
+        pass
+
+    session = workflow.get_session()
+    run_output = session.runs[-1]
+```
+
+## [​](#developer-resources) Developer Resources
+
+- [HumanReview Config](/workflows/hitl/human-review)
+- [Output Review](/workflows/hitl/output-review)
+- [Workflow HITL overview](/workflows/hitl/overview)
+- [Router reference](/reference/workflows/router-steps)
+- [Branching workflow pattern](/workflows/workflow-patterns/branching-workflow)
+
+⌘I

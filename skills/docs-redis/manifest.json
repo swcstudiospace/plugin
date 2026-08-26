@@ -1,0 +1,595 @@
+{
+  "name": "docs-redis",
+  "generated_at": "2026-07-29T03:50:13Z",
+  "query": null,
+  "source_id": null,
+  "ranking": "all pages (recency)",
+  "page_count": 73,
+  "embedding_model": null,
+  "pages": [
+    {
+      "title": "Redis Insight v2.52.0, June 2024 | Docs",
+      "url": "https://redis.io/docs/latest/develop/tools/insight/release-notes/v.2.52.0",
+      "content_hash": "sha256:5c431a49c0b9fcdaaa98b5b09093c9a9db914403647220e263bd92944569fa8f",
+      "file": "references/001-Redis-Insight-v2-52-0-June-2024-Docs.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Redis Insight v2.58.0, October 2024 | Docs",
+      "url": "https://redis.io/docs/latest/develop/tools/insight/release-notes/v.2.58.0",
+      "content_hash": "sha256:e5b0687dc0dd17fa8920be50e95969427294451ebf547f76480fa1d7db32e427",
+      "file": "references/002-Redis-Insight-v2-58-0-October-2024-Docs.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Redis Insight v2.56.0, September 2024 | Docs",
+      "url": "https://redis.io/docs/latest/develop/tools/insight/release-notes/v.2.56.0",
+      "content_hash": "sha256:826d25d18d37178fc088212be9c215ab107faf5a0b3b3d02e36ea181edd797e8",
+      "file": "references/003-Redis-Insight-v2-56-0-September-2024-Docs.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Redis Insight v2.54.0, August 2024 | Docs",
+      "url": "https://redis.io/docs/latest/develop/tools/insight/release-notes/v.2.54.0",
+      "content_hash": "sha256:0840e581f62d246006424506605e9e9ef108bc4ff5cae6725a17e8788b4067ec",
+      "file": "references/004-Redis-Insight-v2-54-0-August-2024-Docs.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Redis Insight v2.62.0, November 2024 | Docs",
+      "url": "https://redis.io/docs/latest/develop/tools/insight/release-notes/v.2.62.0",
+      "content_hash": "sha256:e71a99663e8a0ce5370f781e853e492262841be784ae1f09f99cb7223c35d91a",
+      "file": "references/005-Redis-Insight-v2-62-0-November-2024-Docs.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Redis Insight v2.60.0, October 2024 | Docs",
+      "url": "https://redis.io/docs/latest/develop/tools/insight/release-notes/v.2.60.0",
+      "content_hash": "sha256:4c9da2e4387648efc97db458c960221684d503aecaae421072977d314390683e",
+      "file": "references/006-Redis-Insight-v2-60-0-October-2024-Docs.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Redis Insight v2.64.0, December 2024 | Docs",
+      "url": "https://redis.io/docs/latest/develop/tools/insight/release-notes/v.2.64.0",
+      "content_hash": "sha256:a451a842425865124e241ee5b666c2b8aa0fdcd23ab021243b542c202a94c687",
+      "file": "references/007-Redis-Insight-v2-64-0-December-2024-Docs.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Redis Insight v2.64.1, December 2024 | Docs",
+      "url": "https://redis.io/docs/latest/develop/tools/insight/release-notes/v.2.64.1",
+      "content_hash": "sha256:d6d4c608956a338588258267b83f4c1ca3b6cffede73b618bf5fef9065e322c7",
+      "file": "references/008-Redis-Insight-v2-64-1-December-2024-Docs.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Redis Insight v2.66.0, January 2025 | Docs",
+      "url": "https://redis.io/docs/latest/develop/tools/insight/release-notes/v.2.66.0",
+      "content_hash": "sha256:0ceab1b6b83ea6a5569c556390bde5e346f2cef069d69626cb311b8afd9ebaaf",
+      "file": "references/009-Redis-Insight-v2-66-0-January-2025-Docs.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Redis Insight v2.68.0, April 2025 | Docs",
+      "url": "https://redis.io/docs/latest/develop/tools/insight/release-notes/v.2.68.0",
+      "content_hash": "sha256:7c63134000d6eb47d57d96cafd0b816848c25f0c102dfabdaaa586a9a899dc63",
+      "file": "references/010-Redis-Insight-v2-68-0-April-2025-Docs.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Redis Insight v2.70.1, July 2025 | Docs",
+      "url": "https://redis.io/docs/latest/develop/tools/insight/release-notes/v.2.70.1",
+      "content_hash": "sha256:ee49b07f128f11f59cba92792bb1bf44e10909b4474778a28bcfa20cb5dbd269",
+      "file": "references/011-Redis-Insight-v2-70-1-July-2025-Docs.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Redis Insight v2.70.0, May 2025 | Docs",
+      "url": "https://redis.io/docs/latest/develop/tools/insight/release-notes/v.2.70.0",
+      "content_hash": "sha256:0287e3b12cf9c3090565c2940d064ea6a571b3c5732bd5bbc01f49f5379cb05b",
+      "file": "references/012-Redis-Insight-v2-70-0-May-2025-Docs.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Redis Insight v3.0.0, November 2025 | Docs",
+      "url": "https://redis.io/docs/latest/develop/tools/insight/release-notes/v.3.0.0",
+      "content_hash": "sha256:1c2dbab8266bd1926891f8fee5173ec72311c2afc9018dec82c242704d874fd2",
+      "file": "references/013-Redis-Insight-v3-0-0-November-2025-Docs.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Redis Insight v3.0.3, February 2026 | Docs",
+      "url": "https://redis.io/docs/latest/develop/tools/insight/release-notes/v.3.0.3",
+      "content_hash": "sha256:f7b2c801ed4222d73fd60652c55cd6bb04d39b221b6d5afe76845039755a7aca",
+      "file": "references/014-Redis-Insight-v3-0-3-February-2026-Docs.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Redis Insight v3.0.2, January 2026 | Docs",
+      "url": "https://redis.io/docs/latest/develop/tools/insight/release-notes/v.3.0.2",
+      "content_hash": "sha256:51da5007977230084f2d3fbf73cc0e50d1053b400a15ea5ffcbcee6a3700596a",
+      "file": "references/015-Redis-Insight-v3-0-2-January-2026-Docs.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Redis Insight v3.2.0, February 2026 | Docs",
+      "url": "https://redis.io/docs/latest/develop/tools/insight/release-notes/v.3.2.0",
+      "content_hash": "sha256:59d17dc462001ab68e2d5361d84385e19012f7caefe99c018e90b89e9ddb8098",
+      "file": "references/016-Redis-Insight-v3-2-0-February-2026-Docs.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Redis Insight v3.4.2, April 2026 | Docs",
+      "url": "https://redis.io/docs/latest/develop/tools/insight/release-notes/v.3.4.2",
+      "content_hash": "sha256:2ab72661fbc1175d568a63ad01107c5bc2d280fdcc71fea86b65b2a22f79fe1a",
+      "file": "references/017-Redis-Insight-v3-4-2-April-2026-Docs.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Redis Insight v3.8.0, July 2026 | Docs",
+      "url": "https://redis.io/docs/latest/develop/tools/insight/release-notes/v.3.8.0",
+      "content_hash": "sha256:557d3bd86b065cf8a2f1569a2bb3e2f81ff7e96cf1fbf42e19e92c6b059c91f7",
+      "file": "references/018-Redis-Insight-v3-8-0-July-2026-Docs.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Redis Insight v3.4.1, April 2026 | Docs",
+      "url": "https://redis.io/docs/latest/develop/tools/insight/release-notes/v.3.4.1",
+      "content_hash": "sha256:0d967ed45598a98cbaf0fe0385c207f36e34aa33d54873e88a949a86a0d7b7f6",
+      "file": "references/019-Redis-Insight-v3-4-1-April-2026-Docs.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Redis 8.6 Commands Reference | Docs",
+      "url": "https://redis.io/docs/latest/commands/redis-8-6-commands",
+      "content_hash": "sha256:f95e8b9e41053c4d53f8a6d01616118b1fa80bc2c6f97a16c907ec8e9896998c",
+      "file": "references/020-Redis-8-6-Commands-Reference-Docs.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Redis Insight v3.6.0, June 2026 | Docs",
+      "url": "https://redis.io/docs/latest/develop/tools/insight/release-notes/v.3.6.0",
+      "content_hash": "sha256:db339ead7f6eaf8ffb17d076efce286c4d624fcf5270465ba479d7bb433e0f55",
+      "file": "references/021-Redis-Insight-v3-6-0-June-2026-Docs.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Redis 8.8 Commands Reference | Docs",
+      "url": "https://redis.io/docs/latest/commands/redis-8-8-commands",
+      "content_hash": "sha256:05724039a4a76f2466127e82c6e3c04f8adb40111a632e71b962a45dfc744c99",
+      "file": "references/022-Redis-8-8-Commands-Reference-Docs.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Release notes",
+      "url": "https://redis.io/docs/latest/operate/rs/release-notes/index.html.md",
+      "content_hash": "sha256:e1159bc2abfed9b27c4f69adff8763db4876f377f41fc3f82831e97a6eda3fd5",
+      "file": "references/023-Release-notes.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "redis-cli",
+      "url": "https://redis.io/docs/latest/operate/rs/references/cli-utilities/redis-cli/index.html.md",
+      "content_hash": "sha256:60a56a6f0958663a75d118ec4de3a6d08bc1ad53e6d06d3e823b0a806fc062e2",
+      "file": "references/024-redis-cli.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Redis for AI and search",
+      "url": "https://redis.io/docs/latest/develop/ai/index.html.md",
+      "content_hash": "sha256:ec33c40e9a1992446bb39abd884350c95408a0810f443fbefe5b4b5f43a5c3d5",
+      "file": "references/025-Redis-for-AI-and-search.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "REST API",
+      "url": "https://redis.io/docs/latest/operate/rs/references/rest-api/index.html.md",
+      "content_hash": "sha256:78bcd0f5d10e05316c86954384dd74307121cd90d63b4e0b94e0e81b92c142a7",
+      "file": "references/026-REST-API.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Network port configurations",
+      "url": "https://redis.io/docs/latest/operate/rs/networking/port-configurations/index.html.md",
+      "content_hash": "sha256:b1de5f3986ff5689455766960a2aa083a2a40105fe3b38df2733596b1b7f3549",
+      "file": "references/027-Network-port-configurations.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Redis Software product lifecycle",
+      "url": "https://redis.io/docs/latest/operate/rs/installing-upgrading/product-lifecycle/index.html.md",
+      "content_hash": "sha256:facf9c70930fc2f387a2d7ceb69760e8f254888a455c0a00ef3df61d75080898",
+      "file": "references/028-Redis-Software-product-lifecycle.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Redis Software",
+      "url": "https://redis.io/docs/latest/operate/rs/index.html.md",
+      "content_hash": "sha256:ecf4346dda06744783c93192022be4ce2536075786bb385d3de6c9cbdf592b5f",
+      "file": "references/029-Redis-Software.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Hardware requirements",
+      "url": "https://redis.io/docs/latest/operate/rs/installing-upgrading/install/plan-deployment/hardware-requirements/index.html.md",
+      "content_hash": "sha256:85f4298fbed993b5920c8572c061bae8c304fe7061f5b836b6c3f99da7b3fea0",
+      "file": "references/030-Hardware-requirements.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Test client connection",
+      "url": "https://redis.io/docs/latest/operate/rs/databases/connect/test-client-connectivity/index.html.md",
+      "content_hash": "sha256:b1a27f01767e038402392eeb858360c20570e3c14558a32488c563089cb97fdd",
+      "file": "references/031-Test-client-connection.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Install Redis Insight",
+      "url": "https://redis.io/docs/latest/operate/redisinsight/install/index.html.md",
+      "content_hash": "sha256:2e32a1592dbb674a3b47d010f56b62f757b113623cbc49bfc90b0cbe63c5f9ae",
+      "file": "references/032-Install-Redis-Insight.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Connect to a database",
+      "url": "https://redis.io/docs/latest/operate/rs/databases/connect/index.html.md",
+      "content_hash": "sha256:1fdc83f7b34792ba4ea4aba2a4f47bbae6dc299600669ea1ce52ec748359a087",
+      "file": "references/033-Connect-to-a-database.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Redis Cloud quick start",
+      "url": "https://redis.io/docs/latest/operate/rc/rc-quickstart/index.html.md",
+      "content_hash": "sha256:7b9725d5c17ca9160c7daef6372f767176190a59c08dec926f3a4e088b83b010",
+      "file": "references/034-Redis-Cloud-quick-start.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Redis Cloud",
+      "url": "https://redis.io/docs/latest/operate/rc/index.html.md",
+      "content_hash": "sha256:6856cecea3933d321922c128bd4c6e89c5ab55cfb243628c30feba17474be485",
+      "file": "references/035-Redis-Cloud.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Back up and export a database",
+      "url": "https://redis.io/docs/latest/operate/rc/databases/back-up-data/index.html.md",
+      "content_hash": "sha256:bb8a8783de045d8165b88d487607772a4941013997a54419db1865bb4d098c0e",
+      "file": "references/036-Back-up-and-export-a-database.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "ACL",
+      "url": "https://redis.io/docs/latest/operate/oss_and_stack/management/security/acl/index.html.md",
+      "content_hash": "sha256:7e3ccf97fa633bc9b8f3b3276c6b99916212880b874508bd9333a8a901d371cd",
+      "file": "references/037-ACL.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Redis persistence",
+      "url": "https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/index.html.md",
+      "content_hash": "sha256:04de42c042629bacfd8216b9dbf9c0de3a82dea16160063ddf84019baeaf3632",
+      "file": "references/038-Redis-persistence.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Redis Enterprise for Kubernetes",
+      "url": "https://redis.io/docs/latest/operate/kubernetes/index.html.md",
+      "content_hash": "sha256:c6878636bb543f5d6445ebb2ef79933ec0f0d291eee2f78c9345540c89fbe54d",
+      "file": "references/039-Redis-Enterprise-for-Kubernetes.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Redis configuration",
+      "url": "https://redis.io/docs/latest/operate/oss_and_stack/management/config/index.html.md",
+      "content_hash": "sha256:8721e5321456d42b00a5c58f0b146b0336515eeb48271578ac9424b6429f4e6f",
+      "file": "references/040-Redis-configuration.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Install Redis Open Source",
+      "url": "https://redis.io/docs/latest/operate/oss_and_stack/install/install-stack/index.html.md",
+      "content_hash": "sha256:0a186e323425c1b479946b7f66df33fe7b290411a5e2477412cfcddb7698bcc0",
+      "file": "references/041-Install-Redis-Open-Source.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Redis products",
+      "url": "https://redis.io/docs/latest/operate/index.html.md",
+      "content_hash": "sha256:b0100a1b0f027ab827797063ed27e7666a7417a1dbf76f39d50fdd8e0d3a19f5",
+      "file": "references/042-Redis-products.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Create a Redis Cloud database with the Vercel integration",
+      "url": "https://redis.io/docs/latest/operate/rc/cloud-integrations/vercel/index.html.md",
+      "content_hash": "sha256:1710c0c026719fc4accace9ce1e48123babe647d85fab5b7e33b63b52936c14f",
+      "file": "references/043-Create-a-Redis-Cloud-database-with-the-Vercel-integration.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "RIOT-X",
+      "url": "https://redis.io/docs/latest/integrate/riot/index.html.md",
+      "content_hash": "sha256:cb249d20b95dd14adf268d06a5ae5a610c57eeb025a2bc9c2587ffcba21d539e",
+      "file": "references/044-RIOT-X.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Prometheus metrics v2",
+      "url": "https://redis.io/docs/latest/integrate/prometheus-with-redis-enterprise/prometheus-metrics-definitions/index.html.md",
+      "content_hash": "sha256:440a6f62b87f947216439cff0c329aa1ebf0c1bca5b3c501a8f7d69ca3b1fa2d",
+      "file": "references/045-Prometheus-metrics-v2.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Python client for Redis",
+      "url": "https://redis.io/docs/latest/integrate/redis-py/index.html.md",
+      "content_hash": "sha256:ed2d3d687ca9cfd0bdfef5b87eac32415af7781cb0aa11cc6e38e70e34272795",
+      "file": "references/046-Python-client-for-Redis.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "RedisVL",
+      "url": "https://redis.io/docs/latest/integrate/redisvl/index.html.md",
+      "content_hash": "sha256:ed8db5be376e8b5202820a3e4d6aa61f6934b4131a511a9c6fd0cbfce92d69e8",
+      "file": "references/047-RedisVL.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Libraries and tools",
+      "url": "https://redis.io/docs/latest/integrate/index.html.md",
+      "content_hash": "sha256:0ed3d9541e559676c45e1397863d741446ded0c1575e5cc8f63fb166d0ccdc11",
+      "file": "references/048-Libraries-and-tools.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "redis-py guide (Python)",
+      "url": "https://redis.io/docs/latest/develop/clients/redis-py/index.html.md",
+      "content_hash": "sha256:3a06ca96dde794a9159470bde3cf5d8f9fbc7b595a956ef16d9be526ff555223",
+      "file": "references/049-redis-py-guide-Python.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Redis Data Integration",
+      "url": "https://redis.io/docs/latest/integrate/redis-data-integration/index.html.md",
+      "content_hash": "sha256:2aa0a99caa59225441b448002a0588f8dbf6379f24be06b7a01f480cc1202501",
+      "file": "references/050-Redis-Data-Integration.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "go-redis guide (Go)",
+      "url": "https://redis.io/docs/latest/develop/clients/go/index.html.md",
+      "content_hash": "sha256:88d65f5690a4e25400d5a4bd83655444985aa95f2969773391533562cee060aa",
+      "file": "references/051-go-redis-guide-Go.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "StackExchange.Redis guide (C#/.NET)",
+      "url": "https://redis.io/docs/latest/develop/clients/dotnet/index.html.md",
+      "content_hash": "sha256:54b85892f8a6b8fc055bfa8ca275067e671faea957a6be24a76cfde33c3b96d0",
+      "file": "references/052-StackExchange-Redis-guide-C-NET.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Jedis guide (Java)",
+      "url": "https://redis.io/docs/latest/develop/clients/jedis/index.html.md",
+      "content_hash": "sha256:f36348446cd6346775e891bd26310447f51e3d1a514089743091970af973b3a2",
+      "file": "references/053-Jedis-guide-Java.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "node-redis guide (JavaScript)",
+      "url": "https://redis.io/docs/latest/develop/clients/nodejs/index.html.md",
+      "content_hash": "sha256:4c52f460a86a1f824cd7ead0b30c377cf7ee7d6db171e01d6cf6ed87b2503ebb",
+      "file": "references/054-node-redis-guide-JavaScript.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Redis for VS Code",
+      "url": "https://redis.io/docs/latest/develop/tools/redis-for-vscode/index.html.md",
+      "content_hash": "sha256:786c2c12588276a4e14b71bc413d02a41048643faceba4e6ba86fb2b46f1ed41",
+      "file": "references/055-Redis-for-VS-Code.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Redis Insight release notes",
+      "url": "https://redis.io/docs/latest/develop/tools/insight/release-notes/index.html.md",
+      "content_hash": "sha256:c736a863ceff12e5f36412f3ed3b351e829df4841f636e818091d6370e54414e",
+      "file": "references/056-Redis-Insight-release-notes.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Connect with Redis client API libraries",
+      "url": "https://redis.io/docs/latest/develop/clients/index.html.md",
+      "content_hash": "sha256:cad55a8ff134d4149132c59828bc4740414c2b7bb3f4c7c91d86c1eebaa56bd6",
+      "file": "references/057-Connect-with-Redis-client-API-libraries.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Key eviction",
+      "url": "https://redis.io/docs/latest/develop/reference/eviction/index.html.md",
+      "content_hash": "sha256:bdcf0afe8fed25f9e52ee14e7d1370b205fce70c3244bd9f0dc8000278f19c2a",
+      "file": "references/058-Key-eviction.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Redis CLI",
+      "url": "https://redis.io/docs/latest/develop/tools/cli/index.html.md",
+      "content_hash": "sha256:829207bfc2ad39deb3216c98d87730d636a7f71b1247c8bb9f092a01ffcf7f90",
+      "file": "references/059-Redis-CLI.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Redis Streams",
+      "url": "https://redis.io/docs/latest/develop/data-types/streams/index.html.md",
+      "content_hash": "sha256:fe65729a693ac16ed98d952da3fa200e83036e8442df8bc1b9df91fd29f830b1",
+      "file": "references/060-Redis-Streams.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Redis data types",
+      "url": "https://redis.io/docs/latest/develop/data-types/index.html.md",
+      "content_hash": "sha256:2e3cc444f3035f7f74506dff2759c5011c155dd77702bacc7c2ae1744e3e2e6a",
+      "file": "references/061-Redis-data-types.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Develop with Redis",
+      "url": "https://redis.io/docs/latest/develop/index.html.md",
+      "content_hash": "sha256:fc628b7fa92473027a475fb76fc4b7ff09433c480e3c84eb9d1e69e9bb211582",
+      "file": "references/062-Develop-with-Redis.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "TTL",
+      "url": "https://redis.io/docs/latest/commands/ttl/index.html.md",
+      "content_hash": "sha256:77607171c8850823f4be5020e2d631368db381d2cd860d1b84f37ec604fac436",
+      "file": "references/063-TTL.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "SET",
+      "url": "https://redis.io/docs/latest/commands/set/index.html.md",
+      "content_hash": "sha256:f0f0e3c902e7d73b284b832a5490899def49e960066f4a7ac133f0a34f05ed12",
+      "file": "references/064-SET.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "GET",
+      "url": "https://redis.io/docs/latest/commands/get/index.html.md",
+      "content_hash": "sha256:8d66628521b4147f22a484a5877bd8ae181aa319717a64205bb4437ca0da2b9f",
+      "file": "references/065-GET.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "HSET",
+      "url": "https://redis.io/docs/latest/commands/hset/index.html.md",
+      "content_hash": "sha256:128c3c44abc0a92ef91df14343c388e2f84a50ee156cbbb0ebba7f3a7673524b",
+      "file": "references/066-HSET.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "DEL",
+      "url": "https://redis.io/docs/latest/commands/del/index.html.md",
+      "content_hash": "sha256:463fa1fac39cfeaa260628d2de3772c802aca31b441a71bb5623ff22096496c4",
+      "file": "references/067-DEL.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "AUTH",
+      "url": "https://redis.io/docs/latest/commands/auth/index.html.md",
+      "content_hash": "sha256:97375ddc0247753737edf91513bce97d1c5124a9cfdb44e10ec50328f201bbe2",
+      "file": "references/068-AUTH.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "EXPIRE",
+      "url": "https://redis.io/docs/latest/commands/expire/index.html.md",
+      "content_hash": "sha256:99103d48d931b0e816a616a836879a3b21714c141b1daf608e65b731d3b98cce",
+      "file": "references/069-EXPIRE.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Commands | Docs",
+      "url": "https://redis.io/docs/latest/commands",
+      "content_hash": "sha256:ace24e050195c65926048e1ba5ce04a008c901ae06bdb9a38cf7289f40ea4844",
+      "file": "references/070-Commands-Docs.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "APIs",
+      "url": "https://redis.io/docs/latest/apis/index.html.md",
+      "content_hash": "sha256:36b182a948be67edd6de9823dc2ddfc0bda5e51def4ddd9a713d1e53111e865e",
+      "file": "references/071-APIs.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Quick starts",
+      "url": "https://redis.io/docs/latest/develop/get-started/index.html.md",
+      "content_hash": "sha256:88cbda49583e24e4cc95b11dec85cc5f186d98b4ca2b82958ee1b64f0b3dfa7e",
+      "file": "references/072-Quick-starts.md",
+      "source": "redis",
+      "version": "latest"
+    },
+    {
+      "title": "Docs",
+      "url": "https://redis.io/docs/latest",
+      "content_hash": "sha256:092f9a10a277e6e5b13c2dfe5b0b725f0fda191f51088ba219a4d8709407a6a4",
+      "file": "references/073-Docs.md",
+      "source": "redis",
+      "version": "latest"
+    }
+  ]
+}

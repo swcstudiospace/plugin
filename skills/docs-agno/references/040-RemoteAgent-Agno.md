@@ -1,0 +1,318 @@
+# RemoteAgent - Agno
+
+Source: https://docs.agno.com/reference/agents/remote-agent
+
+`RemoteAgent` allows you to run agents that are hosted on a remote AgentOS instance. It provides the same interface as a local agent, making it easy to integrate remote agents into your applications or compose them into teams and workflows.
+
+## [​](#installation) Installation
+
+```
+pip install 'agno[os]'
+```
+
+## [​](#basic-usage) Basic Usage
+
+```
+from agno.agent import RemoteAgent
+
+# Create a remote agent pointing to a remote AgentOS instance
+agent = RemoteAgent(
+    base_url="http://localhost:7777",
+    agent_id="my-agent",
+)
+
+# Run the agent (async)
+response = await agent.arun("What is the capital of France?")
+print(response.content)
+```
+
+## [​](#parameters) Parameters
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `base_url` | `str` | Required | Base URL of the remote server (e.g., `"http://localhost:7777"`) |
+| `agent_id` | `str` | Required | ID of the remote agent to execute |
+| `protocol` | `Literal["agentos", "a2a"]` | `"agentos"` | Protocol to use for communication |
+| `a2a_protocol` | `Literal["rest", "json-rpc"]` | `"rest"` | A2A sub-protocol (only used when `protocol="a2a"`) |
+| `timeout` | `float` | `60.0` | Request timeout in seconds |
+| `config_ttl` | `float` | `300.0` | Time-to-live for cached configuration in seconds |
+
+## [​](#properties) Properties
+
+### [​](#id) `id`
+
+Returns the agent ID.
+
+```
+print(agent.id)  # "my-agent"
+```
+
+### [​](#name) `name`
+
+Returns the agent’s name from the remote configuration.
+
+```
+print(agent.name)  # "My Agent"
+```
+
+### [​](#description) `description`
+
+Returns the agent’s description from the remote configuration.
+
+```
+print(agent.description)  # "A helpful assistant agent"
+```
+
+### [​](#role) `role`
+
+Returns the agent’s role from the remote configuration. Unlike the other accessors, `role` is a method, so call it.
+
+```
+print(agent.role())  # "assistant"
+```
+
+### [​](#tools) `tools`
+
+Returns the agent’s tools as a list of dictionaries.
+
+```
+tools = agent.tools
+if tools:
+    for tool in tools:
+        print(tool["name"])
+```
+
+### [​](#db) `db`
+
+Returns a `RemoteDb` instance if the agent has a database configured.
+
+```
+if agent.db:
+    print(f"Database ID: {agent.db.id}")
+```
+
+### [​](#knowledge) `knowledge`
+
+Returns a `RemoteKnowledge` instance if the agent has knowledge configured.
+
+```
+if agent.knowledge:
+    print("Agent has knowledge enabled")
+```
+
+## [​](#methods) Methods
+
+### [​](#arun) `arun`
+
+Execute the remote agent asynchronously.
+
+```
+# Non-streaming
+response = await agent.arun(
+    "Tell me about Python",
+    user_id="user-123",
+    session_id="session-456",
+)
+print(response.content)
+
+# Streaming
+async for event in agent.arun(
+    "Tell me a story",
+    stream=True,
+    user_id="user-123",
+):
+    if hasattr(event, "content") and event.content:
+        print(event.content, end="", flush=True)
+```
+
+**Parameters:**
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `input` | `str | List | Dict | Message | BaseModel` | Required | The input message for the agent |
+| `stream` | `bool` | `False` | Whether to stream the response |
+| `user_id` | `Optional[str]` | `None` | User ID for the run |
+| `session_id` | `Optional[str]` | `None` | Session ID for context persistence |
+| `session_state` | `Optional[Dict]` | `None` | Session state dictionary |
+| `images` | `Optional[Sequence[Image]]` | `None` | Images to include |
+| `audio` | `Optional[Sequence[Audio]]` | `None` | Audio to include |
+| `videos` | `Optional[Sequence[Video]]` | `None` | Videos to include |
+| `files` | `Optional[Sequence[File]]` | `None` | Files to include |
+| `stream_events` | `Optional[bool]` | `None` | Whether to stream events |
+| `retries` | `Optional[int]` | `None` | Number of retries |
+| `knowledge_filters` | `Optional[Dict]` | `None` | Filters for knowledge search |
+| `add_history_to_context` | `Optional[bool]` | `None` | Add history to context |
+| `dependencies` | `Optional[Dict]` | `None` | Dependencies dictionary |
+| `add_dependencies_to_context` | `Optional[bool]` | `None` | Add dependencies to context |
+| `add_session_state_to_context` | `Optional[bool]` | `None` | Add session state to context |
+| `metadata` | `Optional[Dict]` | `None` | Metadata dictionary |
+| `auth_token` | `Optional[str]` | `None` | JWT token for authentication |
+
+**Returns:**
+
+- `RunOutput` when `stream=False`
+- `AsyncIterator[RunOutputEvent]` when `stream=True`
+
+### [​](#acontinue_run) `acontinue_run`
+
+Continue a paused agent run with tool results.
+
+```
+from agno.models.response import ToolExecution
+
+response = await agent.acontinue_run(
+    run_id="run-123",
+    updated_tools=[
+        ToolExecution(
+            tool_call_id="call-1",
+            result="Tool result here",
+        )
+    ],
+)
+```
+
+**Parameters:**
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `run_id` | `str` | Required | ID of the run to continue |
+| `updated_tools` | `Optional[List[ToolExecution]]` | `None` | Tool execution results |
+| `stream` | `bool` | `False` | Whether to stream the response |
+| `user_id` | `Optional[str]` | `None` | User ID |
+| `session_id` | `Optional[str]` | `None` | Session ID |
+| `auth_token` | `Optional[str]` | `None` | JWT token for authentication |
+
+**Returns:**
+
+- `RunOutput` when `stream=False`
+- `AsyncIterator[RunOutputEvent]` when `stream=True`
+
+### [​](#acancel_run) `acancel_run`
+
+Cancel a running agent execution.
+
+```
+success = await agent.acancel_run(run_id="run-123")
+if success:
+    print("Run cancelled")
+```
+
+**Parameters:**
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `run_id` | `str` | Required | ID of the run to cancel |
+| `auth_token` | `Optional[str]` | `None` | JWT token for authentication |
+
+**Returns:** `bool` - True if successfully cancelled
+
+### [​](#get_agent_config) `get_agent_config`
+
+Get the agent configuration from the remote server (always fetches fresh).
+
+```
+config = await agent.get_agent_config()
+print(f"Agent name: {config.name}")
+print(f"Model: {config.model}")
+```
+
+**Returns:** `AgentResponse`
+
+### [​](#refresh_config) `refresh_config`
+
+Force refresh the cached agent configuration.
+
+```
+config = await agent.refresh_config()
+```
+
+**Returns:** `Optional[AgentResponse]` (`None` when using the A2A protocol)
+`RemoteAgent` can connect to any A2A-compatible server using the `protocol="a2a"` parameter:
+
+### [​](#connecting-to-agno-a2a-servers) Connecting to Agno A2A Servers
+
+```
+from agno.agent import RemoteAgent
+
+# Connect to an Agno AgentOS with A2A interface
+agent = RemoteAgent(
+    base_url="http://localhost:7001/a2a/agents/my-agent",
+    agent_id="my-agent",
+    protocol="a2a",
+)
+
+response = await agent.arun("Hello!")
+print(response.content)
+```
+
+### [​](#connecting-to-google-adk) Connecting to Google ADK
+
+Google ADK uses JSON-RPC mode. Set `a2a_protocol="json-rpc"`:
+
+```
+from agno.agent import RemoteAgent
+
+# Connect to a Google ADK server
+agent = RemoteAgent(
+    base_url="http://localhost:8001",
+    agent_id="facts_agent",
+    protocol="a2a",
+    a2a_protocol="json-rpc",
+)
+
+response = await agent.arun("Tell me an interesting fact")
+print(response.content)
+
+# Streaming is also supported
+async for event in agent.arun("Tell me a story", stream=True):
+    if hasattr(event, "content") and event.content:
+        print(event.content, end="", flush=True)
+```
+
+| Protocol | a2a\_protocol | Use Case |
+| --- | --- | --- |
+| `"agentos"` | N/A | Default. Connect to Agno AgentOS REST API |
+| `"a2a"` | `"rest"` | Connect to A2A servers using REST endpoints |
+| `"a2a"` | `"json-rpc"` | Connect to Google ADK or pure JSON-RPC A2A servers |
+
+## [​](#using-in-agentos-gateway) Using in AgentOS Gateway
+
+Remote agents can be registered in a local AgentOS to create a gateway:
+
+```
+from agno.agent import RemoteAgent
+from agno.os import AgentOS
+
+agent_os = AgentOS(
+    agents=[
+        RemoteAgent(base_url="http://server-1:7777", agent_id="agent-1"),
+        RemoteAgent(base_url="http://server-2:7777", agent_id="agent-2"),
+    ],
+)
+```
+
+See [AgentOS Gateway](/agent-os/remote-execution/gateway) for more details.
+
+## [​](#error-handling) Error Handling
+
+```
+from agno.exceptions import RemoteServerUnavailableError
+
+try:
+    response = await agent.arun("Hello")
+except RemoteServerUnavailableError as e:
+    print(f"Remote server unavailable: {e.message}")
+```
+
+## [​](#authentication) Authentication
+
+For authenticated AgentOS instances, pass the `auth_token` parameter:
+
+```
+response = await agent.arun(
+    "Hello",
+    auth_token="your-jwt-token",
+)
+```
+
+⌘I

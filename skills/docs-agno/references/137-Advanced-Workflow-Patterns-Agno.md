@@ -1,0 +1,108 @@
+# Advanced Workflow Patterns - Agno
+
+Source: https://docs.agno.com/workflows/workflow-patterns/advanced-workflow-patterns
+
+**Pattern combination**: Conditional logic, parallel execution, iterative loops, custom processing, and dynamic routing
+Combine explicit control-flow patterns in one workflow.
+
+advanced\_workflow\_patterns.py
+
+```
+from agno.workflow import Condition, Loop, Parallel, Router, Step, StepInput, StepOutput, Workflow
+
+def is_tech_topic(step_input: StepInput) -> bool:
+    return "technology" in str(step_input.input).lower()
+
+def is_business_topic(step_input: StepInput) -> bool:
+    text = str(step_input.input).lower()
+    return "business" in text or "market" in text
+
+def research_technology(step_input: StepInput) -> StepOutput:
+    return StepOutput(content=f"Technology findings for {step_input.input}")
+
+def research_market(step_input: StepInput) -> StepOutput:
+    prior = step_input.previous_step_content or str(step_input.input)
+    return StepOutput(content=f"{prior}\nMarket sizing and competitor notes")
+
+def research_quality_check(outputs: list[StepOutput]) -> bool:
+    return any(len(str(output.content or "")) > 80 for output in outputs)
+
+def research_post_processor(step_input: StepInput) -> StepOutput:
+    research_data = step_input.previous_step_content or ""
+    return StepOutput(content=f"Consolidated research:\n{research_data}")
+
+def create_blog_post(step_input: StepInput) -> StepOutput:
+    return StepOutput(content=f"Blog post:\n{step_input.previous_step_content}")
+
+def create_social_post(step_input: StepInput) -> StepOutput:
+    return StepOutput(content=f"Social post:\n{step_input.previous_step_content}")
+
+def create_report(step_input: StepInput) -> StepOutput:
+    return StepOutput(content=f"Report:\n{step_input.previous_step_content}")
+
+def content_type_selector(step_input: StepInput) -> str:
+    text = str(step_input.input).lower()
+    if "social" in text:
+        return "Social Post"
+    if "blog" in text:
+        return "Blog Post"
+    return "Report"
+
+def final_review(step_input: StepInput) -> StepOutput:
+    return StepOutput(content=f"Reviewed deliverable:\n{step_input.previous_step_content}")
+
+blog_post_step = Step(name="Blog Post", executor=create_blog_post)
+social_media_step = Step(name="Social Post", executor=create_social_post)
+report_step = Step(name="Report", executor=create_report)
+
+workflow = Workflow(
+    name="Advanced Multi-Pattern Workflow",
+    steps=[
+        Parallel(
+            Condition(
+                name="Tech Check",
+                evaluator=is_tech_topic,
+                steps=[Step(name="Tech Research", executor=research_technology)],
+            ),
+            Condition(
+                name="Business Check",
+                evaluator=is_business_topic,
+                steps=[
+                    Loop(
+                        name="Deep Business Research",
+                        steps=[Step(name="Market Research", executor=research_market)],
+                        end_condition=research_quality_check,
+                        max_iterations=3,
+                        forward_iteration_output=True,
+                    ),
+                ],
+            ),
+            name="Conditional Research Phase",
+        ),
+        Step(
+            name="Research Post-Processing",
+            executor=research_post_processor,
+            description="Consolidate research findings",
+        ),
+        Router(
+            name="Content Type Router",
+            selector=content_type_selector,
+            choices=[blog_post_step, social_media_step, report_step],
+        ),
+        Step(name="Final Review", executor=final_review),
+    ],
+)
+
+workflow.print_response(
+    "Create a report on sustainable technology markets",
+    markdown=True,
+)
+```
+
+## [​](#developer-resources) Developer Resources
+
+- [Condition and Parallel Steps (Streaming Example)](/workflows/usage/condition-and-parallel-steps-stream)
+- [Loop with Parallel Steps (Streaming Example)](/workflows/usage/loop-with-parallel-steps-stream)
+- [Router with Loop Steps](/workflows/usage/router-with-loop-steps)
+
+⌘I

@@ -1,0 +1,84 @@
+# docs-nextjs
+
+Exported documentation references.
+
+- [Home](references/001-Home.md) — https://nextjs.org/docs/app/guides/testing/vitest
+- [Home](references/002-Home.md) — https://nextjs.org/docs/app/guides/testing/playwright
+- [page-3](references/003-page-3.md) — https://nextjs.org/docs/app/guides/third-party-libraries
+- [page-4](references/004-page-4.md) — https://nextjs.org/docs/app/guides/upgrading
+- [page-5](references/005-page-5.md) — https://nextjs.org/docs/app/guides/testing
+- [Hello, Next.js!](references/006-Hello-Next-js.md) — https://nextjs.org/docs/app/guides/tailwind-v3-css
+- [Home](references/007-Home.md) — https://nextjs.org/docs/app/guides/testing/jest
+- [Home](references/008-Home.md) — https://nextjs.org/docs/app/guides/testing/cypress
+- [page-9](references/009-page-9.md) — https://nextjs.org/docs/app/guides/server-actions
+- [page-10](references/010-page-10.md) — https://nextjs.org/docs/app/guides/single-page-applications
+- [page-11](references/011-page-11.md) — https://nextjs.org/docs/app/guides/streaming
+- [Index Page](references/012-Index-Page.md) — https://nextjs.org/docs/app/guides/static-exports
+- [Hello, Next.js!](references/013-Hello-Next-js.md) — https://nextjs.org/docs/app/guides/sass
+- [page-14](references/014-page-14.md) — https://nextjs.org/docs/app/guides/rendering-philosophy
+- [page-15](references/015-page-15.md) — https://nextjs.org/docs/app/guides/scripts
+- [page-16](references/016-page-16.md) — https://nextjs.org/docs/app/guides/self-hosting
+- [page-17](references/017-page-17.md) — https://nextjs.org/docs/app/guides/production-checklist
+- [page-18](references/018-page-18.md) — https://nextjs.org/docs/app/guides/progressive-web-apps
+- [Shop](references/019-Shop.md) — https://nextjs.org/docs/app/guides/public-static-pages
+- [page-20](references/020-page-20.md) — https://nextjs.org/docs/app/guides/redirecting
+- [page-21](references/021-page-21.md) — https://nextjs.org/docs/app/guides/ppr-platform-guide
+- [page-22](references/022-page-22.md) — https://nextjs.org/docs/app/guides/prefetching
+- [page-23](references/023-page-23.md) — https://nextjs.org/docs/app/guides/preventing-flash-before-hydration
+- [page-24](references/024-page-24.md) — https://nextjs.org/docs/app/guides/preserving-ui-state
+- [page-25](references/025-page-25.md) — https://nextjs.org/docs/app/guides/multi-tenant
+- [page-26](references/026-page-26.md) — https://nextjs.org/docs/app/guides/multi-zones
+- [page-27](references/027-page-27.md) — https://nextjs.org/docs/app/guides/open-telemetry
+- [Blog Post Title](references/028-Blog-Post-Title.md) — https://nextjs.org/docs/app/guides/package-bundling
+- [page-29](references/029-page-29.md) — https://nextjs.org/docs/app/guides/migrating/app-router-migration
+- [React App](references/030-React-App.md) — https://nextjs.org/docs/app/guides/migrating/from-create-react-app
+- [My App](references/031-My-App.md) — https://nextjs.org/docs/app/guides/migrating/from-vite
+- [page-32](references/032-page-32.md) — https://nextjs.org/docs/app/guides/migrating-to-cache-components
+- [{children}](references/033-children.md) — https://nextjs.org/docs/app/guides/mdx
+- [page-34](references/034-page-34.md) — https://nextjs.org/docs/app/guides/mcp
+- [page-35](references/035-page-35.md) — https://nextjs.org/docs/app/guides/migrating
+- [page-36](references/036-page-36.md) — https://nextjs.org/docs/app/guides/memory-usage
+- [page-37](references/037-page-37.md) — https://nextjs.org/docs/app/guides/internationalization
+- [page-38](references/038-page-38.md) — https://nextjs.org/docs/app/guides/json-ld
+- [page-39](references/039-page-39.md) — https://nextjs.org/docs/app/guides/local-development
+- [page-40](references/040-page-40.md) — https://nextjs.org/docs/app/guides/lazy-loading
+- [Hello World](references/041-Hello-World.md) — https://nextjs.org/docs/app/guides/environment-variables
+- [{post.title}](references/042-post-title.md) — https://nextjs.org/docs/app/guides/draft-mode
+- [page-43](references/043-page-43.md) — https://nextjs.org/docs/app/guides/forms
+- [page-44](references/044-page-44.md) — https://nextjs.org/docs/app/guides/how-revalidation-works
+- [page-45](references/045-page-45.md) — https://nextjs.org/docs/app/guides/instrumentation
+- [{post.title}](references/046-post-title.md) — https://nextjs.org/docs/app/guides/incremental-static-regeneration
+- [{user.name}](references/047-user-name.md) — https://nextjs.org/docs/app/guides/data-security
+- [page-48](references/048-page-48.md) — https://nextjs.org/docs/app/guides/custom-server
+- [page-49](references/049-page-49.md) — https://nextjs.org/docs/app/guides/debugging
+- [page-50](references/050-page-50.md) — https://nextjs.org/docs/app/guides/deploying-to-platforms
+- [page-51](references/051-page-51.md) — https://nextjs.org/docs/app/guides/content-security-policy
+- [page-52](references/052-page-52.md) — https://nextjs.org/docs/app/guides/css-in-js
+- [page-53](references/053-page-53.md) — https://nextjs.org/docs/app/guides/caching-without-cache-components
+- [${rssData.title}](references/054-rssData-title.md) — https://nextjs.org/docs/app/guides/backend-for-frontend
+- [See here for caching with `yarn`, `bun` or other package managers https://github.com/actions/cache/blob/main/examples.md or you can leverage caching with actions/setup-node https://github.com/actions/setup-node](references/055-See-here-for-caching-with-yarn-bun-or-other-package-managers.md) — https://nextjs.org/docs/app/guides/ci-build-caching
+- [page-56](references/056-page-56.md) — https://nextjs.org/docs/app/guides/cdn-caching
+- [Next.js: ALWAYS read docs before coding](references/057-Next-js-ALWAYS-read-docs-before-coding.md) — https://nextjs.org/docs/app/guides/ai-agents
+- [page-58](references/058-page-58.md) — https://nextjs.org/docs/app/guides
+- [Welcome, {user.name}](references/059-Welcome-user-name.md) — https://nextjs.org/docs/app/guides/authentication
+- [page-60](references/060-page-60.md) — https://nextjs.org/docs/app/guides/analytics
+- [Hello, Next.js!](references/061-Hello-Next-js.md) — https://nextjs.org/docs/app/getting-started/route-handlers
+- [page-62](references/062-page-62.md) — https://nextjs.org/docs/app/getting-started/proxy
+- [page-63](references/063-page-63.md) — https://nextjs.org/docs/app/getting-started/deploying
+- [page-64](references/064-page-64.md) — https://nextjs.org/docs/app/getting-started/upgrading
+- [page-65](references/065-page-65.md) — https://nextjs.org/docs/app/getting-started/images
+- [Welcome to Next.js!](references/066-Welcome-to-Next-js.md) — https://nextjs.org/docs/app/getting-started/css
+- [page-67](references/067-page-67.md) — https://nextjs.org/docs/app/getting-started/fonts
+- [page-68](references/068-page-68.md) — https://nextjs.org/docs/app/getting-started/metadata-and-og-images
+- [page-69](references/069-page-69.md) — https://nextjs.org/docs/app/getting-started/mutating-data
+- [My Blog](references/070-My-Blog.md) — https://nextjs.org/docs/app/getting-started/caching
+- [page-71](references/071-page-71.md) — https://nextjs.org/docs/app/getting-started/error-handling
+- [page-72](references/072-page-72.md) — https://nextjs.org/docs/app/getting-started/revalidating
+- [page-73](references/073-page-73.md) — https://nextjs.org/docs/app/getting-started/linking-and-navigating
+- [{post.title}](references/074-post-title.md) — https://nextjs.org/docs/app/getting-started/server-and-client-components
+- [Welcome to the Blog](references/075-Welcome-to-the-Blog.md) — https://nextjs.org/docs/app/getting-started/fetching-data
+- [Hello Next.js!](references/076-Hello-Next-js.md) — https://nextjs.org/docs/app/getting-started/layouts-and-pages
+- [Next.js Docs | Next.js](references/077-Next-js-Docs-Next-js.md) — https://nextjs.org/docs
+- [page-78](references/078-page-78.md) — https://nextjs.org/docs/app/getting-started
+- [page-79](references/079-page-79.md) — https://nextjs.org/docs/app/getting-started/project-structure
+- [Hello, Next.js!](references/080-Hello-Next-js.md) — https://nextjs.org/docs/app/getting-started/installation

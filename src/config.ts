@@ -2,10 +2,18 @@ import { existsSync, readFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { join } from "node:path";
 import { DEFAULT_BOARD_NAME, type IssuesConfig } from "./issues/types.ts";
+import { DEFAULT_GITHUB_ORG, type GithubConfig, type GreptileConfig, type SupabaseConfig } from "./mcp/types.ts";
+import { MAX_NODES, MIN_NODES, type ThinkConfig } from "./think/types.ts";
+import { DEFAULT_LSP_CONFIG, type LspConfig } from "./lsp/types.ts";
 
 export interface AioConfig {
 	uplift: { enabled: boolean; skipTrivial: boolean; maxChars: number; echo: boolean };
 	issues: IssuesConfig;
+	think: ThinkConfig;
+	github: GithubConfig;
+	greptile: GreptileConfig;
+	supabase: SupabaseConfig;
+	lsp: LspConfig;
 }
 
 export function defaultConfig(): AioConfig {
@@ -22,6 +30,24 @@ export function defaultConfig(): AioConfig {
 			ktuiBin: "ktui",
 			echo: true,
 		},
+		think: {
+			enabled: true,
+			minNodes: MIN_NODES,
+			maxNodes: MAX_NODES,
+		},
+		github: {
+			org: DEFAULT_GITHUB_ORG,
+			autoPr: true,
+		},
+		greptile: {
+			requiredForMerge: true,
+			bin: "greptile",
+			minConfidence: 5,
+		},
+		supabase: {
+			enabled: true,
+		},
+		lsp: { ...DEFAULT_LSP_CONFIG },
 	};
 }
 
@@ -69,6 +95,60 @@ function mergeIssues(issues: Record<string, unknown> | undefined, defaults: Issu
 	};
 }
 
+function mergeThink(think: Record<string, unknown> | undefined, defaults: ThinkConfig): ThinkConfig {
+	if (!think) return defaults;
+	const minNodes =
+		typeof think.minNodes === "number" && Number.isInteger(think.minNodes) && think.minNodes >= 1
+			? think.minNodes
+			: defaults.minNodes;
+	const maxNodes =
+		typeof think.maxNodes === "number" && Number.isInteger(think.maxNodes) && think.maxNodes >= minNodes
+			? Math.min(think.maxNodes, MAX_NODES)
+			: defaults.maxNodes;
+	return {
+		enabled: typeof think.enabled === "boolean" ? think.enabled : defaults.enabled,
+		minNodes: Math.min(minNodes, maxNodes),
+		maxNodes,
+	};
+}
+
+function mergeGithub(github: Record<string, unknown> | undefined, defaults: GithubConfig): GithubConfig {
+	if (!github) return defaults;
+	return {
+		org: typeof github.org === "string" && github.org.trim() ? github.org.trim() : defaults.org,
+		autoPr: typeof github.autoPr === "boolean" ? github.autoPr : defaults.autoPr,
+	};
+}
+
+function mergeGreptile(greptile: Record<string, unknown> | undefined, defaults: GreptileConfig): GreptileConfig {
+	if (!greptile) return defaults;
+	const minConfidence =
+		typeof greptile.minConfidence === "number" && Number.isFinite(greptile.minConfidence)
+			? Math.min(5, Math.max(1, greptile.minConfidence))
+			: defaults.minConfidence;
+	return {
+		requiredForMerge:
+			typeof greptile.requiredForMerge === "boolean" ? greptile.requiredForMerge : defaults.requiredForMerge,
+		bin: typeof greptile.bin === "string" && greptile.bin.trim() ? greptile.bin.trim() : defaults.bin,
+		minConfidence,
+	};
+}
+
+function mergeSupabase(supabase: Record<string, unknown> | undefined, defaults: SupabaseConfig): SupabaseConfig {
+	if (!supabase) return defaults;
+	return {
+		enabled: typeof supabase.enabled === "boolean" ? supabase.enabled : defaults.enabled,
+	};
+}
+
+function mergeLsp(lsp: Record<string, unknown> | undefined, defaults: LspConfig): LspConfig {
+	if (!lsp) return defaults;
+	return {
+		...defaults,
+		enabled: typeof lsp.enabled === "boolean" ? lsp.enabled : defaults.enabled,
+	};
+}
+
 export function loadConfig(): AioConfig {
 	const defaults = defaultConfig();
 	const dir = process.env.PI_CODING_AGENT_DIR?.trim() || join(homedir(), ".omp", "agent");
@@ -77,5 +157,10 @@ export function loadConfig(): AioConfig {
 	return {
 		uplift: mergeUplift(asRecord(file.uplift), defaults.uplift),
 		issues: mergeIssues(asRecord(file.issues), defaults.issues),
+		think: mergeThink(asRecord(file.think), defaults.think),
+		github: mergeGithub(asRecord(file.github), defaults.github),
+		greptile: mergeGreptile(asRecord(file.greptile), defaults.greptile),
+		supabase: mergeSupabase(asRecord(file.supabase), defaults.supabase),
+		lsp: mergeLsp(asRecord(file.lsp), defaults.lsp),
 	};
 }

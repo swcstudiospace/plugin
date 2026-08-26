@@ -1,0 +1,204 @@
+# parallel-web
+
+Exported documentation references.
+
+- [Create Task Run - Parallel](references/001-Create-Task-Run-Parallel.md) — https://docs.parallel.ai/api-reference/tasks/create-task-run
+- [Task API Webhooks - Parallel](references/002-Task-API-Webhooks-Parallel.md) — https://docs.parallel.ai/task-api/webhooks
+- [Search - Parallel](references/003-Search-Parallel.md) — https://docs.parallel.ai/api-reference/search/search
+- [Create a Snapshot Monitor - Parallel](references/004-Create-a-Snapshot-Monitor-Parallel.md) — https://docs.parallel.ai/monitor-api/quickstart-snapshot
+- [Search Modes - Parallel](references/005-Search-Modes-Parallel.md) — https://docs.parallel.ai/search/modes
+- [Task API Deep Research Quickstart - Parallel](references/006-Task-API-Deep-Research-Quickstart-Parallel.md) — https://docs.parallel.ai/task-api/examples/task-deep-research
+- [Interactions - Parallel](references/007-Interactions-Parallel.md) — https://docs.parallel.ai/task-api/guides/interactions
+- [Ingest API - Parallel](references/008-Ingest-API-Parallel.md) — https://docs.parallel.ai/task-api/ingest-api
+- [Entity Search - Parallel](references/009-Entity-Search-Parallel.md) — https://docs.parallel.ai/findall-api/entity-search
+- [Cancel - Parallel](references/010-Cancel-Parallel.md) — https://docs.parallel.ai/findall-api/features/findall-cancel
+- [Agent Skills - Parallel](references/011-Agent-Skills-Parallel.md) — https://docs.parallel.ai/integrations/agent-skills
+- [Agentic Payments (MPP & x402) - Parallel](references/012-Agentic-Payments-MPP-x402-Parallel.md) — https://docs.parallel.ai/integrations/agentic-payments
+- [Crawler - Parallel](references/013-Crawler-Parallel.md) — https://docs.parallel.ai/resources/crawler
+- [Webhook Setup - Parallel](references/014-Webhook-Setup-Parallel.md) — https://docs.parallel.ai/resources/webhook-setup
+- [Add Enrichment to FindAll Run - Parallel](references/015-Add-Enrichment-to-FindAll-Run-Parallel.md) — https://docs.parallel.ai/api-reference/findall/add-enrichment-to-findall-run
+- [Extend FindAll Run - Parallel](references/016-Extend-FindAll-Run-Parallel.md) — https://docs.parallel.ai/api-reference/findall/extend-findall-run
+- [Get FindAll Run Schema - Parallel](references/017-Get-FindAll-Run-Schema-Parallel.md) — https://docs.parallel.ai/api-reference/findall/get-findall-run-schema
+- [Stream FindAll Events - Parallel](references/018-Stream-FindAll-Events-Parallel.md) — https://docs.parallel.ai/api-reference/findall/stream-findall-events
+- [Task Runs Lifecycle - Parallel](references/019-Task-Runs-Lifecycle-Parallel.md) — https://docs.parallel.ai/task-api/guides/execute-task-run
+- [Task Spec - Parallel](references/020-Task-Spec-Parallel.md) — https://docs.parallel.ai/task-api/guides/specify-a-task
+- [Cancel FindAll Run - Parallel](references/021-Cancel-FindAll-Run-Parallel.md) — https://docs.parallel.ai/api-reference/findall/cancel-findall-run
+- [Create FindAll Run - Parallel](references/022-Create-FindAll-Run-Parallel.md) — https://docs.parallel.ai/api-reference/findall/create-findall-run
+- [Candidates - Parallel](references/023-Candidates-Parallel.md) — https://docs.parallel.ai/findall-api/core-concepts/findall-candidates
+- [Run Lifecycle - Parallel](references/024-Run-Lifecycle-Parallel.md) — https://docs.parallel.ai/findall-api/core-concepts/findall-lifecycle
+- [Generators - Parallel](references/025-Generators-Parallel.md) — https://docs.parallel.ai/findall-api/core-concepts/findall-generator-pricing
+- [Enrichments - Parallel](references/026-Enrichments-Parallel.md) — https://docs.parallel.ai/findall-api/features/findall-enrich
+- [Extend - Parallel](references/027-Extend-Parallel.md) — https://docs.parallel.ai/findall-api/features/findall-extend
+- [Preview - Parallel](references/028-Preview-Parallel.md) — https://docs.parallel.ai/findall-api/features/findall-preview
+- [FindAll API Webhooks - Parallel](references/029-FindAll-API-Webhooks-Parallel.md) — https://docs.parallel.ai/findall-api/features/findall-webhook
+- [Extract API Best Practices - Parallel](references/030-Extract-API-Best-Practices-Parallel.md) — https://docs.parallel.ai/extract/best-practices
+- [Extract API Quickstart - Parallel](references/031-Extract-API-Quickstart-Parallel.md) — https://docs.parallel.ai/extract/extract-quickstart
+- [FindAll API Streaming Events - Parallel](references/032-FindAll-API-Streaming-Events-Parallel.md) — https://docs.parallel.ai/findall-api/features/findall-sse
+- [Parallel API Pricing - Parallel](references/033-Parallel-API-Pricing-Parallel.md) — https://docs.parallel.ai/getting-started/pricing
+- [API Rate Limits - Parallel](references/034-API-Rate-Limits-Parallel.md) — https://docs.parallel.ai/getting-started/rate-limits
+- [Parallel MCP Server Quickstart - Parallel](references/035-Parallel-MCP-Server-Quickstart-Parallel.md) — https://docs.parallel.ai/integrations/mcp/quickstart
+- [Advanced Extract Settings - Parallel](references/036-Advanced-Extract-Settings-Parallel.md) — https://docs.parallel.ai/extract/advanced-extract-settings
+- [Search API Best Practices - Parallel](references/037-Search-API-Best-Practices-Parallel.md) — https://docs.parallel.ai/search/best-practices
+- [Search API Quickstart - Parallel](references/038-Search-API-Quickstart-Parallel.md) — https://docs.parallel.ai/search/search-quickstart
+- [Extract - Parallel](references/039-Extract-Parallel.md) — https://docs.parallel.ai/api-reference/extract/extract
+- [Parallel CLI - Parallel](references/040-Parallel-CLI-Parallel.md) — https://docs.parallel.ai/integrations/cli
+- [Research Basis - Parallel](references/041-Research-Basis-Parallel.md) — https://docs.parallel.ai/task-api/guides/access-research-basis
+- [Processors - Parallel](references/042-Processors-Parallel.md) — https://docs.parallel.ai/task-api/guides/choose-a-processor
+- [Task API Quickstart - Parallel](references/043-Task-API-Quickstart-Parallel.md) — https://docs.parallel.ai/task-api/task-quickstart
+- [Upgrade from Beta to GA - Parallel](references/044-Upgrade-from-Beta-to-GA-Parallel.md) — https://docs.parallel.ai/search/search-migration-guide
+- [Chat Completions](references/045-Chat-Completions.md) — https://docs.parallel.ai/llms-full.txt
+- [Parallel](references/046-Parallel.md) — https://docs.parallel.ai/llms.txt
+- [Extract Migration Guide: Beta to GA - Parallel](references/047-Extract-Migration-Guide-Beta-to-GA-Parallel.md) — https://docs.parallel.ai/extract/extract-migration-guide
+- [FindAll API Quickstart - Parallel](references/048-FindAll-API-Quickstart-Parallel.md) — https://docs.parallel.ai/findall-api/findall-quickstart
+- [Search - Parallel](references/049-Search-Parallel.md) — https://docs.parallel.ai/api-reference/legacy/search-beta/search
+- [page-50](references/050-page-50.md) — https://docs.parallel.ai/docs-legacy-openapi.json
+- [page-51](references/051-page-51.md) — https://docs.parallel.ai/docs-latest-openapi.json
+- [page-52](references/052-page-52.md) — https://docs.parallel.ai/public-openapi.json
+- [Extract - Parallel](references/053-Extract-Parallel.md) — https://docs.parallel.ai/api-reference/legacy/extract-beta/extract
+- [Task API Webhooks](references/054-Task-API-Webhooks.md) — https://docs.parallel.ai/task-api/webhooks.md
+- [Task API Streaming Events](references/055-Task-API-Streaming-Events.md) — https://docs.parallel.ai/task-api/task-sse.md
+- [Task MCP](references/056-Task-MCP.md) — https://docs.parallel.ai/integrations/mcp/task-mcp.md
+- [Source Policy](references/057-Source-Policy.md) — https://docs.parallel.ai/resources/source-policy.md
+- [Task Spec](references/058-Task-Spec.md) — https://docs.parallel.ai/task-api/guides/specify-a-task.md
+- [MCP Tool Calling](references/059-MCP-Tool-Calling.md) — https://docs.parallel.ai/task-api/mcp-tool-call.md
+- [Ingest API](references/060-Ingest-API.md) — https://docs.parallel.ai/task-api/ingest-api.md
+- [Task API Quickstart](references/061-Task-API-Quickstart.md) — https://docs.parallel.ai/task-api/task-quickstart.md
+- [Processors](references/062-Processors.md) — https://docs.parallel.ai/task-api/guides/choose-a-processor.md
+- [Task Runs Lifecycle](references/063-Task-Runs-Lifecycle.md) — https://docs.parallel.ai/task-api/guides/execute-task-run.md
+- [Interactions](references/064-Interactions.md) — https://docs.parallel.ai/task-api/guides/interactions.md
+- [Research Basis](references/065-Research-Basis.md) — https://docs.parallel.ai/task-api/guides/access-research-basis.md
+- [Task API Enrichment Quickstart](references/066-Task-API-Enrichment-Quickstart.md) — https://docs.parallel.ai/task-api/examples/task-enrichment.md
+- [Task Group](references/067-Task-Group.md) — https://docs.parallel.ai/task-api/group-api.md
+- [Task API Deep Research Quickstart](references/068-Task-API-Deep-Research-Quickstart.md) — https://docs.parallel.ai/task-api/examples/task-deep-research.md
+- [Interactive Research](references/069-Interactive-Research.md) — https://docs.parallel.ai/task-api/examples/interactive-research.md
+- [Task API Best Practices](references/070-Task-API-Best-Practices.md) — https://docs.parallel.ai/task-api/best-practices.md
+- [Create Key](references/071-Create-Key.md) — https://docs.parallel.ai/service-api/keys/create-key.md
+- [Get Balance](references/072-Get-Balance.md) — https://docs.parallel.ai/service-api/balance/get-balance.md
+- [Delete Key](references/073-Delete-Key.md) — https://docs.parallel.ai/service-api/keys/delete-key.md
+- [Add to Balance](references/074-Add-to-Balance.md) — https://docs.parallel.ai/service-api/balance/add-to-balance.md
+- [Delete App](references/075-Delete-App.md) — https://docs.parallel.ai/service-api/apps/delete-app.md
+- [List Apps](references/076-List-Apps.md) — https://docs.parallel.ai/service-api/apps/list-apps.md
+- [Search API Quickstart](references/077-Search-API-Quickstart.md) — https://docs.parallel.ai/search/search-quickstart.md
+- [Create App](references/078-Create-App.md) — https://docs.parallel.ai/service-api/apps/create-app.md
+- [Search MCP](references/079-Search-MCP.md) — https://docs.parallel.ai/integrations/mcp/search-mcp.md
+- [Search Modes](references/080-Search-Modes.md) — https://docs.parallel.ai/search/modes.md
+- [Upgrade from Beta to GA](references/081-Upgrade-from-Beta-to-GA.md) — https://docs.parallel.ai/search/search-migration-guide.md
+- [Migrate to Parallel Search](references/082-Migrate-to-Parallel-Search.md) — https://docs.parallel.ai/search/migrate-to-parallel.md
+- [Advanced Search Settings](references/083-Advanced-Search-Settings.md) — https://docs.parallel.ai/search/advanced-search-settings.md
+- [Search API Best Practices](references/084-Search-API-Best-Practices.md) — https://docs.parallel.ai/search/best-practices.md
+- [Responses API Quickstart](references/085-Responses-API-Quickstart.md) — https://docs.parallel.ai/responses-api/responses-quickstart.md
+- [Responses API Structured Outputs](references/086-Responses-API-Structured-Outputs.md) — https://docs.parallel.ai/responses-api/features/structured-outputs.md
+- [OpenAI Responses Compatibility](references/087-OpenAI-Responses-Compatibility.md) — https://docs.parallel.ai/responses-api/openai-compatibility.md
+- [Citations](references/088-Citations.md) — https://docs.parallel.ai/responses-api/features/citations.md
+- [Responses API Streaming Events](references/089-Responses-API-Streaming-Events.md) — https://docs.parallel.ai/responses-api/features/streaming-events.md
+- [Statefulness](references/090-Statefulness.md) — https://docs.parallel.ai/responses-api/features/statefulness.md
+- [Webhook Setup](references/091-Webhook-Setup.md) — https://docs.parallel.ai/resources/webhook-setup.md
+- [Using It as a Research Subagent](references/092-Using-It-as-a-Research-Subagent.md) — https://docs.parallel.ai/responses-api/examples/research-subagent.md
+- [Using the Responses API Directly](references/093-Using-the-Responses-API-Directly.md) — https://docs.parallel.ai/responses-api/examples/direct-requests.md
+- [API Error Codes and Warnings](references/094-API-Error-Codes-and-Warnings.md) — https://docs.parallel.ai/resources/warnings-and-errors.md
+- [Parallel API Changelog](references/095-Parallel-API-Changelog.md) — https://docs.parallel.ai/resources/changelog.md
+- [Parallel API FAQs](references/096-Parallel-API-FAQs.md) — https://docs.parallel.ai/resources/faqs.md
+- [Crawler](references/097-Crawler.md) — https://docs.parallel.ai/resources/crawler.md
+- [Monitor API Webhooks](references/098-Monitor-API-Webhooks.md) — https://docs.parallel.ai/monitor-api/monitor-webhooks.md
+- [Create a Snapshot Monitor](references/099-Create-a-Snapshot-Monitor.md) — https://docs.parallel.ai/monitor-api/quickstart-snapshot.md
+- [Follow-up Tasks](references/100-Follow-up-Tasks.md) — https://docs.parallel.ai/monitor-api/monitor-task.md
+- [Slack Integration](references/101-Slack-Integration.md) — https://docs.parallel.ai/monitor-api/monitor-slack.md
+- [Zapier](references/102-Zapier.md) — https://docs.parallel.ai/integrations/zapier.md
+- [Monitor API Quickstart](references/103-Monitor-API-Quickstart.md) — https://docs.parallel.ai/monitor-api/monitor-quickstart.md
+- [Monitor Migration Guide: Alpha to GA](references/104-Monitor-Migration-Guide-Alpha-to-GA.md) — https://docs.parallel.ai/monitor-api/monitor-migration-guide.md
+- [Vercel](references/105-Vercel.md) — https://docs.parallel.ai/integrations/vercel.md
+- [Events](references/106-Events.md) — https://docs.parallel.ai/monitor-api/monitor-events.md
+- [OpenRouter](references/107-OpenRouter.md) — https://docs.parallel.ai/integrations/openrouter.md
+- [Pi Extension](references/108-Pi-Extension.md) — https://docs.parallel.ai/integrations/pi-extension.md
+- [Superhuman](references/109-Superhuman.md) — https://docs.parallel.ai/integrations/superhuman.md
+- [OpenAI Tool Calling](references/110-OpenAI-Tool-Calling.md) — https://docs.parallel.ai/integrations/openai-tool-calling.md
+- [OpenCode Plugin](references/111-OpenCode-Plugin.md) — https://docs.parallel.ai/integrations/opencode-plugin.md
+- [Ollama Tool Calling](references/112-Ollama-Tool-Calling.md) — https://docs.parallel.ai/integrations/ollama-tool-calling.md
+- [n8n](references/113-n8n.md) — https://docs.parallel.ai/integrations/n8n.md
+- [OAuth Provider](references/114-OAuth-Provider.md) — https://docs.parallel.ai/integrations/oauth-provider.md
+- [Parallel MCP Server Quickstart](references/115-Parallel-MCP-Server-Quickstart.md) — https://docs.parallel.ai/integrations/mcp/quickstart.md
+- [Programmatic Use](references/116-Programmatic-Use.md) — https://docs.parallel.ai/integrations/mcp/programmatic-use.md
+- [LangChain](references/117-LangChain.md) — https://docs.parallel.ai/integrations/langchain.md
+- [Google Gemini Enterprise](references/118-Google-Gemini-Enterprise.md) — https://docs.parallel.ai/integrations/google-gemini-enterprise.md
+- [Google Sheets](references/119-Google-Sheets.md) — https://docs.parallel.ai/integrations/gsuite.md
+- [Parallel CLI](references/120-Parallel-CLI.md) — https://docs.parallel.ai/integrations/cli.md
+- [Cursor Plugin](references/121-Cursor-Plugin.md) — https://docs.parallel.ai/integrations/cursor-marketplace.md
+- [Google Cloud Marketplace](references/122-Google-Cloud-Marketplace.md) — https://docs.parallel.ai/integrations/google-cloud-marketplace.md
+- [Developer Tools Overview](references/123-Developer-Tools-Overview.md) — https://docs.parallel.ai/integrations/developer-quickstart.md
+- [Anthropic Tool Calling](references/124-Anthropic-Tool-Calling.md) — https://docs.parallel.ai/integrations/anthropic-tool-calling.md
+- [Browser Use](references/125-Browser-Use.md) — https://docs.parallel.ai/integrations/browseruse.md
+- [AWS Marketplace](references/126-AWS-Marketplace.md) — https://docs.parallel.ai/integrations/aws-marketplace.md
+- [Claude Code Plugin](references/127-Claude-Code-Plugin.md) — https://docs.parallel.ai/integrations/claude-code-marketplace.md
+- [ClawHub](references/128-ClawHub.md) — https://docs.parallel.ai/integrations/clawhub.md
+- [Account API](references/129-Account-API.md) — https://docs.parallel.ai/integrations/account-api.md
+- [Agentic Payments (MPP & x402)](references/130-Agentic-Payments-MPP-x402.md) — https://docs.parallel.ai/integrations/agentic-payments.md
+- [Agent Skills](references/131-Agent-Skills.md) — https://docs.parallel.ai/integrations/agent-skills.md
+- [API Rate Limits](references/132-API-Rate-Limits.md) — https://docs.parallel.ai/getting-started/rate-limits.md
+- [Parallel API Overview](references/133-Parallel-API-Overview.md) — https://docs.parallel.ai/getting-started/overview.md
+- [Parallel API Pricing](references/134-Parallel-API-Pricing.md) — https://docs.parallel.ai/getting-started/pricing.md
+- [Parallel API Glossary](references/135-Parallel-API-Glossary.md) — https://docs.parallel.ai/getting-started/glossary.md
+- [FindAll Migration Guide](references/136-FindAll-Migration-Guide.md) — https://docs.parallel.ai/findall-api/findall-migration-guide.md
+- [FindAll API Quickstart](references/137-FindAll-API-Quickstart.md) — https://docs.parallel.ai/findall-api/findall-quickstart.md
+- [Refresh Runs](references/138-Refresh-Runs.md) — https://docs.parallel.ai/findall-api/features/findall-refresh.md
+- [FindAll API Webhooks](references/139-FindAll-API-Webhooks.md) — https://docs.parallel.ai/findall-api/features/findall-webhook.md
+- [FindAll API Streaming Events](references/140-FindAll-API-Streaming-Events.md) — https://docs.parallel.ai/findall-api/features/findall-sse.md
+- [Extend](references/141-Extend.md) — https://docs.parallel.ai/findall-api/features/findall-extend.md
+- [Preview](references/142-Preview.md) — https://docs.parallel.ai/findall-api/features/findall-preview.md
+- [Enrichments](references/143-Enrichments.md) — https://docs.parallel.ai/findall-api/features/findall-enrich.md
+- [Generators](references/144-Generators.md) — https://docs.parallel.ai/findall-api/core-concepts/findall-generator-pricing.md
+- [Candidates](references/145-Candidates.md) — https://docs.parallel.ai/findall-api/core-concepts/findall-candidates.md
+- [Entity Search](references/146-Entity-Search.md) — https://docs.parallel.ai/findall-api/entity-search.md
+- [Run Lifecycle](references/147-Run-Lifecycle.md) — https://docs.parallel.ai/findall-api/core-concepts/findall-lifecycle.md
+- [Cancel](references/148-Cancel.md) — https://docs.parallel.ai/findall-api/features/findall-cancel.md
+- [Extract API Best Practices](references/149-Extract-API-Best-Practices.md) — https://docs.parallel.ai/extract/best-practices.md
+- [Advanced Extract Settings](references/150-Advanced-Extract-Settings.md) — https://docs.parallel.ai/extract/advanced-extract-settings.md
+- [Extract Migration Guide: Beta to GA](references/151-Extract-Migration-Guide-Beta-to-GA.md) — https://docs.parallel.ai/extract/extract-migration-guide.md
+- [Extract API Quickstart](references/152-Extract-API-Quickstart.md) — https://docs.parallel.ai/extract/extract-quickstart.md
+- [Snowflake](references/153-Snowflake.md) — https://docs.parallel.ai/data-integrations/snowflake.md
+- [Apache Spark](references/154-Apache-Spark.md) — https://docs.parallel.ai/data-integrations/spark.md
+- [Supabase](references/155-Supabase.md) — https://docs.parallel.ai/data-integrations/supabase.md
+- [Data Integrations](references/156-Data-Integrations.md) — https://docs.parallel.ai/data-integrations/overview.md
+- [Polars](references/157-Polars.md) — https://docs.parallel.ai/data-integrations/polars.md
+- [DuckDB](references/158-DuckDB.md) — https://docs.parallel.ai/data-integrations/duckdb.md
+- [Retrieve Task Run Result](references/159-Retrieve-Task-Run-Result.md) — https://docs.parallel.ai/api-reference/tasks/retrieve-task-run-result.md
+- [Stream Task Run Events](references/160-Stream-Task-Run-Events.md) — https://docs.parallel.ai/api-reference/tasks/stream-task-run-events-1.md
+- [OpenAI ChatCompletions Compatibility](references/161-OpenAI-ChatCompletions-Compatibility.md) — https://docs.parallel.ai/chat-api/chat-quickstart.md
+- [Google BigQuery](references/162-Google-BigQuery.md) — https://docs.parallel.ai/data-integrations/bigquery.md
+- [Stream Task Run Events](references/163-Stream-Task-Run-Events.md) — https://docs.parallel.ai/api-reference/tasks/stream-task-run-events.md
+- [Stream Task Group Events](references/164-Stream-Task-Group-Events.md) — https://docs.parallel.ai/api-reference/tasks/stream-task-group-events.md
+- [Create Task Run](references/165-Create-Task-Run.md) — https://docs.parallel.ai/api-reference/tasks/create-task-run.md
+- [Retrieve Task Group](references/166-Retrieve-Task-Group.md) — https://docs.parallel.ai/api-reference/tasks/retrieve-task-group.md
+- [Retrieve Task Run Input](references/167-Retrieve-Task-Run-Input.md) — https://docs.parallel.ai/api-reference/tasks/retrieve-task-run-input.md
+- [Retrieve Task Group Run](references/168-Retrieve-Task-Group-Run.md) — https://docs.parallel.ai/api-reference/tasks/retrieve-task-group-run.md
+- [Retrieve Task Run](references/169-Retrieve-Task-Run.md) — https://docs.parallel.ai/api-reference/tasks/retrieve-task-run.md
+- [Create Task Group](references/170-Create-Task-Group.md) — https://docs.parallel.ai/api-reference/tasks/create-task-group.md
+- [Search](references/171-Search.md) — https://docs.parallel.ai/api-reference/search/search.md
+- [Add Runs to Task Group](references/172-Add-Runs-to-Task-Group.md) — https://docs.parallel.ai/api-reference/tasks/add-runs-to-task-group.md
+- [Fetch Task Group Runs](references/173-Fetch-Task-Group-Runs.md) — https://docs.parallel.ai/api-reference/tasks/fetch-task-group-runs.md
+- [Update Monitor](references/174-Update-Monitor.md) — https://docs.parallel.ai/api-reference/monitor/update-monitor.md
+- [List Monitor Events](references/175-List-Monitor-Events.md) — https://docs.parallel.ai/api-reference/monitor/list-monitor-events.md
+- [Trigger Monitor Run](references/176-Trigger-Monitor-Run.md) — https://docs.parallel.ai/api-reference/monitor/trigger-monitor-run.md
+- [Create Response](references/177-Create-Response.md) — https://docs.parallel.ai/api-reference/responses-api/create-response.md
+- [Stream FindAll Events](references/178-Stream-FindAll-Events.md) — https://docs.parallel.ai/api-reference/findall/stream-findall-events.md
+- [Create Monitor](references/179-Create-Monitor.md) — https://docs.parallel.ai/api-reference/monitor/create-monitor.md
+- [List Monitors](references/180-List-Monitors.md) — https://docs.parallel.ai/api-reference/monitor/list-monitors.md
+- [Retrieve Monitor](references/181-Retrieve-Monitor.md) — https://docs.parallel.ai/api-reference/monitor/retrieve-monitor.md
+- [Get FindAll Run Schema](references/182-Get-FindAll-Run-Schema.md) — https://docs.parallel.ai/api-reference/findall/get-findall-run-schema.md
+- [Cancel Monitor](references/183-Cancel-Monitor.md) — https://docs.parallel.ai/api-reference/monitor/cancel-monitor.md
+- [Retrieve FindAll Run Status](references/184-Retrieve-FindAll-Run-Status.md) — https://docs.parallel.ai/api-reference/findall/retrieve-findall-run-status.md
+- [Ingest FindAll Run](references/185-Ingest-FindAll-Run.md) — https://docs.parallel.ai/api-reference/findall/ingest-findall-run.md
+- [Extend FindAll Run](references/186-Extend-FindAll-Run.md) — https://docs.parallel.ai/api-reference/findall/extend-findall-run.md
+- [Fast Entity Search](references/187-Fast-Entity-Search.md) — https://docs.parallel.ai/api-reference/findall/fast-entity-search.md
+- [FindAll Run Result](references/188-FindAll-Run-Result.md) — https://docs.parallel.ai/api-reference/findall/findall-run-result.md
+- [Parallel API Overview - Parallel](references/189-Parallel-API-Overview-Parallel.md) — https://docs.parallel.ai/getting-started/overview
+- [Chat Completions](references/190-Chat-Completions.md) — https://docs.parallel.ai/api-reference/chat-api-beta/chat-completions.md
+- [Extract](references/191-Extract.md) — https://docs.parallel.ai/api-reference/extract/extract.md
+- [Create FindAll Run](references/192-Create-FindAll-Run.md) — https://docs.parallel.ai/api-reference/findall/create-findall-run.md
+- [Cancel FindAll Run](references/193-Cancel-FindAll-Run.md) — https://docs.parallel.ai/api-reference/findall/cancel-findall-run.md
+- [Add Enrichment to FindAll Run](references/194-Add-Enrichment-to-FindAll-Run.md) — https://docs.parallel.ai/api-reference/findall/add-enrichment-to-findall-run.md
+- [Delete Monitor - Parallel](references/195-Delete-Monitor-Parallel.md) — https://docs.parallel.ai/api-reference/legacy/monitor-alpha/delete-monitor
+- [Update Monitor - Parallel](references/196-Update-Monitor-Parallel.md) — https://docs.parallel.ai/api-reference/legacy/monitor-alpha/update-monitor
+- [List Monitors - Parallel](references/197-List-Monitors-Parallel.md) — https://docs.parallel.ai/api-reference/legacy/monitor-alpha/list-monitors-1
+- [List Monitors - Parallel](references/198-List-Monitors-Parallel.md) — https://docs.parallel.ai/api-reference/legacy/monitor-alpha/list-monitors
+- [Retrieve Monitor - Parallel](references/199-Retrieve-Monitor-Parallel.md) — https://docs.parallel.ai/api-reference/legacy/monitor-alpha/retrieve-monitor
+- [Get FindAll Run Schema - Parallel](references/200-Get-FindAll-Run-Schema-Parallel.md) — https://docs.parallel.ai/api-reference/legacy/findall/get-findall-run-schema

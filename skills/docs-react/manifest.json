@@ -1,0 +1,651 @@
+{
+  "name": "docs-react",
+  "generated_at": "2026-07-29T03:45:04Z",
+  "query": null,
+  "source_id": null,
+  "ranking": "all pages (recency)",
+  "page_count": 80,
+  "embedding_model": null,
+  "pages": [
+    {
+      "title": "page-1",
+      "url": "https://react.dev/reference/react/act.md",
+      "content_hash": "sha256:665daed932de1e94424cc80b9581ae86a28be0d0a874159496f33b77ea3c1f20",
+      "file": "references/001-page-1.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "page-2",
+      "url": "https://react.dev/reference/react/apis.md",
+      "content_hash": "sha256:a70f72a12b397e09ca3ba827393aa0d218ad8e5e19dc9897897c0e48c0d94879",
+      "file": "references/002-page-2.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "Streaming SSR",
+      "url": "https://react.dev/reference/react/Suspense.md",
+      "content_hash": "sha256:50add00a0393e7c215427d3abd688ec78554c043a91f4cad4e028519d0e2e559",
+      "file": "references/003-Streaming-SSR.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "Main content",
+      "url": "https://react.dev/reference/react/Activity.md",
+      "content_hash": "sha256:3dd424cf642b9606a6e41dda88fd4b23977f5537c13f612883ee644954556ef2",
+      "file": "references/004-Main-content.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "page-5",
+      "url": "https://react.dev/reference/react/ViewTransition.md",
+      "content_hash": "sha256:c9edd35c75f4710696f4208a40dda88f7d8bf32ca6ac3adb20b3d51dfdb7c538",
+      "file": "references/005-page-5.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "` and `` DOM nodes appear as siblings without wrappers around them:```js\nexport default function Blog() {\n  return (\n    <>)\n}\n\nfunction Post({ title, body }) {\n  return (\n    <>);\n}\n\nfunction PostTitle({ title }) {\n  return{title}}\n\nfunction PostBody({ body }) {\n  return ({body});\n}\n```#### How to write a Fragment without the special syntax? {/*how-to-write-a-fragment-without-the-special-syntax*/}\n\nThe example above is equivalent to importing `Fragment` from React:\n\n```js {1,5,8}\nimport { Fragment } from 'react';\n\nfunction Post() {\n  return ();\n}\n```\n\nUsually you won't need this unless you need to [pass a `key` to your `Fragment`.](#rendering-a-list-of-fragments)---\n\n### Assigning multiple elements to a variable {/*assigning-multiple-elements-to-a-variable*/}\n\nLike any other element, you can assign Fragment elements to variables, pass them as props, and so on:\n\n```js\nfunction CloseDialog() {\n  const buttons = (\n    <>);\n  return (Are you sure you want to leave this page?);\n}\n```\n\n---\n\n### Grouping elements with text {/*grouping-elements-with-text*/}\n\nYou can use `Fragment` to group text together with components:\n\n```js\nfunction DateRangePicker({ start, end }) {\n  return (\n    <>\n      Fromto);\n}\n```\n\n---\n\n### Rendering a list of Fragments {/*rendering-a-list-of-fragments*/}\n\nHere's a situation where you need to write `Fragment` explicitly instead of using the `<>` syntax. When you [render multiple elements in a loop](/learn/rendering-lists), you need to assign a `key` to each element. If the elements within the loop are Fragments, you need to use the normal JSX element syntax in order to provide the `key` attribute:\n\n```js {3,6}\nfunction Blog() {\n  return posts.map(post =>);\n}\n```\n\nYou can inspect the DOM to verify that there are no wrapper elements around the Fragment children:```js\nimport { Fragment } from 'react';\n\nconst posts = [\n  { id: 1, title: 'An update', body: \"It's been a while since I posted...\" },\n  { id: 2, title: 'My new blog', body: 'I am starting a new blog!' }\n];\n\nexport default function Blog() {\n  return posts.map(post =>);\n}\n\nfunction PostTitle({ title }) {\n  return{title}}\n\nfunction PostBody({ body }) {\n  return ({body});\n}\n```---\n\n###Adding event listeners without a wrapper element {/*adding-event-listeners-without-wrapper*/}\n\nFragment `ref`s let you add event listeners to a group of elements without adding a wrapper DOM node. Use a [ref callback](/reference/react-dom/components/common#ref-callback) to attach and clean up listeners:```js\nimport { Fragment, useState, useRef, useEffect } from 'react';\n\nfunction ClickableFragment({ children, onClick }) {\n  const fragmentRef = useRef(null);\n  useEffect(() => {\n    const fragmentInstance = fragmentRef.current;\n    if (fragmentInstance === null) {\n      return;\n    }\n    fragmentInstance.addEventListener('click', onClick);\n    return () => {\n      fragmentInstance.removeEventListener(\n        'click',\n        onClick\n      );\n    };\n  }, [onClick])\n  return ({children});\n}\n\nexport default function App() {\n  const [clicks, setClicks] = useState(0);\n\n  return (\n    <>Total clicks: {clicks}{\n        setClicks(c => c + 1);\n      }}>Button AButton BButton C);\n}\n```\n\n```json package.json hidden\n{\n  \"dependencies\": {\n    \"react\": \"canary\",\n    \"react-dom\": \"canary\",\n    \"react-scripts\": \"latest\"\n  }\n}\n```The `addEventListener` call applies the listener to every first-level DOM child of the Fragment. When children are dynamically added or removed, the `FragmentInstance` automatically adds or removes the listener.#### Which children does a Fragment ref target? {/*which-children-does-a-fragment-ref-target*/}\n\nA `FragmentInstance` targets the **first-level host (DOM) children** of the Fragment. Consider this tree:\n\n```js```\n\n`Wrapper` is a React component, so the `FragmentInstance` looks through it to find DOM nodes. The targeted children are `A`, `B`, and `D`. `C` is not targeted because it is nested inside the DOM element `B`.\n\nMethods like `addEventListener`, `observeUsing`, and `getClientRects` operate on these first-level DOM children. `focus` and `focusLast` are different\u2014they search *all* nested children depth-first to find focusable elements.---\n\n###Managing focus across a group of elements {/*managing-focus-across-elements*/}\n\nFragment `ref`s provide `focus`, `focusLast`, and `blur` methods that operate across all DOM nodes within the Fragment:```js\nimport { Fragment, useRef } from 'react';\n\nfunction FormFields({ children }) {\n  const fragmentRef = useRef(null);\n\n  return (\n    <>{\n          fragmentRef.current.focus();\n        }}>\n          Focus first{\n          fragmentRef.current.focusLast();\n        }}>\n          Focus last{\n          fragmentRef.current.blur();\n        }}>\n          Blur{children});\n}\n\n// Even though the inputs are deeply nested,\n// focus() searches depth-first to find them.\nexport default function App() {\n  return (ShippingStreet:City:);\n}\n```\n\n```css\n.buttons {\n  display: flex;\n  gap: 8px;\n  margin-bottom: 10px;\n}\n\nlabel {\n  display: inline-block;\n}\n```\n\n```json package.json hidden\n{\n  \"dependencies\": {\n    \"react\": \"canary\",\n    \"react-dom\": \"canary\",\n    \"react-scripts\": \"latest\"\n  }\n}\n```Calling `focus()` focuses the `street` input\u2014even though it is nested inside a `` and ``. `focus()` searches depth-first through all nested children, not just direct children of the Fragment. `focusLast()` does the same in reverse, and `blur()` removes focus if the currently focused element is within the Fragment.\n\n---\n\n###Scrolling a group of elements into view {/*scrolling-group-into-view*/}\n\nUse `scrollIntoView` to scroll a Fragment's children into view without a wrapper element. Pass `true` (or omit the argument) to scroll the first child to the top. Pass `false` to scroll the last child to the bottom:```js\nimport { Fragment, useRef } from 'react';\n\nfunction ScrollableSection({ children }) {\n  const fragmentRef = useRef(null);\n\n  return (\n    <>{\n          fragmentRef.current.scrollIntoView();\n        }}>\n          Scroll to top{\n          fragmentRef.current.scrollIntoView(false);\n        }}>\n          Scroll to bottom{children});\n}\n\nconst items = [];\nfor (let i = 1; i <= 25; i++) {\n  items.push('Item ' + i);\n}\n\nexport default function App() {\n  return (Section Start{items.map((item) => ({item}))}Section End);\n}\n```\n\n```css\n.buttons {\n  display: flex;\n  gap: 8px;\n  margin-bottom: 10px;\n}\n\n.container {\n  height: 200px;\n  overflow-y: auto;\n  border: 2px solid #c4c4c4;\n  border-radius: 4px;\n  padding: 10px;\n}\n\nh3 {\n  margin: 4px 0;\n  /* Padding to handle offset of global sticky nav when scrolling for example */\n  padding-top: 4em;\n  color: #1a73e8;\n}\n\np {\n  margin: 4px 0;\n}\n```\n\n```json package.json hidden\n{\n  \"dependencies\": {\n    \"react\": \"canary\",\n    \"react-dom\": \"canary\",\n    \"react-scripts\": \"latest\"\n  }\n}\n```---\n\n###Observing visibility without a wrapper element {/*observing-visibility-without-wrapper*/}\n\nUse `observeUsing` to attach an `IntersectionObserver` to all first-level DOM children of a Fragment. This lets you track visibility without requiring child components to expose `ref`s or adding a wrapper element:```js\nimport {\n  Fragment,\n  useRef,\n  useLayoutEffect,\n  useState,\n} from 'react';\nimport Card from './Card';\n\nfunction VisibleGroup({ onVisibilityChange, children }) {\n  const fragmentRef = useRef(null);\n\n  useLayoutEffect(() => {\n    const visibleElements = new Set();\n    const observer = new IntersectionObserver(\n      (entries) => {\n        entries.forEach(e => {\n          if (e.isIntersecting) {\n            visibleElements.add(e.target);\n          } else {\n            visibleElements.delete(e.target);\n          }\n        });\n        onVisibilityChange(visibleElements.size > 0);\n      }\n    );\n    const fragmentInstance = fragmentRef.current;\n    fragmentInstance.observeUsing(observer);\n    return () => {\n      fragmentInstance.unobserveUsing(observer);\n    };\n  }, [onVisibilityChange]);\n\n  return ({children});\n}\n\nexport default function App() {\n  const [isVisible, setIsVisible] = useState(true);\n\n  return (Scroll downScroll up);\n}\n```\n\n```css\n.page {\n  transition: background 0.3s;\n}\n\n.page.visible {\n  background: #d4edda;\n}\n\n.filler {\n  height: 500px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  color: #aaa;\n  font-size: 14px;\n}\n\n.card {\n  padding: 16px;\n  background: white;\n  border: 1px solid #ddd;\n  border-radius: 8px;\n  margin: 8px 16px;\n  box-shadow: 0 1px 3px rgba(0,0,0,0.08);\n  font-weight: 600;\n  font-size: 14px;\n}\n```\n\n```js src/Card.js hidden\nexport default function Card({ title }) {\n  return{title};\n}\n```\n\n```json package.json hidden\n{\n  \"dependencies\": {\n    \"react\": \"canary\",\n    \"react-dom\": \"canary\",\n    \"react-scripts\": \"latest\"\n  }\n}\n```---\n\n###Caching a global IntersectionObserver {/*caching-global-intersection-observer*/}\n\nA common performance optimization for sites with many observers is to share a single IntersectionObserver per config and route its entries to the correct callbacks based on which element intersected. Fragment `ref`s support this same pattern through the `reactFragments` property.\n\nEach first-level DOM child of a Fragment with a `ref` has a `reactFragments` property: a `Set` of `FragmentInstance` objects that contain that element. When the shared observer fires, you can use this property to look up which `FragmentInstance` owns the intersecting element and run the right callbacks.```js src/App.js active\nimport { useState, useCallback } from 'react';\nimport ObservedGroup from './ObservedGroup';\nimport Card from './Card';\n\nexport default function App() {\n  const [bgColor, setBgColor] = useState(null);\n\n  const onGreen = useCallback((entry) => {\n    if (entry.isIntersecting) {\n      setBgColor('#d4edda');\n    }\n  }, []);\n\n  const onBlue = useCallback((entry) => {\n    if (entry.isIntersecting) {\n      setBgColor('#cce5ff');\n    }\n  }, []);\n\n  return (Scroll downScroll up);\n}\n```\n\n```js src/ObservedGroup.js\nimport {\n  Fragment,\n  useRef,\n  useLayoutEffect,\n} from 'react';\n\nconst callbackMap = new WeakMap();\nconst observerCache = new Map();\n\nfunction getOptionsKey(options) {\n  const root = options?.root ?? null;\n  const rootMargin = options?.rootMargin ?? '0px';\n  const threshold = options?.threshold ?? 0;\n  return `${rootMargin}|${threshold}`;\n}\n\nfunction getSharedObserver(\n  fragmentInstance,\n  onIntersection,\n  options,\n) {\n  // Register this callback for the\n  // fragment instance.\n  const existing =\n    callbackMap.get(fragmentInstance);\n  callbackMap.set(\n    fragmentInstance,\n    existing\n      ? [...existing, onIntersection]\n      : [onIntersection],\n  );\n\n  const key = getOptionsKey(options);\n  if (observerCache.has(key)) {\n    return observerCache.get(key);\n  }\n\n  const observer = new IntersectionObserver(\n    (entries) => {\n      for (const entry of entries) {\n        // Look up which FragmentInstances own\n        // this element.\n        const fragmentInstances =\n          entry.target.reactFragments;\n        if (fragmentInstances) {\n          for (const inst of fragmentInstances) {\n            const callbacks =\n              callbackMap.get(inst) || [];\n            callbacks.forEach(cb => cb(entry));\n          }\n        }\n      }\n    },\n    options,\n  );\n\n  observerCache.set(key, observer);\n  return observer;\n}\n\nexport default function ObservedGroup({\n  onIntersection,\n  options,\n  children,\n}) {\n  const fragmentRef = useRef(null);\n\n  useLayoutEffect(() => {\n    const fragmentInstance = fragmentRef.current;\n    const observer = getSharedObserver(\n      fragmentInstance,\n      onIntersection,\n      options,\n    );\n    fragmentInstance.observeUsing(observer);\n    return () => {\n      fragmentInstance.unobserveUsing(observer);\n      callbackMap.delete(fragmentInstance);\n    };\n  }, [onIntersection, options]);\n\n  return ({children});\n}\n```\n\n```css\n.page {\n  transition: background 0.3s;\n}\n\n.filler {\n  height: 500px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  color: #aaa;\n  font-size: 14px;\n}\n\n.card {\n  padding: 16px;\n  background: white;\n  border: 1px solid #ddd;\n  border-radius: 8px;\n  margin: 0 16px;\n  box-shadow: 0 1px 3px rgba(0,0,0,0.08);\n  font-weight: 600;\n  font-size: 14px;\n}\n\n.card.green {\n  border-left: 3px solid #28a745;\n}\n\n.card.blue {\n  border-left: 3px solid #007bff;\n}\n```\n\n```js src/Card.js hidden\nexport default function Card({ title, className }) {\n  return{title};\n}\n```\n\n```json package.json hidden\n{\n  \"dependencies\": {\n    \"react\": \"canary\",\n    \"react-dom\": \"canary\",\n    \"react-scripts\": \"latest\"\n  }\n}\n```Multiple `ObservedGroup` components with the same options reuse a single `IntersectionObserver`. When either section scrolls into view, the shared observer fires and uses `reactFragments` to route the entry to the correct callback.\n\n---\n\n## Sitemap\n\n[Overview of all docs pages](/llms.txt)",
+      "url": "https://react.dev/reference/react/Fragment.md",
+      "content_hash": "sha256:1fe817d9d5d1a776c451897df45a0a6b9dc9ea2747a1fbfaa332c95671f7bac0",
+      "file": "references/006-and-DOM-nodes-appear-as-siblings-without-wrappers-around-the.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "page-7",
+      "url": "https://react.dev/reference/react/Profiler.md",
+      "content_hash": "sha256:2202a359a1f8a9914243440f22438a481163bac3e78d773452a38c6675cc9576",
+      "file": "references/007-page-7.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "Welcome to the {roomId} room!",
+      "url": "https://react.dev/reference/react/StrictMode.md",
+      "content_hash": "sha256:8da2d1f65ef8f4173933b4fc7353aa1839d06c25d6afa847f582ff38155248d6",
+      "file": "references/008-Welcome-to-the-roomId-room.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "page-9",
+      "url": "https://react.dev/reference/react/components.md",
+      "content_hash": "sha256:36aae575987ce69a60c4e616f33d909b67d4e41945e870bc8620457917315057",
+      "file": "references/009-page-9.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "Checkout",
+      "url": "https://react.dev/reference/react/useTransition.md",
+      "content_hash": "sha256:840fc4ec3b7e6894228c9c24b028ce9b19517cba9b4ddcdd691e88b52735db2d",
+      "file": "references/010-Checkout.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "{isOnline ? '\u2705 Online' : '\u274c Disconnected'}",
+      "url": "https://react.dev/reference/react/useSyncExternalStore.md",
+      "content_hash": "sha256:10df72b252f9c4f4d9df9f2a3d5709a36fd8b8f01f29a98f0953e46bc83518b1",
+      "file": "references/011-isOnline-Online-Disconnected.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "Your age: {age}",
+      "url": "https://react.dev/reference/react/useState.md",
+      "content_hash": "sha256:0622fc88566ff1bc1215d90ffb3a90b6b512ac2273b50cfb0a54f0d3e7248334",
+      "file": "references/012-Your-age-age.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "page-13",
+      "url": "https://react.dev/reference/react/useMemo.md",
+      "content_hash": "sha256:81071ece40760b46f8e1ad8cde810204dfb27854335834e8c630085c085dbac0",
+      "file": "references/013-page-13.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "page-14",
+      "url": "https://react.dev/reference/react/useOptimistic.md",
+      "content_hash": "sha256:b2eab608e3d96643594880dba5c7241d7d4573db50dbcc9eb2aa658b92ce87ca",
+      "file": "references/014-page-14.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "Prague itinerary",
+      "url": "https://react.dev/reference/react/useReducer.md",
+      "content_hash": "sha256:daa755310725fdc8951715a55dd4679b8fad29d60731c4c34ce4849e4f65db62",
+      "file": "references/015-Prague-itinerary.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "Time passed: {secondsPassed.toFixed(3)}",
+      "url": "https://react.dev/reference/react/useRef.md",
+      "content_hash": "sha256:eaf8a23e23dcacd184a4a28693652364bdce286180733db6efbb0bced295f2d8",
+      "file": "references/016-Time-passed-secondsPassed-toFixed-3.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "page-17",
+      "url": "https://react.dev/reference/react/useInsertionEffect.md",
+      "content_hash": "sha256:45c87af550d7523ae6e80a6154a858093eaecfe26ff855ad1444d619a2675996",
+      "file": "references/017-page-17.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "page-18",
+      "url": "https://react.dev/reference/react/useLayoutEffect.md",
+      "content_hash": "sha256:45f57652a79d4ef998356a2bb52d93fa69359d0e03e24ed9edf2347809616fbf",
+      "file": "references/018-page-18.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "Welcome to the {roomId} room!",
+      "url": "https://react.dev/reference/react/useEffect.md",
+      "content_hash": "sha256:1e4ed9bcc0d6a33d40fcdd52826ed000dcce21dae3ab340bfb34852d8309af32",
+      "file": "references/019-Welcome-to-the-roomId-room.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "Counter: {count}setCount(0)}>Reset",
+      "url": "https://react.dev/reference/react/useEffectEvent.md",
+      "content_hash": "sha256:238b829c6ee17dcceffa5aab936a44ae4d3b6d74cae7740af53377408690aec9",
+      "file": "references/020-Counter-count-setCount-0-Reset.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "My app",
+      "url": "https://react.dev/reference/react/useId.md",
+      "content_hash": "sha256:992019ea41f74cb38a7b85c84b6aef52cf5d856e1c8fa32081e1d1b93d1d8396",
+      "file": "references/021-My-app.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "page-22",
+      "url": "https://react.dev/reference/react/useImperativeHandle.md",
+      "content_hash": "sha256:8dfaf44e918d0cd87d835ac515025c20f298dcddc00a2c5e6c6d5d7228bdff32",
+      "file": "references/022-page-22.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "{isOnline ? '\u2705 Online' : '\u274c Disconnected'}",
+      "url": "https://react.dev/reference/react/useDebugValue.md",
+      "content_hash": "sha256:7fdf5bbcba0df4c3802415ab62f43cc4811f8fb2b4bf03feb48245bc60821a4d",
+      "file": "references/023-isOnline-Online-Disconnected.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "page-24",
+      "url": "https://react.dev/reference/react/useDeferredValue.md",
+      "content_hash": "sha256:c24a676304dc07ab49190e9472f3f54c620b21120578d446dbe631e6a8b9aaed",
+      "file": "references/024-page-24.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "page-25",
+      "url": "https://react.dev/reference/react/hooks.md",
+      "content_hash": "sha256:c8e0176f6bf980878265eb112d76dff3613c07fd937b0d182d3d4f94e0a656f4",
+      "file": "references/025-page-25.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "page-26",
+      "url": "https://react.dev/reference/react/useActionState.md",
+      "content_hash": "sha256:41a6d35a39f586f357c910c4c2f1e454076cd9c46c11ebf5f631ccbd444ab0ee",
+      "file": "references/026-page-26.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "page-27",
+      "url": "https://react.dev/reference/react/useCallback.md",
+      "content_hash": "sha256:e8933133b0fbf35ccad4598b88017ed3789ea6a76b13c3fe855c8c4c124a94bc",
+      "file": "references/027-page-27.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "{title}",
+      "url": "https://react.dev/reference/react/useContext.md",
+      "content_hash": "sha256:89356e3647c5256e0f0e76d7a2f7f593be575c41270e406963804ebb86c469b9",
+      "file": "references/028-title.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "page-29",
+      "url": "https://react.dev/reference/react.md",
+      "content_hash": "sha256:b79b9c222a8ef935bb256eadb8e0443caa7e89827d40820e1ed3012ae64ba691",
+      "file": "references/029-page-29.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "{isOnline ? '\u2705 Online' : '\u274c Disconnected'}",
+      "url": "https://react.dev/learn/reusing-logic-with-custom-hooks.md",
+      "content_hash": "sha256:34400c50e0eaff67606f524153a33c71acf635196be08558fc797551e65aeb3b",
+      "file": "references/030-isOnline-Online-Disconnected.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "Welcome to the {roomId} room!",
+      "url": "https://react.dev/learn/separating-events-from-effects.md",
+      "content_hash": "sha256:2a8b4c8e0f43dc8d73c9b3c6fdd681f5cda96e3ca8eec259cec7c8c49b75ad83",
+      "file": "references/031-Welcome-to-the-roomId-room.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "Welcome to the {roomId} room!",
+      "url": "https://react.dev/learn/removing-effect-dependencies.md",
+      "content_hash": "sha256:3d21fbf0b73c76f843b1f88b85fc565faedb5cf01e2ed265f78e533faac8eb8e",
+      "file": "references/032-Welcome-to-the-roomId-room.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "Thanks for using our services!",
+      "url": "https://react.dev/learn/you-might-not-need-an-effect.md",
+      "content_hash": "sha256:c34693b020e1d72e8332b6bcccc707f7d3ab7c417d2632a850f8cc84d01647f3",
+      "file": "references/033-Thanks-for-using-our-services.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "Welcome to the {roomId} room!",
+      "url": "https://react.dev/learn/lifecycle-of-reactive-effects.md",
+      "content_hash": "sha256:b01bc3b3f65de93ccc78612165893eba94f9d5093cf3a1fb4fec379c79029e64",
+      "file": "references/034-Welcome-to-the-roomId-room.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "Welcome to the chat!",
+      "url": "https://react.dev/learn/escape-hatches.md",
+      "content_hash": "sha256:9bcbf263b034d41969de9df28e2c95729b83fbe166264ba86c748ab7ccd403c0",
+      "file": "references/035-Welcome-to-the-chat.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "Time passed: {secondsPassed.toFixed(3)}",
+      "url": "https://react.dev/learn/referencing-values-with-refs.md",
+      "content_hash": "sha256:c1ef6d813e34d6ee7ca88bfca649c36519d6abc153c7089392518483aba9548b",
+      "file": "references/036-Time-passed-secondsPassed-toFixed-3.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "page-37",
+      "url": "https://react.dev/learn/manipulating-the-dom-with-refs.md",
+      "content_hash": "sha256:0d0b0406cde82525f842e264a53852ff948875b12fc1d8b8dcab25927e881c12",
+      "file": "references/037-page-37.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "Welcome to the chat!",
+      "url": "https://react.dev/learn/synchronizing-with-effects.md",
+      "content_hash": "sha256:4ad8e22f02063910eb09a3692fe2c71c23fc5e4d8f88dc71058971a67e9b5c63",
+      "file": "references/038-Welcome-to-the-chat.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "Day off in Kyoto",
+      "url": "https://react.dev/learn/scaling-up-with-reducer-and-context.md",
+      "content_hash": "sha256:01d82977ac3e6bdac591b4c2a2638ed91b9d80c67d72d195c176ed3466a0fddd",
+      "file": "references/039-Day-off-in-Kyoto.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "{children}",
+      "url": "https://react.dev/learn/passing-data-deeply-with-context.md",
+      "content_hash": "sha256:2eebde552efeda6b7e9dec0337261a3c8636c02769a3d344752a67e2596bc18f",
+      "file": "references/040-children.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "{score}",
+      "url": "https://react.dev/learn/preserving-and-resetting-state.md",
+      "content_hash": "sha256:afed321104f070ea3912bb22cda088a9f00a9b7ff72649d8c251fe68cbae02cd",
+      "file": "references/041-score.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "Prague itinerary",
+      "url": "https://react.dev/learn/extracting-state-logic-into-a-reducer.md",
+      "content_hash": "sha256:131556059d159e2104e953b05d2b082d9ab7398de2fce1181ecd92c28d6f3046",
+      "file": "references/042-Prague-itinerary.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "That's right!",
+      "url": "https://react.dev/learn/reacting-to-input-with-state.md",
+      "content_hash": "sha256:bf17073cda1c7e1c1f4ee3d5cdba1e5fe6f12ae7b4e2e765f3f3521e97638080",
+      "file": "references/043-That-s-right.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "Thanks for feedback!",
+      "url": "https://react.dev/learn/choosing-the-state-structure.md",
+      "content_hash": "sha256:6ef072a75c01a805ceaa76f7c7d2b30c96b6f46502171d63fcc1b5178ac28d97",
+      "file": "references/044-Thanks-for-feedback.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "page-45",
+      "url": "https://react.dev/learn/sharing-state-between-components.md",
+      "content_hash": "sha256:c86180375bc0dc5af7d38ff93a75929a0de27ca81bf7fd8f33da2db4af3efa29",
+      "file": "references/045-page-45.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "page-46",
+      "url": "https://react.dev/learn/updating-objects-in-state.md",
+      "content_hash": "sha256:5c6ba79811fb3405fdef8e89ced36d28f23a7c501e0f874c5edbb96caf32c411",
+      "file": "references/046-page-46.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "Inspiring sculptors:",
+      "url": "https://react.dev/learn/updating-arrays-in-state.md",
+      "content_hash": "sha256:174152f87db0d9477aac7bd3a6f21a39a90ee1ec33d3250c662ae1e7bf75aba0",
+      "file": "references/047-Inspiring-sculptors.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "That's right!",
+      "url": "https://react.dev/learn/managing-state.md",
+      "content_hash": "sha256:540dd1605e936592a722d2efa1be8761ae9cbdc4b7abd35adfd3873646ec4a57",
+      "file": "references/048-That-s-right.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "{number}",
+      "url": "https://react.dev/learn/queueing-a-series-of-state-updates.md",
+      "content_hash": "sha256:88a569c989afea6c41c9b77750f799bc0908383d6822f9b46bc1513d6fc863b7",
+      "file": "references/049-number.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "Your message is on its way!",
+      "url": "https://react.dev/learn/state-as-a-snapshot.md",
+      "content_hash": "sha256:c3af4b0b783ff6b92a9b0e529a8c0234c3f0c3f11e42531b0ac637defbc46b65",
+      "file": "references/050-Your-message-is-on-its-way.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "Inspiring Sculptures",
+      "url": "https://react.dev/learn/render-and-commit.md",
+      "content_hash": "sha256:d3e9ace28bff7402eda4cb952f42fbebfcd365ef1d6c3240f4687a1016e6318c",
+      "file": "references/051-Inspiring-Sculptures.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "Hi, {firstName} {lastName}",
+      "url": "https://react.dev/learn/state-a-components-memory.md",
+      "content_hash": "sha256:5460008d5407a73773f05aaff4cddf67816ddf6132ea76e63999c863f4671e8a",
+      "file": "references/052-Hi-firstName-lastName.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "{text}",
+      "url": "https://react.dev/learn/understanding-your-ui-as-a-tree.md",
+      "content_hash": "sha256:72f8900ccaad108e6eda6a635f1d4d2103d7fc515fc941cc228a7dd213a45c7e",
+      "file": "references/053-text.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "Spiced Chai Recipe",
+      "url": "https://react.dev/learn/keeping-components-pure.md",
+      "content_hash": "sha256:c75ae561c1863b276e8ba010019d614f3863c005b609bd30ac02bbc17af9c074",
+      "file": "references/054-Spiced-Chai-Recipe.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "page-55",
+      "url": "https://react.dev/learn/adding-interactivity.md",
+      "content_hash": "sha256:7abe668c59baca4a7b15fe2b5d775bca3c37032ab1e33353d842bf1c465d95d0",
+      "file": "references/055-page-55.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "page-56",
+      "url": "https://react.dev/learn/responding-to-events.md",
+      "content_hash": "sha256:61dfeabe165296ffd93c667e22d980f4d911ef0d6b408767cd29516fedcfedfe",
+      "file": "references/056-page-56.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "Sally Ride's Packing List",
+      "url": "https://react.dev/learn/conditional-rendering.md",
+      "content_hash": "sha256:41a7f94b35519488f4f93651030c19c27a4bce31f3f775a66bf01aab231d5d89",
+      "file": "references/057-Sally-Ride-s-Packing-List.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "{person.name}",
+      "url": "https://react.dev/learn/rendering-lists.md",
+      "content_hash": "sha256:a38d1075ebf3bb3f8a9b8522889c3b5f5511cfb5391367afe01ac6b9afc76127",
+      "file": "references/058-person-name.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "Amazing scientists",
+      "url": "https://react.dev/learn/importing-and-exporting-components.md",
+      "content_hash": "sha256:dd7393f301a5520bbf455d22f61f57a9bd15481fdffd11873fb020d63f6f0ff7",
+      "file": "references/059-Amazing-scientists.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "Hedy Lamarr's Todos",
+      "url": "https://react.dev/learn/writing-markup-with-jsx.md",
+      "content_hash": "sha256:bfcba1af9b1952d90e1135d677adf1b8c3144e7440d60951d5186e736aeb7e38",
+      "file": "references/060-Hedy-Lamarr-s-Todos.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "{time}",
+      "url": "https://react.dev/learn/passing-props-to-a-component.md",
+      "content_hash": "sha256:81e7003cdbdc228bbdcda66d617a9224d9e5d53dd8826e9931bca59e7eecc7d6",
+      "file": "references/061-time.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "`:```js\nexport default function TodoList() {\n  const name = 'Gregorio Y. Zara';\n  return ({name}'s To Do List);\n}\n```Try changing the `name`'s value from `'Gregorio Y. Zara'` to `'Hedy Lamarr'`. See how the list title changes?\n\nAny JavaScript expression will work between curly braces, including function calls like `formatDate()`:```js\nconst today = new Date();\n\nfunction formatDate(date) {\n  return new Intl.DateTimeFormat(\n    'en-US',\n    { weekday: 'long' }\n  ).format(date);\n}\n\nexport default function TodoList() {\n  return (To Do List for {formatDate(today)});\n}\n```### Where to use curly braces {/*where-to-use-curly-braces*/}\n\nYou can only use curly braces in two ways inside JSX:\n\n1. **As text** directly inside a JSX tag: `{name}'s To Do List` works, but `<{tag}>Gregorio Y. Zara's To Do List`  will not.\n2. **As attributes** immediately following the `=` sign: `src={avatar}` will read the `avatar` variable, but `src=\"{avatar}\"` will pass the string `\"{avatar}\"`.\n\n## Using \"double curlies\": CSS and other objects in JSX {/*using-double-curlies-css-and-other-objects-in-jsx*/}\n\nIn addition to strings, numbers, and other JavaScript expressions, you can even pass objects in JSX. Objects are also denoted with curly braces, like `{ name: \"Hedy Lamarr\", inventions: 5 }`. Therefore, to pass a JS object in JSX, you must wrap the object in another pair of curly braces: `person={{ name: \"Hedy Lamarr\", inventions: 5 }}`.\n\nYou may see this with inline CSS styles in JSX. React does not require you to use inline styles (CSS classes work great for most cases). But when you need an inline style, you pass an object to the `style` attribute:```js\nexport default function TodoList() {\n  return (Improve the videophonePrepare aeronautics lecturesWork on the alcohol-fuelled engine);\n}\n```\n\n```css\nbody { padding: 0; margin: 0 }\nul { padding: 20px 20px 20px 40px; margin: 0; }\n```Try changing the values of `backgroundColor` and `color`.\n\nYou can really see the JavaScript object inside the curly braces when you write it like this:\n\n```js {2-5}```\n\nThe next time you see `{{` and `}}` in JSX, know that it's nothing more than an object inside the JSX curlies!Inline `style` properties are written in camelCase. For example, HTML `` would be written as ``  in your component.## More fun with JavaScript objects and curly braces {/*more-fun-with-javascript-objects-and-curly-braces*/}\n\nYou can move several expressions into one object, and reference them in your JSX inside curly braces:```js\nconst person = {\n  name: 'Gregorio Y. Zara',\n  theme: {\n    backgroundColor: 'black',\n    color: 'pink'\n  }\n};\n\nexport default function TodoList() {\n  return ({person.name}'s TodosImprove the videophonePrepare aeronautics lecturesWork on the alcohol-fuelled engine);\n}\n```\n\n```css\nbody { padding: 0; margin: 0 }\nbody > div > div { padding: 20px; }\n.avatar { border-radius: 50%; height: 90px; }\n```In this example, the `person` JavaScript object contains a `name` string and a `theme` object:\n\n```js\nconst person = {\n  name: 'Gregorio Y. Zara',\n  theme: {\n    backgroundColor: 'black',\n    color: 'pink'\n  }\n};\n```\n\nThe component can use these values from `person` like so:\n\n```js{person.name}'s Todos```\n\nJSX is very minimal as a templating language because it lets you organize data and logic using JavaScript.Now you know almost everything about JSX:\n\n* JSX attributes inside quotes are passed as strings.\n* Curly braces let you bring JavaScript logic and variables into your markup.\n* They work inside the JSX tag content or immediately after `=` in attributes.\n* `{{` and `}}` is not special syntax: it's a JavaScript object tucked inside JSX curly braces.#### Fix the mistake {/*fix-the-mistake*/}\n\nThis code crashes with an error saying `Objects are not valid as a React child`:```js\nconst person = {\n  name: 'Gregorio Y. Zara',\n  theme: {\n    backgroundColor: 'black',\n    color: 'pink'\n  }\n};\n\nexport default function TodoList() {\n  return ({person}'s TodosImprove the videophonePrepare aeronautics lecturesWork on the alcohol-fuelled engine);\n}\n```\n\n```css\nbody { padding: 0; margin: 0 }\nbody > div > div { padding: 20px; }\n.avatar { border-radius: 50%; height: 90px; }\n```Can you find the problem?Look for what's inside the curly braces. Are we putting the right thing there?This is happening because this example renders *an object itself* into the markup rather than a string: `{person}'s Todos` is trying to render the entire `person` object! Including raw objects as text content throws an error because React doesn't know how you want to display them.\n\nTo fix it, replace `{person}'s Todos` with `{person.name}'s Todos`:```js\nconst person = {\n  name: 'Gregorio Y. Zara',\n  theme: {\n    backgroundColor: 'black',\n    color: 'pink'\n  }\n};\n\nexport default function TodoList() {\n  return ({person.name}'s TodosImprove the videophonePrepare aeronautics lecturesWork on the alcohol-fuelled engine);\n}\n```\n\n```css\nbody { padding: 0; margin: 0 }\nbody > div > div { padding: 20px; }\n.avatar { border-radius: 50%; height: 90px; }\n```#### Extract information into an object {/*extract-information-into-an-object*/}\n\nExtract the image URL into the `person` object.```js\nconst person = {\n  name: 'Gregorio Y. Zara',\n  theme: {\n    backgroundColor: 'black',\n    color: 'pink'\n  }\n};\n\nexport default function TodoList() {\n  return ({person.name}'s TodosImprove the videophonePrepare aeronautics lecturesWork on the alcohol-fuelled engine);\n}\n```\n\n```css\nbody { padding: 0; margin: 0 }\nbody > div > div { padding: 20px; }\n.avatar { border-radius: 50%; height: 90px; }\n```Move the image URL into a property called `person.imageUrl` and read it from the `` tag using the curlies:```js\nconst person = {\n  name: 'Gregorio Y. Zara',\n  imageUrl: \"https://react.dev/images/docs/scientists/7vQD0fPs.jpg\",\n  theme: {\n    backgroundColor: 'black',\n    color: 'pink'\n  }\n};\n\nexport default function TodoList() {\n  return ({person.name}'s TodosImprove the videophonePrepare aeronautics lecturesWork on the alcohol-fuelled engine);\n}\n```\n\n```css\nbody { padding: 0; margin: 0 }\nbody > div > div { padding: 20px; }\n.avatar { border-radius: 50%; height: 90px; }\n```#### Write an expression inside JSX curly braces {/*write-an-expression-inside-jsx-curly-braces*/}\n\nIn the object below, the full image URL is split into four parts: base URL, `imageId`, `imageSize`, and file extension.\n\nWe want the image URL to combine these attributes together: base URL (always `'https://react.dev/images/docs/scientists/'`), `imageId` (`'7vQD0fP'`), `imageSize` (`'s'`), and file extension (always `'.jpg'`). However, something is wrong with how the `` tag specifies its `src`.\n\nCan you fix it?```js\n\nconst baseUrl = 'https://react.dev/images/docs/scientists/';\nconst person = {\n  name: 'Gregorio Y. Zara',\n  imageId: '7vQD0fP',\n  imageSize: 's',\n  theme: {\n    backgroundColor: 'black',\n    color: 'pink'\n  }\n};\n\nexport default function TodoList() {\n  return ({person.name}'s TodosImprove the videophonePrepare aeronautics lecturesWork on the alcohol-fuelled engine);\n}\n```\n\n```css\nbody { padding: 0; margin: 0 }\nbody > div > div { padding: 20px; }\n.avatar { border-radius: 50%; }\n```To check that your fix worked, try changing the value of `imageSize` to `'b'`. The image should resize after your edit.You can write it as `src={baseUrl + person.imageId + person.imageSize + '.jpg'}`.\n\n1. `{` opens the JavaScript expression\n2. `baseUrl + person.imageId + person.imageSize + '.jpg'` produces the correct URL string\n3. `}` closes the JavaScript expression```js\nconst baseUrl = 'https://react.dev/images/docs/scientists/';\nconst person = {\n  name: 'Gregorio Y. Zara',\n  imageId: '7vQD0fP',\n  imageSize: 's',\n  theme: {\n    backgroundColor: 'black',\n    color: 'pink'\n  }\n};\n\nexport default function TodoList() {\n  return ({person.name}'s TodosImprove the videophonePrepare aeronautics lecturesWork on the alcohol-fuelled engine);\n}\n```\n\n```css\nbody { padding: 0; margin: 0 }\nbody > div > div { padding: 20px; }\n.avatar { border-radius: 50%; }\n```You can also move this expression into a separate function like `getImageUrl` below:```js src/App.js\nimport { getImageUrl } from './utils.js'\n\nconst person = {\n  name: 'Gregorio Y. Zara',\n  imageId: '7vQD0fP',\n  imageSize: 's',\n  theme: {\n    backgroundColor: 'black',\n    color: 'pink'\n  }\n};\n\nexport default function TodoList() {\n  return ({person.name}'s TodosImprove the videophonePrepare aeronautics lecturesWork on the alcohol-fuelled engine);\n}\n```\n\n```js src/utils.js\nexport function getImageUrl(person) {\n  return (\n    'https://react.dev/images/docs/scientists/' +\n    person.imageId +\n    person.imageSize +\n    '.jpg'\n  );\n}\n```\n\n```css\nbody { padding: 0; margin: 0 }\nbody > div > div { padding: 20px; }\n.avatar { border-radius: 50%; }\n```Variables and functions can help you keep the markup simple!---\n\n## Sitemap\n\n[Overview of all docs pages](/llms.txt)",
+      "url": "https://react.dev/learn/javascript-in-jsx-with-curly-braces.md",
+      "content_hash": "sha256:69cd52de353d517b36de6f6dac065564550f88358ab74b07452646056e150a84",
+      "file": "references/062-js-export-default-function-TodoList-const-name-Gregorio-Y-Za.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "Amazing scientists",
+      "url": "https://react.dev/learn/describing-the-ui.md",
+      "content_hash": "sha256:c7508cf96d50c45355d545ce0fd42c1fec4f2247089d3715bd7477c5b25c3c78",
+      "file": "references/063-Amazing-scientists.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "` and `",
+      "url": "https://react.dev/learn/your-first-component.md",
+      "content_hash": "sha256:a7b374443b71c4155fe7cacb1fd699fe719fe4b7711e963621574389f38565ad",
+      "file": "references/064-and.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "page-65",
+      "url": "https://react.dev/learn/react-compiler/introduction.md",
+      "content_hash": "sha256:f9c085e82f78d31b1525bf4110a6a2cbb944ae18b76dc66b4336a3b40be7f712",
+      "file": "references/065-page-65.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "page-66",
+      "url": "https://react.dev/learn/react-compiler/installation.md",
+      "content_hash": "sha256:8097b447c30dbd98950a948ddd2b3e30f80f91e45cfe8741d550f7ed154c713d",
+      "file": "references/066-page-66.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "page-67",
+      "url": "https://react.dev/learn/react-compiler/debugging.md",
+      "content_hash": "sha256:98b714b1e6a1996c80e5cea107e5e75f15de7f76919b13b60e2fa8d3e02ebfec",
+      "file": "references/067-page-67.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "page-68",
+      "url": "https://react.dev/learn/react-compiler/incremental-adoption.md",
+      "content_hash": "sha256:5a3f7a23d740e1d91daf3256c3e65eec85ff3eeda4fd99d6a600c245c45439fd",
+      "file": "references/068-page-68.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "Yarn",
+      "url": "https://react.dev/learn/react-developer-tools.md",
+      "content_hash": "sha256:0e04e2f33c0b352b0e80b5177835420136fd2af98af6b79549e3985fbc8f6cd3",
+      "file": "references/069-Yarn.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "page-70",
+      "url": "https://react.dev/learn/react-compiler.md",
+      "content_hash": "sha256:a2de5266128879a340987e3a3a75f7de669c30a03114864f18f8bce2635917a6",
+      "file": "references/070-page-70.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "My app",
+      "url": "https://react.dev/learn/add-react-to-an-existing-project.md",
+      "content_hash": "sha256:2734ca723aac98587708c0bc328a69bb6ad2f45b4d216047e9360ef15ad983e0",
+      "file": "references/071-My-app.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "page-72",
+      "url": "https://react.dev/learn/setup.md",
+      "content_hash": "sha256:c8ab107d070a27c9dd3380339283a0c632fab5230d71b745fb1b4e80332f9264",
+      "file": "references/072-page-72.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "Welcome to my app",
+      "url": "https://react.dev/learn/typescript.md",
+      "content_hash": "sha256:bdad61745f68c89c18f8c356734c669c0616fc0fc62db0e27740fcc6d211b3e7",
+      "file": "references/073-Welcome-to-my-app.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "page-74",
+      "url": "https://react.dev/learn/editor-setup.md",
+      "content_hash": "sha256:b7b3e44477a40b65282cf9941d124304dc4e1b2ae2ac61bc159a0cec7a4fd39e",
+      "file": "references/074-page-74.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "page-75",
+      "url": "https://react.dev/learn/creating-a-react-app.md",
+      "content_hash": "sha256:77f4f1a10681414fe15715b8c7834ed47b93a96135698da5b8b18f91e35daefb",
+      "file": "references/075-page-75.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "page-76",
+      "url": "https://react.dev/learn/build-a-react-app-from-scratch.md",
+      "content_hash": "sha256:9851b402a74ae9cc877ef9d55f81ba6fd25b21345519e497654b0a2a5e6cdc83",
+      "file": "references/076-page-76.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "Quick Start \u2013 React",
+      "url": "https://react.dev/learn",
+      "content_hash": "sha256:92ee11b71ade592389fbcd5782eb605305a9e641ba21434e583f170306fce0c9",
+      "file": "references/077-Quick-Start-React.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "page-78",
+      "url": "https://react.dev/learn/tutorial-tic-tac-toe.md",
+      "content_hash": "sha256:856668d29df92809171636d61ecbbc051f6b3d82116a016fea66d560e790e907",
+      "file": "references/078-page-78.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "Hello, {name}",
+      "url": "https://react.dev/learn/installation.md",
+      "content_hash": "sha256:6c321f46935954e2035b4ca55cd7da75b981a54c61a2fceacfc3bfa7bbdc4d15",
+      "file": "references/079-Hello-name.md",
+      "source": "react",
+      "version": "latest"
+    },
+    {
+      "title": "page-80",
+      "url": "https://react.dev/learn/thinking-in-react.md",
+      "content_hash": "sha256:c4515daa4e466b93a346526ae328eebf5521160a18ad6500400c91b9dc1191d7",
+      "file": "references/080-page-80.md",
+      "source": "react",
+      "version": "latest"
+    }
+  ]
+}

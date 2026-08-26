@@ -1,0 +1,207 @@
+# GitHub Copilot Cookbook - GitHub Docs
+
+Source: https://docs.github.com/en/copilot/tutorials/copilot-cookbook
+
+# GitHub Copilot Cookbook
+
+Learn how to use GitHub Copilot to accomplish specific tasks.
+
+## Spotlight
+
+![Implementing a feature from a GitHub Issue](/assets/images/copilot-landing/improving_code_readability.png)
+
+### [Implementing a feature from a GitHub Issue](/en/copilot/tutorials/copilot-cookbook/generate-code/implement-a-feature)
+
+Give a GitHub issue to GitHub Copilot CLI, then steer the conversation to implement the feature.
+
+![Diagnosing CI test failures](/assets/images/copilot-landing/generating_unit_tests.png)
+
+### [Diagnosing CI test failures](/en/copilot/tutorials/copilot-cookbook/debug-errors/diagnose-ci-test-failures)
+
+Use Copilot CLI to pull CI logs, correlate failures to local code, and fix issues without leaving the terminal.
+
+![Improving code readability and maintainability](/assets/images/copilot-landing/debugging_invalid_json.png)
+
+### [Improving code readability and maintainability](/en/copilot/tutorials/copilot-cookbook/refactor-code/improve-code-readability)
+
+Copilot Chat can suggest ways to make your code easier to understand and maintain.
+
+## Explore 35 examples
+
+Category: AllSurface: AllReset filters
+
+- ### [Creating templates](/en/copilot/tutorials/copilot-cookbook/communicate-effectively/creating-templates)
+
+  Copilot Chat can help you create templates to streamline your workflow and ensure consistency across your projects.
+
+  Communicate effectivelyAuthor and optimize with CopilotScale institutional knowledgeChat
+- ### [Triage and summarize repository activity](/en/copilot/tutorials/copilot-cookbook/communicate-effectively/summarize-repository-activity)
+
+  Copilot can extract key information from repositories you follow to keep you up-to-date on recent activity.
+
+  Communicate effectivelyAuthor and optimize with CopilotScale institutional knowledgeCLI
+- ### [Synthesizing research](/en/copilot/tutorials/copilot-cookbook/communicate-effectively/synthesizing-research)
+
+  Copilot Chat can help you synthesize research findings and insights from multiple sources into a cohesive summary.
+
+  Communicate effectivelyAuthor and optimize with CopilotScale institutional knowledgeChat
+- ### [Creating diagrams](/en/copilot/tutorials/copilot-cookbook/communicate-effectively/creating-diagrams)
+
+  GitHub Copilot Chat can help you create diagrams to better understand your data and communicate insights.
+
+  Communicate effectivelyVisualize dataScale institutional knowledgeAuthor and optimize with CopilotChat
+- ### [Generating tables](/en/copilot/tutorials/copilot-cookbook/communicate-effectively/generating-tables)
+
+  Copilot Chat can help you create tables to organize information and present it clearly.
+
+  Communicate effectivelyAuthor and optimize with CopilotScale institutional knowledgeChat
+- ### [Debugging invalid JSON](/en/copilot/tutorials/copilot-cookbook/debug-errors/debug-invalid-json)
+
+  Copilot Chat can identify and resolve syntax errors or structural issues in JSON data.
+
+  Debugging codeAuthor and optimize with CopilotImprove quality and maintainabilityChat
+- ### [Handling API rate limits](/en/copilot/tutorials/copilot-cookbook/debug-errors/handle-api-rate-limits)
+
+  Copilot Chat can help handle API rate limits by suggesting code that detects them and implements retry logic.
+
+  Debugging codeAuthor and optimize with CopilotImprove quality and maintainabilityChat
+- ### [Diagnosing CI test failures](/en/copilot/tutorials/copilot-cookbook/debug-errors/diagnose-ci-test-failures)
+
+  Use Copilot CLI to pull CI logs, correlate failures to local code, and fix issues without leaving the terminal.
+
+  Debugging codeAuthor and optimize with CopilotImprove quality and maintainabilityCLI
+- ### [Exploring potential feature implementations](/en/copilot/tutorials/copilot-cookbook/analyze-functionality/explore-implementations)
+
+  Copilot Chat can help explore different approaches for implementing a single feature.
+
+  Functionality analysisAuthor and optimize with CopilotScale institutional knowledgeChat
+- ### [Analyzing and incorporating user feedback](/en/copilot/tutorials/copilot-cookbook/analyze-functionality/analyze-feedback)
+
+  Copilot Chat can enhance the process of incorporating user feedback into your project.
+
+  Functionality analysisAuthor and optimize with CopilotScale institutional knowledgeChat
+- ### [Implementing a feature from a GitHub Issue](/en/copilot/tutorials/copilot-cookbook/generate-code/implement-a-feature)
+
+  Give a GitHub issue to GitHub Copilot CLI, then steer the conversation to implement the feature.
+
+  Author and optimize with CopilotCLI
+- ### [Improving code readability and maintainability](/en/copilot/tutorials/copilot-cookbook/refactor-code/improve-code-readability)
+
+  Copilot Chat can suggest ways to make your code easier to understand and maintain.
+
+  Refactoring codeAuthor and optimize with CopilotImprove quality and maintainabilityChat
+- ### [Fixing lint errors](/en/copilot/tutorials/copilot-cookbook/refactor-code/fix-lint-errors)
+
+  Copilot Chat can suggest ways to fix issues identified by a code linter.
+
+  Refactoring codeAuthor and optimize with CopilotImprove quality and maintainabilityChat
+- ### [Refactoring for performance optimization](/en/copilot/tutorials/copilot-cookbook/refactor-code/refactor-for-optimization)
+
+  Copilot Chat can suggest ways to speed up slow-running code.
+
+  Refactoring codeAuthor and optimize with CopilotImprove quality and maintainabilityChat
+- ### [Refactoring for environmental sustainability](/en/copilot/tutorials/copilot-cookbook/refactor-code/refactor-for-sustainability)
+
+  Copilot Chat can suggest ways to make code more environmentally friendly.
+
+  Refactoring codeImprove quality and maintainabilityAuthor and optimize with CopilotChat
+- ### [Refactoring to implement a design pattern](/en/copilot/tutorials/copilot-cookbook/refactor-code/refactor-design-patterns)
+
+  Copilot Chat can suggest design patterns that you can use to improve your code.
+
+  Refactoring codeAuthor and optimize with CopilotImprove quality and maintainabilityChat
+- ### [Refactoring data access layers](/en/copilot/tutorials/copilot-cookbook/refactor-code/refactor-data-access-layers)
+
+  Copilot Chat can suggest ways to decouple your data access code from your business logic, making an application easier to maintain and scale.
+
+  Refactoring codeAuthor and optimize with CopilotImprove quality and maintainabilityChat
+- ### [Decoupling business logic from UI components](/en/copilot/tutorials/copilot-cookbook/refactor-code/decouple-business-logic)
+
+  Copilot Chat can help you separate your business logic from your user interface code, making it easier to maintain and scale your application.
+
+  Refactoring codeAuthor and optimize with CopilotImprove quality and maintainabilityChat
+- ### [Handling cross-cutting concerns](/en/copilot/tutorials/copilot-cookbook/refactor-code/handle-cross-cutting)
+
+  Copilot Chat can help you avoid code that relates to a concern other than the core concern of the method or function in which the code is located.
+
+  Refactoring codeAuthor and optimize with CopilotImprove quality and maintainabilityChat
+- ### [Simplifying complex inheritance hierarchies](/en/copilot/tutorials/copilot-cookbook/refactor-code/simplify-inheritance-hierarchies)
+
+  Copilot Chat can help you to refactor code to avoid classes with multiple layers of inheritance.
+
+  Refactoring codeAuthor and optimize with CopilotImprove quality and maintainabilityChat
+- ### [Fixing database deadlocks or data integrity issues](/en/copilot/tutorials/copilot-cookbook/refactor-code/fix-database-deadlocks)
+
+  Copilot Chat can help you avoid code that causes slow or blocked database operations, or tables with missing or incorrect data.
+
+  Refactoring codeAuthor and optimize with CopilotImprove quality and maintainabilityChat
+- ### [Translating code to a different programming language](/en/copilot/tutorials/copilot-cookbook/refactor-code/translate-code)
+
+  Copilot Chat can help you rewrite code to perform the same operations but in a different programming language.
+
+  Refactoring codeAuthor and optimize with CopilotImprove quality and maintainabilityChat
+- ### [Filing issues without breaking your flow](/en/copilot/tutorials/copilot-cookbook/document-code/filing-issues-without-breaking-your-flow)
+
+  When something catches your attention mid-task, use Copilot CLI to file a GitHub issue with code context, linked PRs, and labels, then get back to what you were doing.
+
+  Documenting codeAuthor and optimize with CopilotCLI
+- ### [Documenting legacy code](/en/copilot/tutorials/copilot-cookbook/document-code/document-legacy-code)
+
+  Copilot Chat can help with documenting legacy code.
+
+  Documenting codeAuthor and optimize with CopilotScale institutional knowledgeChat
+- ### [Explaining legacy code](/en/copilot/tutorials/copilot-cookbook/document-code/explain-legacy-code)
+
+  Copilot Chat can help with explaining unfamiliar code.
+
+  Documenting codeAuthor and optimize with CopilotScale institutional knowledgeChat
+- ### [Explaining complex algorithms or logic](/en/copilot/tutorials/copilot-cookbook/document-code/explain-complex-logic)
+
+  Copilot Chat can help add clear and concise documentation on complex algorithms or logic.
+
+  Documenting codeAuthor and optimize with CopilotScale institutional knowledgeChat
+- ### [Syncing documentation with code changes](/en/copilot/tutorials/copilot-cookbook/document-code/sync-documentation)
+
+  Copilot Chat can help with keeping code documentation up-to-date.
+
+  Documenting codeAuthor and optimize with CopilotScale institutional knowledgeChat
+- ### [Writing discussions or blog posts](/en/copilot/tutorials/copilot-cookbook/document-code/write-discussions-or-blog-posts)
+
+  Copilot Chat can help you generate ideas, outline, or draft discussions or blog posts.
+
+  Documenting codeAuthor and optimize with CopilotScale institutional knowledgeChat
+- ### [Generating unit tests](/en/copilot/tutorials/copilot-cookbook/testing-code/generate-unit-tests)
+
+  Copilot Chat can help with generating unit tests for a function.
+
+  Testing codeAuthor and optimize with CopilotImprove quality and maintainabilityChat
+- ### [Creating mock objects to abstract layers](/en/copilot/tutorials/copilot-cookbook/testing-code/create-mock-objects)
+
+  Copilot Chat can help with creating mock objects that you can use for unit tests.
+
+  Testing codeAuthor and optimize with CopilotImprove quality and maintainabilityChat
+- ### [Creating end-to-end tests for a webpage](/en/copilot/tutorials/copilot-cookbook/testing-code/create-end-to-end-tests)
+
+  Copilot Chat can help with generating end-to-end tests.
+
+  Testing codeAuthor and optimize with CopilotImprove quality and maintainabilityChat
+- ### [Updating unit tests to match code changes](/en/copilot/tutorials/copilot-cookbook/testing-code/update-unit-tests)
+
+  Copilot Chat can help with updating your tests.
+
+  Testing codeAuthor and optimize with CopilotImprove quality and maintainabilityChat
+- ### [Securing your repository](/en/copilot/tutorials/copilot-cookbook/analyze-security/secure-your-repository)
+
+  Copilot Chat can help you to secure your repository and your code.
+
+  Security analysisAuthor and optimize with CopilotImprove quality and maintainabilityChat
+- ### [Managing dependency updates](/en/copilot/tutorials/copilot-cookbook/analyze-security/manage-dependency-updates)
+
+  Copilot Chat can help you get set up with Dependabot to streamline dependency updates.
+
+  Security analysisAuthor and optimize with CopilotImprove quality and maintainabilityChat
+- ### [Finding existing vulnerabilities in code](/en/copilot/tutorials/copilot-cookbook/analyze-security/find-vulnerabilities)
+
+  Copilot Chat can help find common vulnerabilities in your code and suggest fixes.
+
+  Security analysisAuthor and optimize with CopilotImprove quality and maintainabilityChat

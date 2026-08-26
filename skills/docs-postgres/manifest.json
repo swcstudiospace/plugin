@@ -1,0 +1,651 @@
+{
+  "name": "docs-postgres",
+  "generated_at": "2026-07-29T03:49:07Z",
+  "query": null,
+  "source_id": null,
+  "ranking": "all pages (recency)",
+  "page_count": 80,
+  "embedding_model": null,
+  "pages": [
+    {
+      "title": "PostgreSQL: Documentation: 18: CREATE CAST",
+      "url": "https://www.postgresql.org/docs/current/sql-createcast.html",
+      "content_hash": "sha256:0bb93caee579f1c5232c427c7bd35cc598cc879bc6add9d1b0957b5f86a9b58f",
+      "file": "references/001-PostgreSQL-Documentation-18-CREATE-CAST.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 12.7.\u00a0Configuration Example",
+      "url": "https://www.postgresql.org/docs/current/textsearch-configuration.html",
+      "content_hash": "sha256:eaf1d990074590d4e1e35036f1487fc3ee66e37948b534b54056a6d26a1c11f9",
+      "file": "references/002-PostgreSQL-Documentation-18-12-7-Configuration-Example.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 54.2.\u00a0Message Flow",
+      "url": "https://www.postgresql.org/docs/current/protocol-flow.html",
+      "content_hash": "sha256:f88d13cb59a52cc665485e682d1e8b01bbd48652db1cec602d917decfa914142",
+      "file": "references/003-PostgreSQL-Documentation-18-54-2-Message-Flow.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 54.3.\u00a0SASL Authentication",
+      "url": "https://www.postgresql.org/docs/current/sasl-authentication.html",
+      "content_hash": "sha256:f4513dd900d4174d46e82eb8ca1a996c199c811321516f7f9f7cf4cbc4ab9b80",
+      "file": "references/004-PostgreSQL-Documentation-18-54-3-SASL-Authentication.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 17.3.\u00a0Building and Installation with Autoconf and Make",
+      "url": "https://www.postgresql.org/docs/current/install-make.html",
+      "content_hash": "sha256:13a34dc95801422ae0effdf4613719af60ef7aefa24942a9020f60d38a04b41d",
+      "file": "references/005-PostgreSQL-Documentation-18-17-3-Building-and-Installation-w.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: ALTER AGGREGATE",
+      "url": "https://www.postgresql.org/docs/current/sql-alteraggregate.html",
+      "content_hash": "sha256:782d67f6c7e778e8eb2f9da121a55e64b6540f79253ed0623d6a3158c2511297",
+      "file": "references/006-PostgreSQL-Documentation-18-ALTER-AGGREGATE.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: dblink_open",
+      "url": "https://www.postgresql.org/docs/current/contrib-dblink-open.html",
+      "content_hash": "sha256:6e57295622edf8b26d911b9f7eb17ab871abdfd439fca834bc426419a16e5828",
+      "file": "references/007-PostgreSQL-Documentation-18-dblink_open.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 55.4.\u00a0Miscellaneous Coding Conventions",
+      "url": "https://www.postgresql.org/docs/current/source-conventions.html",
+      "content_hash": "sha256:d048f2e8e5d35a2b8ba17a54862274217da03c5e2c7cae4d0902438f607b2b09",
+      "file": "references/008-PostgreSQL-Documentation-18-55-4-Miscellaneous-Coding-Conven.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 9.22.\u00a0Window Functions",
+      "url": "https://www.postgresql.org/docs/current/functions-window.html",
+      "content_hash": "sha256:c6cb4a2b44e094602cb9f1e6a62728b626a23d78d2360842d9fe02e453dd23da",
+      "file": "references/009-PostgreSQL-Documentation-18-9-22-Window-Functions.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 35.28.\u00a0foreign_server_options",
+      "url": "https://www.postgresql.org/docs/current/infoschema-foreign-server-options.html",
+      "content_hash": "sha256:51ca8514397b4b76c69dee9af2ba467818d2832de276f00158623bfe8dbe0323",
+      "file": "references/010-PostgreSQL-Documentation-18-35-28-foreign_server_options.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 35.35.\u00a0role_column_grants",
+      "url": "https://www.postgresql.org/docs/current/infoschema-role-column-grants.html",
+      "content_hash": "sha256:e35cd600e9870f46fe89b0e629bf6b904674fca8cf772d6aae7681b631d2ae04",
+      "file": "references/011-PostgreSQL-Documentation-18-35-35-role_column_grants.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 53.17.\u00a0pg_prepared_xacts",
+      "url": "https://www.postgresql.org/docs/current/view-pg-prepared-xacts.html",
+      "content_hash": "sha256:88d48cb8283259ae6634b9468c8a4279dc5765005bba8f5743c6c7d2cf3ae80a",
+      "file": "references/012-PostgreSQL-Documentation-18-53-17-pg_prepared_xacts.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 53.8.\u00a0pg_file_settings",
+      "url": "https://www.postgresql.org/docs/current/view-pg-file-settings.html",
+      "content_hash": "sha256:6011a2b6151ccb97f778f4c3a56a29a205ec037814cf868298ae8a953aba5723",
+      "file": "references/013-PostgreSQL-Documentation-18-53-8-pg_file_settings.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: Appendix\u00a0L.\u00a0Acronyms",
+      "url": "https://www.postgresql.org/docs/current/acronyms.html",
+      "content_hash": "sha256:fffb3630fb569087a820bacf5ae2827760c6b794bf97c10b7dab30b2841ef907",
+      "file": "references/014-PostgreSQL-Documentation-18-Appendix-L-Acronyms.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: Chapter\u00a036.\u00a0Extending SQL",
+      "url": "https://www.postgresql.org/docs/current/extend.html",
+      "content_hash": "sha256:047510f142c151aed2f49e1d87af9b1e1335c980870f83dc4828fd3144b7bf07",
+      "file": "references/015-PostgreSQL-Documentation-18-Chapter-36-Extending-SQL.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: SPI_cursor_close",
+      "url": "https://www.postgresql.org/docs/current/spi-spi-cursor-close.html",
+      "content_hash": "sha256:baeea0f731b85332723df69cb030db95032365e3354ab1b919fc644800a4964d",
+      "file": "references/016-PostgreSQL-Documentation-18-SPI_cursor_close.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 11.7.\u00a0Indexes on Expressions",
+      "url": "https://www.postgresql.org/docs/current/indexes-expressional.html",
+      "content_hash": "sha256:6e677a1199ef9c61150b5982b3d6e3737aa52d05ec9de008c8efdbf716c18697",
+      "file": "references/017-PostgreSQL-Documentation-18-11-7-Indexes-on-Expressions.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 47.1.\u00a0Logical Decoding Examples",
+      "url": "https://www.postgresql.org/docs/current/logicaldecoding-example.html",
+      "content_hash": "sha256:330706757358bb0f2eff4a84ed5223c2de6b9821f6036fd557ef5c9512af9199",
+      "file": "references/018-PostgreSQL-Documentation-18-47-1-Logical-Decoding-Examples.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 33.3.\u00a0Client Interfaces",
+      "url": "https://www.postgresql.org/docs/current/lo-interfaces.html",
+      "content_hash": "sha256:aecd0c6b6bcd43d3c86bfd78360b11b8f983a3a290b057623d00631a6523e799",
+      "file": "references/019-PostgreSQL-Documentation-18-33-3-Client-Interfaces.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 11.4.\u00a0Indexes and ORDER BY",
+      "url": "https://www.postgresql.org/docs/current/indexes-ordering.html",
+      "content_hash": "sha256:adb543d1d3151d111817254d8c2ad692b41d94d49ae81d0b3cd625c8f5afa556",
+      "file": "references/020-PostgreSQL-Documentation-18-11-4-Indexes-and-ORDER-BY.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: dblink_get_result",
+      "url": "https://www.postgresql.org/docs/current/contrib-dblink-get-result.html",
+      "content_hash": "sha256:e2114ce683727d59f41876e9da1ff3f5993a5306ef1d2ec28e3c149cfbb363fd",
+      "file": "references/021-PostgreSQL-Documentation-18-dblink_get_result.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: Legal Notice",
+      "url": "https://www.postgresql.org/docs/current/legalnotice.html",
+      "content_hash": "sha256:84ae4f74be801137785c5500dc7cd5bca47ff0cb2f0441a6959dd2427018385f",
+      "file": "references/022-PostgreSQL-Documentation-18-Legal-Notice.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: dblink_close",
+      "url": "https://www.postgresql.org/docs/current/contrib-dblink-close.html",
+      "content_hash": "sha256:e29c88f2f9d587aa82aa3cc96c29d7c82d1636c7104ea309e421ada1cff648c5",
+      "file": "references/023-PostgreSQL-Documentation-18-dblink_close.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 20.1.\u00a0The pg_hba.conf File",
+      "url": "https://www.postgresql.org/docs/current/auth-pg-hba-conf.html",
+      "content_hash": "sha256:858aac59d94557f37b7c28bf724aec304e738fc74167f6a6fbbe863016854e23",
+      "file": "references/024-PostgreSQL-Documentation-18-20-1-The-pg_hba-conf-File.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: ALTER TABLESPACE",
+      "url": "https://www.postgresql.org/docs/current/sql-altertablespace.html",
+      "content_hash": "sha256:b1da5ec81b358f50f0dd53f000dd823563f5616fa78556fbdf488969fe022151",
+      "file": "references/025-PostgreSQL-Documentation-18-ALTER-TABLESPACE.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 42.2.\u00a0PL/Tcl Functions and Arguments",
+      "url": "https://www.postgresql.org/docs/current/pltcl-functions.html",
+      "content_hash": "sha256:381003865ec64986e702160a2b00bc44fb1d8f2292fa47b2503322c050bafd5b",
+      "file": "references/026-PostgreSQL-Documentation-18-42-2-PL-Tcl-Functions-and-Argume.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: Chapter\u00a01.\u00a0Getting Started",
+      "url": "https://www.postgresql.org/docs/current/tutorial-start.html",
+      "content_hash": "sha256:c3893ca3ca9e69c9d7cba7d1cb2602aa048bf1819cc00e525723edb433d39373",
+      "file": "references/027-PostgreSQL-Documentation-18-Chapter-1-Getting-Started.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 18.3.\u00a0Starting the Database Server",
+      "url": "https://www.postgresql.org/docs/current/server-start.html",
+      "content_hash": "sha256:5cfc09917651f26c9dd213dd5ac5ac8c83783ea7fc9f44e411e888ab9927473c",
+      "file": "references/028-PostgreSQL-Documentation-18-18-3-Starting-the-Database-Serve.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 9.14.\u00a0UUID Functions",
+      "url": "https://www.postgresql.org/docs/current/functions-uuid.html",
+      "content_hash": "sha256:7118db148cb247a39d9eb25833efcd916f9fb2310df2deb880e474c22a822cb7",
+      "file": "references/029-PostgreSQL-Documentation-18-9-14-UUID-Functions.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: DROP SUBSCRIPTION",
+      "url": "https://www.postgresql.org/docs/current/sql-dropsubscription.html",
+      "content_hash": "sha256:cebb6896ea99576d03a67bfc006287cf74239918f826c5e3c1a01a95283e53cd",
+      "file": "references/030-PostgreSQL-Documentation-18-DROP-SUBSCRIPTION.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 32.18.\u00a0LDAP Lookup of Connection Parameters",
+      "url": "https://www.postgresql.org/docs/current/libpq-ldap.html",
+      "content_hash": "sha256:017a6a886aa5e624449eed3ec2571508f2e133ca09fe36d72ba79377b9ea361e",
+      "file": "references/031-PostgreSQL-Documentation-18-32-18-LDAP-Lookup-of-Connection.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 20.12.\u00a0Certificate Authentication",
+      "url": "https://www.postgresql.org/docs/current/auth-cert.html",
+      "content_hash": "sha256:e126b1deef56f569b18e18aad5556069a249076da4ff549c0286bbe15ef154b4",
+      "file": "references/032-PostgreSQL-Documentation-18-20-12-Certificate-Authentication.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 52.2.\u00a0pg_aggregate",
+      "url": "https://www.postgresql.org/docs/current/catalog-pg-aggregate.html",
+      "content_hash": "sha256:8fafe85368c3b9ad66279db1300eceb43c58e74f4c756f49881b4ddecaeb3742",
+      "file": "references/033-PostgreSQL-Documentation-18-52-2-pg_aggregate.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 32.13.\u00a0Notice Processing",
+      "url": "https://www.postgresql.org/docs/current/libpq-notice-processing.html",
+      "content_hash": "sha256:f0bdb8a3767c489ac18d352721f5035c7bccd010fbdbf45087b4df622e2e55ed",
+      "file": "references/034-PostgreSQL-Documentation-18-32-13-Notice-Processing.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 70.1.\u00a0Backup Manifest Top-level Object",
+      "url": "https://www.postgresql.org/docs/current/backup-manifest-toplevel.html",
+      "content_hash": "sha256:4465482400e4b893e4373ba0f776a49c8471a79885864a0a4faf90d468eec55e",
+      "file": "references/035-PostgreSQL-Documentation-18-70-1-Backup-Manifest-Top-level-O.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 35.29.\u00a0foreign_servers",
+      "url": "https://www.postgresql.org/docs/current/infoschema-foreign-servers.html",
+      "content_hash": "sha256:1e7561f56a711b58c062b3bf5e151407191faf564de5aca99f9b722aac9205ca",
+      "file": "references/036-PostgreSQL-Documentation-18-35-29-foreign_servers.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 9.11.\u00a0Geometric Functions and Operators",
+      "url": "https://www.postgresql.org/docs/current/functions-geometry.html",
+      "content_hash": "sha256:6ba827cc5cc1c73920f82b8847bf6489e23fa846e02fbe08476342b524500ae4",
+      "file": "references/037-PostgreSQL-Documentation-18-9-11-Geometric-Functions-and-Ope.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: MERGE",
+      "url": "https://www.postgresql.org/docs/current/sql-merge.html",
+      "content_hash": "sha256:dc682246657466e8edd6b3fffb7e02732da3036b17f9fad0922b8674cd83a940",
+      "file": "references/038-PostgreSQL-Documentation-18-MERGE.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: CREATE MATERIALIZED VIEW",
+      "url": "https://www.postgresql.org/docs/current/sql-creatematerializedview.html",
+      "content_hash": "sha256:97c5b5a714bae2ef94dd60adda1e0057cd5f34e7805da0390f1ec3bb90e805ae",
+      "file": "references/039-PostgreSQL-Documentation-18-CREATE-MATERIALIZED-VIEW.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 56.1.\u00a0For the Translator",
+      "url": "https://www.postgresql.org/docs/current/nls-translator.html",
+      "content_hash": "sha256:660305db3a00053b4cccd3094995b59ac5b1849e57602cf2a6e0c3f37522d946",
+      "file": "references/040-PostgreSQL-Documentation-18-56-1-For-the-Translator.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: CREATE PUBLICATION",
+      "url": "https://www.postgresql.org/docs/current/sql-createpublication.html",
+      "content_hash": "sha256:3db70982e56c422fa8a0b44f64027c1831ecc266f4dcf4939fcd822ab21d0b58",
+      "file": "references/041-PostgreSQL-Documentation-18-CREATE-PUBLICATION.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: SPI_commit",
+      "url": "https://www.postgresql.org/docs/current/spi-spi-commit.html",
+      "content_hash": "sha256:8dea397f7cc34bcf999e0cacdd6a6243ade8537a3d09b3737cc0d63f721e460a",
+      "file": "references/042-PostgreSQL-Documentation-18-SPI_commit.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: DROP TABLE",
+      "url": "https://www.postgresql.org/docs/current/sql-droptable.html",
+      "content_hash": "sha256:9755919ffc021ec7ec3287d5519d72c78cfc17e11de8c2a32c76b8af11d5c3a3",
+      "file": "references/043-PostgreSQL-Documentation-18-DROP-TABLE.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 63.5.\u00a0Index Uniqueness Checks",
+      "url": "https://www.postgresql.org/docs/current/index-unique-checks.html",
+      "content_hash": "sha256:744a7fa0ee319e089d94c190edd141c20f6e58f30df1b64cb4e63642babc35b7",
+      "file": "references/044-PostgreSQL-Documentation-18-63-5-Index-Uniqueness-Checks.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 29.9.\u00a0Architecture",
+      "url": "https://www.postgresql.org/docs/current/logical-replication-architecture.html",
+      "content_hash": "sha256:7634f7e1c1fe1925e491bcb62365c547dfa273364a0d179cd8684271255c2175",
+      "file": "references/045-PostgreSQL-Documentation-18-29-9-Architecture.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 8.9.\u00a0Network Address Types",
+      "url": "https://www.postgresql.org/docs/current/datatype-net-types.html",
+      "content_hash": "sha256:8b4fb5723f0cd5ae55f0c3c91919859c42133d48b96820bc0fc3b7b04e91fa70",
+      "file": "references/046-PostgreSQL-Documentation-18-8-9-Network-Address-Types.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: ALTER INDEX",
+      "url": "https://www.postgresql.org/docs/current/sql-alterindex.html",
+      "content_hash": "sha256:9d14b82b8b4e23ed38ba928cc8e44db3d3d4ec9b2d6a878d028bed4e11eeb1d5",
+      "file": "references/047-PostgreSQL-Documentation-18-ALTER-INDEX.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 58.5.\u00a0Row Locking in Foreign Data Wrappers",
+      "url": "https://www.postgresql.org/docs/current/fdw-row-locking.html",
+      "content_hash": "sha256:f654008ad3d8e478c0a5212711c2a0bf6b63baa614096df5c0ff715fd9222c02",
+      "file": "references/048-PostgreSQL-Documentation-18-58-5-Row-Locking-in-Foreign-Data.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: ALTER VIEW",
+      "url": "https://www.postgresql.org/docs/current/sql-alterview.html",
+      "content_hash": "sha256:41f8087897a206c7e1cb6996c9b90096b5b856625ea1f959d46fefb4ed1e45e1",
+      "file": "references/049-PostgreSQL-Documentation-18-ALTER-VIEW.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: CREATE VIEW",
+      "url": "https://www.postgresql.org/docs/current/sql-createview.html",
+      "content_hash": "sha256:b42530c23adefca55cc7ef32835fcf0a549adef11f8b1fc673879e943c8d5b6b",
+      "file": "references/050-PostgreSQL-Documentation-18-CREATE-VIEW.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 63.3.\u00a0Index Scanning",
+      "url": "https://www.postgresql.org/docs/current/index-scanning.html",
+      "content_hash": "sha256:a48d68fcaad09d4df4d8ba54017ec2e747634f78b833ad798a2781ec96bfecd8",
+      "file": "references/051-PostgreSQL-Documentation-18-63-3-Index-Scanning.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 54.1.\u00a0Overview",
+      "url": "https://www.postgresql.org/docs/current/protocol-overview.html",
+      "content_hash": "sha256:49ba5a62c034f2bc4a22bbc97818ffa8a452504dd2fb87ac5af573b684a78065",
+      "file": "references/052-PostgreSQL-Documentation-18-54-1-Overview.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 7.5.\u00a0Sorting Rows (ORDER BY)",
+      "url": "https://www.postgresql.org/docs/current/queries-order.html",
+      "content_hash": "sha256:42e57e75b2a5dceb0b294c573bf461e5a921893ac80534e1a990b2ebe513d364",
+      "file": "references/053-PostgreSQL-Documentation-18-7-5-Sorting-Rows-ORDER-BY.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: PostgreSQL Client Applications",
+      "url": "https://www.postgresql.org/docs/current/reference-client.html",
+      "content_hash": "sha256:2055e365948049dcc364212711e09c3178667b9cc70cb0fb74ce35f6aaeff67c",
+      "file": "references/054-PostgreSQL-Documentation-18-PostgreSQL-Client-Applications.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: CREATE TABLE",
+      "url": "https://www.postgresql.org/docs/current/sql-createtable.html",
+      "content_hash": "sha256:810994e71bdd8f4c00d736bb83e3d7ee5d743d47b4f37ace7bec4f5a831850d4",
+      "file": "references/055-PostgreSQL-Documentation-18-CREATE-TABLE.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 9.3.\u00a0Mathematical Functions and Operators",
+      "url": "https://www.postgresql.org/docs/current/functions-math.html",
+      "content_hash": "sha256:a1477b3099fc736408798572a92af9265816f3baccbbe6841f12420aec8e7612",
+      "file": "references/056-PostgreSQL-Documentation-18-9-3-Mathematical-Functions-and-O.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 18.12.\u00a0Registering Event Log on Windows",
+      "url": "https://www.postgresql.org/docs/current/event-log-registration.html",
+      "content_hash": "sha256:9f35f81c4747f9cef00765f12ec1b79b9a3733143e386aa634f3b4f6fa83d094",
+      "file": "references/057-PostgreSQL-Documentation-18-18-12-Registering-Event-Log-on-W.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 34.5.\u00a0Dynamic SQL",
+      "url": "https://www.postgresql.org/docs/current/ecpg-dynamic.html",
+      "content_hash": "sha256:7b33ea46d80d572604e68e56c0a18a524be9596d3c456db718c347efd77876cf",
+      "file": "references/058-PostgreSQL-Documentation-18-34-5-Dynamic-SQL.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 53.24.\u00a0pg_sequences",
+      "url": "https://www.postgresql.org/docs/current/view-pg-sequences.html",
+      "content_hash": "sha256:acee5128fd0837b91a84cbae96f8379d8bbe1fbde8904e99495a97d1c9d918dc",
+      "file": "references/059-PostgreSQL-Documentation-18-53-24-pg_sequences.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 65.1.\u00a0B-Tree Indexes",
+      "url": "https://www.postgresql.org/docs/current/btree.html",
+      "content_hash": "sha256:2ffa1bec994ea73160113b9342bc3256076e33106d19a2e5f799c7885b9432aa",
+      "file": "references/060-PostgreSQL-Documentation-18-65-1-B-Tree-Indexes.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 52.45.\u00a0pg_rewrite",
+      "url": "https://www.postgresql.org/docs/current/catalog-pg-rewrite.html",
+      "content_hash": "sha256:db2bb3d09ab1b4c68991f2ac6ffc3ffe3e79774b34326dfe84b57ecd75636dc2",
+      "file": "references/061-PostgreSQL-Documentation-18-52-45-pg_rewrite.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: Chapter\u00a030.\u00a0Just-in-Time Compilation (JIT)",
+      "url": "https://www.postgresql.org/docs/current/jit.html",
+      "content_hash": "sha256:95ba2481564351a1d23ee301ac9de789cae54b67ad9cdd227ca767b38a9186c7",
+      "file": "references/062-PostgreSQL-Documentation-18-Chapter-30-Just-in-Time-Compilat.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: B.4.\u00a0Date/Time Configuration Files",
+      "url": "https://www.postgresql.org/docs/current/datetime-config-files.html",
+      "content_hash": "sha256:08b9971aacfc0900f741a5c355b85dad28bf8a34bb4c65359527ddfd0cc8bebf",
+      "file": "references/063-PostgreSQL-Documentation-18-B-4-Date-Time-Configuration-File.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: Chapter\u00a034.\u00a0ECPG \u2014 Embedded SQL in C",
+      "url": "https://www.postgresql.org/docs/current/ecpg.html",
+      "content_hash": "sha256:0af5820f89d887aae85843a18f4d21e04642488c1bc7bf9d9c3ca504fa42a60e",
+      "file": "references/064-PostgreSQL-Documentation-18-Chapter-34-ECPG-Embedded-SQL-in.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: ALTER FOREIGN TABLE",
+      "url": "https://www.postgresql.org/docs/current/sql-alterforeigntable.html",
+      "content_hash": "sha256:d1751482e621d0271c900952544f4d5314672fa79106e2df9af4c8a56dc8e796",
+      "file": "references/065-PostgreSQL-Documentation-18-ALTER-FOREIGN-TABLE.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 39.3.\u00a0Materialized Views",
+      "url": "https://www.postgresql.org/docs/current/rules-materializedviews.html",
+      "content_hash": "sha256:121e20bf70f90cb4f62386aa8a03fd0d4a5c1d7357a13a20f1e864227c13a552",
+      "file": "references/066-PostgreSQL-Documentation-18-39-3-Materialized-Views.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 32.11.\u00a0Control Functions",
+      "url": "https://www.postgresql.org/docs/current/libpq-control.html",
+      "content_hash": "sha256:35dda246d468ad2e868ef58976bfd4568afda91494dbd5fde0dd2b91e32c80b4",
+      "file": "references/067-PostgreSQL-Documentation-18-32-11-Control-Functions.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 54.7.\u00a0Message Formats",
+      "url": "https://www.postgresql.org/docs/current/protocol-message-formats.html",
+      "content_hash": "sha256:87e0ad2ccfcb04f84371b32fd4c9031ca4b7c6689f581ad7b7e202c9e803931f",
+      "file": "references/068-PostgreSQL-Documentation-18-54-7-Message-Formats.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 36.18.\u00a0Extension Building Infrastructure",
+      "url": "https://www.postgresql.org/docs/current/extend-pgxs.html",
+      "content_hash": "sha256:eb677a5e13c0c6dc249052b26db3dff89cbafb685783820b3db24c5244c1af33",
+      "file": "references/069-PostgreSQL-Documentation-18-36-18-Extension-Building-Infrast.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 29.4.\u00a0Row Filters",
+      "url": "https://www.postgresql.org/docs/current/logical-replication-row-filter.html",
+      "content_hash": "sha256:6917edfc768415f9ea5a428786e6f47e277aed1f116466ed2d6a645f6d078c55",
+      "file": "references/070-PostgreSQL-Documentation-18-29-4-Row-Filters.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: J.2.\u00a0Tool Sets",
+      "url": "https://www.postgresql.org/docs/current/docguide-toolsets.html",
+      "content_hash": "sha256:004d2227eb5c93f5e53fe86a70873878bbfeccfbb07939b86cdd7493fd1a33db",
+      "file": "references/071-PostgreSQL-Documentation-18-J-2-Tool-Sets.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: F.45.\u00a0test_decoding \u2014 SQL-based test/example module for WAL logical decoding",
+      "url": "https://www.postgresql.org/docs/current/test-decoding.html",
+      "content_hash": "sha256:5660ffa1be0307f0f4cb916a645859db135ddfa53a6e3beade788af1ad04e9cc",
+      "file": "references/072-PostgreSQL-Documentation-18-F-45-test_decoding-SQL-based-tes.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 28.5.\u00a0WAL Configuration",
+      "url": "https://www.postgresql.org/docs/current/wal-configuration.html",
+      "content_hash": "sha256:3c7ac449888df53aa93ba24069bedbff7da418c3e2ad4885c6593bd9430e5f7a",
+      "file": "references/073-PostgreSQL-Documentation-18-28-5-WAL-Configuration.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 54.5.\u00a0Logical Streaming Replication Protocol",
+      "url": "https://www.postgresql.org/docs/current/protocol-logical-replication.html",
+      "content_hash": "sha256:9ce0e0ed9c00dcfb04e36f4457cff8602a983dc40f4c0561658881c520e4543d",
+      "file": "references/074-PostgreSQL-Documentation-18-54-5-Logical-Streaming-Replicati.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 55.1.\u00a0Formatting",
+      "url": "https://www.postgresql.org/docs/current/source-format.html",
+      "content_hash": "sha256:1cab688349415a002656fcf92f57cd91286159bd09c020b07a6142a74f88dfe5",
+      "file": "references/075-PostgreSQL-Documentation-18-55-1-Formatting.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 12.1.\u00a0Introduction",
+      "url": "https://www.postgresql.org/docs/current/textsearch-intro.html",
+      "content_hash": "sha256:b2a6312753a088fa3be4db48cb2525cfabf369d5058d07fa2190f20fc1905759",
+      "file": "references/076-PostgreSQL-Documentation-18-12-1-Introduction.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: PostgreSQL 18.4 Documentation",
+      "url": "https://www.postgresql.org/docs/current",
+      "content_hash": "sha256:cee76fcfc7d0e288bf62cdd94f8ed721a390f8cec05b378a690dacbff435805b",
+      "file": "references/077-PostgreSQL-Documentation-18-PostgreSQL-18-4-Documentation.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: SPI_cursor_open",
+      "url": "https://www.postgresql.org/docs/current/spi-spi-cursor-open.html",
+      "content_hash": "sha256:800743b0928b56e42b2afa9f5a6da161624dccf34a1ec586ed0babf255b9c1d5",
+      "file": "references/078-PostgreSQL-Documentation-18-SPI_cursor_open.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: F.21.\u00a0lo \u2014 manage large objects",
+      "url": "https://www.postgresql.org/docs/current/lo.html",
+      "content_hash": "sha256:8aa06088b9af2c2daf9886fd502991fcbb1aff712fab054819b78516a405b4f5",
+      "file": "references/079-PostgreSQL-Documentation-18-F-21-lo-manage-large-objects.md",
+      "source": "postgres",
+      "version": "latest"
+    },
+    {
+      "title": "PostgreSQL: Documentation: 18: 52.4.\u00a0pg_amop",
+      "url": "https://www.postgresql.org/docs/current/catalog-pg-amop.html",
+      "content_hash": "sha256:2586cb37c224e6727e82779dc424f30f077342c8bc44bb5fb8d68c752747e4a4",
+      "file": "references/080-PostgreSQL-Documentation-18-52-4-pg_amop.md",
+      "source": "postgres",
+      "version": "latest"
+    }
+  ]
+}

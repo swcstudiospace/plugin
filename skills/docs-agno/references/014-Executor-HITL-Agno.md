@@ -1,0 +1,288 @@
+# Executor HITL - Agno
+
+Source: https://docs.agno.com/workflows/hitl/executor
+
+Executor-level HITL pauses a workflow *during* a step, when the agent or team running inside the step calls a tool marked with `requires_confirmation`, `requires_user_input`, or `external_execution`. The pause propagates from the agent/team up to the workflow. The paused tool calls arrive as serialized requirement dicts; you resolve them by mutating the dicts, then continuing the run.
+
+```
+from agno.agent import Agent
+from agno.db.sqlite import SqliteDb
+from agno.models.openai import OpenAIResponses
+from agno.tools import tool
+from agno.workflow.step import Step
+from agno.workflow.workflow import Workflow
+
+@tool(requires_confirmation=True)
+def get_the_weather(city: str) -> str:
+    return f"It is 70 degrees and cloudy in {city}"
+
+weather_agent = Agent(
+    name="WeatherAgent",
+    model=OpenAIResponses(id="gpt-5.4"),
+    tools=[get_the_weather],
+    db=SqliteDb(db_file="workflow.db"),
+)
+
+workflow = Workflow(
+    name="WeatherWorkflow",
+    db=SqliteDb(db_file="workflow.db"),
+    steps=[Step(name="get_weather", agent=weather_agent)],
+)
+
+response = workflow.run("What is the weather in Tokyo?")
+
+if response.is_paused:
+    for step_req in response.step_requirements or []:
+        if step_req.requires_executor_input:
+            for executor_req in step_req.executor_requirements or []:
+                executor_req["confirmation"] = True  # False to reject
+                executor_req["tool_execution"]["confirmed"] = True
+
+    response = workflow.continue_run(response)
+
+print(response.content)
+```
+
+## [​](#when-to-use) When to Use
+
+| Use Case | Level |
+| --- | --- |
+| Approve a specific tool call (DB write, payment, email send) | Executor |
+| Collect user-provided values for a tool argument | Executor |
+| Defer tool execution to an external system | Executor |
+| Gate the whole step before the agent runs | [Step-level](/workflows/hitl/step) |
+| Review the step’s final output | [Output Review](/workflows/hitl/output-review) |
+| Pick which branch a router takes | [Router HITL](/workflows/hitl/router) |
+
+Use executor-level HITL when the gate is on the *tool*, not on the step. The agent can call other tools freely; only the marked tool pauses execution.
+
+## [​](#tool-decorators) Tool Decorators
+
+Three decorator flags trigger executor-level pauses. They behave the same as on standalone agents.
+
+| Decorator | Pauses For | Resolve With |
+| --- | --- | --- |
+| `@tool(requires_confirmation=True)` | User approval | Set `["confirmation"]` and `["tool_execution"]["confirmed"]` |
+| `@tool(requires_user_input=True, user_input_fields=[...])` | User-supplied argument values | Fill `value` on each field in `["tool_execution"]["user_input_schema"]` |
+| `@tool(external_execution=True)` | Out-of-process execution; user supplies the result | Set `["external_execution_result"]` and `["tool_execution"]["result"]` |
+
+```
+from agno.tools import tool
+
+@tool(requires_confirmation=True)
+def delete_user(user_id: str) -> str:
+    ...
+
+@tool(requires_user_input=True, user_input_fields=["recipient"])
+def send_money(amount: float, recipient: str, note: str) -> str:
+    ...
+
+@tool(external_execution=True)
+def run_query(sql: str) -> str:
+    ...
+```
+
+## [​](#the-pause-object) The Pause Object
+
+An executor pause sets `run_output.pause_kind == "executor"`. The matching `StepRequirement` has `requires_executor_input == True` and holds the paused tool calls in `executor_requirements`. Each entry is the agent’s `RunRequirement` serialized to a dict:
+
+```
+step_req.executor_name                                         # "WeatherAgent"
+step_req.executor_type                                         # "agent" | "team"
+executor_req = step_req.executor_requirements[0]               # a dict
+executor_req["tool_execution"]["tool_name"]                    # "get_the_weather"
+executor_req["tool_execution"]["tool_args"]                    # {"city": "Tokyo"}
+executor_req["tool_execution"]["requires_confirmation"]        # True for requires_confirmation
+executor_req["tool_execution"]["requires_user_input"]          # True for requires_user_input
+executor_req["tool_execution"]["external_execution_required"]  # True for external_execution
+```
+
+You resolve a pause by mutating these dicts in place, then calling `continue_run`.
+See [Pause Anatomy](/workflows/hitl/pause-anatomy) for the full structure of every pause object and its fields.
+
+## [​](#resolving-each-type) Resolving Each Type
+
+### [​](#confirmation) Confirmation
+
+```
+for step_req in response.step_requirements or []:
+    if step_req.requires_executor_input:
+        for executor_req in step_req.executor_requirements or []:
+            tool_exec = executor_req["tool_execution"]
+            if tool_exec.get("requires_confirmation"):
+                approved = user_approves()
+                executor_req["confirmation"] = approved
+                tool_exec["confirmed"] = approved
+                if not approved:
+                    tool_exec["confirmation_note"] = "User declined"
+
+response = workflow.continue_run(response)
+```
+
+When rejected, the agent receives the rejection note and decides what to do next (it may try another tool, or surface the rejection in its response).
+
+### [​](#user-input) User Input
+
+```
+for step_req in response.step_requirements or []:
+    if step_req.requires_executor_input:
+        for executor_req in step_req.executor_requirements or []:
+            tool_exec = executor_req["tool_execution"]
+            if tool_exec.get("requires_user_input"):
+                values = {
+                    field["name"]: prompt(field["name"])
+                    for field in executor_req.get("user_input_schema") or []
+                }
+                for schema in (
+                    executor_req.get("user_input_schema"),
+                    tool_exec.get("user_input_schema"),
+                ):
+                    for field in schema or []:
+                        if field["name"] in values:
+                            field["value"] = values[field["name"]]
+
+response = workflow.continue_run(response)
+```
+
+The values overwrite the corresponding tool arguments before the tool runs.
+
+### [​](#external-execution) External Execution
+
+`@tool(external_execution=True)` means the agent never runs the tool itself. The workflow pauses, hands you the tool name and arguments, and you run it however you want: call a backend service, dispatch a job, hit a privileged API. Set the result on the requirement, and the agent resumes with that result.
+
+```
+for step_req in response.step_requirements or []:
+    if step_req.requires_executor_input:
+        for executor_req in step_req.executor_requirements or []:
+            tool_exec = executor_req["tool_execution"]
+            if tool_exec.get("external_execution_required"):
+                tool_name = tool_exec["tool_name"]
+                tool_args = tool_exec["tool_args"]
+
+                # Replace this with your own dispatch logic, for example:
+                #   result = my_backend.run(tool_name, **tool_args)
+                #   result = subprocess.run(...).stdout
+                #   result = await microservice.call(tool_name, tool_args)
+                result = my_dispatcher(tool_name, tool_args)
+
+                executor_req["external_execution_result"] = result
+                tool_exec["result"] = result
+
+response = workflow.continue_run(response)
+```
+
+## [​](#streaming) Streaming
+
+In streaming mode the workflow yields a `StepExecutorPausedEvent` when the agent’s tool call pauses, and a `StepExecutorContinuedEvent` when execution resumes.
+
+```
+from agno.run.workflow import (
+    StepExecutorPausedEvent,
+    StepExecutorContinuedEvent,
+    WorkflowCompletedEvent,
+)
+
+for event in workflow.run("What is the weather in Tokyo?", stream=True):
+    if isinstance(event, StepExecutorPausedEvent):
+        print(f"Paused: {event.executor_name} ({event.executor_type})")
+    elif isinstance(event, StepExecutorContinuedEvent):
+        print(f"Resumed: {event.executor_name}")
+    elif isinstance(event, WorkflowCompletedEvent):
+        print("Done")
+
+# The full WorkflowRunOutput is persisted to the session, not yielded in the stream.
+session = workflow.get_session()
+run_output = session.runs[-1] if session and session.runs else None
+
+if run_output and run_output.is_paused:
+    for step_req in run_output.step_requirements or []:
+        for executor_req in step_req.executor_requirements or []:
+            executor_req["confirmation"] = True
+            executor_req["tool_execution"]["confirmed"] = True
+
+    for event in workflow.continue_run(run_output, stream=True):
+        if hasattr(event, "content") and event.content:
+            print(event.content, end="", flush=True)
+```
+
+After a streaming run pauses, read the paused run from `workflow.get_session().runs[-1]`. `step_requirements` is persisted to the database, not emitted as a stream event.
+
+## [​](#composite-steps) Composite Steps
+
+Executor HITL works inside any composite step that contains a `Step` with an agent or team. The pause propagates up through the wrapping primitive.
+
+| Primitive | Behavior |
+| --- | --- |
+| `Step` | Pauses when the agent/team inside the step calls a HITL tool |
+| `Steps` | Pauses on the inner `Step` whose agent/team calls a HITL tool |
+| `Condition` | Pauses if the chosen branch contains a `Step` whose agent/team calls a HITL tool |
+| `Loop` | Pauses on the iteration where the inner `Step`’s agent/team calls a HITL tool |
+| `Router` | Pauses if the selected branch contains a `Step` whose agent/team calls a HITL tool |
+
+```
+from agno.workflow.condition import Condition
+from agno.workflow.step import Step
+
+workflow = Workflow(
+    name="ConditionExecutorHITL",
+    db=db,
+    steps=[
+        Step(name="gather_data", executor=gather_data),
+        Condition(
+            name="analysis_decision",
+            evaluator=lambda step_input: True,
+            steps=[Step(name="detailed_analysis", agent=analysis_agent)],
+            else_steps=[Step(name="quick_summary", executor=quick_summary)],
+        ),
+        Step(name="report", executor=generate_report),
+    ],
+)
+```
+
+The resolution code does not change: walk `step_requirements`, find the entry with `requires_executor_input`, and resolve its `executor_requirements`.
+
+## [​](#sync-async-and-continue) Sync, Async, and Continue
+
+| Method | Sync | Async |
+| --- | --- | --- |
+| Run | `workflow.run(input)` | `await workflow.arun(input)` |
+| Run streaming | `workflow.run(input, stream=True)` | `workflow.arun(input, stream=True)` |
+| Continue | `workflow.continue_run(run_output)` | `await workflow.acontinue_run(run_output)` |
+| Continue streaming | `workflow.continue_run(run_output, stream=True)` | `workflow.acontinue_run(run_output, stream=True)` |
+
+## [​](#events) Events
+
+| Event | Emitted When |
+| --- | --- |
+| `StepStartedEvent` | Step begins executing |
+| `StepExecutorPausedEvent` | Agent/team pauses on a HITL tool call |
+| `StepExecutorContinuedEvent` | Agent/team resumes after the requirement is resolved |
+| `StepCompletedEvent` | Step finishes (after resume and any further tool calls) |
+| `WorkflowCompletedEvent` | Workflow finishes |
+
+## [​](#cookbooks) Cookbooks
+
+Runnable examples in [cookbook/04\_workflows/08\_human\_in\_the\_loop/executor\_hitl/](https://github.com/agno-agi/agno/tree/main/cookbook/04_workflows/08_human_in_the_loop/executor_hitl):
+
+| File | Demonstrates |
+| --- | --- |
+| `01_agent_confirmation.py` | Agent tool with `requires_confirmation` |
+| `02_agent_confirmation_stream.py` | Same, streaming |
+| `03_team_in_step.py` | Team executor with HITL tool |
+| `04_agent_confirmation_in_condition_step.py` | Executor HITL inside a `Condition` |
+| `05_agent_confirmation_in_loop_step.py` | Executor HITL inside a `Loop` |
+| `06_agent_confirmation_in_steps_container.py` | Executor HITL inside `Steps` |
+| `07_agent_confirmation_in_router_step.py` | Executor HITL inside a `Router` branch |
+| `08_agent_user_input_step.py` | Tool with `requires_user_input` |
+| `09_executor_continued_event.py` | `StepExecutorContinuedEvent` lifecycle |
+
+## [​](#developer-resources) Developer Resources
+
+- [HITL overview](/workflows/hitl/overview)
+- [Pause Anatomy](/workflows/hitl/pause-anatomy)
+- [Nested HITL](/workflows/hitl/nested)
+- [Step HITL](/workflows/hitl/step)
+- [Agent HITL](/hitl/overview)
+- [Cookbooks](https://github.com/agno-agi/agno/tree/main/cookbook/04_workflows/08_human_in_the_loop/executor_hitl)
+
+⌘I

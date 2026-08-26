@@ -1,0 +1,651 @@
+{
+  "name": "docs-nextjs",
+  "generated_at": "2026-07-29T03:45:26Z",
+  "query": null,
+  "source_id": null,
+  "ranking": "all pages (recency)",
+  "page_count": 80,
+  "embedding_model": null,
+  "pages": [
+    {
+      "title": "Home",
+      "url": "https://nextjs.org/docs/app/guides/testing/vitest",
+      "content_hash": "sha256:e3a0134a6723c0a9196ad5b13e67cc4fa75ec191efeacea13d86743d9bbf1951",
+      "file": "references/001-Home.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "Home",
+      "url": "https://nextjs.org/docs/app/guides/testing/playwright",
+      "content_hash": "sha256:f6b1fc5f3e781b265bb5476bdeb1286e15dcef5cd03be7032b901c460c3bcee3",
+      "file": "references/002-Home.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-3",
+      "url": "https://nextjs.org/docs/app/guides/third-party-libraries",
+      "content_hash": "sha256:424b061fafefcdd8cfc2f73d913fef9380c5b27d58eba8f3b02ccbb507122b5a",
+      "file": "references/003-page-3.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-4",
+      "url": "https://nextjs.org/docs/app/guides/upgrading",
+      "content_hash": "sha256:5af6bf119816dcc9850f44f3acc8c21d58d2ad8fdbf151d72bb8d4b1485f5b1d",
+      "file": "references/004-page-4.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-5",
+      "url": "https://nextjs.org/docs/app/guides/testing",
+      "content_hash": "sha256:dd9c87e393cf853fb7db3f95cc6b36bf62a92104c5c0675889a36e0da8871b60",
+      "file": "references/005-page-5.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "Hello, Next.js!",
+      "url": "https://nextjs.org/docs/app/guides/tailwind-v3-css",
+      "content_hash": "sha256:3c201db5ca36e63dce0bd8ba6a9a4b98fef021305c420ce8c2a2724d180e6b4f",
+      "file": "references/006-Hello-Next-js.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "Home",
+      "url": "https://nextjs.org/docs/app/guides/testing/jest",
+      "content_hash": "sha256:29b634cb8bb428ac8df0a7bd8d10a7c560b3ef5c273f770fa63bc3215a89fdfe",
+      "file": "references/007-Home.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "Home",
+      "url": "https://nextjs.org/docs/app/guides/testing/cypress",
+      "content_hash": "sha256:ab332fbdb4138d5eea5db96e7fe6a8a045f7e0698e7622915d93d8cf32e5614e",
+      "file": "references/008-Home.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-9",
+      "url": "https://nextjs.org/docs/app/guides/server-actions",
+      "content_hash": "sha256:34f216a5fd88a0788f31dc4ecf597fda8f7934796c9c78722a4851d44e6f21ce",
+      "file": "references/009-page-9.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-10",
+      "url": "https://nextjs.org/docs/app/guides/single-page-applications",
+      "content_hash": "sha256:a481183c1e8fa67498e94818c9af8c876c3059e29b5d301139dbc40b5d801062",
+      "file": "references/010-page-10.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-11",
+      "url": "https://nextjs.org/docs/app/guides/streaming",
+      "content_hash": "sha256:12bfc70f8b34bfedfe9f6f707f8e4eb5420552cd06f91cb9b0a95d057e152c5c",
+      "file": "references/011-page-11.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "Index Page",
+      "url": "https://nextjs.org/docs/app/guides/static-exports",
+      "content_hash": "sha256:7ae289d3e2d5dd42ff6060b701aaef91733713911cd37a676f529c37ae5fe373",
+      "file": "references/012-Index-Page.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "Hello, Next.js!",
+      "url": "https://nextjs.org/docs/app/guides/sass",
+      "content_hash": "sha256:928943bcec9324d32c096fa4bc70d898dc000295b6528502ff9a6529fdd071a2",
+      "file": "references/013-Hello-Next-js.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-14",
+      "url": "https://nextjs.org/docs/app/guides/rendering-philosophy",
+      "content_hash": "sha256:821b12f84d6f7e8ce73f0513000970a8ff1e3f12b3635a87c36bc35980fc59eb",
+      "file": "references/014-page-14.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-15",
+      "url": "https://nextjs.org/docs/app/guides/scripts",
+      "content_hash": "sha256:95625172442dd6ce7ad58d994f9943f8e51ba51f128b06ca39d4d7fc9556d54e",
+      "file": "references/015-page-15.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-16",
+      "url": "https://nextjs.org/docs/app/guides/self-hosting",
+      "content_hash": "sha256:899edaf0df5a732e1d11fa7ec294342fc4c1cef29425bd67cba6b7a60e43329d",
+      "file": "references/016-page-16.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-17",
+      "url": "https://nextjs.org/docs/app/guides/production-checklist",
+      "content_hash": "sha256:4a9e8aa190d2687fd6fb838b0623c48ae7fb5d4848d347d8b44146af34eb5f98",
+      "file": "references/017-page-17.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-18",
+      "url": "https://nextjs.org/docs/app/guides/progressive-web-apps",
+      "content_hash": "sha256:db96f0debe282616c5c84c673f591900a416ee2ccc535b97cb59231e9afd18a2",
+      "file": "references/018-page-18.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "Shop",
+      "url": "https://nextjs.org/docs/app/guides/public-static-pages",
+      "content_hash": "sha256:79133f1f82cbf42daadf01cec84f7ccfd6d5e81dd17065234baa213cad6bad07",
+      "file": "references/019-Shop.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-20",
+      "url": "https://nextjs.org/docs/app/guides/redirecting",
+      "content_hash": "sha256:c8fda9d71c2d41db3324e3bf5f0d1be0a2fcdae54ab7594941efe6b354a7ecde",
+      "file": "references/020-page-20.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-21",
+      "url": "https://nextjs.org/docs/app/guides/ppr-platform-guide",
+      "content_hash": "sha256:0255803d68a2e82973ea62574abdd9189ffd5c4acc3999cb116c450848e965f7",
+      "file": "references/021-page-21.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-22",
+      "url": "https://nextjs.org/docs/app/guides/prefetching",
+      "content_hash": "sha256:a74c00b14933e165e2647ba5131d2aa34aded5fdbf3e774d2200d804eb272de3",
+      "file": "references/022-page-22.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-23",
+      "url": "https://nextjs.org/docs/app/guides/preventing-flash-before-hydration",
+      "content_hash": "sha256:7d7066b09170c93bc993ed2fe0db8e47d8da8c0f422a019559108fdda163d300",
+      "file": "references/023-page-23.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-24",
+      "url": "https://nextjs.org/docs/app/guides/preserving-ui-state",
+      "content_hash": "sha256:e4b1bd97d798976546ec31dd9647ea9f5d8c49eb4daa0317027a9f3422cecaab",
+      "file": "references/024-page-24.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-25",
+      "url": "https://nextjs.org/docs/app/guides/multi-tenant",
+      "content_hash": "sha256:83ee224d97d4af04a9e69aec0f2662e6cc0191f8026dd4d8886746b917a12de4",
+      "file": "references/025-page-25.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-26",
+      "url": "https://nextjs.org/docs/app/guides/multi-zones",
+      "content_hash": "sha256:55de4b3e96d7ed0155e17a45b3e58b061a13ac6e186d81eaff2d17eb4cf7b926",
+      "file": "references/026-page-26.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-27",
+      "url": "https://nextjs.org/docs/app/guides/open-telemetry",
+      "content_hash": "sha256:1cd54a6f42124a15a3548544893ee330a7f821efdaa9d7286e3f8ae2f78b9b90",
+      "file": "references/027-page-27.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "Blog Post Title",
+      "url": "https://nextjs.org/docs/app/guides/package-bundling",
+      "content_hash": "sha256:2d7208b850b289914653f4fcbf768f923c20e55e63cdde5857f3201d9f552447",
+      "file": "references/028-Blog-Post-Title.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-29",
+      "url": "https://nextjs.org/docs/app/guides/migrating/app-router-migration",
+      "content_hash": "sha256:a60ea139933d8ae7cedba28bd1e52da1c93a69ba0fa3d63d2c67093189ca1e0e",
+      "file": "references/029-page-29.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "React App",
+      "url": "https://nextjs.org/docs/app/guides/migrating/from-create-react-app",
+      "content_hash": "sha256:badaf4086fb5a8c371ada06aabc0ee0684c46c3f4c3c8abba68f5b6b5c0f1d26",
+      "file": "references/030-React-App.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "My App",
+      "url": "https://nextjs.org/docs/app/guides/migrating/from-vite",
+      "content_hash": "sha256:ae900de5465a592eb00385f1a30d454b28f7c0586e1afb1a0af160c3d2677ba9",
+      "file": "references/031-My-App.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-32",
+      "url": "https://nextjs.org/docs/app/guides/migrating-to-cache-components",
+      "content_hash": "sha256:e34d01f45568c657fea2e0ba301dc2531e299017fc87dd19cf53cb27ea11d161",
+      "file": "references/032-page-32.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "{children}",
+      "url": "https://nextjs.org/docs/app/guides/mdx",
+      "content_hash": "sha256:33e6d55b3dd27844b92cf28092d49fc7727ba333535788f6da7a0dcd1a5c72b9",
+      "file": "references/033-children.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-34",
+      "url": "https://nextjs.org/docs/app/guides/mcp",
+      "content_hash": "sha256:7750e5c551d7c93974281d236e0fe6dd20a5283d506dd22d399a2b8c889b5451",
+      "file": "references/034-page-34.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-35",
+      "url": "https://nextjs.org/docs/app/guides/migrating",
+      "content_hash": "sha256:872ce9be82fec5d44b631ceacd0367b9d984d265436029a2de743901fbd6f354",
+      "file": "references/035-page-35.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-36",
+      "url": "https://nextjs.org/docs/app/guides/memory-usage",
+      "content_hash": "sha256:6a6cf6f10cdb2853b161cdd0d2f87641f6af71bfa13780da157ae970c2265017",
+      "file": "references/036-page-36.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-37",
+      "url": "https://nextjs.org/docs/app/guides/internationalization",
+      "content_hash": "sha256:0cd9760932020c95e1367eb6024e04fafa2394ce83ed564494670afabf7446d3",
+      "file": "references/037-page-37.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-38",
+      "url": "https://nextjs.org/docs/app/guides/json-ld",
+      "content_hash": "sha256:55c099726b6c19aa2cf5ca23833e3c8a97f530f4938385e32e1ec98211289ea1",
+      "file": "references/038-page-38.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-39",
+      "url": "https://nextjs.org/docs/app/guides/local-development",
+      "content_hash": "sha256:04979f70e59f3c7af3f45ff5c3ecb871634fbfa1210fc8dd6ac9e683ae591261",
+      "file": "references/039-page-39.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-40",
+      "url": "https://nextjs.org/docs/app/guides/lazy-loading",
+      "content_hash": "sha256:c40a11ce4a5583f83fcd5a51fbbc6888a73d10635638cd89b0d3a7a5326cb409",
+      "file": "references/040-page-40.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "Hello World",
+      "url": "https://nextjs.org/docs/app/guides/environment-variables",
+      "content_hash": "sha256:3bc7693f1f12783fc79d24ce314de0c8ff71c2eebe13cae08a2be8021abb226c",
+      "file": "references/041-Hello-World.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "{post.title}",
+      "url": "https://nextjs.org/docs/app/guides/draft-mode",
+      "content_hash": "sha256:9a9d41f7b2703608060bd1b0b53359d5b0de95e0c96fb59ede6e536b6e34a0f9",
+      "file": "references/042-post-title.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-43",
+      "url": "https://nextjs.org/docs/app/guides/forms",
+      "content_hash": "sha256:adee5c87bcbf5fb02f34ffe041e71d7acdaa543b061fc7c51f0628d92bfd934e",
+      "file": "references/043-page-43.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-44",
+      "url": "https://nextjs.org/docs/app/guides/how-revalidation-works",
+      "content_hash": "sha256:30fe3318b76960e9ed6838aa2c4592f594cd89ed2bbf4e717be591e66f7de4c9",
+      "file": "references/044-page-44.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-45",
+      "url": "https://nextjs.org/docs/app/guides/instrumentation",
+      "content_hash": "sha256:459fd5b5bdfe21243de6e76c27a1def2b66cae47722e6393dd2ec74ebb2dcc74",
+      "file": "references/045-page-45.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "{post.title}",
+      "url": "https://nextjs.org/docs/app/guides/incremental-static-regeneration",
+      "content_hash": "sha256:a7a7b1dda8c5d7f120bf18d9cf82f2f9ff53456b10e23abc194130f9fb5e024a",
+      "file": "references/046-post-title.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "{user.name}",
+      "url": "https://nextjs.org/docs/app/guides/data-security",
+      "content_hash": "sha256:439de99fba596cfbfe6b21cb07998815d4bbfecf7f0de736aafd7f09fe24ebfc",
+      "file": "references/047-user-name.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-48",
+      "url": "https://nextjs.org/docs/app/guides/custom-server",
+      "content_hash": "sha256:da078f61e71656c9547a09acc743a27095cb566715c91c2387ff704fa1d95868",
+      "file": "references/048-page-48.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-49",
+      "url": "https://nextjs.org/docs/app/guides/debugging",
+      "content_hash": "sha256:958b5a27eeeac6e84126a13ea548f1b032514ebb01e402a31a9e7377c8f3f340",
+      "file": "references/049-page-49.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-50",
+      "url": "https://nextjs.org/docs/app/guides/deploying-to-platforms",
+      "content_hash": "sha256:25593652ae4d925bdaa015be9ec08d7baf5f3782943068821de6ccd6c9c69cec",
+      "file": "references/050-page-50.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-51",
+      "url": "https://nextjs.org/docs/app/guides/content-security-policy",
+      "content_hash": "sha256:ac5096078c9394d360cf8c0a9e9c3e34a23d3c32e75838870697b0fd5a44cd37",
+      "file": "references/051-page-51.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-52",
+      "url": "https://nextjs.org/docs/app/guides/css-in-js",
+      "content_hash": "sha256:7786d8a4663a9a5b76ced463233c560b9ac25f997b8e0b2d879c5a3c0b0a1031",
+      "file": "references/052-page-52.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-53",
+      "url": "https://nextjs.org/docs/app/guides/caching-without-cache-components",
+      "content_hash": "sha256:7545ab08e393ce4d72e005cafc7843f743ddc73276dbe564fcdd7e01d8f59ee8",
+      "file": "references/053-page-53.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "${rssData.title}",
+      "url": "https://nextjs.org/docs/app/guides/backend-for-frontend",
+      "content_hash": "sha256:10871f51e13d930828f16319cd566838efa1c9c1d1303af1611917a09b31a6ff",
+      "file": "references/054-rssData-title.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "See here for caching with `yarn`, `bun` or other package managers https://github.com/actions/cache/blob/main/examples.md or you can leverage caching with actions/setup-node https://github.com/actions/setup-node",
+      "url": "https://nextjs.org/docs/app/guides/ci-build-caching",
+      "content_hash": "sha256:4aae9f87fceed021519ff020fe2d7dd848fa074306e5d6095b08bd49edda4032",
+      "file": "references/055-See-here-for-caching-with-yarn-bun-or-other-package-managers.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-56",
+      "url": "https://nextjs.org/docs/app/guides/cdn-caching",
+      "content_hash": "sha256:bb3c381f8f2e845aa85ea0daadfcb8ea1f84654326c96a323d413e7bf71e08d8",
+      "file": "references/056-page-56.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "Next.js: ALWAYS read docs before coding",
+      "url": "https://nextjs.org/docs/app/guides/ai-agents",
+      "content_hash": "sha256:298c5d70dd5a8d89943d7231506533066212249ea709e1493d8a1e59b93e712c",
+      "file": "references/057-Next-js-ALWAYS-read-docs-before-coding.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-58",
+      "url": "https://nextjs.org/docs/app/guides",
+      "content_hash": "sha256:a06e4ca45bec9a5af5c4cfab435926b4d89cc9ad2120ac0d15c6427ecc0d7de9",
+      "file": "references/058-page-58.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "Welcome, {user.name}",
+      "url": "https://nextjs.org/docs/app/guides/authentication",
+      "content_hash": "sha256:6b9da1cdb1991bd527f8984e8441834a8f9a5afbf4685b7009e1743a27f25f75",
+      "file": "references/059-Welcome-user-name.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-60",
+      "url": "https://nextjs.org/docs/app/guides/analytics",
+      "content_hash": "sha256:9f64be88cf82b6b2a51ef4a9c52bbf115bd7ddec0d69175a80776395334e22b5",
+      "file": "references/060-page-60.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "Hello, Next.js!",
+      "url": "https://nextjs.org/docs/app/getting-started/route-handlers",
+      "content_hash": "sha256:cb7cfd6b3b4241ccfd22f7c72624a4364e63a3f9985eb974f737a66b35b8e569",
+      "file": "references/061-Hello-Next-js.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-62",
+      "url": "https://nextjs.org/docs/app/getting-started/proxy",
+      "content_hash": "sha256:48576494dae509003ab2a8dd01d64a8ea65a2982040d94a4e983ebba7f4a5df0",
+      "file": "references/062-page-62.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-63",
+      "url": "https://nextjs.org/docs/app/getting-started/deploying",
+      "content_hash": "sha256:6da207d58df530afc8009f8e53333766b67dba7d4773ee4fcd05da3ec4f4edba",
+      "file": "references/063-page-63.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-64",
+      "url": "https://nextjs.org/docs/app/getting-started/upgrading",
+      "content_hash": "sha256:af3577d15228d65c8a1adea456a8890ece1ec09ab36d0b686ce3b1d0ddbbf42c",
+      "file": "references/064-page-64.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-65",
+      "url": "https://nextjs.org/docs/app/getting-started/images",
+      "content_hash": "sha256:1cf6359baa05da607a09e36b61f9ebc6c7876439f99dc3f6720ba5bab95ab6b7",
+      "file": "references/065-page-65.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "Welcome to Next.js!",
+      "url": "https://nextjs.org/docs/app/getting-started/css",
+      "content_hash": "sha256:054ed5f8eaaca377d799d67060c3ea5120fa91dd872be387aca3915d6a63f5b3",
+      "file": "references/066-Welcome-to-Next-js.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-67",
+      "url": "https://nextjs.org/docs/app/getting-started/fonts",
+      "content_hash": "sha256:fea46295ad85227831c59090b98013b204dc0aba365f20b0e4b1388a3b2ee162",
+      "file": "references/067-page-67.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-68",
+      "url": "https://nextjs.org/docs/app/getting-started/metadata-and-og-images",
+      "content_hash": "sha256:073924a97c044bc3da6d58bf500e5108883a0fa1a7bcf93210f5cd6ae3f0ab51",
+      "file": "references/068-page-68.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-69",
+      "url": "https://nextjs.org/docs/app/getting-started/mutating-data",
+      "content_hash": "sha256:880ba72e15c9a4dd3173e92deb4bc7a6da2af13a80ab3b10bdf0105711bd1be7",
+      "file": "references/069-page-69.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "My Blog",
+      "url": "https://nextjs.org/docs/app/getting-started/caching",
+      "content_hash": "sha256:7f3ec35e48aedaf05dbeaf2c98cec1620bbf3608c230eab4f07a1e999310830c",
+      "file": "references/070-My-Blog.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-71",
+      "url": "https://nextjs.org/docs/app/getting-started/error-handling",
+      "content_hash": "sha256:b7440f5f4e4f6100bb1b93c658572d51fbd99ebe43dce4938c66971cdc910e01",
+      "file": "references/071-page-71.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-72",
+      "url": "https://nextjs.org/docs/app/getting-started/revalidating",
+      "content_hash": "sha256:f976dc04e4031380fa652ae5b363af5d838ac306eacca814afc287afb71f2146",
+      "file": "references/072-page-72.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-73",
+      "url": "https://nextjs.org/docs/app/getting-started/linking-and-navigating",
+      "content_hash": "sha256:d9b97572d358a0ea662fe519f7f818e4ac0f6f941cdf26572989b7a97ff5b2e2",
+      "file": "references/073-page-73.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "{post.title}",
+      "url": "https://nextjs.org/docs/app/getting-started/server-and-client-components",
+      "content_hash": "sha256:7968e2019884f709ebb6cc59e65cc38b7bfc03590504469e2cacccea6faeefc1",
+      "file": "references/074-post-title.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "Welcome to the Blog",
+      "url": "https://nextjs.org/docs/app/getting-started/fetching-data",
+      "content_hash": "sha256:331814e0b1c4f4f793fb1c7d74368fcb7fc36762946ab814b4212cee879680b6",
+      "file": "references/075-Welcome-to-the-Blog.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "Hello Next.js!",
+      "url": "https://nextjs.org/docs/app/getting-started/layouts-and-pages",
+      "content_hash": "sha256:7a9a255ff35df2d2b95903af7f369948df3e7c9ab029eb0fc5d18dd4c94ca9ef",
+      "file": "references/076-Hello-Next-js.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "Next.js Docs | Next.js",
+      "url": "https://nextjs.org/docs",
+      "content_hash": "sha256:089cdb6cf1d67e9e5d1e907d224c8e47a924806c3adf56e7cb4ead0554c1599f",
+      "file": "references/077-Next-js-Docs-Next-js.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-78",
+      "url": "https://nextjs.org/docs/app/getting-started",
+      "content_hash": "sha256:62bfa0d72ad7bbccbceda1eacd7dbf3ed8a98476dfc4cf5bb984e3d203012df9",
+      "file": "references/078-page-78.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "page-79",
+      "url": "https://nextjs.org/docs/app/getting-started/project-structure",
+      "content_hash": "sha256:ed0d8c364f62ee8f2d3cb2d28a8fcf354a0487446141becda7442c3d00471f58",
+      "file": "references/079-page-79.md",
+      "source": "nextjs",
+      "version": "latest"
+    },
+    {
+      "title": "Hello, Next.js!",
+      "url": "https://nextjs.org/docs/app/getting-started/installation",
+      "content_hash": "sha256:408c88e1205e6afa0e0834e14770978acc84e20465b73cb758adb0a7b9b0747a",
+      "file": "references/080-Hello-Next-js.md",
+      "source": "nextjs",
+      "version": "latest"
+    }
+  ]
+}

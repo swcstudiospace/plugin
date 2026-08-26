@@ -1,0 +1,52 @@
+# Additional Data and Metadata - Agno
+
+Source: https://docs.agno.com/workflows/additional-data
+
+Pass metadata alongside the workflow input. Custom step executors read it from `step_input.additional_data`.
+
+```
+from agno.workflow import Step, Workflow, StepInput, StepOutput
+
+def format_request(step_input: StepInput) -> StepOutput:
+    metadata = step_input.additional_data or {}
+    customer_id = metadata.get("customer_id", "unknown")
+    priority = metadata.get("priority", "normal")
+
+    return StepOutput(
+        content=f"{priority.upper()} request for {customer_id}: {step_input.input}"
+    )
+
+workflow = Workflow(
+    name="support_request",
+    steps=[Step(name="format_request", executor=format_request)],
+)
+
+run_output = workflow.run(
+    input="Reset account access",
+    additional_data={
+        "customer_id": "cust_123",
+        "priority": "high",
+    },
+)
+
+print(run_output.content)
+# HIGH request for cust_123: Reset account access
+```
+
+The workflow places the same `additional_data` dictionary on each `StepInput`. Treat it as run-level context for custom steps. Mutations in one step are visible to later steps in the same run.
+
+## [​](#input-fields) Input Fields
+
+| Value | Access in a custom step |
+| --- | --- |
+| Workflow input | `step_input.input` |
+| Previous step output | `step_input.previous_step_content` |
+| Run metadata | `step_input.additional_data` |
+
+`additional_data` is optional. Use `step_input.additional_data or {}` when a step supports runs with and without metadata.
+
+## [​](#developer-resources) Developer Resources
+
+- [Step with Function and Additional Data](/workflows/usage/step-with-function-additional-data)
+
+⌘I

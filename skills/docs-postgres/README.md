@@ -1,0 +1,84 @@
+# docs-postgres
+
+Exported documentation references.
+
+- [PostgreSQL: Documentation: 18: CREATE CAST](references/001-PostgreSQL-Documentation-18-CREATE-CAST.md) — https://www.postgresql.org/docs/current/sql-createcast.html
+- [PostgreSQL: Documentation: 18: 12.7. Configuration Example](references/002-PostgreSQL-Documentation-18-12-7-Configuration-Example.md) — https://www.postgresql.org/docs/current/textsearch-configuration.html
+- [PostgreSQL: Documentation: 18: 54.2. Message Flow](references/003-PostgreSQL-Documentation-18-54-2-Message-Flow.md) — https://www.postgresql.org/docs/current/protocol-flow.html
+- [PostgreSQL: Documentation: 18: 54.3. SASL Authentication](references/004-PostgreSQL-Documentation-18-54-3-SASL-Authentication.md) — https://www.postgresql.org/docs/current/sasl-authentication.html
+- [PostgreSQL: Documentation: 18: 17.3. Building and Installation with Autoconf and Make](references/005-PostgreSQL-Documentation-18-17-3-Building-and-Installation-w.md) — https://www.postgresql.org/docs/current/install-make.html
+- [PostgreSQL: Documentation: 18: ALTER AGGREGATE](references/006-PostgreSQL-Documentation-18-ALTER-AGGREGATE.md) — https://www.postgresql.org/docs/current/sql-alteraggregate.html
+- [PostgreSQL: Documentation: 18: dblink_open](references/007-PostgreSQL-Documentation-18-dblink_open.md) — https://www.postgresql.org/docs/current/contrib-dblink-open.html
+- [PostgreSQL: Documentation: 18: 55.4. Miscellaneous Coding Conventions](references/008-PostgreSQL-Documentation-18-55-4-Miscellaneous-Coding-Conven.md) — https://www.postgresql.org/docs/current/source-conventions.html
+- [PostgreSQL: Documentation: 18: 9.22. Window Functions](references/009-PostgreSQL-Documentation-18-9-22-Window-Functions.md) — https://www.postgresql.org/docs/current/functions-window.html
+- [PostgreSQL: Documentation: 18: 35.28. foreign_server_options](references/010-PostgreSQL-Documentation-18-35-28-foreign_server_options.md) — https://www.postgresql.org/docs/current/infoschema-foreign-server-options.html
+- [PostgreSQL: Documentation: 18: 35.35. role_column_grants](references/011-PostgreSQL-Documentation-18-35-35-role_column_grants.md) — https://www.postgresql.org/docs/current/infoschema-role-column-grants.html
+- [PostgreSQL: Documentation: 18: 53.17. pg_prepared_xacts](references/012-PostgreSQL-Documentation-18-53-17-pg_prepared_xacts.md) — https://www.postgresql.org/docs/current/view-pg-prepared-xacts.html
+- [PostgreSQL: Documentation: 18: 53.8. pg_file_settings](references/013-PostgreSQL-Documentation-18-53-8-pg_file_settings.md) — https://www.postgresql.org/docs/current/view-pg-file-settings.html
+- [PostgreSQL: Documentation: 18: Appendix L. Acronyms](references/014-PostgreSQL-Documentation-18-Appendix-L-Acronyms.md) — https://www.postgresql.org/docs/current/acronyms.html
+- [PostgreSQL: Documentation: 18: Chapter 36. Extending SQL](references/015-PostgreSQL-Documentation-18-Chapter-36-Extending-SQL.md) — https://www.postgresql.org/docs/current/extend.html
+- [PostgreSQL: Documentation: 18: SPI_cursor_close](references/016-PostgreSQL-Documentation-18-SPI_cursor_close.md) — https://www.postgresql.org/docs/current/spi-spi-cursor-close.html
+- [PostgreSQL: Documentation: 18: 11.7. Indexes on Expressions](references/017-PostgreSQL-Documentation-18-11-7-Indexes-on-Expressions.md) — https://www.postgresql.org/docs/current/indexes-expressional.html
+- [PostgreSQL: Documentation: 18: 47.1. Logical Decoding Examples](references/018-PostgreSQL-Documentation-18-47-1-Logical-Decoding-Examples.md) — https://www.postgresql.org/docs/current/logicaldecoding-example.html
+- [PostgreSQL: Documentation: 18: 33.3. Client Interfaces](references/019-PostgreSQL-Documentation-18-33-3-Client-Interfaces.md) — https://www.postgresql.org/docs/current/lo-interfaces.html
+- [PostgreSQL: Documentation: 18: 11.4. Indexes and ORDER BY](references/020-PostgreSQL-Documentation-18-11-4-Indexes-and-ORDER-BY.md) — https://www.postgresql.org/docs/current/indexes-ordering.html
+- [PostgreSQL: Documentation: 18: dblink_get_result](references/021-PostgreSQL-Documentation-18-dblink_get_result.md) — https://www.postgresql.org/docs/current/contrib-dblink-get-result.html
+- [PostgreSQL: Documentation: 18: Legal Notice](references/022-PostgreSQL-Documentation-18-Legal-Notice.md) — https://www.postgresql.org/docs/current/legalnotice.html
+- [PostgreSQL: Documentation: 18: dblink_close](references/023-PostgreSQL-Documentation-18-dblink_close.md) — https://www.postgresql.org/docs/current/contrib-dblink-close.html
+- [PostgreSQL: Documentation: 18: 20.1. The pg_hba.conf File](references/024-PostgreSQL-Documentation-18-20-1-The-pg_hba-conf-File.md) — https://www.postgresql.org/docs/current/auth-pg-hba-conf.html
+- [PostgreSQL: Documentation: 18: ALTER TABLESPACE](references/025-PostgreSQL-Documentation-18-ALTER-TABLESPACE.md) — https://www.postgresql.org/docs/current/sql-altertablespace.html
+- [PostgreSQL: Documentation: 18: 42.2. PL/Tcl Functions and Arguments](references/026-PostgreSQL-Documentation-18-42-2-PL-Tcl-Functions-and-Argume.md) — https://www.postgresql.org/docs/current/pltcl-functions.html
+- [PostgreSQL: Documentation: 18: Chapter 1. Getting Started](references/027-PostgreSQL-Documentation-18-Chapter-1-Getting-Started.md) — https://www.postgresql.org/docs/current/tutorial-start.html
+- [PostgreSQL: Documentation: 18: 18.3. Starting the Database Server](references/028-PostgreSQL-Documentation-18-18-3-Starting-the-Database-Serve.md) — https://www.postgresql.org/docs/current/server-start.html
+- [PostgreSQL: Documentation: 18: 9.14. UUID Functions](references/029-PostgreSQL-Documentation-18-9-14-UUID-Functions.md) — https://www.postgresql.org/docs/current/functions-uuid.html
+- [PostgreSQL: Documentation: 18: DROP SUBSCRIPTION](references/030-PostgreSQL-Documentation-18-DROP-SUBSCRIPTION.md) — https://www.postgresql.org/docs/current/sql-dropsubscription.html
+- [PostgreSQL: Documentation: 18: 32.18. LDAP Lookup of Connection Parameters](references/031-PostgreSQL-Documentation-18-32-18-LDAP-Lookup-of-Connection.md) — https://www.postgresql.org/docs/current/libpq-ldap.html
+- [PostgreSQL: Documentation: 18: 20.12. Certificate Authentication](references/032-PostgreSQL-Documentation-18-20-12-Certificate-Authentication.md) — https://www.postgresql.org/docs/current/auth-cert.html
+- [PostgreSQL: Documentation: 18: 52.2. pg_aggregate](references/033-PostgreSQL-Documentation-18-52-2-pg_aggregate.md) — https://www.postgresql.org/docs/current/catalog-pg-aggregate.html
+- [PostgreSQL: Documentation: 18: 32.13. Notice Processing](references/034-PostgreSQL-Documentation-18-32-13-Notice-Processing.md) — https://www.postgresql.org/docs/current/libpq-notice-processing.html
+- [PostgreSQL: Documentation: 18: 70.1. Backup Manifest Top-level Object](references/035-PostgreSQL-Documentation-18-70-1-Backup-Manifest-Top-level-O.md) — https://www.postgresql.org/docs/current/backup-manifest-toplevel.html
+- [PostgreSQL: Documentation: 18: 35.29. foreign_servers](references/036-PostgreSQL-Documentation-18-35-29-foreign_servers.md) — https://www.postgresql.org/docs/current/infoschema-foreign-servers.html
+- [PostgreSQL: Documentation: 18: 9.11. Geometric Functions and Operators](references/037-PostgreSQL-Documentation-18-9-11-Geometric-Functions-and-Ope.md) — https://www.postgresql.org/docs/current/functions-geometry.html
+- [PostgreSQL: Documentation: 18: MERGE](references/038-PostgreSQL-Documentation-18-MERGE.md) — https://www.postgresql.org/docs/current/sql-merge.html
+- [PostgreSQL: Documentation: 18: CREATE MATERIALIZED VIEW](references/039-PostgreSQL-Documentation-18-CREATE-MATERIALIZED-VIEW.md) — https://www.postgresql.org/docs/current/sql-creatematerializedview.html
+- [PostgreSQL: Documentation: 18: 56.1. For the Translator](references/040-PostgreSQL-Documentation-18-56-1-For-the-Translator.md) — https://www.postgresql.org/docs/current/nls-translator.html
+- [PostgreSQL: Documentation: 18: CREATE PUBLICATION](references/041-PostgreSQL-Documentation-18-CREATE-PUBLICATION.md) — https://www.postgresql.org/docs/current/sql-createpublication.html
+- [PostgreSQL: Documentation: 18: SPI_commit](references/042-PostgreSQL-Documentation-18-SPI_commit.md) — https://www.postgresql.org/docs/current/spi-spi-commit.html
+- [PostgreSQL: Documentation: 18: DROP TABLE](references/043-PostgreSQL-Documentation-18-DROP-TABLE.md) — https://www.postgresql.org/docs/current/sql-droptable.html
+- [PostgreSQL: Documentation: 18: 63.5. Index Uniqueness Checks](references/044-PostgreSQL-Documentation-18-63-5-Index-Uniqueness-Checks.md) — https://www.postgresql.org/docs/current/index-unique-checks.html
+- [PostgreSQL: Documentation: 18: 29.9. Architecture](references/045-PostgreSQL-Documentation-18-29-9-Architecture.md) — https://www.postgresql.org/docs/current/logical-replication-architecture.html
+- [PostgreSQL: Documentation: 18: 8.9. Network Address Types](references/046-PostgreSQL-Documentation-18-8-9-Network-Address-Types.md) — https://www.postgresql.org/docs/current/datatype-net-types.html
+- [PostgreSQL: Documentation: 18: ALTER INDEX](references/047-PostgreSQL-Documentation-18-ALTER-INDEX.md) — https://www.postgresql.org/docs/current/sql-alterindex.html
+- [PostgreSQL: Documentation: 18: 58.5. Row Locking in Foreign Data Wrappers](references/048-PostgreSQL-Documentation-18-58-5-Row-Locking-in-Foreign-Data.md) — https://www.postgresql.org/docs/current/fdw-row-locking.html
+- [PostgreSQL: Documentation: 18: ALTER VIEW](references/049-PostgreSQL-Documentation-18-ALTER-VIEW.md) — https://www.postgresql.org/docs/current/sql-alterview.html
+- [PostgreSQL: Documentation: 18: CREATE VIEW](references/050-PostgreSQL-Documentation-18-CREATE-VIEW.md) — https://www.postgresql.org/docs/current/sql-createview.html
+- [PostgreSQL: Documentation: 18: 63.3. Index Scanning](references/051-PostgreSQL-Documentation-18-63-3-Index-Scanning.md) — https://www.postgresql.org/docs/current/index-scanning.html
+- [PostgreSQL: Documentation: 18: 54.1. Overview](references/052-PostgreSQL-Documentation-18-54-1-Overview.md) — https://www.postgresql.org/docs/current/protocol-overview.html
+- [PostgreSQL: Documentation: 18: 7.5. Sorting Rows (ORDER BY)](references/053-PostgreSQL-Documentation-18-7-5-Sorting-Rows-ORDER-BY.md) — https://www.postgresql.org/docs/current/queries-order.html
+- [PostgreSQL: Documentation: 18: PostgreSQL Client Applications](references/054-PostgreSQL-Documentation-18-PostgreSQL-Client-Applications.md) — https://www.postgresql.org/docs/current/reference-client.html
+- [PostgreSQL: Documentation: 18: CREATE TABLE](references/055-PostgreSQL-Documentation-18-CREATE-TABLE.md) — https://www.postgresql.org/docs/current/sql-createtable.html
+- [PostgreSQL: Documentation: 18: 9.3. Mathematical Functions and Operators](references/056-PostgreSQL-Documentation-18-9-3-Mathematical-Functions-and-O.md) — https://www.postgresql.org/docs/current/functions-math.html
+- [PostgreSQL: Documentation: 18: 18.12. Registering Event Log on Windows](references/057-PostgreSQL-Documentation-18-18-12-Registering-Event-Log-on-W.md) — https://www.postgresql.org/docs/current/event-log-registration.html
+- [PostgreSQL: Documentation: 18: 34.5. Dynamic SQL](references/058-PostgreSQL-Documentation-18-34-5-Dynamic-SQL.md) — https://www.postgresql.org/docs/current/ecpg-dynamic.html
+- [PostgreSQL: Documentation: 18: 53.24. pg_sequences](references/059-PostgreSQL-Documentation-18-53-24-pg_sequences.md) — https://www.postgresql.org/docs/current/view-pg-sequences.html
+- [PostgreSQL: Documentation: 18: 65.1. B-Tree Indexes](references/060-PostgreSQL-Documentation-18-65-1-B-Tree-Indexes.md) — https://www.postgresql.org/docs/current/btree.html
+- [PostgreSQL: Documentation: 18: 52.45. pg_rewrite](references/061-PostgreSQL-Documentation-18-52-45-pg_rewrite.md) — https://www.postgresql.org/docs/current/catalog-pg-rewrite.html
+- [PostgreSQL: Documentation: 18: Chapter 30. Just-in-Time Compilation (JIT)](references/062-PostgreSQL-Documentation-18-Chapter-30-Just-in-Time-Compilat.md) — https://www.postgresql.org/docs/current/jit.html
+- [PostgreSQL: Documentation: 18: B.4. Date/Time Configuration Files](references/063-PostgreSQL-Documentation-18-B-4-Date-Time-Configuration-File.md) — https://www.postgresql.org/docs/current/datetime-config-files.html
+- [PostgreSQL: Documentation: 18: Chapter 34. ECPG — Embedded SQL in C](references/064-PostgreSQL-Documentation-18-Chapter-34-ECPG-Embedded-SQL-in.md) — https://www.postgresql.org/docs/current/ecpg.html
+- [PostgreSQL: Documentation: 18: ALTER FOREIGN TABLE](references/065-PostgreSQL-Documentation-18-ALTER-FOREIGN-TABLE.md) — https://www.postgresql.org/docs/current/sql-alterforeigntable.html
+- [PostgreSQL: Documentation: 18: 39.3. Materialized Views](references/066-PostgreSQL-Documentation-18-39-3-Materialized-Views.md) — https://www.postgresql.org/docs/current/rules-materializedviews.html
+- [PostgreSQL: Documentation: 18: 32.11. Control Functions](references/067-PostgreSQL-Documentation-18-32-11-Control-Functions.md) — https://www.postgresql.org/docs/current/libpq-control.html
+- [PostgreSQL: Documentation: 18: 54.7. Message Formats](references/068-PostgreSQL-Documentation-18-54-7-Message-Formats.md) — https://www.postgresql.org/docs/current/protocol-message-formats.html
+- [PostgreSQL: Documentation: 18: 36.18. Extension Building Infrastructure](references/069-PostgreSQL-Documentation-18-36-18-Extension-Building-Infrast.md) — https://www.postgresql.org/docs/current/extend-pgxs.html
+- [PostgreSQL: Documentation: 18: 29.4. Row Filters](references/070-PostgreSQL-Documentation-18-29-4-Row-Filters.md) — https://www.postgresql.org/docs/current/logical-replication-row-filter.html
+- [PostgreSQL: Documentation: 18: J.2. Tool Sets](references/071-PostgreSQL-Documentation-18-J-2-Tool-Sets.md) — https://www.postgresql.org/docs/current/docguide-toolsets.html
+- [PostgreSQL: Documentation: 18: F.45. test_decoding — SQL-based test/example module for WAL logical decoding](references/072-PostgreSQL-Documentation-18-F-45-test_decoding-SQL-based-tes.md) — https://www.postgresql.org/docs/current/test-decoding.html
+- [PostgreSQL: Documentation: 18: 28.5. WAL Configuration](references/073-PostgreSQL-Documentation-18-28-5-WAL-Configuration.md) — https://www.postgresql.org/docs/current/wal-configuration.html
+- [PostgreSQL: Documentation: 18: 54.5. Logical Streaming Replication Protocol](references/074-PostgreSQL-Documentation-18-54-5-Logical-Streaming-Replicati.md) — https://www.postgresql.org/docs/current/protocol-logical-replication.html
+- [PostgreSQL: Documentation: 18: 55.1. Formatting](references/075-PostgreSQL-Documentation-18-55-1-Formatting.md) — https://www.postgresql.org/docs/current/source-format.html
+- [PostgreSQL: Documentation: 18: 12.1. Introduction](references/076-PostgreSQL-Documentation-18-12-1-Introduction.md) — https://www.postgresql.org/docs/current/textsearch-intro.html
+- [PostgreSQL: Documentation: 18: PostgreSQL 18.4 Documentation](references/077-PostgreSQL-Documentation-18-PostgreSQL-18-4-Documentation.md) — https://www.postgresql.org/docs/current
+- [PostgreSQL: Documentation: 18: SPI_cursor_open](references/078-PostgreSQL-Documentation-18-SPI_cursor_open.md) — https://www.postgresql.org/docs/current/spi-spi-cursor-open.html
+- [PostgreSQL: Documentation: 18: F.21. lo — manage large objects](references/079-PostgreSQL-Documentation-18-F-21-lo-manage-large-objects.md) — https://www.postgresql.org/docs/current/lo.html
+- [PostgreSQL: Documentation: 18: 52.4. pg_amop](references/080-PostgreSQL-Documentation-18-52-4-pg_amop.md) — https://www.postgresql.org/docs/current/catalog-pg-amop.html

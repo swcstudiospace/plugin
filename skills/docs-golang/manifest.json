@@ -1,0 +1,563 @@
+{
+  "name": "docs-golang",
+  "generated_at": "2026-07-29T03:59:48Z",
+  "query": null,
+  "source_id": null,
+  "ranking": "all pages (recency)",
+  "page_count": 69,
+  "embedding_model": null,
+  "pages": [
+    {
+      "title": "Go 1.9 Release Notes - The Go Programming Language",
+      "url": "https://go.dev/doc/go1.9",
+      "content_hash": "sha256:32fe359fa9b6a6e73a31e0adedb4cb18e75411109a273398ea7af269d8eb484b",
+      "file": "references/001-Go-1-9-Release-Notes-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Go 1.11 Release Notes - The Go Programming Language",
+      "url": "https://go.dev/doc/go1.11",
+      "content_hash": "sha256:eafa13e7aa1c3a22c3818901071c769438e1ab04f36883b25be860025a4a7d27",
+      "file": "references/002-Go-1-11-Release-Notes-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Go 1.10 Release Notes - The Go Programming Language",
+      "url": "https://go.dev/doc/go1.10",
+      "content_hash": "sha256:b341046007b878fb828a04bdfb9e719ce6ff0c4a7ac92596f1dc9b553297a574",
+      "file": "references/003-Go-1-10-Release-Notes-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Go 1.13 Release Notes - The Go Programming Language",
+      "url": "https://go.dev/doc/go1.13",
+      "content_hash": "sha256:e360f475ddcdd6a9cb592bf5e349e42220ef8e890faff6344baed3b35a085767",
+      "file": "references/004-Go-1-13-Release-Notes-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Go 1.12 Release Notes - The Go Programming Language",
+      "url": "https://go.dev/doc/go1.12",
+      "content_hash": "sha256:6fcdc937f0f73e3bee3851777c31bdbfe0bff4e628a235b57e00d76b2ed4f209",
+      "file": "references/005-Go-1-12-Release-Notes-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Go 1.14 Release Notes - The Go Programming Language",
+      "url": "https://go.dev/doc/go1.14",
+      "content_hash": "sha256:a58d08c499b02be3f7f2f7dcfb400604d7c14907526e154a7e784f65195f6f87",
+      "file": "references/006-Go-1-14-Release-Notes-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Go 1.15 Release Notes - The Go Programming Language",
+      "url": "https://go.dev/doc/go1.15",
+      "content_hash": "sha256:c6429f4dabd5bdace0a981e6fdf32cf0304db0ed521359d585b70aac36f29cb0",
+      "file": "references/007-Go-1-15-Release-Notes-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Go 1.17 Release Notes - The Go Programming Language",
+      "url": "https://go.dev/doc/go1.17",
+      "content_hash": "sha256:484104cb4c9e69630c9076b438ba0884e24abe091016c74727b7f197f7993892",
+      "file": "references/008-Go-1-17-Release-Notes-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Go 1.16 Release Notes - The Go Programming Language",
+      "url": "https://go.dev/doc/go1.16",
+      "content_hash": "sha256:74350c2f283927eb59ee59a6a85534b372a04f224c6ebb79f8adeb8141d8d2b1",
+      "file": "references/009-Go-1-16-Release-Notes-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Go 1.18 Release Notes - The Go Programming Language",
+      "url": "https://go.dev/doc/go1.18",
+      "content_hash": "sha256:9be52ae0763376b51b3135b8213146d68e97d6f5ee1347308220e2aa0cb7f146",
+      "file": "references/010-Go-1-18-Release-Notes-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Go 1.19 Release Notes - The Go Programming Language",
+      "url": "https://go.dev/doc/go1.19",
+      "content_hash": "sha256:da41506ba2f86b00749d95c31d464ab20d411cff601eb790b3f11df3a8cb4a04",
+      "file": "references/011-Go-1-19-Release-Notes-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Go 1.21 Release Notes - The Go Programming Language",
+      "url": "https://go.dev/doc/go1.21",
+      "content_hash": "sha256:25d74314a265b00534a5e130f9143343078f7763f1263600b0e0ffbffcd5ec32",
+      "file": "references/012-Go-1-21-Release-Notes-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Go 1.20 Release Notes - The Go Programming Language",
+      "url": "https://go.dev/doc/go1.20",
+      "content_hash": "sha256:c2c2bef1867877b3a27af3d2147f9bc73ace101bce6382223ff453187bae568e",
+      "file": "references/013-Go-1-20-Release-Notes-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Go 1.22 Release Notes - The Go Programming Language",
+      "url": "https://go.dev/doc/go1.22",
+      "content_hash": "sha256:2eb793e09be49d09071f4949a50f62b181aa99203c40678a0a8c8beb453510e0",
+      "file": "references/014-Go-1-22-Release-Notes-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Go 1.23 Release Notes - The Go Programming Language",
+      "url": "https://go.dev/doc/go1.23",
+      "content_hash": "sha256:89889467985502469d8c49b6463179b48453ecca2c4b1e47e18882494eb4b0ea",
+      "file": "references/015-Go-1-23-Release-Notes-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Go 1.25 Release Notes - The Go Programming Language",
+      "url": "https://go.dev/doc/go1.25",
+      "content_hash": "sha256:630810d9eb5cff5a28da48bdec810e46d12e9c3f3cb4ddbe9ebdaca31c20c9a3",
+      "file": "references/016-Go-1-25-Release-Notes-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Go 1.24 Release Notes - The Go Programming Language",
+      "url": "https://go.dev/doc/go1.24",
+      "content_hash": "sha256:d2077847b3adbbe13672df7d4d75617dedf2f74bc67b12604f5522c2bd599e79",
+      "file": "references/017-Go-1-24-Release-Notes-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Go 1 and the Future of Go Programs - The Go Programming Language",
+      "url": "https://go.dev/doc/go1compat",
+      "content_hash": "sha256:19a6aa27d99cc7dbfe45bcee62f4eed34777c5fcbca45e8c2501757fa9ca9a95",
+      "file": "references/018-Go-1-and-the-Future-of-Go-Programs-The-Go-Programming-Langua.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Go 1.26 Release Notes - The Go Programming Language",
+      "url": "https://go.dev/doc/go1.26",
+      "content_hash": "sha256:3b2ce350f0b61b3b489805bd46ea5dbb1ee5caecd8703034a07b06b69f9ce1e2",
+      "file": "references/019-Go-1-26-Release-Notes-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "A Quick Guide to Go's Assembler - The Go Programming Language",
+      "url": "https://go.dev/doc/asm",
+      "content_hash": "sha256:a9117f343ba0f8118550e753bd9a99e38068edce696cc811acee5644e9e2b728",
+      "file": "references/020-A-Quick-Guide-to-Go-s-Assembler-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Debugging Go Code with GDB - The Go Programming Language",
+      "url": "https://go.dev/doc/gdb",
+      "content_hash": "sha256:4640db796ed019a81f54cf079bb934024857e5703f786f0076ce849f4c3ddd6b",
+      "file": "references/021-Debugging-Go-Code-with-GDB-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Data Race Detector - The Go Programming Language",
+      "url": "https://go.dev/doc/articles/race_detector",
+      "content_hash": "sha256:34f135a7b1bc83586c7a153186c540b52d0eb9d23d89b2056519699c9bec0dfe",
+      "file": "references/022-Data-Race-Detector-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Go Doc Comments - The Go Programming Language",
+      "url": "https://go.dev/doc/comment",
+      "content_hash": "sha256:0c6b776e697731e07b20c6254d4e0b9a744dbf738e4bdf109a6e8382fdd9c927",
+      "file": "references/023-Go-Doc-Comments-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "About the go command - The Go Programming Language",
+      "url": "https://go.dev/doc/articles/go_command",
+      "content_hash": "sha256:d43df53d6397ea21a8a1a2339f451ec17eb295d658ce6b44f3b2284b0465f5ac",
+      "file": "references/024-About-the-go-command-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Codewalk: Share Memory By Communicating - The Go Programming Language",
+      "url": "https://go.dev/doc/codewalk/sharemem",
+      "content_hash": "sha256:e0a0dd9c232ab14a344c2a19e8d6c636888d5bff31297413063d399a52bb662c",
+      "file": "references/025-Codewalk-Share-Memory-By-Communicating-The-Go-Programming-La.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Codewalk: First-Class Functions in Go - The Go Programming Language",
+      "url": "https://go.dev/doc/codewalk/functions",
+      "content_hash": "sha256:7d1ab09acd9b713436a7e173adfa6e2646236b50d8c198ca73cf8d8f1284222a",
+      "file": "references/026-Codewalk-First-Class-Functions-in-Go-The-Go-Programming-Lang.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Codewalk: Generating arbitrary text: a Markov chain algorithm - The Go Programming Language",
+      "url": "https://go.dev/doc/codewalk/markov",
+      "content_hash": "sha256:6f2868bf2b8c4638afe489baa99de3bdc20fb65677eda978696887ad28ecd10b",
+      "file": "references/027-Codewalk-Generating-arbitrary-text-a-Markov-chain-algorithm.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Module version numbering - The Go Programming Language",
+      "url": "https://go.dev/doc/modules/version-numbers",
+      "content_hash": "sha256:e91ae616ab19c28c0e63ebe468cdf46eaa1f3e007d21e3fdebd96f78cf566169",
+      "file": "references/028-Module-version-numbering-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Publishing a module - The Go Programming Language",
+      "url": "https://go.dev/doc/modules/publishing",
+      "content_hash": "sha256:ee3b022dca26a36b2390e892efd82995a78772310e58a76925a3ba7351cb4c88",
+      "file": "references/029-Publishing-a-module-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Module release and versioning workflow - The Go Programming Language",
+      "url": "https://go.dev/doc/modules/release-workflow",
+      "content_hash": "sha256:363996b580c3764f18bd816aade440adca3f3413c62a4a3de82418fd3b0cebe7",
+      "file": "references/030-Module-release-and-versioning-workflow-The-Go-Programming-La.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Managing module source - The Go Programming Language",
+      "url": "https://go.dev/doc/modules/managing-source",
+      "content_hash": "sha256:b6102c0326e8d90941db4d07ddcf216d8c035f89fc5ad12c770d7aede81d3fb6",
+      "file": "references/031-Managing-module-source-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Organizing a Go module - The Go Programming Language",
+      "url": "https://go.dev/doc/modules/layout",
+      "content_hash": "sha256:d7ec945a545bf643d855f9bb48488f2208b393261e853725fbe41741a943434e",
+      "file": "references/032-Organizing-a-Go-module-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Developing a major version update - The Go Programming Language",
+      "url": "https://go.dev/doc/modules/major-version",
+      "content_hash": "sha256:6a5c7f45610c3da8c74f4de378b847c011b49afd3287160c011bf4581732a6c5",
+      "file": "references/033-Developing-a-major-version-update-The-Go-Programming-Languag.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Avoiding SQL injection risk - The Go Programming Language",
+      "url": "https://go.dev/doc/database/sql-injection",
+      "content_hash": "sha256:490b329475e57e70a8d25289b28ce48488305126b2f91cfa3242a7436c5ab7c5",
+      "file": "references/034-Avoiding-SQL-injection-risk-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Developing and publishing modules - The Go Programming Language",
+      "url": "https://go.dev/doc/modules/developing",
+      "content_hash": "sha256:7ef8cdb1932c7d25d8852054169b79c56f73c431f558bee682eee5a925422e27",
+      "file": "references/035-Developing-and-publishing-modules-The-Go-Programming-Languag.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Canceling in-progress operations - The Go Programming Language",
+      "url": "https://go.dev/doc/database/cancel-operations",
+      "content_hash": "sha256:a770c38905d4cb6206f91d656f2d37fcc2fb9100b68aef701e8548a6fc8bd245",
+      "file": "references/036-Canceling-in-progress-operations-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Managing connections - The Go Programming Language",
+      "url": "https://go.dev/doc/database/manage-connections",
+      "content_hash": "sha256:6c6f480b62052f481a5d1e86bb75a3577bd927a7094ee49d2ad4fa7f83506290",
+      "file": "references/037-Managing-connections-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Executing transactions - The Go Programming Language",
+      "url": "https://go.dev/doc/database/execute-transactions",
+      "content_hash": "sha256:28908095b884dcc8247a6060b15f38d617f3353153cd37661686d9d5cbcaf16b",
+      "file": "references/038-Executing-transactions-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Using prepared statements - The Go Programming Language",
+      "url": "https://go.dev/doc/database/prepared-statements",
+      "content_hash": "sha256:5046a5e9daa4c160673aeb35850acc4942c9b158ab0305f7a65dbf763d1cfce6",
+      "file": "references/039-Using-prepared-statements-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Executing SQL statements that don't return data - The Go Programming Language",
+      "url": "https://go.dev/doc/database/change-data",
+      "content_hash": "sha256:e404ea4a9fb1a98775eb485d2bf2e4fad69eb331dab70ae639a6aa7fb72f78b7",
+      "file": "references/040-Executing-SQL-statements-that-don-t-return-data-The-Go-Progr.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Querying for data - The Go Programming Language",
+      "url": "https://go.dev/doc/database/querying",
+      "content_hash": "sha256:e1e93157d9696db2771d2fe6fabdf2aa17e86f35cae2d6161ae958c1801f5ea5",
+      "file": "references/041-Querying-for-data-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Accessing relational databases - The Go Programming Language",
+      "url": "https://go.dev/doc/database",
+      "content_hash": "sha256:bef805ac93d9566a81b6aeebffe7dee83332ec7f3a42be155851e6f0033ac58c",
+      "file": "references/042-Accessing-relational-databases-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Release History - The Go Programming Language",
+      "url": "https://go.dev/doc/devel/release",
+      "content_hash": "sha256:dba9d87b88341cb3f00c5e6c27f6cfa9810544e8234fec516823cb25b0c16046",
+      "file": "references/043-Release-History-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Opening a database handle - The Go Programming Language",
+      "url": "https://go.dev/doc/database/open-handle",
+      "content_hash": "sha256:b77510fa8d9751ea30506e8c066ca477276973997dda4974c15a95a5c442feac",
+      "file": "references/044-Opening-a-database-handle-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Tutorial: Accessing a relational database - The Go Programming Language",
+      "url": "https://go.dev/doc/tutorial/database-access",
+      "content_hash": "sha256:bc1b580179e819fba79e170492cdaf1f81191506df3a4a2a52f0b41a1663c1c7",
+      "file": "references/045-Tutorial-Accessing-a-relational-database-The-Go-Programming.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Contribution Guide - The Go Programming Language",
+      "url": "https://go.dev/doc/contribute",
+      "content_hash": "sha256:737272e92b7b47063dd76ae3ee3506a962fea6ddfd8d87e5be08881d9e0c8e89",
+      "file": "references/046-Contribution-Guide-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "The Go Memory Model - The Go Programming Language",
+      "url": "https://go.dev/ref/mem",
+      "content_hash": "sha256:4cf3e27d2819de2f0fc67b1eb42efcb428f807d8cad645a148b424fd2acced6a",
+      "file": "references/047-The-Go-Memory-Model-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Go Modules Reference - The Go Programming Language",
+      "url": "https://go.dev/ref/mod",
+      "content_hash": "sha256:74cb2b0b9a07a426d6992d70f3589c0659a7c78146b30088e638a83932a8b768",
+      "file": "references/048-Go-Modules-Reference-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "go.mod file reference - The Go Programming Language",
+      "url": "https://go.dev/doc/modules/gomod-ref",
+      "content_hash": "sha256:a0506262f04a16b5fc99b11e0f0d492b6dde28e89cbe1bbf793523cbffeb2649",
+      "file": "references/049-go-mod-file-reference-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Coverage profiling support for integration tests - The Go Programming Language",
+      "url": "https://go.dev/doc/build-cover",
+      "content_hash": "sha256:cac1f21ad18fdaf33a0aee3a188d00c5d0b481dfa7fa70fbb6331fe80e5cacc9",
+      "file": "references/050-Coverage-profiling-support-for-integration-tests-The-Go-Prog.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Profile-guided optimization - The Go Programming Language",
+      "url": "https://go.dev/doc/pgo",
+      "content_hash": "sha256:1382ef94e983bdbeb4ba380055bd8dd0ea3258d12827a819d02179b55f73fbef",
+      "file": "references/051-Profile-guided-optimization-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Command Documentation - The Go Programming Language",
+      "url": "https://go.dev/doc/cmd",
+      "content_hash": "sha256:ce8095d15fc1ca01e9fa2a210669612791f16778a8240b868eea11cc775d464b",
+      "file": "references/052-Command-Documentation-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Managing dependencies - The Go Programming Language",
+      "url": "https://go.dev/doc/modules/managing-dependencies",
+      "content_hash": "sha256:8ec478338e1ad8dd9c3c9db196edd788039fee44cbad1222e7a70c60e0ac39f0",
+      "file": "references/053-Managing-dependencies-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "A Guide to the Go Garbage Collector - The Go Programming Language",
+      "url": "https://go.dev/doc/gc-guide",
+      "content_hash": "sha256:61db9eb303e1cd3680b1b28767a9af5cf4ec4b06ea410eea75310835b9bc9dbb",
+      "file": "references/054-A-Guide-to-the-Go-Garbage-Collector-The-Go-Programming-Langu.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Diagnostics - The Go Programming Language",
+      "url": "https://go.dev/doc/diagnostics",
+      "content_hash": "sha256:2e4651b4f05b0d7eb459d96954819f96bce601567948acf7617c55f5a058791a",
+      "file": "references/055-Diagnostics-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Editor plugins and IDEs - The Go Programming Language",
+      "url": "https://go.dev/doc/editors",
+      "content_hash": "sha256:a9d584426c55b6a951336f885d698eb0dc2f73a07a5b659cc5c2eb053ed22663",
+      "file": "references/056-Editor-plugins-and-IDEs-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Effective Go - The Go Programming Language",
+      "url": "https://go.dev/doc/effective_go",
+      "content_hash": "sha256:c1c1b98a15f2bb133ca28c54670e815d0fee8853c523cf0a635c278c47cfc249",
+      "file": "references/057-Effective-Go-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Frequently Asked Questions (FAQ) - The Go Programming Language",
+      "url": "https://go.dev/doc/faq",
+      "content_hash": "sha256:13d95f1aba87a5c61785c0e4893ed99e024de7c866dbdf7070e4f2fe9ec044b4",
+      "file": "references/058-Frequently-Asked-Questions-FAQ-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Writing Web Applications - The Go Programming Language",
+      "url": "https://go.dev/doc/articles/wiki",
+      "content_hash": "sha256:c4159ae61346bd144c42d4dbf7c3b335511c3a01c8b4915c24d0218112039334",
+      "file": "references/059-Writing-Web-Applications-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "How to Write Go Code - The Go Programming Language",
+      "url": "https://go.dev/doc/code",
+      "content_hash": "sha256:fa654e278c75c3f2f02b87247a43fa3d3c91fe0ad7a055cbeb6d6d9b04047212",
+      "file": "references/060-How-to-Write-Go-Code-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Tutorial: Getting started with fuzzing - The Go Programming Language",
+      "url": "https://go.dev/doc/tutorial/fuzz",
+      "content_hash": "sha256:f397da54582877773add54cfee8969975526e29412a64cec7991b57581c7479a",
+      "file": "references/061-Tutorial-Getting-started-with-fuzzing-The-Go-Programming-Lan.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Tutorial: Getting started with generics - The Go Programming Language",
+      "url": "https://go.dev/doc/tutorial/generics",
+      "content_hash": "sha256:d739d492174f6c3fab64aa42165cf55680d0c824e279f06636b482ecf0ca0044",
+      "file": "references/062-Tutorial-Getting-started-with-generics-The-Go-Programming-La.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Tutorial: Developing a RESTful API with Go and Gin - The Go Programming Language",
+      "url": "https://go.dev/doc/tutorial/web-service-gin",
+      "content_hash": "sha256:0a9be034313ae3bd0f045c4fb5fd88a98d98f489c2608645a1436c664656b809",
+      "file": "references/063-Tutorial-Developing-a-RESTful-API-with-Go-and-Gin-The-Go-Pro.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Tutorial: Getting started with multi-module workspaces - The Go Programming Language",
+      "url": "https://go.dev/doc/tutorial/workspaces",
+      "content_hash": "sha256:3037805e65887de056306ab284d7998129adf63e62af2d5616157d6e8ec2b760",
+      "file": "references/064-Tutorial-Getting-started-with-multi-module-workspaces-The-Go.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Tutorial: Create a Go module - The Go Programming Language",
+      "url": "https://go.dev/doc/tutorial/create-module",
+      "content_hash": "sha256:ec5c91d4a45b41d25ab1c5c56b77eb97fd5d95656509b13dbff52566401ab221",
+      "file": "references/065-Tutorial-Create-a-Go-module-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Tutorial: Get started with Go - The Go Programming Language",
+      "url": "https://go.dev/doc/tutorial/getting-started",
+      "content_hash": "sha256:4630cd0f6cfe81b07a8f9b950124fbd2a797bce3545faea80a0c49be59bc6d26",
+      "file": "references/066-Tutorial-Get-started-with-Go-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Download and install - The Go Programming Language",
+      "url": "https://go.dev/doc/install",
+      "content_hash": "sha256:f644c80662eb9dba3832e8865f713382bd812c0299604ccc785b9f6aa989589e",
+      "file": "references/067-Download-and-install-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "The Go Programming Language Specification - The Go Programming Language",
+      "url": "https://go.dev/ref/spec",
+      "content_hash": "sha256:fa60fd478f1a8ed14990d85c1d757f966883ad28cea042a9320ad685e8c3c96e",
+      "file": "references/068-The-Go-Programming-Language-Specification-The-Go-Programming.md",
+      "source": "golang",
+      "version": "latest"
+    },
+    {
+      "title": "Documentation - The Go Programming Language",
+      "url": "https://go.dev/doc",
+      "content_hash": "sha256:52382a3196c1aff92ebbb88077b9da1a560793c8430cb24280e2dd0ae47da08f",
+      "file": "references/069-Documentation-The-Go-Programming-Language.md",
+      "source": "golang",
+      "version": "latest"
+    }
+  ]
+}

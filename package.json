@@ -3,10 +3,11 @@
 	"version": "0.1.0",
 	"private": true,
 	"type": "module",
-	"description": "OMP all-in-one plugin. Prompt Uplift expands every user prompt into a detailed XML specification. Tissue + ktui issue tracking.",
+	"description": "OMP all-in-one plugin. Prompt Uplift, Tissue + ktui, Hermes skills, GitHub org + Greptile MCP, Supabase DB+auth.",
 	"scripts": {
 		"test": "bun test",
-		"check": "bunx tsc --noEmit"
+		"check": "bunx tsc --noEmit",
+		"import:hermes": "bun src/skills/cli.ts"
 	},
 	"devDependencies": {
 		"@oh-my-pi/pi-ai": "^18.0.4",
@@ -22,5 +23,8 @@
 	},
 	"aimee": {
 		"extensions": ["./src/index.ts"]
+	},
+	"dependencies": {
+		"@modelcontextprotocol/sdk": "^1.30.0"
 	}
 }

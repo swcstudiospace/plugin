@@ -1,0 +1,204 @@
+# HumanReview Config - Agno
+
+Source: https://docs.agno.com/workflows/hitl/human-review
+
+`HumanReview` groups all HITL settings into a single object instead of passing them as separate parameters. Step, Loop, Router, Condition, and Steps accept `human_review=HumanReview(...)`. Parallel rejects every `requires_*` field because parallel branches cannot be individually paused. Behavior fields set on Parallel have no effect.
+
+```
+from agno.workflow.step import Step
+from agno.workflow.types import HumanReview
+from agno.workflow import OnReject, OnTimeout
+
+Step(
+    name="draft_email",
+    agent=draft_agent,
+    human_review=HumanReview(
+        requires_output_review=True,
+        output_review_message="Review the draft before sending.",
+        on_reject=OnReject.retry,
+        max_retries=3,
+        timeout=300,
+        on_timeout=OnTimeout.approve,
+    ),
+)
+```
+
+Flat parameters still work for backward compatibility:
+
+```
+# Equivalent to the above
+Step(
+    name="draft_email",
+    agent=draft_agent,
+    requires_output_review=True,
+    output_review_message="Review the draft before sending.",
+    on_reject=OnReject.retry,
+    hitl_max_retries=3,
+    hitl_timeout=300,
+    on_timeout=OnTimeout.approve,
+)
+```
+
+If both `human_review` and flat parameters are provided, `human_review` takes priority.
+
+## [​](#all-fields) All Fields
+
+| Field | Type | Default | Description |
+| --- | --- | --- | --- |
+| `requires_confirmation` | `bool` | `False` | Pause for user confirmation before execution |
+| `confirmation_message` | `str` | `None` | Message shown during confirmation |
+| `requires_user_input` | `bool` | `False` | Pause to collect user input before execution |
+| `user_input_message` | `str` | `None` | Message shown when collecting input |
+| `user_input_schema` | `List[UserInputField]` | `None` | Schema defining expected input fields |
+| `requires_output_review` | `bool` or `Callable[[StepOutput], bool]` | `False` | Pause after execution for output review |
+| `output_review_message` | `str` | `None` | Message shown during output review |
+| `requires_iteration_review` | `bool` | `False` | Pause after each loop iteration for review |
+| `iteration_review_message` | `str` | `None` | Message shown during iteration review |
+| `on_reject` | `OnReject` | `OnReject.skip` | Action when user rejects |
+| `on_error` | `OnError` | `OnError.skip` | Action when a Step or Condition errors |
+| `max_retries` | `int` | `3` | Max retries on rejection (when `on_reject=OnReject.retry`) |
+| `timeout` | `int` | `None` | Seconds to wait for a Step confirmation or output review |
+| `on_timeout` | `OnTimeout` | `OnTimeout.cancel` | Action when timeout expires |
+
+## [​](#supported-fields-by-component) Supported Fields by Component
+
+Not every field works on every component. Passing an unsupported `requires_*` flag raises a `ValueError` at construction time. The behavior fields (`on_reject`, `on_error`, `max_retries`, `timeout`, `on_timeout`) are not validated; they only take effect on the components marked below.
+
+| Field | Step | Loop | Router | Condition | Steps | Parallel |
+| --- | --- | --- | --- | --- | --- | --- |
+| `requires_confirmation` | ✓ | ✓ | ✓ | ✓ | ✓ | - |
+| `requires_user_input` | ✓ | - | ✓ | - | - | - |
+| `requires_output_review` | ✓ | - | ✓ | - | - | - |
+| `requires_iteration_review` | - | ✓ | - | - | - | - |
+| `on_reject` | ✓ | ✓ | ✓ | ✓ | ✓ | - |
+| `on_error` | ✓ | - | - | ✓ | - | - |
+| `max_retries` | ✓ | - | ✓ | - | - | - |
+| `timeout` | ✓ | - | - | - | - | - |
+| `on_timeout` | ✓ | - | - | - | - | - |
+
+Condition and Steps only support `requires_confirmation`. Parallel rejects any `requires_*` field. Passing an unsupported mode raises a clear error:
+
+```
+from agno.workflow.condition import Condition
+from agno.workflow.types import HumanReview
+
+# This raises ValueError: requires_output_review is not supported on Condition.
+# Supported: requires_confirmation.
+Condition(
+    name="my_condition",
+    steps=[...],
+    human_review=HumanReview(requires_output_review=True),
+)
+```
+
+## [​](#validation-rules) Validation Rules
+
+- `requires_output_review` and `requires_iteration_review` cannot both be `True` in the same config.
+- Each component validates at construction time. You get a clear error if a field is unsupported.
+
+## [​](#hitl-modes) HITL Modes
+
+### [​](#pre-execution-confirmation) Pre-execution: Confirmation
+
+Pause before a step runs. The user approves or rejects.
+
+```
+HumanReview(
+    requires_confirmation=True,
+    confirmation_message="Delete 1000 records?",
+    on_reject=OnReject.cancel,
+)
+```
+
+### [​](#pre-execution-user-input) Pre-execution: User Input
+
+Collect parameters from the user before execution.
+
+```
+from agno.workflow.types import HumanReview, UserInputField
+
+HumanReview(
+    requires_user_input=True,
+    user_input_message="Configure report settings:",
+    user_input_schema=[
+        UserInputField(name="format", field_type="str", required=True),
+        UserInputField(name="include_charts", field_type="bool", required=False),
+    ],
+)
+```
+
+### [​](#post-execution-output-review) Post-execution: Output Review
+
+Pause after a step completes so the user can review the output. Supported on Step and Router.
+
+```
+HumanReview(
+    requires_output_review=True,
+    output_review_message="Review the generated report.",
+    on_reject=OnReject.retry,
+    max_retries=3,
+)
+```
+
+### [​](#per-iteration-iteration-review) Per-iteration: Iteration Review
+
+Pause after each loop iteration for review. Supported on Loop only.
+
+```
+HumanReview(
+    requires_iteration_review=True,
+    iteration_review_message="Review this iteration's output.",
+    on_reject=OnReject.retry,
+)
+```
+
+## [​](#timeout) Timeout
+
+Set a timeout for a Step confirmation or output review. If the timeout expires, `on_timeout` determines what happens when `continue_run()` is called. Step user-input pauses and other components ignore timeout policies.
+
+```
+from agno.workflow import OnTimeout
+
+HumanReview(
+    requires_confirmation=True,
+    confirmation_message="Approve deployment?",
+    timeout=300,  # 5 minutes
+    on_timeout=OnTimeout.approve,  # Auto-approve after timeout
+)
+```
+
+| `OnTimeout` Value | Behavior |
+| --- | --- |
+| `OnTimeout.approve` | Automatically approve and continue |
+| `OnTimeout.skip` | Skip the step and continue |
+| `OnTimeout.cancel` | Cancel the workflow (default) |
+
+## [​](#serialization) Serialization
+
+`HumanReview` serializes to a single `"human_review"` key in the workflow state. Deserialization reads `"human_review"` first, then falls back to flat keys for backward compatibility with existing persisted data.
+
+```
+config = HumanReview(
+    requires_confirmation=True,
+    confirmation_message="Proceed?",
+    timeout=60,
+)
+
+data = config.to_dict()
+# {"requires_confirmation": True, "confirmation_message": "Proceed?", "timeout": 60, ...}
+
+restored = HumanReview.from_dict(data)
+```
+
+A callable `requires_output_review` predicate serializes as `True`. Reapply the callable after reconstructing a workflow if review should remain conditional.
+
+## [​](#developer-resources) Developer Resources
+
+- [Step HITL](/workflows/hitl/step)
+- [Loop HITL](/workflows/hitl/loop)
+- [Router HITL](/workflows/hitl/router)
+- [Condition HITL](/workflows/hitl/condition)
+- [Steps HITL](/workflows/hitl/steps)
+- [Workflow HITL overview](/workflows/hitl/overview)
+
+⌘I

@@ -1,0 +1,84 @@
+# docs-mdn-web
+
+Exported documentation references.
+
+- [<article> HTML article contents element - HTML | MDN](references/001-article-HTML-article-contents-element-HTML-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/article
+- [<header> HTML header element - HTML | MDN](references/002-header-HTML-header-element-HTML-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/header
+- [<footer> HTML footer element - HTML | MDN](references/003-footer-HTML-footer-element-HTML-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/footer
+- [<title> HTML document title element - HTML | MDN](references/004-title-HTML-document-title-element-HTML-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/title
+- [<body> HTML document body element - HTML | MDN](references/005-body-HTML-document-body-element-HTML-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/body
+- [EXSLT - XML | MDN](references/006-EXSLT-XML-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/XML/EXSLT
+- [XPath - XML | MDN](references/007-XPath-XML-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/XML/XPath
+- [<head> HTML document metadata (header) element - HTML | MDN](references/008-head-HTML-document-metadata-header-element-HTML-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/head
+- [Contributors by commit history](references/009-Contributors-by-commit-history.md) — https://developer.mozilla.org/en-US/docs/Web/contributors.txt
+- [XSLT: Extensible Stylesheet Language Transformations - XML | MDN](references/010-XSLT-Extensible-Stylesheet-Language-Transformations-XML-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/XML/XSLT
+- [XML introduction - XML | MDN](references/011-XML-introduction-XML-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/XML/Guides/XML_introduction
+- [OpenSearch description format - XML | MDN](references/012-OpenSearch-description-format-XML-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/XML/Guides/OpenSearch
+- [Web application manifest - Progressive web apps | MDN](references/013-Web-application-manifest-Progressive-web-apps-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Manifest
+- [Document Object Model (DOM) - Web APIs | MDN](references/014-Document-Object-Model-DOM-Web-APIs-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model
+- [Color mixer - CSS | MDN](references/015-Color-mixer-CSS-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Colors/Color_mixer
+- [Shape generator - CSS | MDN](references/016-Shape-generator-CSS-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Shapes/Shape_generator
+- [Color format converter - CSS | MDN](references/017-Color-format-converter-CSS-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Colors/Color_format_converter
+- [Border-radius generator - CSS | MDN](references/018-Border-radius-generator-CSS-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Backgrounds_and_borders/Border-radius_generator
+- [Box-shadow generator - CSS | MDN](references/019-Box-shadow-generator-CSS-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Backgrounds_and_borders/Box-shadow_generator
+- [Privacy on the web | MDN](references/020-Privacy-on-the-web-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/Privacy
+- [Security | MDN](references/021-Security-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/Security
+- [Progressive web apps | MDN](references/022-Progressive-web-apps-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps
+- [Border-image generator - CSS | MDN](references/023-Border-image-generator-CSS-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Backgrounds_and_borders/Border-image_generator
+- [Web performance | MDN](references/024-Web-performance-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/Performance
+- [Media technologies on the web | MDN](references/025-Media-technologies-on-the-web-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/Media
+- [URIs | MDN](references/026-URIs-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/URI
+- [WebDriver | MDN](references/027-WebDriver-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/WebDriver
+- [Using the Web Speech API - Web APIs | MDN](references/028-Using-the-Web-Speech-API-Web-APIs-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API/Using_the_Web_Speech_API
+- [HTTP: Hypertext Transfer Protocol | MDN](references/029-HTTP-Hypertext-Transfer-Protocol-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/HTTP
+- [Accessibility | MDN](references/030-Accessibility-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/Accessibility
+- [Using the Fetch API - Web APIs | MDN](references/031-Using-the-Fetch-API-Web-APIs-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+- [Using Web Workers - Web APIs | MDN](references/032-Using-Web-Workers-Web-APIs-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
+- [Service Worker API - Web APIs | MDN](references/033-Service-Worker-API-Web-APIs-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API
+- [Using the Web Animations API - Web APIs | MDN](references/034-Using-the-Web-Animations-API-Web-APIs-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API/Using_the_Web_Animations_API
+- [Working with the History API - Web APIs | MDN](references/035-Working-with-the-History-API-Web-APIs-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/API/History_API/Working_with_the_History_API
+- [Push API - Web APIs | MDN](references/036-Push-API-Web-APIs-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/API/Push_API
+- [HTML DOM API - Web APIs | MDN](references/037-HTML-DOM-API-Web-APIs-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API
+- [Web APIs | MDN](references/038-Web-APIs-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/API
+- [Geolocation API - Web APIs | MDN](references/039-Geolocation-API-Web-APIs-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API
+- [Fetch API - Web APIs | MDN](references/040-Fetch-API-Web-APIs-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
+- [Using classes - JavaScript | MDN](references/041-Using-classes-JavaScript-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_classes
+- [File System API - Web APIs | MDN](references/042-File-System-API-Web-APIs-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/API/File_System_API
+- [Working with objects - JavaScript | MDN](references/043-Working-with-objects-JavaScript-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_objects
+- [Loops and iteration - JavaScript | MDN](references/044-Loops-and-iteration-JavaScript-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration
+- [JavaScript Guide - JavaScript | MDN](references/045-JavaScript-Guide-JavaScript-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide
+- [JavaScript reference - JavaScript | MDN](references/046-JavaScript-reference-JavaScript-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference
+- [Control flow and error handling - JavaScript | MDN](references/047-Control-flow-and-error-handling-JavaScript-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling
+- [Functions - JavaScript | MDN](references/048-Functions-JavaScript-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions
+- [Statements and declarations - JavaScript | MDN](references/049-Statements-and-declarations-JavaScript-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements
+- [Standard built-in objects - JavaScript | MDN](references/050-Standard-built-in-objects-JavaScript-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
+- [Expressions and operators - JavaScript | MDN](references/051-Expressions-and-operators-JavaScript-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators
+- [JavaScript | MDN](references/052-JavaScript-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/JavaScript
+- [CSS layout cookbook - CSS | MDN](references/053-CSS-layout-cookbook-CSS-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/CSS/How_to/Layout_cookbook
+- [Center an element - CSS | MDN](references/054-Center-an-element-CSS-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/CSS/How_to/Layout_cookbook/Center_an_element
+- [Card - CSS | MDN](references/055-Card-CSS-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/CSS/How_to/Layout_cookbook/Card
+- [CSS guides - CSS | MDN](references/056-CSS-guides-CSS-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/CSS/Guides
+- [Column layouts - CSS | MDN](references/057-Column-layouts-CSS-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/CSS/How_to/Layout_cookbook/Column_layouts
+- [Basic concepts of flexbox - CSS | MDN](references/058-Basic-concepts-of-flexbox-CSS-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Flexible_box_layout/Basic_concepts
+- [Applying color to HTML elements using CSS - CSS | MDN](references/059-Applying-color-to-HTML-elements-using-CSS-CSS-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Colors/Applying_color
+- [Using CSS animations - CSS | MDN](references/060-Using-CSS-animations-CSS-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Animations/Using
+- [Introduction to the CSS box model - CSS | MDN](references/061-Introduction-to-the-CSS-box-model-CSS-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Box_model/Introduction
+- [CSS reference - CSS | MDN](references/062-CSS-reference-CSS-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/CSS/Reference
+- [CSS values - CSS | MDN](references/063-CSS-values-CSS-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values
+- [CSS selectors - CSS | MDN](references/064-CSS-selectors-CSS-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors
+- [CSS at-rules - CSS | MDN](references/065-CSS-at-rules-CSS-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules
+- [CSS properties - CSS | MDN](references/066-CSS-properties-CSS-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties
+- [MathML | MDN](references/067-MathML-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/MathML
+- [XML: Extensible Markup Language | MDN](references/068-XML-Extensible-Markup-Language-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/XML
+- [CSS: Cascading Style Sheets | MDN](references/069-CSS-Cascading-Style-Sheets-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/CSS
+- [HTML guides - HTML | MDN](references/070-HTML-guides-HTML-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/HTML/Guides
+- [SVG: Scalable Vector Graphics | MDN](references/071-SVG-Scalable-Vector-Graphics-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/SVG
+- [Using date and time formats in HTML - HTML | MDN](references/072-Using-date-and-time-formats-in-HTML-HTML-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Date_and_time_formats
+- [HTML cheatsheet for syntax and common tasks - HTML | MDN](references/073-HTML-cheatsheet-for-syntax-and-common-tasks-HTML-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Cheatsheet
+- [HTML reference - HTML | MDN](references/074-HTML-reference-HTML-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/HTML/Reference
+- [Using responsive images in HTML - HTML | MDN](references/075-Using-responsive-images-in-HTML-HTML-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Responsive_images
+- [Global attributes - HTML | MDN](references/076-Global-attributes-HTML-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes
+- [HTML attribute reference - HTML | MDN](references/077-HTML-attribute-reference-HTML-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes
+- [Web technology for developers | MDN](references/078-Web-technology-for-developers-MDN.md) — https://developer.mozilla.org/en-US/docs/Web
+- [HTML: HyperText Markup Language | MDN](references/079-HTML-HyperText-Markup-Language-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/HTML
+- [HTML elements reference - HTML | MDN](references/080-HTML-elements-reference-HTML-MDN.md) — https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements

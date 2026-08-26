@@ -1,0 +1,165 @@
+# Condition HITL - Agno
+
+Source: https://docs.agno.com/workflows/hitl/condition
+
+Conditions support confirmation HITL, allowing users to decide which branch to execute at runtime.
+All HITL settings are configured via [`HumanReview`](/workflows/hitl/human-review). Conditions only support `requires_confirmation`. Passing unsupported fields (like `requires_output_review`) raises a `ValueError`.
+
+## [​](#user-controlled-branching) User-Controlled Branching
+
+When `requires_confirmation=True`, the condition pauses for a user decision:
+
+- **Confirm**: Execute the `steps` branch (if branch)
+- **Reject**: Behavior depends on `on_reject` setting
+
+```
+from agno.workflow import Workflow, OnReject
+from agno.workflow.condition import Condition
+from agno.workflow.step import Step
+from agno.workflow.types import HumanReview, StepInput, StepOutput
+from agno.db.sqlite import SqliteDb
+
+def analyze_data(step_input: StepInput) -> StepOutput:
+    return StepOutput(content="Analysis complete: potential issues found")
+
+def detailed_analysis(step_input: StepInput) -> StepOutput:
+    return StepOutput(content="Detailed analysis: Full review completed")
+
+def quick_summary(step_input: StepInput) -> StepOutput:
+    return StepOutput(content="Quick summary: Key highlights identified")
+
+def generate_report(step_input: StepInput) -> StepOutput:
+    return StepOutput(content=f"Report: {step_input.previous_step_content}")
+
+workflow = Workflow(
+    name="analysis_workflow",
+    db=SqliteDb(db_file="workflow.db"),
+    steps=[
+        Step(name="analyze", executor=analyze_data),
+        Condition(
+            name="analysis_depth",
+            steps=[Step(name="detailed", executor=detailed_analysis)],
+            else_steps=[Step(name="quick", executor=quick_summary)],
+            human_review=HumanReview(
+                requires_confirmation=True,
+                confirmation_message="Perform detailed analysis?",
+                on_reject=OnReject.else_branch,
+            ),
+        ),
+        Step(name="report", executor=generate_report),
+    ],
+)
+
+run_output = workflow.run("Analyze Q4 data")
+
+if run_output.is_paused:
+    for req in run_output.steps_requiring_confirmation:
+        print(f"Decision: {req.step_name}")
+        print(f"Message: {req.confirmation_message}")
+
+        if input("Confirm? (y/n): ").lower() == "y":
+            req.confirm()
+            print("Executing 'if' branch")
+        else:
+            req.reject()
+            print("Executing 'else' branch")
+
+    run_output = workflow.continue_run(run_output)
+
+print(run_output.content)
+```
+
+## [​](#parameters) Parameters
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `requires_confirmation` | `bool` | Pause for user decision |
+| `confirmation_message` | `str` | Message shown to the user |
+| `on_reject` | `OnReject` | Action when rejected |
+
+## [​](#onreject-options) OnReject Options
+
+| Value | Behavior |
+| --- | --- |
+| `OnReject.else_branch` | Execute `else_steps`. Default for flat parameters on Condition |
+| `OnReject.skip` | Skip the entire condition. Default inside `HumanReview` |
+| `OnReject.cancel` | Cancel the workflow |
+
+## [​](#branch-execution) Branch Execution
+
+| User Action | on\_reject | Result |
+| --- | --- | --- |
+| Confirm | any | Execute `steps` |
+| Reject | `else_branch` | Execute `else_steps` |
+| Reject | `skip` | Skip condition, continue workflow |
+| Reject | `cancel` | Cancel workflow |
+
+## [​](#without-else_steps) Without else\_steps
+
+If no `else_steps` are defined and the user rejects with `on_reject=OnReject.else_branch`, the condition is skipped:
+
+```
+Condition(
+    name="optional_processing",
+    steps=[Step(name="process", executor=process)],
+    # No else_steps defined
+    human_review=HumanReview(
+        requires_confirmation=True,
+        confirmation_message="Run optional processing?",
+        on_reject=OnReject.else_branch,  # Will skip if rejected
+    ),
+)
+```
+
+## [​](#combining-with-evaluator) Combining with Evaluator
+
+The `evaluator` defaults to `True`. Leave it unset with `requires_confirmation=True` and the user’s decision alone picks the branch:
+
+```
+Condition(
+    name="user_controlled",
+    # evaluator defaults to True, so confirming runs `steps`
+    steps=[Step(name="if_branch", executor=detailed_analysis)],
+    else_steps=[Step(name="else_branch", executor=quick_summary)],
+    human_review=HumanReview(
+        requires_confirmation=True,
+        confirmation_message="Proceed with if branch?",
+    ),
+)
+```
+
+Confirming resumes normal execution, and the `evaluator` still runs. A custom evaluator that returns `False` routes a confirmed condition to `else_steps`. Rejecting with `on_reject=OnReject.else_branch` skips evaluation and forces the else branch.
+
+## [​](#streaming) Streaming
+
+Handle condition HITL in streaming workflows:
+
+```
+from agno.run.workflow import StepPausedEvent
+
+for event in workflow.run("input", stream=True, stream_events=True):
+    if isinstance(event, StepPausedEvent):
+        print(f"Paused at: {event.step_name}")
+
+session = workflow.get_session()
+run_output = session.runs[-1]
+
+while run_output.is_paused:
+    for req in run_output.steps_requiring_confirmation:
+        req.confirm()  # or req.reject()
+
+    for event in workflow.continue_run(run_output, stream=True, stream_events=True):
+        pass
+
+    session = workflow.get_session()
+    run_output = session.runs[-1]
+```
+
+## [​](#developer-resources) Developer Resources
+
+- [HumanReview Config](/workflows/hitl/human-review)
+- [Workflow HITL overview](/workflows/hitl/overview)
+- [Condition reference](/reference/workflows/conditional-steps)
+- [Conditional workflow pattern](/workflows/workflow-patterns/conditional-workflow)
+
+⌘I

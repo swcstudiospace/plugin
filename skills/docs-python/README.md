@@ -1,0 +1,84 @@
+# docs-python
+
+Exported documentation references.
+
+- [cmath — Mathematical functions for complex numbers — Python 3.14.6 documentation](references/001-cmath-Mathematical-functions-for-complex-numbers-Python-3-14.md) — https://docs.python.org/3/library/cmath.html
+- [chunk — Read IFF chunked data — Python 3.14.6 documentation](references/002-chunk-Read-IFF-chunked-data-Python-3-14-6-documentation.md) — https://docs.python.org/3/library/chunk.html
+- [cmd — Support for line-oriented command interpreters — Python 3.14.6 documentation](references/003-cmd-Support-for-line-oriented-command-interpreters-Python-3.md) — https://docs.python.org/3/library/cmd.html
+- [cgitb — Traceback manager for CGI scripts — Python 3.14.6 documentation](references/004-cgitb-Traceback-manager-for-CGI-scripts-Python-3-14-6-docume.md) — https://docs.python.org/3/library/cgitb.html
+- [cgi — Common Gateway Interface support — Python 3.14.6 documentation](references/005-cgi-Common-Gateway-Interface-support-Python-3-14-6-documenta.md) — https://docs.python.org/3/library/cgi.html
+- [calendar — General calendar-related functions — Python 3.14.6 documentation](references/006-calendar-General-calendar-related-functions-Python-3-14-6-do.md) — https://docs.python.org/3/library/calendar.html
+- [bz2 — Support for bzip2 compression — Python 3.14.6 documentation](references/007-bz2-Support-for-bzip2-compression-Python-3-14-6-documentatio.md) — https://docs.python.org/3/library/bz2.html
+- [bdb — Debugger framework — Python 3.14.6 documentation](references/008-bdb-Debugger-framework-Python-3-14-6-documentation.md) — https://docs.python.org/3/library/bdb.html
+- [builtins — Built-in objects — Python 3.14.6 documentation](references/009-builtins-Built-in-objects-Python-3-14-6-documentation.md) — https://docs.python.org/3/library/builtins.html
+- [bisect — Array bisection algorithm — Python 3.14.6 documentation](references/010-bisect-Array-bisection-algorithm-Python-3-14-6-documentation.md) — https://docs.python.org/3/library/bisect.html
+- [base64 — Base16, Base32, Base64, Base85 Data Encodings — Python 3.14.6 documentation](references/011-base64-Base16-Base32-Base64-Base85-Data-Encodings-Python-3-1.md) — https://docs.python.org/3/library/base64.html
+- [audioop — Manipulate raw audio data — Python 3.14.6 documentation](references/012-audioop-Manipulate-raw-audio-data-Python-3-14-6-documentatio.md) — https://docs.python.org/3/library/audioop.html
+- [binascii — Convert between binary and ASCII — Python 3.14.6 documentation](references/013-binascii-Convert-between-binary-and-ASCII-Python-3-14-6-docu.md) — https://docs.python.org/3/library/binascii.html
+- [atexit — Exit handlers — Python 3.14.6 documentation](references/014-atexit-Exit-handlers-Python-3-14-6-documentation.md) — https://docs.python.org/3/library/atexit.html
+- [asyncore — Asynchronous socket handler — Python 3.14.6 documentation](references/015-asyncore-Asynchronous-socket-handler-Python-3-14-6-documenta.md) — https://docs.python.org/3/library/asyncore.html
+- [array — Efficient arrays of numeric values — Python 3.14.6 documentation](references/016-array-Efficient-arrays-of-numeric-values-Python-3-14-6-docum.md) — https://docs.python.org/3/library/array.html
+- [asyncio — Asynchronous I/O — Python 3.14.6 documentation](references/017-asyncio-Asynchronous-I-O-Python-3-14-6-documentation.md) — https://docs.python.org/3/library/asyncio.html
+- [asynchat — Asynchronous socket command/response handler — Python 3.14.6 documentation](references/018-asynchat-Asynchronous-socket-command-response-handler-Python.md) — https://docs.python.org/3/library/asynchat.html
+- [ast — Abstract syntax trees — Python 3.14.6 documentation](references/019-ast-Abstract-syntax-trees-Python-3-14-6-documentation.md) — https://docs.python.org/3/library/ast.html
+- [annotationlib — Functionality for introspecting annotations — Python 3.14.6 documentation](references/020-annotationlib-Functionality-for-introspecting-annotations-Py.md) — https://docs.python.org/3/library/annotationlib.html
+- [argparse — Parser for command-line options, arguments and subcommands — Python 3.14.6 documentation](references/021-argparse-Parser-for-command-line-options-arguments-and-subco.md) — https://docs.python.org/3/library/argparse.html
+- [aifc — Read and write AIFF and AIFC files — Python 3.14.6 documentation](references/022-aifc-Read-and-write-AIFF-and-AIFC-files-Python-3-14-6-docume.md) — https://docs.python.org/3/library/aifc.html
+- [abc — Abstract Base Classes — Python 3.14.6 documentation](references/023-abc-Abstract-Base-Classes-Python-3-14-6-documentation.md) — https://docs.python.org/3/library/abc.html
+- [tkinter — Python interface to Tcl/Tk — Python 3.14.6 documentation](references/024-tkinter-Python-interface-to-Tcl-Tk-Python-3-14-6-documentati.md) — https://docs.python.org/3/library/tkinter.html
+- [_thread — Low-level threading API — Python 3.14.6 documentation](references/025-_thread-Low-level-threading-API-Python-3-14-6-documentation.md) — https://docs.python.org/3/library/_thread.html
+- [__main__ — Top-level code environment — Python 3.14.6 documentation](references/026-__main__-Top-level-code-environment-Python-3-14-6-documentat.md) — https://docs.python.org/3/library/__main__.html
+- [__future__ — Future statement definitions — Python 3.14.6 documentation](references/027-__future__-Future-statement-definitions-Python-3-14-6-docume.md) — https://docs.python.org/3/library/__future__.html
+- [Index — Python 3.14.6 documentation](references/028-Index-Python-3-14-6-documentation.md) — https://docs.python.org/3/genindex-all.html
+- [Index — Python 3.14.6 documentation](references/029-Index-Python-3-14-6-documentation.md) — https://docs.python.org/3/genindex-Y.html
+- [Index — Python 3.14.6 documentation](references/030-Index-Python-3-14-6-documentation.md) — https://docs.python.org/3/genindex-Z.html
+- [Index — Python 3.14.6 documentation](references/031-Index-Python-3-14-6-documentation.md) — https://docs.python.org/3/genindex-V.html
+- [Index — Python 3.14.6 documentation](references/032-Index-Python-3-14-6-documentation.md) — https://docs.python.org/3/genindex-W.html
+- [Index — Python 3.14.6 documentation](references/033-Index-Python-3-14-6-documentation.md) — https://docs.python.org/3/genindex-X.html
+- [Index — Python 3.14.6 documentation](references/034-Index-Python-3-14-6-documentation.md) — https://docs.python.org/3/genindex-U.html
+- [Index — Python 3.14.6 documentation](references/035-Index-Python-3-14-6-documentation.md) — https://docs.python.org/3/genindex-T.html
+- [Index — Python 3.14.6 documentation](references/036-Index-Python-3-14-6-documentation.md) — https://docs.python.org/3/genindex-R.html
+- [Index — Python 3.14.6 documentation](references/037-Index-Python-3-14-6-documentation.md) — https://docs.python.org/3/genindex-S.html
+- [Index — Python 3.14.6 documentation](references/038-Index-Python-3-14-6-documentation.md) — https://docs.python.org/3/genindex-P.html
+- [Index — Python 3.14.6 documentation](references/039-Index-Python-3-14-6-documentation.md) — https://docs.python.org/3/genindex-Q.html
+- [Index — Python 3.14.6 documentation](references/040-Index-Python-3-14-6-documentation.md) — https://docs.python.org/3/genindex-M.html
+- [Index — Python 3.14.6 documentation](references/041-Index-Python-3-14-6-documentation.md) — https://docs.python.org/3/genindex-N.html
+- [Index — Python 3.14.6 documentation](references/042-Index-Python-3-14-6-documentation.md) — https://docs.python.org/3/genindex-O.html
+- [Index — Python 3.14.6 documentation](references/043-Index-Python-3-14-6-documentation.md) — https://docs.python.org/3/genindex-J.html
+- [Index — Python 3.14.6 documentation](references/044-Index-Python-3-14-6-documentation.md) — https://docs.python.org/3/genindex-L.html
+- [Index — Python 3.14.6 documentation](references/045-Index-Python-3-14-6-documentation.md) — https://docs.python.org/3/genindex-I.html
+- [Index — Python 3.14.6 documentation](references/046-Index-Python-3-14-6-documentation.md) — https://docs.python.org/3/genindex-H.html
+- [Index — Python 3.14.6 documentation](references/047-Index-Python-3-14-6-documentation.md) — https://docs.python.org/3/genindex-K.html
+- [Index — Python 3.14.6 documentation](references/048-Index-Python-3-14-6-documentation.md) — https://docs.python.org/3/genindex-F.html
+- [Index — Python 3.14.6 documentation](references/049-Index-Python-3-14-6-documentation.md) — https://docs.python.org/3/genindex-G.html
+- [Index — Python 3.14.6 documentation](references/050-Index-Python-3-14-6-documentation.md) — https://docs.python.org/3/genindex-E.html
+- [Index — Python 3.14.6 documentation](references/051-Index-Python-3-14-6-documentation.md) — https://docs.python.org/3/genindex-D.html
+- [Index — Python 3.14.6 documentation](references/052-Index-Python-3-14-6-documentation.md) — https://docs.python.org/3/genindex-B.html
+- [Index — Python 3.14.6 documentation](references/053-Index-Python-3-14-6-documentation.md) — https://docs.python.org/3/genindex-C.html
+- [Index — Python 3.14.6 documentation](references/054-Index-Python-3-14-6-documentation.md) — https://docs.python.org/3/genindex-A.html
+- [Index — Python 3.14.6 documentation](references/055-Index-Python-3-14-6-documentation.md) — https://docs.python.org/3/genindex-_.html
+- [3.14.6 Documentation](references/056-3-14-6-Documentation.md) — https://docs.python.org/3/index.html
+- [Index — Python 3.14.6 documentation](references/057-Index-Python-3-14-6-documentation.md) — https://docs.python.org/3/genindex-Symbols.html
+- [Dealing with Bugs — Python 3.14.6 documentation](references/058-Dealing-with-Bugs-Python-3-14-6-documentation.md) — https://docs.python.org/3/bugs.html
+- [History and License — Python 3.14.6 documentation](references/059-History-and-License-Python-3-14-6-documentation.md) — https://docs.python.org/3/license.html
+- [Copyright — Python 3.14.6 documentation](references/060-Copyright-Python-3-14-6-documentation.md) — https://docs.python.org/3/copyright.html
+- [About this documentation — Python 3.14.6 documentation](references/061-About-this-documentation-Python-3-14-6-documentation.md) — https://docs.python.org/3/about.html
+- [Python Documentation contents — Python 3.14.6 documentation](references/062-Python-Documentation-contents-Python-3-14-6-documentation.md) — https://docs.python.org/3/contents.html
+- [Search — Python 3.14.6 documentation](references/063-Search-Python-3-14-6-documentation.md) — https://docs.python.org/3/search.html
+- [Glossary — Python 3.14.6 documentation](references/064-Glossary-Python-3-14-6-documentation.md) — https://docs.python.org/3/glossary.html
+- [Deprecations — Python 3.14.6 documentation](references/065-Deprecations-Python-3-14-6-documentation.md) — https://docs.python.org/3/deprecations/index.html
+- [Python/C API reference manual — Python 3.14.6 documentation](references/066-Python-C-API-reference-manual-Python-3-14-6-documentation.md) — https://docs.python.org/3/c-api/index.html
+- [Python Frequently Asked Questions — Python 3.14.6 documentation](references/067-Python-Frequently-Asked-Questions-Python-3-14-6-documentatio.md) — https://docs.python.org/3/faq/index.html
+- [Python HOWTOs — Python 3.14.6 documentation](references/068-Python-HOWTOs-Python-3-14-6-documentation.md) — https://docs.python.org/3/howto/index.html
+- [Python Setup and Usage — Python 3.14.6 documentation](references/069-Python-Setup-and-Usage-Python-3-14-6-documentation.md) — https://docs.python.org/3/using/index.html
+- [Extending and Embedding the Python Interpreter — Python 3.14.6 documentation](references/070-Extending-and-Embedding-the-Python-Interpreter-Python-3-14-6.md) — https://docs.python.org/3/extending/index.html
+- [Installing Python modules — Python 3.14.6 documentation](references/071-Installing-Python-modules-Python-3-14-6-documentation.md) — https://docs.python.org/3/installing/index.html
+- [The Python Language Reference — Python 3.14.6 documentation](references/072-The-Python-Language-Reference-Python-3-14-6-documentation.md) — https://docs.python.org/3/reference/index.html
+- [The Python Standard Library — Python 3.14.6 documentation](references/073-The-Python-Standard-Library-Python-3-14-6-documentation.md) — https://docs.python.org/3/library/index.html
+- [Python Module Index — Python 3.14.6 documentation](references/074-Python-Module-Index-Python-3-14-6-documentation.md) — https://docs.python.org/3/py-modindex.html
+- [The Python Tutorial — Python 3.14.6 documentation](references/075-The-Python-Tutorial-Python-3-14-6-documentation.md) — https://docs.python.org/3/tutorial/index.html
+- [What’s New in Python — Python 3.14.6 documentation](references/076-What-s-New-in-Python-Python-3-14-6-documentation.md) — https://docs.python.org/3/whatsnew/index.html
+- [What’s new in Python 3.14 — Python 3.14.6 documentation](references/077-What-s-new-in-Python-3-14-Python-3-14-6-documentation.md) — https://docs.python.org/3/whatsnew/3.14.html
+- [Download — Python 3.14.6 documentation](references/078-Download-Python-3-14-6-documentation.md) — https://docs.python.org/3/download.html
+- [Index — Python 3.14.6 documentation](references/079-Index-Python-3-14-6-documentation.md) — https://docs.python.org/3/genindex.html
+- [3.14.6 Documentation](references/080-3-14-6-Documentation.md) — https://docs.python.org/3

@@ -52,10 +52,109 @@ Skipped automatically: slash commands, trivial acknowledgements (`ok`, `lgtm`, �
 | `/kanban` | Overlay of the Spectrum Web Co board (not the Textual TUI) |
 | `/aio issues` | Same as `/issues` |
 | `/aio kanban` | Same as `/kanban` |
+| `/think` | Graph of Thought on / off / status / last |
+| `/lsp` | Live LSP status / diagnostics |
+| `/pr create [title…]` | Open a GitHub PR (title defaults to the current branch) |
+| `/pr list` | List pull requests in the current repo |
+| `/review [base]` | Run Greptile CLI review; notify confidence and comment count |
+| `/merge <n>` | Greptile-gated squash merge (blocked until 5/5 and zero comments) |
+| `/aio pr …` | Same as `/pr` |
+| `/aio review …` | Same as `/review` |
+| `/aio merge …` | Same as `/merge` |
+| `/aio think …` | Same as `/think` |
+| `/supabase` | `status` / `projects` / `tables` / `users` |
 
 Prefixes: `uplift:` force · `raw:` skip.
 
-Flags: `--aio-uplift-off` starts the session with uplift disabled. `--aio-issues-off` starts with issue tracking disabled.
+Flags: `--aio-uplift-off` starts the session with uplift disabled. `--aio-issues-off` starts with issue tracking disabled. `--aio-think-off` starts with Graph of Thought disabled. `--aio-lsp-off` starts with Live LSP disabled.
+
+## Graph of Thought
+
+After XML uplift, Graph of Thought (3–8 nodes) then sequential Chain of Thought per node.
+
+The agent receives the uplifted XML plus a `GRAPH_OF_THOUGHT` block with `THINKING` / `CONCLUSION` per node.
+
+Commands: `/think` `on` | `off` | `status` | `last` (also `/aio think …`). Flag: `--aio-think-off`. Config: `think: { enabled, minNodes, maxNodes }` in `all-in-one.json`.
+
+`raw:` and `/uplift skip` still skip the whole pre-pass, including think.
+
+## Live LSP
+
+Lazy stdio language servers feed diagnostics into the session. Fail-open: missing binaries stay disabled (no auto-install). Quiet when clean. Never blocks the agent.
+
+| Language | Server (PATH) |
+|---|---|
+| C# | csharp-ls |
+| Rust | rust-analyzer |
+| Java | jdtls |
+| Python | pyright-langserver |
+| TypeScript | typescript-language-server |
+| Elixir | elixir-ls |
+| OCaml | ocamllsp |
+| PHP | intelephense |
+
+After `write` / `edit`, diagnostics sync. A changed error set is injected at `turn_end` (`aio-lsp`) and as `## Live LSP` on `before_agent_start`.
+
+Tools: `lsp_status` / `lsp_diagnostics` (optional `path` to sync first). Command: `/lsp` `status` | `diagnostics`. Flag: `--aio-lsp-off`. Config: `lsp.enabled` in `all-in-one.json`.
+
+## GitHub org MCP + Greptile gate
+
+Stdio MCP server **`./bin/aio-mcp`** (`.mcp.json` key `aio`, relative command, no cwd) talks to GitHub org **swcstudiospace** and the Greptile CLI. Merge is **forbidden** until Greptile review is clean (confidence ≥ 5 and zero comments). There is no force-merge tool.
+
+Slash commands call the same libraries as the MCP server (they do not spawn a second MCP). PRs are created only via MCP tools or `/pr` / `/aio pr` — session start does **not** silently open a PR, even when `github.autoPr` is true. The plugin does not auto-commit.
+
+`greptile login` is required for CLI review. If the CLI is signed out, session start notifies once: `/review` and merge stay blocked until `greptile login`.
+
+Tools (text results, no tokens):
+
+| Tool | Input |
+|---|---|
+| `github_list_repos` | `{ org? }` |
+| `github_create_repo` | `{ name, private? }` |
+| `github_create_pull_request` | `{ title, body?, base?, owner?, repo? }` |
+| `github_list_pull_requests` | `{ owner?, repo?, state? }` |
+| `github_get_pull_request` | `{ number, owner?, repo? }` |
+| `github_merge_pull_request` | `{ number, owner?, repo? }` — runs Greptile review; refuses unless the gate passes |
+| `greptile_whoami` | `{}` |
+| `greptile_review` | `{ base? }` (cwd = process cwd) |
+| `aio_status` | `{}` — org + Greptile `signedIn`; never tokens |
+
+Optional hosted Greptile HTTP MCP at `https://api.greptile.com/mcp` with `GREPTILE_API_KEY`. **Do not commit a Bearer key.** This plugin does not ship that server in `.mcp.json`.
+
+## Supabase
+
+The same stdio MCP server **`./bin/aio-mcp`** (`.mcp.json` key `aio`) also talks to Supabase: Management API (projects), Data API (tables/rows/rpc), and Auth Admin (list/get/create/delete users). Credentials are **env only** — never a config-file secret. **Do not add a hosted Supabase MCP URL to `.mcp.json`.**
+
+Slash commands call the same libraries as the MCP tools (they do not spawn a second MCP). Commands: `/supabase` `status` | `projects` | `tables` | `users`.
+
+Config: `supabase.enabled` (default `true`). If `enabled` is false, tools return `{ error: "disabled" }`. If env vars are unset, tools return `{ error: "missing_credentials" }` — they never throw.
+
+Keys never appear in tool results. JWT-shaped strings are masked (`first12…last4`).
+
+Env:
+
+| Variable | Used for |
+|---|---|
+| `SUPABASE_ACCESS_TOKEN` | Management API (`https://api.supabase.com/v1`) |
+| `SUPABASE_URL` | Data + Auth (no trailing slash) |
+| `SUPABASE_SERVICE_KEY` or `SUPABASE_SERVICE_ROLE_KEY` | Data + Auth service role |
+
+Tools (text results, no tokens):
+
+| Tool | Input |
+|---|---|
+| `supabase_status` | `{}` — `{ configured: { management, data } }`; no secrets |
+| `supabase_projects_list` | `{}` |
+| `supabase_project_get` | `{ projectId }` |
+| `supabase_tables_list` | `{ limit? }` |
+| `supabase_rows_read` | `{ table, limit?, order?, filters? }` |
+| `supabase_rpc_call` | `{ function, args? }` |
+| `supabase_auth_users_list` | `{ page?, perPage? }` |
+| `supabase_auth_user_get` | `{ id }` |
+| `supabase_auth_user_create` | `{ email, password?, emailConfirm? }` |
+| `supabase_auth_user_delete` | `{ id }` |
+
+`aio_status` also includes `supabase: { management, data }` booleans.
 
 ## Config
 
@@ -74,11 +173,33 @@ Flags: `--aio-uplift-off` starts the session with uplift disabled. `--aio-issues
     "boardName": "Spectrum Web Co",
     "ktuiBin": "ktui",
     "echo": true
+  },
+  "think": {
+    "enabled": true,
+    "minNodes": 3,
+    "maxNodes": 8
+  },
+  "github": {
+    "org": "swcstudiospace",
+    "autoPr": true
+  },
+  "greptile": {
+    "requiredForMerge": true,
+    "bin": "greptile",
+    "minConfidence": 5
+  },
+  "supabase": {
+    "enabled": true
+  },
+  "lsp": {
+    "enabled": true
   }
 }
 ```
 
-Prompts longer than `maxChars` skip the LLM and use fallback wrap. Set `echo` to `false` to hide the per-turn XML transcript (the agent still receives the rewrite; `/uplift last` still shows it).
+Prompts longer than `maxChars` skip the LLM and use fallback wrap. Set `echo` to `false` to hide the per-turn XML transcript (the agent still receives the rewrite; `/uplift last` still shows it). `raw:` and skip still skip the whole pre-pass, including Graph of Thought.
+
+`supabase.enabled` defaults to true. Unset env vars make tools return `missing_credentials`. `lsp.enabled` defaults to true. Missing language-server binaries stay disabled; nothing is auto-installed.
 
 ## Verify
 
@@ -106,3 +227,18 @@ OMP shows a HUD plus a `/kanban` overlay. That is **not** the real Textual TUI �
 GitHub association is the `origin` remote URL stored on the issue (plus a category named `owner/repo`). Push later with `git add issues/` — this does not call `gh issue create`.
 
 Commands: `/issues`, `/kanban` (also `/aio issues` / `/aio kanban`). Config: `issues` key in `all-in-one.json`. Flag: `--aio-issues-off`.
+
+## Hermes skills
+
+The plugin ships a flattened copy of the Hermes Agent skill library under `skills/<name>/SKILL.md` so OMP discovers them (first-level skill dirs only). Nested Hermes categories (`software-development/clippyos-development`) become `skills/clippyos-development`.
+
+This is a **one-way import**. `~/.hermes` is not modified. Auth, tokens, session dumps, databases, and `.env` are not copied. Re-run:
+
+```bash
+bun run import:hermes
+```
+
+Idempotent: unchanged skills are left alone; locally edited imports are not overwritten (see `skills/.hermes-import-report.md`).
+
+Not imported: `auth.json`, `mcp-tokens/`, `.env`, `state.db`, session dumps, memories (`USER.md` has private channel ids), `SOUL.md` identity.
+

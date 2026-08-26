@@ -1,0 +1,264 @@
+{
+  "name": "docs-greptile",
+  "generated_at": "2026-08-22T05:41:53Z",
+  "page_count": 51,
+  "db_pages": 100,
+  "db_chunks": 956,
+  "pages": [
+    {
+      "title": "Analytics Dashboard",
+      "url": "https://www.greptile.com/docs/analytics",
+      "file": "references/001-Analytics-Dashboard.md"
+    },
+    {
+      "title": "Changelog",
+      "url": "https://www.greptile.com/docs/changelog",
+      "file": "references/002-Changelog.md"
+    },
+    {
+      "title": "Billing",
+      "url": "https://www.greptile.com/docs/code-review-bot/billing-seats",
+      "file": "references/003-Billing.md"
+    },
+    {
+      "title": "Configure with greptile.json",
+      "url": "https://www.greptile.com/docs/code-review-bot/greptile-json",
+      "file": "references/004-Configure-with-greptile-json.md"
+    },
+    {
+      "title": "Configure Which PRs Should Be Reviewed",
+      "url": "https://www.greptile.com/docs/code-review-bot/trigger-code-review",
+      "file": "references/005-Configure-Which-PRs-Should-Be-Reviewed.md"
+    },
+    {
+      "title": "Auto-approve PRs",
+      "url": "https://www.greptile.com/docs/code-review/auto-approve-prs",
+      "file": "references/006-Auto-approve-PRs.md"
+    },
+    {
+      "title": "CLI Onboarding",
+      "url": "https://www.greptile.com/docs/code-review/cli-onboarding",
+      "file": "references/007-CLI-Onboarding.md"
+    },
+    {
+      "title": "Controlling Nitpickiness",
+      "url": "https://www.greptile.com/docs/code-review/controlling-nitpickiness",
+      "file": "references/008-Controlling-Nitpickiness.md"
+    },
+    {
+      "title": "Cross Repo Context",
+      "url": "https://www.greptile.com/docs/code-review/cross-repo-context",
+      "file": "references/009-Cross-Repo-Context.md"
+    },
+    {
+      "title": "Custom Standards & Rules",
+      "url": "https://www.greptile.com/docs/code-review/custom-standards",
+      "file": "references/010-Custom-Standards-Rules.md"
+    },
+    {
+      "title": "Customization Overview",
+      "url": "https://www.greptile.com/docs/code-review/customization-overview",
+      "file": "references/011-Customization-Overview.md"
+    },
+    {
+      "title": "Developer Essentials",
+      "url": "https://www.greptile.com/docs/code-review/developer-essentials",
+      "file": "references/012-Developer-Essentials.md"
+    },
+    {
+      "title": "Anatomy of a Review",
+      "url": "https://www.greptile.com/docs/code-review/first-pr-review",
+      "file": "references/013-Anatomy-of-a-Review.md"
+    },
+    {
+      "title": "Greptile CLI",
+      "url": "https://www.greptile.com/docs/code-review/greptile-cli",
+      "file": "references/014-Greptile-CLI.md"
+    },
+    {
+      "title": ".greptile/ Configuration",
+      "url": "https://www.greptile.com/docs/code-review/greptile-config",
+      "file": "references/015-greptile-Configuration.md"
+    },
+    {
+      "title": ".greptile/ File Reference",
+      "url": "https://www.greptile.com/docs/code-review/greptile-config-reference",
+      "file": "references/016-greptile-File-Reference.md"
+    },
+    {
+      "title": "greptile.json Reference",
+      "url": "https://www.greptile.com/docs/code-review/greptile-json-reference",
+      "file": "references/017-greptile-json-Reference.md"
+    },
+    {
+      "title": "Key Features",
+      "url": "https://www.greptile.com/docs/code-review/key-features",
+      "file": "references/018-Key-Features.md"
+    },
+    {
+      "title": "Organizations & Teams",
+      "url": "https://www.greptile.com/docs/code-review/team-setup-basics",
+      "file": "references/019-Organizations-Teams.md"
+    },
+    {
+      "title": "Tips & Recipes",
+      "url": "https://www.greptile.com/docs/code-review/tips-recipes",
+      "file": "references/020-Tips-Recipes.md"
+    },
+    {
+      "title": "Training the Learning System",
+      "url": "https://www.greptile.com/docs/code-review/training-the-learning-system",
+      "file": "references/021-Training-the-Learning-System.md"
+    },
+    {
+      "title": "Deployment Options",
+      "url": "https://www.greptile.com/docs/deployment-options",
+      "file": "references/022-Deployment-Options.md"
+    },
+    {
+      "title": "AWS Terraform Deployment",
+      "url": "https://www.greptile.com/docs/docker-compose/aws-terraform",
+      "file": "references/023-AWS-Terraform-Deployment.md"
+    },
+    {
+      "title": "Manual Setup",
+      "url": "https://www.greptile.com/docs/docker-compose/manual-setup",
+      "file": "references/024-Manual-Setup.md"
+    },
+    {
+      "title": "Docker Compose Overview",
+      "url": "https://www.greptile.com/docs/docker-compose/overview",
+      "file": "references/025-Docker-Compose-Overview.md"
+    },
+    {
+      "title": "Custom Rules",
+      "url": "https://www.greptile.com/docs/how-greptile-works/custom-rules",
+      "file": "references/026-Custom-Rules.md"
+    },
+    {
+      "title": "Graph-based Codebase Context",
+      "url": "https://www.greptile.com/docs/how-greptile-works/graph-based-codebase-context",
+      "file": "references/027-Graph-based-Codebase-Context.md"
+    },
+    {
+      "title": "Memory and Learning",
+      "url": "https://www.greptile.com/docs/how-greptile-works/memory-and-learning",
+      "file": "references/028-Memory-and-Learning.md"
+    },
+    {
+      "title": "Reducing Nitpicks",
+      "url": "https://www.greptile.com/docs/how-greptile-works/nitpicks",
+      "file": "references/029-Reducing-Nitpicks.md"
+    },
+    {
+      "title": "Codex Plugin",
+      "url": "https://www.greptile.com/docs/integrations/codex",
+      "file": "references/030-Codex-Plugin.md"
+    },
+    {
+      "title": "Fix with your Agent",
+      "url": "https://www.greptile.com/docs/integrations/fix-with-your-agent",
+      "file": "references/031-Fix-with-your-Agent.md"
+    },
+    {
+      "title": "GitHub and GitLab Integration",
+      "url": "https://www.greptile.com/docs/integrations/github-gitlab-integration",
+      "file": "references/032-GitHub-and-GitLab-Integration.md"
+    },
+    {
+      "title": "Overview - What is Greptile?",
+      "url": "https://www.greptile.com/docs/introduction",
+      "file": "references/033-Overview-What-is-Greptile.md"
+    },
+    {
+      "title": "Jira Integration",
+      "url": "https://www.greptile.com/docs/jira-integration",
+      "file": "references/034-Jira-Integration.md"
+    },
+    {
+      "title": "Kubernetes Deployment",
+      "url": "https://www.greptile.com/docs/kubernetes-new",
+      "file": "references/035-Kubernetes-Deployment.md"
+    },
+    {
+      "title": "Linear Integration",
+      "url": "https://www.greptile.com/docs/linear-integration",
+      "file": "references/036-Linear-Integration.md"
+    },
+    {
+      "title": "Auto-Fix Workflow",
+      "url": "https://www.greptile.com/docs/mcp-v2/auto-fix",
+      "file": "references/037-Auto-Fix-Workflow.md"
+    },
+    {
+      "title": "Custom Context",
+      "url": "https://www.greptile.com/docs/mcp-v2/custom-context",
+      "file": "references/038-Custom-Context.md"
+    },
+    {
+      "title": "MCP Overview",
+      "url": "https://www.greptile.com/docs/mcp-v2/overview",
+      "file": "references/039-MCP-Overview.md"
+    },
+    {
+      "title": "Reports & Analytics",
+      "url": "https://www.greptile.com/docs/mcp-v2/reports",
+      "file": "references/040-Reports-Analytics.md"
+    },
+    {
+      "title": "IDE Setup",
+      "url": "https://www.greptile.com/docs/mcp-v2/setup",
+      "file": "references/041-IDE-Setup.md"
+    },
+    {
+      "title": "Agent Skills",
+      "url": "https://www.greptile.com/docs/mcp-v2/skills",
+      "file": "references/042-Agent-Skills.md"
+    },
+    {
+      "title": "Tools Reference",
+      "url": "https://www.greptile.com/docs/mcp-v2/tools",
+      "file": "references/043-Tools-Reference.md"
+    },
+    {
+      "title": "5-Minute Quickstart",
+      "url": "https://www.greptile.com/docs/quickstart",
+      "file": "references/044-5-Minute-Quickstart.md"
+    },
+    {
+      "title": "Network Rules",
+      "url": "https://www.greptile.com/docs/security/network-rules",
+      "file": "references/045-Network-Rules.md"
+    },
+    {
+      "title": "Self-Hosted Greptile",
+      "url": "https://www.greptile.com/docs/security/selfhost",
+      "file": "references/046-Self-Hosted-Greptile.md"
+    },
+    {
+      "title": "SSO/SAML",
+      "url": "https://www.greptile.com/docs/security/sso",
+      "file": "references/047-SSO-SAML.md"
+    },
+    {
+      "title": "SSO & Identity",
+      "url": "https://www.greptile.com/docs/security/sso-and-identity",
+      "file": "references/048-SSO-Identity.md"
+    },
+    {
+      "title": "CLI Reviews on Self-Hosted Greptile",
+      "url": "https://www.greptile.com/docs/self-hosting/cli-reviews",
+      "file": "references/049-CLI-Reviews-on-Self-Hosted-Greptile.md"
+    },
+    {
+      "title": "System Architecture",
+      "url": "https://www.greptile.com/docs/system-architecture",
+      "file": "references/050-System-Architecture.md"
+    },
+    {
+      "title": "Troubleshooting Common Issues",
+      "url": "https://www.greptile.com/docs/troubleshooting/common-issues",
+      "file": "references/051-Troubleshooting-Common-Issues.md"
+    }
+  ]
+}

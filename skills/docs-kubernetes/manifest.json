@@ -1,0 +1,651 @@
+{
+  "name": "docs-kubernetes",
+  "generated_at": "2026-07-29T03:52:45Z",
+  "query": null,
+  "source_id": null,
+  "ranking": "all pages (recency)",
+  "page_count": 80,
+  "embedding_model": null,
+  "pages": [
+    {
+      "title": "Reviewing pull requests | Kubernetes",
+      "url": "https://kubernetes.io/docs/contribute/review/reviewing-prs",
+      "content_hash": "sha256:6993c94afd05a9d18e59a70cd34950f2125d7ad941ba51558cee228fe9b3efac",
+      "file": "references/001-Reviewing-pull-requests-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Roles and responsibilities | Kubernetes",
+      "url": "https://kubernetes.io/docs/contribute/participate/roles-and-responsibilities",
+      "content_hash": "sha256:8802f86807fb12e998f7ece49d7d39a59476d85444ab232d99d6f08d10f4ff47",
+      "file": "references/002-Roles-and-responsibilities-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Protocols for Services | Kubernetes",
+      "url": "https://kubernetes.io/docs/reference/networking/service-protocols",
+      "content_hash": "sha256:25efd948893e3647c823834a671ed5ddd90ebfd244be90858ee96e1c3c1cc2eb",
+      "file": "references/003-Protocols-for-Services-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Reference Documentation Quickstart | Kubernetes",
+      "url": "https://kubernetes.io/docs/contribute/generate-ref-docs/quickstart",
+      "content_hash": "sha256:f4381908f654b180d47919471dac1e5bf6dba82019b840cb36e256e768e7a3d7",
+      "file": "references/004-Reference-Documentation-Quickstart-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "PodGroup Scheduling Policies | Kubernetes",
+      "url": "https://kubernetes.io/docs/concepts/workloads/workload-api/policies",
+      "content_hash": "sha256:2c1f1cfc77bc404d26f90414c3d0726b25d639b59dce49e5855f865c6c3eded8",
+      "file": "references/005-PodGroup-Scheduling-Policies-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Pods | Kubernetes",
+      "url": "https://kubernetes.io/docs/concepts/workloads/pods",
+      "content_hash": "sha256:d078074aa95430b2fa731dd43a25099affa3e36422011d4e7ed87eb264be3643",
+      "file": "references/006-Pods-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "PodGroup | Kubernetes",
+      "url": "https://kubernetes.io/docs/reference/kubernetes-api/scheduling/pod-group-v1alpha2",
+      "content_hash": "sha256:a3908d86f5c17ca1adc7374c9c7adc4249a359ec8682a45cfd8bf086833542b0",
+      "file": "references/007-PodGroup-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "PodGroup Lifecycle | Kubernetes",
+      "url": "https://kubernetes.io/docs/concepts/workloads/podgroup-api/lifecycle",
+      "content_hash": "sha256:dafe1c5ed1b50827e6493b741e7461e580dd47f6f129a66e35f4dd212800ebbd",
+      "file": "references/008-PodGroup-Lifecycle-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "PodDisruptionBudget | Kubernetes",
+      "url": "https://kubernetes.io/docs/reference/kubernetes-api/policy/pod-disruption-budget-v1",
+      "content_hash": "sha256:341c8afa23d6e4232f0f0eb8e3faa9cc1c3300cdd96e2e6e220251942ab94732",
+      "file": "references/009-PodDisruptionBudget-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Pod Group Disruption and Priority | Kubernetes",
+      "url": "https://kubernetes.io/docs/concepts/workloads/workload-api/disruption-and-priority",
+      "content_hash": "sha256:e38e2a32aa9a9c99a29dfa935e056270612d3390f599b618ed76e6d80a789301",
+      "file": "references/010-Pod-Group-Disruption-and-Priority-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Performing a Rolling Update | Kubernetes",
+      "url": "https://kubernetes.io/docs/tutorials/kubernetes-basics/update/update-intro",
+      "content_hash": "sha256:c34e3733ea9569a921420826455bb8f837edc3c46bdb2f1e155fc07069f06d1d",
+      "file": "references/011-Performing-a-Rolling-Update-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Perform a Rolling Update on a DaemonSet | Kubernetes",
+      "url": "https://kubernetes.io/docs/tasks/manage-daemon/update-daemon-set",
+      "content_hash": "sha256:8006a93c2098db30d5b7d557caea9267ac67ed6a926c00758f358cbc229686e1",
+      "file": "references/012-Perform-a-Rolling-Update-on-a-DaemonSet-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Opening a pull request | Kubernetes",
+      "url": "https://kubernetes.io/docs/contribute/new-content/open-a-pr",
+      "content_hash": "sha256:ee391a05fcffa3b7bf33754edfc2a6197e6eb40093be34342a6044c361b6e62a",
+      "file": "references/013-Opening-a-pull-request-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Overprovision Node Capacity For A Cluster | Kubernetes",
+      "url": "https://kubernetes.io/docs/tasks/administer-cluster/node-overprovisioning",
+      "content_hash": "sha256:6ac263ea2d9c1d92d3ffb995fab35d194f1ea55e0f420863e96c1c031a0b8659",
+      "file": "references/014-Overprovision-Node-Capacity-For-A-Cluster-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Nodes | Kubernetes",
+      "url": "https://kubernetes.io/docs/concepts/architecture/nodes",
+      "content_hash": "sha256:3ede9507bc7e4dcfdd92c8dad24907d420954a1a35b66985c60bfe54b4a61767",
+      "file": "references/015-Nodes-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Node Shutdowns | Kubernetes",
+      "url": "https://kubernetes.io/docs/concepts/cluster-administration/node-shutdown",
+      "content_hash": "sha256:bc47f17eeb95dfb5c4f66fbb62ca6efb7c0e0c87fac4a7ca57a0bbb5f77b4284",
+      "file": "references/016-Node-Shutdowns-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "MutatingAdmissionPolicy | Kubernetes",
+      "url": "https://kubernetes.io/docs/reference/kubernetes-api/admissionregistration/mutating-admission-policy-v1",
+      "content_hash": "sha256:f8013f5ce10bfabdbd7777042899621b31f9af5e96638c16035ee02b82734267",
+      "file": "references/017-MutatingAdmissionPolicy-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Network Plugins | Kubernetes",
+      "url": "https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins",
+      "content_hash": "sha256:1c9c91f2d83ce338f49f5244fcf0893c080a37b62d2c3ebaf7329afbd907eaa6",
+      "file": "references/018-Network-Plugins-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Managing Secrets using kubectl | Kubernetes",
+      "url": "https://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-kubectl",
+      "content_hash": "sha256:cf8b341b0f090c962a0582d12bf8fe198cee93cae78ea410ce085957a4b30ebc",
+      "file": "references/019-Managing-Secrets-using-kubectl-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Linux Kernel Version Requirements | Kubernetes",
+      "url": "https://kubernetes.io/docs/reference/node/kernel-version-requirements",
+      "content_hash": "sha256:4cb6699c94280530791c4eeca8aa8770201e338ae0c46bbd504ce8e91963bda0",
+      "file": "references/020-Linux-Kernel-Version-Requirements-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Lease | Kubernetes",
+      "url": "https://kubernetes.io/docs/reference/kubernetes-api/coordination/lease-v1",
+      "content_hash": "sha256:8ddb7206c46261e11f3053da93a2d700e88ea86e6911d8e11617ebadd23c2c7f",
+      "file": "references/021-Lease-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Limit Ranges | Kubernetes",
+      "url": "https://kubernetes.io/docs/concepts/policy/limit-range",
+      "content_hash": "sha256:188c6b4b0b3d460b2460dd902485ee6eaed1df5426eeddf85ab239cacaf50aab",
+      "file": "references/022-Limit-Ranges-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Kubernetes Scheduler | Kubernetes",
+      "url": "https://kubernetes.io/docs/concepts/scheduling-eviction/kube-scheduler",
+      "content_hash": "sha256:64d6c7f31faac56b8ee5efc1d5da7a4a3562b24d4717f17cd2d29fe0bd32303d",
+      "file": "references/023-Kubernetes-Scheduler-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Kubernetes Issue Tracker | Kubernetes",
+      "url": "https://kubernetes.io/docs/reference/issues-security/issues",
+      "content_hash": "sha256:88c5b18869d79380be7f179cc9310d30b0139652397a51456fb1112ecb025167",
+      "file": "references/024-Kubernetes-Issue-Tracker-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Kubelet Checkpoint API | Kubernetes",
+      "url": "https://kubernetes.io/docs/reference/node/kubelet-checkpoint-api",
+      "content_hash": "sha256:ce6aca5fd0aa3183aa3ffdac280c8d1c4f778d52f0e380ab5c8d762d951689ac",
+      "file": "references/025-Kubelet-Checkpoint-API-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Kubernetes Components | Kubernetes",
+      "url": "https://kubernetes.io/docs/concepts/overview/components",
+      "content_hash": "sha256:999b993b05c9ca5d890466f45c32d68661273ddde085e36955968d2f7aef4614",
+      "file": "references/026-Kubernetes-Components-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "kubectl reference | Kubernetes",
+      "url": "https://kubernetes.io/docs/reference/kubectl/generated",
+      "content_hash": "sha256:72b9e57f3c872fa5d6ba797b61148207ae477ff1e0d15e50df4a6dc029703ff5",
+      "file": "references/027-kubectl-reference-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "kubectl Quick Reference | Kubernetes",
+      "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference",
+      "content_hash": "sha256:c68f9fd442826c2630e5b1344a28ae4f35fab4006a3970a9a9e490c2a8cbd62e",
+      "file": "references/028-kubectl-Quick-Reference-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Kubeadm Generated | Kubernetes",
+      "url": "https://kubernetes.io/docs/reference/setup-tools/kubeadm/generated",
+      "content_hash": "sha256:05bd7eefeea0e9d8dd8e24593ba2363d1b519cb571487a850576ab546d38e2e0",
+      "file": "references/029-Kubeadm-Generated-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Kubeadm | Kubernetes",
+      "url": "https://kubernetes.io/docs/reference/setup-tools/kubeadm",
+      "content_hash": "sha256:8d25c41ce792f19da0f7993e0ae486b26dfa88189a375849c5d7787dd0e907b8",
+      "file": "references/030-Kubeadm-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "IPAddress | Kubernetes",
+      "url": "https://kubernetes.io/docs/reference/kubernetes-api/networking/ip-address-v1",
+      "content_hash": "sha256:ecf1675b4eb8a993d53e6350016a0d4f0350afe0b6c334c382df3c26f224f3aa",
+      "file": "references/031-IPAddress-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Installing kubeadm | Kubernetes",
+      "url": "https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm",
+      "content_hash": "sha256:929b785cb3360a1d5d3d40bb7fcc650886dc25fa87c9d280e89390632cd5de92",
+      "file": "references/032-Installing-kubeadm-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Install and Set Up kubectl on Windows | Kubernetes",
+      "url": "https://kubernetes.io/docs/tasks/tools/install-kubectl-windows",
+      "content_hash": "sha256:b2050466c109ec04ad16f009067ef7692be7a47173f4e5d81a4608afad3d8bac",
+      "file": "references/033-Install-and-Set-Up-kubectl-on-Windows-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Install Tools | Kubernetes",
+      "url": "https://kubernetes.io/docs/tasks/tools",
+      "content_hash": "sha256:3c76a7e7443d8575a3c0f0e7a1af3438b7365f7b54e2d0b14e0b055520069bab",
+      "file": "references/034-Install-Tools-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Install and Set Up kubectl on Linux | Kubernetes",
+      "url": "https://kubernetes.io/docs/tasks/tools/install-kubectl-linux",
+      "content_hash": "sha256:6ce12f56f200195594d576c0cc3acc7b25c7c3ec24e7934e39d50db48a207f62",
+      "file": "references/035-Install-and-Set-Up-kubectl-on-Linux-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Install and Set Up kubectl on macOS | Kubernetes",
+      "url": "https://kubernetes.io/docs/tasks/tools/install-kubectl-macos",
+      "content_hash": "sha256:7d279f3603de4edfedac09b6227661c362d5e1445ff211dd2e3fa9e6882af727",
+      "file": "references/036-Install-and-Set-Up-kubectl-on-macOS-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Images | Kubernetes",
+      "url": "https://kubernetes.io/docs/concepts/containers/images",
+      "content_hash": "sha256:3a0c5b650e87dfdbbb3110a005cefcb6651de709a9ef95756316ffde8db43b71",
+      "file": "references/037-Images-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "HorizontalPodAutoscaler | Kubernetes",
+      "url": "https://kubernetes.io/docs/reference/kubernetes-api/autoscaling/horizontal-pod-autoscaler-v2",
+      "content_hash": "sha256:f0eed6621fc550c8e75ac4402b233dbd917ef969e2cc715f59863a37bae59774",
+      "file": "references/038-HorizontalPodAutoscaler-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Feature Gates | Kubernetes",
+      "url": "https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates",
+      "content_hash": "sha256:bdcd472c51a047fa4a304328acd784a73b28b7ee7aaa0183b7b7087f3e9f8fea",
+      "file": "references/039-Feature-Gates-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "FlowSchema | Kubernetes",
+      "url": "https://kubernetes.io/docs/reference/kubernetes-api/flowcontrol/flow-schema-v1",
+      "content_hash": "sha256:b862a414655a5c72a16e2669973ae573f1e405e6ee5f1a8bf31ab34fab65a4c9",
+      "file": "references/040-FlowSchema-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Event | Kubernetes",
+      "url": "https://kubernetes.io/docs/reference/kubernetes-api/events/event-v1",
+      "content_hash": "sha256:08263672f85b4ee4fabf75560362c98b4df7c640b1602391945a022d50c7ccf6",
+      "file": "references/041-Event-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Exposing an External IP Address to Access an Application in a Cluster | Kubernetes",
+      "url": "https://kubernetes.io/docs/tutorials/stateless-application/expose-external-ip-address",
+      "content_hash": "sha256:2b4951fef2a154f2bd1857e7e9d19c9c9ea6b1c73b8d4f38f45af185b36eb427",
+      "file": "references/042-Exposing-an-External-IP-Address-to-Access-an-Application-in.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "DeviceClass | Kubernetes",
+      "url": "https://kubernetes.io/docs/reference/kubernetes-api/resource/device-class-v1",
+      "content_hash": "sha256:6c43e522680953e0df1c11b4baf3fe3434faa97df9ac259070d1407144fc0722",
+      "file": "references/043-DeviceClass-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "EndpointSlice | Kubernetes",
+      "url": "https://kubernetes.io/docs/reference/kubernetes-api/discovery/endpoint-slice-v1",
+      "content_hash": "sha256:2ff4f80a429fec922505e119f9d6f910df9d488e162f162b1a9560980d3a8fa8",
+      "file": "references/044-EndpointSlice-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Deployments | Kubernetes",
+      "url": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment",
+      "content_hash": "sha256:ccab929ea3900c5615d18aea2ee6ebb2d614f8a79feb2f9670714df0a9d89fd8",
+      "file": "references/045-Deployments-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Deploy and Access the Kubernetes Dashboard | Kubernetes",
+      "url": "https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard",
+      "content_hash": "sha256:12daae2b7b895410b86fddbb790554882d33f670d9287c4506678e40836b02ed",
+      "file": "references/046-Deploy-and-Access-the-Kubernetes-Dashboard-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Declarative Management of Kubernetes Objects Using Configuration Files | Kubernetes",
+      "url": "https://kubernetes.io/docs/tasks/manage-kubernetes-objects/declarative-config",
+      "content_hash": "sha256:ab86dea44341fd84cc997908fcee524581595c4654e9c279783bb108637ecd04",
+      "file": "references/047-Declarative-Management-of-Kubernetes-Objects-Using-Configura.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Define a Command and Arguments for a Container | Kubernetes",
+      "url": "https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container",
+      "content_hash": "sha256:0af0f659b46d39bb7781a2f7dcfa4ea1ff09d351cf3e7d76bfdc70b772762200",
+      "file": "references/048-Define-a-Command-and-Arguments-for-a-Container-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "CustomResourceDefinition | Kubernetes",
+      "url": "https://kubernetes.io/docs/reference/kubernetes-api/apiextensions/custom-resource-definition-v1",
+      "content_hash": "sha256:2dd88a0acb1e8e306371c80e68baaa2b680e95d129a12726a6953a56b8ef2b71",
+      "file": "references/049-CustomResourceDefinition-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Debug Pods | Kubernetes",
+      "url": "https://kubernetes.io/docs/tasks/debug/debug-application/debug-pods",
+      "content_hash": "sha256:9a5fae73651b7ac703cb16147790dd3ff4e3e4b79dcec83c029a4bdb5fd5ac6b",
+      "file": "references/050-Debug-Pods-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "CSIDriver | Kubernetes",
+      "url": "https://kubernetes.io/docs/reference/kubernetes-api/storage/csi-driver-v1",
+      "content_hash": "sha256:3490214a38e47849d25085e654f509cfc4db63823ab8bd557f7f7a64ff8178a0",
+      "file": "references/051-CSIDriver-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Custom Resources | Kubernetes",
+      "url": "https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources",
+      "content_hash": "sha256:f63778f7065d24ff767b5aff2c47f420729e7f6695e500db0f9e7e3167b31b17",
+      "file": "references/052-Custom-Resources-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Create a Cluster | Kubernetes",
+      "url": "https://kubernetes.io/docs/tutorials/kubernetes-basics/create-cluster",
+      "content_hash": "sha256:3184107e2cc40e6c2252dfacb854be37ef0ca9d121044a1d860c0c241a91c515",
+      "file": "references/053-Create-a-Cluster-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "CronJob | Kubernetes",
+      "url": "https://kubernetes.io/docs/reference/kubernetes-api/batch/cron-job-v1",
+      "content_hash": "sha256:46828601cad8c28e6b2cb409df4c652eb3c6337a0243f4ae3121e916d6291471",
+      "file": "references/054-CronJob-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "ControllerRevision | Kubernetes",
+      "url": "https://kubernetes.io/docs/reference/kubernetes-api/apps/controller-revision-v1",
+      "content_hash": "sha256:357c1347e2e17428e4b53b2b1af18816302cb4b41391a391de1b395ed294a82c",
+      "file": "references/055-ControllerRevision-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Documentation Content Guide | Kubernetes",
+      "url": "https://kubernetes.io/docs/contribute/style/content-guide",
+      "content_hash": "sha256:d69b40d12e622a0db20a452eea86704545fbdea083a6fd0c952673a342715000",
+      "file": "references/056-Documentation-Content-Guide-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Configure the Aggregation Layer | Kubernetes",
+      "url": "https://kubernetes.io/docs/tasks/extend-kubernetes/configure-aggregation-layer",
+      "content_hash": "sha256:527314fdd6c90e0d7dd7e2d956a2679b7dc802b899e1aec6e8e2788a810ea562",
+      "file": "references/057-Configure-the-Aggregation-Layer-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Considerations for large clusters | Kubernetes",
+      "url": "https://kubernetes.io/docs/setup/best-practices/cluster-large",
+      "content_hash": "sha256:0e29852f57bb335bd113903c5882a3e2ca51d9322319062c712af9d07533b0d4",
+      "file": "references/058-Considerations-for-large-clusters-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Configure Default Memory Requests and Limits for a Namespace | Kubernetes",
+      "url": "https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/memory-default-namespace",
+      "content_hash": "sha256:6f76f1a9f2d2ad848607fb15ad90a4a0b70fa68d8b86d740a0f12d47103a1c8e",
+      "file": "references/059-Configure-Default-Memory-Requests-and-Limits-for-a-Namespace.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "ComponentStatus | Kubernetes",
+      "url": "https://kubernetes.io/docs/reference/kubernetes-api/core/component-status-v1",
+      "content_hash": "sha256:e6c0633025ae5c77e7c7ee73ba044192898225b8a98b4e063f3f28fc9964709c",
+      "file": "references/060-ComponentStatus-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "ClusterRole | Kubernetes",
+      "url": "https://kubernetes.io/docs/reference/kubernetes-api/rbac/cluster-role-v1",
+      "content_hash": "sha256:8bac497b0490a265f186a87169bc23847ca622a8eebe57f3d78f236d6ccf7936",
+      "file": "references/061-ClusterRole-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Cloud Native Security and Kubernetes | Kubernetes",
+      "url": "https://kubernetes.io/docs/concepts/security/cloud-native-security",
+      "content_hash": "sha256:0385cebe8b0ba023df223e42b1df13ecb854ca5a27750d30c8775433c39241b9",
+      "file": "references/062-Cloud-Native-Security-and-Kubernetes-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "CertificateSigningRequest | Kubernetes",
+      "url": "https://kubernetes.io/docs/reference/kubernetes-api/certificates/certificate-signing-request-v1",
+      "content_hash": "sha256:a311b614d2d6f081d766f1967fc6bb2c023a727608b41b57cb596651b20bb77a",
+      "file": "references/063-CertificateSigningRequest-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Changing the Container Runtime on a Node from Docker Engine to containerd | Kubernetes",
+      "url": "https://kubernetes.io/docs/tasks/administer-cluster/migrating-from-dockershim/change-runtime-containerd",
+      "content_hash": "sha256:60677434028f5c678ec19c632eb65bc662a8c69e5348263fe2769341586b6c2b",
+      "file": "references/064-Changing-the-Container-Runtime-on-a-Node-from-Docker-Engine.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Available Documentation Versions | Kubernetes",
+      "url": "https://kubernetes.io/docs/home/supported-doc-versions",
+      "content_hash": "sha256:a8c54b540b3f2b3fce12510d7f1a3a7ebffebbecde79139d99d048298f9248ff",
+      "file": "references/065-Available-Documentation-Versions-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Bootstrapping clusters with kubeadm | Kubernetes",
+      "url": "https://kubernetes.io/docs/setup/production-environment/tools/kubeadm",
+      "content_hash": "sha256:d7fc8fea646fc979cb71112a259ace2ae29382db6f368d709b2bc660d209f952",
+      "file": "references/066-Bootstrapping-clusters-with-kubeadm-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Audit Annotations | Kubernetes",
+      "url": "https://kubernetes.io/docs/reference/labels-annotations-taints/audit-annotations",
+      "content_hash": "sha256:2252640443ff368227b60293a60ff4ff0935fdb94e5134e60e7e5f5b9a9cc754",
+      "file": "references/067-Audit-Annotations-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Authenticating | Kubernetes",
+      "url": "https://kubernetes.io/docs/reference/access-authn-authz/authentication",
+      "content_hash": "sha256:cb59c1968cd16bd392828a003c147c1767b63212cc007a5c202a29a42b6a292b",
+      "file": "references/068-Authenticating-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Assign Memory Resources to Containers and Pods | Kubernetes",
+      "url": "https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource",
+      "content_hash": "sha256:7951ee56032dd095d68b9048047bb80b672817825f2e80e1b7b0cc5a66fa564c",
+      "file": "references/069-Assign-Memory-Resources-to-Containers-and-Pods-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Apply Pod Security Standards at the Cluster Level | Kubernetes",
+      "url": "https://kubernetes.io/docs/tutorials/security/cluster-level-pss",
+      "content_hash": "sha256:acdea40820dcab54219e83ba1a7a731e7b08f15c65e357b90e4fae6fd29baebb",
+      "file": "references/070-Apply-Pod-Security-Standards-at-the-Cluster-Level-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "API Groups | Kubernetes",
+      "url": "https://kubernetes.io/docs/reference/kubernetes-api/group-versions",
+      "content_hash": "sha256:adbc1fc94d2979eebed8837b2a8b2fc2bd0638e9025acd5ecebe5a3c1976efa7",
+      "file": "references/071-API-Groups-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "APIService | Kubernetes",
+      "url": "https://kubernetes.io/docs/reference/kubernetes-api/apiregistration/api-service-v1",
+      "content_hash": "sha256:7eb7574ac3f7b4d8d00273d0eb9cccce787896ded17fe097a60057d16d171d6c",
+      "file": "references/072-APIService-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Administration with kubeadm | Kubernetes",
+      "url": "https://kubernetes.io/docs/tasks/administer-cluster/kubeadm",
+      "content_hash": "sha256:37ea5c0b510c1077a41e3a4125aeae1414bfcf9829be870f5d862adcdae02557",
+      "file": "references/073-Administration-with-kubeadm-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Adding Linux worker nodes | Kubernetes",
+      "url": "https://kubernetes.io/docs/tasks/administer-cluster/kubeadm/adding-linux-nodes",
+      "content_hash": "sha256:c960aacfe7a620a651956950bcab9ba5e18899e3f6d72773de7a78174c02bbf0",
+      "file": "references/074-Adding-Linux-worker-nodes-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Hello Minikube | Kubernetes",
+      "url": "https://kubernetes.io/docs/tutorials/hello-minikube",
+      "content_hash": "sha256:9115cd6fbae066a24c7a9ee968009ecbed6e6869c52747d48aa98892f865e38a",
+      "file": "references/075-Hello-Minikube-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Contribute to Kubernetes Documentation | Kubernetes",
+      "url": "https://kubernetes.io/docs/contribute/docs",
+      "content_hash": "sha256:83f15e607058539fbfd041316868b970eb2ed28558e4a208c18e71ee4ee8029f",
+      "file": "references/076-Contribute-to-Kubernetes-Documentation-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Glossary | Kubernetes",
+      "url": "https://kubernetes.io/docs/reference/glossary",
+      "content_hash": "sha256:d684b18c351af4bb14978b7523180b7ea378d9eaf054cc0e1bca0a73d69341ac",
+      "file": "references/077-Glossary-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Building a Basic DaemonSet | Kubernetes",
+      "url": "https://kubernetes.io/docs/tasks/manage-daemon/create-daemon-set",
+      "content_hash": "sha256:2798b0fd1f906dc9df524f92d793d1bc34f799ef65908c83ec1aa65ed410d43b",
+      "file": "references/078-Building-a-Basic-DaemonSet-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Introduction to kubectl | Kubernetes",
+      "url": "https://kubernetes.io/docs/reference/kubectl/introduction",
+      "content_hash": "sha256:06e4e679490464e0785e823b1fa8b29a1b4d935aa31c68b5cefa562bdc5416d2",
+      "file": "references/079-Introduction-to-kubectl-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    },
+    {
+      "title": "Kubernetes Documentation | Kubernetes",
+      "url": "https://kubernetes.io/docs/home",
+      "content_hash": "sha256:a91e7708f9813be23926d3cba722914d452e4f4238f965b986640965b859d2a7",
+      "file": "references/080-Kubernetes-Documentation-Kubernetes.md",
+      "source": "kubernetes",
+      "version": "latest"
+    }
+  ]
+}

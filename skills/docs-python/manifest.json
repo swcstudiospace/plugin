@@ -1,0 +1,651 @@
+{
+  "name": "docs-python",
+  "generated_at": "2026-07-29T03:43:46Z",
+  "query": null,
+  "source_id": null,
+  "ranking": "all pages (recency)",
+  "page_count": 80,
+  "embedding_model": null,
+  "pages": [
+    {
+      "title": "cmath \u2014 Mathematical functions for complex numbers \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/library/cmath.html",
+      "content_hash": "sha256:b6951a931a5e881420665773500498235d94eb7d8315858fa47c1650d42ec3c3",
+      "file": "references/001-cmath-Mathematical-functions-for-complex-numbers-Python-3-14.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "chunk \u2014 Read IFF chunked data \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/library/chunk.html",
+      "content_hash": "sha256:0633af3c1c96eb35d8b93c4598c94cd1bff90f27c2e93ffa2820a4dc915f1e98",
+      "file": "references/002-chunk-Read-IFF-chunked-data-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "cmd \u2014 Support for line-oriented command interpreters \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/library/cmd.html",
+      "content_hash": "sha256:6fbae80a5283267ff975ba4c39ee506bb150916c509093f705a1abb8ba9675f7",
+      "file": "references/003-cmd-Support-for-line-oriented-command-interpreters-Python-3.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "cgitb \u2014 Traceback manager for CGI scripts \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/library/cgitb.html",
+      "content_hash": "sha256:496e2602135322c8bb19e46cfa02ffacdc22f1738fbfbfd0c337ada6f681b3c2",
+      "file": "references/004-cgitb-Traceback-manager-for-CGI-scripts-Python-3-14-6-docume.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "cgi \u2014 Common Gateway Interface support \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/library/cgi.html",
+      "content_hash": "sha256:5408610c2d8aaed93a37e2465daac633d06a6cd07ec74720c4b7512bf7277e0c",
+      "file": "references/005-cgi-Common-Gateway-Interface-support-Python-3-14-6-documenta.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "calendar \u2014 General calendar-related functions \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/library/calendar.html",
+      "content_hash": "sha256:b4fff0a4bcdffedf81c1058eab8989a12000fe6a0c83c80cfff090d3abbde513",
+      "file": "references/006-calendar-General-calendar-related-functions-Python-3-14-6-do.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "bz2 \u2014 Support for bzip2 compression \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/library/bz2.html",
+      "content_hash": "sha256:6bb9ff882a41d4317b3813c192d3cb40a05894fc822d1069cfdcf32ce7f39783",
+      "file": "references/007-bz2-Support-for-bzip2-compression-Python-3-14-6-documentatio.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "bdb \u2014 Debugger framework \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/library/bdb.html",
+      "content_hash": "sha256:4b82f563121c2dc9a57445cc06c710fb3afe122ad1aed9ab925229d1b7f0f091",
+      "file": "references/008-bdb-Debugger-framework-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "builtins \u2014 Built-in objects \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/library/builtins.html",
+      "content_hash": "sha256:48653479e9cc0f3307d7dfa325310b86a4b906f9b9d5a31b0adf10d953a0dcab",
+      "file": "references/009-builtins-Built-in-objects-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "bisect \u2014 Array bisection algorithm \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/library/bisect.html",
+      "content_hash": "sha256:fed0aaa2834a98bd9ccef2755a6953b77580157ad94eaf5f964d05b6b5e677fc",
+      "file": "references/010-bisect-Array-bisection-algorithm-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "base64 \u2014 Base16, Base32, Base64, Base85 Data Encodings \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/library/base64.html",
+      "content_hash": "sha256:37f758564c9fcbb1f9e408e309cd8cf35a012357173a1969c466cfbbd82067c6",
+      "file": "references/011-base64-Base16-Base32-Base64-Base85-Data-Encodings-Python-3-1.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "audioop \u2014 Manipulate raw audio data \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/library/audioop.html",
+      "content_hash": "sha256:1cf09d07d4cd6b5eaa0638d0b6112e6253321599d4d0cdb5d2b0a107bd595301",
+      "file": "references/012-audioop-Manipulate-raw-audio-data-Python-3-14-6-documentatio.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "binascii \u2014 Convert between binary and ASCII \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/library/binascii.html",
+      "content_hash": "sha256:ef211f35b2c39e5b56a77e519cc48db7f489d0bf7d7d33deb1745b055ba1e691",
+      "file": "references/013-binascii-Convert-between-binary-and-ASCII-Python-3-14-6-docu.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "atexit \u2014 Exit handlers \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/library/atexit.html",
+      "content_hash": "sha256:6417060b5f82e91322b7ec52cc86fe65eb2eb4f7e8454cf3bb6be1a6a57dcb88",
+      "file": "references/014-atexit-Exit-handlers-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "asyncore \u2014 Asynchronous socket handler \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/library/asyncore.html",
+      "content_hash": "sha256:cdd9fcdd5ee03621416deb7d453da5d02569fed7d49fcc380c1f46234abd60bc",
+      "file": "references/015-asyncore-Asynchronous-socket-handler-Python-3-14-6-documenta.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "array \u2014 Efficient arrays of numeric values \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/library/array.html",
+      "content_hash": "sha256:f7e5b56089def0ab412990f4df8e1beade4e3aa44c122afd514b4619f15d78df",
+      "file": "references/016-array-Efficient-arrays-of-numeric-values-Python-3-14-6-docum.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "asyncio \u2014 Asynchronous I/O \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/library/asyncio.html",
+      "content_hash": "sha256:5fe9c0f28cedcd130b61b113a2fff303f7e34104103d41437989a0106e92095d",
+      "file": "references/017-asyncio-Asynchronous-I-O-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "asynchat \u2014 Asynchronous socket command/response handler \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/library/asynchat.html",
+      "content_hash": "sha256:9a88c570d5747101587132d2f07000a45ca43257665624428247951048a69093",
+      "file": "references/018-asynchat-Asynchronous-socket-command-response-handler-Python.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "ast \u2014 Abstract syntax trees \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/library/ast.html",
+      "content_hash": "sha256:af2a377441b3da33471a50d581e8a47d8986d0dadcbd43c8483e3917240575d7",
+      "file": "references/019-ast-Abstract-syntax-trees-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "annotationlib \u2014 Functionality for introspecting annotations \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/library/annotationlib.html",
+      "content_hash": "sha256:bfdc623acb65ac777ad26ca2ddb45b9ccb2998ead9ef56c0dbd58ab32537a73b",
+      "file": "references/020-annotationlib-Functionality-for-introspecting-annotations-Py.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "argparse \u2014 Parser for command-line options, arguments and subcommands \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/library/argparse.html",
+      "content_hash": "sha256:e42a381f4a61981cd48baf7586012ecc58fd92268a67a1d8b5c56a8a468c7585",
+      "file": "references/021-argparse-Parser-for-command-line-options-arguments-and-subco.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "aifc \u2014 Read and write AIFF and AIFC files \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/library/aifc.html",
+      "content_hash": "sha256:4f3748793d7233f922aa8fd010ac71028ad8b6e52ecb19c3a560734d441dd429",
+      "file": "references/022-aifc-Read-and-write-AIFF-and-AIFC-files-Python-3-14-6-docume.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "abc \u2014 Abstract Base Classes \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/library/abc.html",
+      "content_hash": "sha256:6365400ea41e0df432977307f6197b0d7355fcb76e49815a6263747c54e91a8f",
+      "file": "references/023-abc-Abstract-Base-Classes-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "tkinter \u2014 Python interface to Tcl/Tk \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/library/tkinter.html",
+      "content_hash": "sha256:9bef9c8c500701c68a5fc37d070511ab602a62917132ebd504c70693952eb7c9",
+      "file": "references/024-tkinter-Python-interface-to-Tcl-Tk-Python-3-14-6-documentati.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "_thread \u2014 Low-level threading API \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/library/_thread.html",
+      "content_hash": "sha256:44a228b8de5572510636a3e49a93259b1494bf1229c69de7b5323836455ba156",
+      "file": "references/025-_thread-Low-level-threading-API-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "__main__ \u2014 Top-level code environment \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/library/__main__.html",
+      "content_hash": "sha256:314fade8ed259107c33fdae2c86b7729ba781e21a531a873b1c996bce2d060d5",
+      "file": "references/026-__main__-Top-level-code-environment-Python-3-14-6-documentat.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "__future__ \u2014 Future statement definitions \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/library/__future__.html",
+      "content_hash": "sha256:4c54cc5b8e645aa12dd2cf3cb97490afd909bc047ddf40187b95095bb46deeb4",
+      "file": "references/027-__future__-Future-statement-definitions-Python-3-14-6-docume.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Index \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/genindex-all.html",
+      "content_hash": "sha256:684c83ea3dbc2009d26dee3c44a1349a54b30ab8bc0cb29907a8053247849941",
+      "file": "references/028-Index-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Index \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/genindex-Y.html",
+      "content_hash": "sha256:100a80138b16d5090f3ea8c1c4025bddd23a67746d2c7b65273e023cc6ac9cd1",
+      "file": "references/029-Index-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Index \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/genindex-Z.html",
+      "content_hash": "sha256:b5f386d50bc87b7e50828cde24989d31d7b221848f2f6a5191be7642bfbf95ea",
+      "file": "references/030-Index-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Index \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/genindex-V.html",
+      "content_hash": "sha256:0b7aa3e851ff00ce0445d818b3035a3a63520485ea19b84bd86b1a39948e43d5",
+      "file": "references/031-Index-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Index \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/genindex-W.html",
+      "content_hash": "sha256:fafe7404f759b94b3dafcf4b89b1550cd0454dc477ff7a03e92aaff0d3f3b0b8",
+      "file": "references/032-Index-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Index \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/genindex-X.html",
+      "content_hash": "sha256:d532b40adee3675a67ceded167b49182dab4a1e531871d0fd259f666296a61f9",
+      "file": "references/033-Index-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Index \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/genindex-U.html",
+      "content_hash": "sha256:469f8e14c2fa789b79257eb9bfa400f4c8dbb6c5cfe8019ef22636d8c7cd2994",
+      "file": "references/034-Index-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Index \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/genindex-T.html",
+      "content_hash": "sha256:f8086f8f62c8298b676e76d0ca861b11b1a3abd846cb4ada8c8289e82a4c2980",
+      "file": "references/035-Index-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Index \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/genindex-R.html",
+      "content_hash": "sha256:069acda1a1115b99be88ea2a3f0979b5083929ddebe8ffb783dee663c1383917",
+      "file": "references/036-Index-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Index \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/genindex-S.html",
+      "content_hash": "sha256:45e747f8032151403d4a8ea6129cc41f26f34f6bffc83b0067e2519bf19ea3cc",
+      "file": "references/037-Index-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Index \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/genindex-P.html",
+      "content_hash": "sha256:3b089b5b896e06e6fd99e2ffc13624c19a4f2d4caef1171f3a71d002e966a28c",
+      "file": "references/038-Index-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Index \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/genindex-Q.html",
+      "content_hash": "sha256:42ec9185bbf8af95294c687fe989c5f3e1d47c2087cc7ecf1943fcf39e701a63",
+      "file": "references/039-Index-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Index \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/genindex-M.html",
+      "content_hash": "sha256:820bc8e0be85edbcbf1b603ffa3288ee0a081afaa30df7985663ade7cd36b26c",
+      "file": "references/040-Index-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Index \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/genindex-N.html",
+      "content_hash": "sha256:c741d6d8f32a769ed72c55a0a9d993aa9c3a04ae3f829a4536587a639cc2fc3b",
+      "file": "references/041-Index-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Index \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/genindex-O.html",
+      "content_hash": "sha256:9576c801b3c3273ead5581732da5763060113fa9215525196f87fe666a0cd0ab",
+      "file": "references/042-Index-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Index \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/genindex-J.html",
+      "content_hash": "sha256:82b5fcd7b9c711d281af3296a98420de61d18657c63e82bedbcf844ca5ca9755",
+      "file": "references/043-Index-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Index \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/genindex-L.html",
+      "content_hash": "sha256:b356a4c4afa7b5726169d6f5dedba8b63d14e108121548ef6549de95498f7c6f",
+      "file": "references/044-Index-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Index \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/genindex-I.html",
+      "content_hash": "sha256:71157c35082a46891e193cf1803f89840d329313b97ea737d4b6fb87324316da",
+      "file": "references/045-Index-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Index \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/genindex-H.html",
+      "content_hash": "sha256:213899de78385e28b972e12a8424c3f6862c4d2c1b06be7172795efd941fe040",
+      "file": "references/046-Index-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Index \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/genindex-K.html",
+      "content_hash": "sha256:ea2bc0c62bae0cca8260cf8aaf181fb65a92efe1917180b28f06cddd4a790e08",
+      "file": "references/047-Index-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Index \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/genindex-F.html",
+      "content_hash": "sha256:26cfe451aeb7e614a3c89888368ceadaec77fa8a1beb44e776cf6bfd62ff1697",
+      "file": "references/048-Index-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Index \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/genindex-G.html",
+      "content_hash": "sha256:6eb7b7e690019f046d9a74bb162cd179950a355124f4740f40b4a7f1917f65e9",
+      "file": "references/049-Index-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Index \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/genindex-E.html",
+      "content_hash": "sha256:a57b0243a311dcec71813c84f5ab0faee93e5c530ba966730d35a6f6d12fe604",
+      "file": "references/050-Index-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Index \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/genindex-D.html",
+      "content_hash": "sha256:2f0f6dbe9bc014889fb8f9900e864175acf582511ead1a7b6a63ae6794893eb8",
+      "file": "references/051-Index-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Index \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/genindex-B.html",
+      "content_hash": "sha256:3caa6b26f7a9966562ce85228ad399cf226492dc9b8f6c161c87e07ee0c5ef32",
+      "file": "references/052-Index-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Index \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/genindex-C.html",
+      "content_hash": "sha256:b32372af38a4d5624dd2e4bed458e746e788c9a14c4f8a7a41637910d5a1ea62",
+      "file": "references/053-Index-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Index \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/genindex-A.html",
+      "content_hash": "sha256:70a76123cf4b2044195b44b37eac0ac61b04e6811305bbd3f845c175900d3df3",
+      "file": "references/054-Index-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Index \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/genindex-_.html",
+      "content_hash": "sha256:b2b8b2185b55ee0be00ca9bcfe607a32f3be46ee089a74fbe4a3afeeb3d54ce6",
+      "file": "references/055-Index-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "3.14.6 Documentation",
+      "url": "https://docs.python.org/3/index.html",
+      "content_hash": "sha256:7fcf922ee0938fe07d8597323ed8d3aef83fd848cf22012c8f5b86363640f3b1",
+      "file": "references/056-3-14-6-Documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Index \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/genindex-Symbols.html",
+      "content_hash": "sha256:33457bceb1273a20f39e3fbd1b9dd9768fa966a6981639659b4bcab97a011d7f",
+      "file": "references/057-Index-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Dealing with Bugs \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/bugs.html",
+      "content_hash": "sha256:1ab76f53bff958a9ff14270820b304b80c43895fc1db6e983854353ebdf8a213",
+      "file": "references/058-Dealing-with-Bugs-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "History and License \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/license.html",
+      "content_hash": "sha256:14b588013f8bade1df69918d802e16d9acb47662e695cb48c3e7c68b83fadbab",
+      "file": "references/059-History-and-License-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Copyright \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/copyright.html",
+      "content_hash": "sha256:dc86465c02931c28ff0dd2a02c3cf8f858d25fd6d814bad11db930d4f9cf1d38",
+      "file": "references/060-Copyright-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "About this documentation \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/about.html",
+      "content_hash": "sha256:3b48480b8377636bc54e8598928d851526d081a41a3e795b630678afccaed716",
+      "file": "references/061-About-this-documentation-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Python Documentation contents \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/contents.html",
+      "content_hash": "sha256:c7debb060931e920009174654fa9bc113da88d7c4580b9a8aed37931f9f829e3",
+      "file": "references/062-Python-Documentation-contents-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Search \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/search.html",
+      "content_hash": "sha256:88d6d65469756df1883041457cdb2a33dcbc096565404428e23cdc1d0a93405a",
+      "file": "references/063-Search-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Glossary \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/glossary.html",
+      "content_hash": "sha256:b18a7a38fea5d910aacbd2b30683eed7cbf87b6411f06887763f4ab7cf15c3b8",
+      "file": "references/064-Glossary-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Deprecations \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/deprecations/index.html",
+      "content_hash": "sha256:153d6fa9b2b85e7ff137ba74d1a65e449897a2e73ea1dcffa2c4e5ab2d4e0ccc",
+      "file": "references/065-Deprecations-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Python/C API reference manual \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/c-api/index.html",
+      "content_hash": "sha256:32835e06014abb29df6b531d8eb33aba63ecad3e9a43afd2efa9ff5928a18170",
+      "file": "references/066-Python-C-API-reference-manual-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Python Frequently Asked Questions \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/faq/index.html",
+      "content_hash": "sha256:2a4b0f0d320155efcd8f6cc3a87cc7cd230eb2edb4c643e407d5a95f59ee75d5",
+      "file": "references/067-Python-Frequently-Asked-Questions-Python-3-14-6-documentatio.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Python HOWTOs \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/howto/index.html",
+      "content_hash": "sha256:56201ff4cedbd025b0f25d4d666a44e07d10001b07313e012bd027978e37921e",
+      "file": "references/068-Python-HOWTOs-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Python Setup and Usage \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/using/index.html",
+      "content_hash": "sha256:455aef6b270578cc9c4cae0df40199e7bdc4274def7246a3d3f30794db99fb1d",
+      "file": "references/069-Python-Setup-and-Usage-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Extending and Embedding the Python Interpreter \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/extending/index.html",
+      "content_hash": "sha256:bc1a92e03d33fcece33c6d626faf7bb77fc82882fe5e7ea0b7dbf3751e415993",
+      "file": "references/070-Extending-and-Embedding-the-Python-Interpreter-Python-3-14-6.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Installing Python modules \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/installing/index.html",
+      "content_hash": "sha256:737d510c472c04ea0afecf2ae2d6380fb9b2548270605bde783dbde4bb9999e4",
+      "file": "references/071-Installing-Python-modules-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "The Python Language Reference \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/reference/index.html",
+      "content_hash": "sha256:74cb9c9a89560236366ed429b00ce8c6641d875697cd313e7e55cc62015ff885",
+      "file": "references/072-The-Python-Language-Reference-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "The Python Standard Library \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/library/index.html",
+      "content_hash": "sha256:cb7bf0aa33871969a1cb01c77f5fb11e12c33dbd9963f173686009b1a16b9704",
+      "file": "references/073-The-Python-Standard-Library-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Python Module Index \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/py-modindex.html",
+      "content_hash": "sha256:96e69a47ccc2f676863499c8010e738015343f7b545076008e527cb37f58c277",
+      "file": "references/074-Python-Module-Index-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "The Python Tutorial \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/tutorial/index.html",
+      "content_hash": "sha256:028455c3fd83a4e61020a7b110675b89fcc31fd6d7daea0114fbc54aa4d2b3f8",
+      "file": "references/075-The-Python-Tutorial-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "What\u2019s New in Python \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/whatsnew/index.html",
+      "content_hash": "sha256:9f164ee4c799f8a91a7cbcd46a920bd0073a82e30c009bc09648e8f28f66b5a0",
+      "file": "references/076-What-s-New-in-Python-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "What\u2019s new in Python 3.14 \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/whatsnew/3.14.html",
+      "content_hash": "sha256:65c1cd2a8213b775902ba3f851a9074c7f1e14c9f9e1ddbbda99a6b49d5acd7e",
+      "file": "references/077-What-s-new-in-Python-3-14-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Download \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/download.html",
+      "content_hash": "sha256:fb4685a5aa0909e552725adf5458c9b505fa0266569061b6d61ff780778b6851",
+      "file": "references/078-Download-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "Index \u2014 Python 3.14.6 documentation",
+      "url": "https://docs.python.org/3/genindex.html",
+      "content_hash": "sha256:8717d64a0a9e8190b79ab5e7049907f2ed4a1b5b2beb201580656df412829ae0",
+      "file": "references/079-Index-Python-3-14-6-documentation.md",
+      "source": "python",
+      "version": "latest"
+    },
+    {
+      "title": "3.14.6 Documentation",
+      "url": "https://docs.python.org/3",
+      "content_hash": "sha256:7fcf922ee0938fe07d8597323ed8d3aef83fd848cf22012c8f5b86363640f3b1",
+      "file": "references/080-3-14-6-Documentation.md",
+      "source": "python",
+      "version": "latest"
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+# docs-stripe
+
+Exported documentation references.
+
+- [Checkout prices migration guide](references/001-Checkout-prices-migration-guide.md) — https://docs.stripe.com/payments/checkout/migrating-prices.md
+- [Checkout Sessions](references/002-Checkout-Sessions.md) — https://docs.stripe.com/api/checkout/sessions.md
+- [Make line item quantities adjustable](references/003-Make-line-item-quantities-adjustable.md) — https://docs.stripe.com/payments/checkout/adjustable-quantity.md
+- [Checkout](references/004-Checkout.md) — https://docs.stripe.com/checkout/elements-with-checkout-sessions-api/changelog.md
+- [Collect customer phone numbers](references/005-Collect-customer-phone-numbers.md) — https://docs.stripe.com/payments/checkout/phone-numbers.md
+- [Dynamically customize shipping options](references/006-Dynamically-customize-shipping-options.md) — https://docs.stripe.com/payments/checkout/custom-shipping-options.md
+- [Set up future payments](references/007-Set-up-future-payments.md) — https://docs.stripe.com/payments/checkout/save-and-reuse.md
+- [[Deprecated] One-time payments with Checkout](references/008-Deprecated-One-time-payments-with-Checkout.md) — https://docs.stripe.com/payments/checkout/client.md
+- [Add discounts, upsells, and optional items](references/009-Add-discounts-upsells-and-optional-items.md) — https://docs.stripe.com/payments/checkout/promotions.md
+- [Manual currency prices](references/010-Manual-currency-prices.md) — https://docs.stripe.com/payments/checkout/localize-prices/manual-currency-prices.md
+- [No-cost orders](references/011-No-cost-orders.md) — https://docs.stripe.com/payments/checkout/no-cost-orders.md
+- [Analyze your conversion funnel](references/012-Analyze-your-conversion-funnel.md) — https://docs.stripe.com/payments/checkout/analyze-conversion-funnel.md
+- [Set the billing cycle date](references/013-Set-the-billing-cycle-date.md) — https://docs.stripe.com/payments/checkout/billing-cycle.md
+- [After the payment](references/014-After-the-payment.md) — https://docs.stripe.com/payments/checkout/after-the-payment.md
+- [Subscription upsells](references/015-Subscription-upsells.md) — https://docs.stripe.com/payments/checkout/upsells.md
+- [Let customers decide what to pay](references/016-Let-customers-decide-what-to-pay.md) — https://docs.stripe.com/payments/checkout/pay-what-you-want.md
+- [Save payment details during payment](references/017-Save-payment-details-during-payment.md) — https://docs.stripe.com/payments/checkout/save-during-payment.md
+- [Customize card brands](references/018-Customize-card-brands.md) — https://docs.stripe.com/payments/checkout/customization/card-brands.md
+- [Manage payment methods](references/019-Manage-payment-methods.md) — https://docs.stripe.com/payments/checkout/payment-methods.md
+- [Collect taxes](references/020-Collect-taxes.md) — https://docs.stripe.com/payments/checkout/taxes.md
+- [Collect physical addresses](references/021-Collect-physical-addresses.md) — https://docs.stripe.com/payments/collect-addresses.md
+- [Extend checkout with custom components](references/022-Extend-checkout-with-custom-components.md) — https://docs.stripe.com/payments/checkout/custom-components.md
+- [Subscriptions with Checkout Sessions](references/023-Subscriptions-with-Checkout-Sessions.md) — https://docs.stripe.com/payments/subscriptions.md
+- [Charge for shipping](references/024-Charge-for-shipping.md) — https://docs.stripe.com/payments/during-payment/charge-shipping.md
+- [Limit customers to one subscription](references/025-Limit-customers-to-one-subscription.md) — https://docs.stripe.com/payments/checkout/limit-subscriptions.md
+- [Cross-sells](references/026-Cross-sells.md) — https://docs.stripe.com/payments/checkout/cross-sells.md
+- [Overview](references/027-Overview.md) — https://docs.stripe.com/products-prices/overview.md
+- [Add discounts](references/028-Add-discounts.md) — https://docs.stripe.com/payments/checkout/discounts.md
+- [Customize redirect behavior](references/029-Customize-redirect-behavior.md) — https://docs.stripe.com/payments/checkout/custom-success-page.md
+- [Use your custom domain](references/030-Use-your-custom-domain.md) — https://docs.stripe.com/payments/checkout/custom-domains.md
+- [Fulfill orders](references/031-Fulfill-orders.md) — https://docs.stripe.com/checkout/fulfillment.md
+- [The Setup Intents API](references/032-The-Setup-Intents-API.md) — https://docs.stripe.com/payments/setup-intents.md
+- [Thanks for your order!](references/033-Thanks-for-your-order.md) — https://docs.stripe.com/checkout/embedded/quickstart.md
+- [Customize Checkout](references/034-Customize-Checkout.md) — https://docs.stripe.com/payments/checkout/customization.md
+- [How Checkout works](references/035-How-Checkout-works.md) — https://docs.stripe.com/payments/checkout/how-checkout-works.md
+- [Custom payment methods](references/036-Custom-payment-methods.md) — https://docs.stripe.com/payments/payment-methods/custom-payment-methods.md
+- [Orchestration](references/037-Orchestration.md) — https://docs.stripe.com/payments/orchestration.md
+- [Build a payments page](references/038-Build-a-payments-page.md) — https://docs.stripe.com/payments/checkout.md
+- [Regions with special payment method requirements](references/039-Regions-with-special-payment-method-requirements.md) — https://docs.stripe.com/payments/local-markets.md
+- [Wallets](references/040-Wallets.md) — https://docs.stripe.com/payments/wallets.md
+- [Bank redirects](references/041-Bank-redirects.md) — https://docs.stripe.com/payments/bank-redirects.md
+- [Bank transfer payments](references/042-Bank-transfer-payments.md) — https://docs.stripe.com/payments/bank-transfers.md
+- [Vouchers](references/043-Vouchers.md) — https://docs.stripe.com/payments/vouchers.md
+- [Real-time payments](references/044-Real-time-payments.md) — https://docs.stripe.com/payments/real-time.md
+- [Klarna payments](references/045-Klarna-payments.md) — https://docs.stripe.com/payments/klarna.md
+- [Affirm payments](references/046-Affirm-payments.md) — https://docs.stripe.com/payments/affirm.md
+- [Afterpay and Clearpay payments](references/047-Afterpay-and-Clearpay-payments.md) — https://docs.stripe.com/payments/afterpay-clearpay.md
+- [Buy now, pay later](references/048-Buy-now-pay-later.md) — https://docs.stripe.com/payments/buy-now-pay-later.md
+- [How cards work](references/049-How-cards-work.md) — https://docs.stripe.com/payments/cards/overview.md
+- [Cartes Bancaires (CB)](references/050-Cartes-Bancaires-CB.md) — https://docs.stripe.com/payments/cartes-bancaires.md
+- [Stablecoin payments](references/051-Stablecoin-payments.md) — https://docs.stripe.com/payments/stablecoin-payments.md
+- [eftpos Australia](references/052-eftpos-Australia.md) — https://docs.stripe.com/payments/eftpos-australia.md
+- [Linked external accounts](references/053-Linked-external-accounts.md) — https://docs.stripe.com/get-started/account/linked-external-accounts.md
+- [Bank Debits](references/054-Bank-Debits.md) — https://docs.stripe.com/payments/bank-debits.md
+- [Versioning](references/055-Versioning.md) — https://docs.stripe.com/api/versioning.md
+- [Start a team](references/056-Start-a-team.md) — https://docs.stripe.com/get-started/account/teams.md
+- [Errors](references/057-Errors.md) — https://docs.stripe.com/api/errors.md
+- [Payment Methods API](references/058-Payment-Methods-API.md) — https://docs.stripe.com/payments/payment-methods.md
+- [Resolve webhook signature verification errors](references/059-Resolve-webhook-signature-verification-errors.md) — https://docs.stripe.com/webhooks/signature.md
+- [Integrate with events](references/060-Integrate-with-events.md) — https://docs.stripe.com/event-destinations.md
+- [Set up and deploy a webhook](references/061-Set-up-and-deploy-a-webhook.md) — https://docs.stripe.com/webhooks/quickstart.md
+- [Types of events](references/062-Types-of-events.md) — https://docs.stripe.com/api/events/types.md
+- [Payments analytics](references/063-Payments-analytics.md) — https://docs.stripe.com/payments/analytics.md
+- [Integration security guide](references/064-Integration-security-guide.md) — https://docs.stripe.com/security/guide.md
+- [Build a pre-built subscription page with Stripe Checkout](references/065-Build-a-pre-built-subscription-page-with-Stripe-Checkout.md) — https://docs.stripe.com/billing/quickstart.md
+- [Build an advanced integration](references/066-Build-an-advanced-integration.md) — https://docs.stripe.com/payments/quickstart.md
+- [Security at Stripe](references/067-Security-at-Stripe.md) — https://docs.stripe.com/security.md
+- [Build a Stripe-hosted checkout page](references/068-Build-a-Stripe-hosted-checkout-page.md) — https://docs.stripe.com/checkout/quickstart.md
+- [Declines](references/069-Declines.md) — https://docs.stripe.com/declines.md
+- [Refund and cancel payments](references/070-Refund-and-cancel-payments.md) — https://docs.stripe.com/refunds.md
+- [Stripe SDKs](references/071-Stripe-SDKs.md) — https://docs.stripe.com/sdks.md
+- [Receive Stripe events in your webhook endpoint](references/072-Receive-Stripe-events-in-your-webhook-endpoint.md) — https://docs.stripe.com/webhooks.md
+- [API upgrades](references/073-API-upgrades.md) — https://docs.stripe.com/upgrades.md
+- [Stripe Projects CLI](references/074-Stripe-Projects-CLI.md) — https://docs.stripe.com/projects.md
+- [API Reference](references/075-API-Reference.md) — https://docs.stripe.com/api.md
+- [Receive payouts](references/076-Receive-payouts.md) — https://docs.stripe.com/payouts.md
+- [Platforms and marketplaces with Stripe Connect](references/077-Platforms-and-marketplaces-with-Stripe-Connect.md) — https://docs.stripe.com/connect.md
+- [Supported currencies](references/078-Supported-currencies.md) — https://docs.stripe.com/currencies.md
+- [Testing](references/079-Testing.md) — https://docs.stripe.com/testing.md

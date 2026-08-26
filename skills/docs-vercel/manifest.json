@@ -1,0 +1,1203 @@
+{
+  "name": "docs-vercel",
+  "generated_at": "2026-07-31T05:49:29Z",
+  "query": null,
+  "source_id": null,
+  "ranking": "all pages (recency)",
+  "page_count": 149,
+  "embedding_model": null,
+  "pages": [
+    {
+      "title": "Structured Outputs",
+      "url": "https://vercel.com/docs/ai-gateway/sdks-and-apis/openresponses/structured-outputs",
+      "content_hash": "sha256:485b9f06495700d5ed0582f37dd5ef9af19a6033cf129829c0c3d3cfb6c656a2",
+      "file": "references/001-Structured-Outputs.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Reasoning",
+      "url": "https://vercel.com/docs/ai-gateway/sdks-and-apis/openresponses/reasoning",
+      "content_hash": "sha256:01a5d5ecd7bba9ed69b77410aedae5f4335cb57774a4655831c1b1ce55820c5c",
+      "file": "references/002-Reasoning.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Streaming",
+      "url": "https://vercel.com/docs/ai-gateway/sdks-and-apis/openresponses/streaming",
+      "content_hash": "sha256:89fada78e55697da386e08da642a4e8add3edd028d8017d9274ac5a186c7083e",
+      "file": "references/003-Streaming.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Tool Calling",
+      "url": "https://vercel.com/docs/ai-gateway/sdks-and-apis/openresponses/tool-calling",
+      "content_hash": "sha256:2c7e7006fcf0dc98c5a3a3d41b4039c5c48ef036c56c1d33f293bef598b00e17",
+      "file": "references/004-Tool-Calling.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Text Generation",
+      "url": "https://vercel.com/docs/ai-gateway/sdks-and-apis/openresponses/text-generation",
+      "content_hash": "sha256:415165218e133aefdae24d15d9ef25190d874ed81cfbd99b6d12cd5d2c3376b7",
+      "file": "references/005-Text-Generation.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "OpenResponses API",
+      "url": "https://vercel.com/docs/ai-gateway/sdks-and-apis/openresponses",
+      "content_hash": "sha256:40f05c991fe003618b1d809b6920e8cffc6ef0712ebf04ab67f663d1fd5016c7",
+      "file": "references/006-OpenResponses-API.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Advanced Features",
+      "url": "https://vercel.com/docs/ai-gateway/sdks-and-apis/anthropic-messages-api/advanced",
+      "content_hash": "sha256:1038b295a0d8982cf31640eb80ece24eba814eb558fcbe09719ce6dc478460e0",
+      "file": "references/007-Advanced-Features.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "File Attachments",
+      "url": "https://vercel.com/docs/ai-gateway/sdks-and-apis/anthropic-messages-api/images",
+      "content_hash": "sha256:def1f098ded5b61952cd816f70c16bc453cf2c1b9b0978b8754d5d47abdfb64b",
+      "file": "references/008-File-Attachments.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Streaming",
+      "url": "https://vercel.com/docs/ai-gateway/sdks-and-apis/anthropic-messages-api/streaming",
+      "content_hash": "sha256:d79dfdced6820282c927081c63f047b85d0950efddae8d1978b554792ac9a959",
+      "file": "references/009-Streaming.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Structured Outputs",
+      "url": "https://vercel.com/docs/ai-gateway/sdks-and-apis/anthropic-messages-api/structured-outputs",
+      "content_hash": "sha256:06d990923ce5ddf4adb027124630af6223056f919922fbb236c3afac15bb7b73",
+      "file": "references/010-Structured-Outputs.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Extended Thinking",
+      "url": "https://vercel.com/docs/ai-gateway/sdks-and-apis/anthropic-messages-api/reasoning",
+      "content_hash": "sha256:6eef8d6ee6afe846891cdebcc1a313b1a49e11fcb57e65e707181a1a4a8b5b12",
+      "file": "references/011-Extended-Thinking.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Messages",
+      "url": "https://vercel.com/docs/ai-gateway/sdks-and-apis/anthropic-messages-api/messages",
+      "content_hash": "sha256:4367946df397c8de8624bce74eb29b46e3958f39703f76a0b3fd24f36b5421b3",
+      "file": "references/012-Messages.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Anthropic Messages API",
+      "url": "https://vercel.com/docs/ai-gateway/sdks-and-apis/anthropic-messages-api",
+      "content_hash": "sha256:ba9a33a69fc5c128ba8bf5d769f50fe573827bcade278917531468d5497cdf82",
+      "file": "references/013-Anthropic-Messages-API.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Tool Calls",
+      "url": "https://vercel.com/docs/ai-gateway/sdks-and-apis/anthropic-messages-api/tool-calling",
+      "content_hash": "sha256:068da73b4028c81e9f1141bd204891aed2f1ce09a29ec4899fbe24f9793f165f",
+      "file": "references/014-Tool-Calls.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Image Generation",
+      "url": "https://vercel.com/docs/ai-gateway/sdks-and-apis/openai-chat-completions/image-generation",
+      "content_hash": "sha256:d0724e59b334f502a764d2bee5b58e7984165cb9b5f9d3fc9baab1fb87521e5b",
+      "file": "references/015-Image-Generation.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Direct REST API Usage",
+      "url": "https://vercel.com/docs/ai-gateway/sdks-and-apis/openai-chat-completions/rest-api",
+      "content_hash": "sha256:ce8c4a0ecae995ce5229354645ae9813dbd4056406d13e5bbfbb4e9e9e14d14a",
+      "file": "references/016-Direct-REST-API-Usage.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Advanced Configuration",
+      "url": "https://vercel.com/docs/ai-gateway/sdks-and-apis/openai-chat-completions/advanced",
+      "content_hash": "sha256:1028457b87f33d03ab643b0cf3c0131be3f48d2692669cbaa1bfa5a0a3bdf3ff",
+      "file": "references/017-Advanced-Configuration.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Embeddings with the OpenAI-Compatible API",
+      "url": "https://vercel.com/docs/ai-gateway/sdks-and-apis/openai-chat-completions/embeddings",
+      "content_hash": "sha256:f2b8f03062824a682abfc234d6ba907615f83834f19a74cc1957bea0c9d9a82b",
+      "file": "references/018-Embeddings-with-the-OpenAI-Compatible-API.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Reasoning",
+      "url": "https://vercel.com/docs/ai-gateway/sdks-and-apis/openai-chat-completions/reasoning",
+      "content_hash": "sha256:0e290b2b942e955539a1d9980dd2924b93eb5a4c11388911e30f29c68e34d465",
+      "file": "references/019-Reasoning.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "File Attachments",
+      "url": "https://vercel.com/docs/ai-gateway/sdks-and-apis/openai-chat-completions/images",
+      "content_hash": "sha256:8cee10371d5326ca74973add4c6497c04a63e7ee2238609e4ce6e0520f16a7a5",
+      "file": "references/020-File-Attachments.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Structured Outputs",
+      "url": "https://vercel.com/docs/ai-gateway/sdks-and-apis/openai-chat-completions/structured-outputs",
+      "content_hash": "sha256:ad77c305fab232f23836b0da46a2188cd9aa2e2ecc46f2281086f56ade3387d3",
+      "file": "references/021-Structured-Outputs.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Tool Calls",
+      "url": "https://vercel.com/docs/ai-gateway/sdks-and-apis/openai-chat-completions/tool-calling",
+      "content_hash": "sha256:eebef59b9e35d0905539e338ad8fb9aae47f44c3d57d0507953cf423e0b8ded0",
+      "file": "references/022-Tool-Calls.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "File Attachments",
+      "url": "https://vercel.com/docs/ai-gateway/sdks-and-apis/responses/images",
+      "content_hash": "sha256:84f9049dca16f2feee761a3e84c6bf59bb716f47ab4d535d8815eea43ec7e6d9",
+      "file": "references/023-File-Attachments.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "OpenAI Chat Completions API",
+      "url": "https://vercel.com/docs/ai-gateway/sdks-and-apis/openai-chat-completions",
+      "content_hash": "sha256:538ef0c3e274026b1030d3a3e81ce37e492a8ce1c711464a0213923ae5e9d572",
+      "file": "references/024-OpenAI-Chat-Completions-API.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Chat Completions",
+      "url": "https://vercel.com/docs/ai-gateway/sdks-and-apis/openai-chat-completions/chat-completions",
+      "content_hash": "sha256:9167750b8eac8907b52d3a703578657aad7ef497c4e207759df93ee048be2366",
+      "file": "references/025-Chat-Completions.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Streaming",
+      "url": "https://vercel.com/docs/ai-gateway/sdks-and-apis/openai-chat-completions/streaming",
+      "content_hash": "sha256:9b9465e3648cb487fd49755c4f4b154083665afdab250a1b5b33d35bd4a651a0",
+      "file": "references/026-Streaming.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Reasoning",
+      "url": "https://vercel.com/docs/ai-gateway/sdks-and-apis/responses/reasoning",
+      "content_hash": "sha256:f1f6b98215edf2959dc429104bf557de4bf9cfbfaa1fc32d558a1495c0debdcd",
+      "file": "references/027-Reasoning.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Structured Outputs",
+      "url": "https://vercel.com/docs/ai-gateway/sdks-and-apis/responses/structured-outputs",
+      "content_hash": "sha256:88cfc8ddfb873d74cef723772a360e906a77340af0a2afdbea4e2222ca414b32",
+      "file": "references/028-Structured-Outputs.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Streaming",
+      "url": "https://vercel.com/docs/ai-gateway/sdks-and-apis/responses/streaming",
+      "content_hash": "sha256:92ee00d6328973bb8f2f81f2eee1c7464621308e4ab78837fd8e53bfeb2a67a0",
+      "file": "references/029-Streaming.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Tool Calling",
+      "url": "https://vercel.com/docs/ai-gateway/sdks-and-apis/responses/tool-calling",
+      "content_hash": "sha256:957247f431a1a186e18b358699494b87eb00e9bcad80783b4d76905b1776df39",
+      "file": "references/030-Tool-Calling.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Responses API over WebSocket",
+      "url": "https://vercel.com/docs/ai-gateway/sdks-and-apis/responses/websockets",
+      "content_hash": "sha256:6de2d42900594654361ad44322cfcd8413f371b1f126ae7955e209a9c95676ab",
+      "file": "references/031-Responses-API-over-WebSocket.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Text Generation",
+      "url": "https://vercel.com/docs/ai-gateway/sdks-and-apis/responses/text-generation",
+      "content_hash": "sha256:1cd0b1c23bfcfbe53eb414d524c8d824bf80c6d20238be9861ac9a7832507379",
+      "file": "references/032-Text-Generation.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "OpenAI Responses API",
+      "url": "https://vercel.com/docs/ai-gateway/sdks-and-apis/responses",
+      "content_hash": "sha256:1da41314a2e01cfae4adc8fb3e072045fcf8afe61097595eab690d276762bfdd",
+      "file": "references/033-OpenAI-Responses-API.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "AI SDK for Python",
+      "url": "https://vercel.com/docs/ai-gateway/sdks-and-apis/ai-sdk-python",
+      "content_hash": "sha256:6c0fa8833a398598d21d2e2cb9727dda4261361751ab9058d7e69a862401b058",
+      "file": "references/034-AI-SDK-for-Python.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "SDKs & APIs",
+      "url": "https://vercel.com/docs/ai-gateway/sdks-and-apis",
+      "content_hash": "sha256:17f69b763c9435876f25005cbfb8c1dd302dc5fd4af19f9ecac2dc030bb8268e",
+      "file": "references/035-SDKs-APIs.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "AI SDK",
+      "url": "https://vercel.com/docs/ai-gateway/sdks-and-apis/ai-sdk",
+      "content_hash": "sha256:7e48c031b19fed22d0d7cc709a781e40ca5c601d9d2d25342dc029d1589f0c9b",
+      "file": "references/036-AI-SDK.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Speech to Text and Text to Speech Quickstart",
+      "url": "https://vercel.com/docs/ai-gateway/getting-started/speech",
+      "content_hash": "sha256:2414ac194bbcaa73323e0cc3ed1faf448783d51281526ea51a06b4a1628e1ccc",
+      "file": "references/037-Speech-to-Text-and-Text-to-Speech-Quickstart.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "page-38",
+      "url": "https://vercel.com/docs/ai-gateway/getting-started/realtime",
+      "content_hash": "sha256:660d0e225996cbdfbb29e446dbca09c98012bcba1ef18e7e02a487fccfd90ce3",
+      "file": "references/038-page-38.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Video Generation Quickstart",
+      "url": "https://vercel.com/docs/ai-gateway/getting-started/video",
+      "content_hash": "sha256:fa59e0ce93cf3e14bf7a67e83055e98d5210fdb12c99ac6956031ec5fc6e71c0",
+      "file": "references/039-Video-Generation-Quickstart.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Image Generation Quickstart",
+      "url": "https://vercel.com/docs/ai-gateway/getting-started/image",
+      "content_hash": "sha256:e324dd3d206cf0e9af65e42c63f7f95f6fb9569bda63a50ab183bc8e64b5b08f",
+      "file": "references/040-Image-Generation-Quickstart.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "AI SDK",
+      "url": "https://vercel.com/docs/ai-sdk",
+      "content_hash": "sha256:6783cf347e4243b25ba53bf502ca8c1d36fc7c408c60b67b5f1b42e81cf51cf9",
+      "file": "references/041-AI-SDK.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "AI Gateway",
+      "url": "https://vercel.com/docs/ai-gateway",
+      "content_hash": "sha256:427f709d1c9974bfc3fc346dd8f25d8146346523b807b933aed3cee346843885",
+      "file": "references/042-AI-Gateway.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Text Generation Quickstart",
+      "url": "https://vercel.com/docs/ai-gateway/getting-started/text",
+      "content_hash": "sha256:83a8a67612e7ec4e78ac2a1e5f3d9de69ba0367a87c88ca250402ca38040ba35",
+      "file": "references/043-Text-Generation-Quickstart.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Getting Started",
+      "url": "https://vercel.com/docs/ai-gateway/getting-started",
+      "content_hash": "sha256:3d906f1a810ec31fb0e13bfb355f40118d67e4b38a655a26ecceacacd6751162",
+      "file": "references/044-Getting-Started.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Installation",
+      "url": "https://vercel.com/docs/agent/installation",
+      "content_hash": "sha256:82d36e83210caf3462e71b1ee34c3c3186fa414a97a2139c88fd75632593061b",
+      "file": "references/045-Installation.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Vercel Agent Pricing",
+      "url": "https://vercel.com/docs/agent/pricing",
+      "content_hash": "sha256:d5c40c679384a55d406c1e82dac297ae622647af546d30b96b646ea9709d55dc",
+      "file": "references/046-Vercel-Agent-Pricing.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Managing Code Reviews",
+      "url": "https://vercel.com/docs/agent/pr-review/usage",
+      "content_hash": "sha256:5941c9c20b2ac8bcf850f1b5bd3ec0cd37a7370b83cffb458a1f270d699fa810",
+      "file": "references/047-Managing-Code-Reviews.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Investigation",
+      "url": "https://vercel.com/docs/agent/investigation",
+      "content_hash": "sha256:286b7992aef3e53367b616b020281668de9e11682a22905942eb358474b0afc7",
+      "file": "references/048-Investigation.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Code Review",
+      "url": "https://vercel.com/docs/agent/pr-review",
+      "content_hash": "sha256:751ec11790e6ded47a3df79a9f83a8b30facbea8126a077b03f35b1bc9f12bb7",
+      "file": "references/049-Code-Review.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Chat",
+      "url": "https://vercel.com/docs/agent/chat",
+      "content_hash": "sha256:4d51c854383841246be55187db369333c3bf0f94968078b4aada0b1482e81dbe",
+      "file": "references/050-Chat.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Vercel Agent",
+      "url": "https://vercel.com/docs/agent",
+      "content_hash": "sha256:9c718ef8763bf10134111f8b52d15a2b9c114d0b5d40a81c267b7302ee184f8c",
+      "file": "references/051-Vercel-Agent.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Two-factor Authentication",
+      "url": "https://vercel.com/docs/two-factor-authentication",
+      "content_hash": "sha256:d27753571199867f7fc2772fdbc9d0013f9cdac970fe63a1597542e213a46197",
+      "file": "references/052-Two-factor-Authentication.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "SAML Single Sign-On",
+      "url": "https://vercel.com/docs/saml",
+      "content_hash": "sha256:b6f5e25f21f4abdccedb05ba544bf03b37ace68a13abd92fdda839b5cbe9cf19",
+      "file": "references/053-SAML-Single-Sign-On.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Forward Passport identity to another backend",
+      "url": "https://vercel.com/docs/passport/forward-identity",
+      "content_hash": "sha256:5c0e34f881208c57f46ddb949821b661fb18434281b5b98b65707f0ec33a6706",
+      "file": "references/054-Forward-Passport-identity-to-another-backend.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Verify forwarded Passport tokens",
+      "url": "https://vercel.com/docs/passport/verify-identity",
+      "content_hash": "sha256:3200f0b64a988cc799f17d74b2cd41489663523129c79b944c2ea302b61589e5",
+      "file": "references/055-Verify-forwarded-Passport-tokens.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Passport token claims",
+      "url": "https://vercel.com/docs/passport/token-claims",
+      "content_hash": "sha256:ecff9d2a34ca05e482419610556689b80e57b338be9802430fb31efdd88183ee",
+      "file": "references/056-Passport-token-claims.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Restrict access to deployments with Passport",
+      "url": "https://vercel.com/docs/passport",
+      "content_hash": "sha256:028b359f315ba9a68386cdc167ee49e154b3ad454bc5caee27b251c1fbce98d2",
+      "file": "references/057-Restrict-access-to-deployments-with-Passport.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Configure additional identity scopes",
+      "url": "https://vercel.com/docs/passport/additional-identity-scopes",
+      "content_hash": "sha256:d0f7704367caca55896e0b18f38e991c5a8c46a8a94f0cb8f6c294f94613aae0",
+      "file": "references/058-Configure-additional-identity-scopes.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Read Passport identity in your application",
+      "url": "https://vercel.com/docs/passport/read-identity",
+      "content_hash": "sha256:4949ec2cb43e6b46ba1d960eae5c16c94ab045781318fdd946131dc64da25d13",
+      "file": "references/059-Read-Passport-identity-in-your-application.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Directory Sync",
+      "url": "https://vercel.com/docs/directory-sync",
+      "content_hash": "sha256:8672a770c3bbd929995e11511f0659f519cbfd89262166dbd5770cb96b79b82a",
+      "file": "references/060-Directory-Sync.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Set up Passport with an identity provider",
+      "url": "https://vercel.com/docs/passport/set-up-identity-provider",
+      "content_hash": "sha256:3fa93cfd22da3abe181cf2a750d97549c9b1326835ffdc23508c31af9c5abdf0",
+      "file": "references/061-Set-up-Passport-with-an-identity-provider.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Automated & Agent Access",
+      "url": "https://vercel.com/docs/deployment-protection/automated-agent-access",
+      "content_hash": "sha256:679abfa1c27e3c9a6b02e4bf3f24b95f030da5b04b64d9321c7d312220a3b1bc",
+      "file": "references/062-Automated-Agent-Access.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Restrict access to production source maps",
+      "url": "https://vercel.com/docs/deployment-protection/protected-source-maps",
+      "content_hash": "sha256:f7200af70559f842ffefff94116fa41b1b8983e0b370143f798e38c42ff86282",
+      "file": "references/063-Restrict-access-to-production-source-maps.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Restrict access to deployments with Vercel Authentication",
+      "url": "https://vercel.com/docs/deployment-protection/methods-to-protect-deployments/vercel-authentication",
+      "content_hash": "sha256:98384b0e4d55d7d3885ede7837cb440bacf5244dba3d6ee47a89e1480e5cdb34",
+      "file": "references/064-Restrict-access-to-deployments-with-Vercel-Authentication.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Restrict deployment access by IP address",
+      "url": "https://vercel.com/docs/deployment-protection/methods-to-protect-deployments/trusted-ips",
+      "content_hash": "sha256:8126fb47414f8388ceb65773d1b56ba448cc140d1ae0b73a6cde652fd7c45db8",
+      "file": "references/065-Restrict-deployment-access-by-IP-address.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Methods to Protect Deployments",
+      "url": "https://vercel.com/docs/deployment-protection/methods-to-protect-deployments",
+      "content_hash": "sha256:663a524b8fed7cd8eb4027eb2faab6d9a2af2c53c7a96f1b0e50813304264986",
+      "file": "references/066-Methods-to-Protect-Deployments.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Password Protection",
+      "url": "https://vercel.com/docs/deployment-protection/methods-to-protect-deployments/password-protection",
+      "content_hash": "sha256:c7d60fadf982ca2c9462f4d75a307f63f5296be10077b577057cb78f6a09f390",
+      "file": "references/067-Password-Protection.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Deployment Protection Exceptions",
+      "url": "https://vercel.com/docs/deployment-protection/methods-to-bypass-deployment-protection/deployment-protection-exceptions",
+      "content_hash": "sha256:b85981e63e0c3d6e59d5f8bbc786e5459ab28f50bf7d5e1dcaca098092b71ffa",
+      "file": "references/068-Deployment-Protection-Exceptions.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Sharable Links",
+      "url": "https://vercel.com/docs/deployment-protection/methods-to-bypass-deployment-protection/sharable-links",
+      "content_hash": "sha256:bf39ada932addad7923014410c365b77f7046bedeabfe2b4dd9745923ba24bfd",
+      "file": "references/069-Sharable-Links.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Protection Bypass for Automation",
+      "url": "https://vercel.com/docs/deployment-protection/methods-to-bypass-deployment-protection/protection-bypass-automation",
+      "content_hash": "sha256:93e1611439829e76f779b018bf92b5f01b8b00e5ecdc941c0a72d693214daca2",
+      "file": "references/070-Protection-Bypass-for-Automation.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "OPTIONS Allowlist",
+      "url": "https://vercel.com/docs/deployment-protection/methods-to-bypass-deployment-protection/options-allowlist",
+      "content_hash": "sha256:b67d8f411e2fd1dcbb623c148f7488b97d23a9f372a910ac3b525446188d5538",
+      "file": "references/071-OPTIONS-Allowlist.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Using the Activity Log",
+      "url": "https://vercel.com/docs/activity-log",
+      "content_hash": "sha256:d0a48f6d58f98fc11e608e77b510649174597eec1e9c4bf5b9b47e1e500c6954",
+      "file": "references/072-Using-the-Activity-Log.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Trusted Sources",
+      "url": "https://vercel.com/docs/deployment-protection/methods-to-bypass-deployment-protection/trusted-sources",
+      "content_hash": "sha256:648804877e696db19283d18049faf417be2cbe9dbfdc9923d15f4084934920ce",
+      "file": "references/073-Trusted-Sources.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Bypass Deployment Protection for testing, sharing, and automation",
+      "url": "https://vercel.com/docs/deployment-protection/methods-to-bypass-deployment-protection",
+      "content_hash": "sha256:9233a6ed8377cd2755f29bb1163d17e88529eaa386efa9cc51933d96a05eafdf",
+      "file": "references/074-Bypass-Deployment-Protection-for-testing-sharing-and-automat.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Troubleshooting Sign in with Vercel",
+      "url": "https://vercel.com/docs/sign-in-with-vercel/troubleshooting",
+      "content_hash": "sha256:9141331262cd023158be06f8a150739b2ecef3b3fa1ce6ffaee98ec091530df1",
+      "file": "references/075-Troubleshooting-Sign-in-with-Vercel.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Deployment Protection on Vercel",
+      "url": "https://vercel.com/docs/deployment-protection",
+      "content_hash": "sha256:892300b79e512720fbc1415008ead7d5ce16552af80cde7dcfdda696971958ab",
+      "file": "references/076-Deployment-Protection-on-Vercel.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Manage Sign in with Vercel from the Dashboard",
+      "url": "https://vercel.com/docs/sign-in-with-vercel/manage-from-dashboard",
+      "content_hash": "sha256:20a07424d1a0b8b4eafa00c4cccd69f149bb4d0f3762acb9d60ca4d47bf8fb60",
+      "file": "references/077-Manage-Sign-in-with-Vercel-from-the-Dashboard.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Authorization Server API",
+      "url": "https://vercel.com/docs/sign-in-with-vercel/authorization-server-api",
+      "content_hash": "sha256:231bf8d49ffe2d5b4c436c1a6ad37a80af633541914b94db98ef626a34417693",
+      "file": "references/078-Authorization-Server-API.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Consent Page",
+      "url": "https://vercel.com/docs/sign-in-with-vercel/consent-page",
+      "content_hash": "sha256:bb84fc80919de41537c564da783f78b117f7b9429ec6212b76ccff4e76176155",
+      "file": "references/079-Consent-Page.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Tokens",
+      "url": "https://vercel.com/docs/sign-in-with-vercel/tokens",
+      "content_hash": "sha256:a8d9cd4b3cc411ba33b2d6b6dfdf32fdcde1861a3cc95c1e158fac71f9aa92a1",
+      "file": "references/080-Tokens.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Scopes and Permissions",
+      "url": "https://vercel.com/docs/sign-in-with-vercel/scopes-and-permissions",
+      "content_hash": "sha256:9314ef1e3c29e9cd9affb9d57953e48aec6f7b34d2bb929ee70a8ada0fe4ddaa",
+      "file": "references/081-Scopes-and-Permissions.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Error",
+      "url": "https://vercel.com/docs/sign-in-with-vercel/getting-started",
+      "content_hash": "sha256:7b6572bc36085576916c7f72c9e35aa23f952c76734e628668ab150d8b8dba81",
+      "file": "references/082-Error.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Sign in with Vercel",
+      "url": "https://vercel.com/docs/sign-in-with-vercel",
+      "content_hash": "sha256:4d99577bf185b0a494ec230a501f2a63622cfebdbbfdfad24b5a0bb6ce646976",
+      "file": "references/083-Sign-in-with-Vercel.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Account Management",
+      "url": "https://vercel.com/docs/accounts",
+      "content_hash": "sha256:a007d8e817be8089af2d304a77a54f0a3c3b57fc6dba3a113d993a3ca556368b",
+      "file": "references/084-Account-Management.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Report Abuse",
+      "url": "https://vercel.com/docs/platforms/platform-elements/blocks/report-abuse",
+      "content_hash": "sha256:1187da51141c4b704bd14e94711dfce900246e0256bc51638ffe374f51b80fbe",
+      "file": "references/085-Report-Abuse.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "DNS Table",
+      "url": "https://vercel.com/docs/platforms/platform-elements/blocks/dns-table",
+      "content_hash": "sha256:96e0636d7e7337f89af0b90bd4adc1c50e2d7055bee0fbbcf81499fbe1c1f222",
+      "file": "references/086-DNS-Table.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Your custom content",
+      "url": "https://vercel.com/docs/platforms/platform-elements/blocks/deploy-popover",
+      "content_hash": "sha256:bca1f8e3e987025deaf329bf919294982ba1b87195c737bd92a0825db90cfee7",
+      "file": "references/087-Your-custom-content.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Claim Deployment",
+      "url": "https://vercel.com/docs/platforms/platform-elements/blocks/claim-deployment",
+      "content_hash": "sha256:962663f7943563f87a551fc7870a9f7bbf1a3804c699d1ca54c1975c886db8c4",
+      "file": "references/088-Claim-Deployment.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Domain Settings",
+      "url": "https://vercel.com/docs/platforms/platform-elements/blocks/custom-domain",
+      "content_hash": "sha256:d535298a9679d5b459be4fa8c34e5e4a66373fd2b3f457b8c354a52e2713da98",
+      "file": "references/089-Domain-Settings.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Blocks",
+      "url": "https://vercel.com/docs/platforms/platform-elements/blocks",
+      "content_hash": "sha256:9203df8edab1d03c7013e6251433c785c823c894ccd12b8f56d38a3b34a4bbbe",
+      "file": "references/090-Blocks.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Hello from my platform!",
+      "url": "https://vercel.com/docs/platforms/platform-elements/actions/deploy-files",
+      "content_hash": "sha256:3536b217578840e9445740e5bb2c1cfcce9e51d7d676f9b83d220d5249b5ffe0",
+      "file": "references/091-Hello-from-my-platform.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Actions",
+      "url": "https://vercel.com/docs/platforms/platform-elements/actions",
+      "content_hash": "sha256:41c8918425cef29faec92e4abfd071c98cd602d41837bdb97705fb10b672f680",
+      "file": "references/092-Actions.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Add Custom Domain",
+      "url": "https://vercel.com/docs/platforms/platform-elements/actions/add-custom-domain",
+      "content_hash": "sha256:72155764bdbb0c7f0db4c1c10b1d48b4ae59d757acd9caee77e45e65b2dc0a0a",
+      "file": "references/093-Add-Custom-Domain.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Platform Template",
+      "url": "https://vercel.com/docs/platforms/examples/platform-template",
+      "content_hash": "sha256:d6e1b089b6cfe8e8b688abef2811ccb72cdaee0451110c9414efd8fc96f952b6",
+      "file": "references/094-Platform-Template.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Platform Elements",
+      "url": "https://vercel.com/docs/platforms/platform-elements",
+      "content_hash": "sha256:37655df236216d8b8adaad5c85b181305e9518d18f717088b6a3316f4a28a7a7",
+      "file": "references/095-Platform-Elements.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "{tenant.name}",
+      "url": "https://vercel.com/docs/platforms/examples/multi-tenant-template",
+      "content_hash": "sha256:8cb02537273cc662d17fd83c65c653a749d08fd7ac2f5e8776c270da0b2d9d16",
+      "file": "references/096-tenant-name.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "OSS AI Vibe Coding Platform",
+      "url": "https://vercel.com/docs/platforms/examples/oss-coding-agent",
+      "content_hash": "sha256:cb4f74140422668c4e4b3eff0090d0bd65373cfd55b41ccb902267fd565b3995",
+      "file": "references/097-OSS-AI-Vibe-Coding-Platform.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Multi-Project Platforms Reference",
+      "url": "https://vercel.com/docs/platforms/multi-project-platforms/reference",
+      "content_hash": "sha256:b160d8364744df776940ac6bcb93d477096b081bf74f6bc45914ba96b5ca1905",
+      "file": "references/098-Multi-Project-Platforms-Reference.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Examples",
+      "url": "https://vercel.com/docs/platforms/examples",
+      "content_hash": "sha256:5c55e8933a5dbeacd40976852222b8680b4d1715c589e747e6cd2f45bf280cbb",
+      "file": "references/099-Examples.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Multi-Project Platforms Concepts",
+      "url": "https://vercel.com/docs/platforms/multi-project-platforms/concepts",
+      "content_hash": "sha256:c12b727ed5b5d56e9759134804b846b8eaab38d92266a383883b1143d09734f5",
+      "file": "references/100-Multi-Project-Platforms-Concepts.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Hello from my platform!",
+      "url": "https://vercel.com/docs/platforms/multi-project-platforms/quickstart",
+      "content_hash": "sha256:32d633d0ba9d077dc1124436cfde8637b2a8cf410317c95c03aae01e6addc719",
+      "file": "references/101-Hello-from-my-platform.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Multi-tenant Preview URLs",
+      "url": "https://vercel.com/docs/platforms/multi-tenant-platforms/preview-url-prefixes",
+      "content_hash": "sha256:fe8b4f80f284a5ba042af2f108a8167d8f23b3055e04d839634752148a8b2c11",
+      "file": "references/102-Multi-tenant-Preview-URLs.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Multi-Project Platforms",
+      "url": "https://vercel.com/docs/platforms/multi-project-platforms",
+      "content_hash": "sha256:1173ae12e9e30cc483c1f0f3e25d56a3b0c1160ab5093dac0c8b55921bcf17b2",
+      "file": "references/103-Multi-Project-Platforms.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Multi-tenant Limits",
+      "url": "https://vercel.com/docs/platforms/multi-tenant-platforms/limits",
+      "content_hash": "sha256:81ec92aad3c3336d6068c09672366e9960a1879ad69a1c65cd0c5a6b350c5cec",
+      "file": "references/104-Multi-tenant-Limits.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Proxy and Routing",
+      "url": "https://vercel.com/docs/platforms/multi-tenant-platforms/middleware-and-routing",
+      "content_hash": "sha256:f0926886cc6ed21193cb654bddd5c64f834c0477c822b2d041829fde0417fd86",
+      "file": "references/105-Proxy-and-Routing.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Multi-tenant Reference",
+      "url": "https://vercel.com/docs/platforms/multi-tenant-platforms/reference",
+      "content_hash": "sha256:6bcee16d4cffdfcdc4eac2d2d919534d6e9179d61ed0eb4b6f2197560114c47f",
+      "file": "references/106-Multi-tenant-Reference.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "{customer.siteTitle}",
+      "url": "https://vercel.com/docs/platforms/multi-tenant-platforms/custom-subpaths",
+      "content_hash": "sha256:dc2387706a27f1ce5f7e8ade454dd0d4a6819410b6d4924fefafbc592ae1d922",
+      "file": "references/107-customer-siteTitle.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Serving Static Files",
+      "url": "https://vercel.com/docs/platforms/multi-tenant-platforms/serving-static-files",
+      "content_hash": "sha256:e95da4e241360e3ffd346416e79a151393d4eb019758f7d73d0ee0135c3e2a56",
+      "file": "references/108-Serving-Static-Files.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Multi-Tenant Platform Quickstart",
+      "url": "https://vercel.com/docs/platforms/multi-tenant-platforms/quickstart",
+      "content_hash": "sha256:fe5eb893990c2f89cebdd290487dd5f72bcb111c19966ac4ac6993e3327801fe",
+      "file": "references/109-Multi-Tenant-Platform-Quickstart.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Multi-Tenant Platform Concepts",
+      "url": "https://vercel.com/docs/platforms/multi-tenant-platforms/concepts",
+      "content_hash": "sha256:2b2465c6fd5fa99eb803aa041bab2dfd0b24b0c544dbd517aa32738c902b188a",
+      "file": "references/110-Multi-Tenant-Platform-Concepts.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Configuring Custom Domains",
+      "url": "https://vercel.com/docs/platforms/multi-tenant-platforms/configuring-domains",
+      "content_hash": "sha256:20246879b30bb190fbc601905d0e38f189120ca381283beb421595599200126d",
+      "file": "references/111-Configuring-Custom-Domains.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Multi-Tenant Platforms",
+      "url": "https://vercel.com/docs/platforms/multi-tenant-platforms",
+      "content_hash": "sha256:65fe3ef2a5042a1f3cae758dcd13b52c645e8854ce90e5305c505e35e5c789df",
+      "file": "references/112-Multi-Tenant-Platforms.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Vercel API Reference",
+      "url": "https://vercel.com/docs/integrations/create-integration/marketplace-api/reference/vercel",
+      "content_hash": "sha256:3726e2bcecdccd58c7a82168da6ac895799dc53d36570afc5e341158820d9261",
+      "file": "references/113-Vercel-API-Reference.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Production checklist for launch",
+      "url": "https://vercel.com/docs/production-checklist",
+      "content_hash": "sha256:bd7879cc71e3aea00a5290d7f334a5c35e295984314333f74674f31e800f3ab6",
+      "file": "references/114-Production-checklist-for-launch.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Partner API Reference",
+      "url": "https://vercel.com/docs/integrations/create-integration/marketplace-api/reference/partner",
+      "content_hash": "sha256:cb139c19b2c9d24e7de7e1e844b87a5b62df2116353364759dfd9b96e8956e7a",
+      "file": "references/115-Partner-API-Reference.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Incremental Migration to Vercel",
+      "url": "https://vercel.com/docs/incremental-migration",
+      "content_hash": "sha256:5627fe65ded74383edf9baf61b5bf56bb5661c4b4d94e2ba292f98991ff871e5",
+      "file": "references/116-Incremental-Migration-to-Vercel.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Supported Frameworks on Vercel",
+      "url": "https://vercel.com/docs/frameworks/more-frameworks",
+      "content_hash": "sha256:91631e1a18a7f446cf0c5b63ff98d3caaaa48ee379b06b1258b8148ceed96fbc",
+      "file": "references/117-Supported-Frameworks-on-Vercel.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "xmcp on Vercel",
+      "url": "https://vercel.com/docs/frameworks/backend/xmcp",
+      "content_hash": "sha256:05f510f54c82e7419d86e9aae4dab70c510c697287a8b67a88c5c046b895f091",
+      "file": "references/118-xmcp-on-Vercel.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "NestJS on Vercel",
+      "url": "https://vercel.com/docs/frameworks/backend/nestjs",
+      "content_hash": "sha256:f7774f4f3d1549eb85ff6ae568ade1c621d440a2499c48ed4d23838e4e80b5f3",
+      "file": "references/119-NestJS-on-Vercel.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Hono on Vercel",
+      "url": "https://vercel.com/docs/frameworks/backend/hono",
+      "content_hash": "sha256:256cc818e234b10684b3c87ea4583ca525a55d7bf111a2889f29e89a74549857",
+      "file": "references/120-Hono-on-Vercel.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Koa on Vercel",
+      "url": "https://vercel.com/docs/frameworks/backend/koa",
+      "content_hash": "sha256:8cc5d05f07642fd5911380b7dd9750785c5dc7e111422f3320eb2fc5180fb43c",
+      "file": "references/121-Koa-on-Vercel.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Deploy a Flask app on Vercel",
+      "url": "https://vercel.com/docs/frameworks/backend/flask",
+      "content_hash": "sha256:aba1e655312762263e603f3334c3054654cb8707e547acbf78ebbce79127c334",
+      "file": "references/122-Deploy-a-Flask-app-on-Vercel.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Fastify on Vercel",
+      "url": "https://vercel.com/docs/frameworks/backend/fastify",
+      "content_hash": "sha256:c7e4b06d69cfc6436670647c32af25b771d4889e53d1a92bc31b31611f355499",
+      "file": "references/123-Fastify-on-Vercel.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Deploy a FastAPI app on Vercel",
+      "url": "https://vercel.com/docs/frameworks/backend/fastapi",
+      "content_hash": "sha256:118c75e62d0fdb8fab5d87fa3896f8fc2ab4fd6be99009aa3a9c6b4b1afdd9d7",
+      "file": "references/124-Deploy-a-FastAPI-app-on-Vercel.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Elysia on Vercel",
+      "url": "https://vercel.com/docs/frameworks/backend/elysia",
+      "content_hash": "sha256:6f82022f97a8abd8e0f07cfc257f32a8318c823e823babaae025bdeff1793c74",
+      "file": "references/125-Elysia-on-Vercel.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Backends on Vercel",
+      "url": "https://vercel.com/docs/frameworks/backend",
+      "content_hash": "sha256:990e6e0a72a5d064fbafb24601418662dfd0c74a9a3dfb36b28e6979dfe91a8b",
+      "file": "references/126-Backends-on-Vercel.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Deploy a Celery app on Vercel",
+      "url": "https://vercel.com/docs/frameworks/backend/celery",
+      "content_hash": "sha256:5c91fda0daef3bd59cc12e3795c71bff49824ceb49d97d94ffe5ff92566a5d16",
+      "file": "references/127-Deploy-a-Celery-app-on-Vercel.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Express on Vercel",
+      "url": "https://vercel.com/docs/frameworks/backend/express",
+      "content_hash": "sha256:582eba4f85dbd5be1f85fcb8d2650547c714ae2f1d1907750c684f9e4e81ecc0",
+      "file": "references/128-Express-on-Vercel.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Create React App on Vercel",
+      "url": "https://vercel.com/docs/frameworks/frontend/create-react-app",
+      "content_hash": "sha256:3d5f2e0daf0dc0b5d8ac396ab07ba26832050b63b0cab9cad39ce7c628f05151",
+      "file": "references/129-Create-React-App-on-Vercel.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "React Router on Vercel",
+      "url": "https://vercel.com/docs/frameworks/frontend/react-router",
+      "content_hash": "sha256:de4a252d0388f10f8827239a2ed929d223310531ca511c1309b9f3e8b163c98f",
+      "file": "references/130-React-Router-on-Vercel.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Nitro on Vercel",
+      "url": "https://vercel.com/docs/frameworks/backend/nitro",
+      "content_hash": "sha256:cb8b7140aacbfca2de91ef12005681889ed90d55767d06dfc29fd9d5542559bb",
+      "file": "references/131-Nitro-on-Vercel.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Vite on Vercel",
+      "url": "https://vercel.com/docs/frameworks/frontend/vite",
+      "content_hash": "sha256:e552d43b7c70b7e0b3e3a927e2336f1b08803a04ae4f37d3190ed56205d6f2e7",
+      "file": "references/132-Vite-on-Vercel.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "{title}",
+      "url": "https://vercel.com/docs/frameworks/frontend/astro",
+      "content_hash": "sha256:1b4570e70549864c7be9a62a96163b4671bf381e8c87b061696a13fc63fb1157",
+      "file": "references/133-title.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Frontends on Vercel",
+      "url": "https://vercel.com/docs/frameworks/frontend",
+      "content_hash": "sha256:8466dff5def50139be20ae78842c64bf19bf2f117424a2149aefb0e79a7af8bc",
+      "file": "references/134-Frontends-on-Vercel.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Deploy a Django app on Vercel",
+      "url": "https://vercel.com/docs/frameworks/full-stack/django",
+      "content_hash": "sha256:9843f955f4292a219c01db108d21e7ff4a850ddd582def0e38758b5dcbfa97c7",
+      "file": "references/135-Deploy-a-Django-app-on-Vercel.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "My App",
+      "url": "https://vercel.com/docs/frameworks/full-stack/vite-with-nitro",
+      "content_hash": "sha256:57ab700002993570979470fd7f2402cb807416ffb20bd7d8308bc6e118fea46b",
+      "file": "references/136-My-App.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "TanStack Start on Vercel",
+      "url": "https://vercel.com/docs/frameworks/full-stack/tanstack-start",
+      "content_hash": "sha256:582ed46764fb24fb6c66ca7f81e42805a56ae81179689935fa2d78d3d5c333c3",
+      "file": "references/137-TanStack-Start-on-Vercel.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Nuxt on Vercel",
+      "url": "https://vercel.com/docs/frameworks/full-stack/nuxt",
+      "content_hash": "sha256:8138236afc59615b637ec0661ae44d2d64054b572ec92dd6ae5cf42a351419b5",
+      "file": "references/138-Nuxt-on-Vercel.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "This route is rendered on the server",
+      "url": "https://vercel.com/docs/frameworks/full-stack/remix",
+      "content_hash": "sha256:1530fa5d84a0cb86d1d3e388eb7391f8fe30977600ec73f4f2fadd9927e5863a",
+      "file": "references/139-This-route-is-rendered-on-the-server.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Next.js",
+      "url": "https://vercel.com/docs/frameworks/full-stack/nextjs",
+      "content_hash": "sha256:05986f5c8e9e62e2707e155479a3b31707f462bf4666102ee5ec8aabbc82c76a",
+      "file": "references/140-Next-js.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Hello!",
+      "url": "https://vercel.com/docs/frameworks/full-stack/sveltekit",
+      "content_hash": "sha256:6972285524a3e4a278410fda40eb7761e34c152fa127ee27d18fa53dccebdca5",
+      "file": "references/141-Hello.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "What is Compute?",
+      "url": "https://vercel.com/docs/fundamentals/what-is-compute",
+      "content_hash": "sha256:011e9db07727fdc1f92c739e1c48f00b5d618cc2e9a5dcd68d20c69814eb659d",
+      "file": "references/142-What-is-Compute.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Frameworks on Vercel",
+      "url": "https://vercel.com/docs/frameworks",
+      "content_hash": "sha256:970bf2b7d5bb91d1a0894566cb5fe7990118bfa133eb54b340974fa6694ed7ad",
+      "file": "references/143-Frameworks-on-Vercel.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Full-stack frameworks on Vercel",
+      "url": "https://vercel.com/docs/frameworks/full-stack",
+      "content_hash": "sha256:af4e909a7cacf2653c9ca41fe9e9720d30b0ec2f90c992732c25d637a2ae0b36",
+      "file": "references/144-Full-stack-frameworks-on-Vercel.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "How requests flow through Vercel",
+      "url": "https://vercel.com/docs/fundamentals/infrastructure",
+      "content_hash": "sha256:f30fe1e936c5ec2ef09dca50a4908450c84c60fa9824725ba9b7cf8a83ea7a7f",
+      "file": "references/145-How-requests-flow-through-Vercel.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Vercel fundamental concepts",
+      "url": "https://vercel.com/docs/fundamentals",
+      "content_hash": "sha256:1ada1aa8b1652f831cb42012aa7a99943e106439fa99f2c89f6f0b28cebb8675",
+      "file": "references/146-Vercel-fundamental-concepts.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "How Vercel builds your application",
+      "url": "https://vercel.com/docs/fundamentals/builds",
+      "content_hash": "sha256:a4c50cbf027fcf346b23a2d3591beb59998a50b571db8125a7199ebe7fdfdbc6",
+      "file": "references/147-How-Vercel-builds-your-application.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Vercel Documentation",
+      "url": "https://vercel.com/docs",
+      "content_hash": "sha256:6005fe33cf0e7da85ac440a28d6a72d78d042f38166eec1d20c1de94002a952a",
+      "file": "references/148-Vercel-Documentation.md",
+      "source": "vercel",
+      "version": "latest"
+    },
+    {
+      "title": "Getting started with Vercel",
+      "url": "https://vercel.com/docs/getting-started-with-vercel",
+      "content_hash": "sha256:ccc106f7ab5e5f15a868864bd521be5bbc641a939624515725119f9d621d09f3",
+      "file": "references/149-Getting-started-with-Vercel.md",
+      "source": "vercel",
+      "version": "latest"
+    }
+  ]
+}

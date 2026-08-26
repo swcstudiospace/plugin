@@ -1,0 +1,67 @@
+# Teams with Knowledge - Agno
+
+Source: https://docs.agno.com/knowledge/teams/overview
+
+Pass `knowledge` to a team to register its `search_knowledge_base` tool.
+
+```
+from pathlib import Path
+
+from agno.agent import Agent
+from agno.knowledge.embedder.openai import OpenAIEmbedder
+from agno.knowledge.knowledge import Knowledge
+from agno.models.openai import OpenAIResponses
+from agno.team import Team
+from agno.tools.hackernews import HackerNewsTools
+from agno.vectordb.lancedb import LanceDb
+
+cwd = Path(__file__).parent
+tmp_dir = cwd.joinpath("tmp")
+tmp_dir.mkdir(parents=True, exist_ok=True)
+
+agno_docs_knowledge = Knowledge(
+    vector_db=LanceDb(
+        uri=str(tmp_dir.joinpath("lancedb")),
+        table_name="agno_docs",
+        embedder=OpenAIEmbedder(id="text-embedding-3-small"),
+    ),
+)
+
+hackernews_agent = Agent(
+    name="HackerNews Agent",
+    role="Search HackerNews for tech news",
+    model=OpenAIResponses(id="gpt-5.2"),
+    tools=[HackerNewsTools()],
+    instructions=["Always include sources"],
+)
+
+team_with_knowledge = Team(
+    name="Team with Knowledge",
+    members=[hackernews_agent],
+    model=OpenAIResponses(id="gpt-5.2"),
+    knowledge=agno_docs_knowledge,
+    show_members_responses=True,
+    markdown=True,
+)
+
+if __name__ == "__main__":
+    agno_docs_knowledge.insert(url="https://docs.agno.com/llms-full.txt")
+    team_with_knowledge.print_response("Tell me about the Agno framework", stream=True)
+```
+
+```
+uv pip install -U agno lancedb openai
+```
+
+The team coordinator can search the attached knowledge base and delegate other work to members. `Team.search_knowledge` defaults to `True`.
+When multiple `Knowledge` instances share one vector database, set `isolate_vector_search=True` (and give each instance a `name`) to keep retrieval scoped to each instance’s own content.
+
+## [​](#next-steps) Next Steps
+
+| Task | Guide |
+| --- | --- |
+| Add web search to a team | [Team with Knowledge Base](/knowledge/teams/team-with-knowledge) |
+| Give members separate knowledge bases | [Distributed RAG with LanceDB](/knowledge/teams/distributed-rag-lancedb) |
+| Configure ingestion and retrieval | [Knowledge Overview](/knowledge/overview) |
+
+⌘I

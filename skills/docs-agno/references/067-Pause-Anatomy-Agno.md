@@ -1,0 +1,128 @@
+# Pause Anatomy - Agno
+
+Source: https://docs.agno.com/workflows/hitl/pause-anatomy
+
+When a workflow pauses for HITL, it exposes the pause through three nested objects. You read them to find out what is being asked, then resolve the innermost ones and call `continue_run`.
+
+```
+run_output = workflow.run("...")
+
+if run_output.is_paused:
+    for step_req in run_output.step_requirements or []:
+        ...  # inspect and resolve
+    run_output = workflow.continue_run(run_output)
+```
+
+## [​](#1-workflowrunoutput) 1. WorkflowRunOutput
+
+The top-level run object tells you that a pause happened and where.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `is_paused` | `bool` | `True` while waiting for user action |
+| `pause_kind` | `"step"` | `"executor"` | `None` | Which level paused. `None` when not paused. |
+| `paused_step_name` | `Optional[str]` | Name of the step that paused |
+| `paused_step_index` | `Optional[int]` | Index of the paused step |
+| `step_requirements` | `Optional[List[StepRequirement]]` | All requirements accumulated across pauses. The last entry is active. |
+
+Convenience filters return subsets of `step_requirements`:
+
+| Property | Returns requirements that need… |
+| --- | --- |
+| `active_step_requirements` | any resolution (not yet resolved) |
+| `steps_requiring_confirmation` | confirm / reject |
+| `steps_requiring_user_input` | user input values |
+| `steps_requiring_output_review` | output review |
+| `steps_requiring_route` | route selection |
+| `steps_requiring_executor_resolution` | executor (agent/team) tool resolution |
+
+`step_requirements` accumulates resolved requirements as run history. To determine the **current** pause, read only the last entry: `(run_output.step_requirements or [])[-1:]`. This matters during [nested HITL](/workflows/hitl/nested), where a single run pauses more than once. The filter properties above already exclude resolved requirements, so prefer them when you can.
+
+## [​](#2-steprequirement) 2. StepRequirement
+
+Each entry in `step_requirements` describes one paused step. The fields that are set depend on what kind of pause it is.
+
+| Field | Set When | Description |
+| --- | --- | --- |
+| `step_name` / `step_index` / `step_id` | always | Identifies the step |
+| `step_type` | always | The primitive that created it (`Step`, `Loop`, `Router`, …) |
+| `requires_confirmation` | step confirmation | Pending confirm/reject |
+| `confirmation_message` | step confirmation | Message to show the user |
+| `requires_user_input` | step user input | Pending input values |
+| `user_input_schema` | step user input | `List[UserInputField]` to fill |
+| `requires_route_selection` | router selection | Pending route choice |
+| `available_choices` | router selection | Route names to pick from |
+| `requires_output_review` | output review | Output ready for review |
+| `step_output` | output review | The executed `StepOutput` under review |
+| `requires_executor_input` | executor pause | An agent/team tool call paused |
+| `executor_requirements` | executor pause | `List` of pending tool calls (see below) |
+| `executor_id` / `executor_name` / `executor_type` | executor pause | The paused agent or team |
+
+**Resolution methods** (step-level):
+
+| Method | For |
+| --- | --- |
+| `confirm()` | Confirmation |
+| `reject(feedback=...)` | Confirmation / output review |
+| `edit(new_output)` | Output review (accept with edits) |
+| `set_user_input(**values)` | User input |
+| `select(choice)` / `select_multiple([...])` | Route selection |
+
+**Status properties:** `needs_confirmation`, `needs_user_input`, `needs_output_review`, `needs_route_selection`, `needs_executor_resolution`, `is_resolved`, `is_timed_out`.
+
+## [​](#3-executor-requirements) 3. Executor Requirements
+
+When `requires_executor_input` is `True`, the step paused because the agent or team called a HITL tool. Each entry in `executor_requirements` is one pending tool call: the agent’s `RunRequirement` serialized to a dict. You resolve it by mutating the dict in place.
+
+| Key | Description |
+| --- | --- |
+| `["tool_execution"]["tool_name"]` | Name of the paused tool |
+| `["tool_execution"]["tool_args"]` | Arguments the agent chose |
+| `["tool_execution"]["requires_confirmation"]` | `True` for `requires_confirmation` tools |
+| `["tool_execution"]["requires_user_input"]` | `True` for `requires_user_input` tools |
+| `["tool_execution"]["external_execution_required"]` | `True` for `external_execution` tools |
+| `["tool_execution"]["user_input_schema"]` | Fields the user must supply (for `requires_user_input` tools) |
+
+**Resolution mutations** (executor-level):
+
+| Mutation | For |
+| --- | --- |
+| `["confirmation"] = True` and `["tool_execution"]["confirmed"] = True` | Approve `@tool(requires_confirmation=True)` |
+| `["confirmation"] = False`, `["tool_execution"]["confirmed"] = False`, optional `["tool_execution"]["confirmation_note"]` | Reject a confirmation |
+| Fill `value` on each field in `["user_input_schema"]` and `["tool_execution"]["user_input_schema"]` | `@tool(requires_user_input=True)` |
+| `["external_execution_result"] = result` and `["tool_execution"]["result"] = result` | `@tool(external_execution=True)` |
+
+See [Executor HITL](/workflows/hitl/executor) for full resolution examples.
+
+## [​](#resolution-flow) Resolution Flow
+
+```
+run_output = workflow.run("...")
+
+while run_output.is_paused:
+    # Active requirement only (history-safe)
+    for step_req in (run_output.step_requirements or [])[-1:]:
+        if step_req.requires_executor_input:
+            for executor_req in step_req.executor_requirements or []:
+                executor_req["confirmation"] = True
+                executor_req["tool_execution"]["confirmed"] = True
+        elif step_req.needs_confirmation:
+            step_req.confirm()
+        elif step_req.needs_user_input:
+            step_req.set_user_input(**collect_values(step_req))
+        elif step_req.needs_route_selection:
+            step_req.select(choose(step_req.available_choices))
+
+    run_output = workflow.continue_run(run_output)
+
+print(run_output.content)
+```
+
+## [​](#developer-resources) Developer Resources
+
+- [HITL overview](/workflows/hitl/overview)
+- [Executor HITL](/workflows/hitl/executor)
+- [Nested HITL](/workflows/hitl/nested)
+- [WorkflowRunOutput reference](/reference/workflows/run-output)
+
+⌘I
