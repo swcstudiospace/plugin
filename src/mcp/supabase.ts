@@ -23,7 +23,7 @@ export interface SupabaseProject {
 
 export type SupabaseFail =
 	| { error: "missing_credentials"; service: "supabase"; envVar: "SUPABASE_ACCESS_TOKEN" }
-	| { error: "missing_credentials"; service: "supabase-data"; envVars: ["SUPABASE_URL", "SUPABASE_SERVICE_KEY"] }
+	| { error: "missing_credentials"; service: "supabase-data"; envVars: readonly ["SUPABASE_URL", "SUPABASE_SERVICE_KEY"] }
 	| { error: "upstream_error"; status: number; detail: string }
 	| { error: "upstream_unreachable"; message: string }
 	| { error: "invalid_json"; status: number; body: string }
@@ -111,14 +111,18 @@ function str(value: unknown): string | undefined {
 }
 
 function missingManagement() {
-	return { error: "missing_credentials" as const, service: "supabase", envVar: "SUPABASE_ACCESS_TOKEN" };
+	return {
+		error: "missing_credentials" as const,
+		service: "supabase" as const,
+		envVar: "SUPABASE_ACCESS_TOKEN" as const,
+	};
 }
 
 function missingData() {
 	return {
 		error: "missing_credentials" as const,
-		service: "supabase-data",
-		envVars: ["SUPABASE_URL", "SUPABASE_SERVICE_KEY"],
+		service: "supabase-data" as const,
+		envVars: ["SUPABASE_URL", "SUPABASE_SERVICE_KEY"] as const,
 	};
 }
 
@@ -256,7 +260,7 @@ export function createSupabase(options: CreateSupabaseOptions = {}): SupabaseCli
 			names.push(name);
 		}
 		const tables = names.slice(0, clamp(input.limit, 50, TABLE_LIMIT_MAX));
-		return { service: "supabase-data" as const, schema: "public", count: tables.length, tables };
+		return { service: "supabase-data" as const, schema: "public" as const, count: tables.length, tables };
 	}
 
 	async function rowsRead(input: {
