@@ -51,7 +51,7 @@ export function formatIssueAddendum(tree?: GraphSyncResult): string {
 	const lines = [
 		"## Issue tracking",
 		"",
-		"Execute the Tissue tree: one parent plus one sub-issue per graph nodes, in dependency order. Persist with git add issues/; do not run gh issue create. Do not reprint the issue files.",
+		"Execute the Tissue tree: one parent plus one sub-issue per graph node, in dependency order. Persist with git add issues/; do not run gh issue create. Do not reprint the issue files.",
 	];
 	if (tree) {
 		lines.push("", `parent ${tree.parent.issue.id} ${tree.parent.issue.title}`);

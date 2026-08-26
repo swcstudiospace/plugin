@@ -124,7 +124,7 @@ describe("formatIssueAddendum", () => {
 	test("mentions Tissue tree, graph nodes, and git add issues/", () => {
 		const text = formatIssueAddendum();
 		expect(text).toContain("Tissue");
-		expect(text).toContain("graph nodes");
+		expect(text).toContain("graph node");
 		expect(text).toContain("git add issues/");
 		expect(text).toContain("gh issue create");
 	});
