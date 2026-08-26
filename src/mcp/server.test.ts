@@ -96,54 +96,72 @@ describe("mergeAfterReview", () => {
 });
 
 describe("createAioMcpServer", () => {
+	function githubStub() {
+		return {
+			currentRepo: async () => ({
+				ok: true as const,
+				owner: "swcstudiospace",
+				repo: "plugin",
+				nameWithOwner: "swcstudiospace/plugin",
+				defaultBranch: "main",
+			}),
+			listRepos: async () => ({ ok: true as const, repos: [] }),
+			createRepo: async () => ({
+				ok: true as const,
+				repo: {
+					name: "x",
+					fullName: "swcstudiospace/x",
+					htmlUrl: "https://github.com/swcstudiospace/x",
+					private: true,
+					defaultBranch: "main",
+				},
+			}),
+			createPull: async () => ({ ok: true as const, htmlUrl: "https://github.com/swcstudiospace/plugin/pull/1" }),
+			listPulls: async () => ({ ok: true as const, pulls: [] }),
+			getPull: async () => ({
+				ok: true as const,
+				pull: {
+					number: 1,
+					title: "t",
+					htmlUrl: "https://github.com/swcstudiospace/plugin/pull/1",
+					state: "OPEN",
+					headRef: "feat",
+					baseRef: "main",
+					merged: false,
+				},
+			}),
+			mergePull: async () => ({ ok: true as const }),
+			prHasGreptileReview: async () => ({ ok: true as const, hasGreptileReview: true }),
+		};
+	}
+
+	function greptileStub() {
+		return {
+			whoami: async () => ({ ok: true, signedIn: false, text: "Not signed in" }),
+			review: async () => ({ confidence: 0, comments: [], signedIn: false }),
+			allowsMerge: (review: GreptileReview) => ({
+				ok: false,
+				reason: "greptile not signed in — run greptile login",
+				review,
+			}),
+		};
+	}
+
 	test("constructs with injected github and greptile", () => {
 		const server = createAioMcpServer({
 			org: "swcstudiospace",
-			github: {
-				currentRepo: async () => ({
-					ok: true,
-					owner: "swcstudiospace",
-					repo: "plugin",
-					nameWithOwner: "swcstudiospace/plugin",
-					defaultBranch: "main",
-				}),
-				listRepos: async () => ({ ok: true, repos: [] }),
-				createRepo: async () => ({
-					ok: true,
-					repo: {
-						name: "x",
-						fullName: "swcstudiospace/x",
-						htmlUrl: "https://github.com/swcstudiospace/x",
-						private: true,
-						defaultBranch: "main",
-					},
-				}),
-				createPull: async () => ({ ok: true, htmlUrl: "https://github.com/swcstudiospace/plugin/pull/1" }),
-				listPulls: async () => ({ ok: true, pulls: [] }),
-				getPull: async () => ({
-					ok: true,
-					pull: {
-						number: 1,
-						title: "t",
-						htmlUrl: "https://github.com/swcstudiospace/plugin/pull/1",
-						state: "OPEN",
-						headRef: "feat",
-						baseRef: "main",
-						merged: false,
-					},
-				}),
-				mergePull: async () => ({ ok: true }),
-				prHasGreptileReview: async () => ({ ok: true, hasGreptileReview: true }),
-			},
-			greptile: {
-				whoami: async () => ({ ok: true, signedIn: false, text: "Not signed in" }),
-				review: async () => ({ confidence: 0, comments: [], signedIn: false }),
-				allowsMerge: (review) => ({
-					ok: false,
-					reason: "greptile not signed in — run greptile login",
-					review,
-				}),
-			},
+			github: githubStub(),
+			greptile: greptileStub(),
+		});
+		expect(server).toBeDefined();
+	});
+
+	test("constructs with supabaseEnabled false", () => {
+		const server = createAioMcpServer({
+			org: "swcstudiospace",
+			github: githubStub(),
+			greptile: greptileStub(),
+			supabaseEnabled: false,
 		});
 		expect(server).toBeDefined();
 	});

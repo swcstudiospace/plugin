@@ -3,6 +3,7 @@ import { z } from "zod";
 import type { GithubClient, GithubFail, MergePullOk, PullNumberInput } from "./github.ts";
 import type { GreptileReviewInput, GreptileWhoami } from "./greptile.ts";
 import { DEFAULT_GITHUB_ORG, type GreptileReview, type MergeGate } from "./types.ts";
+import type { SupabaseClient } from "./supabase.ts";
 
 export interface GreptileClient {
 	whoami(): Promise<GreptileWhoami>;
@@ -14,6 +15,8 @@ export interface AioMcpServerDeps {
 	github: GithubClient;
 	greptile: GreptileClient;
 	org?: string;
+	supabase?: SupabaseClient;
+	supabaseEnabled?: boolean;
 }
 
 export interface MergeAfterReviewInput extends PullNumberInput {
@@ -63,6 +66,8 @@ export function createAioMcpServer(deps: AioMcpServerDeps): McpServer {
 	const github = deps.github;
 	const greptile = deps.greptile;
 	const org = deps.org ?? DEFAULT_GITHUB_ORG;
+	const supabase = deps.supabase;
+	const supabaseEnabled = deps.supabaseEnabled ?? Boolean(supabase);
 
 	const server = new McpServer(
 		{
@@ -79,12 +84,15 @@ export function createAioMcpServer(deps: AioMcpServerDeps): McpServer {
 	server.registerTool(
 		"aio_status",
 		{
-			description: "Org and Greptile signed-in status. Never includes tokens.",
+			description: "Org, Greptile signed-in status, and Supabase configured flags. Never includes tokens.",
 			inputSchema: {},
 		},
 		async () => {
 			const who = await greptile.whoami();
-			return text({ org, greptile: { signedIn: who.signedIn } });
+			const supabaseConfigured = supabase
+				? (await supabase.status()).configured
+				: { management: false, data: false };
+			return text({ org, greptile: { signedIn: who.signedIn }, supabase: supabaseConfigured });
 		},
 	);
 
@@ -199,6 +207,148 @@ export function createAioMcpServer(deps: AioMcpServerDeps): McpServer {
 		},
 		async (args: { number: number; owner?: string; repo?: string }) =>
 			text(await mergeAfterReview(github, greptile, args)),
+	);
+
+	const runSupabase = async (
+		run: (client: NonNullable<typeof supabase>) => Promise<unknown> | unknown,
+	) => {
+		if (!supabaseEnabled || !supabase) return text({ error: "disabled" });
+		return text(await run(supabase));
+	};
+
+	server.registerTool(
+		"supabase_status",
+		{
+			description: "Supabase management and data configured flags. Never includes tokens.",
+			inputSchema: {},
+		},
+		async () => runSupabase((client) => client.status()),
+	);
+
+	server.registerTool(
+		"supabase_projects_list",
+		{
+			description: "List Supabase projects.",
+			inputSchema: {},
+		},
+		async () => runSupabase((client) => client.projectsList()),
+	);
+
+	server.registerTool(
+		"supabase_project_get",
+		{
+			description: "Get one Supabase project by id.",
+			inputSchema: {
+				projectId: z.string().describe("Supabase project id"),
+			},
+		},
+		async (args: { projectId: string }) => runSupabase((client) => client.projectGet(args.projectId)),
+	);
+
+	server.registerTool(
+		"supabase_tables_list",
+		{
+			description: "List tables from the Supabase Data API.",
+			inputSchema: {
+				limit: z.number().optional().describe("Max tables to return"),
+			},
+		},
+		async (args: { limit?: number }) => runSupabase((client) => client.tablesList({ limit: args?.limit })),
+	);
+
+	server.registerTool(
+		"supabase_rows_read",
+		{
+			description: "Read rows from a Supabase table.",
+			inputSchema: {
+				table: z.string().describe("Table name"),
+				limit: z.number().optional().describe("Max rows to return"),
+				order: z.string().optional().describe("PostgREST order clause"),
+				filters: z.record(z.string(), z.string()).optional().describe("Column filters as eq.value or op.value"),
+			},
+		},
+		async (args: {
+			table: string;
+			limit?: number;
+			order?: string;
+			filters?: Record<string, string>;
+		}) =>
+			runSupabase((client) =>
+				client.rowsRead({
+					table: args.table,
+					limit: args.limit,
+					order: args.order,
+					filters: args.filters,
+				}),
+			),
+	);
+
+	server.registerTool(
+		"supabase_rpc_call",
+		{
+			description: "Call a Supabase PostgREST RPC function.",
+			inputSchema: {
+				function: z.string().describe("RPC function name"),
+				args: z.record(z.string(), z.unknown()).optional().describe("JSON arguments for the RPC"),
+			},
+		},
+		async (args: { function: string; args?: Record<string, unknown> }) =>
+			runSupabase((client) => client.rpcCall({ function: args.function, args: args.args })),
+	);
+
+	server.registerTool(
+		"supabase_auth_users_list",
+		{
+			description: "List Supabase Auth users.",
+			inputSchema: {
+				page: z.number().optional().describe("Page number"),
+				perPage: z.number().optional().describe("Users per page"),
+			},
+		},
+		async (args: { page?: number; perPage?: number }) =>
+			runSupabase((client) => client.authUsersList({ page: args?.page, perPage: args?.perPage })),
+	);
+
+	server.registerTool(
+		"supabase_auth_user_get",
+		{
+			description: "Get one Supabase Auth user by id.",
+			inputSchema: {
+				id: z.string().describe("Auth user id"),
+			},
+		},
+		async (args: { id: string }) => runSupabase((client) => client.authUserGet({ id: args.id })),
+	);
+
+	server.registerTool(
+		"supabase_auth_user_create",
+		{
+			description: "Create a Supabase Auth user.",
+			inputSchema: {
+				email: z.string().describe("User email"),
+				password: z.string().optional().describe("User password"),
+				emailConfirm: z.boolean().optional().describe("Mark email as confirmed"),
+			},
+		},
+		async (args: { email: string; password?: string; emailConfirm?: boolean }) =>
+			runSupabase((client) =>
+				client.authUserCreate({
+					email: args.email,
+					password: args.password,
+					emailConfirm: args.emailConfirm,
+				}),
+			),
+	);
+
+	server.registerTool(
+		"supabase_auth_user_delete",
+		{
+			description: "Delete a Supabase Auth user by id.",
+			inputSchema: {
+				id: z.string().describe("Auth user id"),
+			},
+		},
+		async (args: { id: string }) => runSupabase((client) => client.authUserDelete({ id: args.id })),
 	);
 
 	return server;

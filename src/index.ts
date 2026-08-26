@@ -3,9 +3,10 @@ import type { ExtensionAPI, ExtensionContext } from "@oh-my-pi/pi-coding-agent";
 import { completePrompt, recentConversation } from "./complete.ts";
 import { applyCommand, formatStatus, formatUpliftEcho, parseAioArgs } from "./commands.ts";
 import { loadConfig } from "./config.ts";
-import { parseShipArgs, PR_COMPLETIONS } from "./mcp/commands.ts";
+import { parseShipArgs, parseSupabaseArgs, PR_COMPLETIONS, SUPABASE_COMPLETIONS } from "./mcp/commands.ts";
 import { createGithub } from "./mcp/github.ts";
 import { createGreptile } from "./mcp/greptile.ts";
+import { createSupabase } from "./mcp/supabase.ts";
 import { defaultCliRunner } from "./mcp/run.ts";
 import { createBoardComponent } from "./issues/board-ui.ts";
 import {
@@ -91,6 +92,55 @@ async function branchTitle(cwd: string): Promise<string> {
 	return "Update";
 }
 
+function supabaseFault(result: unknown): string | null {
+	if (!result || typeof result !== "object" || !("error" in result)) return null;
+	const rec = result as { error: unknown; message?: unknown; status?: unknown };
+	if (typeof rec.error !== "string") return "supabase error";
+	const parts = [rec.error];
+	if (typeof rec.message === "string" && rec.message) parts.push(rec.message);
+	else if (typeof rec.status === "number") parts.push(String(rec.status));
+	return parts.join(": ");
+}
+
+function listNames(items: unknown): string[] {
+	if (!Array.isArray(items)) return [];
+	const names: string[] = [];
+	for (const item of items) {
+		if (typeof item === "string") {
+			if (item) names.push(item);
+			continue;
+		}
+		if (!item || typeof item !== "object") continue;
+		const rec = item as Record<string, unknown>;
+		const name = rec.name ?? rec.table_name;
+		if (typeof name === "string" && name) names.push(name);
+	}
+	return names;
+}
+
+function formatNamedCount(noun: string, result: unknown, key: string): string {
+	const rec = result && typeof result === "object" ? (result as Record<string, unknown>) : {};
+	const names = listNames(rec[key]);
+	const count = typeof rec.count === "number" ? rec.count : names.length;
+	const head = `${count} ${noun}${count === 1 ? "" : "s"}`;
+	return names.length > 0 ? `${head}\n${names.join("\n")}` : head;
+}
+
+function formatAuthUsers(result: unknown): string {
+	const rec = result && typeof result === "object" ? (result as Record<string, unknown>) : {};
+	const users = Array.isArray(rec.users) ? rec.users : [];
+	const count = typeof rec.count === "number" ? rec.count : users.length;
+	const labels: string[] = [];
+	for (const user of users) {
+		if (!user || typeof user !== "object") continue;
+		const row = user as Record<string, unknown>;
+		if (typeof row.email === "string" && row.email) labels.push(row.email);
+		else if (typeof row.id === "string" && row.id) labels.push(row.id);
+	}
+	const head = `${count} user${count === 1 ? "" : "s"}`;
+	return labels.length > 0 ? `${head}\n${labels.join("\n")}` : head;
+}
+
 export default function allInOne(pi: ExtensionAPI): void {
 	pi.setLabel("All-in-one");
 	if (process.env.PI_AIO_CHILD === "1" || process.env.PI_ULTRATHINK_CHILD === "1") return;
@@ -102,6 +152,7 @@ export default function allInOne(pi: ExtensionAPI): void {
 	const lsp = new LspHub(config.lsp);
 	const github = createGithub({ run: defaultCliRunner, org: config.github.org });
 	const greptile = createGreptile({ run: defaultCliRunner, ...config.greptile });
+	const supabase = createSupabase();
 	const state: UpliftState = {
 		enabled: config.uplift.enabled,
 		skipOnce: false,
@@ -345,6 +396,54 @@ export default function allInOne(pi: ExtensionAPI): void {
 		}
 	}
 
+	async function handleSupabase(args: string, ctx: ExtensionContext): Promise<void> {
+		if (!config.supabase.enabled) {
+			notify(ctx, "Supabase disabled", "warning");
+			return;
+		}
+		try {
+			const { cmd } = parseSupabaseArgs(args);
+			if (cmd === "status") {
+				notify(ctx, JSON.stringify(await supabase.status()));
+				return;
+			}
+			if (cmd === "projects") {
+				const listed = await supabase.projectsList();
+				const fault = supabaseFault(listed);
+				if (fault) {
+					notify(ctx, fault, "error");
+					return;
+				}
+				notify(ctx, formatNamedCount("project", listed, "projects"));
+				return;
+			}
+			if (cmd === "tables") {
+				const listed = await supabase.tablesList();
+				const fault = supabaseFault(listed);
+				if (fault) {
+					notify(ctx, fault, "error");
+					return;
+				}
+				notify(ctx, formatNamedCount("table", listed, "tables"));
+				return;
+			}
+			if (cmd === "users") {
+				const listed = await supabase.authUsersList();
+				const fault = supabaseFault(listed);
+				if (fault) {
+					notify(ctx, fault, "error");
+					return;
+				}
+				notify(ctx, formatAuthUsers(listed));
+				return;
+			}
+			notify(ctx, "Usage: /supabase [status|projects|tables|users]");
+		} catch (error) {
+			const message = error instanceof Error ? error.message : String(error);
+			notify(ctx, message, "error");
+		}
+	}
+
 	async function handleShipKind(kind: "pr" | "review" | "merge", args: string, ctx: ExtensionContext): Promise<void> {
 		const { cmd, rest } = parseShipArgs(kind, args);
 		try {
@@ -434,6 +533,10 @@ export default function allInOne(pi: ExtensionAPI): void {
 			await handleLsp(rest, ctx);
 			return;
 		}
+		if (cmd === "supabase") {
+			await handleSupabase(rest, ctx);
+			return;
+		}
 		if (cmd === "pr" || cmd === "review" || cmd === "merge") {
 			await handleShipKind(cmd, rest, ctx);
 			return;
@@ -506,6 +609,12 @@ export default function allInOne(pi: ExtensionAPI): void {
 		handler: handleLsp,
 	});
 
+	pi.registerCommand("supabase", {
+		description: "Supabase databases and auth",
+		getArgumentCompletions: (prefix) => filterNamed(prefix, SUPABASE_COMPLETIONS),
+		handler: handleSupabase,
+	});
+
 	pi.registerCommand("aio", {
 		description: "All-in-one plugin commands",
 		getArgumentCompletions: (prefix) => {
@@ -517,6 +626,8 @@ export default function allInOne(pi: ExtensionAPI): void {
 			if (think) return filterNamed(think[1] ?? "", THINK_COMPLETIONS);
 			const lspArgs = prefix.trimStart().match(/^lsp(?:\s+|$)(.*)$/i);
 			if (lspArgs) return filterNamed(lspArgs[1] ?? "", LSP_COMPLETIONS);
+			const supabaseArgs = prefix.trimStart().match(/^supabase(?:\s+|$)(.*)$/i);
+			if (supabaseArgs) return filterNamed(supabaseArgs[1] ?? "", SUPABASE_COMPLETIONS);
 			const pr = prefix.trimStart().match(/^pr(?:\s+|$)(.*)$/i);
 			if (pr) return filterNamed(pr[1] ?? "", PR_COMPLETIONS);
 			const nested = prefix.trimStart().match(/^uplift(?:\s+|$)(.*)$/i);
@@ -530,6 +641,7 @@ export default function allInOne(pi: ExtensionAPI): void {
 				{ value: "pr", label: "pr — GitHub pull requests" },
 				{ value: "review", label: "review — Greptile code review" },
 				{ value: "merge", label: "merge — Greptile-gated squash merge" },
+				{ value: "supabase", label: "supabase — databases and auth" },
 			]);
 		},
 		handler: handleCommand,
@@ -582,6 +694,9 @@ export default function allInOne(pi: ExtensionAPI): void {
 			}
 			if (config.lsp.enabled) {
 				notify(ctx, "Live LSP on — diagnostics steer the session.");
+			}
+			if (config.supabase.enabled) {
+				notify(ctx, "Supabase on — databases and auth via /supabase");
 			}
 		}
 		if (!greptileSignedOutNotified) {
