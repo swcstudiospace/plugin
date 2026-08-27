@@ -1,4 +1,4 @@
-import { DEFAULT_BOARD_NAME, type BoardSnapshot, type SyncResult, type TissueIssue } from "./types.ts";
+import { DEFAULT_BOARD_NAME, type BoardSnapshot, type GraphSyncResult, type SyncResult, type TissueIssue } from "./types.ts";
 
 const HUD_MAX_LINES = 8;
 
@@ -45,4 +45,24 @@ export function formatBoardList(snap: BoardSnapshot): string {
 		}
 	}
 	return lines.join("\n");
+}
+
+export function formatIssueAddendum(tree?: GraphSyncResult): string {
+	const lines = [
+		"## Issue tracking",
+		"",
+		"Execute the Tissue tree: one parent plus one sub-issue per graph node, in dependency order. Persist with git add issues/; do not run gh issue create. Do not reprint the issue files.",
+	];
+	if (tree) {
+		lines.push("", `parent ${tree.parent.issue.id} ${tree.parent.issue.title}`);
+		for (const child of tree.children) {
+			const tagged = /^\[([^\]]+)\]\s*(.*)$/.exec(child.issue.title);
+			if (tagged) {
+				lines.push(`child ${child.issue.id} [${tagged[1]}] ${tagged[2]}`);
+			} else {
+				lines.push(`child ${child.issue.id} ${child.issue.title}`);
+			}
+		}
+	}
+	return `${lines.join("\n")}\n`;
 }

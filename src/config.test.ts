@@ -5,6 +5,7 @@ import { join } from "node:path";
 import { defaultConfig, loadConfig } from "./config.ts";
 import { DEFAULT_BOARD_NAME } from "./issues/types.ts";
 import { DEFAULT_LSP_CONFIG } from "./lsp/types.ts";
+import { DEFAULT_POD_CONFIG } from "./pod/types.ts";
 
 const ISSUES = {
 	enabled: true,
@@ -17,6 +18,7 @@ const GITHUB = { org: "swcstudiospace", autoPr: true };
 const GREPTILE = { requiredForMerge: true, bin: "greptile", minConfidence: 5 };
 const SUPABASE = { enabled: true };
 const LSP = DEFAULT_LSP_CONFIG;
+const POD = DEFAULT_POD_CONFIG;
 
 const prevDir = process.env.PI_CODING_AGENT_DIR;
 const tempDirs: string[] = [];
@@ -49,6 +51,7 @@ describe("loadConfig", () => {
 			greptile: GREPTILE,
 			supabase: SUPABASE,
 			lsp: LSP,
+			pod: POD,
 		});
 	});
 
@@ -71,6 +74,7 @@ describe("loadConfig", () => {
 			greptile: GREPTILE,
 			supabase: SUPABASE,
 			lsp: LSP,
+			pod: POD,
 		});
 
 		withAgentDir(JSON.stringify({ uplift: { maxChars: 50 } }));
@@ -82,6 +86,7 @@ describe("loadConfig", () => {
 			greptile: GREPTILE,
 			supabase: SUPABASE,
 			lsp: LSP,
+			pod: POD,
 		});
 
 		withAgentDir(JSON.stringify({ uplift: { skipTrivial: false, extra: true }, ignored: 1 }));
@@ -93,6 +98,7 @@ describe("loadConfig", () => {
 			greptile: GREPTILE,
 			supabase: SUPABASE,
 			lsp: LSP,
+			pod: POD,
 		});
 	});
 
@@ -111,6 +117,7 @@ describe("loadConfig", () => {
 			greptile: GREPTILE,
 			supabase: SUPABASE,
 			lsp: LSP,
+			pod: POD,
 		});
 	});
 
@@ -124,6 +131,7 @@ describe("loadConfig", () => {
 			greptile: GREPTILE,
 			supabase: SUPABASE,
 			lsp: LSP,
+			pod: POD,
 		});
 
 		withAgentDir(JSON.stringify({ issues: { boardName: "  Other Board  ", ktuiBin: "/bin/ktui" } }));
@@ -145,6 +153,23 @@ describe("loadConfig", () => {
 		expect(loadConfig().think).toEqual({ ...THINK, enabled: false });
 		withAgentDir(JSON.stringify({ think: { maxNodes: 5 } }));
 		expect(loadConfig().think).toEqual({ enabled: true, minNodes: 3, maxNodes: 5 });
+	});
+
+	test("pod extraDirs merge from JSON", () => {
+		withAgentDir(JSON.stringify({ pod: { extraDirs: ["tmp", "", "cache", 1, "notes"] } }));
+		expect(loadConfig().pod).toEqual({
+			...POD,
+			extraDirs: ["tmp", "cache", "notes"],
+		});
+	});
+
+	test("pod readyTimeoutMs and dteeUrl merge from JSON", () => {
+		withAgentDir(JSON.stringify({ pod: { readyTimeoutMs: 1000, dteeUrl: "http://example:9" } }));
+		expect(loadConfig().pod).toEqual({
+			...POD,
+			readyTimeoutMs: 1000,
+			dteeUrl: "http://example:9",
+		});
 	});
 
 });

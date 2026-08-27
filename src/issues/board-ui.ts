@@ -1,4 +1,5 @@
 import type { Component } from "@oh-my-pi/pi-tui";
+import { paint, type PaintTheme } from "../ui/paint.ts";
 import type { BoardSnapshot } from "./types.ts";
 
 function clip(text: string, width: number): string {
@@ -11,6 +12,7 @@ function clip(text: string, width: number): string {
 export function createBoardComponent(
 	snap: BoardSnapshot,
 	done: (result: "close") => void,
+	theme?: PaintTheme,
 ): Component {
 	let closed = false;
 
@@ -22,14 +24,16 @@ export function createBoardComponent(
 
 	return {
 		render(width: number): readonly string[] {
-			const lines: string[] = [clip(snap.boardName, width), ""];
+			const title = clip(snap.boardName, width);
+			const lines: string[] = [theme ? paint(theme, "accent", title) : title, ""];
 			const columns = snap.columns
 				.filter((column) => column.visible)
 				.sort((a, b) => a.position - b.position);
 
 			for (const column of columns) {
 				const tasks = snap.tasks.filter((task) => task.column === column.column_id);
-				lines.push(clip(`${column.name} (${column.count})`, width));
+				const header = clip(`${column.name} (${column.count})`, width);
+				lines.push(theme ? paint(theme, "borderMuted", header) : header);
 				if (tasks.length === 0) {
 					lines.push(clip("  (empty)", width));
 				} else {

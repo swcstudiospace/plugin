@@ -1,9 +1,10 @@
 import { afterEach, describe, expect, test } from "bun:test";
-import { mkdtempSync, readFileSync, rmSync } from "node:fs";
+import { mkdtempSync, readdirSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import type { ThoughtGraph } from "../think/types.ts";
 import type { KtuiRunner } from "./kanban.ts";
-import { refreshSnapshot, syncAllIssues, trackUpliftedPrompt } from "./track.ts";
+import { refreshSnapshot, syncAllIssues, trackThoughtGraph, trackUpliftedPrompt, workUnitId } from "./track.ts";
 import { DEFAULT_BOARD_NAME } from "./types.ts";
 
 const tempDirs: string[] = [];
@@ -144,5 +145,127 @@ describe("refreshSnapshot", () => {
 		const snap = await refreshSnapshot(run, DEFAULT_BOARD_NAME);
 		expect(snap?.boardId).toBe(1);
 		expect(snap?.boardName).toBe(DEFAULT_BOARD_NAME);
+	});
+});
+
+function mdFiles(root: string): string[] {
+	return readdirSync(join(root, "issues")).filter((name) => name.endsWith(".md"));
+}
+
+function graphOfThree(): ThoughtGraph {
+	return {
+		goal: "Ship the widget",
+		nodes: [
+			{ id: "n1", title: "Understand", kind: "understand", question: "What is asked?", dependsOn: [] },
+			{ id: "n2", title: "Decompose", kind: "decompose", question: "What are the parts?", dependsOn: ["n1"] },
+			{ id: "n3", title: "Plan", kind: "synthesize", question: "What is the plan?", dependsOn: ["n2"] },
+		],
+	};
+}
+
+function boardRunner(): KtuiRunner & { calls: string[][]; tasks: Array<{ task_id: number; title: string; column: number; description: string }> } {
+	const tasks: Array<{ task_id: number; title: string; column: number; description: string }> = [];
+	let nextId = 1;
+	const run = mockRunner((argv) => {
+		if (argv[0] === "board" && argv[1] === "list") return { stdout: BOARD_JSON };
+		if (argv[0] === "task" && argv[1] === "list") {
+			return { stdout: tasks.length > 0 ? JSON.stringify(tasks) : "No tasks created yet." };
+		}
+		if (argv[0] === "task" && argv[1] === "create") {
+			const desc = argv[argv.indexOf("--description") + 1] ?? "";
+			const taskId = nextId++;
+			tasks.push({ task_id: taskId, title: String(argv[2]), column: 1, description: desc });
+			return { stdout: `Created task \`${argv[2]}\` with task_id = ${taskId}.` };
+		}
+		throw new Error(`unexpected ${argv.join(" ")}`);
+	});
+	return Object.assign(run, { tasks });
+}
+
+describe("workUnitId", () => {
+	test("stable for same original, different originals differ", () => {
+		const a = workUnitId("Ship the widget\n\nPlease implement.");
+		const b = workUnitId("Ship the widget\n\nPlease implement.");
+		const c = workUnitId("Other prompt");
+		expect(a).toBe(b);
+		expect(a).not.toBe(c);
+		expect(a.startsWith("ship-the-widget-")).toBe(true);
+		expect(a.split("-").at(-1)?.length).toBe(8);
+	});
+});
+
+describe("trackThoughtGraph", () => {
+	test("3-node graph creates parent plus children with markers", async () => {
+		const root = tmp();
+		const run = boardRunner();
+		const original = "Ship the widget\n\nPlease implement the widget.";
+		const graph = graphOfThree();
+		const result = await trackThoughtGraph({
+			root,
+			original,
+			graph,
+			run,
+			boardName: DEFAULT_BOARD_NAME,
+		});
+		expect(mdFiles(root)).toHaveLength(4);
+		expect(result.workUnitId).toBe(workUnitId(original));
+		expect(result.parent.created).toBe(true);
+		expect(result.children).toHaveLength(3);
+		expect(result.children.every((child) => child.created)).toBe(true);
+		const parentMd = readFileSync(result.parent.issue.path, "utf8");
+		expect(parentMd).toContain(`<!-- aio-id: ${result.workUnitId} -->`);
+		expect(parentMd).toContain("| id | title | kind | deps | child |");
+		for (const child of result.children) {
+			expect(parentMd).toContain(child.issue.id);
+			const childMd = readFileSync(child.issue.path, "utf8");
+			expect(childMd).toMatch(new RegExp(`<!-- aio-id: ${result.workUnitId}/n[123] -->`));
+			expect(childMd).toContain(`parent: ${result.parent.issue.id}`);
+		}
+		expect(run.calls.filter((argv) => argv[0] === "task" && argv[1] === "create")).toHaveLength(4);
+	});
+
+	test("second trackThoughtGraph is idempotent and skips sync", async () => {
+		const root = tmp();
+		const run = boardRunner();
+		const original = "Ship the widget";
+		const graph = graphOfThree();
+		const first = await trackThoughtGraph({
+			root,
+			original,
+			graph,
+			run,
+			boardName: DEFAULT_BOARD_NAME,
+		});
+		expect(mdFiles(root)).toHaveLength(4);
+		const second = await trackThoughtGraph({
+			root,
+			original,
+			graph,
+			run,
+			boardName: DEFAULT_BOARD_NAME,
+		});
+		expect(mdFiles(root)).toHaveLength(4);
+		expect(second.parent.issue.id).toBe(first.parent.issue.id);
+		expect(second.parent.skipped).toBe(true);
+		expect(second.parent.reason).toBe("already synced");
+		expect(second.children).toHaveLength(3);
+		expect(second.children.every((child) => child.skipped && child.reason === "already synced")).toBe(true);
+		expect(run.calls.filter((argv) => argv[0] === "task" && argv[1] === "create")).toHaveLength(4);
+	});
+
+	test("empty throwing run returns skipped parent and never throws", async () => {
+		const result = await trackThoughtGraph({
+			root: tmp(),
+			original: "",
+			graph: { goal: "", nodes: [] },
+			run: async () => {
+				throw new Error("ktui exploded");
+			},
+			boardName: DEFAULT_BOARD_NAME,
+		});
+		expect(result.parent.skipped).toBe(true);
+		expect(result.parent.created).toBe(false);
+		expect(result.parent.reason).toBe("ktui exploded");
+		expect(result.children).toHaveLength(0);
 	});
 });

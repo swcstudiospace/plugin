@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test";
-import { formatBoardHud, formatBoardList, formatIssueEcho, formatIssueList } from "./format.ts";
-import type { BoardSnapshot, KanbanColumn, SyncResult, TissueIssue } from "./types.ts";
+import { formatBoardHud, formatBoardList, formatIssueAddendum, formatIssueEcho, formatIssueList } from "./format.ts";
+import type { BoardSnapshot, GraphSyncResult, KanbanColumn, SyncResult, TissueIssue } from "./types.ts";
 
 function issue(init?: Partial<TissueIssue>): TissueIssue {
 	return {
@@ -117,5 +117,30 @@ describe("formatBoardList", () => {
 		expect(text).toContain("  Sync board");
 		expect(text).toContain("Done (0)");
 		expect(text).not.toContain("Archive");
+	});
+});
+
+describe("formatIssueAddendum", () => {
+	test("mentions Tissue tree, graph nodes, and git add issues/", () => {
+		const text = formatIssueAddendum();
+		expect(text).toContain("Tissue");
+		expect(text).toContain("graph node");
+		expect(text).toContain("git add issues/");
+		expect(text).toContain("gh issue create");
+	});
+
+	test("lists parent and child when tree is passed", () => {
+		const tree: GraphSyncResult = {
+			workUnitId: "ship-the-widget-abcd1234",
+			parent: sync({ issue: issue({ id: "p1", title: "Ship the widget" }) }),
+			children: [
+				sync({ issue: issue({ id: "c1", title: "[n1] Understand" }) }),
+				sync({ issue: issue({ id: "c2", title: "[n2] Decompose" }) }),
+			],
+		};
+		const text = formatIssueAddendum(tree);
+		expect(text).toContain("parent p1 Ship the widget");
+		expect(text).toContain("child c1 [n1] Understand");
+		expect(text).toContain("child c2 [n2] Decompose");
 	});
 });

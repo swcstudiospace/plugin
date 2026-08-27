@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { parseShipArgs, PR_COMPLETIONS } from "./commands.ts";
+import { parseShipArgs, parseSupabaseArgs, PR_COMPLETIONS, SUPABASE_COMPLETIONS } from "./commands.ts";
 
 describe("parseShipArgs", () => {
 	test("pr default is list", () => {
@@ -34,5 +34,39 @@ describe("parseShipArgs", () => {
 describe("PR_COMPLETIONS", () => {
 	test("covers create and list", () => {
 		expect(PR_COMPLETIONS.map((item) => item.value)).toEqual(["create", "list"]);
+	});
+});
+
+describe("parseSupabaseArgs", () => {
+	test("empty args is status", () => {
+		expect(parseSupabaseArgs("")).toEqual({ cmd: "status", rest: "" });
+		expect(parseSupabaseArgs("   ")).toEqual({ cmd: "status", rest: "" });
+	});
+
+	test("known cmds and rest", () => {
+		expect(parseSupabaseArgs("status")).toEqual({ cmd: "status", rest: "" });
+		expect(parseSupabaseArgs("projects")).toEqual({ cmd: "projects", rest: "" });
+		expect(parseSupabaseArgs("tables")).toEqual({ cmd: "tables", rest: "" });
+		expect(parseSupabaseArgs("users")).toEqual({ cmd: "users", rest: "" });
+		expect(parseSupabaseArgs("STATUS extra")).toEqual({ cmd: "status", rest: "extra" });
+		expect(parseSupabaseArgs("PROJECTS prod")).toEqual({ cmd: "projects", rest: "prod" });
+		expect(parseSupabaseArgs("TABLES public")).toEqual({ cmd: "tables", rest: "public" });
+		expect(parseSupabaseArgs("USERS page 2")).toEqual({ cmd: "users", rest: "page 2" });
+	});
+
+	test("unknown kept as cmd", () => {
+		expect(parseSupabaseArgs("rpc")).toEqual({ cmd: "rpc", rest: "" });
+		expect(parseSupabaseArgs("RPC foo")).toEqual({ cmd: "rpc", rest: "foo" });
+	});
+});
+
+describe("SUPABASE_COMPLETIONS", () => {
+	test("covers status projects tables users", () => {
+		expect(SUPABASE_COMPLETIONS.map((item) => item.value)).toEqual([
+			"status",
+			"projects",
+			"tables",
+			"users",
+		]);
 	});
 });

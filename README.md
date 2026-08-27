@@ -13,6 +13,7 @@ omp plugin link /root/src/repos/plugin
 Confirm with `omp plugin list` — you should see `● omp-all-in-one@0.1.0`.
 
 Extension modules load at **session start**. `/reload-plugins` does not pick up `omp.extensions`. Quit omp and start a new session.
+TUI widgets (kanban, LSP section, uplift chrome) load the same way.
 
 One-off without a permanent install:
 
@@ -49,7 +50,7 @@ Skipped automatically: slash commands, trivial acknowledgements (`ok`, `lgtm`, �
 | `/aio` | Same as `/uplift` (plugin root command) |
 | `/aio uplift …` | Delegate to `/uplift` |
 | `/issues` | Issue tracking status / last Tissue → ktui sync |
-| `/kanban` | Overlay of the Spectrum Web Co board (not the Textual TUI) |
+| `/kanban` | Overlay of the Spectrum Web Co board (not the Textual `ktui` TUI) |
 | `/aio issues` | Same as `/issues` |
 | `/aio kanban` | Same as `/kanban` |
 | `/think` | Graph of Thought on / off / status / last |
@@ -63,10 +64,25 @@ Skipped automatically: slash commands, trivial acknowledgements (`ok`, `lgtm`, �
 | `/aio merge …` | Same as `/merge` |
 | `/aio think …` | Same as `/think` |
 | `/supabase` | `status` / `projects` / `tables` / `users` |
+| `/pod` | `status` / `up` / `connect` / `doctor` / `on` / `off` |
 
 Prefixes: `uplift:` force · `raw:` skip.
 
-Flags: `--aio-uplift-off` starts the session with uplift disabled. `--aio-issues-off` starts with issue tracking disabled. `--aio-think-off` starts with Graph of Thought disabled. `--aio-lsp-off` starts with Live LSP disabled.
+Flags: `--aio-uplift-off` starts the session with uplift disabled. `--aio-issues-off` starts with issue tracking disabled. `--aio-think-off` starts with Graph of Thought disabled. `--aio-lsp-off` starts with Live LSP disabled. `--aio-pod-off` starts with pod boot disabled.
+
+## TUI chrome
+
+Interactive OMP keeps persistent chrome around the editor (not a flash of working-message or default cards):
+
+- **Kanban** above the editor — themed columns with counts, up to three task titles, Last issue, and `/kanban`. Offline: accent title plus a warning `board offline`.
+- **Uplift chrome** (`aio-chrome`) above the editor — Uplift on/off and last root/source; Think on and node count; Tools idle or `▶ {tool}`; Pod connected / not connected / disabled; `Anda active` when the nexus probe succeeds.
+- **LSP section** below the editor — always visible. Shows `LSP clean` or an error/warning digest.
+
+Transcript cards are custom labeled Box + Text for `aio-uplift`, `aio-think`, `aio-issue`, and `aio-lsp`. Uplift shows `Prompt Uplift · root · source` plus the first lines of XML when expanded, not a raw dump.
+
+`/kanban` is still an overlay of the Spectrum Web Co board. That overlay is **not** the Textual `ktui` TUI — run `ktui` in another terminal for that.
+
+Chrome loads with `omp.extensions` at **session start**. Quit omp and open a new session after linking the plugin; `/reload-plugins` does not pick it up.
 
 ## Graph of Thought
 
@@ -74,13 +90,15 @@ After XML uplift, Graph of Thought (3–8 nodes) then sequential Chain of Though
 
 The agent receives the uplifted XML plus a `GRAPH_OF_THOUGHT` block with `THINKING` / `CONCLUSION` per node.
 
+When think produced a graph, the plugin writes **one parent** Tissue issue plus **one sub-issue per graph node** under `issues/`, then syncs each to Spectrum Web Co. Idempotent via `<!-- aio-id: … -->` markers — re-running the same prompt updates in place. Think off (or think failed) still writes **one** issue from the prompt.
+
 Commands: `/think` `on` | `off` | `status` | `last` (also `/aio think …`). Flag: `--aio-think-off`. Config: `think: { enabled, minNodes, maxNodes }` in `all-in-one.json`.
 
 `raw:` and `/uplift skip` still skip the whole pre-pass, including think.
 
 ## Live LSP
 
-Lazy stdio language servers feed diagnostics into the session. Fail-open: missing binaries stay disabled (no auto-install). Quiet when clean. Never blocks the agent.
+Lazy stdio language servers feed diagnostics into the session. Fail-open: missing binaries stay disabled (no auto-install). The **LSP section** below the editor always shows `LSP clean` or a digest. Never blocks the agent.
 
 | Language | Server (PATH) |
 |---|---|
@@ -156,6 +174,22 @@ Tools (text results, no tokens):
 
 `aio_status` also includes `supabase: { management, data }` booleans.
 
+## Pod boot (codespace)
+
+When `pod.enabled` is true (default **false**), **omp open** (`session_start`) boots an isolated DevPod codespace, then attaches:
+
+1. Create `pod.extraDirs` on load (relative paths resolve against session cwd).
+2. DevPod `up` (`devpod up <cwd> --id <workspaceId> --open-ide=false`). Exit 0 is **not** SSH-ready.
+3. Wait until ready (DevPod `startWait` equivalent): poll `devpod status <id> --output json` until `state`/`Status` is `Running` (Busy/empty: sleep `pollMs`, default 2s), then `devpod ssh <id> --command true` until exit 0. `connected` is true only after SSH works. Timeout `readyTimeoutMs` (default 300000 / 5 min); on timeout `connected` stays false and the reason includes "not ready".
+4. Anda Engine probe (`ANDA_NEXUS_URL` / `pod.nexusUrl`, default `http://127.0.0.1:8091`).
+5. dTEE probe — **ldclabs** (not iclabs) [IC-TEE](https://github.com/ldclabs/ic-tee) gateway reachability. `anda_web3_client` feature `tee` wraps `ic_tee_gateway_sdk` `TeeClient`. HTTP probe of `DTEE_GATEWAY_URL` || `IC_TEE_GATEWAY_URL` || `pod.dteeUrl` (default `http://127.0.0.1:8443`). Not an invented enclave. Missing daemon → `dtee: false`.
+
+File tools (`read`, `write`, `edit`, `grep` path, rooted `glob`) are jailed to the workspace plus those extra dirs. When the pod is connected, bash is rewritten to `` `${bin} ssh ${id} --command ${JSON.stringify(command)}` `` (`wrapBashCommand` quotes `--command`). Missing binary is fail-open: notify, still jail to cwd + extraDirs, no fake ssh.
+
+Child Ultrathink / swarm sessions (`PI_AIO_CHILD` / `PI_ULTRATHINK_CHILD`) do not boot a nested pod.
+
+Bin: `AIMEE_POD_BIN` || `pod.bin` || `devpod`. Nexus: `ANDA_NEXUS_URL` || `pod.nexusUrl` || `http://127.0.0.1:8091`. dTEE gateway: `DTEE_GATEWAY_URL` || `IC_TEE_GATEWAY_URL` || `pod.dteeUrl` || `http://127.0.0.1:8443`. Flag: `--aio-pod-off`. Commands: `/pod` `status` | `up` | `connect` | `doctor` | `on` | `off`. `/pod on` enables without booting. `/pod up` and `/pod connect` enable then `devpod up`. `/pod doctor` and `/pod status` live-probe DevPod (`version` / `list` / `status`) plus Anda and dTEE — they never call `up` or `ssh`. Failed boot still probes Anda so `engineActive` can be true while `connected` is false.
+
 ## Config
 
 `~/.omp/agent/all-in-one.json` (or `$PI_CODING_AGENT_DIR/all-in-one.json`). All keys optional.
@@ -193,13 +227,23 @@ Tools (text results, no tokens):
   },
   "lsp": {
     "enabled": true
+  },
+  "pod": {
+    "enabled": false,
+    "bin": "devpod",
+    "workspaceId": "",
+    "extraDirs": [],
+    "nexusUrl": "http://127.0.0.1:8091",
+    "dteeUrl": "http://127.0.0.1:8443",
+    "readyTimeoutMs": 300000,
+    "pollMs": 2000
   }
 }
 ```
 
 Prompts longer than `maxChars` skip the LLM and use fallback wrap. Set `echo` to `false` to hide the per-turn XML transcript (the agent still receives the rewrite; `/uplift last` still shows it). `raw:` and skip still skip the whole pre-pass, including Graph of Thought.
 
-`supabase.enabled` defaults to true. Unset env vars make tools return `missing_credentials`. `lsp.enabled` defaults to true. Missing language-server binaries stay disabled; nothing is auto-installed.
+`supabase.enabled` defaults to true. Unset env vars make tools return `missing_credentials`. `lsp.enabled` defaults to true. Missing language-server binaries stay disabled; nothing is auto-installed. `pod.enabled` defaults to false — only configured sessions pay `devpod up` on open. `/pod up` turns it on for the session. Missing DevPod is fail-open (notify, jail to cwd + extraDirs, no fake ssh). Codespace is not connected until `status --output json` is Running and `ssh --command true` succeeds (`readyTimeoutMs` default 5 min). `/pod doctor` reports Anda independently of the codespace. dTEE is an **ldclabs** IC-TEE gateway probe (`dtee: boolean`); missing daemon → `dtee: false`.
 
 ## Verify
 
@@ -210,23 +254,27 @@ bun test
 bun run check
 ```
 
-1. Start a **new** omp session. `/uplift` should autocomplete.
-2. Type a one-line feature request. The transcript should show `Prompt Uplift · …` plus the XML; the agent should receive that XML, not the one-liner.
+1. Start a **new** omp session. `/uplift` should autocomplete. Themed kanban and uplift chrome should sit above the editor; the LSP section below should show `LSP clean` or a digest.
+2. Type a one-line feature request. The transcript should show a custom `Prompt Uplift · …` card plus the XML; the agent should receive that XML, not the one-liner.
 3. `raw: do this exactly` should reach the agent un-uplifted.
 
 ## Issue tracking
 
 On session start in a git/project folder, the plugin ensures an `issues/` Tissue repo in **that folder** (session cwd) — not the plugin package unless you opened it. Marker is `issues/tissue.json`.
 
-Each uplifted prompt writes one markdown issue under `issues/`. Skipped, `raw:`, and trivial prompts do not.
+Each uplifted prompt with a Graph of Thought writes one parent markdown issue plus one child per graph node under `issues/`. Think off → one issue from the prompt. Skipped, `raw:`, and trivial prompts do not.
+
+Idempotent: `<!-- aio-id: {workUnitId} -->` on the parent and `<!-- aio-id: {workUnitId}/{node.id} -->` on each child. A re-run of the same prompt rewrites those files in place; it does not add extra `.md` files.
+
+`## Issue tracking` is attached on **every** agent start while a tree (or last issue) exists, so building stays on the board — not a one-shot addendum. Persist with `git add issues/`. Do not `gh issue create`.
 
 Issues sync to the existing ktui board **Spectrum Web Co** via the `ktui` CLI. Agent tools come from MCP `ktui mcp --start-server` (tool `mcp__ktui_ktui`). This plugin's `.mcp.json` starts that server; no `--scope`.
 
-OMP shows a HUD plus a `/kanban` overlay. That is **not** the real Textual TUI — run `ktui` in another terminal for that.
+OMP shows a themed kanban widget above the editor plus a `/kanban` overlay. That overlay is **not** the real Textual TUI — run `ktui` in another terminal for that. See **TUI chrome**.
 
-GitHub association is the `origin` remote URL stored on the issue (plus a category named `owner/repo`). Push later with `git add issues/` — this does not call `gh issue create`.
+GitHub association is the `origin` remote URL stored on the issue (plus a category named `owner/repo`).
 
-Commands: `/issues`, `/kanban` (also `/aio issues` / `/aio kanban`). Config: `issues` key in `all-in-one.json`. Flag: `--aio-issues-off`.
+Tools: `issues_status` (last parent id/title + child count; never secrets) / `issues_list`. Commands: `/issues`, `/kanban` (also `/aio issues` / `/aio kanban`). Config: `issues` key in `all-in-one.json`. Flag: `--aio-issues-off`.
 
 ## Hermes skills
 
