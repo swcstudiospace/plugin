@@ -289,3 +289,77 @@ export async function boardSnapshot(
 		return undefined;
 	}
 }
+
+export type BoardLane = "ready" | "doing" | "done";
+
+const LANE_INDEX: Record<BoardLane, number> = {
+	ready: 0,
+	doing: 1,
+	done: 2,
+};
+
+export async function resolveLaneColumn(
+	run: KtuiRunner,
+	boardId: number,
+	lane: BoardLane,
+): Promise<number | undefined> {
+	const columns = await listColumns(run, boardId);
+	const named = columns.find((column) => column.name.trim().toLowerCase() === lane);
+	if (named) return named.column_id;
+	const visible = columns.filter((column) => column.visible).sort((a, b) => a.position - b.position);
+	return visible[LANE_INDEX[lane]]?.column_id;
+}
+
+export async function moveTask(run: KtuiRunner, taskId: number, columnId: number): Promise<boolean> {
+	try {
+		const result = await run(["task", "move", String(taskId), String(columnId)]);
+		return result.code === 0;
+	} catch {
+		return false;
+	}
+}
+
+export async function moveTasksToLane(
+	run: KtuiRunner,
+	taskIds: number[],
+	lane: BoardLane,
+	boardName?: string,
+): Promise<{ moved: number; skipped: number; reason?: string }> {
+	const ids: number[] = [];
+	const seen = new Set<number>();
+	for (const id of taskIds) {
+		if (!Number.isFinite(id) || id <= 0 || seen.has(id)) continue;
+		seen.add(id);
+		ids.push(id);
+	}
+	if (ids.length === 0) return { moved: 0, skipped: 0 };
+
+	try {
+		const { boardId } = await ensureBoard(run, boardName ?? DEFAULT_BOARD_NAME);
+		await run(["board", "activate", String(boardId)]).catch(() => undefined);
+
+		const columnId = await resolveLaneColumn(run, boardId, lane);
+		if (columnId === undefined) {
+			return { moved: 0, skipped: ids.length, reason: "lane column unresolved" };
+		}
+
+		const tasks = await listTasks(run, boardId);
+		const byId = new Map(tasks.map((task) => [task.task_id, task]));
+		let moved = 0;
+		let skipped = 0;
+		for (const id of ids) {
+			const task = byId.get(id);
+			if (!task || task.column === columnId) {
+				skipped += 1;
+				continue;
+			}
+			if (await moveTask(run, id, columnId)) moved += 1;
+			else skipped += 1;
+		}
+		return { moved, skipped };
+	} catch (error) {
+		const reason = error instanceof Error ? error.message : String(error);
+		return { moved: 0, skipped: ids.length, reason };
+	}
+}
+
