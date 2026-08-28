@@ -354,7 +354,8 @@ describe("advanceTrackedIssues", () => {
 			last: fakeSync(1),
 		});
 		expect(result.moved).toBe(0);
-		expect(result.skipped).toBe(0);
+		expect(result.skipped).toBe(1);
+		expect(result.reason).toBe("ktui exploded");
 	});
 });
 
