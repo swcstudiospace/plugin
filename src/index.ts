@@ -30,7 +30,7 @@ import {
 import { resolveGithub } from "./issues/github.ts";
 import { defaultKtuiRunner } from "./issues/kanban.ts";
 import { ensureRepo, listIssues } from "./issues/tissue.ts";
-import { refreshSnapshot, syncAllIssues, trackThoughtGraph, trackUpliftedPrompt } from "./issues/track.ts";
+import { createBoardLaneController, isTerminalAgentEnd, refreshSnapshot, syncAllIssues, trackThoughtGraph, trackUpliftedPrompt } from "./issues/track.ts";
 import { registerIssueTools } from "./issues/tools.ts";
 import { importedSkillCount } from "./skills/import.ts";
 import type { GraphSyncResult, IssueTrackState, SyncResult } from "./issues/types.ts";
@@ -171,10 +171,21 @@ export default function allInOne(pi: ExtensionAPI): void {
 	};
 	const issueState: IssueTrackState = { enabled: config.issues.enabled };
 	const run = defaultKtuiRunner(config.issues.ktuiBin);
+	let hudCtx: ExtensionContext | undefined;
 	let lastResult: UpliftResult | undefined;
 	let injectAddendum = false;
 	let injectIssueAddendum = false;
 	let issueTree: GraphSyncResult | undefined;
+	const boardLanes = createBoardLaneController({
+		run,
+		boardName: () => config.issues.boardName,
+		enabled: () => issueState.enabled,
+		tree: () => issueTree,
+		last: () => issueState.last,
+		onMoved: async () => {
+			if (hudCtx) await refreshHud(hudCtx);
+		},
+	});
 	let sessionCwd = process.cwd();
 	const thinkState = { enabled: config.think.enabled };
 	let lastGraph: ThoughtGraph | undefined;
@@ -804,6 +815,7 @@ export default function allInOne(pi: ExtensionAPI): void {
 	});
 
 	pi.on("session_start", async (event, ctx) => {
+		hudCtx = ctx;
 		sessionCwd = ctx.cwd;
 		applyFlag();
 		lsp.setCwd(ctx.cwd);
@@ -892,6 +904,7 @@ export default function allInOne(pi: ExtensionAPI): void {
 	});
 
 	pi.on("input", async (event, ctx) => {
+		hudCtx = ctx;
 		const idle = typeof ctx.isIdle === "function" ? ctx.isIdle() : true;
 		const decision = decideUplift(
 			{
@@ -1015,6 +1028,7 @@ export default function allInOne(pi: ExtensionAPI): void {
 	});
 
 	pi.on("before_agent_start", (event) => {
+		boardLanes.onAgentStart();
 		let lspDigest = "";
 		if (config.lsp.enabled) {
 			try {
@@ -1120,7 +1134,13 @@ export default function allInOne(pi: ExtensionAPI): void {
 	});
 
 
-	pi.on("turn_end", () => {
+	pi.on("agent_end", (event, ctx) => {
+		if (ctx) hudCtx = ctx;
+		if (isTerminalAgentEnd(event)) boardLanes.onAgentEnd();
+	});
+
+	pi.on("turn_end", (event, ctx) => {
+		if (ctx) hudCtx = ctx;
 		try {
 			const digest = lsp.shouldInjectParent();
 			if (digest) injectLspNote(pi, digest);
