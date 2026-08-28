@@ -1,8 +1,8 @@
 import { createHash } from "node:crypto";
 import { writeFileSync } from "node:fs";
 import type { ThoughtGraph, ThoughtNode } from "../think/types.ts";
-import type { KtuiRunner } from "./kanban.ts";
-import { boardSnapshot, syncIssue } from "./kanban.ts";
+import type { BoardLane, KtuiRunner } from "./kanban.ts";
+import { boardSnapshot, moveTasksToLane, syncIssue } from "./kanban.ts";
 import { createIssue, ensureRepo, formatIssueBody, issueLinks, listIssues, parseIssueFile } from "./tissue.ts";
 import type { BoardSnapshot, GithubAssoc, GraphSyncResult, SyncResult, TissueIssue } from "./types.ts";
 
@@ -292,4 +292,81 @@ export async function syncAllIssues(
 		}
 	}
 	return results;
+}
+
+export function trackedTaskIds(tree?: GraphSyncResult, last?: SyncResult): number[] {
+	const ids: number[] = [];
+	const seen = new Set<number>();
+	const candidates: Array<number | null | undefined> = [];
+	if (tree) {
+		candidates.push(tree.parent.taskId);
+		for (const child of tree.children) candidates.push(child.taskId);
+	}
+	if (last) candidates.push(last.taskId);
+	for (const taskId of candidates) {
+		if (taskId == null || !Number.isFinite(taskId) || taskId <= 0 || seen.has(taskId)) continue;
+		seen.add(taskId);
+		ids.push(taskId);
+	}
+	return ids;
+}
+
+export async function advanceTrackedIssues(opts: {
+	run: KtuiRunner;
+	boardName: string;
+	lane: BoardLane;
+	tree?: GraphSyncResult;
+	last?: SyncResult;
+}): Promise<{ moved: number; skipped: number; reason?: string }> {
+	try {
+		return await moveTasksToLane(opts.run, trackedTaskIds(opts.tree, opts.last), opts.lane, opts.boardName);
+	} catch (error) {
+		const reason = error instanceof Error ? error.message : String(error);
+		return { moved: 0, skipped: 0, reason };
+	}
+}
+
+export function createBoardLaneController(opts: {
+	run: KtuiRunner;
+	boardName: () => string;
+	enabled: () => boolean;
+	tree: () => GraphSyncResult | undefined;
+	last: () => SyncResult | undefined;
+	onMoved?: () => void | Promise<void>;
+}): {
+	onAgentStart: () => void;
+	onTurnEnd: () => void;
+	pending: () => Promise<void>;
+} {
+	let agentRan = false;
+	let chain: Promise<void> = Promise.resolve();
+
+	const enqueue = (lane: BoardLane): void => {
+		chain = chain
+			.then(async () => {
+				await advanceTrackedIssues({
+					run: opts.run,
+					boardName: opts.boardName(),
+					lane,
+					tree: opts.tree(),
+					last: opts.last(),
+				});
+				await opts.onMoved?.();
+			})
+			.catch(() => {});
+	};
+
+	return {
+		onAgentStart: () => {
+			if (!opts.enabled()) return;
+			agentRan = true;
+			enqueue("doing");
+		},
+		onTurnEnd: () => {
+			if (!agentRan) return;
+			agentRan = false;
+			enqueue("done");
+		},
+		pending: () => chain,
+	};
 }

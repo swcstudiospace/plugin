@@ -4,8 +4,17 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import type { ThoughtGraph } from "../think/types.ts";
 import type { KtuiRunner } from "./kanban.ts";
-import { refreshSnapshot, syncAllIssues, trackThoughtGraph, trackUpliftedPrompt, workUnitId } from "./track.ts";
-import { DEFAULT_BOARD_NAME } from "./types.ts";
+import {
+	advanceTrackedIssues,
+	createBoardLaneController,
+	refreshSnapshot,
+	syncAllIssues,
+	trackedTaskIds,
+	trackThoughtGraph,
+	trackUpliftedPrompt,
+	workUnitId,
+} from "./track.ts";
+import { DEFAULT_BOARD_NAME, type GraphSyncResult, type SyncResult } from "./types.ts";
 
 const tempDirs: string[] = [];
 
@@ -166,8 +175,15 @@ function graphOfThree(): ThoughtGraph {
 function boardRunner(): KtuiRunner & { calls: string[][]; tasks: Array<{ task_id: number; title: string; column: number; description: string }> } {
 	const tasks: Array<{ task_id: number; title: string; column: number; description: string }> = [];
 	let nextId = 1;
+	const columns = [
+		{ column_id: 1, name: "Ready", visible: true, position: 1, board_id: 1 },
+		{ column_id: 2, name: "Doing", visible: true, position: 2, board_id: 1 },
+		{ column_id: 3, name: "Done", visible: true, position: 3, board_id: 1 },
+	];
 	const run = mockRunner((argv) => {
 		if (argv[0] === "board" && argv[1] === "list") return { stdout: BOARD_JSON };
+		if (argv[0] === "board" && argv[1] === "activate") return { stdout: "" };
+		if (argv[0] === "column" && argv[1] === "list") return { stdout: JSON.stringify(columns) };
 		if (argv[0] === "task" && argv[1] === "list") {
 			return { stdout: tasks.length > 0 ? JSON.stringify(tasks) : "No tasks created yet." };
 		}
@@ -176,6 +192,13 @@ function boardRunner(): KtuiRunner & { calls: string[][]; tasks: Array<{ task_id
 			const taskId = nextId++;
 			tasks.push({ task_id: taskId, title: String(argv[2]), column: 1, description: desc });
 			return { stdout: `Created task \`${argv[2]}\` with task_id = ${taskId}.` };
+		}
+		if (argv[0] === "task" && argv[1] === "move") {
+			const taskId = Number(argv[2]);
+			const columnId = Number(argv[3]);
+			const task = tasks.find((item) => item.task_id === taskId);
+			if (task) task.column = columnId;
+			return { stdout: "" };
 		}
 		throw new Error(`unexpected ${argv.join(" ")}`);
 	});
@@ -267,5 +290,146 @@ describe("trackThoughtGraph", () => {
 		expect(result.parent.created).toBe(false);
 		expect(result.parent.reason).toBe("ktui exploded");
 		expect(result.children).toHaveLength(0);
+	});
+});
+
+function fakeSync(taskId: number | null): SyncResult {
+	return {
+		issue: { id: "i", title: "t", description: "", path: "", fileName: "" },
+		taskId,
+		boardId: 1,
+		categoryId: null,
+		created: false,
+		skipped: false,
+	};
+}
+
+describe("trackedTaskIds", () => {
+	test("dedupes parent+children+last and ignores null/0", () => {
+		const tree: GraphSyncResult = {
+			workUnitId: "unit",
+			parent: fakeSync(10),
+			children: [fakeSync(11), fakeSync(10), fakeSync(null), fakeSync(0)],
+		};
+		expect(trackedTaskIds(tree, fakeSync(12))).toEqual([10, 11, 12]);
+		expect(trackedTaskIds(tree, fakeSync(10))).toEqual([10, 11]);
+		expect(trackedTaskIds(undefined, fakeSync(0))).toEqual([]);
+		expect(trackedTaskIds(undefined, fakeSync(null))).toEqual([]);
+		expect(trackedTaskIds()).toEqual([]);
+	});
+});
+
+describe("advanceTrackedIssues", () => {
+	test("doing moves all tree task ids to column 2", async () => {
+		const root = tmp();
+		const run = boardRunner();
+		const tree = await trackThoughtGraph({
+			root,
+			original: "Ship the widget",
+			graph: graphOfThree(),
+			run,
+			boardName: DEFAULT_BOARD_NAME,
+		});
+		const ids = trackedTaskIds(tree);
+		expect(ids).toHaveLength(4);
+		const result = await advanceTrackedIssues({
+			run,
+			boardName: DEFAULT_BOARD_NAME,
+			lane: "doing",
+			tree,
+		});
+		expect(result.moved).toBe(4);
+		for (const id of ids) {
+			expect(run.tasks.find((task) => task.task_id === id)?.column).toBe(2);
+		}
+	});
+
+	test("never throws", async () => {
+		const result = await advanceTrackedIssues({
+			run: async () => {
+				throw new Error("ktui exploded");
+			},
+			boardName: DEFAULT_BOARD_NAME,
+			lane: "doing",
+			last: fakeSync(1),
+		});
+		expect(result.moved).toBe(0);
+		expect(result.skipped).toBe(0);
+	});
+});
+
+describe("createBoardLaneController", () => {
+	test("onAgentStart then onTurnEnd moves doing before done", async () => {
+		const root = tmp();
+		const run = boardRunner();
+		const tree = await trackThoughtGraph({
+			root,
+			original: "Ship the widget",
+			graph: graphOfThree(),
+			run,
+			boardName: DEFAULT_BOARD_NAME,
+		});
+		const controller = createBoardLaneController({
+			run,
+			boardName: () => DEFAULT_BOARD_NAME,
+			enabled: () => true,
+			tree: () => tree,
+			last: () => undefined,
+		});
+		controller.onAgentStart();
+		await controller.pending();
+		for (const id of trackedTaskIds(tree)) {
+			expect(run.tasks.find((task) => task.task_id === id)?.column).toBe(2);
+		}
+		controller.onTurnEnd();
+		await controller.pending();
+		for (const id of trackedTaskIds(tree)) {
+			expect(run.tasks.find((task) => task.task_id === id)?.column).toBe(3);
+		}
+		const moves = run.calls.filter((argv) => argv[0] === "task" && argv[1] === "move");
+		const lastDoing = moves.reduce((idx, argv, i) => (argv[3] === "2" ? i : idx), -1);
+		const firstDone = moves.findIndex((argv) => argv[3] === "3");
+		expect(lastDoing).toBeGreaterThanOrEqual(0);
+		expect(firstDone).toBeGreaterThan(lastDoing);
+	});
+
+	test("onTurnEnd without onAgentStart does not move tasks", async () => {
+		const root = tmp();
+		const run = boardRunner();
+		const tree = await trackThoughtGraph({
+			root,
+			original: "Ship the widget",
+			graph: graphOfThree(),
+			run,
+			boardName: DEFAULT_BOARD_NAME,
+		});
+		const controller = createBoardLaneController({
+			run,
+			boardName: () => DEFAULT_BOARD_NAME,
+			enabled: () => true,
+			tree: () => tree,
+			last: () => undefined,
+		});
+		controller.onTurnEnd();
+		await controller.pending();
+		expect(run.calls.filter((argv) => argv[0] === "task" && argv[1] === "move")).toHaveLength(0);
+		for (const task of run.tasks) expect(task.column).toBe(1);
+	});
+
+	test("enabled false makes no ktui calls", async () => {
+		const run = mockRunner(() => {
+			throw new Error("unexpected ktui");
+		});
+		const controller = createBoardLaneController({
+			run,
+			boardName: () => DEFAULT_BOARD_NAME,
+			enabled: () => false,
+			tree: () => undefined,
+			last: () => fakeSync(9),
+		});
+		controller.onAgentStart();
+		controller.onTurnEnd();
+		await controller.pending();
+		expect(run.calls).toHaveLength(0);
 	});
 });
