@@ -268,7 +268,7 @@ Idempotent: `<!-- aio-id: {workUnitId} -->` on the parent and `<!-- aio-id: {wor
 
 `## Issue tracking` is attached on **every** agent start while a tree (or last issue) exists, so building stays on the board — not a one-shot addendum. Persist with `git add issues/`. Do not `gh issue create`.
 
-Issues sync to the existing ktui board **Spectrum Web Co** via the `ktui` CLI. Agent tools come from MCP `ktui mcp --start-server` (tool `mcp__ktui_ktui`). This plugin's `.mcp.json` starts that server; no `--scope`.
+Issues sync to the existing ktui board **Spectrum Web Co** via the `ktui` CLI. The plugin moves the current work-unit cards Ready → Doing when the agent starts and Doing → Done when that turn ends. Agent tools come from MCP `ktui mcp --start-server` (tool `mcp__ktui_ktui`). This plugin's `.mcp.json` starts that server; no `--scope`.
 
 OMP shows a themed kanban widget above the editor plus a `/kanban` overlay. That overlay is **not** the real Textual TUI — run `ktui` in another terminal for that. See **TUI chrome**.
 
