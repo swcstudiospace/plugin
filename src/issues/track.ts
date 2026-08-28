@@ -326,6 +326,10 @@ export async function advanceTrackedIssues(opts: {
 	}
 }
 
+export function isTerminalAgentEnd(event: { willContinue?: boolean }): boolean {
+	return event.willContinue !== true;
+}
+
 export function createBoardLaneController(opts: {
 	run: KtuiRunner;
 	boardName: () => string;
@@ -335,7 +339,7 @@ export function createBoardLaneController(opts: {
 	onMoved?: () => void | Promise<void>;
 }): {
 	onAgentStart: () => void;
-	onTurnEnd: () => void;
+	onAgentEnd: () => void;
 	pending: () => Promise<void>;
 } {
 	let agentRan = false;
@@ -362,7 +366,7 @@ export function createBoardLaneController(opts: {
 			agentRan = true;
 			enqueue("doing");
 		},
-		onTurnEnd: () => {
+		onAgentEnd: () => {
 			if (!agentRan) return;
 			agentRan = false;
 			enqueue("done");

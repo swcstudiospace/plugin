@@ -237,14 +237,30 @@ describe("resolveLaneColumn", () => {
 		expect(await resolveLaneColumn(run, 1, "done")).toBe(30);
 	});
 
-	test("falls back to position when names are Backlog/Wip/Complete", async () => {
+	test("returns undefined when names are not Ready/Doing/Done", async () => {
 		const run = mockRunner((argv) => {
 			if (argv[0] === "column" && argv[1] === "list") return { stdout: POSITION_COLUMN_JSON };
 			throw new Error(`unexpected ${argv.join(" ")}`);
 		});
-		expect(await resolveLaneColumn(run, 1, "ready")).toBe(4);
-		expect(await resolveLaneColumn(run, 1, "doing")).toBe(5);
-		expect(await resolveLaneColumn(run, 1, "done")).toBe(6);
+		expect(await resolveLaneColumn(run, 1, "ready")).toBeUndefined();
+		expect(await resolveLaneColumn(run, 1, "doing")).toBeUndefined();
+		expect(await resolveLaneColumn(run, 1, "done")).toBeUndefined();
+	});
+
+	test("does not resolve done to Archive by position", async () => {
+		const run = mockRunner((argv) => {
+			if (argv[0] === "column" && argv[1] === "list") {
+				return {
+					stdout: JSON.stringify([
+						{ column_id: 1, name: "Backlog", visible: true, position: 1, board_id: 1 },
+						{ column_id: 2, name: "Wip", visible: true, position: 2, board_id: 1 },
+						{ column_id: 3, name: "Archive", visible: true, position: 3, board_id: 1 },
+					]),
+				};
+			}
+			throw new Error(`unexpected ${argv.join(" ")}`);
+		});
+		expect(await resolveLaneColumn(run, 1, "done")).toBeUndefined();
 	});
 });
 

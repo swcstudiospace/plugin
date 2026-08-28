@@ -7,6 +7,7 @@ import type { KtuiRunner } from "./kanban.ts";
 import {
 	advanceTrackedIssues,
 	createBoardLaneController,
+	isTerminalAgentEnd,
 	refreshSnapshot,
 	syncAllIssues,
 	trackedTaskIds,
@@ -359,8 +360,16 @@ describe("advanceTrackedIssues", () => {
 	});
 });
 
+describe("isTerminalAgentEnd", () => {
+	test("absent and false are terminal; true is a continuation", () => {
+		expect(isTerminalAgentEnd({})).toBe(true);
+		expect(isTerminalAgentEnd({ willContinue: false })).toBe(true);
+		expect(isTerminalAgentEnd({ willContinue: true })).toBe(false);
+	});
+});
+
 describe("createBoardLaneController", () => {
-	test("onAgentStart then onTurnEnd moves doing before done", async () => {
+	test("onAgentStart then onAgentEnd moves doing before done", async () => {
 		const root = tmp();
 		const run = boardRunner();
 		const tree = await trackThoughtGraph({
@@ -382,7 +391,7 @@ describe("createBoardLaneController", () => {
 		for (const id of trackedTaskIds(tree)) {
 			expect(run.tasks.find((task) => task.task_id === id)?.column).toBe(2);
 		}
-		controller.onTurnEnd();
+		controller.onAgentEnd();
 		await controller.pending();
 		for (const id of trackedTaskIds(tree)) {
 			expect(run.tasks.find((task) => task.task_id === id)?.column).toBe(3);
@@ -394,7 +403,7 @@ describe("createBoardLaneController", () => {
 		expect(firstDone).toBeGreaterThan(lastDoing);
 	});
 
-	test("onTurnEnd without onAgentStart does not move tasks", async () => {
+	test("onAgentEnd without onAgentStart does not move tasks", async () => {
 		const root = tmp();
 		const run = boardRunner();
 		const tree = await trackThoughtGraph({
@@ -411,7 +420,7 @@ describe("createBoardLaneController", () => {
 			tree: () => tree,
 			last: () => undefined,
 		});
-		controller.onTurnEnd();
+		controller.onAgentEnd();
 		await controller.pending();
 		expect(run.calls.filter((argv) => argv[0] === "task" && argv[1] === "move")).toHaveLength(0);
 		for (const task of run.tasks) expect(task.column).toBe(1);
@@ -429,8 +438,39 @@ describe("createBoardLaneController", () => {
 			last: () => fakeSync(9),
 		});
 		controller.onAgentStart();
-		controller.onTurnEnd();
+		controller.onAgentEnd();
 		await controller.pending();
 		expect(run.calls).toHaveLength(0);
+	});
+
+	test("continuation agent_end leaves cards in doing until terminal", async () => {
+		const root = tmp();
+		const run = boardRunner();
+		const tree = await trackThoughtGraph({
+			root,
+			original: "Ship the widget",
+			graph: graphOfThree(),
+			run,
+			boardName: DEFAULT_BOARD_NAME,
+		});
+		const controller = createBoardLaneController({
+			run,
+			boardName: () => DEFAULT_BOARD_NAME,
+			enabled: () => true,
+			tree: () => tree,
+			last: () => undefined,
+		});
+		controller.onAgentStart();
+		await controller.pending();
+		if (isTerminalAgentEnd({ willContinue: true })) controller.onAgentEnd();
+		await controller.pending();
+		for (const id of trackedTaskIds(tree)) {
+			expect(run.tasks.find((task) => task.task_id === id)?.column).toBe(2);
+		}
+		if (isTerminalAgentEnd({ willContinue: false })) controller.onAgentEnd();
+		await controller.pending();
+		for (const id of trackedTaskIds(tree)) {
+			expect(run.tasks.find((task) => task.task_id === id)?.column).toBe(3);
+		}
 	});
 });

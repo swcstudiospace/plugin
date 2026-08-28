@@ -292,22 +292,13 @@ export async function boardSnapshot(
 
 export type BoardLane = "ready" | "doing" | "done";
 
-const LANE_INDEX: Record<BoardLane, number> = {
-	ready: 0,
-	doing: 1,
-	done: 2,
-};
-
 export async function resolveLaneColumn(
 	run: KtuiRunner,
 	boardId: number,
 	lane: BoardLane,
 ): Promise<number | undefined> {
 	const columns = await listColumns(run, boardId);
-	const named = columns.find((column) => column.name.trim().toLowerCase() === lane);
-	if (named) return named.column_id;
-	const visible = columns.filter((column) => column.visible).sort((a, b) => a.position - b.position);
-	return visible[LANE_INDEX[lane]]?.column_id;
+	return columns.find((column) => column.name.trim().toLowerCase() === lane)?.column_id;
 }
 
 export async function moveTask(run: KtuiRunner, taskId: number, columnId: number): Promise<boolean> {
