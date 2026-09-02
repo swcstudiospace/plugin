@@ -1,0 +1,53 @@
+# SOURCE.lock — Ultrathink skill pin
+# Fail closed for updates if a vendored digest drifts.
+# Fail open for the current turn: pass original prompt plus audit source=fallback.
+
+repo: swcstudiospace/plugin
+ref: c1742dbed157bbb24279a5c3a45c10dc0fa59663
+human_url: https://github.com/swcstudiospace/plugin/tree/c1742dbed157bbb24279a5c3a45c10dc0fa59663
+runtime_fetch: false
+execute_remote: false
+fetched_at: 2026-09-02T21:20:00Z
+skill_version: "1.2"
+public_command: ultrathink
+retired_libraries: prompt-uplift graph-of-thought
+
+origin_paths:
+  - path: src/uplift/prompt.ts
+    blob_sha: 5d4b2b3910c28ae0c0acd79f4b90022f2dd0427b
+  - path: src/think/prompts.ts
+    blob_sha: c088527fe5b655d7e4d04902f53345f8169bcd44
+  - path: src/think/types.ts
+    blob_sha: d44e8b6c25827599d07855aa844646d126ecd43d
+  - path: src/think/graph.ts
+    blob_sha: e6025936c82b09380e63d7e8d3e0a69e7022686b
+  - path: src/think/pipeline.ts
+    blob_sha: 233bb75ec03c43e3bb43728c71dc49969cd548f5
+
+vendored:
+  - path: SKILL.md
+    digest_sha256: 3295c34cb2691682c1c816784748bb40c4a5abf3f35c9df58dee5ac07382e011
+  - path: references/ALLOWLIST
+    digest_sha256: 2c1925224a37a944ab08a08525f475b876991cc7c027c05563766e46dd306da1
+  - path: references/uplift-prompt.md
+    digest_sha256: bbc47d4af76da8021427c3408441a3d11fe63c6ab8e72de2017bebe9a71eff3d
+  - path: references/got-prompt.md
+    digest_sha256: c5d211504c69c1da5ddc9e5c5493a17883581db48e87b22db7c068d046cc5d88
+  - path: references/cot-prompt.md
+    digest_sha256: 8834f9b4dd3c284d509f5ad3d96a69d574db28074798d66f5864f2fd09d60572
+  - path: references/node-kinds.md
+    digest_sha256: b1f84e55d483dfafffe70efbb55e05bddc4c3ad1dc93438cabfea9373dd362ed
+  - path: references/super-heavy.md
+    digest_sha256: a7e8e3efd8c8f655ec25977acdf94011ee50995b599615a8cb93dc1941952917
+  - path: templates/BUILD_PROMPT.xml
+    digest_sha256: 22f941071bc9add8a12b6f1c87fc8a3031a1a24ce1a3fc17395190daaf80e2ee
+  - path: templates/GRAPH_OF_THOUGHT.xml
+    digest_sha256: e947c992656d6306bdaf0c491258d803ab70700bac22c376ca04f908836b532a
+
+allowlist_file: references/ALLOWLIST
+notes:
+  - Do not use https://raw.githubusercontent.com/swcstudiospace/plugin/main/ as an include.
+  - Human-facing citation may use the pinned SHA URL only.
+  - Do not execute origin TypeScript from this skill.
+  - Pack home on GitHub is plugin/skill-packs/ultrathink or swc-studio-heavy/skills/ultrathink. Never plugin/skills/ultrathink.
+  - prompt-uplift and graph-of-thought are retired libraries. Sole public command is ultrathink.
