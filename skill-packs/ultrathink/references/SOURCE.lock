@@ -7,7 +7,10 @@ ref: c1742dbed157bbb24279a5c3a45c10dc0fa59663
 human_url: https://github.com/swcstudiospace/plugin/tree/c1742dbed157bbb24279a5c3a45c10dc0fa59663
 runtime_fetch: false
 execute_remote: false
-fetched_at: 2026-09-02T20:55:00Z
+fetched_at: 2026-09-02T21:20:00Z
+skill_version: "1.2"
+public_command: ultrathink
+retired_libraries: prompt-uplift graph-of-thought
 
 origin_paths:
   - path: src/uplift/prompt.ts
@@ -23,7 +26,7 @@ origin_paths:
 
 vendored:
   - path: SKILL.md
-    digest_sha256: 86574b77eccea452a7a30982908d00f4e7302177d89e571f2dd6521507c8cd6a
+    digest_sha256: 3295c34cb2691682c1c816784748bb40c4a5abf3f35c9df58dee5ac07382e011
   - path: references/ALLOWLIST
     digest_sha256: 2c1925224a37a944ab08a08525f475b876991cc7c027c05563766e46dd306da1
   - path: references/uplift-prompt.md
@@ -47,3 +50,4 @@ notes:
   - Human-facing citation may use the pinned SHA URL only.
   - Do not execute origin TypeScript from this skill.
   - Pack home on GitHub is plugin/skill-packs/ultrathink or swc-studio-heavy/skills/ultrathink. Never plugin/skills/ultrathink.
+  - prompt-uplift and graph-of-thought are retired libraries. Sole public command is ultrathink.
