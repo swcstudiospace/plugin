@@ -1,26 +1,33 @@
 ---
 name: ultrathink
-description: Portable Prompt Uplift plus Graph of Thought and per-node Chain of Thought for Super Heavy, Hermes, and Grok. Use when Ove says ultrathink, uplift then think, plan as a DAG, or wants production-density specs before execution.
+description: Single Grok slash command for Prompt Uplift plus Graph of Thought and per-node Chain of Thought. Use when Ove says ultrathink, /ultrathink, /uplift, /think, prompt uplift, graph of thought, chain of thought, plan as a DAG, or wants a production-density spec before execution. Do not call prompt-uplift or graph-of-thought; this skill already runs both.
 license: MIT
 metadata:
   type: workflow
-  version: "1.1"
+  version: "1.2"
   owner: Ove
   source: swcstudiospace/plugin
   pin: c1742dbed157bbb24279a5c3a45c10dc0fa59663
-  companions: prompt-uplift graph-of-thought
+  public-command: "true"
+  absorbs: /ultrathink /uplift /think prompt-uplift graph-of-thought
+  companions: retired
   runtime-fetch: "false"
+  user-invocable: "true"
 ---
 
 # Ultrathink
 
-Full portable pipeline. Same XML contract as `swcstudiospace/plugin` Prompt Uplift + `/think`. Encoded as an agent-executable procedure so it loads under Super Heavy, Hermes, and Grok Build. It is a skill, not a harness, and not a router.
+Sole public reasoning command. Same XML contract as `swcstudiospace/plugin` Prompt Uplift + `/think`, encoded as one agent-executable skill for Super Heavy, Hermes, and Grok Build.
 
-Does not replace `prompt-uplift` or `graph-of-thought`. Those stay leaf companions for narrow invocations. This skill vendors their contracts and runs Stages 0-4 itself. Do not shell out to the companions (that would be a hub).
+It is a skill, not a harness, and not a router. Grok Super Heavy loads this document. OMP `omp plugin link` remains the turn-rewriting runtime inside omp. Do not fetch GitHub at runtime.
+
+`prompt-uplift` and `graph-of-thought` are retired libraries. Do not invoke them. Do not shell out to them. This skill vendors their contracts and runs Stages 0-4 itself.
+
+Aliases that must land here, not in a second skill: `/ultrathink`, `/uplift`, `/think`, "prompt uplift", "graph of thought", "chain of thought".
 
 ```xml
-<identity>Ultrathink. Portable Prompt Uplift plus Graph of Thought plus per-node Chain of Thought.</identity>
-<role>Skip or uplift, build a 3-8 node DAG, fill each node in topo order, inject GRAPH_OF_THOUGHT, then execute. Repo evidence wins over the plan.</role>
+<identity>Ultrathink. Sole public command. Prompt Uplift plus Graph of Thought plus per-node Chain of Thought.</identity>
+<role>Strip absorbed prefixes, skip or uplift, build a 3-8 node DAG, fill each node in topo order, inject GRAPH_OF_THOUGHT, then execute. Repo evidence wins over the plan.</role>
 <owns>
   <item>Root selection among BUILD_PROMPT FIX_PROMPT RESEARCH_PROMPT CHANGE_PROMPT UPLIFTED_PROMPT</item>
   <item>Graph JSON with goal and nodes n1..nN</item>
@@ -35,15 +42,13 @@ Does not replace `prompt-uplift` or `graph-of-thought`. Those stay leaf companio
 <cwd>Current workspace. Do not invent paths.</cwd>
 <principal>studio-coder when the work is an SWC Studio repo. Otherwise the current agent.</principal>
 <working_style>
-  <item>One skill, three reasoning stages, then execute. Not a specialist router</item>
+  <item>One public command. Three reasoning stages, then execute. Not a specialist router</item>
   <item>Emit exactly one allowed root. Never emit an ultrathink output root</item>
   <item>Closed NodeKind enum. MIN_NODES 3. MAX_NODES 8</item>
   <item>Graph is a planning pass. Repository evidence overrides the plan</item>
   <item>Fail open. Pass the original prompt through and mark source fallback</item>
 </working_style>
 <handoffs>
-  <item>Narrow uplift only — prompt-uplift</item>
-  <item>Narrow DAG only — graph-of-thought</item>
   <item>Cross-layer SWC repo execution — swc-studio-heavy</item>
 </handoffs>
 <approval_required>
@@ -56,30 +61,43 @@ Does not replace `prompt-uplift` or `graph-of-thought`. Those stay leaf companio
   <item>Fetch raw.githubusercontent.com or execute remote plugin TypeScript</item>
   <item>Invoke this skill again from a Super Heavy node owner</item>
   <item>Invent NodeKind values such as security or web3</item>
-  <item>Uplift slash commands, trivial acknowledgements, already-uplifted XML, or raw-prefixed text</item>
+  <item>Invoke retired prompt-uplift or graph-of-thought skills</item>
+  <item>Uplift other slash commands, trivial acknowledgements, already-uplifted XML, or raw-prefixed text</item>
 </never>
 <outputs>Uplifted XML with injected GRAPH_OF_THOUGHT. Optional sanitized Mermaid. One-line audit of root and source llm or fallback.</outputs>
 ```
 
 ## Operability
 
-1. Coding in OMP — keep `omp plugin link`. The plugin already rewrites the turn.
-2. Planning in Super Heavy / Hermes / Grok Build — load this vendored skill.
-3. GitHub is the source of truth for updates. The skill loads local copies pinned by `references/SOURCE.lock`.
+1. Grok app / Super Heavy / Hermes / Grok Build — invoke `/ultrathink`. That is the only public command.
+2. Coding in OMP — keep `omp plugin link`. The plugin already rewrites the turn. Do not double-uplift.
+3. GitHub is the source of truth. Load local copies pinned by `references/SOURCE.lock`.
+4. Retired libraries may remain on disk for inspection. They are not public commands.
 
-## Stage 0 — skip
+## Stage 0 — absorb or skip
 
-Skip Stages 1-3 when any of these hold:
+Strip an absorbed invoke prefix, then continue. Match case-insensitively at the start of the text:
 
-- Text starts with `/`
+- `/ultrathink`
+- `/uplift`
+- `/think`
+- `ultrathink:`
+- `uplift:`
+- `think:`
+
+After a strip, if the remainder is empty, apply the pipeline to the current user task body. If there is no task body, ask for the task. Do not no-op.
+
+Skip Stages 1-3 when any of these hold **after** prefix strip:
+
+- Text still starts with `/` (any other slash command)
 - Text starts with `raw:`
 - Text is trivial (`yes`, `ok`, `lgtm`, `thanks`, `continue`, `go ahead`)
-- Text already starts with `BUILD_PROMPT`, `FIX_PROMPT`, `RESEARCH_PROMPT`, `CHANGE_PROMPT`, `UPLIFTED_PROMPT`, `uplifted`, or `ultrathink`
+- Text already starts with `BUILD_PROMPT`, `FIX_PROMPT`, `RESEARCH_PROMPT`, `CHANGE_PROMPT`, or `UPLIFTED_PROMPT`
 - `PI_ULTRATHINK_CHILD=1` or `PI_AIO_CHILD=1`
 - This turn is already an ultrathink node fill
 - Input already contains a `GRAPH_OF_THOUGHT` block
 
-Prefix `uplift:` forces Stage 1 only when skip rules above do not apply.
+`uplift:` after strip forces Stage 1 only when the remaining skip rules do not apply.
 
 ## Stage 1 — Prompt Uplift
 
@@ -95,7 +113,7 @@ Pick exactly one root:
 | CHANGE_PROMPT | Refactor, rename, migrate, restyle, adjust existing behavior |
 | UPLIFTED_PROMPT | None of the above fits cleanly, or fallback wrap |
 
-Required children: `ORIGINAL` (verbatim), `SYSTEM_ROLE`, `CONTEXT` or `APP_CONTEXT`, `SCOPE`, `CONSTRAINTS`, `ACCEPTANCE_CRITERIA`, `OUT_OF_SCOPE`.
+Required children: `ORIGINAL` (verbatim user task after prefix strip), `SYSTEM_ROLE`, `CONTEXT` or `APP_CONTEXT`, `SCOPE`, `CONSTRAINTS`, `ACCEPTANCE_CRITERIA`, `OUT_OF_SCOPE`.
 
 Never emit `ultrathink` as the output root. That tag is an inbound skip signal in plugin `detect.ts`. Emitting it creates a skip-loop the next time OMP sees the payload.
 
@@ -150,7 +168,8 @@ If uplift or think fails, pass the original prompt through and emit one audit li
 
 - Output starts with `<` and ends with `>` when Stages 1-4 ran.
 - Exactly one allowed root. No `ultrathink` output root.
-- `ORIGINAL` matches the user request verbatim.
+- `ORIGINAL` matches the user task after prefix strip, verbatim.
 - Node count 3 to 8. First understand. Last synthesize. No cycles.
 - Every filled node has THINKING and CONCLUSION.
 - No secrets. No runtime fetch. No invented repo facts.
+- No second skill was invoked for uplift or the graph.
