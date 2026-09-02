@@ -1,0 +1,9 @@
+<GRAPH_OF_THOUGHT>
+	<GOAL></GOAL>
+	<NODE id="n1" kind="understand" title="Understand">
+		<QUESTION></QUESTION>
+		<DEPENDS_ON></DEPENDS_ON>
+		<THINKING></THINKING>
+		<CONCLUSION></CONCLUSION>
+	</NODE>
+</GRAPH_OF_THOUGHT>

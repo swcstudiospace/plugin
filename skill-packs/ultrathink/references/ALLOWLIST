@@ -1,0 +1,27 @@
+# Path allowlist for this skill pack
+# Anything not listed is out of scope for vendoring or citation.
+
+allowed:
+  - skills/ultrathink/SKILL.md
+  - skills/ultrathink/references/**
+  - skills/ultrathink/templates/**
+  - src/uplift/prompt.ts
+  - src/think/prompts.ts
+  - src/think/types.ts
+  - src/think/graph.ts
+  - src/think/pipeline.ts
+
+denied:
+  - auth.json
+  - mcp-tokens/
+  - USER.md
+  - SOUL.md
+  - state.db
+  - "*.pem"
+  - ".env"
+  - "*.env"
+  - session dumps
+  - memories
+
+runtime_fetch: false
+execute_remote: false
