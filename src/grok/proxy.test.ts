@@ -3,7 +3,7 @@ import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { type EnsureFreshOptions, type GrokAuth, readGrokAuth } from "./auth.ts";
-import { createProxyHandler, isGrokModel, sanitizeGrokMessagesBody, type ProxyOptions } from "./proxy.ts";
+import { createProxyHandler, isGrokModel, requestDigest, sanitizeGrokMessagesBody, type ProxyOptions } from "./proxy.ts";
 
 const TOKEN = "tok.tok.tok";
 const BASE_URL = "https://grok.example/v1";
@@ -196,6 +196,35 @@ describe("isGrokModel / sanitizeGrokMessagesBody", () => {
 	});
 });
 
+describe("requestDigest", () => {
+	test("summarizes shape without any message text", () => {
+		const digest = requestDigest({
+			model: "grok-4.6",
+			system: [{ type: "text", text: "SECRET SYSTEM" }],
+			messages: [
+				{ role: "user", content: [{ type: "text", text: "secret a" }, { type: "text", text: "secret b" }] },
+				{ role: "assistant", content: [{ type: "tool_use", id: "t1", name: "x", input: {} }] },
+				{ role: "user", content: "plain" },
+			],
+			tools: [{ name: "a" }, { name: "b" }],
+			tool_choice: { type: "auto" },
+			thinking: { type: "enabled", budget_tokens: 1 },
+			stream: true,
+		});
+		expect(digest).toBe(
+			"keys=[model,system,messages,tools,tool_choice,thinking,stream] roles=[user:text+text,assistant:tool_use,user:text] system=array(1) tools=2 tool_choice=auto thinking=enabled stream=true",
+		);
+		expect(digest).not.toContain("secret");
+		expect(digest).not.toContain("SECRET");
+	});
+
+	test("reports none/0/false for absent fields and a string system", () => {
+		expect(requestDigest({ model: "grok-4.6", system: "s" })).toBe(
+			"keys=[model,system] roles=[] system=string tools=0 tool_choice=none thinking=none stream=false",
+		);
+	});
+});
+
 describe("createProxyHandler", () => {
 	let home: string;
 	let logs: string[];
@@ -276,7 +305,55 @@ describe("createProxyHandler", () => {
 		const { calls, fake } = makeFake(() => new Response('{"error":"expired"}', { status: 401, headers: { "content-type": "application/json" } }));
 		const res = await createProxyHandler(options(fake))(messagesRequest({ model: "grok-4.6", messages: [] }));
 		expect(res.status).toBe(401);
+		expect(await res.text()).toBe('{"error":"expired"}');
 		expect(calls).toHaveLength(1);
+	});
+
+	test("logs a redacted first line plus the request digest for upstream errors and relays the body", async () => {
+		writeAuth(home, new Date(Date.now() + 3_600_000).toISOString());
+		const errorBody = JSON.stringify({
+			type: "error",
+			error: { type: "invalid_request_error", message: `tools[0].input_schema invalid for Bearer ${TOKEN}` },
+		});
+		const { fake } = makeFake(() => new Response(errorBody, { status: 400, headers: { "content-type": "application/json" } }));
+		const handler = createProxyHandler(options(fake));
+		const res = await handler(
+			messagesRequest({ model: "grok-4.6", messages: [{ role: "user", content: "the secret prompt" }], tools: [{ name: "t" }] }),
+		);
+		expect(res.status).toBe(400);
+		expect(res.headers.get("content-type")).toBe("application/json");
+		expect(await res.text()).toBe(errorBody);
+
+		const diag = logs.find((line) => line.startsWith("grok 400 "));
+		expect(diag).toBeDefined();
+		expect(diag).toContain("invalid_request_error");
+		expect(diag).toContain("roles=[user:text] system=none tools=1");
+		expect(diag).toContain("keys=[model,messages,tools]");
+		expect(diag).not.toContain(TOKEN);
+		expect(diag).not.toContain("secret prompt");
+		expect(logs).toEqual([expect.stringMatching(/^POST \/v1\/messages → grok 400 \d+ms$/), diag]);
+	});
+
+	test("truncates multi-line text error bodies to their first line in the log", async () => {
+		writeAuth(home, new Date(Date.now() + 3_600_000).toISOString());
+		const { fake } = makeFake(() => new Response("upstream exploded\nstack frame 1\nstack frame 2", { status: 500, headers: { "content-type": "text/plain" } }));
+		const res = await createProxyHandler(options(fake))(messagesRequest({ model: "grok-4.6", messages: [] }));
+		expect(res.status).toBe(500);
+		expect(await res.text()).toBe("upstream exploded\nstack frame 1\nstack frame 2");
+		expect(logs[1]).toBe("grok 500 upstream exploded ← keys=[model,messages] roles=[] system=none tools=0 tool_choice=none thinking=none stream=false");
+	});
+
+	test("AIO_PROXY_DEBUG=1 logs the digest for every grok-routed request", async () => {
+		writeAuth(home, new Date(Date.now() + 3_600_000).toISOString());
+		const { fake } = makeFake(() => Response.json(GROK_JSON));
+		process.env.AIO_PROXY_DEBUG = "1";
+		try {
+			await createProxyHandler(options(fake))(messagesRequest({ model: "grok-4.6", messages: [{ role: "user", content: "the secret prompt" }] }));
+		} finally {
+			delete process.env.AIO_PROXY_DEBUG;
+		}
+		expect(logs[0]).toBe("grok request ← keys=[model,messages] roles=[user:text] system=none tools=0 tool_choice=none thinking=none stream=false");
+		expect(logs.join("\n")).not.toContain("secret");
 	});
 
 	test("keeps thinking blocks when the client enabled thinking", async () => {

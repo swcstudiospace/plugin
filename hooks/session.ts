@@ -1,10 +1,11 @@
 #!/usr/bin/env bun
 /**
  * Claude Code SessionStart hook: make sure the local aio-grok-proxy (Haiku-tier →
- * Grok 4.6) is listening. If it is not, spawn it detached and wait briefly. Only
- * speaks up when the proxy still cannot be reached; always exits 0.
+ * Grok 4.6) is listening. If it is not, start the systemd unit when one is installed,
+ * otherwise spawn the proxy detached; wait briefly either way. Only speaks up when
+ * the proxy still cannot be reached; always exits 0.
  */
-import { mkdirSync, openSync } from "node:fs";
+import { existsSync, mkdirSync, openSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { claudeConfigPaths, loadConfig } from "../src/config.ts";
 import { isChildInvocation } from "../src/claude/complete.ts";
@@ -12,6 +13,8 @@ import { defaultStateDir } from "../src/claude/state.ts";
 
 const POLL_MS = 250;
 const WAIT_MS = 3_000;
+const UNIT = "aio-grok-proxy.service";
+const UNIT_PATH = `/etc/systemd/system/${UNIT}`;
 
 async function main(): Promise<void> {
 	if (isChildInvocation()) return;
@@ -36,6 +39,24 @@ async function main(): Promise<void> {
 	}
 	if (await healthy()) return;
 
+	async function waitHealthy(): Promise<boolean> {
+		const deadline = Date.now() + WAIT_MS;
+		while (Date.now() < deadline) {
+			await Bun.sleep(POLL_MS);
+			if (await healthy()) return true;
+		}
+		return false;
+	}
+
+	if (existsSync(UNIT_PATH)) {
+		try {
+			await Bun.spawn(["systemctl", "start", UNIT], { stdin: "ignore", stdout: "ignore", stderr: "ignore" }).exited;
+		} catch {
+			// systemctl missing or refused; fall through to the self-spawn
+		}
+		if (await waitHealthy()) return;
+	}
+
 	const pluginRoot = dirname(dirname(import.meta.path));
 	const logDir = join(defaultStateDir(), "proxy");
 	mkdirSync(logDir, { recursive: true });
@@ -50,11 +71,7 @@ async function main(): Promise<void> {
 	});
 	proc.unref();
 
-	const deadline = Date.now() + WAIT_MS;
-	while (Date.now() < deadline) {
-		await Bun.sleep(POLL_MS);
-		if (await healthy()) return;
-	}
+	if (await waitHealthy()) return;
 	process.stdout.write(
 		JSON.stringify({
 			systemMessage: `aio-grok-proxy not reachable on http://${host}:${port}; Haiku-tier calls will fail until it runs (bun scripts/claude-setup.ts status)`,

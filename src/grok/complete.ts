@@ -6,7 +6,7 @@
  * out to the Grok Build CLI instead so the same login is reused either way.
  */
 
-import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import {
@@ -34,6 +34,7 @@ export interface GrokCompleteOptions {
 	fetch?: typeof fetch;
 	transport?: GrokTransport;
 	bin?: string;
+	/** Unused: the CLI transport always runs in a scratch directory (see `scratchDir`) so headless sessions do not litter the project's `~/.grok/sessions`. */
 	cwd?: string;
 	/** Test seam for the CLI-driven token refresh; default `ensureFreshGrokAuth`. */
 	refresh?: (opts: EnsureFreshOptions) => Promise<GrokAuth | undefined>;
@@ -150,7 +151,21 @@ async function completeHttp(system: string, user: string, opts: GrokCompleteOpti
 	}
 }
 
-/** Extracts `.text` from `grok --output-format json` stdout. */
+/** Tools the Grok CLI still registers under `--tools none`; disallowed by name so a headless call cannot start a tool loop. */
+const CLI_DISALLOWED_TOOLS = "run_terminal_cmd,search_replace,write_file,read_file,list_dir,grep,web_search,web_fetch,todo_write,task,Agent";
+
+let scratch: string | undefined;
+
+/** Working directory for headless CLI calls, created once per process. */
+function scratchDir(): string {
+	if (!scratch) {
+		scratch = join(tmpdir(), "aio-grok-scratch");
+		mkdirSync(scratch, { recursive: true });
+	}
+	return scratch;
+}
+
+/** Extracts `.text` from `grok --output-format json` stdout; a non-`end_turn` stop (e.g. `cancelled`) is an error, not partial text. */
 function parseCliJson(stdout: string): string {
 	const trimmed = stdout.trim();
 	if (!trimmed) throw new Error("grok returned no output");
@@ -162,7 +177,11 @@ function parseCliJson(stdout: string): string {
 		if (start === -1) throw new Error("grok output is not JSON");
 		parsed = JSON.parse(trimmed.slice(start + 1));
 	}
-	if (!parsed || typeof parsed !== "object" || !("text" in parsed)) throw new Error("grok output is not an object");
+	if (!parsed || typeof parsed !== "object") throw new Error("grok output is not an object");
+	if ("stopReason" in parsed && parsed.stopReason !== undefined && parsed.stopReason !== "end_turn") {
+		throw new Error(`grok cli stopped: ${String(parsed.stopReason)}`);
+	}
+	if (!("text" in parsed)) throw new Error("grok output is not an object");
 	const text = parsed.text;
 	if (typeof text !== "string" || !text.trim()) throw new Error("grok returned no text");
 	return text;
@@ -172,7 +191,7 @@ async function completeCli(system: string, user: string, opts: GrokCompleteOptio
 	const dir = mkdtempSync(join(tmpdir(), "aio-grok-"));
 	const promptPath = join(dir, "prompt.md");
 	writeFileSync(promptPath, user, "utf8");
-	const env: Record<string, string | undefined> = { ...process.env };
+	const env: Record<string, string | undefined> = { ...process.env, GROK_SUBAGENTS: "0", GROK_MEMORY: "0", GROK_WEB_FETCH: "0" };
 	if (opts.home?.trim()) env.GROK_HOME = opts.home.trim();
 	const proc = Bun.spawn(
 		[
@@ -184,21 +203,29 @@ async function completeCli(system: string, user: string, opts: GrokCompleteOptio
 			"--output-format",
 			"json",
 			"--tools",
-			"",
+			"none",
+			"--disallowed-tools",
+			CLI_DISALLOWED_TOOLS,
 			"--no-plan",
 			"--no-subagents",
 			"--disable-web-search",
 			"--max-turns",
 			"1",
 			"--permission-mode",
-			"dontAsk",
+			"plan",
+			"--deny",
+			"Bash",
+			"--deny",
+			"Edit",
+			"--deny",
+			"Write",
 			"--verbatim",
 			"--system-prompt-override",
 			system,
 			"--prompt-file",
 			promptPath,
 		],
-		{ cwd: opts.cwd, env, stdin: "ignore", stdout: "pipe", stderr: "pipe" },
+		{ cwd: scratchDir(), env, stdin: "ignore", stdout: "pipe", stderr: "pipe" },
 	);
 
 	const timeoutMs = opts.timeoutMs ?? DEFAULT_GROK_CONFIG.callTimeoutMs;

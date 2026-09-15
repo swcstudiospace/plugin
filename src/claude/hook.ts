@@ -140,6 +140,7 @@ export async function runPromptSubmit(input: PromptSubmitInput, deps: HookDeps):
 					complete: deps.complete,
 					signal: controller.signal,
 					maxQuestions: deps.config.hitl.maxQuestions,
+					onProgress: log,
 				});
 				const seen = new Set(clarifications.map((c) => normalizeQuestion(c.question)));
 				clarifications = [...clarifications, ...fresh.filter((c) => !seen.has(normalizeQuestion(c.question)))];

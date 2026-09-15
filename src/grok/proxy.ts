@@ -153,6 +153,31 @@ function thinkingRequested(body: Record<string, unknown>): boolean {
 	);
 }
 
+function describeType(value: unknown): string {
+	return typeof value === "object" && value !== null && "type" in value && typeof value.type === "string" ? value.type : "none";
+}
+
+/**
+ * One-line, secret-free summary of a Messages request for diagnostics: top-level keys, the role and
+ * block types of each message, and the shape of `system`/`tools`/`tool_choice`/`thinking`/`stream`.
+ * Never includes message text, headers, or tokens.
+ */
+export function requestDigest(body: Record<string, unknown>): string {
+	const roles = Array.isArray(body.messages)
+		? body.messages.map((raw: unknown) => {
+				const message = typeof raw === "object" && raw !== null ? (raw as Record<string, unknown>) : {};
+				const blocks = toBlocks(message.content).map((block) => (typeof block.type === "string" ? block.type : "?"));
+				return `${String(message.role ?? "?")}:${blocks.join("+")}`;
+			})
+		: [];
+	const system = typeof body.system === "string" ? "string" : Array.isArray(body.system) ? `array(${body.system.length})` : "none";
+	const tools = Array.isArray(body.tools) ? body.tools.length : 0;
+	return (
+		`keys=[${Object.keys(body).join(",")}] roles=[${roles.join(",")}] system=${system} tools=${tools} ` +
+		`tool_choice=${describeType(body.tool_choice)} thinking=${describeType(body.thinking)} stream=${body.stream === true}`
+	);
+}
+
 export function createProxyHandler(opts: ProxyOptions): (req: Request) => Promise<Response> {
 	const doFetch = opts.fetch ?? fetch;
 	const home = opts.grok.home;
@@ -181,8 +206,10 @@ export function createProxyHandler(opts: ProxyOptions): (req: Request) => Promis
 			return errorResponse(401, "authentication_error", "Grok login required: run `grok login`");
 		}
 		const version = grokClientVersion(home);
-		const payload = JSON.stringify(sanitizeGrokMessagesBody(body));
+		const sanitized = sanitizeGrokMessagesBody(body);
+		const payload = JSON.stringify(sanitized);
 		const stripThinking = opts.grok.stripThinking && !thinkingRequested(body);
+		if (process.env.AIO_PROXY_DEBUG === "1") opts.log?.(`grok request ← ${requestDigest(sanitized)}`);
 
 		// Headers are built from scratch: the client's x-api-key / authorization / anthropic-beta never reach Grok.
 		const send = (session: GrokAuth): Promise<Response> => {
@@ -214,6 +241,14 @@ export function createProxyHandler(opts: ProxyOptions): (req: Request) => Promis
 		copyRequestIds(res.headers, outHeaders);
 		logLine(req, url, "grok", res.status, started);
 
+		if (res.status >= 400) {
+			// Read the error body once: log a redacted first line with the request digest, relay the text unchanged.
+			const errorText = await res.text().catch(() => "");
+			const firstLine = errorText.split("\n", 1)[0] ?? "";
+			opts.log?.(`grok ${res.status} ${redactSecrets(firstLine.slice(0, 300))} ← ${requestDigest(sanitized)}`);
+			if (contentType) outHeaders.set("content-type", contentType);
+			return new Response(errorText, { status: res.status, headers: outHeaders });
+		}
 		if (contentType.includes("text/event-stream") && res.body) {
 			outHeaders.set("content-type", contentType);
 			outHeaders.set("cache-control", "no-cache");

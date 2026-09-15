@@ -78,6 +78,22 @@ describe("formatPromptContext", () => {
 		expect(out).toContain("truncated by Prompt Uplift. Full specification: /s/big.xml");
 		expect(truncateXml("short", 100)).toBe("short");
 	});
+
+	test("lists workflow waves in the tail, marking parallel waves, and keeps them past truncation", () => {
+		expect(formatPromptContext({ result, graph: FALLBACK_GRAPH })).toContain(
+			"Workflow waves: 1: n1 · 2: n2 · 3: n3 · 4: n4 · 5: n5",
+		);
+
+		const node = (id: string, dependsOn: string[]) => ({ id, title: id, kind: "understand" as const, question: "?", dependsOn });
+		const diamond = { goal: "g", nodes: [node("n1", []), node("n2", ["n1"]), node("n3", ["n1"]), node("n4", ["n2", "n3"])] };
+		expect(formatPromptContext({ result, graph: diamond })).toContain("Workflow waves: 1: n1 · 2: n2, n3 (parallel) · 3: n4");
+
+		const big = { ...result, xml: Array.from({ length: 500 }, (_, i) => `<L${i}>${"y".repeat(100)}</L${i}>`).join("\n") };
+		const out = formatPromptContext({ result: big, graph: diamond, clarifications, specPath: "/s/big.xml", maxChars: 3_000 });
+		expect(out).toContain("truncated by Prompt Uplift");
+		expect(out).toContain("Workflow waves: 1: n1 · 2: n2, n3 (parallel) · 3: n4");
+		expect(out).toContain("## Clarifications (HITL)");
+	});
 });
 
 describe("truncateXml", () => {

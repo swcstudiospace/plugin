@@ -119,16 +119,38 @@ describe("runClarify", () => {
 		expect(calls[0]?.user).toContain("<max_questions>3</max_questions>");
 	});
 
-	test("returns [] on garbage output or a thrown error", async () => {
-		expect(await runClarify({ uplift, complete: async () => "not json at all" })).toEqual([]);
+	test("returns [] on garbage output or a thrown error and reports the failure via onProgress", async () => {
+		const progress: string[] = [];
+		expect(await runClarify({ uplift, complete: async () => "not json at all", onProgress: (m) => progress.push(m) })).toEqual([]);
+		expect(progress[0]).toBe("Clarifications…");
+		expect(progress.some((m) => m.startsWith("clarify failed: "))).toBe(true);
 		expect(
 			await runClarify({
 				uplift,
 				complete: async () => {
 					throw new Error("boom");
 				},
+				onProgress: (m) => progress.push(m),
 			}),
 		).toEqual([]);
+		expect(progress.at(-1)).toBe("clarify failed: boom");
+	});
+
+	test("reports the question count via onProgress on success", async () => {
+		const progress: string[] = [];
+		const list = await runClarify({
+			uplift,
+			complete: async () =>
+				JSON.stringify({
+					questions: [
+						{ question: "Which database?", header: "DB", options: twoOptions },
+						{ question: "Which auth?", header: "Auth", options: twoOptions },
+					],
+				}),
+			onProgress: (m) => progress.push(m),
+		});
+		expect(list).toHaveLength(2);
+		expect(progress.at(-1)).toBe("Clarifications → 2");
 	});
 
 	test("rethrows AbortError", async () => {

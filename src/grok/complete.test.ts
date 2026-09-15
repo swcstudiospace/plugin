@@ -253,25 +253,56 @@ describe("grokComplete (http)", () => {
 });
 
 describe("grokComplete (cli)", () => {
-	test("spawns the grok CLI with the prompt file and parses .text", async () => {
+	/** Writes a fake `grok` binary that records argv/env/cwd and prints `reply(prompt)` as its JSON output. */
+	function fakeGrok(replyJs: string): { bin: string; argsPath: string } {
 		const dir = mkdtempSync(join(tmpdir(), "aio-grok-cli-"));
 		dirs.push(dir);
 		const bin = join(dir, "grok");
 		const argsPath = join(dir, "args.json");
 		writeFileSync(
 			bin,
-			`#!${process.execPath}\nconst args = process.argv.slice(2);\nconst prompt = await Bun.file(args[args.indexOf("--prompt-file") + 1]).text();\nawait Bun.write(${JSON.stringify(argsPath)}, JSON.stringify({ args, prompt, home: process.env.GROK_HOME }));\nconsole.log(JSON.stringify({ text: "<X>" + prompt + "</X>" }));\n`,
+			`#!${process.execPath}\nconst args = process.argv.slice(2);\nconst prompt = await Bun.file(args[args.indexOf("--prompt-file") + 1]).text();\nawait Bun.write(${JSON.stringify(argsPath)}, JSON.stringify({ args, prompt, cwd: process.cwd(), env: { GROK_HOME: process.env.GROK_HOME, GROK_SUBAGENTS: process.env.GROK_SUBAGENTS, GROK_MEMORY: process.env.GROK_MEMORY, GROK_WEB_FETCH: process.env.GROK_WEB_FETCH } }));\nconsole.log(JSON.stringify(${replyJs}));\n`,
 			{ mode: 0o755 },
 		);
+		return { bin, argsPath };
+	}
+
+	test("spawns the grok CLI tool-free in a scratch cwd and parses .text", async () => {
+		const { bin, argsPath } = fakeGrok('{ text: "<X>" + prompt + "</X>", stopReason: "end_turn" }');
 		const home = tempHome();
-		const text = await grokComplete("SYS", "USER TEXT", { transport: "cli", bin, home, model: "grok-4.6", reasoningEffort: "high" });
+		const text = await grokComplete("SYS", "USER TEXT", { transport: "cli", bin, home, model: "grok-4.6", reasoningEffort: "high", cwd: "/nonexistent" });
 		expect(text).toBe("<X>USER TEXT</X>");
-		const seen = JSON.parse(await Bun.file(argsPath).text()) as { args: string[]; prompt: string; home?: string };
+		const seen = JSON.parse(await Bun.file(argsPath).text()) as {
+			args: string[];
+			prompt: string;
+			cwd: string;
+			env: Record<string, string | undefined>;
+		};
 		expect(seen.prompt).toBe("USER TEXT");
-		expect(seen.home).toBe(home);
+		expect(seen.env).toEqual({ GROK_HOME: home, GROK_SUBAGENTS: "0", GROK_MEMORY: "0", GROK_WEB_FETCH: "0" });
+		expect(seen.cwd).toBe(join(tmpdir(), "aio-grok-scratch"));
 		expect(seen.args.slice(0, 4)).toEqual(["-m", "grok-4.6", "--reasoning-effort", "high"]);
-		expect(seen.args).toContain("--verbatim");
-		expect(seen.args[seen.args.indexOf("--system-prompt-override") + 1]).toBe("SYS");
+		const after = (flag: string) => seen.args[seen.args.indexOf(flag) + 1];
+		expect(after("--tools")).toBe("none");
+		expect(seen.args).not.toContain("");
+		expect(after("--permission-mode")).toBe("plan");
+		expect(after("--max-turns")).toBe("1");
+		expect(after("--disallowed-tools")).toContain("run_terminal_cmd");
+		const denied = seen.args.flatMap((arg, i) => (arg === "--deny" ? [seen.args[i + 1]] : []));
+		expect(denied).toEqual(["Bash", "Edit", "Write"]);
+		for (const flag of ["--no-plan", "--no-subagents", "--disable-web-search", "--verbatim"]) expect(seen.args).toContain(flag);
+		expect(after("--system-prompt-override")).toBe("SYS");
+	});
+
+	test("a non-end_turn stopReason is an error even when partial text is present", async () => {
+		const { bin } = fakeGrok('{ text: "partial", stopReason: "cancelled" }');
+		const error = await rejection(grokComplete("SYS", "USER", { transport: "cli", bin, home: tempHome() }));
+		expect(error.message).toBe("grok cli stopped: cancelled");
+	});
+
+	test("output without stopReason (older CLI) is still accepted", async () => {
+		const { bin } = fakeGrok('{ text: "ok" }');
+		expect(await grokComplete("SYS", "USER", { transport: "cli", bin, home: tempHome() })).toBe("ok");
 	});
 });
 

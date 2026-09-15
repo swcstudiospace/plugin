@@ -10,6 +10,7 @@ import { formatHitlAddendum } from "../hitl/format.ts";
 import type { Clarification } from "../hitl/types.ts";
 import { formatIssueAddendum } from "../issues/format.ts";
 import type { GraphSyncResult, SyncResult } from "../issues/types.ts";
+import { workflowWaves } from "../think/graph.ts";
 import { THINK_ADDENDUM } from "../think/prompts.ts";
 import type { ThoughtGraph } from "../think/types.ts";
 import type { UpliftResult } from "../types.ts";
@@ -55,7 +56,13 @@ export function formatPromptContext(input: PromptContextInput): string {
 	if (input.specPath) parts.push(`Specification file: ${input.specPath}`);
 
 	const tail: string[] = [];
-	if (input.graph) tail.push(THINK_ADDENDUM.trim());
+	if (input.graph) {
+		tail.push(THINK_ADDENDUM.trim());
+		const waves = workflowWaves(input.graph)
+			.map((w) => `${w.wave}: ${w.ids.join(", ")}${w.parallel ? " (parallel)" : ""}`)
+			.join(" · ");
+		if (waves) tail.push(`Workflow waves: ${waves}`);
+	}
 	if (input.clarifications?.length) {
 		const hitl = formatHitlAddendum(input.clarifications).trim();
 		if (hitl) tail.push(hitl);

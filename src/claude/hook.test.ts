@@ -87,6 +87,7 @@ describe("runPromptSubmit", () => {
 		const cwd = tempDir("aio-hook-cwd-");
 		const stateDir = join(tempDir("aio-hook-state-"), "aio");
 		const calls: string[] = [];
+		const logs: string[] = [];
 		const config = defaultConfig();
 		const out = await runPromptSubmit(
 			{ session_id: "s1", cwd, prompt: "build a login page", transcript_path: "/nope" },
@@ -98,6 +99,7 @@ describe("runPromptSubmit", () => {
 				ktui: noKtui,
 				stateDir,
 				conversation: () => "User: earlier context",
+				log: (m) => logs.push(m),
 			},
 		);
 
@@ -106,6 +108,7 @@ describe("runPromptSubmit", () => {
 		expect(calls.filter((s) => s === GRAPH_SYSTEM_PROMPT)).toHaveLength(1);
 		expect(calls.filter((s) => s === COT_SYSTEM_PROMPT)).toHaveLength(3);
 		expect(calls.filter((s) => s === CLARIFY_PROMPT)).toHaveLength(1);
+		expect(logs.some((m) => m.startsWith("Clarifications"))).toBe(true);
 
 		const ctx = out.output?.hookSpecificOutput.additionalContext ?? "";
 		expect(out.output?.hookSpecificOutput.hookEventName).toBe("UserPromptSubmit");

@@ -20,6 +20,7 @@ export interface RunClarifyOptions {
 	complete: Completer;
 	signal?: AbortSignal;
 	maxQuestions?: number;
+	onProgress?: (message: string) => void;
 }
 
 const MIN_OPTIONS = 2;
@@ -159,10 +160,16 @@ export async function runClarify(opts: RunClarifyOptions): Promise<Clarification
 	const max = Math.max(0, Math.floor(opts.maxQuestions ?? MAX_QUESTIONS));
 	if (max === 0) return [];
 	try {
+		opts.onProgress?.("Clarifications…");
 		const text = await opts.complete(clarifySystemPrompt(max), clarifyUserPayload(opts, max), opts.signal);
-		return normalizeClarifications(extractJsonObject(text), max);
+		const parsed = extractJsonObject(text);
+		if (!parsed || typeof parsed !== "object") throw new Error("unparsable JSON");
+		const list = normalizeClarifications(parsed, max);
+		opts.onProgress?.(`Clarifications → ${list.length}`);
+		return list;
 	} catch (error) {
 		if (isAbortError(error)) throw error;
+		opts.onProgress?.(`clarify failed: ${error instanceof Error ? error.message : String(error)}`);
 		return [];
 	}
 }

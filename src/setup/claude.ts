@@ -1,17 +1,19 @@
 /**
  * Reversible local Claude Code setup for the Grok thinking engine.
  *
- * `apply` points Claude Code's Haiku tier at the local aio-grok-proxy
- * (settings.json env), registers this checkout as the `aio` marketplace,
- * enables the plugin, and installs a systemd unit for the proxy. Every
- * change is recorded in `<stateDir>/setup-state.json` next to a byte-for-byte
- * backup of settings.json so `rollback` is a single command.
+ * `apply` registers this checkout as the `aio` marketplace, installs the
+ * plugin, installs a systemd unit for the proxy, and only once `/healthz`
+ * answers points Claude Code's Haiku tier at the proxy (settings.json env) —
+ * so a dead `ANTHROPIC_BASE_URL` is never written. Every change is recorded
+ * in `<stateDir>/setup-state.json` next to a byte-for-byte backup of
+ * settings.json so `rollback` is a single command.
  *
  * The pure helpers (`applySettings`, `rollbackSettings`, `renderUnit`,
- * `plannedEnv`) never touch the filesystem; `apply`/`rollback`/`status` wire
- * them to disk, systemd, and the `claude` CLI through an injectable `run`.
+ * `plannedEnv`) never touch the filesystem; `apply`/`refresh`/`rollback`/
+ * `status` wire them to disk, systemd, and the `claude` CLI through an
+ * injectable `run`.
  */
-import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { defaultStateDir } from "../claude/state.ts";
@@ -37,6 +39,27 @@ export interface SetupState {
 }
 
 export type Runner = (cmd: string[]) => Promise<{ code: number; out: string }>;
+
+export interface ApplyOptions {
+	/** How long `apply`/`refresh` wait for `/healthz` before giving up (default 5000). */
+	healthzTimeoutMs?: number;
+}
+
+export interface RollbackOptions {
+	/** Restore the pre-apply backup byte-for-byte instead of reverting the owned keys of the current file. */
+	snapshot?: boolean;
+}
+
+/** Thrown by `apply` after the state file is written when the proxy never answered `/healthz`. */
+export class EnvNotAppliedError extends Error {
+	constructor(
+		url: string,
+		readonly lines: string[],
+	) {
+		super(`proxy not reachable on ${url}; env not applied`);
+		this.name = "EnvNotAppliedError";
+	}
+}
 
 export const UNIT_NAME = "aio-grok-proxy.service";
 export const PLUGIN_ID = "all-in-one@aio";
@@ -121,15 +144,17 @@ function dropIfEmpty(settings: Record<string, unknown>, key: string): void {
 	if (record && Object.keys(record).length === 0) delete settings[key];
 }
 
+function revertEnv(settings: Record<string, unknown>, previousEnv: Record<string, string | null>): void {
+	const env = asRecord(settings.env);
+	if (!env) return;
+	for (const [key, previous] of Object.entries(previousEnv)) restoreKey(env, key, previous);
+	settings.env = env;
+	dropIfEmpty(settings, "env");
+}
+
 export function rollbackSettings(settings: Record<string, unknown>, state: SetupState): Record<string, unknown> {
 	const next = structuredClone(settings);
-
-	const env = asRecord(next.env);
-	if (env) {
-		for (const [key, previous] of Object.entries(state.previousEnv)) restoreKey(env, key, previous);
-		next.env = env;
-		dropIfEmpty(next, "env");
-	}
+	revertEnv(next, state.previousEnv);
 
 	const marketplaces = asRecord(next.extraKnownMarketplaces);
 	if (marketplaces) {
@@ -202,10 +227,17 @@ function detectIndent(path: string): string {
 	return match?.[1] ?? "\t";
 }
 
+/** Write via `<path>.tmp` + rename so a crash mid-write never leaves a truncated settings.json. */
+function writeAtomic(path: string, data: string | Buffer): void {
+	mkdirSync(dirname(path), { recursive: true });
+	const tmp = `${path}.tmp`;
+	writeFileSync(tmp, data);
+	renameSync(tmp, path);
+}
+
 function writeSettings(path: string, settings: Record<string, unknown>): void {
 	const indent = detectIndent(path);
-	mkdirSync(dirname(path), { recursive: true });
-	writeFileSync(path, `${JSON.stringify(settings, null, indent)}\n`);
+	writeAtomic(path, `${JSON.stringify(settings, null, indent)}\n`);
 }
 
 function statePath(paths: SetupPaths): string {
@@ -246,7 +278,35 @@ async function claudeVersion(run: Runner): Promise<string | undefined> {
 	return firstLine(result.out).split(/\s+/)[0] || undefined;
 }
 
-export async function apply(paths: SetupPaths, config: AioConfig, run: Runner = defaultRunner): Promise<string[]> {
+/** Run one command and record `<label> → <code> <first output line>`; non-zero is reported, never thrown. */
+async function step(lines: string[], run: Runner, cmd: string[], label = cmd.join(" ")): Promise<{ code: number; out: string }> {
+	const result = await run(cmd);
+	lines.push(`${label} → ${result.code}${result.code === 0 ? "" : " (warning)"} ${firstLine(result.out)}`.trimEnd());
+	return result;
+}
+
+/**
+ * `claude plugin update` is version-gated and skips a same-version directory source, so uninstall + install is
+ * the only way to push edited plugin files into Claude Code's plugin cache.
+ */
+async function reinstallPlugin(lines: string[], run: Runner, reinstall: boolean): Promise<void> {
+	if (reinstall) await step(lines, run, ["claude", "plugin", "uninstall", PLUGIN_ID], `claude plugin uninstall ${PLUGIN_ID} (refresh)`);
+	await step(lines, run, ["claude", "plugin", "install", PLUGIN_ID]);
+}
+
+/** `enable --now` is a no-op for a running unit, so a live unit is restarted to pick up the rewritten file. */
+async function startUnit(lines: string[], run: Runner): Promise<void> {
+	await step(lines, run, ["systemctl", "daemon-reload"]);
+	const active = await run(["systemctl", "is-active", UNIT_NAME]);
+	await step(lines, run, active.code === 0 ? ["systemctl", "restart", UNIT_NAME] : ["systemctl", "enable", "--now", UNIT_NAME]);
+}
+
+export async function apply(
+	paths: SetupPaths,
+	config: AioConfig,
+	run: Runner = defaultRunner,
+	opts: ApplyOptions = {},
+): Promise<string[]> {
 	const lines: string[] = [];
 
 	const settings = readSettings(paths.settingsPath);
@@ -267,14 +327,14 @@ export async function apply(paths: SetupPaths, config: AioConfig, run: Runner = 
 		lines.push(`backup → ${backupPath}`);
 	}
 
+	// Previous values are captured from the file as it was BEFORE anything below touches it.
 	const env = plannedEnv(config);
-	const applied = applySettings(settings, env, paths.pluginRoot);
-	const previousEnv = existing?.previousEnv ?? applied.previousEnv;
-	const previousPlugin = existing?.previousPlugin ?? applied.previousPlugin;
-	writeSettings(paths.settingsPath, applied.next);
-	for (const [key, value] of Object.entries(env)) lines.push(`settings env ${key}=${value}`);
-	lines.push(`settings extraKnownMarketplaces.${MARKETPLACE_KEY} → ${paths.pluginRoot}`);
-	lines.push(`settings enabledPlugins["${PLUGIN_ID}"] = true`);
+	const before = applySettings(settings, env, paths.pluginRoot);
+	const previousEnv = existing?.previousEnv ?? before.previousEnv;
+	const previousPlugin = existing?.previousPlugin ?? before.previousPlugin;
+
+	await step(lines, run, ["claude", "plugin", "marketplace", "add", paths.pluginRoot]);
+	await reinstallPlugin(lines, run, existing !== undefined);
 
 	let unitInstalled = false;
 	const unit = renderUnit({ bun: process.execPath, pluginRoot: paths.pluginRoot, home: homedir() });
@@ -287,27 +347,22 @@ export async function apply(paths: SetupPaths, config: AioConfig, run: Runner = 
 		const code = (error as NodeJS.ErrnoException).code ?? "error";
 		lines.push(`unit not written (${code}): ${paths.unitPath}; run the proxy from the SessionStart hook instead`);
 	}
-
-	if (unitInstalled) {
-		const reload = await run(["systemctl", "daemon-reload"]);
-		lines.push(`systemctl daemon-reload → ${reload.code}${reload.code === 0 ? "" : ` ${firstLine(reload.out)}`}`);
-		const enable = await run(["systemctl", "enable", "--now", UNIT_NAME]);
-		lines.push(`systemctl enable --now ${UNIT_NAME} → ${enable.code}${enable.code === 0 ? "" : ` ${firstLine(enable.out)}`}`);
-	}
+	if (unitInstalled) await startUnit(lines, run);
 
 	const url = proxyUrl(config);
-	lines.push((await waitHealthz(url, 5000)) ? `proxy listening on ${url}` : `proxy not listening on ${url} (SessionStart hook will start it)`);
+	const healthy = await waitHealthz(url, opts.healthzTimeoutMs ?? 5000);
+	lines.push(healthy ? `proxy listening on ${url}` : `proxy not listening on ${url}`);
 
-	const marketplace = await run(["claude", "plugin", "marketplace", "add", paths.pluginRoot]);
-	lines.push(`claude plugin marketplace add → ${marketplace.code}${marketplace.code === 0 ? "" : " (warning)"} ${firstLine(marketplace.out)}`.trimEnd());
-	// `claude plugin update` is version-gated and skips a same-version directory source, so a reinstall is the
-	// only way to push edited plugin files into Claude Code's plugin cache.
-	if (existing) {
-		const uninstall = await run(["claude", "plugin", "uninstall", PLUGIN_ID]);
-		lines.push(`claude plugin uninstall ${PLUGIN_ID} (refresh) → ${uninstall.code} ${firstLine(uninstall.out)}`.trimEnd());
-	}
-	const install = await run(["claude", "plugin", "install", PLUGIN_ID]);
-	lines.push(`claude plugin install ${PLUGIN_ID} → ${install.code}${install.code === 0 ? "" : " (warning)"} ${firstLine(install.out)}`.trimEnd());
+	// The claude CLI rewrites settings.json (enabledPlugins) during install/uninstall: re-read so its changes
+	// survive, then add our keys. The env keys are written only once the proxy answers; a stale copy of them
+	// from an earlier apply is reverted so Claude Code never carries a dead ANTHROPIC_BASE_URL.
+	const applied = applySettings(readSettings(paths.settingsPath), healthy ? env : {}, paths.pluginRoot);
+	if (!healthy) revertEnv(applied.next, previousEnv);
+	writeSettings(paths.settingsPath, applied.next);
+	if (healthy) for (const [key, value] of Object.entries(env)) lines.push(`settings env ${key}=${value}`);
+	else lines.push("settings env: not applied (proxy unreachable)");
+	lines.push(`settings extraKnownMarketplaces.${MARKETPLACE_KEY} → ${paths.pluginRoot}`);
+	lines.push(`settings enabledPlugins["${PLUGIN_ID}"] = true`);
 
 	const state: SetupState = {
 		appliedAt,
@@ -320,48 +375,76 @@ export async function apply(paths: SetupPaths, config: AioConfig, run: Runner = 
 	mkdirSync(paths.stateDir, { recursive: true });
 	writeFileSync(statePath(paths), `${JSON.stringify(state, null, "\t")}\n`);
 	lines.push(`state → ${statePath(paths)}`);
+
+	if (!healthy) {
+		lines.push(
+			`proxy not reachable on ${url}; ANTHROPIC_BASE_URL not applied — fix the unit (journalctl -u aio-grok-proxy) and re-run apply`,
+		);
+		throw new EnvNotAppliedError(url, lines);
+	}
 	return lines;
 }
 
-export async function rollback(paths: SetupPaths, run: Runner = defaultRunner): Promise<string[]> {
+/** Push the current checkout into Claude Code's plugin cache and restart the proxy; settings.json is untouched. */
+export async function refresh(
+	paths: SetupPaths,
+	config: AioConfig,
+	run: Runner = defaultRunner,
+	opts: ApplyOptions = {},
+): Promise<string[]> {
+	const lines: string[] = [];
+	await reinstallPlugin(lines, run, true);
+	if (existsSync(paths.unitPath)) await step(lines, run, ["systemctl", "restart", UNIT_NAME]);
+	else lines.push(`unit ${paths.unitPath} absent; proxy not restarted`);
+	const url = proxyUrl(config);
+	lines.push((await waitHealthz(url, opts.healthzTimeoutMs ?? 5000)) ? `proxy listening on ${url}` : `proxy not listening on ${url}`);
+	return lines;
+}
+
+function restoreSettings(lines: string[], paths: SetupPaths, state: SetupState, snapshot: boolean): void {
+	if (snapshot && state.backupPath && existsSync(state.backupPath)) {
+		writeAtomic(paths.settingsPath, readFileSync(state.backupPath));
+		lines.push(`settings restored byte-for-byte from ${state.backupPath} (--snapshot)`);
+		return;
+	}
+	if (snapshot) {
+		lines.push(state.backupPath ? `backup ${state.backupPath} missing; reverting key-by-key` : "no pre-apply file; reverting key-by-key");
+	}
+	if (!existsSync(paths.settingsPath)) {
+		lines.push("settings.json absent; nothing to restore");
+		return;
+	}
+	const restored = rollbackSettings(readSettings(paths.settingsPath), state);
+	if (!state.backupPath && Object.keys(restored).length === 0) {
+		rmSync(paths.settingsPath, { force: true });
+		lines.push("settings removed (did not exist before apply)");
+		return;
+	}
+	writeSettings(paths.settingsPath, restored);
+	lines.push(
+		`settings reverted key-by-key; other keys kept${state.backupPath ? ` (--snapshot restores ${state.backupPath} byte-for-byte)` : ""}`,
+	);
+}
+
+export async function rollback(paths: SetupPaths, run: Runner = defaultRunner, opts: RollbackOptions = {}): Promise<string[]> {
 	const lines: string[] = [];
 	const state = readState(paths);
 	if (!state) throw new Error(`nothing to roll back: ${statePath(paths)} missing`);
 
-	if (state.backupPath && existsSync(state.backupPath)) {
-		writeFileSync(paths.settingsPath, readFileSync(state.backupPath));
-		lines.push(`settings restored from ${state.backupPath}`);
-	} else if (!state.backupPath && existsSync(paths.settingsPath)) {
-		const restored = rollbackSettings(readSettings(paths.settingsPath), state);
-		if (Object.keys(restored).length === 0) {
-			rmSync(paths.settingsPath, { force: true });
-			lines.push(`settings removed (did not exist before apply)`);
-		} else {
-			writeSettings(paths.settingsPath, restored);
-			lines.push(`settings reverted key-by-key (no pre-apply file)`);
-		}
-	} else if (existsSync(paths.settingsPath)) {
-		writeSettings(paths.settingsPath, rollbackSettings(readSettings(paths.settingsPath), state));
-		lines.push(`backup ${state.backupPath} missing; settings reverted key-by-key`);
-	} else {
-		lines.push(`settings.json absent; nothing to restore`);
-	}
+	restoreSettings(lines, paths, state, opts.snapshot === true);
 
 	if (state.unitInstalled || existsSync(paths.unitPath)) {
-		const disable = await run(["systemctl", "disable", "--now", UNIT_NAME]);
-		lines.push(`systemctl disable --now ${UNIT_NAME} → ${disable.code}`);
+		await step(lines, run, ["systemctl", "disable", "--now", UNIT_NAME]);
 		try {
 			rmSync(paths.unitPath, { force: true });
 			lines.push(`unit removed: ${paths.unitPath}`);
 		} catch (error) {
 			lines.push(`unit not removed (${(error as NodeJS.ErrnoException).code ?? "error"}): ${paths.unitPath}`);
 		}
-		const reload = await run(["systemctl", "daemon-reload"]);
-		lines.push(`systemctl daemon-reload → ${reload.code}`);
+		await step(lines, run, ["systemctl", "daemon-reload"]);
 	}
 
-	const uninstall = await run(["claude", "plugin", "uninstall", PLUGIN_ID]);
-	lines.push(`claude plugin uninstall ${PLUGIN_ID} → ${uninstall.code} ${firstLine(uninstall.out)}`.trimEnd());
+	await step(lines, run, ["claude", "plugin", "uninstall", PLUGIN_ID]);
 
 	rmSync(statePath(paths), { force: true });
 	lines.push(`state removed: ${statePath(paths)}`);
@@ -417,7 +500,13 @@ export async function status(paths: SetupPaths, config: AioConfig): Promise<stri
 	}
 
 	const url = proxyUrl(config);
-	lines.push((await healthz(url, 1500)) ? `proxy: listening on ${url}` : `proxy: not listening on ${url}`);
+	const listening = await healthz(url, 1500);
+	lines.push(listening ? `proxy: listening on ${url}` : `proxy: not listening on ${url}`);
+	if (!listening && typeof env.ANTHROPIC_BASE_URL === "string") {
+		lines.push(
+			`BROKEN: ANTHROPIC_BASE_URL set but proxy not listening → Claude Code cannot reach the API; run systemctl start ${UNIT_NAME} or bun scripts/claude-setup.ts rollback`,
+		);
+	}
 
 	const auth = grokAuthStatus(config.grok.home || undefined);
 	if (!auth.loggedIn) lines.push(`SuperGrok OAuth: not logged in (run grok login) · ${auth.home}`);

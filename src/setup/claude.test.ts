@@ -2,6 +2,7 @@ import { afterEach, describe, expect, test } from "bun:test";
 import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import type { Server } from "bun";
 import { defaultConfig } from "../config.ts";
 import { DEFAULT_GROK_CONFIG } from "../grok/types.ts";
 import {
@@ -13,6 +14,7 @@ import {
 	apply,
 	applySettings,
 	plannedEnv,
+	refresh,
 	renderUnit,
 	rollback,
 	rollbackSettings,
@@ -121,10 +123,12 @@ describe("plannedEnv", () => {
 	});
 });
 
-describe("apply / rollback", () => {
+describe("apply / refresh / rollback", () => {
 	const dirs: string[] = [];
+	const servers: Server<undefined>[] = [];
 	afterEach(() => {
 		for (const dir of dirs.splice(0)) rmSync(dir, { recursive: true, force: true });
+		for (const server of servers.splice(0)) server.stop(true);
 	});
 
 	function paths(): SetupPaths {
@@ -139,37 +143,149 @@ describe("apply / rollback", () => {
 		};
 	}
 
-	test("a second apply keeps the first pre-change snapshot so rollback returns to the original file", async () => {
-		const p = paths();
+	/** Fake `run`: `systemctl is-active` answers the given codes in order (last one repeats); everything else succeeds. */
+	function fakeRunner(isActive: number[] = [3, 0], onInstall?: () => void) {
+		const calls: string[][] = [];
+		const codes = [...isActive];
+		const run: Runner = async (cmd) => {
+			calls.push(cmd);
+			if (cmd[0] === "claude" && cmd[1] === "--version") return { code: 0, out: "2.1.272 (Claude Code)" };
+			if (cmd[0] === "claude" && cmd[2] === "install") onInstall?.();
+			if (cmd[0] === "systemctl" && cmd[1] === "is-active") return { code: codes.length > 1 ? (codes.shift() as number) : codes[0], out: "" };
+			return { code: 0, out: "" };
+		};
+		return { run, calls, joined: () => calls.map((cmd) => cmd.join(" ")) };
+	}
+
+	/** Config whose proxy URL answers `/healthz` (a local server) or points at a closed port. */
+	function configFor(healthy: boolean) {
+		const config = defaultConfig();
+		if (healthy) {
+			const server = Bun.serve({ hostname: "127.0.0.1", port: 0, fetch: () => new Response("ok") });
+			servers.push(server);
+			config.grok.proxy.port = server.port ?? 0;
+		} else {
+			config.grok.proxy.port = 1;
+		}
+		return config;
+	}
+
+	function writeOriginal(p: SetupPaths): string {
 		const original = `${JSON.stringify(realShapedSettings(), null, 2)}\n`;
 		mkdirSync(p.claudeDir, { recursive: true });
 		writeFileSync(p.settingsPath, original);
-		const calls: string[][] = [];
-		const run: Runner = async (cmd) => {
-			calls.push(cmd);
-			return { code: 0, out: cmd[0] === "claude" && cmd[1] === "--version" ? "2.1.272 (Claude Code)" : "" };
-		};
-		const config = defaultConfig();
-		config.grok.proxy.port = 1; // nothing listens: healthz wait must not throw
+		return original;
+	}
 
-		await apply(p, config, run);
-		const firstState = JSON.parse(readFileSync(join(p.stateDir, "setup-state.json"), "utf8")) as SetupState;
+	function readJson<T>(path: string): T {
+		return JSON.parse(readFileSync(path, "utf8")) as T;
+	}
+
+	type Settings = { model?: string; env?: Record<string, string>; enabledPlugins?: Record<string, boolean> };
+
+	test("a second apply keeps the first pre-change snapshot, restarts the live unit, and rollback returns to the original", async () => {
+		const p = paths();
+		const original = writeOriginal(p);
+		const { run, joined } = fakeRunner([3, 0]);
+		const config = configFor(true);
+
+		await apply(p, config, run, { healthzTimeoutMs: 0 });
+		const firstState = readJson<SetupState>(join(p.stateDir, "setup-state.json"));
 		expect(readFileSync(firstState.backupPath, "utf8")).toBe(original);
 		expect(firstState.previousEnv.ANTHROPIC_BASE_URL).toBeNull();
-		expect(calls.some((cmd) => cmd.join(" ") === `claude plugin uninstall ${PLUGIN_ID}`)).toBe(false);
+		let cmds = joined();
+		expect(cmds).not.toContain(`claude plugin uninstall ${PLUGIN_ID}`);
+		expect(cmds).toContain("systemctl enable --now aio-grok-proxy.service");
+		// plugin install lands before the unit is started, and the env is written only after healthz.
+		expect(cmds.indexOf(`claude plugin install ${PLUGIN_ID}`)).toBeLessThan(cmds.indexOf("systemctl daemon-reload"));
 
-		const lines = await apply(p, config, run);
-		const secondState = JSON.parse(readFileSync(join(p.stateDir, "setup-state.json"), "utf8")) as SetupState;
+		const lines = await apply(p, config, run, { healthzTimeoutMs: 0 });
+		const secondState = readJson<SetupState>(join(p.stateDir, "setup-state.json"));
 		expect(secondState.backupPath).toBe(firstState.backupPath);
 		expect(secondState.appliedAt).toBe(firstState.appliedAt);
 		expect(lines.some((line) => line.includes("keeping its pre-change snapshot"))).toBe(true);
-		expect(calls.some((cmd) => cmd.join(" ") === `claude plugin uninstall ${PLUGIN_ID}`)).toBe(true);
-		const applied = JSON.parse(readFileSync(p.settingsPath, "utf8")) as { env?: Record<string, string> };
+		cmds = joined();
+		expect(cmds).toContain(`claude plugin uninstall ${PLUGIN_ID}`);
+		expect(cmds).toContain("systemctl restart aio-grok-proxy.service");
+		const applied = readJson<Settings>(p.settingsPath);
 		expect(applied.env?.ANTHROPIC_DEFAULT_HAIKU_MODEL).toBe(DEFAULT_GROK_CONFIG.proxy.haikuModel);
+		expect(applied.env?.ANTHROPIC_BASE_URL).toBe(`http://127.0.0.1:${config.grok.proxy.port}`);
 
 		await rollback(p, run);
-		expect(readFileSync(p.settingsPath, "utf8")).toBe(original);
+		expect(readJson<Settings>(p.settingsPath)).toEqual(realShapedSettings());
 		expect(existsSync(join(p.stateDir, "setup-state.json"))).toBe(false);
 		expect(existsSync(p.unitPath)).toBe(false);
-	}, 30_000);
+	});
+
+	test("a never-healthy proxy enables the plugin but never writes ANTHROPIC_BASE_URL, then throws after saving state", async () => {
+		const p = paths();
+		writeOriginal(p);
+		// The claude CLI rewrites settings.json during install; that change must survive our write.
+		const { run } = fakeRunner([3], () => {
+			const current = readJson<Settings>(p.settingsPath);
+			current.enabledPlugins = { ...current.enabledPlugins, "other@x": true };
+			writeFileSync(p.settingsPath, JSON.stringify(current, null, 2));
+		});
+		const config = configFor(false);
+
+		await expect(apply(p, config, run, { healthzTimeoutMs: 0 })).rejects.toThrow("proxy not reachable on http://127.0.0.1:1; env not applied");
+
+		const settings = readJson<Settings>(p.settingsPath);
+		expect(settings.env?.ANTHROPIC_BASE_URL).toBeUndefined();
+		expect(settings.enabledPlugins?.[PLUGIN_ID]).toBe(true);
+		expect(settings.enabledPlugins?.["other@x"]).toBe(true);
+		expect(existsSync(join(p.stateDir, "setup-state.json"))).toBe(true);
+		expect(existsSync(`${p.settingsPath}.tmp`)).toBe(false);
+
+		// A broken re-apply after a healthy one must drop the stale env instead of leaving it dead.
+		writeFileSync(p.settingsPath, JSON.stringify({ ...settings, env: { ANTHROPIC_BASE_URL: "http://127.0.0.1:1", KEEP: "1" } }, null, 2));
+		await expect(apply(p, config, run, { healthzTimeoutMs: 0 })).rejects.toThrow("env not applied");
+		expect(readJson<Settings>(p.settingsPath).env).toEqual({ KEEP: "1" });
+	});
+
+	test("rollback reverts only the owned keys by default, keeping a model changed after apply", async () => {
+		const p = paths();
+		writeOriginal(p);
+		const { run } = fakeRunner();
+		await apply(p, configFor(true), run, { healthzTimeoutMs: 0 });
+
+		const edited = readJson<Settings>(p.settingsPath);
+		edited.model = "claude-opus-4-1";
+		writeFileSync(p.settingsPath, `${JSON.stringify(edited, null, 2)}\n`);
+
+		const lines = await rollback(p, run);
+		expect(lines.some((line) => line.includes("reverted key-by-key"))).toBe(true);
+		expect(readJson<Settings>(p.settingsPath)).toEqual({ ...realShapedSettings(), model: "claude-opus-4-1" });
+	});
+
+	test("rollback --snapshot restores the exact pre-apply bytes", async () => {
+		const p = paths();
+		const original = writeOriginal(p);
+		const { run } = fakeRunner();
+		await apply(p, configFor(true), run, { healthzTimeoutMs: 0 });
+
+		const edited = readJson<Settings>(p.settingsPath);
+		edited.model = "claude-opus-4-1";
+		writeFileSync(p.settingsPath, JSON.stringify(edited));
+
+		const lines = await rollback(p, run, { snapshot: true });
+		expect(lines.some((line) => line.includes("byte-for-byte"))).toBe(true);
+		expect(readFileSync(p.settingsPath, "utf8")).toBe(original);
+	});
+
+	test("refresh reinstalls the plugin and restarts the unit without touching settings", async () => {
+		const p = paths();
+		const original = writeOriginal(p);
+		mkdirSync(join(p.unitPath, ".."), { recursive: true });
+		writeFileSync(p.unitPath, "[Unit]\n");
+		const { run, joined } = fakeRunner();
+
+		await refresh(p, configFor(false), run, { healthzTimeoutMs: 0 });
+		expect(joined()).toEqual([
+			`claude plugin uninstall ${PLUGIN_ID}`,
+			`claude plugin install ${PLUGIN_ID}`,
+			"systemctl restart aio-grok-proxy.service",
+		]);
+		expect(readFileSync(p.settingsPath, "utf8")).toBe(original);
+	});
 });

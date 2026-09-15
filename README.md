@@ -148,22 +148,29 @@ A `PostToolUse` hook on `AskUserQuestion` (`hooks/answers.ts`) captures the answ
 ### Install on this machine
 
 ```bash
-bun scripts/claude-setup.ts status     # what is configured; never prints tokens
-bun scripts/claude-setup.ts apply      # reversible setup
-bun scripts/claude-setup.ts rollback   # one command back to the pre-apply state
+bun scripts/claude-setup.ts status               # what is configured; never prints tokens
+bun scripts/claude-setup.ts apply                # reversible setup (exit 2 if the proxy never answers)
+bun scripts/claude-setup.ts refresh              # reinstall the plugin from this checkout + restart the proxy
+bun scripts/claude-setup.ts rollback             # revert the keys apply owns; everything else in settings.json stays
+bun scripts/claude-setup.ts rollback --snapshot  # restore the pre-apply settings.json byte-for-byte
 ```
 
-`apply` (root, systemd host):
+`apply` (root, systemd host) is ordered so a dead `ANTHROPIC_BASE_URL` is never written:
 
-1. Backs up `~/.claude/settings.json` byte-for-byte to `~/.claude/aio/backups/settings.json.<timestamp>`.
-2. Adds the `env` keys `ANTHROPIC_BASE_URL`, `ANTHROPIC_DEFAULT_HAIKU_MODEL`, `ANTHROPIC_DEFAULT_HAIKU_MODEL_NAME` (`Grok 4.6 Ultra`), `ANTHROPIC_DEFAULT_HAIKU_MODEL_DESCRIPTION`; registers this checkout as `extraKnownMarketplaces.aio` and sets `enabledPlugins["all-in-one@aio"] = true`. Everything else in the file (your `model`, other plugins and marketplaces) is preserved.
-3. Writes `/etc/systemd/system/aio-grok-proxy.service` (rendered with the running `bun` and this plugin root), `systemctl daemon-reload`, `enable --now`, and waits up to 5 s for `/healthz`. Without write access to `/etc/systemd/system` the unit is skipped and the SessionStart hook starts the proxy instead.
-4. `claude plugin marketplace add <root>` and `claude plugin install all-in-one@aio` (non-zero exit is a warning, e.g. already installed).
-5. Records what it changed (previous values per key, backup path, unit installed, claude version) in `~/.claude/aio/setup-state.json`.
+1. Backs up `~/.claude/settings.json` byte-for-byte to `~/.claude/aio/backups/settings.json.<timestamp>` and records the current value of every key it is about to change.
+2. `claude plugin marketplace add <root>`, then `claude plugin install all-in-one@aio` (`uninstall` first on a re-apply; non-zero exit is a warning, e.g. already installed).
+3. Writes `/etc/systemd/system/aio-grok-proxy.service` (rendered with the running `bun` and this plugin root), `systemctl daemon-reload`, then `enable --now` — or `restart` when the unit is already active, since `enable --now` is a no-op for a running unit. Without write access to `/etc/systemd/system` the unit is skipped and the SessionStart hook starts the proxy instead.
+4. Waits up to 5 s for `/healthz`.
+5. Re-reads `settings.json` (the `claude` CLI rewrites `enabledPlugins` itself during install) and writes it atomically (`settings.json.tmp` + rename, indentation preserved): `extraKnownMarketplaces.aio` and `enabledPlugins["all-in-one@aio"] = true` always; the `env` keys `ANTHROPIC_BASE_URL`, `ANTHROPIC_DEFAULT_HAIKU_MODEL`, `ANTHROPIC_DEFAULT_HAIKU_MODEL_NAME` (`Grok 4.6 Ultra`), `ANTHROPIC_DEFAULT_HAIKU_MODEL_DESCRIPTION` **only when the proxy answered**. Everything else in the file (your `model`, other plugins and marketplaces) is preserved.
+6. Records what it changed (previous values per key, backup path, unit installed, claude version) in `~/.claude/aio/setup-state.json`.
 
-Claude Code copies a directory-sourced plugin into `~/.claude/plugins/cache/aio/all-in-one/<version>/` at install time and `claude plugin update` skips a same-version source, so **after editing this checkout run `bun scripts/claude-setup.ts apply` again**: a second `apply` keeps the original pre-change snapshot (rollback still returns to the state before the first apply), rewrites the same settings keys and unit, and reinstalls the plugin so the cache matches the checkout. Restart the proxy with `systemctl restart aio-grok-proxy.service` when `src/grok/` changed.
+If the proxy never answers, `apply` still finishes steps 5–6 (plugin enabled, state saved, so `rollback` works), prints `proxy not reachable on <url>; ANTHROPIC_BASE_URL not applied — fix the unit (journalctl -u aio-grok-proxy) and re-run apply`, and exits **2**. Any stale `ANTHROPIC_BASE_URL` from an earlier apply is reverted at the same time. `status` prints a `BROKEN:` line whenever `ANTHROPIC_BASE_URL` is set but the proxy is not listening — Claude Code cannot reach the API in that state; `systemctl start aio-grok-proxy.service` or `rollback` fixes it.
 
-`rollback` restores the backup file over `settings.json` (falls back to reverting key-by-key from the recorded previous values if the backup is gone), `systemctl disable --now` + removes the unit + `daemon-reload`, `claude plugin uninstall all-in-one@aio` best-effort, and deletes `setup-state.json`. `$CLAUDE_CONFIG_DIR` is honoured for the Claude directory and `$AIO_STATE_DIR` for the state directory.
+Claude Code copies a directory-sourced plugin into `~/.claude/plugins/cache/aio/all-in-one/<version>/` at install time and `claude plugin update` skips a same-version source, so **after editing this checkout run `bun scripts/claude-setup.ts refresh`**: `claude plugin uninstall` + `install` so the cache matches the checkout, `systemctl restart aio-grok-proxy.service` so the proxy picks up `src/grok/` changes, and a `/healthz` wait. `refresh` never touches `settings.json`. A second `apply` does the same plus the settings/unit rewrite and keeps the original pre-change snapshot, so `rollback` still returns to the state before the first apply.
+
+`rollback` reverts the current `settings.json` key-by-key from the recorded previous values (safe when you changed `model` or other settings after apply — they stay), `systemctl disable --now` + removes the unit + `daemon-reload`, `claude plugin uninstall all-in-one@aio` best-effort, and deletes `setup-state.json`. `rollback --snapshot` instead restores the pre-apply backup byte-for-byte, discarding anything changed since apply (falls back to key-by-key when the backup is gone). `$CLAUDE_CONFIG_DIR` is honoured for the Claude directory and `$AIO_STATE_DIR` for the state directory.
+
+Automation: `claude -p` runners (cron jobs, CI) should set `AIO_UPLIFT=0` in the environment to skip the uplift pre-pass for the whole process, the same way a `raw:` prefix skips it for one prompt. The hook returns immediately and exits 0.
 
 ## What it does
 1. You type a short request.

@@ -245,6 +245,10 @@ async function main(): Promise<void> {
 		return;
 	}
 	if (isChildInvocation()) return;
+	if (process.env.AIO_UPLIFT === "0") {
+		log("skipped: AIO_UPLIFT=0");
+		return;
+	}
 
 	const input = parseInput(await readStdin());
 	if (input.hook_event_name && input.hook_event_name !== "UserPromptSubmit") return;
