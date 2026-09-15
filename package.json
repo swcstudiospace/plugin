@@ -1,15 +1,16 @@
 {
 	"name": "omp-all-in-one",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"private": true,
 	"type": "module",
-	"description": "OMP all-in-one plugin. Prompt Uplift, Tissue + ktui, Hermes skills, GitHub org + Greptile MCP, Supabase DB+auth.",
+	"description": "OMP all-in-one plugin. Prompt Uplift with the Grok 4.6 thinking engine (GoT/CoT + HITL clarifications), Grok proxy for Claude Code's Haiku tier, Tissue + ktui, Hermes skills, GitHub org + Greptile MCP, Supabase DB+auth.",
 	"scripts": {
 		"test": "bun test",
 		"check": "bunx tsc --noEmit",
 		"import:hermes": "bun src/skills/cli.ts",
 		"hook:uplift": "bun hooks/uplift.ts",
-		"uplift": "bun hooks/uplift.ts --ctl"
+		"uplift": "bun hooks/uplift.ts --ctl",
+		"setup:claude": "bun scripts/claude-setup.ts"
 	},
 	"devDependencies": {
 		"@oh-my-pi/pi-ai": "^18.0.4",

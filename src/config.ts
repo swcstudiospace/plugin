@@ -1,6 +1,8 @@
 import { existsSync, readFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { join } from "node:path";
+import { DEFAULT_GROK_CONFIG, GROK_EFFORTS, type GrokConfig, type GrokEffort, type GrokProxyConfig } from "./grok/types.ts";
+import { DEFAULT_HITL_CONFIG, type HitlConfig } from "./hitl/types.ts";
 import { DEFAULT_BOARD_NAME, type IssuesConfig } from "./issues/types.ts";
 import { DEFAULT_GITHUB_ORG, type GithubConfig, type GreptileConfig, type SupabaseConfig } from "./mcp/types.ts";
 import { MAX_NODES, MIN_NODES, type ThinkConfig } from "./think/types.ts";
@@ -40,6 +42,8 @@ export const DEFAULT_CLAUDE_CONFIG: ClaudeConfig = {
 export interface AioConfig {
 	uplift: { enabled: boolean; skipTrivial: boolean; maxChars: number; echo: boolean };
 	claude: ClaudeConfig;
+	grok: GrokConfig;
+	hitl: HitlConfig;
 	issues: IssuesConfig;
 	think: ThinkConfig;
 	github: GithubConfig;
@@ -67,6 +71,7 @@ export function defaultConfig(): AioConfig {
 			enabled: true,
 			minNodes: MIN_NODES,
 			maxNodes: MAX_NODES,
+			engine: "grok",
 		},
 		github: {
 			org: DEFAULT_GITHUB_ORG,
@@ -81,6 +86,11 @@ export function defaultConfig(): AioConfig {
 			enabled: true,
 		},
 		claude: { ...DEFAULT_CLAUDE_CONFIG },
+		grok: {
+			...DEFAULT_GROK_CONFIG,
+			proxy: { ...DEFAULT_GROK_CONFIG.proxy, routeModels: [...DEFAULT_GROK_CONFIG.proxy.routeModels] },
+		},
+		hitl: { ...DEFAULT_HITL_CONFIG },
 		lsp: { ...DEFAULT_LSP_CONFIG },
 		pod: { ...DEFAULT_POD_CONFIG },
 	};
@@ -144,6 +154,7 @@ function mergeThink(think: Record<string, unknown> | undefined, defaults: ThinkC
 		enabled: typeof think.enabled === "boolean" ? think.enabled : defaults.enabled,
 		minNodes: Math.min(minNodes, maxNodes),
 		maxNodes,
+		engine: think.engine === "grok" || think.engine === "claude" ? think.engine : defaults.engine,
 	};
 }
 
@@ -160,6 +171,64 @@ function mergeClaude(claude: Record<string, unknown> | undefined, defaults: Clau
 		budgetMs: positive(claude.budgetMs, defaults.budgetMs),
 		concurrency: Math.max(1, Math.floor(positive(claude.concurrency, defaults.concurrency))),
 		echo: typeof claude.echo === "boolean" ? claude.echo : defaults.echo,
+	};
+}
+
+function nonEmpty(value: unknown, fallback: string): string {
+	return typeof value === "string" && value.trim() ? value.trim() : fallback;
+}
+
+function mergeGrokProxy(proxy: Record<string, unknown> | undefined, defaults: GrokProxyConfig): GrokProxyConfig {
+	if (!proxy) return { ...defaults, routeModels: [...defaults.routeModels] };
+	const routeModels = Array.isArray(proxy.routeModels)
+		? proxy.routeModels.filter((m): m is string => typeof m === "string" && m.trim().length > 0).map((m) => m.trim())
+		: [...defaults.routeModels];
+	return {
+		enabled: typeof proxy.enabled === "boolean" ? proxy.enabled : defaults.enabled,
+		host: nonEmpty(proxy.host, defaults.host),
+		port:
+			typeof proxy.port === "number" && Number.isInteger(proxy.port) && proxy.port >= 1 && proxy.port <= 65535
+				? proxy.port
+				: defaults.port,
+		upstream: nonEmpty(proxy.upstream, defaults.upstream).replace(/\/+$/, "") || defaults.upstream,
+		haikuModel: nonEmpty(proxy.haikuModel, defaults.haikuModel),
+		routeModels: routeModels.length > 0 ? routeModels : [...defaults.routeModels],
+		stripThinking: typeof proxy.stripThinking === "boolean" ? proxy.stripThinking : defaults.stripThinking,
+	};
+}
+
+function mergeGrok(grok: Record<string, unknown> | undefined, defaults: GrokConfig): GrokConfig {
+	if (!grok) return defaults;
+	return {
+		enabled: typeof grok.enabled === "boolean" ? grok.enabled : defaults.enabled,
+		baseUrl: nonEmpty(grok.baseUrl, defaults.baseUrl).replace(/\/+$/, "") || defaults.baseUrl,
+		model: nonEmpty(grok.model, defaults.model),
+		reasoningEffort: GROK_EFFORTS.includes(grok.reasoningEffort as GrokEffort)
+			? (grok.reasoningEffort as GrokEffort)
+			: defaults.reasoningEffort,
+		transport: grok.transport === "http" || grok.transport === "cli" ? grok.transport : defaults.transport,
+		bin: nonEmpty(grok.bin, defaults.bin),
+		home: typeof grok.home === "string" ? grok.home.trim() : defaults.home,
+		callTimeoutMs:
+			typeof grok.callTimeoutMs === "number" && Number.isFinite(grok.callTimeoutMs) && grok.callTimeoutMs > 0
+				? grok.callTimeoutMs
+				: defaults.callTimeoutMs,
+		fallbackToClaude: typeof grok.fallbackToClaude === "boolean" ? grok.fallbackToClaude : defaults.fallbackToClaude,
+		proxy: mergeGrokProxy(asRecord(grok.proxy), defaults.proxy),
+	};
+}
+
+function mergeHitl(hitl: Record<string, unknown> | undefined, defaults: HitlConfig): HitlConfig {
+	if (!hitl) return defaults;
+	return {
+		enabled: typeof hitl.enabled === "boolean" ? hitl.enabled : defaults.enabled,
+		maxQuestions:
+			typeof hitl.maxQuestions === "number" &&
+			Number.isInteger(hitl.maxQuestions) &&
+			hitl.maxQuestions >= 1 &&
+			hitl.maxQuestions <= 4
+				? hitl.maxQuestions
+				: defaults.maxQuestions,
 	};
 }
 
@@ -231,6 +300,8 @@ export function mergeConfig(file: Record<string, unknown> | undefined, base: Aio
 	return {
 		uplift: mergeUplift(asRecord(file.uplift), base.uplift),
 		claude: mergeClaude(asRecord(file.claude), base.claude),
+		grok: mergeGrok(asRecord(file.grok), base.grok),
+		hitl: mergeHitl(asRecord(file.hitl), base.hitl),
 		issues: mergeIssues(asRecord(file.issues), base.issues),
 		think: mergeThink(asRecord(file.think), base.think),
 		github: mergeGithub(asRecord(file.github), base.github),

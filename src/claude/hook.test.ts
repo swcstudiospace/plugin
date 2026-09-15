@@ -3,11 +3,13 @@ import { existsSync, mkdtempSync, readdirSync, readFileSync, rmSync } from "node
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { defaultConfig } from "../config.ts";
+import { clarifySystemPrompt } from "../hitl/prompts.ts";
+import type { Clarification } from "../hitl/types.ts";
 import type { KtuiRunner } from "../issues/kanban.ts";
 import { COT_SYSTEM_PROMPT, GRAPH_SYSTEM_PROMPT } from "../think/prompts.ts";
 import { UPLIFT_SYSTEM_PROMPT } from "../uplift/prompt.ts";
 import { runPromptSubmit } from "./hook.ts";
-import { readControl, readLast, readSession, writeControl } from "./state.ts";
+import { readControl, readLast, readSession, writeControl, writeSession } from "./state.ts";
 
 const dirs: string[] = [];
 function tempDir(prefix: string): string {
@@ -34,6 +36,36 @@ function graphJson(): string {
 	});
 }
 
+function clarifyJson(): string {
+	return JSON.stringify({
+		questions: [
+			{
+				id: "q1",
+				question: "Which auth provider should the login page use?",
+				header: "Auth",
+				why: "Determines the SDK and callback routes",
+				options: [
+					{ label: "Supabase", description: "already configured" },
+					{ label: "Custom JWT", description: "more code" },
+				],
+				default: "Supabase",
+				blocking: true,
+			},
+			{
+				id: "q2",
+				question: "Should the page support magic links?",
+				header: "Magic links",
+				why: "Adds an email flow",
+				options: [{ label: "No" }, { label: "Yes" }],
+				default: "No",
+				blocking: false,
+			},
+		],
+	});
+}
+
+const CLARIFY_PROMPT = clarifySystemPrompt(defaultConfig().hitl.maxQuestions);
+
 function fakeComplete(calls: string[]) {
 	return async (system: string, user: string): Promise<string> => {
 		calls.push(system);
@@ -45,6 +77,7 @@ function fakeComplete(calls: string[]) {
 			const id = user.match(/current_node id="([^"]+)"/)?.[1] ?? "?";
 			return `<node><thinking>t</thinking><conclusion>done ${id}</conclusion></node>`;
 		}
+		if (system === CLARIFY_PROMPT) return clarifyJson();
 		throw new Error(`unexpected system prompt`);
 	};
 }
@@ -61,6 +94,7 @@ describe("runPromptSubmit", () => {
 				config,
 				control: {},
 				complete: fakeComplete(calls),
+				engine: "test-engine",
 				ktui: noKtui,
 				stateDir,
 				conversation: () => "User: earlier context",
@@ -71,15 +105,21 @@ describe("runPromptSubmit", () => {
 		expect(calls.filter((s) => s === UPLIFT_SYSTEM_PROMPT)).toHaveLength(1);
 		expect(calls.filter((s) => s === GRAPH_SYSTEM_PROMPT)).toHaveLength(1);
 		expect(calls.filter((s) => s === COT_SYSTEM_PROMPT)).toHaveLength(3);
+		expect(calls.filter((s) => s === CLARIFY_PROMPT)).toHaveLength(1);
 
 		const ctx = out.output?.hookSpecificOutput.additionalContext ?? "";
 		expect(out.output?.hookSpecificOutput.hookEventName).toBe("UserPromptSubmit");
 		expect(ctx).toContain("<CONTEXT>with-conv</CONTEXT>");
 		expect(ctx).toContain("<GRAPH_OF_THOUGHT>");
 		expect(ctx).toContain("done n3");
+		expect(ctx).toContain("## Clarifications (HITL)");
+		expect(ctx).toContain("<CLARIFICATIONS");
+		expect(ctx).toContain("Which auth provider should the login page use?");
 		expect(ctx).toContain("## Issue tracking");
 		expect(out.output?.systemMessage).toContain("Prompt Uplift · BUILD_PROMPT · llm");
+		expect(out.output?.systemMessage).toContain("test-engine");
 		expect(out.output?.systemMessage).toContain("3 nodes");
+		expect(out.output?.systemMessage).toContain("HITL · 2 question(s)");
 		expect(out.output?.systemMessage).toContain("Kanban skipped");
 
 		const files = readdirSync(join(cwd, "issues")).filter((f) => f.endsWith(".md")).sort();
@@ -96,6 +136,10 @@ describe("runPromptSubmit", () => {
 
 		const record = readSession(stateDir, "s1");
 		expect(record?.graph?.nodes).toHaveLength(3);
+		expect(record?.engine).toBe("test-engine");
+		expect(record?.clarifications).toHaveLength(2);
+		expect(record?.clarifications?.[0]?.blocking).toBe(true);
+		expect(record?.result.xml).toContain("<CLARIFICATIONS");
 		expect(record?.lane).toBe("doing");
 		expect(readLast(stateDir)?.sessionId).toBe("s1");
 		expect(existsSync(join(stateDir, "sessions", "s1.xml"))).toBe(true);
@@ -105,7 +149,7 @@ describe("runPromptSubmit", () => {
 		const cwd = tempDir("aio-hook-cwd-");
 		const stateDir = join(tempDir("aio-hook-state-"), "aio");
 		const calls: string[] = [];
-		const deps = { config: defaultConfig(), control: {}, complete: fakeComplete(calls), ktui: noKtui, stateDir };
+		const deps = { config: defaultConfig(), control: {}, complete: fakeComplete(calls), engine: "test-engine", ktui: noKtui, stateDir };
 
 		expect((await runPromptSubmit({ cwd, prompt: "/help" }, deps)).skipped).toBe("skip");
 		expect((await runPromptSubmit({ cwd, prompt: "ok" }, deps)).skipped).toBe("skip");
@@ -123,7 +167,7 @@ describe("runPromptSubmit", () => {
 		const cwd = tempDir("aio-hook-cwd-");
 		const stateDir = join(tempDir("aio-hook-state-"), "aio");
 		const calls: string[] = [];
-		const base = { config: defaultConfig(), complete: fakeComplete(calls), ktui: noKtui, stateDir };
+		const base = { config: defaultConfig(), complete: fakeComplete(calls), engine: "test-engine", ktui: noKtui, stateDir };
 
 		const single = await runPromptSubmit({ session_id: "s2", cwd, prompt: "build a login page" }, { ...base, control: { thinkEnabled: false } });
 		expect(calls.filter((s) => s === GRAPH_SYSTEM_PROMPT)).toHaveLength(0);
@@ -147,11 +191,88 @@ describe("runPromptSubmit", () => {
 				complete: async () => {
 					throw new Error("claude exited 1");
 				},
+				engine: "test-engine",
+				engineError: () => "claude exited 1",
 				ktui: noKtui,
 				stateDir,
 			},
 		);
 		expect(out.record?.result.source).toBe("fallback");
 		expect(out.output?.systemMessage).toContain("fallback");
+		expect(out.output?.systemMessage).toContain("Engine error · claude exited 1");
+	});
+
+	test("answered clarifications from a prior record carry forward; stale open ones are dropped", async () => {
+		const cwd = tempDir("aio-hook-cwd-");
+		const stateDir = join(tempDir("aio-hook-state-"), "aio");
+		const calls: string[] = [];
+		const answered: Clarification = {
+			id: "q1",
+			question: "Which auth provider should the login page use?",
+			header: "Auth",
+			why: "Determines the SDK",
+			options: [{ label: "Supabase" }, { label: "Custom JWT" }],
+			default: "Supabase",
+			blocking: true,
+			answer: "Custom JWT",
+			answeredAt: 1,
+			source: "user",
+		};
+		const stale: Clarification = { ...answered, id: "q9", question: "Stale open question?", answer: undefined };
+		writeSession(stateDir, {
+			sessionId: "s5",
+			at: 1,
+			result: { xml: "<BUILD_PROMPT><ORIGINAL>old</ORIGINAL></BUILD_PROMPT>", original: "old", root: "BUILD_PROMPT", source: "llm" },
+			clarifications: [answered, stale],
+		});
+
+		let seenAnswered: Clarification[] | undefined;
+		const out = await runPromptSubmit(
+			{ session_id: "s5", cwd, prompt: "build a login page" },
+			{
+				config: defaultConfig(),
+				control: { thinkEnabled: false, issuesEnabled: false },
+				complete: fakeComplete(calls),
+				engine: "test-engine",
+				ktui: noKtui,
+				stateDir,
+				clarify: async (opts) => {
+					seenAnswered = opts.answered;
+					return JSON.parse(clarifyJson()).questions as Clarification[];
+				},
+			},
+		);
+
+		expect(seenAnswered?.map((c) => c.id)).toEqual(["q1"]);
+		const ids = out.record?.clarifications?.map((c) => c.question) ?? [];
+		expect(ids).toEqual(["Which auth provider should the login page use?", "Should the page support magic links?"]);
+		expect(out.record?.clarifications?.[0]?.answer).toBe("Custom JWT");
+		const ctx = out.output?.hookSpecificOutput.additionalContext ?? "";
+		expect(ctx).toContain("Answered");
+		expect(ctx).toContain("Custom JWT");
+		expect(ctx).not.toContain("Stale open question?");
+		expect(out.output?.systemMessage).toContain("HITL · 1 question(s)");
+	});
+
+	test("hitlEnabled false in control skips the clarify call", async () => {
+		const cwd = tempDir("aio-hook-cwd-");
+		const stateDir = join(tempDir("aio-hook-state-"), "aio");
+		const calls: string[] = [];
+		const out = await runPromptSubmit(
+			{ session_id: "s6", cwd, prompt: "build a login page" },
+			{
+				config: defaultConfig(),
+				control: { hitlEnabled: false, issuesEnabled: false },
+				complete: fakeComplete(calls),
+				engine: "test-engine",
+				ktui: noKtui,
+				stateDir,
+			},
+		);
+		expect(calls.filter((s) => s === CLARIFY_PROMPT)).toHaveLength(0);
+		expect(calls.filter((s) => s === GRAPH_SYSTEM_PROMPT)).toHaveLength(1);
+		expect(out.record?.clarifications).toEqual([]);
+		expect(out.output?.hookSpecificOutput.additionalContext).not.toContain("## Clarifications (HITL)");
+		expect(out.output?.systemMessage).not.toContain("HITL ·");
 	});
 });

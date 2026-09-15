@@ -10,7 +10,7 @@ Default **on**. Each rewrite is echoed in the transcript (root, source, full XML
 omp plugin link /root/src/repos/plugin
 ```
 
-Confirm with `omp plugin list` — you should see `● omp-all-in-one@0.1.0`.
+Confirm with `omp plugin list` — you should see `● omp-all-in-one@0.2.0`.
 
 Extension modules load at **session start**. `/reload-plugins` does not pick up `omp.extensions`. Quit omp and start a new session.
 TUI widgets (LSP section, uplift chrome) load the same way.
@@ -30,16 +30,22 @@ omp plugin install all-in-one@aio
 
 ## Claude Code plugin
 
-The same pipeline runs inside Claude Code as a plugin. A `UserPromptSubmit` hook fires at the start of every prompt:
+The same pipeline runs inside Claude Code as a plugin, as a two-stage pipeline. A `UserPromptSubmit` hook fires at the start of every prompt:
 
-1. **Prompt Uplift** rewrites the request into the nested XML spec (headless `claude -p`, reusing your login).
-2. **Graph of Thought** plans 4-8 reasoning nodes; **Chain of Thought** answers each node in dependency order, independent nodes in parallel.
-3. **Issues**: a Tissue parent issue plus one sub-issue per node are written as markdown under `issues/` in the project, then synced to the ktui board when `ktui` is on PATH (skipped silently otherwise).
-4. The spec, graph, and issue tree go back to Claude as hook context, framed as your own elaborated request. A `Stop` hook moves the cards to done when the turn ends.
+**Stage 1 — thinking on Grok 4.6 Ultra** (`grok-4.6` @ `xhigh` reasoning). The hook uses the SuperGrok Heavy OAuth session that `grok login` stores in `~/.grok/auth.json`; the plugin calls the Grok CLI chat proxy `/responses` endpoint directly with that session — no API key, no `grok` process per call. It produces:
+
+1. **Prompt Uplift** — the request rewritten as the nested XML spec.
+2. **Graph of Thought** (4-8 nodes) and **Chain of Thought** per node in dependency order, independent nodes in parallel. The graph carries a `WORKFLOW` of parallel waves (file-disjoint units per wave) and the synthesize node's conclusion names the waves plus the verification commands.
+3. **HITL clarifications** — the questions a senior engineer would ask before starting, injected as `<CLARIFICATIONS>` into the spec (see below).
+4. **Issues** — a Tissue parent issue plus one sub-issue per node under `issues/`, synced to the ktui board when `ktui` is on PATH.
+
+**Stage 2 — coding on the session model.** The spec, graph, workflow, clarifications, and issue tree go back to Claude as hook context, framed as your own elaborated request. Claude Code's own model (`claude-fable-5-1` via its built-in PKCE login) is untouched: it plans from the graph, dispatches the wave units as parallel `Task` subagents, and runs the named verification. A `Stop` hook moves the cards to done when the turn ends.
 
 Claude Code 2.1.x hooks cannot replace the prompt text itself, so the XML rides alongside your message as `additionalContext`; the `ORIGINAL` element always holds your verbatim words.
 
-Requires `bun` and the `claude` CLI on PATH.
+**Fail visibly, never downgrade.** When Grok is not logged in or the session has expired the hook prints `Prompt Uplift skipped · Grok 4.6 login required (run grok login)` and the prompt passes through unchanged. `grok.fallbackToClaude: true` opts into the old behaviour (thinking on a headless `claude -p` child, summary tagged `engine: claude (grok fallback)`).
+
+Requires `bun`, the `claude` CLI, and a logged-in `grok` CLI (`grok login`) on PATH.
 
 ```bash
 # try it for one session
@@ -48,15 +54,40 @@ claude --plugin-dir /root/src/repos/plugin
 # or install from the local marketplace
 claude plugin marketplace add /root/src/repos/plugin
 claude plugin install all-in-one@aio
+
+# or the reversible full setup (settings env + marketplace + plugin + proxy unit)
+bun scripts/claude-setup.ts apply
 ```
 
-Commands: `/all-in-one:uplift on|off|skip|status|last`, `/all-in-one:uplift think on|off|last`, `/all-in-one:issues list|status|sync|on|off`.
+Commands: `/all-in-one:uplift on|off|skip|status|last`, `/all-in-one:uplift think on|off|last`, `/all-in-one:uplift hitl on|off|last|status`, `/all-in-one:grok status|engine grok|engine claude|proxy status`, `/all-in-one:issues list|status|sync|on|off`.
 Prefix a prompt with `raw:` to send it untouched. Slash commands and trivial replies (`ok`, `lgtm`, ...) are never uplifted.
 
-Config is read from `~/.omp/agent/all-in-one.json`, then `~/.claude/all-in-one.json`, then `<project>/.claude/all-in-one.json` (later wins). The `claude` section controls the child calls:
+Config is read from `~/.omp/agent/all-in-one.json`, then `~/.claude/all-in-one.json`, then `<project>/.claude/all-in-one.json` (later wins). `think.engine` picks the Stage 1 engine; `grok` configures it and the proxy; `claude` controls the fallback child calls; `hitl` the clarifier:
 
 ```json
 {
+  "think": { "enabled": true, "engine": "grok", "minNodes": 3, "maxNodes": 8 },
+  "grok": {
+    "enabled": true,
+    "baseUrl": "https://cli-chat-proxy.grok.com/v1",
+    "model": "grok-4.6",
+    "reasoningEffort": "xhigh",
+    "transport": "http",
+    "bin": "grok",
+    "home": "",
+    "callTimeoutMs": 240000,
+    "fallbackToClaude": false,
+    "proxy": {
+      "enabled": true,
+      "host": "127.0.0.1",
+      "port": 41417,
+      "upstream": "https://api.anthropic.com",
+      "haikuModel": "grok-4.6",
+      "routeModels": ["grok-"],
+      "stripThinking": true
+    }
+  },
+  "hitl": { "enabled": true, "maxQuestions": 4 },
   "claude": {
     "model": "sonnet",
     "thinking": false,
@@ -65,12 +96,74 @@ Config is read from `~/.omp/agent/all-in-one.json`, then `~/.claude/all-in-one.j
     "budgetMs": 540000,
     "echo": true
   },
-  "think": { "enabled": true, "minNodes": 3, "maxNodes": 8 },
   "issues": { "enabled": true, "boardName": "Spectrum Web Co" }
 }
 ```
 
-Expect one to three minutes per prompt: the spec is ~3-4k output tokens and each node is another call. `"model": "haiku"` is fastest; `"think": { "enabled": false }` keeps only the uplift and a single tracked issue. Everything is fail-open: on any failure your original prompt still goes through, and the whole hook gives up at `budgetMs`. Set `AIO_DEBUG=1` to see progress on stderr. State (last spec, per-session issue tree) lives in `~/.claude/aio/`.
+Expect one to three minutes per prompt at `xhigh`: the spec is ~3-4k output tokens and each node is another call (≈18 s per 1k output tokens). `"reasoningEffort": "high"` is faster; `"think": { "enabled": false }` keeps only the uplift and a single tracked issue. Everything is fail-open: on any failure your original prompt still goes through, and the whole hook gives up at `claude.budgetMs`. Set `AIO_DEBUG=1` to see progress on stderr. State (last spec, per-session issue tree, clarifications) lives in `~/.claude/aio/`.
+
+### Thinking engine
+
+`think.engine` is `"grok"` (default) or `"claude"`. `/all-in-one:grok engine grok|claude` switches it for the machine without editing config; `/all-in-one:grok status` prints `Engine: grok-4.6@xhigh (SuperGrok OAuth: <email>, expires <ISO>)` or `claude:<model>` — never a token.
+
+| `grok` key | Default | Meaning |
+|---|---|---|
+| `enabled` | `true` | Engine available |
+| `baseUrl` | `https://cli-chat-proxy.grok.com/v1` | Grok CLI chat proxy |
+| `model` | `grok-4.6` | Model override header |
+| `reasoningEffort` | `xhigh` | `low` / `medium` / `high` / `xhigh` — **Grok 4.6 Ultra** is `grok-4.6` @ `xhigh` |
+| `transport` | `http` | `http` calls `/responses` directly with the stored session. `cli` spawns `grok -p … --output-format json --tools "" --no-plan` per call: same login, but ~60k tokens per call because the CLI loads its own tooling and system prompt |
+| `bin` | `grok` | Binary for `transport: "cli"` |
+| `home` | `""` | `$GROK_HOME` or `~/.grok` (`auth.json`, `version.json`) |
+| `callTimeoutMs` | `240000` | Per call |
+| `fallbackToClaude` | `false` | Silently use the `claude` engine when Grok is not logged in |
+
+The session is read from `~/.grok/auth.json` (first entry: access token, `expires_at`, `email`); `~/.grok/version.json` supplies the `x-grok-client-version` header the proxy insists on. Expired or missing sessions fail visibly (see above). Nothing is printed or persisted from the token: error bodies pass through `redactSecrets` before they reach a log line or the summary.
+
+### Grok proxy — Haiku-tier on Grok
+
+`src/grok/proxy.ts` is a local Anthropic-compatible router, **aio-grok-proxy** on `http://127.0.0.1:41417`. Every request is a transparent pass-through to `https://api.anthropic.com` (same method, headers, streaming body), so Claude Code's PKCE OAuth session keeps working unchanged. Only requests whose `model` starts with a `grok.proxy.routeModels` prefix (`grok-`) are rerouted to the Grok CLI proxy `/v1/messages` with the SuperGrok session:
+
+- `stop_sequences` (and `top_k`) are stripped — Grok rejects them.
+- SSE `content_block_*` indices are renumbered (Grok emits every block as index 0 and omits it on deltas).
+- `thinking` blocks are stripped unless the request enabled thinking (`grok.proxy.stripThinking`).
+- `POST /v1/messages/count_tokens` for a Grok model is answered locally.
+- `GET /healthz` → `{ ok, upstream, grok: { loggedIn, expired, email, expiresAt } }` — never a token.
+
+`ANTHROPIC_BASE_URL=http://127.0.0.1:41417` plus `ANTHROPIC_DEFAULT_HAIKU_MODEL=grok-4.6` in `~/.claude/settings.json` `env` make Claude Code's Haiku tier (background summaries, title generation, small subagents) hit Grok 4.6 while Sonnet/Opus-tier calls continue to Anthropic. The proxy is started detached by the `SessionStart` hook when it is not already listening, and permanently by the `aio-grok-proxy.service` systemd unit that `claude-setup.ts apply` installs (`deploy/aio-grok-proxy.service` is a rendered example). `/all-in-one:grok proxy status` reports whether it is listening.
+
+### HITL clarifications
+
+After the graph, the clarifier (same Grok engine) asks for up to `hitl.maxQuestions` (default 4) questions that would change the plan — scope boundaries, conflicting constraints, unstated targets — each with a short header (≤12 chars), 2-4 options, a recommended default, a `why`, and a `blocking` flag. They land in the spec as `<CLARIFICATIONS>` and in the hook context as a `## Clarifications (HITL)` addendum that tells Claude to:
+
+1. resolve what it can from the repo first;
+2. for blocking open questions, call **AskUserQuestion once** with the given headers/options (recommended default first) — the Cowork-style question card;
+3. for non-blocking ones, proceed with the default and state the assumption;
+4. never re-ask items listed under `Answered:`.
+
+A `PostToolUse` hook on `AskUserQuestion` (`hooks/answers.ts`) captures the answers, writes them into the session state and back into the spec's `<CLARIFICATIONS>` (`<ANSWER source="user">`), and prints `HITL · N answer(s) recorded`. Answered clarifications carry over to the next prompt in the same session so nothing is asked twice. Non-interactive runs (`claude -p`, no AskUserQuestion) proceed with the defaults.
+
+`/all-in-one:uplift hitl on|off|last|status` toggles the clarifier and echoes the last question set. Config: `hitl.enabled`, `hitl.maxQuestions`.
+
+### Install on this machine
+
+```bash
+bun scripts/claude-setup.ts status     # what is configured; never prints tokens
+bun scripts/claude-setup.ts apply      # reversible setup
+bun scripts/claude-setup.ts rollback   # one command back to the pre-apply state
+```
+
+`apply` (root, systemd host):
+
+1. Backs up `~/.claude/settings.json` byte-for-byte to `~/.claude/aio/backups/settings.json.<timestamp>`.
+2. Adds the `env` keys `ANTHROPIC_BASE_URL`, `ANTHROPIC_DEFAULT_HAIKU_MODEL`, `ANTHROPIC_DEFAULT_HAIKU_MODEL_NAME` (`Grok 4.6 Ultra`), `ANTHROPIC_DEFAULT_HAIKU_MODEL_DESCRIPTION`; registers this checkout as `extraKnownMarketplaces.aio` and sets `enabledPlugins["all-in-one@aio"] = true`. Everything else in the file (your `model`, other plugins and marketplaces) is preserved.
+3. Writes `/etc/systemd/system/aio-grok-proxy.service` (rendered with the running `bun` and this plugin root), `systemctl daemon-reload`, `enable --now`, and waits up to 5 s for `/healthz`. Without write access to `/etc/systemd/system` the unit is skipped and the SessionStart hook starts the proxy instead.
+4. `claude plugin marketplace add <root>` and `claude plugin install all-in-one@aio` (non-zero exit is a warning, e.g. already installed).
+5. Records what it changed (previous values per key, backup path, unit installed, claude version) in `~/.claude/aio/setup-state.json`.
+
+Claude Code copies a directory-sourced plugin into `~/.claude/plugins/cache/aio/all-in-one/<version>/` at install time and `claude plugin update` skips a same-version source, so **after editing this checkout run `bun scripts/claude-setup.ts apply` again**: a second `apply` keeps the original pre-change snapshot (rollback still returns to the state before the first apply), rewrites the same settings keys and unit, and reinstalls the plugin so the cache matches the checkout. Restart the proxy with `systemctl restart aio-grok-proxy.service` when `src/grok/` changed.
+
+`rollback` restores the backup file over `settings.json` (falls back to reverting key-by-key from the recorded previous values if the backup is gone), `systemctl disable --now` + removes the unit + `daemon-reload`, `claude plugin uninstall all-in-one@aio` best-effort, and deletes `setup-state.json`. `$CLAUDE_CONFIG_DIR` is honoured for the Claude directory and `$AIO_STATE_DIR` for the state directory.
 
 ## What it does
 1. You type a short request.
@@ -132,7 +225,7 @@ The agent receives the uplifted XML plus a `GRAPH_OF_THOUGHT` block with `THINKI
 
 When think produced a graph, the plugin writes **one parent** Tissue issue plus **one sub-issue per graph node** under `issues/`, then syncs each to Spectrum Web Co. Idempotent via `<!-- aio-id: … -->` markers — re-running the same prompt updates in place. Think off (or think failed) still writes **one** issue from the prompt.
 
-Commands: `/think` `on` | `off` | `status` | `last` (also `/aio think …`). Flag: `--aio-think-off`. Config: `think: { enabled, minNodes, maxNodes }` in `all-in-one.json`.
+Commands: `/think` `on` | `off` | `status` | `last` (also `/aio think …`). Flag: `--aio-think-off`. Config: `think: { enabled, engine, minNodes, maxNodes }` in `all-in-one.json` — `engine` (`grok` | `claude`) selects the Claude Code Stage 1 engine (see [Thinking engine](#thinking-engine)).
 
 `raw:` and `/uplift skip` still skip the whole pre-pass, including think.
 
@@ -250,8 +343,21 @@ Bin: `AIMEE_POD_BIN` || `pod.bin` || `devpod`. Nexus: `ANDA_NEXUS_URL` || `pod.n
   },
   "think": {
     "enabled": true,
+    "engine": "grok",
     "minNodes": 3,
     "maxNodes": 8
+  },
+  "grok": {
+    "enabled": true,
+    "model": "grok-4.6",
+    "reasoningEffort": "xhigh",
+    "transport": "http",
+    "fallbackToClaude": false,
+    "proxy": { "enabled": true, "host": "127.0.0.1", "port": 41417, "haikuModel": "grok-4.6" }
+  },
+  "hitl": {
+    "enabled": true,
+    "maxQuestions": 4
   },
   "github": {
     "org": "swcstudiospace",

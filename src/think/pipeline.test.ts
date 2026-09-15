@@ -1,5 +1,6 @@
 import { describe, expect, test } from "bun:test";
 import type { UpliftResult } from "../types.ts";
+import { dependencyLevels } from "./graph.ts";
 import { runThink } from "./pipeline.ts";
 import { COT_SYSTEM_PROMPT, GRAPH_SYSTEM_PROMPT } from "./prompts.ts";
 import { FALLBACK_GRAPH } from "./types.ts";
@@ -51,6 +52,9 @@ describe("runThink", () => {
 		expect(result.xml).toContain("<ORIGINAL>add list</ORIGINAL>");
 		expect(result.xml).toContain("<GRAPH_OF_THOUGHT>");
 		expect(result.xml).toContain("done n1");
+		expect(result.xml).toContain("<WORKFLOW>");
+		expect(result.xml).toContain('<WAVE n="1" parallel="false">n1</WAVE>');
+		expect(result.xml.indexOf("<WORKFLOW>")).toBeLessThan(result.xml.indexOf("</GRAPH_OF_THOUGHT>"));
 	});
 
 	test("graph throw uses FALLBACK_GRAPH still fills 5 CoTs", async () => {
@@ -109,7 +113,6 @@ describe("runThink", () => {
 
 describe("runThink concurrency", () => {
 	test("fills independent nodes together but never before their predecessors", async () => {
-		const { dependencyLevels } = await import("./pipeline.ts");
 		const graph = {
 			goal: "g",
 			nodes: [

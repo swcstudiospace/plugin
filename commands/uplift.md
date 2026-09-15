@@ -1,6 +1,6 @@
 ---
-description: Control Prompt Uplift — on, off, skip (next prompt), status, last
-argument-hint: "[on|off|skip|status|last|think on|think off|think last]"
+description: Control Prompt Uplift — on, off, skip (next prompt), status, last; think and HITL toggles
+argument-hint: "[on|off|skip|status|last|think on|think off|think last|hitl on|hitl off|hitl last|hitl status]"
 allowed-tools: Bash(bun *)
 ---
 

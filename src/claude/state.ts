@@ -5,6 +5,7 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { join } from "node:path";
+import type { Clarification } from "../hitl/types.ts";
 import type { GraphSyncResult, SyncResult } from "../issues/types.ts";
 import type { ThoughtGraph } from "../think/types.ts";
 import type { UpliftResult } from "../types.ts";
@@ -14,13 +15,18 @@ export interface ControlState {
 	skipOnce?: boolean;
 	thinkEnabled?: boolean;
 	issuesEnabled?: boolean;
+	hitlEnabled?: boolean;
+	engine?: "grok" | "claude";
 }
 
 export interface SessionRecord {
 	sessionId: string;
 	at: number;
+	/** Thinking engine label, e.g. "grok-4.6@xhigh" or "claude:sonnet". */
+	engine?: string;
 	result: UpliftResult;
 	graph?: ThoughtGraph;
+	clarifications?: Clarification[];
 	tree?: GraphSyncResult;
 	last?: SyncResult;
 	lane?: "doing" | "done";
@@ -60,6 +66,8 @@ export function readControl(dir: string): ControlState {
 	if (typeof rec.skipOnce === "boolean") out.skipOnce = rec.skipOnce;
 	if (typeof rec.thinkEnabled === "boolean") out.thinkEnabled = rec.thinkEnabled;
 	if (typeof rec.issuesEnabled === "boolean") out.issuesEnabled = rec.issuesEnabled;
+	if (typeof rec.hitlEnabled === "boolean") out.hitlEnabled = rec.hitlEnabled;
+	if (rec.engine === "grok" || rec.engine === "claude") out.engine = rec.engine;
 	return out;
 }
 

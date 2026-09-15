@@ -3,6 +3,8 @@ import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { DEFAULT_CLAUDE_CONFIG, claudeConfigPaths, defaultConfig, loadConfig } from "./config.ts";
+import { DEFAULT_GROK_CONFIG } from "./grok/types.ts";
+import { DEFAULT_HITL_CONFIG } from "./hitl/types.ts";
 import { DEFAULT_BOARD_NAME } from "./issues/types.ts";
 import { DEFAULT_LSP_CONFIG } from "./lsp/types.ts";
 import { DEFAULT_POD_CONFIG } from "./pod/types.ts";
@@ -13,8 +15,10 @@ const ISSUES = {
 	ktuiBin: "ktui",
 	echo: true,
 };
-const THINK = { enabled: true, minNodes: 3, maxNodes: 8 };
+const THINK = { enabled: true, minNodes: 3, maxNodes: 8, engine: "grok" as const };
 const CLAUDE = DEFAULT_CLAUDE_CONFIG;
+const GROK = DEFAULT_GROK_CONFIG;
+const HITL = DEFAULT_HITL_CONFIG;
 const GITHUB = { org: "swcstudiospace", autoPr: true };
 const GREPTILE = { requiredForMerge: true, bin: "greptile", minConfidence: 5 };
 const SUPABASE = { enabled: true };
@@ -47,6 +51,8 @@ describe("loadConfig", () => {
 		expect(defaultConfig()).toEqual({
 			uplift: { enabled: true, skipTrivial: true, maxChars: 20000, echo: true },
 			claude: CLAUDE,
+			grok: GROK,
+			hitl: HITL,
 			issues: ISSUES,
 			think: THINK,
 			github: GITHUB,
@@ -71,6 +77,8 @@ describe("loadConfig", () => {
 		expect(loadConfig()).toEqual({
 			uplift: { enabled: false, skipTrivial: true, maxChars: 20000, echo: true },
 			claude: CLAUDE,
+			grok: GROK,
+			hitl: HITL,
 			issues: ISSUES,
 			think: THINK,
 			github: GITHUB,
@@ -84,6 +92,8 @@ describe("loadConfig", () => {
 		expect(loadConfig()).toEqual({
 			uplift: { enabled: true, skipTrivial: true, maxChars: 50, echo: true },
 			claude: CLAUDE,
+			grok: GROK,
+			hitl: HITL,
 			issues: ISSUES,
 			think: THINK,
 			github: GITHUB,
@@ -97,6 +107,8 @@ describe("loadConfig", () => {
 		expect(loadConfig()).toEqual({
 			uplift: { enabled: true, skipTrivial: false, maxChars: 20000, echo: true },
 			claude: CLAUDE,
+			grok: GROK,
+			hitl: HITL,
 			issues: ISSUES,
 			think: THINK,
 			github: GITHUB,
@@ -117,6 +129,8 @@ describe("loadConfig", () => {
 		expect(loadConfig()).toEqual({
 			uplift: { enabled: true, skipTrivial: true, maxChars: 20000, echo: false },
 			claude: CLAUDE,
+			grok: GROK,
+			hitl: HITL,
 			issues: ISSUES,
 			think: THINK,
 			github: GITHUB,
@@ -132,6 +146,8 @@ describe("loadConfig", () => {
 		expect(loadConfig()).toEqual({
 			uplift: { enabled: true, skipTrivial: true, maxChars: 20000, echo: true },
 			claude: CLAUDE,
+			grok: GROK,
+			hitl: HITL,
 			issues: { ...ISSUES, enabled: false },
 			think: THINK,
 			github: GITHUB,
@@ -159,7 +175,7 @@ describe("loadConfig", () => {
 		withAgentDir(JSON.stringify({ think: { enabled: false } }));
 		expect(loadConfig().think).toEqual({ ...THINK, enabled: false });
 		withAgentDir(JSON.stringify({ think: { maxNodes: 5 } }));
-		expect(loadConfig().think).toEqual({ enabled: true, minNodes: 3, maxNodes: 5 });
+		expect(loadConfig().think).toEqual({ enabled: true, minNodes: 3, maxNodes: 5, engine: "grok" });
 	});
 
 	test("pod extraDirs merge from JSON", () => {
@@ -177,6 +193,86 @@ describe("loadConfig", () => {
 			readyTimeoutMs: 1000,
 			dteeUrl: "http://example:9",
 		});
+	});
+
+	test("defaults include the grok engine at xhigh, proxy port 41417 and HITL max 4", () => {
+		withAgentDir();
+		const config = loadConfig();
+		expect(config.think.engine).toBe("grok");
+		expect(config.grok.enabled).toBe(true);
+		expect(config.grok.model).toBe("grok-4.6");
+		expect(config.grok.reasoningEffort).toBe("xhigh");
+		expect(config.grok.fallbackToClaude).toBe(false);
+		expect(config.grok.proxy.port).toBe(41417);
+		expect(config.grok.proxy.haikuModel).toBe("grok-4.6");
+		expect(config.hitl).toEqual({ enabled: true, maxQuestions: 4 });
+		// defaults are copies, never the shared constant
+		config.grok.proxy.routeModels.push("x-");
+		expect(DEFAULT_GROK_CONFIG.proxy.routeModels).toEqual(["grok-"]);
+	});
+
+	test("grok, hitl and think.engine overrides are honored", () => {
+		withAgentDir(
+			JSON.stringify({
+				think: { engine: "claude" },
+				grok: {
+					reasoningEffort: "high",
+					baseUrl: " https://example.test/v1/ ",
+					transport: "cli",
+					home: "/tmp/grok-home",
+					fallbackToClaude: true,
+					proxy: { port: 5000, upstream: "https://up.example/", routeModels: ["grok-", " ", "x-"], stripThinking: false },
+				},
+				hitl: { maxQuestions: 2, enabled: false },
+			}),
+		);
+		const config = loadConfig();
+		expect(config.think.engine).toBe("claude");
+		expect(config.grok).toEqual({
+			...GROK,
+			reasoningEffort: "high",
+			baseUrl: "https://example.test/v1",
+			transport: "cli",
+			home: "/tmp/grok-home",
+			fallbackToClaude: true,
+			proxy: { ...GROK.proxy, port: 5000, upstream: "https://up.example", routeModels: ["grok-", "x-"], stripThinking: false },
+		});
+		expect(config.hitl).toEqual({ enabled: false, maxQuestions: 2 });
+	});
+
+	test("invalid grok, hitl and engine values fall back to defaults", () => {
+		withAgentDir(
+			JSON.stringify({
+				think: { engine: "gpt" },
+				grok: {
+					enabled: "yes",
+					reasoningEffort: "ultra",
+					transport: "ssh",
+					model: "",
+					callTimeoutMs: -5,
+					proxy: { port: 0, host: "", routeModels: [1, ""], haikuModel: 7 },
+				},
+				hitl: { maxQuestions: 9, enabled: "on" },
+			}),
+		);
+		const config = loadConfig();
+		expect(config.think.engine).toBe("grok");
+		expect(config.grok).toEqual(GROK);
+		expect(config.hitl).toEqual(HITL);
+		withAgentDir(JSON.stringify({ grok: { proxy: { port: 70000 } }, hitl: { maxQuestions: 2.5 } }));
+		expect(loadConfig().grok.proxy.port).toBe(41417);
+		expect(loadConfig().hitl.maxQuestions).toBe(4);
+	});
+
+	test("later files win for grok and hitl sections", () => {
+		const dir = withAgentDir(JSON.stringify({ grok: { reasoningEffort: "low", proxy: { port: 5000 } }, hitl: { maxQuestions: 1 } }));
+		const override = join(dir, "override.json");
+		writeFileSync(override, JSON.stringify({ grok: { reasoningEffort: "medium" }, hitl: { maxQuestions: 3 }, think: { engine: "claude" } }));
+		const config = loadConfig([join(dir, "all-in-one.json"), override]);
+		expect(config.grok.reasoningEffort).toBe("medium");
+		expect(config.grok.proxy.port).toBe(5000);
+		expect(config.hitl.maxQuestions).toBe(3);
+		expect(config.think.engine).toBe("claude");
 	});
 
 });

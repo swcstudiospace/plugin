@@ -41,6 +41,7 @@ export interface ThinkConfig {
 	enabled: boolean;
 	minNodes: number;
 	maxNodes: number;
+	engine: "grok" | "claude";
 }
 
 export const FALLBACK_GRAPH: ThoughtGraph = {

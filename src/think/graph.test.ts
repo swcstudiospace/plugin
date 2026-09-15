@@ -1,12 +1,15 @@
 import { describe, expect, test } from "bun:test";
 import {
+	dependencyLevels,
 	extractJsonObject,
 	extractTag,
 	graphSketch,
+	graphToXml,
 	injectGraphXml,
 	normalizeGraph,
 	parseNodeFill,
 	topoSort,
+	workflowWaves,
 } from "./graph.ts";
 import { FALLBACK_GRAPH, MAX_NODES, MIN_NODES, type ThoughtNode } from "./types.ts";
 
@@ -88,6 +91,58 @@ describe("topoSort", () => {
 	});
 });
 
+const DIAMOND: ThoughtNode[] = [
+	{ id: "n1", title: "A", kind: "understand", question: "a", dependsOn: [] },
+	{ id: "n2", title: "B", kind: "generate", question: "b", dependsOn: ["n1"] },
+	{ id: "n3", title: "C", kind: "critique", question: "c", dependsOn: ["n1"] },
+	{ id: "n4", title: "D", kind: "synthesize", question: "d", dependsOn: ["n2", "n3"] },
+];
+
+describe("dependencyLevels", () => {
+	test("groups nodes so every dependency sits in an earlier level", () => {
+		expect(dependencyLevels(DIAMOND).map((level) => level.map((node) => node.id))).toEqual([
+			["n1"],
+			["n2", "n3"],
+			["n4"],
+		]);
+	});
+});
+
+describe("workflowWaves", () => {
+	test("diamond graph yields a parallel middle wave", () => {
+		expect(workflowWaves({ goal: "g", nodes: DIAMOND })).toEqual([
+			{ wave: 1, parallel: false, ids: ["n1"] },
+			{ wave: 2, parallel: true, ids: ["n2", "n3"] },
+			{ wave: 3, parallel: false, ids: ["n4"] },
+		]);
+	});
+
+	test("orders unsorted nodes before grouping", () => {
+		const shuffled = [DIAMOND[3]!, DIAMOND[2]!, DIAMOND[0]!, DIAMOND[1]!];
+		expect(workflowWaves({ goal: "g", nodes: shuffled }).map((wave) => wave.ids)).toEqual([
+			["n1"],
+			["n3", "n2"],
+			["n4"],
+		]);
+	});
+});
+
+describe("graphToXml", () => {
+	test("ends with a WORKFLOW block of waves before the root close", () => {
+		const xml = graphToXml({ goal: "g", nodes: DIAMOND });
+		const workflow = [
+			"	<WORKFLOW>",
+			'		<WAVE n="1" parallel="false">n1</WAVE>',
+			'		<WAVE n="2" parallel="true">n2, n3</WAVE>',
+			'		<WAVE n="3" parallel="false">n4</WAVE>',
+			"	</WORKFLOW>",
+			"</GRAPH_OF_THOUGHT>",
+		].join("\n");
+		expect(xml.endsWith(workflow)).toBe(true);
+		expect(xml.indexOf("<WORKFLOW>")).toBeGreaterThan(xml.lastIndexOf("</NODE>"));
+	});
+});
+
 describe("parseNodeFill", () => {
 	test("reads thinking and conclusion", () => {
 		expect(parseNodeFill("<node><thinking>step 1</thinking><conclusion>do x</conclusion></node>")).toEqual({
@@ -114,13 +169,18 @@ describe("injectGraphXml", () => {
 		expect(out.indexOf("<GRAPH_OF_THOUGHT>")).toBeGreaterThan(out.indexOf("<SCOPE>"));
 	});
 
-	test("replaces existing GRAPH_OF_THOUGHT", () => {
+	test("replaces existing GRAPH_OF_THOUGHT including its WORKFLOW", () => {
 		const xml =
-			"<BUILD_PROMPT><ORIGINAL>x</ORIGINAL><GRAPH_OF_THOUGHT><GOAL>old</GOAL></GRAPH_OF_THOUGHT></BUILD_PROMPT>";
-		const out = injectGraphXml(xml, { goal: "new goal", nodes: FALLBACK_GRAPH.nodes });
+			"<BUILD_PROMPT><ORIGINAL>x</ORIGINAL><GRAPH_OF_THOUGHT><GOAL>old</GOAL>" +
+			'<WORKFLOW><WAVE n="1" parallel="false">stale</WAVE></WORKFLOW></GRAPH_OF_THOUGHT></BUILD_PROMPT>';
+		const out = injectGraphXml(xml, { goal: "new goal", nodes: DIAMOND });
 		expect(out).toContain("<GOAL>new goal</GOAL>");
 		expect(out.includes("old")).toBe(false);
+		expect(out.includes("stale")).toBe(false);
 		expect(out.match(/<GRAPH_OF_THOUGHT/g)?.length).toBe(1);
+		expect(out.match(/<WORKFLOW>/g)?.length).toBe(1);
+		expect(out).toContain('<WAVE n="2" parallel="true">n2, n3</WAVE>');
+		expect(out.endsWith("</BUILD_PROMPT>")).toBe(true);
 	});
 });
 

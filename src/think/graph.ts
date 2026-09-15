@@ -141,6 +141,37 @@ export function topoSort(nodes: ThoughtNode[]): ThoughtNode[] {
 	return ordered;
 }
 
+/** Groups topologically sorted nodes into dependency levels (all deps in earlier levels). */
+export function dependencyLevels(nodes: ThoughtNode[]): ThoughtNode[][] {
+	const level = new Map<string, number>();
+	const levels: ThoughtNode[][] = [];
+	for (const node of nodes) {
+		let depth = 0;
+		for (const dep of node.dependsOn) {
+			const seen = level.get(dep);
+			if (seen !== undefined) depth = Math.max(depth, seen + 1);
+		}
+		level.set(node.id, depth);
+		(levels[depth] ??= []).push(node);
+	}
+	return levels.filter((group) => group.length > 0);
+}
+
+export interface WorkflowWave {
+	wave: number;
+	parallel: boolean;
+	ids: string[];
+}
+
+/** Execution waves: nodes in the same wave have every dependency in an earlier wave. */
+export function workflowWaves(graph: ThoughtGraph): WorkflowWave[] {
+	return dependencyLevels(topoSort(graph.nodes)).map((group, index) => ({
+		wave: index + 1,
+		parallel: group.length > 1,
+		ids: group.map((node) => node.id),
+	}));
+}
+
 export function parseNodeFill(xml: string): { thinking: string; conclusion: string } {
 	const body = extractTag(xml, "node") || xml;
 	const thinking = extractTag(body, "thinking") || extractTag(body, "chain_of_thought");
@@ -167,11 +198,22 @@ function nodeXml(node: ThoughtNode): string {
 	].join("\n");
 }
 
+function workflowXml(graph: ThoughtGraph): string[] {
+	return [
+		"	<WORKFLOW>",
+		...workflowWaves(graph).map(
+			(wave) => `		<WAVE n="${wave.wave}" parallel="${wave.parallel}">${escapeXml(wave.ids.join(", "))}</WAVE>`,
+		),
+		"	</WORKFLOW>",
+	];
+}
+
 export function graphToXml(graph: ThoughtGraph): string {
 	return [
 		"<GRAPH_OF_THOUGHT>",
 		`	<GOAL>${escapeXml(graph.goal)}</GOAL>`,
 		...graph.nodes.map((node) => nodeXml(node)),
+		...workflowXml(graph),
 		"</GRAPH_OF_THOUGHT>",
 	].join("\n");
 }

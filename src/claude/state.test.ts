@@ -38,6 +38,15 @@ describe("control state", () => {
 		expect(writeControl(dir, { skipOnce: true })).toEqual({ enabled: false, skipOnce: true });
 		expect(readControl(dir)).toEqual({ enabled: false, skipOnce: true });
 	});
+
+	test("hitlEnabled and engine persist; unknown engine values are dropped", () => {
+		const dir = tempDir();
+		writeControl(dir, { hitlEnabled: false, engine: "claude" });
+		expect(readControl(dir)).toEqual({ hitlEnabled: false, engine: "claude" });
+		writeControl(dir, { engine: "bogus" as unknown as "grok" });
+		expect(readControl(dir).engine).toBeUndefined();
+		expect(readControl(dir).hitlEnabled).toBe(false);
+	});
 });
 
 describe("session records", () => {

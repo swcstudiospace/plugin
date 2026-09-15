@@ -2,13 +2,16 @@
  * Orchestrates one UserPromptSubmit event for the Claude Code plugin path.
  *
  * Mirrors the OMP `input` handler in src/index.ts: decide → uplift → Graph of Thought
- * with per-node Chain of Thought → write a Tissue parent plus one sub-issue per node →
- * sync to the kanban → return the spec as hook context. Everything after "decide" is
- * fail-open: the user's prompt always goes through.
+ * with per-node Chain of Thought → HITL clarifications → write a Tissue parent plus one
+ * sub-issue per node → sync to the kanban → return the spec as hook context. Everything
+ * after "decide" is fail-open: the user's prompt always goes through.
  */
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname } from "node:path";
 import type { AioConfig } from "../config.ts";
+import { injectClarificationsXml } from "../hitl/format.ts";
+import { normalizeQuestion, type RunClarifyOptions, runClarify } from "../hitl/pipeline.ts";
+import type { Clarification } from "../hitl/types.ts";
 import type { KtuiRunner } from "../issues/kanban.ts";
 import { advanceTrackedIssues, trackThoughtGraph, trackUpliftedPrompt } from "../issues/track.ts";
 import type { GithubAssoc, GraphSyncResult, SyncResult } from "../issues/types.ts";
@@ -19,7 +22,7 @@ import { decideUplift } from "../uplift/detect.ts";
 import { runUplift } from "../uplift/run.ts";
 import type { ClaudeCompleter } from "./complete.ts";
 import { formatPromptContext, formatSummary } from "./output.ts";
-import { type ControlState, type SessionRecord, sessionPath, writeControl, writeSession } from "./state.ts";
+import { type ControlState, readSession, type SessionRecord, sessionPath, writeControl, writeSession } from "./state.ts";
 
 export interface PromptSubmitInput {
 	session_id?: string;
@@ -38,8 +41,13 @@ export interface HookDeps {
 	config: AioConfig;
 	control: ControlState;
 	complete: ClaudeCompleter;
+	/** Thinking engine label recorded and echoed, e.g. "grok-4.6@xhigh" or "claude:sonnet". */
+	engine: string;
 	ktui: KtuiRunner;
 	stateDir: string;
+	clarify?: (opts: RunClarifyOptions) => Promise<Clarification[]>;
+	/** First error the completer threw (already redacted), surfaced in the summary. */
+	engineError?: () => string | undefined;
 	github?: (cwd: string) => GithubAssoc | undefined;
 	conversation?: (transcriptPath?: string) => string;
 	now?: () => number;
@@ -117,6 +125,32 @@ export async function runPromptSubmit(input: PromptSubmitInput, deps: HookDeps):
 			}
 		}
 
+		/** Answered clarifications from an earlier turn of this session survive; stale open ones are dropped. */
+		let clarifications: Clarification[] = (readSession(deps.stateDir, sessionId)?.clarifications ?? []).filter(
+			(c) => c.answer,
+		);
+		const hitlOn = deps.control.hitlEnabled ?? deps.config.hitl.enabled;
+		if (hitlOn && !controller.signal.aborted) {
+			try {
+				const fresh = await (deps.clarify ?? runClarify)({
+					uplift: result,
+					graph,
+					conversation,
+					answered: clarifications,
+					complete: deps.complete,
+					signal: controller.signal,
+					maxQuestions: deps.config.hitl.maxQuestions,
+				});
+				const seen = new Set(clarifications.map((c) => normalizeQuestion(c.question)));
+				clarifications = [...clarifications, ...fresh.filter((c) => !seen.has(normalizeQuestion(c.question)))];
+			} catch (error) {
+				log(`clarify failed: ${error instanceof Error ? error.message : String(error)}`);
+			}
+		}
+		if (clarifications.length > 0) {
+			result = { ...result, xml: injectClarificationsXml(result.xml, clarifications) };
+		}
+
 		let tree: GraphSyncResult | undefined;
 		let last: SyncResult | undefined;
 		const issuesOn = deps.control.issuesEnabled ?? deps.config.issues.enabled;
@@ -154,7 +188,17 @@ export async function runPromptSubmit(input: PromptSubmitInput, deps: HookDeps):
 			}
 		}
 
-		const record: SessionRecord = { sessionId, at: now(), result, graph, tree, last, lane: "doing" };
+		const record: SessionRecord = {
+			sessionId,
+			at: now(),
+			engine: deps.engine,
+			result,
+			graph,
+			clarifications,
+			tree,
+			last,
+			lane: "doing",
+		};
 		let specPath: string | undefined;
 		try {
 			specPath = specFile(deps.stateDir, sessionId);
@@ -169,11 +213,20 @@ export async function runPromptSubmit(input: PromptSubmitInput, deps: HookDeps):
 		const output: HookOutput = {
 			hookSpecificOutput: {
 				hookEventName: "UserPromptSubmit",
-				additionalContext: formatPromptContext({ result, graph, tree, last, specPath }),
+				additionalContext: formatPromptContext({ result, graph, clarifications, tree, last, specPath }),
 			},
 		};
 		if (deps.config.claude.echo) {
-			output.systemMessage = formatSummary({ result, graph, tree, last, elapsedMs: now() - started });
+			output.systemMessage = formatSummary({
+				result,
+				engine: deps.engine,
+				graph,
+				clarifications,
+				tree,
+				last,
+				engineError: deps.engineError?.(),
+				elapsedMs: now() - started,
+			});
 		}
 		return { output, record };
 	} finally {

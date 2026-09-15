@@ -1,9 +1,9 @@
 {
 	"name": "all-in-one",
-	"version": "0.1.0",
-	"description": "Prompt Uplift on every prompt: rewrites the request into an XML spec, builds a Graph of Thought with per-node Chain of Thought, and opens a markdown parent issue plus one sub-issue per node under issues/ (synced to ktui when present).",
+	"version": "0.2.0",
+	"description": "Prompt Uplift on every prompt with the Grok 4.6 Ultra thinking engine (grok-4.6 @ xhigh over your SuperGrok OAuth): rewrites the request into an XML spec, builds a Graph of Thought with per-node Chain of Thought and a parallel-wave workflow, asks HITL clarifications through AskUserQuestion, opens a markdown parent issue plus one sub-issue per node under issues/ (synced to ktui when present), and serves Claude Code's Haiku tier through a local Grok proxy.",
 	"author": { "name": "SWC Studio", "email": "noreply@swcstudio.space" },
-	"keywords": ["uplift", "prompt", "xml", "got", "cot", "issues", "tissue", "ktui", "kanban"],
+	"keywords": ["uplift", "prompt", "xml", "got", "cot", "grok", "hitl", "issues", "tissue", "ktui", "kanban"],
 	"hooks": "./hooks/hooks.json",
 	"commands": "./commands"
 }

@@ -1,5 +1,6 @@
 import type { UpliftResult } from "../types.ts";
 import {
+	dependencyLevels,
 	extractJsonObject,
 	graphSketch,
 	injectGraphXml,
@@ -97,22 +98,6 @@ async function fillNode(
 		node.thinking = node.question;
 		node.conclusion = node.question;
 	}
-}
-
-/** Groups topologically sorted nodes into dependency levels (all deps in earlier levels). */
-export function dependencyLevels(nodes: ThoughtNode[]): ThoughtNode[][] {
-	const level = new Map<string, number>();
-	const levels: ThoughtNode[][] = [];
-	for (const node of nodes) {
-		let depth = 0;
-		for (const dep of node.dependsOn) {
-			const seen = level.get(dep);
-			if (seen !== undefined) depth = Math.max(depth, seen + 1);
-		}
-		level.set(node.id, depth);
-		(levels[depth] ??= []).push(node);
-	}
-	return levels.filter((group) => group.length > 0);
 }
 
 async function fillLevel(opts: RunThinkOptions, graph: ThoughtGraph, group: ThoughtNode[], limit: number): Promise<void> {
