@@ -8,6 +8,7 @@ import { DEFAULT_HITL_CONFIG } from "./hitl/types.ts";
 import { DEFAULT_BOARD_NAME } from "./issues/types.ts";
 import { DEFAULT_LSP_CONFIG } from "./lsp/types.ts";
 import { DEFAULT_POD_CONFIG } from "./pod/types.ts";
+import { DEFAULT_SWARM_CONFIG } from "./swarm/types.ts";
 
 const ISSUES = {
 	enabled: true,
@@ -24,6 +25,7 @@ const GREPTILE = { requiredForMerge: true, bin: "greptile", minConfidence: 5 };
 const SUPABASE = { enabled: true };
 const LSP = DEFAULT_LSP_CONFIG;
 const POD = DEFAULT_POD_CONFIG;
+const SWARM = DEFAULT_SWARM_CONFIG;
 
 const prevDir = process.env.PI_CODING_AGENT_DIR;
 const tempDirs: string[] = [];
@@ -60,6 +62,7 @@ describe("loadConfig", () => {
 			supabase: SUPABASE,
 			lsp: LSP,
 			pod: POD,
+			swarm: SWARM,
 		});
 	});
 
@@ -86,6 +89,7 @@ describe("loadConfig", () => {
 			supabase: SUPABASE,
 			lsp: LSP,
 			pod: POD,
+			swarm: SWARM,
 		});
 
 		withAgentDir(JSON.stringify({ uplift: { maxChars: 50 } }));
@@ -101,6 +105,7 @@ describe("loadConfig", () => {
 			supabase: SUPABASE,
 			lsp: LSP,
 			pod: POD,
+			swarm: SWARM,
 		});
 
 		withAgentDir(JSON.stringify({ uplift: { skipTrivial: false, extra: true }, ignored: 1 }));
@@ -116,6 +121,7 @@ describe("loadConfig", () => {
 			supabase: SUPABASE,
 			lsp: LSP,
 			pod: POD,
+			swarm: SWARM,
 		});
 	});
 
@@ -138,6 +144,7 @@ describe("loadConfig", () => {
 			supabase: SUPABASE,
 			lsp: LSP,
 			pod: POD,
+			swarm: SWARM,
 		});
 	});
 
@@ -155,6 +162,7 @@ describe("loadConfig", () => {
 			supabase: SUPABASE,
 			lsp: LSP,
 			pod: POD,
+			swarm: SWARM,
 		});
 
 		withAgentDir(JSON.stringify({ issues: { boardName: "  Other Board  ", ktuiBin: "/bin/ktui" } }));

@@ -21,6 +21,7 @@ import type { UpliftResult, UpliftState } from "../types.ts";
 import { decideUplift } from "../uplift/detect.ts";
 import { runUplift } from "../uplift/run.ts";
 import type { ClaudeCompleter } from "./complete.ts";
+import { kickoffSwarm, SWARM_CONTEXT, type KickoffResult } from "../swarm/kickoff.ts";
 import { formatPromptContext, formatSummary } from "./output.ts";
 import { type ControlState, readSession, type SessionRecord, sessionPath, writeControl, writeSession } from "./state.ts";
 
@@ -52,6 +53,8 @@ export interface HookDeps {
 	conversation?: (transcriptPath?: string) => string;
 	now?: () => number;
 	log?: (message: string) => void;
+	/** Tests inject this to avoid detaching a real swarm_run. */
+	swarmKickoff?: (input: { cwd: string; prompt: string }) => KickoffResult;
 }
 
 export interface PromptSubmitResult {
@@ -211,10 +214,22 @@ export async function runPromptSubmit(input: PromptSubmitInput, deps: HookDeps):
 			specPath = undefined;
 		}
 
+		let extra = "";
+		try {
+			const kick =
+				deps.swarmKickoff?.({ cwd, prompt: original }) ??
+				kickoffSwarm({ cwd, prompt: original, config: deps.config.swarm });
+			if (kick.kicked) extra = `\n\n${SWARM_CONTEXT}`;
+			else log(`swarm kickoff skipped: ${kick.reason ?? "unknown"}`);
+		} catch (error) {
+			log(`swarm kickoff failed: ${error instanceof Error ? error.message : String(error)}`);
+		}
+
 		const output: HookOutput = {
 			hookSpecificOutput: {
 				hookEventName: "UserPromptSubmit",
-				additionalContext: formatPromptContext({ result, graph, clarifications, tree, last, specPath }),
+				additionalContext:
+					formatPromptContext({ result, graph, clarifications, tree, last, specPath }) + extra,
 			},
 		};
 		if (deps.config.claude.echo) {

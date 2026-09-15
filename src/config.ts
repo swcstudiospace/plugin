@@ -8,6 +8,7 @@ import { DEFAULT_GITHUB_ORG, type GithubConfig, type GreptileConfig, type Supaba
 import { MAX_NODES, MIN_NODES, type ThinkConfig } from "./think/types.ts";
 import { DEFAULT_LSP_CONFIG, type LspConfig } from "./lsp/types.ts";
 import { DEFAULT_POD_CONFIG, type PodConfig } from "./pod/types.ts";
+import { DEFAULT_SWARM_CONFIG, type SwarmConfig } from "./swarm/types.ts";
 
 export interface ClaudeConfig {
 	/** `claude` binary used for headless completions. */
@@ -51,6 +52,7 @@ export interface AioConfig {
 	supabase: SupabaseConfig;
 	lsp: LspConfig;
 	pod: PodConfig;
+	swarm: SwarmConfig;
 }
 
 export function defaultConfig(): AioConfig {
@@ -93,6 +95,7 @@ export function defaultConfig(): AioConfig {
 		hitl: { ...DEFAULT_HITL_CONFIG },
 		lsp: { ...DEFAULT_LSP_CONFIG },
 		pod: { ...DEFAULT_POD_CONFIG },
+		swarm: { ...DEFAULT_SWARM_CONFIG },
 	};
 }
 
@@ -269,6 +272,17 @@ function mergeLsp(lsp: Record<string, unknown> | undefined, defaults: LspConfig)
 	};
 }
 
+function mergeSwarm(swarm: Record<string, unknown> | undefined, defaults: SwarmConfig): SwarmConfig {
+	if (!swarm) return defaults;
+	const runtime = swarm.runtime === "claude" || swarm.runtime === "grok" || swarm.runtime === "auto" ? swarm.runtime : defaults.runtime;
+	return {
+		enabled: typeof swarm.enabled === "boolean" ? swarm.enabled : defaults.enabled,
+		root: typeof swarm.root === "string" ? swarm.root.trim() : defaults.root,
+		runtime,
+		dryRun: typeof swarm.dryRun === "boolean" ? swarm.dryRun : defaults.dryRun,
+	};
+}
+
 function mergePod(pod: Record<string, unknown> | undefined, defaults: PodConfig): PodConfig {
 	if (!pod) return defaults;
 	const extraDirs = Array.isArray(pod.extraDirs)
@@ -309,6 +323,7 @@ export function mergeConfig(file: Record<string, unknown> | undefined, base: Aio
 		supabase: mergeSupabase(asRecord(file.supabase), base.supabase),
 		lsp: mergeLsp(asRecord(file.lsp), base.lsp),
 		pod: mergePod(asRecord(file.pod), base.pod),
+		swarm: mergeSwarm(asRecord(file.swarm), base.swarm),
 	};
 }
 

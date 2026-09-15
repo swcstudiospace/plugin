@@ -60,7 +60,7 @@ bun scripts/claude-setup.ts apply
 ```
 
 Commands: `/all-in-one:uplift on|off|skip|status|last`, `/all-in-one:uplift think on|off|last`, `/all-in-one:uplift hitl on|off|last|status`, `/all-in-one:grok status|engine grok|engine claude|proxy status`, `/all-in-one:issues list|status|sync|on|off`.
-Prefix a prompt with `raw:` to send it untouched. Slash commands and trivial replies (`ok`, `lgtm`, ...) are never uplifted.
+Prefix a prompt with `raw:` to send it untouched. Slash commands (including Claude Code `<command-name>` expansions) and trivial replies (`ok`, `lgtm`, ...) are never uplifted: the hook exits with no JSON so UserPromptExpansion and Skill dispatch still run. After an uplifted turn, those commands stay invocable by you and by Claude.
 
 Config is read from `~/.omp/agent/all-in-one.json`, then `~/.claude/all-in-one.json`, then `<project>/.claude/all-in-one.json` (later wins). `think.engine` picks the Stage 1 engine; `grok` configures it and the proxy; `claude` controls the fallback child calls; `hitl` the clarifier:
 
@@ -169,6 +169,8 @@ If the proxy never answers, `apply` still finishes steps 5–6 (plugin enabled, 
 Claude Code copies a directory-sourced plugin into `~/.claude/plugins/cache/aio/all-in-one/<version>/` at install time and `claude plugin update` skips a same-version source, so **after editing this checkout run `bun scripts/claude-setup.ts refresh`**: `claude plugin uninstall` + `install` so the cache matches the checkout, `systemctl restart aio-grok-proxy.service` so the proxy picks up `src/grok/` changes, and a `/healthz` wait. `refresh` never touches `settings.json`. A second `apply` does the same plus the settings/unit rewrite and keeps the original pre-change snapshot, so `rollback` still returns to the state before the first apply.
 
 `rollback` reverts the current `settings.json` key-by-key from the recorded previous values (safe when you changed `model` or other settings after apply — they stay), `systemctl disable --now` + removes the unit + `daemon-reload`, `claude plugin uninstall all-in-one@aio` best-effort, and deletes `setup-state.json`. `rollback --snapshot` instead restores the pre-apply backup byte-for-byte, discarding anything changed since apply (falls back to key-by-key when the backup is gone). `$CLAUDE_CONFIG_DIR` is honoured for the Claude directory and `$AIO_STATE_DIR` for the state directory.
+
+After a successful Prompt Uplift on an SDLC-shaped prompt (`implement`, `feature`, `build a`, …), the hook **detaches AgentSwarm** (`hooks/autonomous_run.py` → `orch_plan.py` then `swarm_run.py --runtime auto`) so A01–A15 run without waiting for the parent model. Config: `swarm: { enabled, root, runtime, dryRun }` in `all-in-one.json`. Disable with `AIO_SWARM=0`. Dedup lock: `$SWARM_DIR/kickoffs/*.lock`.
 
 Automation: `claude -p` runners (cron jobs, CI) should set `AIO_UPLIFT=0` in the environment to skip the uplift pre-pass for the whole process, the same way a `raw:` prefix skips it for one prompt. The hook returns immediately and exits 0.
 

@@ -872,6 +872,13 @@ export default function allInOne(pi: ExtensionAPI): void {
 			}
 			lastResult = result;
 			injectAddendum = true;
+			try {
+				const { kickoffSwarm } = await import("./swarm/kickoff.ts");
+				const kick = kickoffSwarm({ cwd: ctx.cwd, prompt: decision.text, config: config.swarm });
+				if (kick.kicked) notify(ctx, "AgentSwarm started autonomously");
+			} catch {
+				// fail-open
+			}
 			pi.appendEntry("aio-uplift-last", result);
 			if (config.uplift.echo) {
 				try {

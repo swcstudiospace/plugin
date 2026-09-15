@@ -83,6 +83,14 @@ function fakeComplete(calls: string[]) {
 }
 
 describe("runPromptSubmit", () => {
+	const prevSwarm = process.env.AIO_SWARM;
+	process.env.AIO_SWARM = "0";
+	afterEach(() => {
+		if (prevSwarm === undefined) delete process.env.AIO_SWARM;
+		else process.env.AIO_SWARM = prevSwarm;
+		process.env.AIO_SWARM = "0";
+	});
+
 	test("full path: uplift, graph, per-node CoT, parent + sub-issues, context and summary", async () => {
 		const cwd = tempDir("aio-hook-cwd-");
 		const stateDir = join(tempDir("aio-hook-state-"), "aio");
@@ -155,6 +163,10 @@ describe("runPromptSubmit", () => {
 		const deps = { config: defaultConfig(), control: {}, complete: fakeComplete(calls), engine: "test-engine", ktui: noKtui, stateDir };
 
 		expect((await runPromptSubmit({ cwd, prompt: "/help" }, deps)).skipped).toBe("skip");
+		expect(
+			(await runPromptSubmit({ cwd, prompt: "<command-name>all-in-one:issues</command-name>\n<command-args>list</command-args>" }, deps)).skipped,
+		).toBe("skip");
+		expect((await runPromptSubmit({ cwd, prompt: "/all-in-one:grok status" }, deps)).skipped).toBe("skip");
 		expect((await runPromptSubmit({ cwd, prompt: "ok" }, deps)).skipped).toBe("skip");
 		expect((await runPromptSubmit({ cwd, prompt: "raw: keep this" }, deps)).skipped).toBe("passthrough");
 		expect((await runPromptSubmit({ cwd, prompt: "do work" }, { ...deps, control: { enabled: false } })).skipped).toBe("skip");
@@ -278,4 +290,29 @@ describe("runPromptSubmit", () => {
 		expect(out.output?.hookSpecificOutput.additionalContext).not.toContain("## Clarifications (HITL)");
 		expect(out.output?.systemMessage).not.toContain("HITL ·");
 	});
+
+	test("after uplift, SDLC prompts append AgentSwarm context when kickoff succeeds", async () => {
+		const cwd = tempDir("aio-hook-cwd-");
+		const stateDir = join(tempDir("aio-hook-state-"), "aio");
+		const kicks: string[] = [];
+		const out = await runPromptSubmit(
+			{ session_id: "s-swarm", cwd, prompt: "build a login page" },
+			{
+				config: defaultConfig(),
+				control: { thinkEnabled: false, issuesEnabled: false, hitlEnabled: false },
+				complete: fakeComplete([]),
+				engine: "test-engine",
+				ktui: noKtui,
+				stateDir,
+				swarmKickoff: ({ prompt }) => {
+					kicks.push(prompt);
+					return { kicked: true, root: "/tmp/agent-swarm" };
+				},
+			},
+		);
+		expect(kicks).toEqual(["build a login page"]);
+		expect(out.output?.hookSpecificOutput.additionalContext).toContain("AgentSwarm orchestration");
+		expect(out.output?.hookSpecificOutput.additionalContext).toContain("starting autonomously");
+	});
 });
+
