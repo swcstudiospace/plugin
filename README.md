@@ -112,7 +112,7 @@ Expect one to three minutes per prompt at `xhigh`: the spec is ~3-4k output toke
 | `baseUrl` | `https://cli-chat-proxy.grok.com/v1` | Grok CLI chat proxy |
 | `model` | `grok-4.6` | Model override header |
 | `reasoningEffort` | `xhigh` | `low` / `medium` / `high` / `xhigh` — **Grok 4.6 Ultra** is `grok-4.6` @ `xhigh` |
-| `transport` | `http` | `http` calls `/responses` directly with the stored session. `cli` spawns `grok -p … --output-format json --tools "" --no-plan` per call: same login, but ~60k tokens per call because the CLI loads its own tooling and system prompt |
+| `transport` | `http` | `http` calls `/responses` directly with the stored session. `cli` spawns `grok -p … --tools none --disallowed-tools … --permission-mode plan --deny Bash/Edit/Write --max-turns 1` per call from a scratch cwd: same login and no tool access, but ~100k tokens and ~35 s per call because the CLI loads its own harness (skills, rules, system prompt). Fallback only; a run that stops for any reason other than `end_turn` is treated as a failure |
 | `bin` | `grok` | Binary for `transport: "cli"` |
 | `home` | `""` | `$GROK_HOME` or `~/.grok` (`auth.json`, `version.json`) |
 | `callTimeoutMs` | `240000` | Per call |
