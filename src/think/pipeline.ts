@@ -21,6 +21,8 @@ export interface RunThinkOptions {
 	minNodes?: number;
 	maxNodes?: number;
 	onProgress?: (message: string) => void;
+	/** Fill independent nodes concurrently, level by level. Default 1 (sequential). */
+	concurrency?: number;
 }
 
 function isAbortError(error: unknown): boolean {
@@ -97,18 +99,55 @@ async function fillNode(
 	}
 }
 
+/** Groups topologically sorted nodes into dependency levels (all deps in earlier levels). */
+export function dependencyLevels(nodes: ThoughtNode[]): ThoughtNode[][] {
+	const level = new Map<string, number>();
+	const levels: ThoughtNode[][] = [];
+	for (const node of nodes) {
+		let depth = 0;
+		for (const dep of node.dependsOn) {
+			const seen = level.get(dep);
+			if (seen !== undefined) depth = Math.max(depth, seen + 1);
+		}
+		level.set(node.id, depth);
+		(levels[depth] ??= []).push(node);
+	}
+	return levels.filter((group) => group.length > 0);
+}
+
+async function fillLevel(opts: RunThinkOptions, graph: ThoughtGraph, group: ThoughtNode[], limit: number): Promise<void> {
+	let cursor = 0;
+	const worker = async (): Promise<void> => {
+		while (cursor < group.length) {
+			const node = group[cursor++]!;
+			await fillNode(opts, graph, node);
+		}
+	};
+	await Promise.all(Array.from({ length: Math.min(limit, group.length) }, worker));
+}
+
 export async function runThink(opts: RunThinkOptions): Promise<ThinkResult> {
 	const minNodes = opts.minNodes ?? MIN_NODES;
 	const maxNodes = opts.maxNodes ?? MAX_NODES;
+	const concurrency = Math.max(1, Math.floor(opts.concurrency ?? 1));
 
 	opts.onProgress?.("Graph of Thought…");
 	const graph = await buildGraph(opts, minNodes, maxNodes);
 	graph.nodes = topoSort(graph.nodes);
 
-	for (let index = 0; index < graph.nodes.length; index++) {
-		const node = graph.nodes[index]!;
-		opts.onProgress?.(`Chain of Thought n${index + 1}/${graph.nodes.length} · ${node.kind}…`);
-		await fillNode(opts, graph, node);
+	if (concurrency === 1) {
+		for (let index = 0; index < graph.nodes.length; index++) {
+			const node = graph.nodes[index]!;
+			opts.onProgress?.(`Chain of Thought n${index + 1}/${graph.nodes.length} · ${node.kind}…`);
+			await fillNode(opts, graph, node);
+		}
+	} else {
+		let done = 0;
+		for (const group of dependencyLevels(graph.nodes)) {
+			opts.onProgress?.(`Chain of Thought ${done + 1}-${done + group.length}/${graph.nodes.length}…`);
+			await fillLevel(opts, graph, group, concurrency);
+			done += group.length;
+		}
 	}
 
 	const xml = injectGraphXml(opts.uplift.xml, graph);

@@ -2,7 +2,7 @@ import { afterEach, describe, expect, test } from "bun:test";
 import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { defaultConfig, loadConfig } from "./config.ts";
+import { DEFAULT_CLAUDE_CONFIG, claudeConfigPaths, defaultConfig, loadConfig } from "./config.ts";
 import { DEFAULT_BOARD_NAME } from "./issues/types.ts";
 import { DEFAULT_LSP_CONFIG } from "./lsp/types.ts";
 import { DEFAULT_POD_CONFIG } from "./pod/types.ts";
@@ -14,6 +14,7 @@ const ISSUES = {
 	echo: true,
 };
 const THINK = { enabled: true, minNodes: 3, maxNodes: 8 };
+const CLAUDE = DEFAULT_CLAUDE_CONFIG;
 const GITHUB = { org: "swcstudiospace", autoPr: true };
 const GREPTILE = { requiredForMerge: true, bin: "greptile", minConfidence: 5 };
 const SUPABASE = { enabled: true };
@@ -45,6 +46,7 @@ describe("loadConfig", () => {
 		expect(loadConfig()).toEqual(defaultConfig());
 		expect(defaultConfig()).toEqual({
 			uplift: { enabled: true, skipTrivial: true, maxChars: 20000, echo: true },
+			claude: CLAUDE,
 			issues: ISSUES,
 			think: THINK,
 			github: GITHUB,
@@ -68,6 +70,7 @@ describe("loadConfig", () => {
 		withAgentDir(JSON.stringify({ uplift: { enabled: false } }));
 		expect(loadConfig()).toEqual({
 			uplift: { enabled: false, skipTrivial: true, maxChars: 20000, echo: true },
+			claude: CLAUDE,
 			issues: ISSUES,
 			think: THINK,
 			github: GITHUB,
@@ -80,6 +83,7 @@ describe("loadConfig", () => {
 		withAgentDir(JSON.stringify({ uplift: { maxChars: 50 } }));
 		expect(loadConfig()).toEqual({
 			uplift: { enabled: true, skipTrivial: true, maxChars: 50, echo: true },
+			claude: CLAUDE,
 			issues: ISSUES,
 			think: THINK,
 			github: GITHUB,
@@ -92,6 +96,7 @@ describe("loadConfig", () => {
 		withAgentDir(JSON.stringify({ uplift: { skipTrivial: false, extra: true }, ignored: 1 }));
 		expect(loadConfig()).toEqual({
 			uplift: { enabled: true, skipTrivial: false, maxChars: 20000, echo: true },
+			claude: CLAUDE,
 			issues: ISSUES,
 			think: THINK,
 			github: GITHUB,
@@ -111,6 +116,7 @@ describe("loadConfig", () => {
 		withAgentDir(JSON.stringify({ uplift: { echo: false } }));
 		expect(loadConfig()).toEqual({
 			uplift: { enabled: true, skipTrivial: true, maxChars: 20000, echo: false },
+			claude: CLAUDE,
 			issues: ISSUES,
 			think: THINK,
 			github: GITHUB,
@@ -125,6 +131,7 @@ describe("loadConfig", () => {
 		withAgentDir(JSON.stringify({ issues: { enabled: false } }));
 		expect(loadConfig()).toEqual({
 			uplift: { enabled: true, skipTrivial: true, maxChars: 20000, echo: true },
+			claude: CLAUDE,
 			issues: { ...ISSUES, enabled: false },
 			think: THINK,
 			github: GITHUB,
@@ -172,4 +179,20 @@ describe("loadConfig", () => {
 		});
 	});
 
+});
+
+describe("claude config", () => {
+	test("later files win and claude section merges with validation", () => {
+		const dir = withAgentDir(JSON.stringify({ uplift: { enabled: false }, claude: { model: "haiku", concurrency: 0 } }));
+		const override = join(dir, "override.json");
+		writeFileSync(override, JSON.stringify({ uplift: { enabled: true }, claude: { concurrency: 2.7, callTimeoutMs: -1 } }));
+		const config = loadConfig([join(dir, "all-in-one.json"), override, join(dir, "missing.json")]);
+		expect(config.uplift.enabled).toBe(true);
+		expect(config.claude).toEqual({ ...CLAUDE, model: "haiku", concurrency: 2 });
+	});
+
+	test("claudeConfigPaths lists omp, claude home, then project", () => {
+		const paths = claudeConfigPaths("/proj", { CLAUDE_CONFIG_DIR: "/cfg", PI_CODING_AGENT_DIR: "/omp" });
+		expect(paths).toEqual(["/omp/all-in-one.json", "/cfg/all-in-one.json", "/proj/.claude/all-in-one.json"]);
+	});
 });

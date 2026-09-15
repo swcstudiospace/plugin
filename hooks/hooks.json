@@ -1,0 +1,26 @@
+{
+	"hooks": {
+		"UserPromptSubmit": [
+			{
+				"hooks": [
+					{
+						"type": "command",
+						"command": "bun \"${CLAUDE_PLUGIN_ROOT}/hooks/uplift.ts\"",
+						"timeout": 600
+					}
+				]
+			}
+		],
+		"Stop": [
+			{
+				"hooks": [
+					{
+						"type": "command",
+						"command": "bun \"${CLAUDE_PLUGIN_ROOT}/hooks/stop.ts\"",
+						"timeout": 60
+					}
+				]
+			}
+		]
+	}
+}

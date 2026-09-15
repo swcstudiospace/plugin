@@ -23,6 +23,7 @@ Rules:
 - Last node: kind "synthesize", depends on the unresolved threads.
 - ids must be n1, n2, n3, ...
 - depends_on may only reference earlier ids. No cycles.
+- Add a depends_on edge only when the node truly needs that predecessor's conclusion. Keep independent nodes independent (a graph, not a chain) so they can be answered in parallel.
 - Questions must be specific to THIS task, not generic templates.
 - Nodes should cover understanding, decomposition, options, risks, and a final plan.
 - Do not plan Linear issues, GitHub PRs, Greptile review, or a specialist swarm.

@@ -7,8 +7,39 @@ import { MAX_NODES, MIN_NODES, type ThinkConfig } from "./think/types.ts";
 import { DEFAULT_LSP_CONFIG, type LspConfig } from "./lsp/types.ts";
 import { DEFAULT_POD_CONFIG, type PodConfig } from "./pod/types.ts";
 
+export interface ClaudeConfig {
+	/** `claude` binary used for headless completions. */
+	bin: string;
+	/** Model alias/name for the uplift and thinking calls; empty inherits the user default. */
+	model: string;
+	/** Allow extended thinking in child calls (slower). */
+	thinking: boolean;
+	/** `--setting-sources` for child calls; empty loads none (fastest, no nested hooks). */
+	settingSources: string;
+	/** Per-call timeout for one headless completion. */
+	callTimeoutMs: number;
+	/** Whole-hook budget; the hook returns whatever it has when this is exhausted. */
+	budgetMs: number;
+	/** Parallel Chain-of-Thought fills per dependency level. */
+	concurrency: number;
+	/** Print a one-line summary to the user after each uplift. */
+	echo: boolean;
+}
+
+export const DEFAULT_CLAUDE_CONFIG: ClaudeConfig = {
+	bin: "claude",
+	model: "sonnet",
+	thinking: false,
+	settingSources: "",
+	callTimeoutMs: 120_000,
+	budgetMs: 540_000,
+	concurrency: 3,
+	echo: true,
+};
+
 export interface AioConfig {
 	uplift: { enabled: boolean; skipTrivial: boolean; maxChars: number; echo: boolean };
+	claude: ClaudeConfig;
 	issues: IssuesConfig;
 	think: ThinkConfig;
 	github: GithubConfig;
@@ -49,6 +80,7 @@ export function defaultConfig(): AioConfig {
 		supabase: {
 			enabled: true,
 		},
+		claude: { ...DEFAULT_CLAUDE_CONFIG },
 		lsp: { ...DEFAULT_LSP_CONFIG },
 		pod: { ...DEFAULT_POD_CONFIG },
 	};
@@ -115,6 +147,22 @@ function mergeThink(think: Record<string, unknown> | undefined, defaults: ThinkC
 	};
 }
 
+function mergeClaude(claude: Record<string, unknown> | undefined, defaults: ClaudeConfig): ClaudeConfig {
+	if (!claude) return defaults;
+	const positive = (value: unknown, fallback: number): number =>
+		typeof value === "number" && Number.isFinite(value) && value > 0 ? value : fallback;
+	return {
+		bin: typeof claude.bin === "string" && claude.bin.trim() ? claude.bin.trim() : defaults.bin,
+		model: typeof claude.model === "string" ? claude.model.trim() : defaults.model,
+		thinking: typeof claude.thinking === "boolean" ? claude.thinking : defaults.thinking,
+		settingSources: typeof claude.settingSources === "string" ? claude.settingSources.trim() : defaults.settingSources,
+		callTimeoutMs: positive(claude.callTimeoutMs, defaults.callTimeoutMs),
+		budgetMs: positive(claude.budgetMs, defaults.budgetMs),
+		concurrency: Math.max(1, Math.floor(positive(claude.concurrency, defaults.concurrency))),
+		echo: typeof claude.echo === "boolean" ? claude.echo : defaults.echo,
+	};
+}
+
 function mergeGithub(github: Record<string, unknown> | undefined, defaults: GithubConfig): GithubConfig {
 	if (!github) return defaults;
 	return {
@@ -178,19 +226,37 @@ function mergePod(pod: Record<string, unknown> | undefined, defaults: PodConfig)
 	};
 }
 
-export function loadConfig(): AioConfig {
-	const defaults = defaultConfig();
-	const dir = process.env.PI_CODING_AGENT_DIR?.trim() || join(homedir(), ".omp", "agent");
-	const file = asRecord(readJson(join(dir, "all-in-one.json")));
-	if (!file) return defaults;
+export function mergeConfig(file: Record<string, unknown> | undefined, base: AioConfig): AioConfig {
+	if (!file) return base;
 	return {
-		uplift: mergeUplift(asRecord(file.uplift), defaults.uplift),
-		issues: mergeIssues(asRecord(file.issues), defaults.issues),
-		think: mergeThink(asRecord(file.think), defaults.think),
-		github: mergeGithub(asRecord(file.github), defaults.github),
-		greptile: mergeGreptile(asRecord(file.greptile), defaults.greptile),
-		supabase: mergeSupabase(asRecord(file.supabase), defaults.supabase),
-		lsp: mergeLsp(asRecord(file.lsp), defaults.lsp),
-		pod: mergePod(asRecord(file.pod), defaults.pod),
+		uplift: mergeUplift(asRecord(file.uplift), base.uplift),
+		claude: mergeClaude(asRecord(file.claude), base.claude),
+		issues: mergeIssues(asRecord(file.issues), base.issues),
+		think: mergeThink(asRecord(file.think), base.think),
+		github: mergeGithub(asRecord(file.github), base.github),
+		greptile: mergeGreptile(asRecord(file.greptile), base.greptile),
+		supabase: mergeSupabase(asRecord(file.supabase), base.supabase),
+		lsp: mergeLsp(asRecord(file.lsp), base.lsp),
+		pod: mergePod(asRecord(file.pod), base.pod),
 	};
+}
+
+export function ompConfigPath(env: Record<string, string | undefined> = process.env): string {
+	const dir = env.PI_CODING_AGENT_DIR?.trim() || join(homedir(), ".omp", "agent");
+	return join(dir, "all-in-one.json");
+}
+
+/** Config files for the Claude Code plugin path, lowest precedence first. */
+export function claudeConfigPaths(cwd: string, env: Record<string, string | undefined> = process.env): string[] {
+	const home = env.CLAUDE_CONFIG_DIR?.trim() || join(homedir(), ".claude");
+	return [ompConfigPath(env), join(home, "all-in-one.json"), join(cwd, ".claude", "all-in-one.json")];
+}
+
+/** Loads config from `files` in order (later files win). Defaults to the OMP file only. */
+export function loadConfig(files: string[] = [ompConfigPath()]): AioConfig {
+	let config = defaultConfig();
+	for (const file of files) {
+		config = mergeConfig(asRecord(readJson(file)), config);
+	}
+	return config;
 }

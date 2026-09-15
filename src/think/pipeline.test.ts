@@ -106,3 +106,44 @@ describe("runThink", () => {
 		expect(result.graph.nodes[2]?.conclusion).toBe("c n3");
 	});
 });
+
+describe("runThink concurrency", () => {
+	test("fills independent nodes together but never before their predecessors", async () => {
+		const { dependencyLevels } = await import("./pipeline.ts");
+		const graph = {
+			goal: "g",
+			nodes: [
+				{ id: "n1", title: "A", kind: "understand", question: "q", depends_on: [] },
+				{ id: "n2", title: "B", kind: "generate", question: "q", depends_on: ["n1"] },
+				{ id: "n3", title: "C", kind: "critique", question: "q", depends_on: ["n1"] },
+				{ id: "n4", title: "D", kind: "synthesize", question: "q", depends_on: ["n2", "n3"] },
+			],
+		};
+		let active = 0;
+		let peak = 0;
+		const order: string[] = [];
+		const result = await runThink({
+			uplift,
+			concurrency: 4,
+			complete: async (_system, user) => {
+				if (order.length === 0 && !user.includes("current_node")) return JSON.stringify(graph);
+				const id = user.match(/current_node id="([^"]+)"/)?.[1] ?? "?";
+				active++;
+				peak = Math.max(peak, active);
+				await new Promise((resolve) => setTimeout(resolve, 5));
+				order.push(id);
+				active--;
+				return `<node><thinking>t</thinking><conclusion>done ${id}</conclusion></node>`;
+			},
+		});
+		expect(peak).toBe(2);
+		expect(order[0]).toBe("n1");
+		expect(order[3]).toBe("n4");
+		expect(new Set(order.slice(1, 3))).toEqual(new Set(["n2", "n3"]));
+		expect(dependencyLevels(result.graph.nodes).map((level) => level.map((node) => node.id))).toEqual([
+			["n1"],
+			["n2", "n3"],
+			["n4"],
+		]);
+	});
+});

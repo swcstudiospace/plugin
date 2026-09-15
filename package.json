@@ -7,7 +7,9 @@
 	"scripts": {
 		"test": "bun test",
 		"check": "bunx tsc --noEmit",
-		"import:hermes": "bun src/skills/cli.ts"
+		"import:hermes": "bun src/skills/cli.ts",
+		"hook:uplift": "bun hooks/uplift.ts",
+		"uplift": "bun hooks/uplift.ts --ctl"
 	},
 	"devDependencies": {
 		"@oh-my-pi/pi-ai": "^18.0.4",
@@ -16,13 +18,19 @@
 		"@types/bun": "^1.4.0"
 	},
 	"omp": {
-		"extensions": ["./src/index.ts"]
+		"extensions": [
+			"./src/index.ts"
+		]
 	},
 	"pi": {
-		"extensions": ["./src/index.ts"]
+		"extensions": [
+			"./src/index.ts"
+		]
 	},
 	"aimee": {
-		"extensions": ["./src/index.ts"]
+		"extensions": [
+			"./src/index.ts"
+		]
 	},
 	"dependencies": {
 		"@modelcontextprotocol/sdk": "^1.30.0",

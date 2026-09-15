@@ -13,7 +13,7 @@ omp plugin link /root/src/repos/plugin
 Confirm with `omp plugin list` — you should see `● omp-all-in-one@0.1.0`.
 
 Extension modules load at **session start**. `/reload-plugins` does not pick up `omp.extensions`. Quit omp and start a new session.
-TUI widgets (kanban, LSP section, uplift chrome) load the same way.
+TUI widgets (LSP section, uplift chrome) load the same way.
 
 One-off without a permanent install:
 
@@ -27,6 +27,50 @@ Local marketplace:
 omp plugin marketplace add /root/src/repos/plugin
 omp plugin install all-in-one@aio
 ```
+
+## Claude Code plugin
+
+The same pipeline runs inside Claude Code as a plugin. A `UserPromptSubmit` hook fires at the start of every prompt:
+
+1. **Prompt Uplift** rewrites the request into the nested XML spec (headless `claude -p`, reusing your login).
+2. **Graph of Thought** plans 4-8 reasoning nodes; **Chain of Thought** answers each node in dependency order, independent nodes in parallel.
+3. **Issues**: a Tissue parent issue plus one sub-issue per node are written as markdown under `issues/` in the project, then synced to the ktui board when `ktui` is on PATH (skipped silently otherwise).
+4. The spec, graph, and issue tree go back to Claude as hook context, framed as your own elaborated request. A `Stop` hook moves the cards to done when the turn ends.
+
+Claude Code 2.1.x hooks cannot replace the prompt text itself, so the XML rides alongside your message as `additionalContext`; the `ORIGINAL` element always holds your verbatim words.
+
+Requires `bun` and the `claude` CLI on PATH.
+
+```bash
+# try it for one session
+claude --plugin-dir /root/src/repos/plugin
+
+# or install from the local marketplace
+claude plugin marketplace add /root/src/repos/plugin
+claude plugin install all-in-one@aio
+```
+
+Commands: `/all-in-one:uplift on|off|skip|status|last`, `/all-in-one:uplift think on|off|last`, `/all-in-one:issues list|status|sync|on|off`.
+Prefix a prompt with `raw:` to send it untouched. Slash commands and trivial replies (`ok`, `lgtm`, ...) are never uplifted.
+
+Config is read from `~/.omp/agent/all-in-one.json`, then `~/.claude/all-in-one.json`, then `<project>/.claude/all-in-one.json` (later wins). The `claude` section controls the child calls:
+
+```json
+{
+  "claude": {
+    "model": "sonnet",
+    "thinking": false,
+    "concurrency": 3,
+    "callTimeoutMs": 120000,
+    "budgetMs": 540000,
+    "echo": true
+  },
+  "think": { "enabled": true, "minNodes": 3, "maxNodes": 8 },
+  "issues": { "enabled": true, "boardName": "Spectrum Web Co" }
+}
+```
+
+Expect one to three minutes per prompt: the spec is ~3-4k output tokens and each node is another call. `"model": "haiku"` is fastest; `"think": { "enabled": false }` keeps only the uplift and a single tracked issue. Everything is fail-open: on any failure your original prompt still goes through, and the whole hook gives up at `budgetMs`. Set `AIO_DEBUG=1` to see progress on stderr. State (last spec, per-session issue tree) lives in `~/.claude/aio/`.
 
 ## What it does
 1. You type a short request.
@@ -50,9 +94,7 @@ Skipped automatically: slash commands, trivial acknowledgements (`ok`, `lgtm`, �
 | `/aio` | Same as `/uplift` (plugin root command) |
 | `/aio uplift …` | Delegate to `/uplift` |
 | `/issues` | Issue tracking status / last Tissue → ktui sync |
-| `/kanban` | Overlay of the Spectrum Web Co board (not the Textual `ktui` TUI) |
 | `/aio issues` | Same as `/issues` |
-| `/aio kanban` | Same as `/kanban` |
 | `/think` | Graph of Thought on / off / status / last |
 | `/lsp` | Live LSP status / diagnostics |
 | `/pr create [title…]` | Open a GitHub PR (title defaults to the current branch) |
@@ -74,13 +116,11 @@ Flags: `--aio-uplift-off` starts the session with uplift disabled. `--aio-issues
 
 Interactive OMP keeps persistent chrome around the editor (not a flash of working-message or default cards):
 
-- **Kanban** above the editor — themed columns with counts, up to three task titles, Last issue, and `/kanban`. Offline: accent title plus a warning `board offline`.
 - **Uplift chrome** (`aio-chrome`) above the editor — Uplift on/off and last root/source; Think on and node count; Tools idle or `▶ {tool}`; Pod connected / not connected / disabled; `Anda active` when the nexus probe succeeds.
 - **LSP section** below the editor — always visible. Shows `LSP clean` or an error/warning digest.
 
 Transcript cards are custom labeled Box + Text for `aio-uplift`, `aio-think`, `aio-issue`, and `aio-lsp`. Uplift shows `Prompt Uplift · root · source` plus the first lines of XML when expanded, not a raw dump.
 
-`/kanban` is still an overlay of the Spectrum Web Co board. That overlay is **not** the Textual `ktui` TUI — run `ktui` in another terminal for that.
 
 Chrome loads with `omp.extensions` at **session start**. Quit omp and open a new session after linking the plugin; `/reload-plugins` does not pick it up.
 
@@ -254,7 +294,7 @@ bun test
 bun run check
 ```
 
-1. Start a **new** omp session. `/uplift` should autocomplete. Themed kanban and uplift chrome should sit above the editor; the LSP section below should show `LSP clean` or a digest.
+1. Start a **new** omp session. `/uplift` should autocomplete. Uplift chrome should sit above the editor; the LSP section below should show `LSP clean` or a digest.
 2. Type a one-line feature request. The transcript should show a custom `Prompt Uplift · …` card plus the XML; the agent should receive that XML, not the one-liner.
 3. `raw: do this exactly` should reach the agent un-uplifted.
 
@@ -270,11 +310,10 @@ Idempotent: `<!-- aio-id: {workUnitId} -->` on the parent and `<!-- aio-id: {wor
 
 Issues sync to the existing ktui board **Spectrum Web Co** via the `ktui` CLI. The plugin moves the current work-unit cards Ready → Doing when the agent starts and Doing → Done on terminal `agent_end` (`willContinue !== true`). Mid-run `turn_end` events do not complete the cards. Agent tools come from MCP `ktui mcp --start-server` (tool `mcp__ktui_ktui`). This plugin's `.mcp.json` starts that server; no `--scope`.
 
-OMP shows a themed kanban widget above the editor plus a `/kanban` overlay. That overlay is **not** the real Textual TUI — run `ktui` in another terminal for that. See **TUI chrome**.
 
 GitHub association is the `origin` remote URL stored on the issue (plus a category named `owner/repo`).
 
-Tools: `issues_status` (last parent id/title + child count; never secrets) / `issues_list`. Commands: `/issues`, `/kanban` (also `/aio issues` / `/aio kanban`). Config: `issues` key in `all-in-one.json`. Flag: `--aio-issues-off`.
+Tools: `issues_status` (last parent id/title + child count; never secrets) / `issues_list`. Commands: `/issues` (also `/aio issues`). Config: `issues` key in `all-in-one.json`. Flag: `--aio-issues-off`.
 
 ## Hermes skills
 

@@ -1,0 +1,20 @@
+{
+	"$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+	"name": "aio",
+	"owner": { "name": "SWC Studio", "email": "noreply@swcstudio.space" },
+	"metadata": {
+		"description": "All-in-one plugin marketplace. Prompt Uplift with Graph of Thought, Chain of Thought, and markdown issue trees.",
+		"version": "0.1.0"
+	},
+	"plugins": [
+		{
+			"name": "all-in-one",
+			"description": "Prompt Uplift on every prompt, Graph of Thought + Chain of Thought, Tissue issues and sub-issues, ktui kanban sync.",
+			"source": "./",
+			"version": "0.1.0",
+			"author": { "name": "SWC Studio" },
+			"category": "productivity",
+			"keywords": ["uplift", "prompt", "xml", "got", "cot", "issues", "tissue", "ktui", "kanban"]
+		}
+	]
+}
