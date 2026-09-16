@@ -148,7 +148,7 @@ describe("syncPrReviewed", () => {
 			repoSlug: "acme/widgets",
 			prNumber: 7,
 			merged: true,
-			gate: { ok: true, confidence: 5 },
+			gate: { confidence: 5, minConfidence: 5 },
 		});
 		expect(result).toEqual({ updated: true });
 		expect(patched).toEqual([
@@ -159,7 +159,7 @@ describe("syncPrReviewed", () => {
 		]);
 	});
 
-	test("Fail review status and Closed status when not merged", async () => {
+	test("Fail review status and Open status when not merged", async () => {
 		const patched: Array<{ properties: unknown }> = [];
 		const client = fakeClient({
 			findDatabase: async () => ({ id: "db1" }),
@@ -174,10 +174,60 @@ describe("syncPrReviewed", () => {
 			repoSlug: "acme/widgets",
 			prNumber: 7,
 			merged: false,
-			gate: { ok: false, confidence: 2 },
+			gate: { confidence: 2, minConfidence: 5 },
 		});
 		expect(patched[0]?.properties).toEqual({
-			Status: { select: { name: "Closed" } },
+			Status: { select: { name: "Open" } },
+			"Claude CI Review": { select: { name: "Fail" } },
+		});
+	});
+
+	test("Pass review status when the gate cleared even though the merge call itself failed", async () => {
+		// mergeAfterReview returns ok:false both when the gate refuses and when a
+		// clean gate's mergePull call fails afterward (conflict, branch protection).
+		// Only confidence vs. minConfidence should decide "Claude CI Review" — not
+		// whether the merge succeeded, and not merged:false alone.
+		const patched: Array<{ properties: unknown }> = [];
+		const client = fakeClient({
+			findDatabase: async () => ({ id: "db1" }),
+			queryDatabase: async () => ({ results: [{ id: "pr-page" }] }),
+			updatePageProperties: async (_id, properties) => {
+				patched.push({ properties });
+				return { id: "pr-page" };
+			},
+		});
+		await syncPrReviewed(client, {
+			parentPageId: "page1",
+			repoSlug: "acme/widgets",
+			prNumber: 7,
+			merged: false,
+			gate: { confidence: 5, minConfidence: 5 },
+		});
+		expect(patched[0]?.properties).toEqual({
+			Status: { select: { name: "Open" } },
+			"Claude CI Review": { select: { name: "Pass" } },
+		});
+	});
+
+	test("Fail review status when confidence is missing", async () => {
+		const patched: Array<{ properties: unknown }> = [];
+		const client = fakeClient({
+			findDatabase: async () => ({ id: "db1" }),
+			queryDatabase: async () => ({ results: [{ id: "pr-page" }] }),
+			updatePageProperties: async (_id, properties) => {
+				patched.push({ properties });
+				return { id: "pr-page" };
+			},
+		});
+		await syncPrReviewed(client, {
+			parentPageId: "page1",
+			repoSlug: "acme/widgets",
+			prNumber: 7,
+			merged: false,
+			gate: { minConfidence: 5 },
+		});
+		expect(patched[0]?.properties).toEqual({
+			Status: { select: { name: "Open" } },
 			"Claude CI Review": { select: { name: "Fail" } },
 		});
 	});
@@ -189,7 +239,7 @@ describe("syncPrReviewed", () => {
 			repoSlug: "acme/widgets",
 			prNumber: 7,
 			merged: false,
-			gate: { ok: false },
+			gate: { minConfidence: 5 },
 		});
 		expect(result).toEqual({ updated: false });
 	});

@@ -94,7 +94,14 @@ export async function syncPrReviewed(
 		repoSlug: string;
 		prNumber: number;
 		merged: boolean;
-		gate: { ok: boolean; confidence?: number };
+		/**
+		 * The gate's actual review outcome, not whether the merge call itself
+		 * succeeded — `mergeAfterReview` can return `ok: false` either because the
+		 * Greptile gate refused, or because a clean gate's follow-up `mergePull`
+		 * failed (merge conflict, branch protection, etc). Only `confidence`
+		 * distinguishes those; a raw `ok`/ `gate.ok` would conflate them.
+		 */
+		gate: { confidence?: number; minConfidence: number };
 	},
 ): Promise<{ updated: boolean }> {
 	const databaseId = await ensureDatabase(client, opts.parentPageId);
@@ -108,8 +115,12 @@ export async function syncPrReviewed(
 	const row = asRecord(found.results[0]);
 	if (!row?.id || typeof row.id !== "string") return { updated: false };
 
-	const status = opts.merged ? "Merged" : "Closed";
-	const review = opts.gate.ok ? "Pass" : "Fail";
+	// This sync path only ever fires from github_merge_pull_request, which never
+	// observes a human closing a PR out-of-band — so the non-merged case is "still
+	// open on GitHub", not "closed".
+	const status = opts.merged ? "Merged" : "Open";
+	const review =
+		typeof opts.gate.confidence === "number" && opts.gate.confidence >= opts.gate.minConfidence ? "Pass" : "Fail";
 	const updated = await client.updatePageProperties(row.id, {
 		Status: { select: { name: status } },
 		"Claude CI Review": { select: { name: review } },
