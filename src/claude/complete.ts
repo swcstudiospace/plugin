@@ -24,8 +24,11 @@ export interface ClaudeCompleteOptions {
 
 export type ClaudeCompleter = (system: string, user: string, signal?: AbortSignal) => Promise<string>;
 
+/** Set by agent-swarm on every headless agent session so uplift runs once, on the user's prompt only. */
+export const SWARM_CHILD_ENV = "SWARM_CHILD";
+
 export function isChildInvocation(env: Record<string, string | undefined> = process.env): boolean {
-	return env[CHILD_ENV] === "1";
+	return env[CHILD_ENV] === "1" || env[SWARM_CHILD_ENV] === "1";
 }
 
 export function buildClaudeArgs(system: string, opts: Pick<ClaudeCompleteOptions, "model" | "settingSources"> = {}): string[] {

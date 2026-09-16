@@ -24,6 +24,22 @@ describe("kickoffSwarm", () => {
 		expect(spawned[0]?.join(" ")).toContain("implement a new feature");
 	});
 
+	test("forwards the uplifted spec file so A01 plans from it, keeping the original for classification", () => {
+		const spawned: string[][] = [];
+		const out = kickoffSwarm({
+			cwd: "/tmp/app",
+			prompt: "implement a new feature in the app",
+			specPath: "/tmp/state/aio/sessions/s1.xml",
+			config: { ...DEFAULT_SWARM_CONFIG, root: "/root/src/repos/agent-swarm", dryRun: true },
+			spawn: (argv) => spawned.push(argv),
+		});
+		expect(out.kicked).toBe(true);
+		const i = spawned[0]!.indexOf("--spec");
+		expect(i).toBeGreaterThan(0);
+		expect(spawned[0]![i + 1]).toBe("/tmp/state/aio/sessions/s1.xml");
+		expect(spawned[0]!.join(" ")).toContain("--brief implement a new feature");
+	});
+
 	test("skips when disabled", () => {
 		const spawned: string[][] = [];
 		const out = kickoffSwarm({

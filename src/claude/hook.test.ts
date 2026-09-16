@@ -295,6 +295,7 @@ describe("runPromptSubmit", () => {
 		const cwd = tempDir("aio-hook-cwd-");
 		const stateDir = join(tempDir("aio-hook-state-"), "aio");
 		const kicks: string[] = [];
+		const specs: (string | undefined)[] = [];
 		const out = await runPromptSubmit(
 			{ session_id: "s-swarm", cwd, prompt: "build a login page" },
 			{
@@ -304,13 +305,16 @@ describe("runPromptSubmit", () => {
 				engine: "test-engine",
 				ktui: noKtui,
 				stateDir,
-				swarmKickoff: ({ prompt }) => {
+				swarmKickoff: ({ prompt, specPath }) => {
 					kicks.push(prompt);
+					specs.push(specPath);
 					return { kicked: true, root: "/tmp/agent-swarm" };
 				},
 			},
 		);
 		expect(kicks).toEqual(["build a login page"]);
+		expect(specs[0]).toBe(join(stateDir, "sessions", "s-swarm.xml"));
+		expect(readFileSync(specs[0]!, "utf8")).toContain("<");
 		expect(out.output?.hookSpecificOutput.additionalContext).toContain("AgentSwarm orchestration");
 		expect(out.output?.hookSpecificOutput.additionalContext).toContain("starting autonomously");
 	});

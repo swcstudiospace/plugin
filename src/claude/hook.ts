@@ -54,7 +54,7 @@ export interface HookDeps {
 	now?: () => number;
 	log?: (message: string) => void;
 	/** Tests inject this to avoid detaching a real swarm_run. */
-	swarmKickoff?: (input: { cwd: string; prompt: string }) => KickoffResult;
+	swarmKickoff?: (input: { cwd: string; prompt: string; specPath?: string }) => KickoffResult;
 }
 
 export interface PromptSubmitResult {
@@ -217,8 +217,8 @@ export async function runPromptSubmit(input: PromptSubmitInput, deps: HookDeps):
 		let extra = "";
 		try {
 			const kick =
-				deps.swarmKickoff?.({ cwd, prompt: original }) ??
-				kickoffSwarm({ cwd, prompt: original, config: deps.config.swarm });
+				deps.swarmKickoff?.({ cwd, prompt: original, specPath }) ??
+				kickoffSwarm({ cwd, prompt: original, specPath, config: deps.config.swarm });
 			if (kick.kicked) extra = `\n\n${SWARM_CONTEXT}`;
 			else log(`swarm kickoff skipped: ${kick.reason ?? "unknown"}`);
 		} catch (error) {

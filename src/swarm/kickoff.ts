@@ -30,7 +30,7 @@ const NEGATIVE = ["/uplift", "/think", "what is", "explain only", "/all-in-one:"
 
 export const SWARM_CONTEXT = `## AgentSwarm orchestration (mandatory)
 
-Prompt Uplift finished. AgentSwarm is starting autonomously (orch_plan + swarm_run detached).
+Prompt Uplift finished. AgentSwarm is starting autonomously (orch_plan + swarm_run detached) from the uplifted spec.
 Load skill \`agent-swarm-orchestrate\`. Do not implement domain work in the parent session.
 A01 owns the plan and spawns a02–a15. The detached runner uses \`python3 scripts/swarm_run.py --runtime auto\`.
 `;
@@ -54,7 +54,10 @@ export function resolveSwarmRoot(cwd: string, configured: string): string {
 
 export interface KickoffInput {
 	cwd: string;
+	/** The user's original prompt: used only to decide whether this is SDLC work. */
 	prompt: string;
+	/** Uplifted XML spec on disk; when present A01 plans from it instead of the raw prompt. */
+	specPath?: string;
 	config: SwarmConfig;
 	spawn?: (argv: string[], cwd: string) => void;
 }
@@ -94,6 +97,7 @@ export function kickoffSwarm(input: KickoffInput): KickoffResult {
 		"--swarm-root",
 		root,
 	];
+	if (input.specPath?.trim()) argv.push("--spec", input.specPath.trim());
 	if (input.config.dryRun) argv.push("--dry-run");
 	try {
 		(input.spawn ?? defaultSpawn)(argv, root);

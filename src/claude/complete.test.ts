@@ -53,4 +53,8 @@ describe("isChildInvocation", () => {
 		expect(isChildInvocation({ [CHILD_ENV]: "0" })).toBe(false);
 		expect(isChildInvocation({})).toBe(false);
 	});
+	test("true inside a headless swarm agent session", () => {
+		expect(isChildInvocation({ SWARM_CHILD: "1" })).toBe(true);
+		expect(isChildInvocation({ SWARM_CHILD: "0" })).toBe(false);
+	});
 });
