@@ -281,6 +281,31 @@ Tools (text results, no tokens):
 
 Optional hosted Greptile HTTP MCP at `https://api.greptile.com/mcp` with `GREPTILE_API_KEY`. **Do not commit a Bearer key.** This plugin does not ship that server in `.mcp.json`.
 
+### Notion PR tracking
+
+When a PR opens (via this plugin's `github_create_pull_request` tool) or is
+reviewed/merged (`github_merge_pull_request`), a "PRs" Notion database is kept in
+sync — one row per PR, with every Tissue issue tracked against that repo nested
+underneath as Notion sub-pages.
+
+Setup (one time):
+
+1. Create a Notion internal integration at `notion.so/my-integrations`; copy its secret.
+2. Share a parent page with that integration (`•••` → Connections on the page).
+3. Set the integration secret as an env var, `NOTION_API_KEY` by default:
+   ```bash
+   export NOTION_API_KEY=ntn_...
+   ```
+4. Add to your `all-in-one.json`:
+   ```json
+   { "notion": { "enabled": true, "parentPageId": "your-page-id" } }
+   ```
+
+The "PRs" database is created automatically under that page the first time a PR
+syncs. `notion.apiKeyEnv` (default `NOTION_API_KEY`) lets you point at a
+differently-named env var. Everything here is fail-open: without
+`parentPageId`/the env var set, sync is silently skipped.
+
 ## Supabase
 
 The same stdio MCP server **`./bin/aio-mcp`** (`.mcp.json` key `aio`) also talks to Supabase: Management API (projects), Data API (tables/rows/rpc), and Auth Admin (list/get/create/delete users). Credentials are **env only** — never a config-file secret. **Do not add a hosted Supabase MCP URL to `.mcp.json`.**
