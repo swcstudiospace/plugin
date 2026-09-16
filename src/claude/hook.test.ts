@@ -195,6 +195,25 @@ describe("runPromptSubmit", () => {
 		expect(existsSync(join(cwd2, "issues"))).toBe(false);
 	});
 
+	test("injects <ISSUES> into the persisted spec XML when issue tracking succeeds", async () => {
+		const cwd = tempDir("aio-hook-cwd-");
+		const stateDir = join(tempDir("aio-hook-state-"), "aio");
+		const calls: string[] = [];
+		const out = await runPromptSubmit(
+			{ session_id: "s-issues", cwd, prompt: "build a login page" },
+			{
+				config: defaultConfig(),
+				control: { thinkEnabled: false },
+				complete: fakeComplete(calls),
+				engine: "test-engine",
+				ktui: noKtui,
+				stateDir,
+			},
+		);
+		expect(out.output?.hookSpecificOutput.additionalContext).toContain("<ISSUES>");
+		expect(out.record?.result.xml).toContain("<ISSUES>");
+	});
+
 	test("llm failure falls back to the heuristic uplift instead of skipping", async () => {
 		const cwd = tempDir("aio-hook-cwd-");
 		const stateDir = join(tempDir("aio-hook-state-"), "aio");

@@ -12,6 +12,7 @@ import type { AioConfig } from "../config.ts";
 import { injectClarificationsXml } from "../hitl/format.ts";
 import { normalizeQuestion, type RunClarifyOptions, runClarify } from "../hitl/pipeline.ts";
 import type { Clarification } from "../hitl/types.ts";
+import { injectIssuesXml } from "../issues/format.ts";
 import type { KtuiRunner } from "../issues/kanban.ts";
 import { advanceTrackedIssues, trackThoughtGraph, trackUpliftedPrompt } from "../issues/track.ts";
 import type { GithubAssoc, GraphSyncResult, SyncResult } from "../issues/types.ts";
@@ -193,6 +194,9 @@ export async function runPromptSubmit(input: PromptSubmitInput, deps: HookDeps):
 			} catch (error) {
 				log(`issues failed: ${error instanceof Error ? error.message : String(error)}`);
 			}
+		}
+		if (tree || last) {
+			result = { ...result, xml: injectIssuesXml(result.xml, { tree, last }) };
 		}
 
 		const record: SessionRecord = {
