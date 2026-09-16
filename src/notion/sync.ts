@@ -81,3 +81,39 @@ export async function syncPrCreated(
 
 	return { databaseId, prPageId: prPage.id, nested };
 }
+
+function asRecord(value: unknown): Record<string, unknown> | undefined {
+	if (!value || typeof value !== "object" || Array.isArray(value)) return undefined;
+	return value as Record<string, unknown>;
+}
+
+export async function syncPrReviewed(
+	client: NotionClient,
+	opts: {
+		parentPageId: string;
+		repoSlug: string;
+		prNumber: number;
+		merged: boolean;
+		gate: { ok: boolean; confidence?: number };
+	},
+): Promise<{ updated: boolean }> {
+	const databaseId = await ensureDatabase(client, opts.parentPageId);
+	const found = await client.queryDatabase(databaseId, {
+		and: [
+			{ property: "Repo", rich_text: { equals: opts.repoSlug } },
+			{ property: "PR #", number: { equals: opts.prNumber } },
+		],
+	});
+	if ("error" in found) throw new Error(`notion queryDatabase failed: ${found.error}`);
+	const row = asRecord(found.results[0]);
+	if (!row?.id || typeof row.id !== "string") return { updated: false };
+
+	const status = opts.merged ? "Merged" : "Closed";
+	const review = opts.gate.ok ? "Pass" : "Fail";
+	const updated = await client.updatePageProperties(row.id, {
+		Status: { select: { name: status } },
+		"Claude CI Review": { select: { name: review } },
+	});
+	if ("error" in updated) throw new Error(`notion updatePageProperties failed: ${updated.error}`);
+	return { updated: true };
+}

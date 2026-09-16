@@ -2,7 +2,7 @@ import { describe, expect, test } from "bun:test";
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { appendNotionMarker, ensureDatabase, hasNotionMarker, syncPrCreated, unsyncedIssuesForRepo } from "./sync.ts";
+import { appendNotionMarker, ensureDatabase, hasNotionMarker, syncPrCreated, syncPrReviewed, unsyncedIssuesForRepo } from "./sync.ts";
 import type { NotionClient } from "./client.ts";
 import type { TissueIssue } from "../issues/types.ts";
 
@@ -124,5 +124,73 @@ describe("syncPrCreated", () => {
 		} finally {
 			cleanup();
 		}
+	});
+});
+
+describe("syncPrReviewed", () => {
+	test("queries by repo + PR#, and updates Status/Claude CI Review on the matching row", async () => {
+		const patched: Array<{ id: string; properties: unknown }> = [];
+		const client = fakeClient({
+			findDatabase: async () => ({ id: "db1" }),
+			queryDatabase: async (_databaseId, filter) => {
+				expect(filter).toEqual({
+					and: [{ property: "Repo", rich_text: { equals: "acme/widgets" } }, { property: "PR #", number: { equals: 7 } }],
+				});
+				return { results: [{ id: "pr-page" }] };
+			},
+			updatePageProperties: async (id, properties) => {
+				patched.push({ id, properties });
+				return { id };
+			},
+		});
+		const result = await syncPrReviewed(client, {
+			parentPageId: "page1",
+			repoSlug: "acme/widgets",
+			prNumber: 7,
+			merged: true,
+			gate: { ok: true, confidence: 5 },
+		});
+		expect(result).toEqual({ updated: true });
+		expect(patched).toEqual([
+			{
+				id: "pr-page",
+				properties: { Status: { select: { name: "Merged" } }, "Claude CI Review": { select: { name: "Pass" } } },
+			},
+		]);
+	});
+
+	test("Fail review status and Closed status when not merged", async () => {
+		const patched: Array<{ properties: unknown }> = [];
+		const client = fakeClient({
+			findDatabase: async () => ({ id: "db1" }),
+			queryDatabase: async () => ({ results: [{ id: "pr-page" }] }),
+			updatePageProperties: async (_id, properties) => {
+				patched.push({ properties });
+				return { id: "pr-page" };
+			},
+		});
+		await syncPrReviewed(client, {
+			parentPageId: "page1",
+			repoSlug: "acme/widgets",
+			prNumber: 7,
+			merged: false,
+			gate: { ok: false, confidence: 2 },
+		});
+		expect(patched[0]?.properties).toEqual({
+			Status: { select: { name: "Closed" } },
+			"Claude CI Review": { select: { name: "Fail" } },
+		});
+	});
+
+	test("no-op (updated: false) when no matching row is found", async () => {
+		const client = fakeClient({ findDatabase: async () => ({ id: "db1" }), queryDatabase: async () => ({ results: [] }) });
+		const result = await syncPrReviewed(client, {
+			parentPageId: "page1",
+			repoSlug: "acme/widgets",
+			prNumber: 7,
+			merged: false,
+			gate: { ok: false },
+		});
+		expect(result).toEqual({ updated: false });
 	});
 });
