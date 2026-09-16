@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, test } from "bun:test";
-import { existsSync, mkdtempSync, readdirSync, readFileSync, rmSync } from "node:fs";
+import { existsSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { defaultConfig } from "../config.ts";
@@ -192,7 +192,18 @@ describe("runPromptSubmit", () => {
 		const cwd2 = tempDir("aio-hook-cwd-");
 		const none = await runPromptSubmit({ session_id: "s3", cwd: cwd2, prompt: "build a login page" }, { ...base, control: { issuesEnabled: false } });
 		expect(none.output?.hookSpecificOutput.additionalContext).not.toContain("## Issue tracking");
+		expect(none.output?.hookSpecificOutput.additionalContext).not.toContain("<ISSUES>");
 		expect(existsSync(join(cwd2, "issues"))).toBe(false);
+
+		const cwd3 = join(tempDir("aio-hook-cwd-"), "not-a-dir");
+		writeFileSync(cwd3, "");
+		const failed = await runPromptSubmit(
+			{ session_id: "s3b", cwd: cwd3, prompt: "build a login page" },
+			{ ...base, control: { thinkEnabled: false } },
+		);
+		expect(failed.record?.last?.skipped).toBe(true);
+		expect(failed.output?.hookSpecificOutput.additionalContext).not.toContain("<ISSUES>");
+		expect(failed.record?.result.xml).not.toContain("<ISSUES>");
 	});
 
 	test("injects <ISSUES> into the persisted spec XML when issue tracking succeeds", async () => {
