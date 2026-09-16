@@ -19,6 +19,7 @@ import { type ClaudeCompleter, createClaudeCompleter, isChildInvocation } from "
 import { runPromptSubmit, type PromptSubmitInput } from "../src/claude/hook.ts";
 import { type ControlState, defaultStateDir, readControl, readLast, writeControl } from "../src/claude/state.ts";
 import { recentConversationFromTranscript } from "../src/claude/transcript.ts";
+import { isCommandPrompt } from "../src/uplift/detect.ts";
 
 const CTL_SCOPES = ["think", "issues", "hitl", "grok"] as const;
 type CtlScope = (typeof CTL_SCOPES)[number] | "uplift";
@@ -252,6 +253,12 @@ async function main(): Promise<void> {
 
 	const input = parseInput(await readStdin());
 	if (input.hook_event_name && input.hook_event_name !== "UserPromptSubmit") return;
+	// Yield before engine select: slash expansion and Skill dispatch must not wait on Grok
+	// auth, and must not receive a login-required systemMessage that eats the command.
+	if (isCommandPrompt(input.prompt ?? "")) {
+		log("skipped: slash command");
+		return;
+	}
 	const cwd = input.cwd?.trim() || process.cwd();
 	const config = loadConfig(claudeConfigPaths(cwd));
 	const stateDir = defaultStateDir();

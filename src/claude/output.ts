@@ -23,7 +23,7 @@ const THINKING_OMITTED = "(omitted — full text in the specification file)";
 
 export const UPLIFT_CONTEXT_HEADER = `## Prompt Uplift
 
-The user installed the All-in-one Prompt Uplift plugin. It expanded the user's message into the specification below; the ORIGINAL element holds the user's verbatim words. Treat the specification as the user's own elaborated intent and execute it. Do not reprint the XML. Prefer repository evidence over inferred assumptions.`;
+The user installed the All-in-one Prompt Uplift plugin. It expanded the user's message into the specification below; the ORIGINAL element holds the user's verbatim words. Treat the specification as the user's own elaborated intent and execute it. Do not reprint the XML. Prefer repository evidence over inferred assumptions. Plugin slash commands remain available this turn and later; invoke them when they would help. Completing this rewrite is not the end of the turn.`;
 
 export interface PromptContextInput {
 	result: UpliftResult;

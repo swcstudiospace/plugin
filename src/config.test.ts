@@ -1,8 +1,14 @@
 import { afterEach, describe, expect, test } from "bun:test";
-import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { DEFAULT_CLAUDE_CONFIG, claudeConfigPaths, defaultConfig, loadConfig } from "./config.ts";
+import {
+	CLAUDE_USER_PROMPT_HOOK_TIMEOUT_SEC,
+	DEFAULT_CLAUDE_CONFIG,
+	claudeConfigPaths,
+	defaultConfig,
+	loadConfig,
+} from "./config.ts";
 import { DEFAULT_GROK_CONFIG } from "./grok/types.ts";
 import { DEFAULT_HITL_CONFIG } from "./hitl/types.ts";
 import { DEFAULT_BOARD_NAME } from "./issues/types.ts";
@@ -298,5 +304,20 @@ describe("claude config", () => {
 	test("claudeConfigPaths lists omp, claude home, then project", () => {
 		const paths = claudeConfigPaths("/proj", { CLAUDE_CONFIG_DIR: "/cfg", PI_CODING_AGENT_DIR: "/omp" });
 		expect(paths).toEqual(["/omp/all-in-one.json", "/cfg/all-in-one.json", "/proj/.claude/all-in-one.json"]);
+	});
+
+	test("zero callTimeoutMs and budgetMs mean no timer", () => {
+		withAgentDir(JSON.stringify({ claude: { callTimeoutMs: 0, budgetMs: 0 }, grok: { callTimeoutMs: 0 } }));
+		const config = loadConfig();
+		expect(config.claude.callTimeoutMs).toBe(0);
+		expect(config.claude.budgetMs).toBe(0);
+		expect(config.grok.callTimeoutMs).toBe(0);
+	});
+
+	test("UserPromptSubmit hook timeout matches CLAUDE_USER_PROMPT_HOOK_TIMEOUT_SEC", () => {
+		const hooks = JSON.parse(readFileSync(join(import.meta.dir, "..", "hooks", "hooks.json"), "utf8")) as {
+			hooks: { UserPromptSubmit: Array<{ hooks: Array<{ timeout: number }> }> };
+		};
+		expect(hooks.hooks.UserPromptSubmit[0]?.hooks[0]?.timeout).toBe(CLAUDE_USER_PROMPT_HOOK_TIMEOUT_SEC);
 	});
 });

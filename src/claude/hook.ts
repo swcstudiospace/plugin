@@ -90,7 +90,10 @@ export async function runPromptSubmit(input: PromptSubmitInput, deps: HookDeps):
 	if (decision.action !== "uplift") return { skipped: decision.action };
 
 	const controller = new AbortController();
-	const budget = setTimeout(() => controller.abort(), deps.config.claude.budgetMs);
+	const budget =
+		deps.config.claude.budgetMs > 0
+			? setTimeout(() => controller.abort(), deps.config.claude.budgetMs)
+			: undefined;
 	try {
 		const original = decision.text;
 		const conversation = deps.conversation?.(input.transcript_path) ?? "";
@@ -246,6 +249,6 @@ export async function runPromptSubmit(input: PromptSubmitInput, deps: HookDeps):
 		}
 		return { output, record };
 	} finally {
-		clearTimeout(budget);
+		if (budget !== undefined) clearTimeout(budget);
 	}
 }

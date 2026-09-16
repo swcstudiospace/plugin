@@ -7,6 +7,14 @@ const ALREADY_ROOTS: Record<string, true> = Object.fromEntries(
 const TRIVIAL_RE =
 	/^(?:yes|y|no|n|ok|okay|k|continue|go|go ahead|do it|please|thanks|thank you|sure|yep|nope|lgtm)[.!?!,;:]*$/i;
 
+const COMMAND_TAG_RE = /^<(?:command-name|command-message|local-command)\b/i;
+
+/** User-typed `/cmd` and Claude Code expansions (`<command-name>…`) must not be rewritten. */
+export function isCommandPrompt(text: string): boolean {
+	const trimmed = text.trim();
+	return trimmed.startsWith("/") || COMMAND_TAG_RE.test(trimmed);
+}
+
 export function stripPrefix(text: string): { text: string; force: boolean; raw: boolean } {
 	const trimmed = text.trim();
 	const rawMatch = trimmed.match(/^raw:\s*/i);
@@ -44,7 +52,7 @@ export function decideUplift(
 	if (!text) return { action: "skip" };
 	if (raw) return { action: "passthrough", text };
 
-	if (text.startsWith("/")) return { action: "skip" };
+	if (isCommandPrompt(text)) return { action: "skip" };
 	if (isAlreadyUplifted(text)) return { action: "skip" };
 
 	if (state.skipOnce) {

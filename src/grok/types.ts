@@ -29,6 +29,7 @@ export interface GrokConfig {
 	bin: string;
 	/** Empty → $GROK_HOME or ~/.grok. */
 	home: string;
+	/** Per-call timeout in ms. 0 = no timer (the host hook timeout is the backstop). */
 	callTimeoutMs: number;
 	/** Never silently downgrade to Claude by default. */
 	fallbackToClaude: boolean;
@@ -45,7 +46,7 @@ export const DEFAULT_GROK_CONFIG: GrokConfig = {
 	transport: "http",
 	bin: "grok",
 	home: "",
-	callTimeoutMs: 240_000,
+	callTimeoutMs: 0,
 	fallbackToClaude: false,
 	proxy: {
 		enabled: true,

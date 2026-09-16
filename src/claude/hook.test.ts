@@ -318,5 +318,68 @@ describe("runPromptSubmit", () => {
 		expect(out.output?.hookSpecificOutput.additionalContext).toContain("AgentSwarm orchestration");
 		expect(out.output?.hookSpecificOutput.additionalContext).toContain("starting autonomously");
 	});
+
+	test("budgetMs 0 does not abort a slow complete", async () => {
+		const cwd = tempDir("aio-hook-cwd-");
+		const stateDir = join(tempDir("aio-hook-state-"), "aio");
+		const config = defaultConfig();
+		config.claude.budgetMs = 0;
+		const out = await runPromptSubmit(
+			{ session_id: "s-budget-0", cwd, prompt: "build a login page" },
+			{
+				config,
+				control: { thinkEnabled: false, issuesEnabled: false, hitlEnabled: false },
+				complete: async (system, user, signal) => {
+					await new Promise((resolve) => setTimeout(resolve, 40));
+					if (signal?.aborted) {
+						const error = new Error("Aborted");
+						error.name = "AbortError";
+						throw error;
+					}
+					return fakeComplete([])(system, user);
+				},
+				engine: "test-engine",
+				ktui: noKtui,
+				stateDir,
+			},
+		);
+		expect(out.skipped).toBeUndefined();
+		expect(out.output?.hookSpecificOutput.additionalContext).toContain("<BUILD_PROMPT>");
+	});
+
+	test("positive budgetMs aborts in-flight complete", async () => {
+		const cwd = tempDir("aio-hook-cwd-");
+		const stateDir = join(tempDir("aio-hook-state-"), "aio");
+		const config = defaultConfig();
+		config.claude.budgetMs = 20;
+		const out = await runPromptSubmit(
+			{ session_id: "s-budget", cwd, prompt: "build a login page" },
+			{
+				config,
+				control: { thinkEnabled: false, issuesEnabled: false, hitlEnabled: false },
+				complete: async (_system, _user, signal) => {
+					await new Promise<void>((resolve, reject) => {
+						const timer = setTimeout(resolve, 500);
+						signal?.addEventListener(
+							"abort",
+							() => {
+								clearTimeout(timer);
+								const error = new Error("Aborted");
+								error.name = "AbortError";
+								reject(error);
+							},
+							{ once: true },
+						);
+					});
+					return "<BUILD_PROMPT><ORIGINAL>late</ORIGINAL></BUILD_PROMPT>";
+				},
+				engine: "test-engine",
+				ktui: noKtui,
+				stateDir,
+			},
+		);
+		expect(out.skipped).toBe("uplift-failed");
+		expect(out.output).toBeUndefined();
+	});
 });
 

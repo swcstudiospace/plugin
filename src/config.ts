@@ -19,9 +19,9 @@ export interface ClaudeConfig {
 	thinking: boolean;
 	/** `--setting-sources` for child calls; empty loads none (fastest, no nested hooks). */
 	settingSources: string;
-	/** Per-call timeout for one headless completion. */
+	/** Per-call timeout for one headless completion. 0 = no timer. */
 	callTimeoutMs: number;
-	/** Whole-hook budget; the hook returns whatever it has when this is exhausted. */
+	/** Whole-hook budget in ms. 0 = run until the host hook timeout. */
 	budgetMs: number;
 	/** Parallel Chain-of-Thought fills per dependency level. */
 	concurrency: number;
@@ -29,13 +29,20 @@ export interface ClaudeConfig {
 	echo: boolean;
 }
 
+/**
+ * Claude Code UserPromptSubmit timeout in seconds (`hooks/hooks.json`).
+ * The host discards hook stdout if we exceed this. 0 is not unlimited there —
+ * Claude Code would fall back to the 30s UserPromptSubmit default.
+ */
+export const CLAUDE_USER_PROMPT_HOOK_TIMEOUT_SEC = 86_400;
+
 export const DEFAULT_CLAUDE_CONFIG: ClaudeConfig = {
 	bin: "claude",
 	model: "sonnet",
 	thinking: false,
 	settingSources: "",
-	callTimeoutMs: 120_000,
-	budgetMs: 540_000,
+	callTimeoutMs: 0,
+	budgetMs: 0,
 	concurrency: 3,
 	echo: true,
 };
@@ -161,6 +168,10 @@ function mergeThink(think: Record<string, unknown> | undefined, defaults: ThinkC
 	};
 }
 
+function nonNegativeMs(value: unknown, fallback: number): number {
+	return typeof value === "number" && Number.isFinite(value) && value >= 0 ? value : fallback;
+}
+
 function mergeClaude(claude: Record<string, unknown> | undefined, defaults: ClaudeConfig): ClaudeConfig {
 	if (!claude) return defaults;
 	const positive = (value: unknown, fallback: number): number =>
@@ -170,8 +181,8 @@ function mergeClaude(claude: Record<string, unknown> | undefined, defaults: Clau
 		model: typeof claude.model === "string" ? claude.model.trim() : defaults.model,
 		thinking: typeof claude.thinking === "boolean" ? claude.thinking : defaults.thinking,
 		settingSources: typeof claude.settingSources === "string" ? claude.settingSources.trim() : defaults.settingSources,
-		callTimeoutMs: positive(claude.callTimeoutMs, defaults.callTimeoutMs),
-		budgetMs: positive(claude.budgetMs, defaults.budgetMs),
+		callTimeoutMs: nonNegativeMs(claude.callTimeoutMs, defaults.callTimeoutMs),
+		budgetMs: nonNegativeMs(claude.budgetMs, defaults.budgetMs),
 		concurrency: Math.max(1, Math.floor(positive(claude.concurrency, defaults.concurrency))),
 		echo: typeof claude.echo === "boolean" ? claude.echo : defaults.echo,
 	};
@@ -212,10 +223,7 @@ function mergeGrok(grok: Record<string, unknown> | undefined, defaults: GrokConf
 		transport: grok.transport === "http" || grok.transport === "cli" ? grok.transport : defaults.transport,
 		bin: nonEmpty(grok.bin, defaults.bin),
 		home: typeof grok.home === "string" ? grok.home.trim() : defaults.home,
-		callTimeoutMs:
-			typeof grok.callTimeoutMs === "number" && Number.isFinite(grok.callTimeoutMs) && grok.callTimeoutMs > 0
-				? grok.callTimeoutMs
-				: defaults.callTimeoutMs,
+		callTimeoutMs: nonNegativeMs(grok.callTimeoutMs, defaults.callTimeoutMs),
 		fallbackToClaude: typeof grok.fallbackToClaude === "boolean" ? grok.fallbackToClaude : defaults.fallbackToClaude,
 		proxy: mergeGrokProxy(asRecord(grok.proxy), defaults.proxy),
 	};
