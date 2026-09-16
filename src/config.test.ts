@@ -13,6 +13,7 @@ import { DEFAULT_GROK_CONFIG } from "./grok/types.ts";
 import { DEFAULT_HITL_CONFIG } from "./hitl/types.ts";
 import { DEFAULT_BOARD_NAME } from "./issues/types.ts";
 import { DEFAULT_LSP_CONFIG } from "./lsp/types.ts";
+import { DEFAULT_NOTION_CONFIG } from "./notion/types.ts";
 import { DEFAULT_POD_CONFIG } from "./pod/types.ts";
 import { DEFAULT_SWARM_CONFIG } from "./swarm/types.ts";
 
@@ -32,6 +33,7 @@ const SUPABASE = { enabled: true };
 const LSP = DEFAULT_LSP_CONFIG;
 const POD = DEFAULT_POD_CONFIG;
 const SWARM = DEFAULT_SWARM_CONFIG;
+const NOTION = DEFAULT_NOTION_CONFIG;
 
 const prevDir = process.env.PI_CODING_AGENT_DIR;
 const tempDirs: string[] = [];
@@ -69,6 +71,7 @@ describe("loadConfig", () => {
 			lsp: LSP,
 			pod: POD,
 			swarm: SWARM,
+			notion: NOTION,
 		});
 	});
 
@@ -96,6 +99,7 @@ describe("loadConfig", () => {
 			lsp: LSP,
 			pod: POD,
 			swarm: SWARM,
+			notion: NOTION,
 		});
 
 		withAgentDir(JSON.stringify({ uplift: { maxChars: 50 } }));
@@ -112,6 +116,7 @@ describe("loadConfig", () => {
 			lsp: LSP,
 			pod: POD,
 			swarm: SWARM,
+			notion: NOTION,
 		});
 
 		withAgentDir(JSON.stringify({ uplift: { skipTrivial: false, extra: true }, ignored: 1 }));
@@ -128,6 +133,7 @@ describe("loadConfig", () => {
 			lsp: LSP,
 			pod: POD,
 			swarm: SWARM,
+			notion: NOTION,
 		});
 	});
 
@@ -151,6 +157,7 @@ describe("loadConfig", () => {
 			lsp: LSP,
 			pod: POD,
 			swarm: SWARM,
+			notion: NOTION,
 		});
 	});
 
@@ -169,6 +176,7 @@ describe("loadConfig", () => {
 			lsp: LSP,
 			pod: POD,
 			swarm: SWARM,
+			notion: NOTION,
 		});
 
 		withAgentDir(JSON.stringify({ issues: { boardName: "  Other Board  ", ktuiBin: "/bin/ktui" } }));
@@ -183,6 +191,19 @@ describe("loadConfig", () => {
 	test("issues wrong-typed fields fall back to defaults", () => {
 		withAgentDir(JSON.stringify({ issues: { enabled: "no", boardName: 1, ktuiBin: "", echo: 0 } }));
 		expect(loadConfig().issues).toEqual(ISSUES);
+	});
+
+	test("notion partial JSON merges onto defaults", () => {
+		withAgentDir(JSON.stringify({ notion: { enabled: false } }));
+		expect(loadConfig().notion).toEqual({ ...NOTION, enabled: false });
+
+		withAgentDir(JSON.stringify({ notion: { apiKeyEnv: "  MY_TOKEN  ", parentPageId: "  abc123  " } }));
+		expect(loadConfig().notion).toEqual({ enabled: true, apiKeyEnv: "MY_TOKEN", parentPageId: "abc123" });
+	});
+
+	test("notion wrong-typed fields fall back to defaults", () => {
+		withAgentDir(JSON.stringify({ notion: { enabled: "no", apiKeyEnv: 1, parentPageId: 2 } }));
+		expect(loadConfig().notion).toEqual(NOTION);
 	});
 
 	test("think partial JSON merges onto defaults", () => {

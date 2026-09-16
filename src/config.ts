@@ -7,6 +7,7 @@ import { DEFAULT_BOARD_NAME, type IssuesConfig } from "./issues/types.ts";
 import { DEFAULT_GITHUB_ORG, type GithubConfig, type GreptileConfig, type SupabaseConfig } from "./mcp/types.ts";
 import { MAX_NODES, MIN_NODES, type ThinkConfig } from "./think/types.ts";
 import { DEFAULT_LSP_CONFIG, type LspConfig } from "./lsp/types.ts";
+import { DEFAULT_NOTION_CONFIG, type NotionConfig } from "./notion/types.ts";
 import { DEFAULT_POD_CONFIG, type PodConfig } from "./pod/types.ts";
 import { DEFAULT_SWARM_CONFIG, type SwarmConfig } from "./swarm/types.ts";
 
@@ -60,6 +61,7 @@ export interface AioConfig {
 	lsp: LspConfig;
 	pod: PodConfig;
 	swarm: SwarmConfig;
+	notion: NotionConfig;
 }
 
 export function defaultConfig(): AioConfig {
@@ -103,6 +105,7 @@ export function defaultConfig(): AioConfig {
 		lsp: { ...DEFAULT_LSP_CONFIG },
 		pod: { ...DEFAULT_POD_CONFIG },
 		swarm: { ...DEFAULT_SWARM_CONFIG },
+		notion: { ...DEFAULT_NOTION_CONFIG },
 	};
 }
 
@@ -291,6 +294,15 @@ function mergeSwarm(swarm: Record<string, unknown> | undefined, defaults: SwarmC
 	};
 }
 
+function mergeNotion(notion: Record<string, unknown> | undefined, defaults: NotionConfig): NotionConfig {
+	if (!notion) return defaults;
+	return {
+		enabled: typeof notion.enabled === "boolean" ? notion.enabled : defaults.enabled,
+		apiKeyEnv: typeof notion.apiKeyEnv === "string" && notion.apiKeyEnv.trim() ? notion.apiKeyEnv.trim() : defaults.apiKeyEnv,
+		parentPageId: typeof notion.parentPageId === "string" ? notion.parentPageId.trim() : defaults.parentPageId,
+	};
+}
+
 function mergePod(pod: Record<string, unknown> | undefined, defaults: PodConfig): PodConfig {
 	if (!pod) return defaults;
 	const extraDirs = Array.isArray(pod.extraDirs)
@@ -332,6 +344,7 @@ export function mergeConfig(file: Record<string, unknown> | undefined, base: Aio
 		lsp: mergeLsp(asRecord(file.lsp), base.lsp),
 		pod: mergePod(asRecord(file.pod), base.pod),
 		swarm: mergeSwarm(asRecord(file.swarm), base.swarm),
+		notion: mergeNotion(asRecord(file.notion), base.notion),
 	};
 }
 
