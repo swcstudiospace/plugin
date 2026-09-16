@@ -33,6 +33,16 @@
 						"timeout": 30
 					}
 				]
+			},
+			{
+				"matcher": "mcp__(plugin_all-in-one_)?aio__github_create_pull_request",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "bun \"${CLAUDE_PLUGIN_ROOT}/hooks/notion-pr-created.ts\"",
+						"timeout": 30
+					}
+				]
 			}
 		],
 		"Stop": [
