@@ -35,7 +35,7 @@
 				]
 			},
 			{
-				"matcher": "mcp__(plugin_all-in-one_)?aio__github_create_pull_request",
+				"matcher": "mcp__aio__github_create_pull_request",
 				"hooks": [
 					{
 						"type": "command",
