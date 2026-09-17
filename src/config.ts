@@ -1,14 +1,58 @@
 import { existsSync, readFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { join } from "node:path";
+import { DEFAULT_GROK_CONFIG, GROK_EFFORTS, type GrokConfig, type GrokEffort, type GrokProxyConfig } from "./grok/types.ts";
+import { DEFAULT_HITL_CONFIG, type HitlConfig } from "./hitl/types.ts";
 import { DEFAULT_BOARD_NAME, type IssuesConfig } from "./issues/types.ts";
 import { DEFAULT_GITHUB_ORG, type GithubConfig, type GreptileConfig, type SupabaseConfig } from "./mcp/types.ts";
 import { MAX_NODES, MIN_NODES, type ThinkConfig } from "./think/types.ts";
 import { DEFAULT_LSP_CONFIG, type LspConfig } from "./lsp/types.ts";
+import { DEFAULT_NOTION_CONFIG, type NotionConfig } from "./notion/types.ts";
 import { DEFAULT_POD_CONFIG, type PodConfig } from "./pod/types.ts";
+import { DEFAULT_SWARM_CONFIG, type SwarmConfig } from "./swarm/types.ts";
+
+export interface ClaudeConfig {
+	/** `claude` binary used for headless completions. */
+	bin: string;
+	/** Model alias/name for the uplift and thinking calls; empty inherits the user default. */
+	model: string;
+	/** Allow extended thinking in child calls (slower). */
+	thinking: boolean;
+	/** `--setting-sources` for child calls; empty loads none (fastest, no nested hooks). */
+	settingSources: string;
+	/** Per-call timeout for one headless completion. 0 = no timer. */
+	callTimeoutMs: number;
+	/** Whole-hook budget in ms. 0 = run until the host hook timeout. */
+	budgetMs: number;
+	/** Parallel Chain-of-Thought fills per dependency level. */
+	concurrency: number;
+	/** Print a one-line summary to the user after each uplift. */
+	echo: boolean;
+}
+
+/**
+ * Claude Code UserPromptSubmit timeout in seconds (`hooks/hooks.json`).
+ * The host discards hook stdout if we exceed this. 0 is not unlimited there —
+ * Claude Code would fall back to the 30s UserPromptSubmit default.
+ */
+export const CLAUDE_USER_PROMPT_HOOK_TIMEOUT_SEC = 86_400;
+
+export const DEFAULT_CLAUDE_CONFIG: ClaudeConfig = {
+	bin: "claude",
+	model: "sonnet",
+	thinking: false,
+	settingSources: "",
+	callTimeoutMs: 0,
+	budgetMs: 0,
+	concurrency: 3,
+	echo: true,
+};
 
 export interface AioConfig {
 	uplift: { enabled: boolean; skipTrivial: boolean; maxChars: number; echo: boolean };
+	claude: ClaudeConfig;
+	grok: GrokConfig;
+	hitl: HitlConfig;
 	issues: IssuesConfig;
 	think: ThinkConfig;
 	github: GithubConfig;
@@ -16,6 +60,8 @@ export interface AioConfig {
 	supabase: SupabaseConfig;
 	lsp: LspConfig;
 	pod: PodConfig;
+	swarm: SwarmConfig;
+	notion: NotionConfig;
 }
 
 export function defaultConfig(): AioConfig {
@@ -36,6 +82,7 @@ export function defaultConfig(): AioConfig {
 			enabled: true,
 			minNodes: MIN_NODES,
 			maxNodes: MAX_NODES,
+			engine: "grok",
 		},
 		github: {
 			org: DEFAULT_GITHUB_ORG,
@@ -49,8 +96,16 @@ export function defaultConfig(): AioConfig {
 		supabase: {
 			enabled: true,
 		},
+		claude: { ...DEFAULT_CLAUDE_CONFIG },
+		grok: {
+			...DEFAULT_GROK_CONFIG,
+			proxy: { ...DEFAULT_GROK_CONFIG.proxy, routeModels: [...DEFAULT_GROK_CONFIG.proxy.routeModels] },
+		},
+		hitl: { ...DEFAULT_HITL_CONFIG },
 		lsp: { ...DEFAULT_LSP_CONFIG },
 		pod: { ...DEFAULT_POD_CONFIG },
+		swarm: { ...DEFAULT_SWARM_CONFIG },
+		notion: { ...DEFAULT_NOTION_CONFIG },
 	};
 }
 
@@ -112,6 +167,82 @@ function mergeThink(think: Record<string, unknown> | undefined, defaults: ThinkC
 		enabled: typeof think.enabled === "boolean" ? think.enabled : defaults.enabled,
 		minNodes: Math.min(minNodes, maxNodes),
 		maxNodes,
+		engine: think.engine === "grok" || think.engine === "claude" ? think.engine : defaults.engine,
+	};
+}
+
+function nonNegativeMs(value: unknown, fallback: number): number {
+	return typeof value === "number" && Number.isFinite(value) && value >= 0 ? value : fallback;
+}
+
+function mergeClaude(claude: Record<string, unknown> | undefined, defaults: ClaudeConfig): ClaudeConfig {
+	if (!claude) return defaults;
+	const positive = (value: unknown, fallback: number): number =>
+		typeof value === "number" && Number.isFinite(value) && value > 0 ? value : fallback;
+	return {
+		bin: typeof claude.bin === "string" && claude.bin.trim() ? claude.bin.trim() : defaults.bin,
+		model: typeof claude.model === "string" ? claude.model.trim() : defaults.model,
+		thinking: typeof claude.thinking === "boolean" ? claude.thinking : defaults.thinking,
+		settingSources: typeof claude.settingSources === "string" ? claude.settingSources.trim() : defaults.settingSources,
+		callTimeoutMs: nonNegativeMs(claude.callTimeoutMs, defaults.callTimeoutMs),
+		budgetMs: nonNegativeMs(claude.budgetMs, defaults.budgetMs),
+		concurrency: Math.max(1, Math.floor(positive(claude.concurrency, defaults.concurrency))),
+		echo: typeof claude.echo === "boolean" ? claude.echo : defaults.echo,
+	};
+}
+
+function nonEmpty(value: unknown, fallback: string): string {
+	return typeof value === "string" && value.trim() ? value.trim() : fallback;
+}
+
+function mergeGrokProxy(proxy: Record<string, unknown> | undefined, defaults: GrokProxyConfig): GrokProxyConfig {
+	if (!proxy) return { ...defaults, routeModels: [...defaults.routeModels] };
+	const routeModels = Array.isArray(proxy.routeModels)
+		? proxy.routeModels.filter((m): m is string => typeof m === "string" && m.trim().length > 0).map((m) => m.trim())
+		: [...defaults.routeModels];
+	return {
+		enabled: typeof proxy.enabled === "boolean" ? proxy.enabled : defaults.enabled,
+		host: nonEmpty(proxy.host, defaults.host),
+		port:
+			typeof proxy.port === "number" && Number.isInteger(proxy.port) && proxy.port >= 1 && proxy.port <= 65535
+				? proxy.port
+				: defaults.port,
+		upstream: nonEmpty(proxy.upstream, defaults.upstream).replace(/\/+$/, "") || defaults.upstream,
+		haikuModel: nonEmpty(proxy.haikuModel, defaults.haikuModel),
+		routeModels: routeModels.length > 0 ? routeModels : [...defaults.routeModels],
+		stripThinking: typeof proxy.stripThinking === "boolean" ? proxy.stripThinking : defaults.stripThinking,
+	};
+}
+
+function mergeGrok(grok: Record<string, unknown> | undefined, defaults: GrokConfig): GrokConfig {
+	if (!grok) return defaults;
+	return {
+		enabled: typeof grok.enabled === "boolean" ? grok.enabled : defaults.enabled,
+		baseUrl: nonEmpty(grok.baseUrl, defaults.baseUrl).replace(/\/+$/, "") || defaults.baseUrl,
+		model: nonEmpty(grok.model, defaults.model),
+		reasoningEffort: GROK_EFFORTS.includes(grok.reasoningEffort as GrokEffort)
+			? (grok.reasoningEffort as GrokEffort)
+			: defaults.reasoningEffort,
+		transport: grok.transport === "http" || grok.transport === "cli" ? grok.transport : defaults.transport,
+		bin: nonEmpty(grok.bin, defaults.bin),
+		home: typeof grok.home === "string" ? grok.home.trim() : defaults.home,
+		callTimeoutMs: nonNegativeMs(grok.callTimeoutMs, defaults.callTimeoutMs),
+		fallbackToClaude: typeof grok.fallbackToClaude === "boolean" ? grok.fallbackToClaude : defaults.fallbackToClaude,
+		proxy: mergeGrokProxy(asRecord(grok.proxy), defaults.proxy),
+	};
+}
+
+function mergeHitl(hitl: Record<string, unknown> | undefined, defaults: HitlConfig): HitlConfig {
+	if (!hitl) return defaults;
+	return {
+		enabled: typeof hitl.enabled === "boolean" ? hitl.enabled : defaults.enabled,
+		maxQuestions:
+			typeof hitl.maxQuestions === "number" &&
+			Number.isInteger(hitl.maxQuestions) &&
+			hitl.maxQuestions >= 1 &&
+			hitl.maxQuestions <= 4
+				? hitl.maxQuestions
+				: defaults.maxQuestions,
 	};
 }
 
@@ -152,6 +283,26 @@ function mergeLsp(lsp: Record<string, unknown> | undefined, defaults: LspConfig)
 	};
 }
 
+function mergeSwarm(swarm: Record<string, unknown> | undefined, defaults: SwarmConfig): SwarmConfig {
+	if (!swarm) return defaults;
+	const runtime = swarm.runtime === "claude" || swarm.runtime === "grok" || swarm.runtime === "auto" ? swarm.runtime : defaults.runtime;
+	return {
+		enabled: typeof swarm.enabled === "boolean" ? swarm.enabled : defaults.enabled,
+		root: typeof swarm.root === "string" ? swarm.root.trim() : defaults.root,
+		runtime,
+		dryRun: typeof swarm.dryRun === "boolean" ? swarm.dryRun : defaults.dryRun,
+	};
+}
+
+function mergeNotion(notion: Record<string, unknown> | undefined, defaults: NotionConfig): NotionConfig {
+	if (!notion) return defaults;
+	return {
+		enabled: typeof notion.enabled === "boolean" ? notion.enabled : defaults.enabled,
+		apiKeyEnv: typeof notion.apiKeyEnv === "string" && notion.apiKeyEnv.trim() ? notion.apiKeyEnv.trim() : defaults.apiKeyEnv,
+		parentPageId: typeof notion.parentPageId === "string" ? notion.parentPageId.trim() : defaults.parentPageId,
+	};
+}
+
 function mergePod(pod: Record<string, unknown> | undefined, defaults: PodConfig): PodConfig {
 	if (!pod) return defaults;
 	const extraDirs = Array.isArray(pod.extraDirs)
@@ -178,19 +329,41 @@ function mergePod(pod: Record<string, unknown> | undefined, defaults: PodConfig)
 	};
 }
 
-export function loadConfig(): AioConfig {
-	const defaults = defaultConfig();
-	const dir = process.env.PI_CODING_AGENT_DIR?.trim() || join(homedir(), ".omp", "agent");
-	const file = asRecord(readJson(join(dir, "all-in-one.json")));
-	if (!file) return defaults;
+export function mergeConfig(file: Record<string, unknown> | undefined, base: AioConfig): AioConfig {
+	if (!file) return base;
 	return {
-		uplift: mergeUplift(asRecord(file.uplift), defaults.uplift),
-		issues: mergeIssues(asRecord(file.issues), defaults.issues),
-		think: mergeThink(asRecord(file.think), defaults.think),
-		github: mergeGithub(asRecord(file.github), defaults.github),
-		greptile: mergeGreptile(asRecord(file.greptile), defaults.greptile),
-		supabase: mergeSupabase(asRecord(file.supabase), defaults.supabase),
-		lsp: mergeLsp(asRecord(file.lsp), defaults.lsp),
-		pod: mergePod(asRecord(file.pod), defaults.pod),
+		uplift: mergeUplift(asRecord(file.uplift), base.uplift),
+		claude: mergeClaude(asRecord(file.claude), base.claude),
+		grok: mergeGrok(asRecord(file.grok), base.grok),
+		hitl: mergeHitl(asRecord(file.hitl), base.hitl),
+		issues: mergeIssues(asRecord(file.issues), base.issues),
+		think: mergeThink(asRecord(file.think), base.think),
+		github: mergeGithub(asRecord(file.github), base.github),
+		greptile: mergeGreptile(asRecord(file.greptile), base.greptile),
+		supabase: mergeSupabase(asRecord(file.supabase), base.supabase),
+		lsp: mergeLsp(asRecord(file.lsp), base.lsp),
+		pod: mergePod(asRecord(file.pod), base.pod),
+		swarm: mergeSwarm(asRecord(file.swarm), base.swarm),
+		notion: mergeNotion(asRecord(file.notion), base.notion),
 	};
+}
+
+export function ompConfigPath(env: Record<string, string | undefined> = process.env): string {
+	const dir = env.PI_CODING_AGENT_DIR?.trim() || join(homedir(), ".omp", "agent");
+	return join(dir, "all-in-one.json");
+}
+
+/** Config files for the Claude Code plugin path, lowest precedence first. */
+export function claudeConfigPaths(cwd: string, env: Record<string, string | undefined> = process.env): string[] {
+	const home = env.CLAUDE_CONFIG_DIR?.trim() || join(homedir(), ".claude");
+	return [ompConfigPath(env), join(home, "all-in-one.json"), join(cwd, ".claude", "all-in-one.json")];
+}
+
+/** Loads config from `files` in order (later files win). Defaults to the OMP file only. */
+export function loadConfig(files: string[] = [ompConfigPath()]): AioConfig {
+	let config = defaultConfig();
+	for (const file of files) {
+		config = mergeConfig(asRecord(readJson(file)), config);
+	}
+	return config;
 }

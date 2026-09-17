@@ -8,21 +8,16 @@ import { createGithub } from "./mcp/github.ts";
 import { createGreptile } from "./mcp/greptile.ts";
 import { createSupabase } from "./mcp/supabase.ts";
 import { defaultCliRunner } from "./mcp/run.ts";
-import { createBoardComponent } from "./issues/board-ui.ts";
 import { createChromeWidget, type ChromeState } from "./ui/chrome.ts";
-import { createKanbanWidget } from "./ui/kanban.ts";
 import { createLspWidget } from "./ui/lsp.ts";
 import { registerAioRenderers } from "./ui/renderers.ts";
 
 import {
 	ISSUE_COMPLETIONS,
-	KANBAN_COMPLETIONS,
 	applyIssueToggle,
 	parseIssueArgs,
 } from "./issues/commands.ts";
 import {
-	formatBoardHud,
-	formatBoardList,
 	formatIssueAddendum,
 	formatIssueEcho,
 	formatIssueList,
@@ -30,7 +25,7 @@ import {
 import { resolveGithub } from "./issues/github.ts";
 import { defaultKtuiRunner } from "./issues/kanban.ts";
 import { ensureRepo, listIssues } from "./issues/tissue.ts";
-import { refreshSnapshot, syncAllIssues, trackThoughtGraph, trackUpliftedPrompt } from "./issues/track.ts";
+import { createBoardLaneController, isTerminalAgentEnd, refreshSnapshot, syncAllIssues, trackThoughtGraph, trackUpliftedPrompt } from "./issues/track.ts";
 import { registerIssueTools } from "./issues/tools.ts";
 import { importedSkillCount } from "./skills/import.ts";
 import type { GraphSyncResult, IssueTrackState, SyncResult } from "./issues/types.ts";
@@ -171,10 +166,21 @@ export default function allInOne(pi: ExtensionAPI): void {
 	};
 	const issueState: IssueTrackState = { enabled: config.issues.enabled };
 	const run = defaultKtuiRunner(config.issues.ktuiBin);
+	let hudCtx: ExtensionContext | undefined;
 	let lastResult: UpliftResult | undefined;
 	let injectAddendum = false;
 	let injectIssueAddendum = false;
 	let issueTree: GraphSyncResult | undefined;
+	const boardLanes = createBoardLaneController({
+		run,
+		boardName: () => config.issues.boardName,
+		enabled: () => issueState.enabled,
+		tree: () => issueTree,
+		last: () => issueState.last,
+		onMoved: async () => {
+			if (hudCtx) await refreshHud(hudCtx);
+		},
+	});
 	let sessionCwd = process.cwd();
 	const thinkState = { enabled: config.think.enabled };
 	let lastGraph: ThoughtGraph | undefined;
@@ -251,20 +257,7 @@ export default function allInOne(pi: ExtensionAPI): void {
 	async function refreshHud(ctx: ExtensionContext): Promise<void> {
 		if (!ctx.hasUI) return;
 		ctx.ui.setWidget("aio-chrome", createChromeWidget(chromeState()), { placement: "aboveEditor" });
-		if (!issueState.enabled) {
-			ctx.ui.setWidget("aio-kanban", undefined);
-		} else {
-			try {
-				const snap = await refreshSnapshot(run, config.issues.boardName);
-				ctx.ui.setWidget("aio-kanban", createKanbanWidget(snap, issueState.last), {
-					placement: "aboveEditor",
-				});
-			} catch {
-				ctx.ui.setWidget("aio-kanban", createKanbanWidget(undefined, issueState.last), {
-					placement: "aboveEditor",
-				});
-			}
-		}
+		ctx.ui.setWidget("aio-kanban", undefined);
 		if (config.lsp.enabled) {
 			ctx.ui.setWidget(
 				"aio-lsp",
@@ -345,96 +338,44 @@ export default function allInOne(pi: ExtensionAPI): void {
 		}
 	}
 
-	function openBoard(ctx: ExtensionContext): void {
-		void (async () => {
-			const snap = await refreshSnapshot(run, config.issues.boardName);
-			if (!ctx.hasUI) {
-				notify(ctx, snap ? formatBoardList(snap) : formatBoardHud(undefined).join("\n"), snap ? "info" : "warning");
+
+	async function handleIssueKind(args: string, ctx: ExtensionContext): Promise<void> {
+		const { cmd } = parseIssueArgs(args);
+		switch (cmd) {
+			case "list":
+				notify(ctx, formatIssueList(listIssues(ctx.cwd)));
+				return;
+			case "status": {
+				const lines = [
+					`Issue tracking ${issueState.enabled ? "on" : "off"}`,
+					`Board: ${config.issues.boardName}`,
+				];
+				if (issueState.last) lines.splice(1, 0, formatIssueEcho(issueState.last));
+				notify(ctx, lines.join("\n"));
 				return;
 			}
-			if (!snap) notify(ctx, "board offline — ktui MCP not ready", "warning");
-			try {
-				void ctx.ui
-					.custom(
-						(_tui, theme, _kb, done) =>
-							createBoardComponent(
-								snap ?? {
-									boardId: 0,
-									boardName: config.issues.boardName,
-									columns: [],
-									tasks: [],
-									categoryId: null,
-								},
-								done,
-								theme,
-							),
-						{ overlay: true },
-					)
-					.catch(() => {
-						notify(ctx, "run ktui in another terminal for the real TUI", "warning");
-					});
-			} catch {
-				notify(ctx, "run ktui in another terminal for the real TUI", "warning");
-			}
-		})();
-	}
-
-	async function handleIssueKind(kind: "issues" | "kanban", args: string, ctx: ExtensionContext): Promise<void> {
-		const { cmd } = parseIssueArgs(kind, args);
-		if (kind === "issues") {
-			switch (cmd) {
-				case "list":
-					notify(ctx, formatIssueList(listIssues(ctx.cwd)));
-					return;
-				case "status": {
-					const lines = [
-						`Issue tracking ${issueState.enabled ? "on" : "off"}`,
-						`Board: ${config.issues.boardName}`,
-					];
-					if (issueState.last) lines.splice(1, 0, formatIssueEcho(issueState.last));
-					notify(ctx, lines.join("\n"));
+			case "last":
+				if (!issueState.last) {
+					notify(ctx, "No last issue in this session yet", "warning");
 					return;
 				}
-				case "last":
-					if (!issueState.last) {
-						notify(ctx, "No last issue in this session yet", "warning");
-						return;
-					}
-					notify(ctx, formatIssueEcho(issueState.last));
-					return;
-				case "sync":
-					await runSync(ctx);
-					return;
-				case "on":
-				case "off":
-				case "toggle": {
-					const toggled = applyIssueToggle(issueState, cmd);
-					persist();
-					notify(ctx, toggled.message);
-					await refreshHud(ctx);
-					return;
-				}
-				default:
-					notify(ctx, "Usage: /issues [list|status|sync|last|on|off]");
-					return;
-			}
-		}
-
-		switch (cmd) {
-			case "board":
-			case "open":
-				openBoard(ctx);
+				notify(ctx, formatIssueEcho(issueState.last));
 				return;
 			case "sync":
 				await runSync(ctx);
 				return;
-			case "status": {
-				const snap = await refreshSnapshot(run, config.issues.boardName);
-				notify(ctx, formatBoardHud(snap, issueState.last).join("\n"));
+			case "on":
+			case "off":
+			case "toggle": {
+				const toggled = applyIssueToggle(issueState, cmd);
+				persist();
+				notify(ctx, toggled.message);
+				await refreshHud(ctx);
 				return;
 			}
 			default:
-				notify(ctx, "Usage: /kanban [board|open|sync|status]");
+				notify(ctx, "Usage: /issues [list|status|sync|last|on|off]");
+				return;
 		}
 	}
 
@@ -651,8 +592,8 @@ export default function allInOne(pi: ExtensionAPI): void {
 
 	async function handleCommand(args: string, ctx: ExtensionContext): Promise<void> {
 		const { cmd, rest } = parseAioArgs(args);
-		if (cmd === "issues" || cmd === "kanban") {
-			await handleIssueKind(cmd, rest, ctx);
+		if (cmd === "issues") {
+			await handleIssueKind(rest, ctx);
 			return;
 		}
 		if (cmd === "think") {
@@ -704,15 +645,8 @@ export default function allInOne(pi: ExtensionAPI): void {
 	pi.registerCommand("issues", {
 		description: "Tissue issue tracking",
 		getArgumentCompletions: (prefix) => filterNamed(prefix, ISSUE_COMPLETIONS),
-		handler: (args, ctx) => handleIssueKind("issues", args, ctx),
+		handler: (args, ctx) => handleIssueKind(args, ctx),
 	});
-
-	pi.registerCommand("kanban", {
-		description: "Spectrum Web Co board",
-		getArgumentCompletions: (prefix) => filterNamed(prefix, KANBAN_COMPLETIONS),
-		handler: (args, ctx) => handleIssueKind("kanban", args, ctx),
-	});
-
 	pi.registerCommand("think", {
 		description: "Graph of Thought + Chain of Thought",
 		getArgumentCompletions: (prefix) => filterNamed(prefix, THINK_COMPLETIONS),
@@ -773,8 +707,6 @@ export default function allInOne(pi: ExtensionAPI): void {
 		getArgumentCompletions: (prefix) => {
 			const issues = prefix.trimStart().match(/^issues(?:\s+|$)(.*)$/i);
 			if (issues) return filterNamed(issues[1] ?? "", ISSUE_COMPLETIONS);
-			const kanban = prefix.trimStart().match(/^kanban(?:\s+|$)(.*)$/i);
-			if (kanban) return filterNamed(kanban[1] ?? "", KANBAN_COMPLETIONS);
 			const think = prefix.trimStart().match(/^think(?:\s+|$)(.*)$/i);
 			if (think) return filterNamed(think[1] ?? "", THINK_COMPLETIONS);
 			const lspArgs = prefix.trimStart().match(/^lsp(?:\s+|$)(.*)$/i);
@@ -789,7 +721,6 @@ export default function allInOne(pi: ExtensionAPI): void {
 			if (nested) return filterCompletions(nested[1] ?? "");
 			return filterCompletions(prefix, [
 				{ value: "issues", label: "issues — Tissue issue tracking" },
-				{ value: "kanban", label: "kanban — Spectrum Web Co board" },
 				{ value: "uplift", label: "uplift — Prompt Uplift commands" },
 				{ value: "think", label: "think — Graph of Thought + Chain of Thought" },
 				{ value: "lsp", label: "lsp — Live LSP status / diagnostics" },
@@ -804,6 +735,7 @@ export default function allInOne(pi: ExtensionAPI): void {
 	});
 
 	pi.on("session_start", async (event, ctx) => {
+		hudCtx = ctx;
 		sessionCwd = ctx.cwd;
 		applyFlag();
 		lsp.setCwd(ctx.cwd);
@@ -892,6 +824,7 @@ export default function allInOne(pi: ExtensionAPI): void {
 	});
 
 	pi.on("input", async (event, ctx) => {
+		hudCtx = ctx;
 		const idle = typeof ctx.isIdle === "function" ? ctx.isIdle() : true;
 		const decision = decideUplift(
 			{
@@ -939,6 +872,13 @@ export default function allInOne(pi: ExtensionAPI): void {
 			}
 			lastResult = result;
 			injectAddendum = true;
+			try {
+				const { kickoffSwarm } = await import("./swarm/kickoff.ts");
+				const kick = kickoffSwarm({ cwd: ctx.cwd, prompt: decision.text, config: config.swarm });
+				if (kick.kicked) notify(ctx, "AgentSwarm started autonomously");
+			} catch {
+				// fail-open
+			}
 			pi.appendEntry("aio-uplift-last", result);
 			if (config.uplift.echo) {
 				try {
@@ -1015,6 +955,7 @@ export default function allInOne(pi: ExtensionAPI): void {
 	});
 
 	pi.on("before_agent_start", (event) => {
+		boardLanes.onAgentStart();
 		let lspDigest = "";
 		if (config.lsp.enabled) {
 			try {
@@ -1120,7 +1061,13 @@ export default function allInOne(pi: ExtensionAPI): void {
 	});
 
 
-	pi.on("turn_end", () => {
+	pi.on("agent_end", (event, ctx) => {
+		if (ctx) hudCtx = ctx;
+		if (isTerminalAgentEnd(event)) boardLanes.onAgentEnd();
+	});
+
+	pi.on("turn_end", (event, ctx) => {
+		if (ctx) hudCtx = ctx;
 		try {
 			const digest = lsp.shouldInjectParent();
 			if (digest) injectLspNote(pi, digest);

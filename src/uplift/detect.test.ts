@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test";
 import { ROOT_TAGS, type UpliftState } from "../types.ts";
-import { decideUplift, isAlreadyUplifted, isTrivial, stripPrefix } from "./detect.ts";
+import { decideUplift, isAlreadyUplifted, isCommandPrompt, isTrivial, stripPrefix } from "./detect.ts";
 
 function state(overrides?: Partial<UpliftState>): UpliftState {
 	return { enabled: true, skipOnce: false, skipTrivial: true, ...overrides };
@@ -122,6 +122,34 @@ describe("decideUplift", () => {
 	test("skips slash commands", () => {
 		expect(decideUplift({ text: "/help", source: "user" }, state())).toEqual({ action: "skip" });
 		expect(decideUplift({ text: "/uplift on", source: "user" }, state())).toEqual({ action: "skip" });
+		expect(decideUplift({ text: "/all-in-one:issues list", source: "user" }, state())).toEqual({ action: "skip" });
+		expect(isCommandPrompt("/all-in-one:grok status")).toBe(true);
+		expect(
+			decideUplift(
+				{
+					text: "<command-name>all-in-one:issues</command-name>\n<command-args>list</command-args>",
+					source: "user",
+				},
+				state(),
+			),
+		).toEqual({ action: "skip" });
+		expect(
+			decideUplift(
+				{
+					text: "<command-message>all-in-one:uplift</command-message>\n<command-name>all-in-one:uplift</command-name>",
+					source: "user",
+				},
+				state(),
+			),
+		).toEqual({ action: "skip" });
+		expect(decideUplift({ text: "<local-command>compact</local-command>", source: "user" }, state())).toEqual({
+			action: "skip",
+		});
+		expect(isCommandPrompt("please run /help later")).toBe(false);
+		expect(decideUplift({ text: "please run /help later", source: "user" }, state())).toEqual({
+			action: "uplift",
+			text: "please run /help later",
+		});
 	});
 
 	test("skips already-uplifted roots", () => {

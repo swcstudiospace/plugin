@@ -1,6 +1,6 @@
-export function parseIssueArgs(kind: "issues" | "kanban", args: string): { cmd: string; rest: string } {
+export function parseIssueArgs(args: string): { cmd: string; rest: string } {
 	const trimmed = args.trim();
-	if (!trimmed) return { cmd: kind === "kanban" ? "board" : "list", rest: "" };
+	if (!trimmed) return { cmd: "list", rest: "" };
 	const parts = trimmed.split(/\s+/);
 	return { cmd: parts[0]!.toLowerCase(), rest: parts.slice(1).join(" ") };
 }
@@ -14,12 +14,6 @@ export const ISSUE_COMPLETIONS: Array<{ value: string; label: string }> = [
 	{ value: "off", label: "off — disable issue tracking" },
 ];
 
-export const KANBAN_COMPLETIONS: Array<{ value: string; label: string }> = [
-	{ value: "board", label: "board — show the kanban board" },
-	{ value: "sync", label: "sync — sync issues to the board" },
-	{ value: "open", label: "open — open the board overlay" },
-	{ value: "status", label: "status — board status" },
-];
 
 export function applyIssueToggle(
 	state: { enabled: boolean },

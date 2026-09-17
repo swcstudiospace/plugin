@@ -7,6 +7,8 @@ import {
 	listBoards,
 	listCategories,
 	listTasks,
+	moveTasksToLane,
+	resolveLaneColumn,
 	syncIssue,
 } from "./kanban.ts";
 
@@ -211,3 +213,133 @@ describe("boardSnapshot", () => {
 		expect(snapshot?.tasks).toHaveLength(3);
 	});
 });
+
+const NAMED_COLUMN_JSON = JSON.stringify([
+	{ column_id: 10, name: "Ready", visible: true, position: 1, board_id: 1 },
+	{ column_id: 20, name: "Doing", visible: true, position: 2, board_id: 1 },
+	{ column_id: 30, name: "Done", visible: true, position: 3, board_id: 1 },
+]);
+
+const POSITION_COLUMN_JSON = JSON.stringify([
+	{ column_id: 4, name: "Backlog", visible: true, position: 1, board_id: 1 },
+	{ column_id: 5, name: "Wip", visible: true, position: 2, board_id: 1 },
+	{ column_id: 6, name: "Complete", visible: true, position: 3, board_id: 1 },
+]);
+
+describe("resolveLaneColumn", () => {
+	test("resolves by name when ids are not 1/2/3", async () => {
+		const run = mockRunner((argv) => {
+			if (argv[0] === "column" && argv[1] === "list") return { stdout: NAMED_COLUMN_JSON };
+			throw new Error(`unexpected ${argv.join(" ")}`);
+		});
+		expect(await resolveLaneColumn(run, 1, "ready")).toBe(10);
+		expect(await resolveLaneColumn(run, 1, "doing")).toBe(20);
+		expect(await resolveLaneColumn(run, 1, "done")).toBe(30);
+	});
+
+	test("returns undefined when names are not Ready/Doing/Done", async () => {
+		const run = mockRunner((argv) => {
+			if (argv[0] === "column" && argv[1] === "list") return { stdout: POSITION_COLUMN_JSON };
+			throw new Error(`unexpected ${argv.join(" ")}`);
+		});
+		expect(await resolveLaneColumn(run, 1, "ready")).toBeUndefined();
+		expect(await resolveLaneColumn(run, 1, "doing")).toBeUndefined();
+		expect(await resolveLaneColumn(run, 1, "done")).toBeUndefined();
+	});
+
+	test("does not resolve done to Archive by position", async () => {
+		const run = mockRunner((argv) => {
+			if (argv[0] === "column" && argv[1] === "list") {
+				return {
+					stdout: JSON.stringify([
+						{ column_id: 1, name: "Backlog", visible: true, position: 1, board_id: 1 },
+						{ column_id: 2, name: "Wip", visible: true, position: 2, board_id: 1 },
+						{ column_id: 3, name: "Archive", visible: true, position: 3, board_id: 1 },
+					]),
+				};
+			}
+			throw new Error(`unexpected ${argv.join(" ")}`);
+		});
+		expect(await resolveLaneColumn(run, 1, "done")).toBeUndefined();
+	});
+});
+
+describe("moveTasksToLane", () => {
+	function laneRunner(opts: {
+		columns?: string;
+		tasks?: unknown;
+		moveCode?: number;
+		moveThrow?: boolean;
+		runThrow?: boolean;
+	} = {}) {
+		return mockRunner((argv) => {
+			if (opts.runThrow) throw new Error("ktui exploded");
+			if (argv[0] === "board" && argv[1] === "list") return { stdout: BOARD_JSON };
+			if (argv[0] === "board" && argv[1] === "activate") return {};
+			if (argv[0] === "column" && argv[1] === "list") {
+				return { stdout: opts.columns ?? COLUMN_JSON };
+			}
+			if (argv[0] === "task" && argv[1] === "list") {
+				const tasks = opts.tasks ?? [];
+				return { stdout: typeof tasks === "string" ? tasks : JSON.stringify(tasks) };
+			}
+			if (argv[0] === "task" && argv[1] === "move") {
+				if (opts.moveThrow) throw new Error("ktui exploded");
+				return { code: opts.moveCode ?? 0 };
+			}
+			throw new Error(`unexpected ${argv.join(" ")}`);
+		});
+	}
+
+	test("emits task move argv for Ready to Doing", async () => {
+		const run = laneRunner({
+			tasks: [{ task_id: 9, title: "A", column: 1, description: "tissue:a" }],
+		});
+		await expect(moveTasksToLane(run, [9], "doing")).resolves.toEqual({ moved: 1, skipped: 0 });
+		expect(run.calls).toContainEqual(["task", "move", "9", "2"]);
+	});
+
+	test("skips tasks already in the target lane", async () => {
+		const run = laneRunner({
+			tasks: [{ task_id: 9, title: "A", column: 2, description: "tissue:a" }],
+		});
+		await expect(moveTasksToLane(run, [9], "doing")).resolves.toEqual({ moved: 0, skipped: 1 });
+		expect(run.calls.some((argv) => argv[0] === "task" && argv[1] === "move")).toBe(false);
+	});
+
+	test("skips missing task ids", async () => {
+		const run = laneRunner({
+			tasks: [{ task_id: 9, title: "A", column: 1, description: "tissue:a" }],
+		});
+		await expect(moveTasksToLane(run, [99], "doing")).resolves.toEqual({ moved: 0, skipped: 1 });
+		expect(run.calls.some((argv) => argv[0] === "task" && argv[1] === "move")).toBe(false);
+	});
+
+	test("makes no ktui calls for empty ids", async () => {
+		const run = laneRunner({ runThrow: true });
+		await expect(moveTasksToLane(run, [], "doing")).resolves.toEqual({ moved: 0, skipped: 0 });
+		expect(run.calls).toHaveLength(0);
+	});
+
+	test("never throws when the runner throws or move is nonzero", async () => {
+		const throwing = laneRunner({ runThrow: true });
+		await expect(moveTasksToLane(throwing, [9], "doing")).resolves.toEqual({
+			moved: 0,
+			skipped: 1,
+			reason: "ktui exploded",
+		});
+
+		const failed = laneRunner({
+			tasks: [{ task_id: 9, title: "A", column: 1, description: "tissue:a" }],
+			moveCode: 2,
+		});
+		await expect(moveTasksToLane(failed, [9], "doing")).resolves.toEqual({ moved: 0, skipped: 1 });
+
+		const moveThrows = laneRunner({
+			tasks: [{ task_id: 9, title: "A", column: 1, description: "tissue:a" }],
+			moveThrow: true,
+		});
+		await expect(moveTasksToLane(moveThrows, [9], "doing")).resolves.toEqual({ moved: 0, skipped: 1 });
+	});
+});
+

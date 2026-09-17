@@ -1,0 +1,15 @@
+[Unit]
+Description=AIO Grok proxy (Anthropic-compatible router: Haiku-tier → grok-4.6)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+Environment=HOME=/root
+WorkingDirectory=/root/src/repos/plugin
+ExecStart=/root/.local/share/reflex/bun/bin/bun /root/src/repos/plugin/src/grok/proxy.ts
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target

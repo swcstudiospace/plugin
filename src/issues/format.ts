@@ -1,23 +1,5 @@
-import { DEFAULT_BOARD_NAME, type BoardSnapshot, type GraphSyncResult, type SyncResult, type TissueIssue } from "./types.ts";
-
-const HUD_MAX_LINES = 8;
-
-export function formatBoardHud(snap: BoardSnapshot | undefined, last?: SyncResult): string[] {
-	if (!snap) {
-		return [`Issue tracking · ${DEFAULT_BOARD_NAME}`, "board offline — ktui MCP not ready"];
-	}
-
-	const lines: string[] = [snap.boardName];
-	const columns = snap.columns.filter((column) => column.visible).sort((a, b) => a.position - b.position);
-	if (columns.length > 0) {
-		lines.push(columns.map((column) => `${column.name} ${column.count}`).join("  "));
-	}
-	if (last) {
-		lines.push(`Last: ${last.issue.id} ${last.issue.title}`);
-	}
-	lines.push("/kanban  /issues");
-	return lines.slice(0, HUD_MAX_LINES);
-}
+import { escapeXml } from "../uplift/xml.ts";
+import type { GraphSyncResult, SyncResult, TissueIssue } from "./types.ts";
 
 export function formatIssueEcho(result: SyncResult): string {
 	const head = `${result.issue.id}  ${result.issue.path}`;
@@ -35,17 +17,6 @@ export function formatIssueList(issues: TissueIssue[]): string {
 	return issues.map((issue) => `${issue.id}  ${issue.title}`).join("\n");
 }
 
-export function formatBoardList(snap: BoardSnapshot): string {
-	const lines: string[] = [snap.boardName];
-	for (const column of snap.columns.filter((col) => col.visible).sort((a, b) => a.position - b.position)) {
-		const tasks = snap.tasks.filter((task) => task.column === column.column_id);
-		lines.push(`${column.name} (${column.count})`);
-		for (const task of tasks) {
-			lines.push(`  ${task.title}`);
-		}
-	}
-	return lines.join("\n");
-}
 
 export function formatIssueAddendum(tree?: GraphSyncResult): string {
 	const lines = [
@@ -65,4 +36,57 @@ export function formatIssueAddendum(tree?: GraphSyncResult): string {
 		}
 	}
 	return `${lines.join("\n")}\n`;
+}
+
+const ISSUES_BLOCK_RE = /<ISSUES\b[\s\S]*?<\/ISSUES>/i;
+const NODE_TAG_RE = /^\[([^\]]+)\]\s*(.*)$/;
+
+function issueAttrs(id: string, title: string, taskId: number | null): string {
+	const parts = [` id="${escapeXml(id)}"`, ` title="${escapeXml(title)}"`];
+	if (taskId != null) parts.push(` taskId="${taskId}"`);
+	return parts.join("");
+}
+
+function subIssueTag(child: SyncResult): string {
+	const tagged = NODE_TAG_RE.exec(child.issue.title);
+	const nodeId = tagged?.[1];
+	const title = tagged ? (tagged[2] ?? "") : child.issue.title;
+	const parts = [` id="${escapeXml(child.issue.id)}"`];
+	if (nodeId) parts.push(` nodeId="${escapeXml(nodeId)}"`);
+	parts.push(` title="${escapeXml(title)}"`);
+	if (child.taskId != null) parts.push(` taskId="${child.taskId}"`);
+	return `\t<SUBISSUE${parts.join("")}/>`;
+}
+
+export function issuesToXml(input: { tree?: GraphSyncResult; last?: SyncResult }): string {
+	if (input.tree) {
+		const { parent, children } = input.tree;
+		if (!parent.issue.id) return "";
+		const attrs = issueAttrs(parent.issue.id, parent.issue.title, parent.taskId);
+		if (children.length === 0) return ["<ISSUES>", `\t<ISSUE${attrs}/>`, "</ISSUES>"].join("\n");
+		return ["<ISSUES>", `\t<ISSUE${attrs}>`, ...children.map(subIssueTag), "\t</ISSUE>", "</ISSUES>"].join("\n");
+	}
+	if (input.last?.issue.id) {
+		const attrs = issueAttrs(input.last.issue.id, input.last.issue.title, input.last.taskId);
+		return ["<ISSUES>", `\t<ISSUE${attrs}/>`, "</ISSUES>"].join("\n");
+	}
+	return "";
+}
+
+export function injectIssuesXml(upliftXml: string, input: { tree?: GraphSyncResult; last?: SyncResult }): string {
+	const block = issuesToXml(input);
+	if (ISSUES_BLOCK_RE.test(upliftXml)) {
+		if (!block) return upliftXml.replace(/\n?[ \t]*<ISSUES\b[\s\S]*?<\/ISSUES>/i, "");
+		return upliftXml.replace(ISSUES_BLOCK_RE, block);
+	}
+	if (!block) return upliftXml;
+
+	const trimmed = upliftXml.trim();
+	const open = trimmed.match(/^<([A-Za-z_][\w.-]*)\b([^>]*)>/);
+	if (!open) return trimmed ? `${trimmed}\n${block}` : block;
+
+	const tag = open[1]!;
+	const closeRe = new RegExp(`</${tag}\\s*>\\s*$`, "i");
+	if (!closeRe.test(trimmed)) return `${trimmed}\n${block}`;
+	return trimmed.replace(closeRe, `\n${block}\n</${tag}>`);
 }
