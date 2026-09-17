@@ -12,6 +12,7 @@ import type { AioConfig } from "../config.ts";
 import { injectClarificationsXml } from "../hitl/format.ts";
 import { normalizeQuestion, type RunClarifyOptions, runClarify } from "../hitl/pipeline.ts";
 import type { Clarification } from "../hitl/types.ts";
+import { injectIssuesXml } from "../issues/format.ts";
 import type { KtuiRunner } from "../issues/kanban.ts";
 import { advanceTrackedIssues, trackThoughtGraph, trackUpliftedPrompt } from "../issues/track.ts";
 import type { GithubAssoc, GraphSyncResult, SyncResult } from "../issues/types.ts";
@@ -90,7 +91,10 @@ export async function runPromptSubmit(input: PromptSubmitInput, deps: HookDeps):
 	if (decision.action !== "uplift") return { skipped: decision.action };
 
 	const controller = new AbortController();
-	const budget = setTimeout(() => controller.abort(), deps.config.claude.budgetMs);
+	const budget =
+		deps.config.claude.budgetMs > 0
+			? setTimeout(() => controller.abort(), deps.config.claude.budgetMs)
+			: undefined;
 	try {
 		const original = decision.text;
 		const conversation = deps.conversation?.(input.transcript_path) ?? "";
@@ -191,6 +195,9 @@ export async function runPromptSubmit(input: PromptSubmitInput, deps: HookDeps):
 				log(`issues failed: ${error instanceof Error ? error.message : String(error)}`);
 			}
 		}
+		if (tree || last) {
+			result = { ...result, xml: injectIssuesXml(result.xml, { tree, last }) };
+		}
 
 		const record: SessionRecord = {
 			sessionId,
@@ -246,6 +253,6 @@ export async function runPromptSubmit(input: PromptSubmitInput, deps: HookDeps):
 		}
 		return { output, record };
 	} finally {
-		clearTimeout(budget);
+		if (budget !== undefined) clearTimeout(budget);
 	}
 }

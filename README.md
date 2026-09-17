@@ -75,7 +75,7 @@ Config is read from `~/.omp/agent/all-in-one.json`, then `~/.claude/all-in-one.j
     "transport": "http",
     "bin": "grok",
     "home": "",
-    "callTimeoutMs": 240000,
+    "callTimeoutMs": 0,
     "fallbackToClaude": false,
     "proxy": {
       "enabled": true,
@@ -92,15 +92,15 @@ Config is read from `~/.omp/agent/all-in-one.json`, then `~/.claude/all-in-one.j
     "model": "sonnet",
     "thinking": false,
     "concurrency": 3,
-    "callTimeoutMs": 120000,
-    "budgetMs": 540000,
+    "callTimeoutMs": 0,
+    "budgetMs": 0,
     "echo": true
   },
   "issues": { "enabled": true, "boardName": "Spectrum Web Co" }
 }
 ```
 
-Expect one to three minutes per prompt at `xhigh`: the spec is ~3-4k output tokens and each node is another call (≈18 s per 1k output tokens). `"reasoningEffort": "high"` is faster; `"think": { "enabled": false }` keeps only the uplift and a single tracked issue. Everything is fail-open: on any failure your original prompt still goes through, and the whole hook gives up at `claude.budgetMs`. Set `AIO_DEBUG=1` to see progress on stderr. State (last spec, per-session issue tree, clarifications) lives in `~/.claude/aio/`.
+Grok 4.6 Ultra (`xhigh`) plus Graph of Thought and per-node Chain of Thought is slow by design: the spec is ~3-4k output tokens and each node is another call (≈18 s per 1k output tokens). The Claude Code `UserPromptSubmit` hook waits up to **86400 s (24 h)** so that work can finish; if the host times out it **discards** the spec. `"reasoningEffort": "high"` is faster; `"think": { "enabled": false }` keeps only the uplift and a single tracked issue. Everything is fail-open: on any failure your original prompt still goes through. `claude.budgetMs` (default `0`) is an optional internal abort; `0` means run until the host hook timeout. Per-call `callTimeoutMs` of `0` means no per-call timer. Set `AIO_DEBUG=1` to see progress on stderr. State (last spec, per-session issue tree, clarifications) lives in `~/.claude/aio/`.
 
 ### Thinking engine
 
@@ -115,7 +115,7 @@ Expect one to three minutes per prompt at `xhigh`: the spec is ~3-4k output toke
 | `transport` | `http` | `http` calls `/responses` directly with the stored session. `cli` spawns `grok -p … --tools none --disallowed-tools … --permission-mode plan --deny Bash/Edit/Write --max-turns 1` per call from a scratch cwd: same login and no tool access, but ~100k tokens and ~35 s per call because the CLI loads its own harness (skills, rules, system prompt). Fallback only; a run that stops for any reason other than `end_turn` is treated as a failure |
 | `bin` | `grok` | Binary for `transport: "cli"` |
 | `home` | `""` | `$GROK_HOME` or `~/.grok` (`auth.json`, `version.json`) |
-| `callTimeoutMs` | `240000` | Per call |
+| `callTimeoutMs` | `0` | Per call; `0` = no timer |
 | `fallbackToClaude` | `false` | Silently use the `claude` engine when Grok is not logged in |
 
 The session is read from `~/.grok/auth.json` (first entry: access token, `expires_at`, `email`); `~/.grok/version.json` supplies the `x-grok-client-version` header the proxy insists on. Expired or missing sessions fail visibly (see above). Nothing is printed or persisted from the token: error bodies pass through `redactSecrets` before they reach a log line or the summary.
@@ -280,6 +280,31 @@ Tools (text results, no tokens):
 | `aio_status` | `{}` — org + Greptile `signedIn`; never tokens |
 
 Optional hosted Greptile HTTP MCP at `https://api.greptile.com/mcp` with `GREPTILE_API_KEY`. **Do not commit a Bearer key.** This plugin does not ship that server in `.mcp.json`.
+
+### Notion PR tracking
+
+When a PR opens (via this plugin's `github_create_pull_request` tool) or is
+reviewed/merged (`github_merge_pull_request`), a "PRs" Notion database is kept in
+sync — one row per PR, with every Tissue issue tracked against that repo nested
+underneath as Notion sub-pages.
+
+Setup (one time):
+
+1. Create a Notion internal integration at `notion.so/my-integrations`; copy its secret.
+2. Share a parent page with that integration (`•••` → Connections on the page).
+3. Set the integration secret as an env var, `NOTION_API_KEY` by default:
+   ```bash
+   export NOTION_API_KEY=ntn_...
+   ```
+4. Add to your `all-in-one.json`:
+   ```json
+   { "notion": { "enabled": true, "parentPageId": "your-page-id" } }
+   ```
+
+The "PRs" database is created automatically under that page the first time a PR
+syncs. `notion.apiKeyEnv` (default `NOTION_API_KEY`) lets you point at a
+differently-named env var. Everything here is fail-open: without
+`parentPageId`/the env var set, sync is silently skipped.
 
 ## Supabase
 

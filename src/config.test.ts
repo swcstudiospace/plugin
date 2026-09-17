@@ -1,12 +1,19 @@
 import { afterEach, describe, expect, test } from "bun:test";
-import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { DEFAULT_CLAUDE_CONFIG, claudeConfigPaths, defaultConfig, loadConfig } from "./config.ts";
+import {
+	CLAUDE_USER_PROMPT_HOOK_TIMEOUT_SEC,
+	DEFAULT_CLAUDE_CONFIG,
+	claudeConfigPaths,
+	defaultConfig,
+	loadConfig,
+} from "./config.ts";
 import { DEFAULT_GROK_CONFIG } from "./grok/types.ts";
 import { DEFAULT_HITL_CONFIG } from "./hitl/types.ts";
 import { DEFAULT_BOARD_NAME } from "./issues/types.ts";
 import { DEFAULT_LSP_CONFIG } from "./lsp/types.ts";
+import { DEFAULT_NOTION_CONFIG } from "./notion/types.ts";
 import { DEFAULT_POD_CONFIG } from "./pod/types.ts";
 import { DEFAULT_SWARM_CONFIG } from "./swarm/types.ts";
 
@@ -26,6 +33,7 @@ const SUPABASE = { enabled: true };
 const LSP = DEFAULT_LSP_CONFIG;
 const POD = DEFAULT_POD_CONFIG;
 const SWARM = DEFAULT_SWARM_CONFIG;
+const NOTION = DEFAULT_NOTION_CONFIG;
 
 const prevDir = process.env.PI_CODING_AGENT_DIR;
 const tempDirs: string[] = [];
@@ -63,6 +71,7 @@ describe("loadConfig", () => {
 			lsp: LSP,
 			pod: POD,
 			swarm: SWARM,
+			notion: NOTION,
 		});
 	});
 
@@ -90,6 +99,7 @@ describe("loadConfig", () => {
 			lsp: LSP,
 			pod: POD,
 			swarm: SWARM,
+			notion: NOTION,
 		});
 
 		withAgentDir(JSON.stringify({ uplift: { maxChars: 50 } }));
@@ -106,6 +116,7 @@ describe("loadConfig", () => {
 			lsp: LSP,
 			pod: POD,
 			swarm: SWARM,
+			notion: NOTION,
 		});
 
 		withAgentDir(JSON.stringify({ uplift: { skipTrivial: false, extra: true }, ignored: 1 }));
@@ -122,6 +133,7 @@ describe("loadConfig", () => {
 			lsp: LSP,
 			pod: POD,
 			swarm: SWARM,
+			notion: NOTION,
 		});
 	});
 
@@ -145,6 +157,7 @@ describe("loadConfig", () => {
 			lsp: LSP,
 			pod: POD,
 			swarm: SWARM,
+			notion: NOTION,
 		});
 	});
 
@@ -163,6 +176,7 @@ describe("loadConfig", () => {
 			lsp: LSP,
 			pod: POD,
 			swarm: SWARM,
+			notion: NOTION,
 		});
 
 		withAgentDir(JSON.stringify({ issues: { boardName: "  Other Board  ", ktuiBin: "/bin/ktui" } }));
@@ -177,6 +191,19 @@ describe("loadConfig", () => {
 	test("issues wrong-typed fields fall back to defaults", () => {
 		withAgentDir(JSON.stringify({ issues: { enabled: "no", boardName: 1, ktuiBin: "", echo: 0 } }));
 		expect(loadConfig().issues).toEqual(ISSUES);
+	});
+
+	test("notion partial JSON merges onto defaults", () => {
+		withAgentDir(JSON.stringify({ notion: { enabled: false } }));
+		expect(loadConfig().notion).toEqual({ ...NOTION, enabled: false });
+
+		withAgentDir(JSON.stringify({ notion: { apiKeyEnv: "  MY_TOKEN  ", parentPageId: "  abc123  " } }));
+		expect(loadConfig().notion).toEqual({ enabled: true, apiKeyEnv: "MY_TOKEN", parentPageId: "abc123" });
+	});
+
+	test("notion wrong-typed fields fall back to defaults", () => {
+		withAgentDir(JSON.stringify({ notion: { enabled: "no", apiKeyEnv: 1, parentPageId: 2 } }));
+		expect(loadConfig().notion).toEqual(NOTION);
 	});
 
 	test("think partial JSON merges onto defaults", () => {
@@ -298,5 +325,20 @@ describe("claude config", () => {
 	test("claudeConfigPaths lists omp, claude home, then project", () => {
 		const paths = claudeConfigPaths("/proj", { CLAUDE_CONFIG_DIR: "/cfg", PI_CODING_AGENT_DIR: "/omp" });
 		expect(paths).toEqual(["/omp/all-in-one.json", "/cfg/all-in-one.json", "/proj/.claude/all-in-one.json"]);
+	});
+
+	test("zero callTimeoutMs and budgetMs mean no timer", () => {
+		withAgentDir(JSON.stringify({ claude: { callTimeoutMs: 0, budgetMs: 0 }, grok: { callTimeoutMs: 0 } }));
+		const config = loadConfig();
+		expect(config.claude.callTimeoutMs).toBe(0);
+		expect(config.claude.budgetMs).toBe(0);
+		expect(config.grok.callTimeoutMs).toBe(0);
+	});
+
+	test("UserPromptSubmit hook timeout matches CLAUDE_USER_PROMPT_HOOK_TIMEOUT_SEC", () => {
+		const hooks = JSON.parse(readFileSync(join(import.meta.dir, "..", "hooks", "hooks.json"), "utf8")) as {
+			hooks: { UserPromptSubmit: Array<{ hooks: Array<{ timeout: number }> }> };
+		};
+		expect(hooks.hooks.UserPromptSubmit[0]?.hooks[0]?.timeout).toBe(CLAUDE_USER_PROMPT_HOOK_TIMEOUT_SEC);
 	});
 });

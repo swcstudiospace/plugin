@@ -49,12 +49,15 @@ describe("formatPromptContext", () => {
 	test("frames the spec as the user's intent, includes xml, graph and issue addenda", () => {
 		const out = formatPromptContext({ result, graph: FALLBACK_GRAPH, tree, specPath: "/s/x.xml" });
 		expect(out.startsWith(UPLIFT_CONTEXT_HEADER)).toBe(true);
+		expect(out).toContain("slash commands remain available");
+		expect(out).toContain("not the end of the turn");
 		expect(out).toContain("Specification file: /s/x.xml");
 		expect(out).toContain(result.xml);
 		expect(out).toContain("## Graph of Thought");
 		expect(out).toContain("parent p1 Goal");
 		expect(out).toContain("child c1 [n1] Understand");
 		expect(out).not.toMatch(/ignore the user/i);
+		expect(out).not.toMatch(/slash commands are (?:finished|forbidden|already handled)/i);
 	});
 
 	test("single tracked issue without a graph mentions the issue path", () => {

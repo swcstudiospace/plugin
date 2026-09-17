@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, test } from "bun:test";
-import { existsSync, mkdtempSync, readdirSync, readFileSync, rmSync } from "node:fs";
+import { existsSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { defaultConfig } from "../config.ts";
@@ -192,7 +192,37 @@ describe("runPromptSubmit", () => {
 		const cwd2 = tempDir("aio-hook-cwd-");
 		const none = await runPromptSubmit({ session_id: "s3", cwd: cwd2, prompt: "build a login page" }, { ...base, control: { issuesEnabled: false } });
 		expect(none.output?.hookSpecificOutput.additionalContext).not.toContain("## Issue tracking");
+		expect(none.output?.hookSpecificOutput.additionalContext).not.toContain("<ISSUES>");
 		expect(existsSync(join(cwd2, "issues"))).toBe(false);
+
+		const cwd3 = join(tempDir("aio-hook-cwd-"), "not-a-dir");
+		writeFileSync(cwd3, "");
+		const failed = await runPromptSubmit(
+			{ session_id: "s3b", cwd: cwd3, prompt: "build a login page" },
+			{ ...base, control: { thinkEnabled: false } },
+		);
+		expect(failed.record?.last?.skipped).toBe(true);
+		expect(failed.output?.hookSpecificOutput.additionalContext).not.toContain("<ISSUES>");
+		expect(failed.record?.result.xml).not.toContain("<ISSUES>");
+	});
+
+	test("injects <ISSUES> into the persisted spec XML when issue tracking succeeds", async () => {
+		const cwd = tempDir("aio-hook-cwd-");
+		const stateDir = join(tempDir("aio-hook-state-"), "aio");
+		const calls: string[] = [];
+		const out = await runPromptSubmit(
+			{ session_id: "s-issues", cwd, prompt: "build a login page" },
+			{
+				config: defaultConfig(),
+				control: { thinkEnabled: false },
+				complete: fakeComplete(calls),
+				engine: "test-engine",
+				ktui: noKtui,
+				stateDir,
+			},
+		);
+		expect(out.output?.hookSpecificOutput.additionalContext).toContain("<ISSUES>");
+		expect(out.record?.result.xml).toContain("<ISSUES>");
 	});
 
 	test("llm failure falls back to the heuristic uplift instead of skipping", async () => {
@@ -317,6 +347,69 @@ describe("runPromptSubmit", () => {
 		expect(readFileSync(specs[0]!, "utf8")).toContain("<");
 		expect(out.output?.hookSpecificOutput.additionalContext).toContain("AgentSwarm orchestration");
 		expect(out.output?.hookSpecificOutput.additionalContext).toContain("starting autonomously");
+	});
+
+	test("budgetMs 0 does not abort a slow complete", async () => {
+		const cwd = tempDir("aio-hook-cwd-");
+		const stateDir = join(tempDir("aio-hook-state-"), "aio");
+		const config = defaultConfig();
+		config.claude.budgetMs = 0;
+		const out = await runPromptSubmit(
+			{ session_id: "s-budget-0", cwd, prompt: "build a login page" },
+			{
+				config,
+				control: { thinkEnabled: false, issuesEnabled: false, hitlEnabled: false },
+				complete: async (system, user, signal) => {
+					await new Promise((resolve) => setTimeout(resolve, 40));
+					if (signal?.aborted) {
+						const error = new Error("Aborted");
+						error.name = "AbortError";
+						throw error;
+					}
+					return fakeComplete([])(system, user);
+				},
+				engine: "test-engine",
+				ktui: noKtui,
+				stateDir,
+			},
+		);
+		expect(out.skipped).toBeUndefined();
+		expect(out.output?.hookSpecificOutput.additionalContext).toContain("<BUILD_PROMPT>");
+	});
+
+	test("positive budgetMs aborts in-flight complete", async () => {
+		const cwd = tempDir("aio-hook-cwd-");
+		const stateDir = join(tempDir("aio-hook-state-"), "aio");
+		const config = defaultConfig();
+		config.claude.budgetMs = 20;
+		const out = await runPromptSubmit(
+			{ session_id: "s-budget", cwd, prompt: "build a login page" },
+			{
+				config,
+				control: { thinkEnabled: false, issuesEnabled: false, hitlEnabled: false },
+				complete: async (_system, _user, signal) => {
+					await new Promise<void>((resolve, reject) => {
+						const timer = setTimeout(resolve, 500);
+						signal?.addEventListener(
+							"abort",
+							() => {
+								clearTimeout(timer);
+								const error = new Error("Aborted");
+								error.name = "AbortError";
+								reject(error);
+							},
+							{ once: true },
+						);
+					});
+					return "<BUILD_PROMPT><ORIGINAL>late</ORIGINAL></BUILD_PROMPT>";
+				},
+				engine: "test-engine",
+				ktui: noKtui,
+				stateDir,
+			},
+		);
+		expect(out.skipped).toBe("uplift-failed");
+		expect(out.output).toBeUndefined();
 	});
 });
 
